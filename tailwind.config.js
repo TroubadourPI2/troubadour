@@ -7,14 +7,20 @@ export default {
         './storage/framework/views/*.php',
         './resources/**/*.blade.php',
         './resources/**/*.js',
-        './resources/**/*.vue',
+        './resources/**/*.vue'
     ],
     theme: {
         extend: {
+            colors: {
+                c1: '#154C51',
+                c2: '#C8E3DF',
+                c3: '#FBFBFB'
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
-        },
+                barlow: ['"Barlow Semi Condensed"', ...defaultTheme.fontFamily.sans],
+            }
+        }
     },
-    plugins: [],
+    plugins: []
 };
