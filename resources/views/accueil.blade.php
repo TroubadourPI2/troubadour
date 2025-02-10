@@ -4,7 +4,7 @@
 
 @section('contenu')
 
-    <div class="flex w-full h-full bg-white ">Troubadour    <span class="iconify" data-icon="mdi:home" data-inline="false"></span></div>
+    <div class="flex w-full">Troubadour    <span class="iconify" data-icon="mdi:home" data-inline="false"></span></div>
  
 
 @endsection
