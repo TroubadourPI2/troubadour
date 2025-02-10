@@ -21,9 +21,9 @@
     @endsection
     @section('contenu')
     
-    <div class="bg-c2 flex h-64 w-full flex-col space-y-5">
+    <div class="bg-c2 flex h-9/12 w-full flex-col space-y-5 flex items-center">
         <h2 class="w-full text-center text-c1 font-bold text-2xl font-barlow">Recherche</h2>
-        <div class="flex w-lg bg-c3 rounded-full items-center">
+        <div class="flex w-5/6 bg-c3 rounded-full items-center">
             <div class="flex bg-c1 rounded-full m-2 flex flex-row w-96 items-center px-5">
                 <select class="flex bg-c1 justify-center items-center h-12 w-3/4 rounded-full font-barlow text-c3 text-center">
                     <option value="default" disabled selected>Choisir la ville</option>
@@ -40,8 +40,32 @@
                     <option value="SM">Sainte-Marthe</option>
                     <option value="SLF">Saint-Louis-De-France</option>
                 </select>
-                <!-- <input type="text" class="w-full h-full bg-transparent text-c1 font-barlow text-xl pl-5" placeholder="Rechercher un lieu, un événement, un artiste..."> -->
             </div>
+            <input type="text" class="w-3/5 h-5/6 bg-transparent text-c1 font-barlow text-xl pl-5 text-center" placeholder="Rechercher un lieu, un événement, un artiste...">
+            <div class="flex bg-c1 rounded-full m-2 flex flex-row w-96 items-center px-5 h-12 justify-center items-center cursor-pointer">
+                <span class="iconify size-6 text-c3" data-icon="mdi:search" data-inline="false" ></span>
+            </div>
+        </div>
+        <div class="w-full flex justify-center items-center h-12">
+            <hr class="w-3/4 bg-c1 h-1">
+        </div>
+        <div class="flex w-5/6 h-12 justify-center items-center space-x-5">
+            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 ">
+                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Prix</h3>
+            </div>
+            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 ">
+                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Type</h3>
+            </div>
+            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 ">
+                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Distance</h3>
+            </div>
+            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 ">
+                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Organisme</h3>
+            </div>
+            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 ">
+                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Avis</h3>
+            </div>
+        
         </div>
     </div>
 
