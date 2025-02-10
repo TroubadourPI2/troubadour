@@ -23,6 +23,16 @@
                     <a class=" text-2xl bg-c2 rounded-full p-1.5 px-4 text-c1 font-barlow">CONNEXION </a>
                 </div>
             </navbar>
+            <div class="w-full  h-full flex justify-evenly items-center flex-col ">
+                <div>
+                    <span class="text-c3 text-4xl">BIENVENUE</span>
+                </div>
+                <div class="">
+                    <button class=" items-center flex text-4xl bg-c2 rounded-full p-1.5 px-6 text-c1 font-barlow">VILLES
+                        <span class="iconify" data-icon="fluent:arrow-right-24-regular" data-inline="false"></span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
