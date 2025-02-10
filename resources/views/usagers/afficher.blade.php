@@ -19,4 +19,3 @@
     </div>
 @endsection
 
-<script src=" {{ asset('js/suppliers/show/showSupplier.js') }} "></script>
