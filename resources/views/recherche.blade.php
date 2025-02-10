@@ -21,7 +21,7 @@
     @endsection
     @section('contenu')
     
-    <div class="bg-c2 flex h-9/12 w-full flex-col space-y-5 flex items-center">
+    <div class="bg-c2 flex h-9/12 w-full flex-col space-y-5 flex items-center overflow-hidden">
         <h2 class="w-full text-center text-c1 font-bold text-2xl font-barlow">Recherche</h2>
         <div class="flex w-5/6 bg-c3 rounded-full items-center">
             <div class="flex bg-c1 rounded-full m-2 flex flex-row w-96 items-center px-5">
@@ -65,7 +65,89 @@
             <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 ">
                 <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Avis</h3>
             </div>
-        
+        </div>
+        <div class="flex w-5/6 h-2/3 flex-col space-y-10 overflow-x-hidden overfloy-y-scroll">
+            <div class="flex flex-row space-x-20 justify-center items-center">
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-96">
+                    <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
+                    <span class="text-black font-barlow text-sm text-center h-1/2">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéatre cogéco" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/thompson3.jpg') }}" alt="Image de la salle thompson" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Salle J.-A.-Thompson</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/bgl.jpg') }}" alt="Image de la maison de la culture" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Centre Raymond-Lasnier</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/ssj.jpg') }}" alt="Image de la maison de la culture" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Musée Pierre-Boucher</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+            </div>
+            <div class="flex flex-row space-x-20 justify-center items-center">
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-96">
+                    <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
+                    <span class="text-black font-barlow text-sm text-center h-1/2">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéatre cogéco" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/thompson3.jpg') }}" alt="Image de la salle thompson" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Salle J.-A.-Thompson</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/bgl.jpg') }}" alt="Image de la maison de la culture" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Centre Raymond-Lasnier</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/ssj.jpg') }}" alt="Image de la maison de la culture" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Musée Pierre-Boucher</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+            </div>
+            <div class="flex flex-row space-x-20 justify-center items-center">
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-96">
+                    <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
+                    <span class="text-black font-barlow text-sm text-center h-1/2">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéatre cogéco" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/thompson3.jpg') }}" alt="Image de la salle thompson" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Salle J.-A.-Thompson</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/bgl.jpg') }}" alt="Image de la maison de la culture" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Centre Raymond-Lasnier</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+                <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
+                    <img src="{{ asset('images/Lieux/ssj.jpg') }}" alt="Image de la maison de la culture" class="rounded-md h-3/4">
+                    <h3 class="text-c1 font-barlow text-md my-2">Musée Pierre-Boucher</h3>
+                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+                </div>
+            </div>
         </div>
     </div>
 
