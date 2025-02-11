@@ -18,16 +18,16 @@
                 Votre navigateur ne supporte pas la vidéo.
             </video>
 
-            <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 z-5"></div>
+            <div class="absolute top-0 left-0 w-full h-full bg-black opacity-70 z-5"></div>
 
-            <div class="relative z-10 w-full h-full flex flex-col">
+            <div class="relative z-10 w-full h-full flex flex-col ">
                 {{--   <div class="flex w-full bg-c2 h-24 items-center justify-center gap-x-4 lg:hidden"> <img
                         src="{{ asset('images/Logos/logoC1.svg') }}" alt="Logo de troubadour" class="w-16"><span
                         class="font-bold text-c1 text-4xl">TROUBADOUR</span></div> --}}
-                <navbar class="w-full flex justify-between p-8">
-                    <div class="flex gap-x-8">
+                <navbar class="w-full flex justify-between  p-8 ">
+                    <div class="flex gap-x-8  ">
                         <a
-                            class="text-c3 hidden lg:flex lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                            class="text-c3  hidden lg:flex lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             ACCUEIL
                         </a>
                         <a
