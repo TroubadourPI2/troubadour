@@ -18,7 +18,7 @@
     <link rel="shortcut icon" type="image/png" href="" />
 </head>
 
-<body>
+<body class="">
     <header>
 
         @yield('header')
