@@ -5,7 +5,7 @@
 @section('contenu')
 
     <div class="flex w-full h-full bg-white">
-        Troubadour    
+        Troubadour
         <span class="iconify" data-icon="mdi:home" data-inline="false"></span>
     </div>
 
@@ -13,55 +13,105 @@
 
 @endsection
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('js/connexion.js') }}"></script>
 
 <script>
     async function showLoginPrompt() {
-        const { value: formValues } = await Swal.fire({
+        const result = await Swal.fire({
             title: "Connexion",
             html: `
-                <input type="email" id="swal-input-email" class="swal2-input" placeholder="Enter your email">
-                <input type="password" id="swal-input-password" class="swal2-input" placeholder="Enter your password">
+            <div class="flex flex-col items-center space-y-6"> 
+                <input type="email" id="swal-input-email" class="swal-input w-full p-3 border rounded-lg" placeholder="Enter your email">
+                <input type="password" id="swal-input-password" class="swal-input w-full p-3 border rounded-lg" placeholder="Enter your password">
+                <a href="url" class="underline text-c1 italic font-medium mt-3">Mot de passe oublié?</a>
+            </div>
+        `,
+            showCancelButton: false,
+            showDenyButton: true,
+            confirmButtonText: "Se connecter",
+            denyButtonText: "S'inscrire",
+            customClass: {
+                popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
+                title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                confirmButton: 'bg-c1 hover:bg-c3 text-c3 hover:text-c1 font-bold py-2 px-4 rounded-full uppercase',
+                denyButton: 'bg-c3 hover:bg-c1 text-c1 hover:text-c3 font-bold py-2 px-4 rounded-full uppercase'
+            }
+        });
+
+        // Handle button actions
+        if (result.isConfirmed) {
+            Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+            showRegisterPrompt(); // Call registration modal function
+        }
+    }
+
+    async function showRegisterPrompt() {
+        await Swal.fire({
+            title: "Inscription",
+            html: `
+                <div class="flex flex-col gap-3">
+                    <input type="text" id="swal-input-name" class="swal-input w-full p-3 border rounded-lg" placeholder="Enter your name">
+                    <input type="email" id="swal-input-email" class="swal-input w-full p-3 border rounded-lg" placeholder="Enter your email">
+                    <input type="password" id="swal-input-password" class="swal-input w-full p-3 border rounded-lg" placeholder="Enter your password">
+                </div>
             `,
             focusConfirm: false,
             showCancelButton: true,
-            confirmButtonText: "Se Connecter",
+            confirmButtonText: "S'inscrire",
+            cancelButtonText: "Retour",
             customClass: {
-                popup: 'custom-swal-popup'  // Apply custom CSS class
+                popup: 'bg-c2 rounded-lg',
+                title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                confirmButton: 'bg-c1 hover:bg-c3 text-c3 hover:text-c1 font-bold py-2 px-4 rounded-full uppercase',
+                cancelButton: 'bg-c3 hover:bg-c1 text-c1 hover:text-c3 font-bold py-2 px-4 rounded-full uppercase'
             },
-            preConfirm: () => { 
-
-                
+            preConfirm: () => {
                 return {
+                    name: document.getElementById("swal-input-name").value,
                     email: document.getElementById("swal-input-email").value,
                     password: document.getElementById("swal-input-password").value
                 };
             }
         });
+    }
 
-        if (formValues) {
-            Swal.fire(`Entered Email: ${formValues.email}\nEntered Password: ${formValues.password}`);
+    async function showLoginOrRegister() {
+        const {
+            isDismissed
+        } = await Swal.fire({
+            title: "Connexion",
+            html: `
+                <div class="flex flex-col gap-3">
+                    <input type="email" id="swal-input-email" class="swal-input w-full p-3 border rounded-lg" placeholder="Enter your email">
+                    <input type="password" id="swal-input-password" class="swal-input w-full p-3 border rounded-lg" placeholder="Enter your password">
+                    <a href="url" class="underline text-c1 italic font-medium">Mot de passe oublié?</a>
+                </div>
+            `,
+            focusConfirm: false,
+            showCancelButton: true,
+            confirmButtonText: "Se connecter",
+            cancelButtonText: "S'inscrire",
+            customClass: {
+                popup: 'bg-c2 rounded-full',
+                title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                confirmButton: 'bg-c1 hover:bg-c3 text-c3 hover:text-c1 font-bold py-2 px-4 rounded-full uppercase',
+                cancelButton: 'bg-c3 hover:bg-c1 text-c1 hover:text-c3 font-bold py-2 px-4 rounded-full uppercase'
+            }
+        });
+
+        // If user clicks "S'inscrire", open the registration modal
+        if (isDismissed) {
+            showRegisterPrompt();
         }
     }
 </script>
-
-
 <style>
-    /* Custom styling for SweetAlert2 popup */
-    .custom-swal-popup {
-        background: rgba(200, 227, 223);
-        background-size: cover;
-        color: white; /* Text color */
-        
-    }
-    
-    .swal2-title {
-        color: white !important; /* Title text color */
-    }
-
-    .swal2-input {
-        background: rgba(255, 255, 255, 0.8); /* Semi-transparent input background */
-        color: black; /* Input text color */
+    /* Remove extra top margin from SweetAlert2 buttons */
+    .swal2-actions {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
     }
 </style>
+
