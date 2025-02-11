@@ -8,7 +8,6 @@
 
     <title>@yield('title')</title>
 
-
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap"
@@ -25,7 +24,7 @@
 
     </header>
 
-    <main class="flex w-full h-screen">
+    <main class="w-full h-screen">
         @yield('contenu')
 
     </main>
