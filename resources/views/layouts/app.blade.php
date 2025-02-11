@@ -25,7 +25,7 @@
 
     </header>
 
-    <main class="flex w-full h-screen px-4 lg:px-16 bg-c2">
+    <main class="flex w-full h-screen px-4 lg:px-16 bg-c2 font-barlow">
         @yield('contenu')
 
     </main>
