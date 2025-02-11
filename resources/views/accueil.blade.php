@@ -40,7 +40,7 @@
                             class="text-xl lg:text-2xl  bg-c2 rounded-full p-1.5 px-4 cursor-pointer text-c1 font-barlow">CONNEXION</a>
                     </div>
                 </navbar>
-                <div class="text-c3 border mx-4 lg:hidden"></div>
+                <div class="text-c3 border mx-4 "></div>
 
                 <div class="w-full h-full flex justify-evenly items-center flex-col">
                     <div>
@@ -61,9 +61,8 @@
         </div>
 
     </div>
-    <div id="sectionCacher"
-        class="flex w-full h-screen items-center justify-center bg-c3 text-c1 font-barlow text-5xl hidden">
-        CONTENU À DÉCOUVRIR
+    <div id="sectionCacher" class="flex w-full h-screen  justify-center bg-c1 text-c2 font-barlow text-5xl hidden">
+        <span class="pt-4 font-bold"> VILLES À DÉCOUVRIR </span>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
