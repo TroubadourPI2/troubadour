@@ -47,9 +47,10 @@
                     </div>
                     <div>
                         <button
-                            class="items-center flex text-4xl shadow-lg bg-c2 rounded-full p-1.5 px-6 text-c1 font-barlow hover:scale-110 transition-transform duration-500 ease-out">
+                            class="group items-center flex text-4xl shadow-lg bg-c2 rounded-full p-1.5 px-6 text-c1 font-barlow hover:scale-110 transition-transform duration-500 ease-out">
                             VILLES
-                            <span class="iconify" data-icon="fluent:arrow-right-24-regular" data-inline="false"></span>
+                            <span class="iconify  transform transition-all duration-500 ease-out group-hover:translate-x-3"
+                                data-icon="fluent:arrow-right-24-regular" data-inline="false"></span>
                         </button>
                     </div>
                 </div>
