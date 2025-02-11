@@ -21,9 +21,9 @@
     @endsection
     @section('contenu')
     
-    <div class="bg-c2 flex h-9/12 w-full flex-col space-y-5 flex items-center overflow-hidden">
-        <h2 class="w-full text-center text-c1 font-bold text-2xl font-barlow">Recherche</h2>
-        <div class="flex w-5/6 bg-c3 rounded-full items-center">
+    <div class="bg-c2 flex w-full flex-col space-y-5 items-center">
+        <h2 class="w-full h-full text-center text-c1 font-bold text-2xl font-barlow">Recherche</h2>
+        <div class="flex h-full w-5/6 bg-c3 rounded-full items-center">
             <div class="flex bg-c1 rounded-full m-2 flex flex-row w-96 items-center px-5">
                 <select class="flex bg-c1 justify-center items-center h-12 w-3/4 rounded-full font-barlow text-c3 text-center">
                     <option value="default" disabled selected>Choisir la ville</option>
@@ -66,7 +66,7 @@
                 <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Avis</h3>
             </div>
         </div>
-        <div class="flex w-5/6 h-2/3 flex-col space-y-10 overflow-x-hidden overfloy-y-scroll">
+        <div class="flex w-5/6 h-80 flex-col space-y-10 overflow-x-hidden overflow-y-scroll">
             <div class="flex flex-row space-x-20 justify-center items-center">
                 <div class="w-48 bg-c3 h-64 rounded-lg flex justify-center items-center flex-col p-3">
                     <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-96">
