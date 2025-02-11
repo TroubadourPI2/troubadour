@@ -5,13 +5,13 @@
 @section('contenu')
 
     <div class="flex w-full h-full font-barlow lg:flex-row">
-        <div class=" flex-col justify-center items-center  hidden lg:flex w-full lg:w-1/2 h-full bg-c2 relative z-10">
+{{--         <div class=" flex-col justify-center items-center  hidden lg:flex w-full lg:w-1/2 h-full bg-c2 relative z-10">
             <img src="{{ asset('images/Logos/logoC1.svg') }}" alt="Logo de troubadour" class="w-96">
             <span class="text-c1 text-8xl font-barlow font-bold">TROUBADOUR</span>
             <span class="text-c1 text-4xl font-barlow">Explorez sans limites</span>
-        </div>
+        </div> --}}
 
-        <div class="relative flex flex-col justify-start w-full lg:w-1/2 h-full font-barlow overflow-hidden">
+        <div class="relative flex flex-col justify-start w-full  h-full font-barlow overflow-hidden">
 
             <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
                 <source src="{{ asset('videos/activites.mp4') }}" type="video/mp4">
