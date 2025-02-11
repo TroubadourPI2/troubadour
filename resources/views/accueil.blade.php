@@ -40,6 +40,7 @@
                             class="text-xl lg:text-2xl  bg-c2 rounded-full p-1.5 px-4 cursor-pointer text-c1 font-barlow">CONNEXION</a>
                     </div>
                 </navbar>
+                <div class="text-c3 border mx-4 lg:hidden"></div>
 
                 <div class="w-full h-full flex justify-evenly items-center flex-col">
                     <div>
