@@ -61,23 +61,26 @@
         </div>
 
     </div>
-    <div id="sectionCacher" class="flex w-full h-screen  justify-center bg-c1 text-c2 font-barlow text-5xl hidden">
-        <span class="pt-4 font-bold"> VILLES À DÉCOUVRIR </span>
-    </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const buttonVilles = document.getElementById("ActiverSection");
-            const sectionCacher = document.getElementById("sectionCacher");
-
-            buttonVilles.addEventListener("click", function() {
-
-                sectionCacher.classList.remove("hidden");
 
 
-                sectionCacher.scrollIntoView({
-                    behavior: "smooth"
-                });
-            });
+
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttonVilles = document.getElementById("ActiverSection");
+
+        buttonVilles.addEventListener("click", function () {
+      
+            axios.get('/geolocalisation')
+                .then(response => {
+                    const donnee = response.data;
+                    if (donnee.city) {
+                        localStorage.setItem('usagerVilleAccueil', donnee.ville); 
+                        window.location.href = "/recherche"; 
+                    }
+                })
+                .catch(error => console.error('Erreur de géolocalisation', error));
         });
-    </script>
+    });
+</script>
+
 @endsection
