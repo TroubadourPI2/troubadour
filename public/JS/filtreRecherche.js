@@ -40,17 +40,8 @@ selectVille.addEventListener('change', function () {
     }
     else if(idVille === "QC"){
 
-        console.log("Nombre d'options : " + selectQuartier.options.length);
         deleteAll(selectQuartier);
 
-    }
-
-    console.log("Liste des quartiers présents : ");
-
-    
-    
-    for (let i = 0; i < selectQuartier.options.length; i++) {
-        console.log("Quartier: " + selectQuartier.options[i].text);
     }
 });
 

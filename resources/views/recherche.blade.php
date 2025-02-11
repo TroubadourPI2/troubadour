@@ -14,26 +14,26 @@
 
     <!-- Barre de recherche -->
     <div class="flex w-5/6 bg-c3 rounded-full items-center my-4">
-        <div class="flex bg-c1 rounded-full m-2 flex flex-row w-96 items-center px-5">
-            <select class="flex bg-c1 justify-center items-center h-12 w-3/4 rounded-full font-barlow text-c3 text-center">
+        <div class="flex bg-c1 rounded-full m-2 flex flex-row w-96 h-12 items-center px-5">
+            <select class="flex bg-c1 justify-center items-center h-8 w-3/4 rounded-full font-barlow text-c3 text-center hover:bg-c2 hover:text-c1" id="selectVille">
                 <option value="default" disabled selected>Choisir la ville</option>
                 <option value="TR">Trois-Rivières</option>
                 <option value="QC">Québec</option>
             </select>
             <span class="rounded-full my-2 flex items-center justify-center h-full w-1/6 font-barlow text-c3">|</span>
-            <select class="flex bg-c1 justify-center items-center h-12 w-3/4 rounded-full font-barlow text-c3 text-center">
-                <option value="default" disabled selected>Choisir le quartier</option>
+            <select class="flex bg-c1 justify-center items-center h-8 w-80 rounded-full font-barlow text-c3 text-center hover:bg-c2 hover:text-c1" id="selectQuartier">
+                <!-- <option value="default" disabled selected>Choisir le quartier</option>
                 <option value="Cap">Cap-de-la-madeleine</option>
                 <option value="TRO">Trois-Rivières Ouest</option>
                 <option value="PDL">Pointe du lac</option>
                 <option value="SM">Sainte-Marthe</option>
-                <option value="SLF">Saint-Louis-De-France</option>
+                <option value="SLF">Saint-Louis-De-France</option> -->
             </select>
         </div>
-        <input type="text" class="w-3/5 h-5/6 bg-transparent text-c1 font-barlow text-xl pl-5 text-center" placeholder="Rechercher un lieu, un événement, un artiste...">
-        <div class="flex bg-c1 rounded-full m-2 flex flex-row w-96 items-center px-5 h-12 justify-center cursor-pointer">
-            <span class="iconify size-6 text-c3" data-icon="mdi:search" data-inline="false"></span>
-        </div>
+        <input type="text" class="w-3/5 h-12 bg-transparent text-c1 font-barlow text-xl p-5 text-center rounded-full" placeholder="Rechercher un lieu, un événement, un artiste..." id="barreRecherche">
+        <span class="iconify size-6 text-c3 w-32 p-3 h-12 cursor-pointer hover:text-c1 hover:bg-c2 rounded-full bg-c1 m-2" data-icon="mdi:search" data-inline="false"></span>
+        <!-- <div class="flex bg-c1 rounded-full m-2 flex flex-row w-96 items-center px-5 h-12 justify-center cursor-pointer">
+        </div> -->
     </div>
 
     <!-- Séparateur -->
@@ -61,90 +61,108 @@
     </div>
 
     <!-- Section des cartes (avec scroll seulement ici) -->
-    <div class="flex w-5/6 max-h-60 overflow-y   bg-red-500 flex-col space-y-10 overflow-x-hidden">
-  
-         
-               
-                <div class="flex flex-col space-x-10 justify-center items-center">
-              <div class="flex flex-row">
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-                <!-- Carte 2 -->
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéâtre cogéco" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-            
-                <!-- Carte 1 -->
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-                <!-- Carte 2 -->
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéâtre cogéco" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-                </div>
-                <div class="flex flex-row">
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-                <!-- Carte 2 -->
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéâtre cogéco" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-            
-                <!-- Carte 1 -->
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-                <!-- Carte 2 -->
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéâtre cogéco" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-                <div class="flex flex-row">
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-                <!-- Carte 2 -->
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéâtre cogéco" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-            
-                <!-- Carte 1 -->
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
-                <!-- Carte 2 -->
-                <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3">
-                    <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéâtre cogéco" class="rounded-md h-40">
-                    <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
-                    <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
-                </div>
+    <div class="flex w-5/6 h-3/4 overflow-y flex-col space-y-10 overflow-x-hidden">
+        <div class="grid-cols-5 grid gap-y-5">
+            <!-- Carte 1 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+            <!-- Carte 2 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéâtre cogéco" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+    
+            <!-- Carte 3 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/thompson3.jpg') }}" alt="Image de la Salle J.-Anthonio-Thompson" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Salle J.-A.-Thompson</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+            <!-- Carte 4 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/bgl.jpg') }}" alt="Image de la maison de la culture" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Centre Raymond Lasnier</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+            <!-- Carte 5 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/ssj.jpg') }}" alt="Image du séminaire Saint-Joseph" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Musée Pierre-Boucher</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+
+            <!-- Carte 6 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+            <!-- Carte 7 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéâtre cogéco" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+    
+            <!-- Carte 8 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/thompson3.jpg') }}" alt="Image de la Salle J.-Anthonio-Thompson" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Salle J.-A.-Thompson</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+            <!-- Carte 9 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/bgl.jpg') }}" alt="Image de la maison de la culture" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Centre Raymond Lasnier</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+            <!-- Carte 10 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/ssj.jpg') }}" alt="Image du séminaire Saint-Joseph" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Musée Pierre-Boucher</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+
+            <!-- Carte 11 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/borealis.jpg') }}" alt="Image du musée boréalis" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Boréalis</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+            <!-- Carte 12 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/amphitheatre.jpg') }}" alt="Image de l'amphithéâtre cogéco" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Amphithéâtre Cogéco</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+    
+            <!-- Carte 13 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/thompson3.jpg') }}" alt="Image de la Salle J.-Anthonio-Thompson" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Salle J.-A.-Thompson</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+            <!-- Carte 14 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/bgl.jpg') }}" alt="Image de la maison de la culture" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Centre Raymond Lasnier</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+            <!-- Carte 15 -->
+            <div class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-2 hover:border-c1 hover:border cursor-pointer">
+                <img src="{{ asset('images/Lieux/ssj.jpg') }}" alt="Image du séminaire Saint-Joseph" class="rounded-md h-40">
+                <h3 class="text-c1 font-barlow text-md my-2">Musée Pierre-Boucher</h3>
+                <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
+            </div>
+        </div>
     </div>
 </div>
 
     <script src="{{asset('js/filtreRecherche.js')}}"></script>
+    <script src="{{asset('js/JSrechercheTexte.js')}}"></script>
 
 @endsection
