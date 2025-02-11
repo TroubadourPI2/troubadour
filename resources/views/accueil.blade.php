@@ -27,11 +27,11 @@
                 <navbar class="w-full flex justify-between p-8">
                     <div class="flex gap-x-8">
                         <a
-                            class="text-c3 hidden lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                            class="text-c3 hidden lg:flex lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             ACCUEIL
                         </a>
                         <a
-                            class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                            class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             À PROPOS
                         </a>
                     </div>
