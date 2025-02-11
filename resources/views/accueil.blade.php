@@ -21,19 +21,23 @@
             <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40 z-5"></div>
 
             <div class="relative z-10 w-full h-full flex flex-col">
+                <div class="flex w-full bg-c2 h-24 items-center justify-center gap-x-4 lg:hidden"> <img
+                        src="{{ asset('images/Logos/logoC1.svg') }}" alt="Logo de troubadour" class="w-16"><span
+                        class="font-bold text-c1 text-4xl">TROUBADOUR</span></div>
                 <navbar class="w-full flex justify-between p-8">
                     <div class="flex gap-x-8">
                         <a
-                            class="text-c3 text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                            class="text-c3 hidden lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             ACCUEIL
                         </a>
                         <a
-                            class="text-c3 text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                            class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             À PROPOS
                         </a>
                     </div>
                     <div>
-                        <a class="text-2xl bg-c2 rounded-full p-1.5 px-4 cursor-pointer text-c1 font-barlow">CONNEXION</a>
+                        <a
+                            class="text-xl lg:text-2xl  bg-c2 rounded-full p-1.5 px-4 cursor-pointer text-c1 font-barlow">CONNEXION</a>
                     </div>
                 </navbar>
 
