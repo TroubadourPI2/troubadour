@@ -4,7 +4,6 @@
 
 @section('header')
 
-    </nav>
     @endsection
     @section('contenu')
     
@@ -30,8 +29,8 @@
                 <option value="SLF">Saint-Louis-De-France</option> -->
             </select>
         </div>
-        <input type="text" class="w-3/5 h-12 bg-transparent text-c1 font-barlow text-xl p-5 text-center rounded-full" placeholder="Rechercher un lieu, un événement, un artiste..." id="barreRecherche">
-        <span class="iconify size-6 text-c3 w-32 p-3 h-12 cursor-pointer hover:text-c1 hover:bg-c2 rounded-full bg-c1 m-2" data-icon="mdi:search" data-inline="false"></span>
+        <input type="text" class="w-3/5 h-12 bg-transparent text-c1 font-barlow text-xl p-5 text-center rounded-full focus:border focus:border-1 focus:border-c1 hover:bg-c2" placeholder="Rechercher un lieu, un événement, un artiste..." id="barreRecherche">
+        <span class="iconify size-6 text-c3 w-32 p-3 h-12 cursor-pointer hover:text-c1 hover:bg-c2 rounded-full bg-c1 m-2 hover:border hover:border-1 hover:border-c1" data-icon="mdi:search" data-inline="false"></span>
         <!-- <div class="flex bg-c1 rounded-full m-2 flex flex-row w-96 items-center px-5 h-12 justify-center cursor-pointer">
         </div> -->
     </div>
