@@ -7,4 +7,4 @@ Route::get('/', function () {
     return view('Accueil');
 });
 
-Route::get('/geolocalisation', [GeolocalisationController::class, 'getUserLocation']);
+Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);
