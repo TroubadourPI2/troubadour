@@ -66,63 +66,63 @@
         <div class="text-c3 border rounded mx-16"></div>
 
         <div id="ConteneurCarte"
-            class="grid gap-y-4  grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto ">
+            class="grid gap-y-4  grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto py-8 lg:py-0 ">
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3 hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4  hover:scale-105 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 1</div>
                 <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold  justify-center"> <span
                         class="truncate px-2">Atelier couture</span></div>
             </div>
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 hover:scale-105 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 2</div>
                 <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
                         class="truncate px-2">Atelier de peinture murale</span></div>
             </div>
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 hover:scale-105 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 3</div>
                 <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
                         class="truncate px-2">ACTIVITÉS</span></div>
             </div>
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 hover:scale-105 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 4</div>
                 <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
                         class="truncate px-2">ACTIVITÉS</span></div>
             </div>
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 hover:scale-105 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 5</div>
                 <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
                         class="truncate px-2">ACTIVITÉS</span></div>
             </div>
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 hover:scale-105 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 6</div>
                 <div class="h-1/3 w-full flex items-center  text-sm sm:text-xl font-bold  justify-center"> <span
                         class="truncate px-2">ACTIVITÉS</span></div>
             </div>
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 hover:scale-105 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 7</div>
                 <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
                         class="truncate px-2">ACTIVITÉS</span></div>
             </div>
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 hover:scale-105 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 8</div>
                 <div class="h-1/3 w-full flex items-center text-sm sm:text-xl  font-bold  justify-center"> <span
                         class="truncate px-2">ACTIVITÉS</span></div>
             </div>
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 hover:scale-105 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 9</div>
                 <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
                         class="truncate px-2">ACTIVITÉS</span></div>
             </div>
             <div
-                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3 text-sm sm:text-xl  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg 
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3 text-sm sm:text-xl hover:scale-105  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg 
     transform scale-90 opacity-0 transition-all duration-700 ease-out  lg:mb-2 xl:mb-0
     lg:col-start-2 xl:col-auto">
                 <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">
