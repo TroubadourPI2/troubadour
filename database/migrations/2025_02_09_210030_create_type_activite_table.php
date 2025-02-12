@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('type_activite', function (Blueprint $table) {
+        Schema::create('TypeActivite', function (Blueprint $table) {
             $table->id();
-            $table->string('nom')->unique(); 
+            $table->string('nom',64)->unique(); 
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('type_activite');
+        Schema::dropIfExists('TypeActivite');
     }
 };

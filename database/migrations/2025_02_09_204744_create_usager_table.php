@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usager', function (Blueprint $table) {
+        Schema::create('Usager', function (Blueprint $table) {
             $table->id();
-            $table->string('courriel')->unique();
-            $table->string('password');
-            $table->string('prenom');
-            $table->string('nom');
-            $table->foreignId('statutId')->constrained('statut')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('roleUsagerId')->constrained('role_usager')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('courriel',64)->unique();
+            $table->string('password',16);
+            $table->string('prenom',32);
+            $table->string('nom',32);
+            $table->foreignId('statutId')->constrained('Statut')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('roleId')->constrained('RoleUsager')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

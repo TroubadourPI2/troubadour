@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activite', function (Blueprint $table) {
+        Schema::create('Activite', function (Blueprint $table) {
             $table->id();
-            $table->string('nom'); 
+            $table->string('nom',64); 
             $table->date('dateDebut'); 
             $table->date('dateFin')->nullable(); 
             $table->boolean('actif')->default(true); 
-            $table->text('description')->nullable();
-            $table->foreignId('lieuId')->constrained('lieu')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('typeActiviteId')->constrained('type_activite')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->text('description',500)->nullable();
+            $table->foreignId('lieuId')->constrained('Lieu')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('typeActiviteId')->constrained('TypeActivite')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activite');
+        Schema::dropIfExists('Activite');
     }
 };

@@ -11,20 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lieu', function (Blueprint $table) {
+        Schema::create('Lieu', function (Blueprint $table) {
             $table->id();
-            $table->string('rue'); 
+            $table->string('rue',64); 
             $table->integer('noCivic'); 
-            $table->string('codePostal'); 
-            $table->string('nomEtablissement'); 
-            $table->string('photoLieu')->nullable(); 
-            $table->string('siteWeb')->nullable(); 
-            $table->string('numeroTelephone'); 
+            $table->string('codePostal',10); 
+            $table->string('nomEtablissement',64); 
+            $table->string('photoLieu',64)->nullable(); 
+            $table->string('siteWeb',64)->nullable(); 
+            $table->string('numeroTelephone',15); 
             $table->boolean('actif')->default(true); 
-            $table->text('description')->nullable(); 
-            $table->foreignId('villeId')->constrained('ville')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('typeLieuId')->constrained('type_lieu')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('proprietaireId')->constrained('usager')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->text('description',500)->nullable(); 
+            $table->foreignId('quartierId')->constrained('Quartier')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('typeLieuId')->constrained('TypeLieu')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('proprietaireId')->constrained('Usager')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lieu');
+        Schema::dropIfExists('Lieu');
     }
 };
