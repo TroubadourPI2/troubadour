@@ -58,53 +58,53 @@
     </div>
 
     <div id="sectionCacher"
-        class="flex flex-col w-full h-screen  gap-y-8 bg-c1 text-c2 font-barlow text-5xl hidden opacity-0 transition-opacity duration-1000 ease-out">
+        class="flex flex-col w-full h-screen  gap-y-16 bg-c1 text-c2 font-barlow text-5xl hidden opacity-0 transition-opacity duration-1000 ease-out">
 
         <div class="pt-4 flex justify-center">
             <span id="villeSpan" class="font-bold animate-pulse uppercase">Chargement...</span>
         </div>
         <div class="text-c3 border rounded mx-16"></div>
 
-        <div id="cardsContainer" class="grid grid-cols-5  place-items-center w-full h-full">
+        <div id="cardsContainer" class="grid gap-y-4  grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto ">
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 1</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Québec</div>
+        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 2</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Montréal</div>
+        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 3</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Toronto</div>
+        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 4</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Vancouver</div>
+        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 5</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Ottawa</div>
+        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 6</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Calgary</div>
+        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 6</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Calgary</div>
+        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 7</div>
+        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 6</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Calgary</div>
+        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 8</div>
+        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 6</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Calgary</div>
+        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 9</div>
+        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
     <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 6</div>
-        <div class="h-1/3 w-full flex items-center justify-center">Calgary</div>
+        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">VOIR PLUS ....</div>
+        <div class="h-1/3 w-full flex items-center justify-center">VOIR PLUS ....</div>
     </div>
 </div>
 
