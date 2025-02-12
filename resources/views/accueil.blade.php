@@ -134,7 +134,7 @@
             </div>
         </div>
     </div>
- </div>
+    </div>
 
     <script src="{{ asset('js/Accueil.js') }}"></script>
 
