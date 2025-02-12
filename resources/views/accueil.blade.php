@@ -65,94 +65,77 @@
         </div>
         <div class="text-c3 border rounded mx-16"></div>
 
-        <div id="cardsContainer" class="grid gap-y-4  grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto ">
-    <div class="w-52 h-80 bg-c3 hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 1</div>
-        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
+        <div id="ConteneurCarte"
+            class="grid gap-y-4  grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto ">
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3 hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 1</div>
+                <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold  justify-center"> <span
+                        class="truncate px-2">Atelier couture</span></div>
+            </div>
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 2</div>
+                <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
+                        class="truncate px-2">Atelier de peinture murale</span></div>
+            </div>
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 3</div>
+                <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
+                        class="truncate px-2">ACTIVITÉS</span></div>
+            </div>
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 4</div>
+                <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
+                        class="truncate px-2">ACTIVITÉS</span></div>
+            </div>
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 5</div>
+                <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
+                        class="truncate px-2">ACTIVITÉS</span></div>
+            </div>
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 6</div>
+                <div class="h-1/3 w-full flex items-center  text-sm sm:text-xl font-bold  justify-center"> <span
+                        class="truncate px-2">ACTIVITÉS</span></div>
+            </div>
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 7</div>
+                <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
+                        class="truncate px-2">ACTIVITÉS</span></div>
+            </div>
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 8</div>
+                <div class="h-1/3 w-full flex items-center text-sm sm:text-xl  font-bold  justify-center"> <span
+                        class="truncate px-2">ACTIVITÉS</span></div>
+            </div>
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 9</div>
+                <div class="h-1/3 w-full flex items-center text-sm sm:text-xl font-bold   justify-center"> <span
+                        class="truncate px-2">ACTIVITÉS</span></div>
+            </div>
+            <div
+                class="w-36 h-48 sm:w-52 sm:h-80 bg-c3 text-sm sm:text-xl  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg 
+    transform scale-90 opacity-0 transition-all duration-700 ease-out  lg:mb-2 xl:mb-0
+    lg:col-start-2 xl:col-auto">
+                <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">
+                    VOIR PLUS ....
+                </div>
+                <div class="h-1/3 w-full flex items-center  text-sm sm:text-xl justify-center font-bold  ">
+                    <span class="truncate px-2">VOIR PLUS .....</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 2</div>
-        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
-    </div>
-    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 3</div>
-        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
-    </div>
-    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 4</div>
-        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
-    </div>
-    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 5</div>
-        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
-    </div>
-    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 6</div>
-        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
-    </div>
-    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 7</div>
-        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
-    </div>
-    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 8</div>
-        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
-    </div>
-    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 9</div>
-        <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
-    </div>
-    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
-        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">VOIR PLUS ....</div>
-        <div class="h-1/3 w-full flex items-center justify-center">VOIR PLUS ....</div>
-    </div>
-</div>
+ </div>
 
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const buttonVilles = document.getElementById("ActiverSection");
-            const villeSpan = document.getElementById("villeSpan");
-            const sectionCacher = document.getElementById("sectionCacher");
-            const cardsContainer = document.getElementById("cardsContainer");
-            const cards = cardsContainer.children;
-
-            buttonVilles.addEventListener("click", function() {
-                axios.get('/geolocalisation/ville')
-                    .then(response => {
-                        const donnee = response.data;
-                        if (donnee.ville) {
-                            localStorage.setItem('usagerVilleAccueil', donnee.ville);
-                            setTimeout(() => {
-                                villeSpan.innerText = `${donnee.ville}`;
-                                villeSpan.classList.remove("animate-pulse");
-                                setTimeout(() => {
-                                    cardsContainer.classList.add("opacity-100");
-                                    Array.from(cards).forEach((card, index) => {
-                                        setTimeout(() => {
-                                            card.classList.remove(
-                                                "opacity-0",
-                                                "scale-90");
-                                        }, index * 300);
-                                    });
-                                }, 200);
-
-                            }, 300);
-                        }
-                    })
-                    .catch(error => console.error('Erreur de géolocalisation', error));
-                sectionCacher.classList.remove("hidden");
-                setTimeout(() => {
-                    sectionCacher.classList.add("opacity-100");
-                }, 100);
-
-
-                sectionCacher.scrollIntoView({
-                    behavior: "smooth"
-                });
-            });
-        });
-    </script>
+    <script src="{{ asset('js/Accueil.js') }}"></script>
 
 @endsection
