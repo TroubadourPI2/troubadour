@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         <a
-                            class="text-xl lg:text-2xl bg-c2 rounded-full p-1.5 px-4 hover:bg-c3 cursor-pointer text-c1 font-barlow">
+                            class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
                             CONNEXION
                         </a>
                     </div>
@@ -40,7 +40,7 @@
                 <div class="w-full h-full flex justify-evenly items-center flex-col">
                     <div class="flex flex-col w-full items-center">
                         <span class="text-c3 font-barlow text-5xl lg:text-9xl">TROUBADOUR</span>
-                        <span class="text-c3 text-xl lg:text-5xl uppercase">Explorez sans limite</span>
+                        <span class="text-c3 text-xl lg:text-5xl uppercase">Explorez sans limites</span>
                     </div>
                     <div>
                         <button id="ActiverSection"
@@ -66,43 +66,43 @@
         <div class="text-c3 border rounded mx-16"></div>
 
         <div id="cardsContainer" class="grid gap-y-4  grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto ">
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3 hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 1</div>
         <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 2</div>
         <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 3</div>
         <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 4</div>
         <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 5</div>
         <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 6</div>
         <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 7</div>
         <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 8</div>
         <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer  rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">PHOTO 9</div>
         <div class="h-1/3 w-full flex items-center justify-center">ACTIVITÉS</div>
     </div>
-    <div class="w-52 h-80 bg-c3 border-2 rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
+    <div class="w-52 h-80 bg-c3  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg transform scale-90 opacity-0 transition-all duration-700 ease-out">
         <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">VOIR PLUS ....</div>
         <div class="h-1/3 w-full flex items-center justify-center">VOIR PLUS ....</div>
     </div>
