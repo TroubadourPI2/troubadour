@@ -42,3 +42,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
+    const menuMobile = document.getElementById('menuMobile');
+    menuMobile.classList.remove('-translate-x-full');
+});
+
+document.getElementById('boutonFermerMenu').addEventListener('click', function() {
+    const menuMobile = document.getElementById('menuMobile');
+    menuMobile.classList.add('-translate-x-full');
+});
