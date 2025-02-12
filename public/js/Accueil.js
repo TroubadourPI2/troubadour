@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const buttonVilles = document.getElementById("ActiverSection");
+    const buttonVilles = document.getElementById("activerSection");
     const villeSpan = document.getElementById("villeSpan");
     const sectionCacher = document.getElementById("sectionCacher");
-    const ConteneurCarte = document.getElementById("ConteneurCarte");
-    const cartes = ConteneurCarte.children;
+    const conteneurCarte = document.getElementById("conteneurCarte");
+    const cartes = conteneurCarte.children;
 
     buttonVilles.addEventListener("click", function() {
         axios.get('/geolocalisation/ville')
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         villeSpan.innerText = `${donnee.ville}`;
                         villeSpan.classList.remove("animate-pulse");
                         setTimeout(() => {
-                            ConteneurCarte.classList.add("opacity-100");
+                            conteneurCarte.classList.add("opacity-100");
                             Array.from(cartes).forEach((carte, index) => {
                                 setTimeout(() => {
                                     carte.classList.remove(
@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             })
             .catch(error => console.error('Erreur de géolocalisation', error));
+       
         sectionCacher.classList.remove("hidden");
+        sectionCacher.classList.remove("opacity-0");
         setTimeout(() => {
             sectionCacher.classList.add("opacity-100");
         }, 100);
