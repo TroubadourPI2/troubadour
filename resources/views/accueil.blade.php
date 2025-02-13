@@ -18,7 +18,7 @@
             <div class="relative z-10 w-full h-full flex flex-col">
 
                 <navbar class="w-full flex justify-between p-8">
-                    {{--Bouton ouverture Menu Mobile --}}
+                    {{-- Bouton ouverture Menu Mobile --}}
                     <div class="md:hidden flex justify-end w-full items-center text-c3 gap-2">
 
                         <div>
@@ -65,40 +65,46 @@
             </div>
         </div>
         <div id="menuMobile"
-        class="fixed inset-0 z-50 bg-c3 transform -translate-x-full transition-transform duration-300 md:hidden ">
-        <div class="p-4 flex w-full h-full flex-col">
+            class="fixed inset-0 z-50 bg-c3 transform -translate-x-full transition-transform duration-300 md:hidden ">
+            <div class="p-4 flex w-full h-full flex-col">
 
-            <div class="flex items-center w-full">
-                <!-- Bouton pour fermer le menu mobile -->
-                <div class="flex justify-end w-full">
-                    <button id="boutonFermerMenu" class="text-c1 justify-end  ">
-                        <span class="iconify size-10 hover:bg-c1 hover:text-c3" data-icon="mdi:close"
-                            data-inline="false"></span>
-                    </button>
+                <div class="flex items-center w-full">
+                    <!-- Bouton pour fermer le menu mobile -->
+                    <div class="flex justify-end w-full">
+                        <button id="boutonFermerMenu" class="text-c1 justify-end  ">
+                            <span class="iconify size-10 hover:bg-c1 hover:text-c3" data-icon="mdi:close"
+                                data-inline="false"></span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <!-- Liens de navigation pour mobile -->
-         
-            <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full">
-                <a href="/" class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span class="iconify size-10 " data-icon="mdi:home" data-inline="false"></span>ACCUEIL</a>
-                <a href="" class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
-                <a href="" class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
+                <!-- Liens de navigation pour mobile -->
 
-                {{-- <!-- TODO Bouton deconnexion pour mobile -->
+                <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full">
+                    <a href="/"
+                        class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
+                            class="iconify size-10 " data-icon="mdi:home" data-inline="false"></span>ACCUEIL</a>
+                    <a href=""
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                            class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
+                    <a href=""
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                            class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
+
+                    {{-- <!-- TODO Bouton deconnexion pour mobile -->
                 <form action="" method="POST">
                     @csrf
                     <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
                         <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
                     </button>
                 </form> --}}
-            </nav>
-    
+                </nav>
+
             </div>
-     </div>
-</div>
+        </div>
+    </div>
 
     <div id="sectionCacher"
-        class="flex flex-col w-full h-screen  gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">
+        class="flex flex-col w-full h-screen  gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">
 
         <div class="pt-4 flex justify-center">
             <span id="villeSpan" class="font-bold animate-pulse uppercase text-c1">Chargement...</span>
@@ -106,77 +112,87 @@
         <div class=" border-c1 border rounded mx-16"></div>
 
         <div id="conteneurCarte"
-            class="grid gap-y-4  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto py-8 lg:py-0 ">
+            class="grid gap-y-4  grid-cols-2 md:grid-cols-3   xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto py-8 lg:py-0 ">
             <div
-                class="transition-all duration-700 w-48 bg-c3 h-64 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40 m-2">
+                class="transition-all duration-700 w-40 h-56 sm:w-48 sm:h-64  bg-c3 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl m-2 carteTitre ">Boréalis poulet du pont</span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
             </div>
             <div
-                class="transition-all duration-700 w-48 bg-c3 h-64 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40 m-2">
+                class="transition-all duration-700 w-40 h-56 sm:w-48 sm:h-64  bg-c3 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl m-2 carteTitre ">Boréalis poulet du pont</span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
             </div>
             <div
-                class="transition-all duration-700 w-48 bg-c3 h-64 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40 m-2">
+                class="transition-all duration-700 w-40 h-56 sm:w-48 sm:h-64  bg-c3 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl m-2 carteTitre ">Boréalis poulet du pont</span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
             </div>
             <div
-                class="transition-all duration-700 w-48 bg-c3 h-64 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40 m-2">
+                class="transition-all duration-700 w-40 h-56 sm:w-48 sm:h-64  bg-c3 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl m-2 carteTitre ">Boréalis poulet du pont</span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
             </div>
             <div
-                class="transition-all duration-700 w-48 bg-c3 h-64 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40 m-2">
+                class="transition-all duration-700 w-40 h-56 sm:w-48 sm:h-64  bg-c3 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl m-2 carteTitre ">Boréalis poulet du pont</span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
             </div>
             <div
-                class="transition-all duration-700 w-48 bg-c3 h-64 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40 m-2">
+                class="transition-all duration-700 w-40 h-56 sm:w-48 sm:h-64  bg-c3 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl m-2 carteTitre ">Boréalis poulet du pont</span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
             </div>
             <div
-                class="transition-all duration-700 w-48 bg-c3 h-64 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40 m-2">
+                class="transition-all duration-700 w-40 h-56 sm:w-48 sm:h-64  bg-c3 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl m-2 carteTitre ">Boréalis poulet du pont</span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
             </div>
             <div
-                class="transition-all duration-700 w-48 bg-c3 h-64 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40 m-2">
+                class="transition-all duration-700 w-40 h-56 sm:w-48 sm:h-64  bg-c3 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl m-2 carteTitre ">Boréalis poulet du pont</span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
             </div>
             <div
-                class="transition-all duration-700 w-48 bg-c3 h-64 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40 m-2">
+                class="transition-all duration-700 w-40 h-56 sm:w-48 sm:h-64  bg-c3 rounded-lg flex flex-col items-center hover:border hover:scale-110 hover:border-c1 cursor-pointer carteLieu  opacity-0 ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl m-2 carteTitre ">Boréalis poulet du pont</span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
             </div>
             <!--       <div
-                    class="w-36 h-48 sm:w-52 sm:h-80 bg-c3 text-sm sm:text-xl hover:scale-105  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg 
+                        class="w-36 h-48 sm:w-52 sm:h-80 bg-c3 text-sm sm:text-xl hover:scale-105  hover:border-red-500 border-4 cursor-pointer rounded-md shadow-lg 
     transform scale-90 opacity-0 transition-all duration-700 ease-out  lg:mb-2 xl:mb-0
     lg:col-start-2 xl:col-auto">
-                    <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">
-                        VOIR PLUS ....
-                    </div>
-                    <div class="h-1/3 w-full flex items-center  text-sm sm:text-xl justify-center font-bold  ">
-                        <span class="truncate px-2">VOIR PLUS .....</span>
-                    </div>
-                </div> -->
+                        <div class="h-2/3 w-full flex items-center justify-center border-2 shadow-sm">
+                            VOIR PLUS ....
+                        </div>
+                        <div class="h-1/3 w-full flex items-center  text-sm sm:text-xl justify-center font-bold  ">
+                            <span class="truncate px-2">VOIR PLUS .....</span>
+                        </div>
+                    </div> -->
             <div
-                class="w-48 bg-c3 h-64 rounded-lg flex flex-col items-center p-3 hover:border-c1 hover:border  cursor-pointer rounded-md shadow-lg 
+                class="w-40 h-56 sm:w-48 sm:h-64  bg-c3  rounded-lg flex flex-col items-center p-3 hover:border-c1 hover:border  cursor-pointer rounded-md shadow-lg 
      opacity-0  hover:scale-110 transition-all duration-700  lg:mb-2 xl:mb-0
-    lg:col-start-2 xl:col-auto ">
-                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis" class="rounded-md h-40">
+    md:col-start-2 xl:col-auto ">
+                <img src="{{ asset('images/Logos/logoC1.svg') }}"alt="Image du musée boréalis"
+                    class="rounded-md h-32 sm:h-40 m-2">
                 <span class="text-c1 font-barlow text-2xl my-2 carteTitre ">VOIR PLUS ... </span>
                 <span class="text-black font-barlow text-sm text-center">Insérer une description</span>
 
