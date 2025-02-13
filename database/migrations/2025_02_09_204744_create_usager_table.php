@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('Usager', function (Blueprint $table) {
             $table->id();
             $table->string('courriel',64)->unique();
-            $table->string('password',16);
+            $table->string('password');
             $table->string('prenom',32);
             $table->string('nom',32);
             $table->foreignId('statutId')->constrained('Statut')->cascadeOnUpdate()->cascadeOnDelete();
