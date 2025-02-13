@@ -27,18 +27,18 @@
                   {{-- Menu Desktop --}}
             <div class="flex w-full items-center gap-x-4">
                 <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class=" w-20 xl:w-24" alt="Logo Troubadour">
-                <span class="text-c1 uppercase text-4xl xl:text-5xl font-barlow font-bold">troubadour</span>
+                <span class="text-c1 uppercase text-4xl 2xl:text-5xl font-barlow font-bold">troubadour</span>
             </div>
             <div class="flex w-full justify-end gap-x-4 items-center">
-                <span class="text-c1 uppercase text-3xl xl:text-4xl font-barlow ">Attraits</span>
+                <span class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">Attraits</span>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <span class="text-c1 uppercase text-3xl xl:text-4xl font-barlow ">À propos</span>
+                <span class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">À propos</span>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <span class="text-c1 uppercase text-3xl xl:text-4xl font-barlow ">compte</span>
+                <span class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">compte</span>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <span class="text-c1 uppercase text-3xl xl:text-4xl font-barlow ">déconnexion</span>
+                <span class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">déconnexion</span>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <span class="iconify size-8" data-icon="mdi:search" data-inline="false"></span>
+                <span class="iconify size-6 2xl:size-8" data-icon="mdi:search" data-inline="false"></span>
             </div>
         </div>
         {{-- Menu Mobile --}}
