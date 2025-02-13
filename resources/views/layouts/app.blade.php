@@ -72,17 +72,22 @@
                     </div>
                 </div>
                 <!-- Liens de navigation pour mobile -->
-
                 <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full">
                     <a href="/"
                         class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
-                            class="iconify size-10 " data-icon="mdi:home" data-inline="false"></span>ACCUEIL</a>
+                            class="iconify size-10 " data-icon="mdi-camera" data-inline="false"></span>ATTRAITS</a>
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
+                            <a href=""
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                            class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>COMPTE</a>
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                            class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
+                            class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>CONNEXION</a>
+                            <a href=""
+                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                                class="iconify size-10 " data-icon="mdi:search" data-inline="false"></span>RECHERCHE</a>
 
                     {{-- <!-- TODO Bouton deconnexion pour mobile -->
                 <form action="" method="POST">
