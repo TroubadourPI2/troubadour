@@ -14,11 +14,12 @@ class GeolocalisationController extends Controller
 
         //TODO A RETIRER UNE FOIS EN PROD Tester en developpement local
         if ($ip === "127.0.0.1") {
-            $ip = "62.210.111.58"; 
+            $ip = "62.210.189.175"; 
         }
         //205.151.69.245 TR
         //62.210.111.58  Paris
         //207.134.102.142 MTL
+        //62.210.189.175 toulouse pas dans la bd
 
       
         $url = "http://ip-api.com/json/{$ip}?fields=status,city,country&lang=fr";
