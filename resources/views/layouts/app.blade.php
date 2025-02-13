@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <header class="bg-c2">
+    <header class="bg-c2 sticky top-0 shadow-lg z-50 lg:z-0 lg:shadow-none lg:relative">
 
         @yield('header')
   
@@ -65,7 +65,7 @@
                 <div class="flex items-center w-full">
                     <!-- Bouton pour fermer le menu mobile -->
                     <div class="flex justify-end w-full">
-                        <button id="boutonFermerMenu" class="text-c1 justify-end  ">
+                        <button id="boutonFermerMenu" class="text-c1 justify-end transition  ">
                             <span class="iconify size-10 hover:bg-c1 hover:text-c3" data-icon="mdi:close"
                                 data-inline="false"></span>
                         </button>
