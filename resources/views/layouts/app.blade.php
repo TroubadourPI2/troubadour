@@ -27,7 +27,7 @@
                   {{-- Menu Desktop --}}
             <div class="flex w-full items-center gap-x-4">
                 <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class=" w-20 xl:w-24" alt="Logo Troubadour">
-                <span class="text-c1 uppercase text-4xl 2xl:text-5xl font-barlow font-bold">troubadour</span>
+                <span class="text-c1 uppercase text-4xl 2xl:text-5xl font-barlow font-semibold">troubadour</span>
             </div>
             <div class="flex w-full justify-end items-center gap-x-2">
                      {{-- TODO remplacer par les liens quand les pages seronts faites--}}
@@ -59,7 +59,7 @@
         </div>
 
         <div id="menuMobile"
-            class="fixed inset-0 z-50 bg-c3 transform -translate-x-full transition-transform duration-300 md:hidden ">
+            class="fixed inset-0 z-50 bg-c3 transform -translate-x-full transition-transform duration-300 lg:hidden ">
             <div class="p-4 flex w-full h-full flex-col">
 
                 <div class="flex items-center w-full">
