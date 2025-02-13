@@ -14,7 +14,7 @@ class GeolocalisationController extends Controller
 
         //TODO A RETIRER UNE FOIS EN PROD Tester en developpement local
         if ($ip === "127.0.0.1") {
-            $ip = "62.210.189.175"; 
+            $ip = "205.151.69.245"; 
         }
         //205.151.69.245 TR
         //62.210.111.58  Paris
