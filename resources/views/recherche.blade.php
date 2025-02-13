@@ -44,11 +44,20 @@
             </div>
         </div>
 
+        <div class="flex lg:hidden w-5/6 bg-c3 rounded-full justify-evenly items-center mt-2 p-2 h-10 lg:h-12">
+            <div class="p-1 flex rounded-full justify-center gap-x-3 flex-row w-full h-full items-center bg-c1 cursor-pointer hover:text-c1 hover:bg-c2 hover:border hover:border-c1">
+                <span
+                    class="iconify size-6 p-1 text-c3"
+                    data-icon="mdi:filter" data-inline="false"></span>
+                <span class="text-c3 text-sm">Filtrer les résultats</span>
+            </div>
+        </div>
+
         <div class="flex lg:hidden w-5/6 bg-c3 rounded-full justify-evenly items-center mt-2 h-10 lg:h-12">
             <div class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-full h-8 items-center">
                 <input type="text"
                     class="w-4/5 h-6 bg-transparent text-c1 font-barlow text-md p-2 mx-1 text-center rounded-full focus:border focus:border-0.5 focus:border-c1 hover:bg-c2 hover:border hover:border-c1"
-                    placeholder="Rechercher un lieu" id="barreRecherche">
+                    placeholder="Rechercher un lieu" id="barreRecherche2">
                 <span
                     class="lg:mr-2 iconify size-6 text-c3 w-1/4 lg:w-1/6 p-1 h-6 cursor-pointer hover:text-c1 hover:bg-c2 rounded-full bg-c1 hover:border hover:border-c1"
                     data-icon="mdi:search" data-inline="false"></span>
@@ -78,13 +87,10 @@
                 <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Avis</h3>
             </div>
         </div>
-        <div class="w-3/5 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 lg:hidden">
-            <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Filtres</h3>
-        </div>
 
         <!-- ?  Section des cartes (avec scroll seulement ici) [RESPONSIVE]-->
         <div class="flex w-5/6 h-3/4 overflow-y-auto flex-col space-y-10 overflow-x-hidden m-3 snap-y">
-            <div class="lg:grid-cols-5 grid-col-1 grid gap-y-5 place-items-center snap-center">
+            <div class="lg:grid-cols-5  md:grid-cols-3 grid-col-1 grid gap-y-5 place-items-center snap-center">
                 <!-- Carte 1 -->
                 <div
                     class="snap-start lg:w-3/4 w-2/3 bg-c3 h-full rounded-lg flex flex-col items-center p-3 border-2 border-c3 hover:border-2 hover:border-c1 cursor-pointer carteLieu ">
