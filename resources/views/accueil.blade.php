@@ -107,13 +107,14 @@
         class="flex flex-col w-full h-screen  gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">
 
         <div class="pt-4 flex justify-center">
-            <span id="villeSpan" class="font-bold animate-pulse uppercase text-xl md:text-2xl lg:text-4xl xl:text-7xl text-c1">Chargement...</span>
+            <span id="villeSpan"
+                class="font-bold animate-pulse uppercase text-xl md:text-2xl lg:text-4xl xl:text-7xl text-c1">Chargement...</span>
         </div>
         <div class=" border-c1 border rounded mx-16"></div>
 
         <div id="conteneurCarte"
             class="grid gap-y-4  grid-cols-2 md:grid-cols-3   xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto py-8 lg:py-0  ">
-       
+
         </div>
     </div>
     </div>
