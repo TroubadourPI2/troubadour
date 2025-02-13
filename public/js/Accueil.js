@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     localStorage.setItem("usagerVilleAccueil", donnee.ville);
                     villeSpan.textContent = donnee.ville;
                     villeSpan.classList.remove("animate-pulse");
-                    console.log(donnee.ville);
+              
                 } else {
                     villeSpan.textContent = "Lieux à découvrir";
                     villeSpan.classList.remove("animate-pulse");
