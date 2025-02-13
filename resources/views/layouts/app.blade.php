@@ -46,9 +46,59 @@
         </div>
         {{-- Menu Mobile --}}
 
+        <div class="lg:hidden  flex justify-end w-full p-8  items-center text-c1 gap-2">
+            <div class="flex w-full items-center gap-x-4">
+                <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class=" w-20 xl:w-24" alt="Logo Troubadour">
+            </div>
+            <div class="flex w-full items-center justify-end">
+                <button id="boutonOuvrirMenu">
+                    <span class="iconify size-10" data-icon="mdi:menu" data-inline="false"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div id="menuMobile"
+            class="fixed inset-0 z-50 bg-c3 transform -translate-x-full transition-transform duration-300 md:hidden ">
+            <div class="p-4 flex w-full h-full flex-col">
+
+                <div class="flex items-center w-full">
+                    <!-- Bouton pour fermer le menu mobile -->
+                    <div class="flex justify-end w-full">
+                        <button id="boutonFermerMenu" class="text-c1 justify-end  ">
+                            <span class="iconify size-10 hover:bg-c1 hover:text-c3" data-icon="mdi:close"
+                                data-inline="false"></span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Liens de navigation pour mobile -->
+
+                <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full">
+                    <a href="/"
+                        class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
+                            class="iconify size-10 " data-icon="mdi:home" data-inline="false"></span>ACCUEIL</a>
+                    <a href=""
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                            class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
+                    <a href=""
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                            class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
+
+                    {{-- <!-- TODO Bouton deconnexion pour mobile -->
+                <form action="" method="POST">
+                    @csrf
+                    <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
+                        <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
+                    </button>
+                </form> --}}
+                </nav>
+
+            </div>
+        </div>
+
     </header>
 
-    <main class="flex w-full h-screen">
+    <main class=" w-full h-screen">
         @yield('contenu')
 
     </main>
@@ -57,5 +107,15 @@
 
     </footer>
 </body>
+ <script>document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
+    const menuMobile = document.getElementById('menuMobile');
+    menuMobile.classList.remove('-translate-x-full');
+    document.body.classList.add('overflow-hidden');
+});
 
+document.getElementById('boutonFermerMenu').addEventListener('click', function() {
+    const menuMobile = document.getElementById('menuMobile');
+    menuMobile.classList.add('-translate-x-full');
+    document.body.classList.remove('overflow-hidden'); 
+});</script>
 </html>
