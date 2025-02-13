@@ -1,6 +1,10 @@
 var barreRecherche = document.getElementById("barreRecherche");
 var barreRecherche2 = document.getElementById("barreRecherche2");
 
+var btnRecherche = document.getElementById("btnRecherche");
+// var selectVille = document.getElementsByName("ville")[0];
+var selectQuartier = document.getElementsByName("quartier")[0];
+
 barreRecherche.addEventListener('input', function () {
     let text = barreRecherche.value;
 
@@ -32,5 +36,33 @@ barreRecherche2.addEventListener('input', function () {
         } else {
             element.style.display = "none";
         }
+    }
+});
+
+selectQuartier.addEventListener('change', function () {
+    let quartier = selectQuartier.value;
+    console.log("Nouveau quartier: " + quartier);
+
+    if(quartier === "" || quartier === undefined || quartier === null)
+    {
+        btnRecherche.setAttribute("disabled", "true");
+    }
+    else if (selectVille.value !== "defaut") {
+        console.log("Ville sélectionnée: " + selectVille.value + "/ Quartier sélectionné: " + quartier);
+        btnRecherche.removeAttribute("disabled");
+    }
+});
+
+selectVille.addEventListener('change', function () {
+    let ville = selectVille.value;
+    console.log("Nouvelle ville: " + ville);
+
+    if(ville === "defaut")
+    {
+        btnRecherche.setAttribute("disabled", "disabled");
+    }
+    else if (selectQuartier.value !== "default") {
+        console.log("Ville sélectionnée: " + ville + "/ Quartier sélectionné: " + selectQuartier.value);
+        
     }
 });

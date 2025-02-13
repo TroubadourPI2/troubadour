@@ -13,11 +13,11 @@
         <h2 class="w-full text-center text-c1 font-bold text-2xl font-barlow">Recherche</h2>
 
         <div class="flex w-5/6 bg-c3 rounded-full justify-evenly items-center mt-4 h-10 lg:h-12">
-            <form class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-full h-8 items-center">
+            <form class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-full h-8 items-center" >
 
                 <select
                     class="border border-c3 hidden lg:flex bg-c1 hover:bg-c2 justify-center items-center h-full lg:h-8 w-1/2 lg:w-1/5 me-px rounded-l-full font-barlow text-c3 text-center hover:text-c1 text-xs md:text-md lg:text-lg hover:border hover:border-c1"
-                    id="selectVille" name="villePC">
+                    id="selectVille" name="ville">
                     <option value="default" disabled selected>Choisir la ville</option>
                     <option value="TR">Trois-Rivières</option>
                     <option value="QC">Québec</option>
@@ -31,17 +31,17 @@
                     le quartier</button>
 
                 <select
-                    class="border border-c3 hidden lg:flex bg-c1 justify-center items-center h-full lg:h-8 w-1/2 lg:w-1/5 rounded-r-full font-barlow text-c3 text-center hover:bg-c2 hover:text-c1 text-xs md:text-md lg:text-lg hover:border hover:border-c1"
-                    id="selectQuartier" name="quartier">
+                    class="border enabled:border-c3 hidden lg:flex enabled:bg-c1 justify-center items-center h-full lg:h-8 w-1/2 lg:w-1/5 rounded-r-full font-barlow text-c3 text-center enabled:hover:bg-c2 enabled:hover:text-c1 text-xs md:text-md lg:text-lg enabled:hover:border hover:border-c1 disabled:bg-c2 disabled:text-c1 disabled:border-c1"
+                    id="selectQuartier" name="quartier" value="<?php ?>">
                 </select>
 
                 <input type="text"
                     class="lg:flex hidden w-4/5 h-8 bg-transparent text-c1 font-barlow text-md p-2 mx-1 text-center rounded-full focus:border focus:border-0.5 focus:border-c1 hover:bg-c2 hover:border hover:border-c1"
                     placeholder="Rechercher un lieu" id="barreRecherche">
                 
-                <button type="submit" class="lg:flex lg:mr-2 hidden w-1/4 lg:w-1/6 p-2 h-8 cursor-pointer hover:text-c1 hover:bg-c2 rounded-full bg-c1 hover:border hover:border-c1">
+                <button type="submit" class="lg:flex lg:mr-2 hidden w-1/4 lg:w-1/6 h-8 justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c3  disabled:border disabled:border-c1" id="btnRecherche" disabled>
                     <span
-                    class="lg:flex iconify size-6 text-c3 "
+                    class="lg:flex iconify size-6"
                     data-icon="mdi:search" data-inline="false"></span>
                 </button>
             </form>
