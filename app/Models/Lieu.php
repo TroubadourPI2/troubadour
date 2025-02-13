@@ -9,7 +9,7 @@ class Lieu extends Model
     protected $table = 'Lieu';
     protected $fillable = [
         'rue',
-        'noCivic',
+        'noCivique',
         'codePostal',
         'nomEtablissement',
         'photoLieu',
