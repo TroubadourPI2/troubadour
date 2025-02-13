@@ -4,15 +4,13 @@
     AJOUTER
 </button>
 {{-- //TODO Afficher avec la BD si pas de lieux afficher "Aucun lieu d'enregistrer" --}}
-
-{{-- //* Affichage mobile < 640px --}}
 <!-- Carte lieu pour mobile -->
 <div class="sm:hidden flex flex-col items-center text-c1 rounded-lg shadow-sm">
     <div id="carteLieuxMobile"
         class="relative w-full min-h-[36vh] h-auto rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
 
         <div id="carteLieuxMobileDevant" class="absolute bg-c3 inset-0 rounded-lg shadow-lg [backface-visibility:hidden]">
-            <img class="object-cover w-full h-72 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+            <img class="object-cover w-full h-72 md:h-auto md:w-48 rounded-lg"
                 src="{{ asset('Images/lieux/borealis.jpg') }}" alt="Musée Boréalis">
             <h5 class="mb-2 text-2xl font-semibold uppercase p-2 text-center">Musée Boréalis</h5>
         </div>
