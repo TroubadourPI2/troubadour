@@ -30,13 +30,15 @@
                 <span class="text-c1 uppercase text-4xl 2xl:text-5xl font-barlow font-bold">troubadour</span>
             </div>
             <div class="flex w-full justify-end gap-x-4 items-center">
-                <span class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">Attraits</span>
+                     {{-- TODO remplacer par les liens quand les pages seronts faites--}}
+                <a class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">Attraits</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <span class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">À propos</span>
+                <a class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">À propos</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <span class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">compte</span>
+                <a class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">compte</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <span class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">déconnexion</span>
+                {{-- TODO remplacer par un bouton ou un form en fonction de ce qui a faire mais garder même CSS --}}
+                <a class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow ">déconnexion</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
                 <span class="iconify size-6 2xl:size-8" data-icon="mdi:search" data-inline="false"></span>
             </div>
