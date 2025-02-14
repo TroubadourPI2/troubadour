@@ -103,7 +103,7 @@
 
     </header>
 
-    <main class=" w-full h-screen">
+    <main class=" w-full h-screen font-barlow lg:px-16 bg-c2">
         @yield('contenu')
 
     </main>
