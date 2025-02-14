@@ -9,7 +9,7 @@ class LieuSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('Lieu')->insert([
+        DB::table('Lieus')->insert([
             // Lieux pour Trois-Rivières (quartierId = 1)
             [
                 'id' => 1,

@@ -9,7 +9,7 @@ class VilleSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('Ville')->insert([
+        DB::table('Villes')->insert([
             ['id' => 1, 'nom' => 'Trois-Rivières','actif' => true, 'regionId' => 1, 'paysId' => 1, 'created_at' => now(), 'updated_at' => now()],
             ['id' => 2, 'nom' => 'Montréal','actif' => false, 'regionId' => 2, 'paysId' => 1, 'created_at' => now(), 'updated_at' => now()],
         ]);

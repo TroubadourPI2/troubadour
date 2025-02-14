@@ -12,7 +12,7 @@ class ProvinceSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('Province')->insert([
+        DB::table('Provinces')->insert([
             ['id' => 1, 'nom' => 'Ontario','actif' => true, 'created_at' => now(), 'updated_at' => now()],
             ['id' => 2, 'nom' => 'Québec','actif' => true, 'created_at' => now(), 'updated_at' => now()],
             ['id' => 3, 'nom' => 'Nouvelle-Écosse','actif' => true, 'created_at' => now(), 'updated_at' => now()],

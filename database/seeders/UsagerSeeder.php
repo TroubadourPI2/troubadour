@@ -9,7 +9,7 @@ class UsagerSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('Usager')->insert([
+        DB::table('Usagers')->insert([
             [
                 'id' => 1,
                 'courriel'   => 'admin@troisrivieres.ca',

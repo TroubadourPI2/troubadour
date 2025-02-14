@@ -9,7 +9,7 @@ class StatutSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('Statut')->insert([
+        DB::table('Statuts')->insert([
             ['id' => 1, 'statut' => 'Actif','created_at' => now(), 'updated_at' => now()],
             ['id' => 2, 'statut' => 'Inactif','created_at' => now(), 'updated_at' => now()],
             ['id' => 3, 'statut' => 'En Attente','created_at' => now(), 'updated_at' => now()],
