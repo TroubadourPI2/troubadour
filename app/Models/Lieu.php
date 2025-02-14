@@ -8,20 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Lieu extends Model
 {
     use HasFactory;
-    protected $table = 'lieux';
+    protected $table = 'Lieu';
     protected $fillable = [
         'rue',
         'noCivic',
+        'codePostal',
         'nomEtablissement',
         'photoLieu',
         'siteWeb',
         'numeroTelephone',
+        'actif',
         'description',
         'quartierId',
         'typeLieuId',
+        'proprietaireId',
     ];
 
-    // public function quartier(){
-    //     return $this->hasOne(Quartier::class);
-    // }
+
+     // Relation : Un lieu appartient à un quartier.
+ 
+    public function quartier()
+    {
+        return $this->belongsTo(Quartier::class, 'quartierId');
+    }
 }

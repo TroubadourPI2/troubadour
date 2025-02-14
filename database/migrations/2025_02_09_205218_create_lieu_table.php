@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Lieu', function (Blueprint $table) {
+        Schema::create('Lieux', function (Blueprint $table) {
             $table->id();
             $table->string('rue',64); 
             $table->integer('noCivic'); 
@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('numeroTelephone',15); 
             $table->boolean('actif')->default(true); 
             $table->text('description',500)->nullable(); 
-            $table->foreignId('quartierId')->constrained('Quartier')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('typeLieuId')->constrained('TypeLieu')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('proprietaireId')->constrained('Usager')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('quartierId')->constrained('Quartiers')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('typeLieuId')->constrained('TypeLieux')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('proprietaireId')->constrained('Usagers')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Lieu');
+        Schema::dropIfExists('Lieux');
     }
 };
