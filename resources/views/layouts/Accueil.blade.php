@@ -26,7 +26,7 @@
 
     </header>
 
-    <main class="flex w-full h-screen">
+    <main class=" w-full h-screen">
         @yield('contenu')
 
     </main>
