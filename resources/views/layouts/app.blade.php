@@ -16,7 +16,7 @@
     <link rel="shortcut icon" type="image/png" href="" />
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col">
     <header class="bg-c2 sticky top-0 shadow-lg z-50 lg:z-0 lg:shadow-none lg:relative">
 
         @yield('header')
@@ -107,25 +107,63 @@
 
     </header>
 
-    <main class=" w-full h-screen">
+    <main class="flex-grow w-full">
         @yield('contenu')
 
     </main>
-    @yield('footer')
-    <footer>
 
-        <div class="flex w-full max-h-40 p-4 bg-c1 gap-x-4">
+    <footer>
+        @yield('footer')
+        {{-- Footer desktop --}}
+        <div class=" w-full hidden lg:flex max-h-40 p-4 bg-c1 gap-x-4">
             <div class="flex items-center"> <img src="{{ asset('/Images/Logos/logoC5.svg') }}" class="w-28"
                     alt="Logo Troubadour"></div>
-            <div class="flex flex-col justify-center items-start w-80 h-full font-barlow text-c3 text-xl"> <span>3500 RUE DE
+            <div class="flex flex-col justify-center items-start w-80 h-full font-barlow text-c3 text-xl"> <span>3500
+                    RUE DE
                     COURVAL</span> <span>Trois-Rivières, QC G8Z 1T2</span>
-                <span>contact@troubadour.com</span><span>(819)-555-5555</span></div>
-               <div class="flex w-full flex-col font-barlow text-c3"> <div  class="flex pt-10  gap-x-4 w-full h-full justify-end items-end"><span
-                class="iconify size-9 " data-icon="iconoir:facebook" data-inline="false"></span> <span
-                class="iconify size-9 " data-icon="mdi-instagram" data-inline="false"></span> <span
-                class="iconify size-9 " data-icon="mingcute:social-x-line" data-inline="false"></span></div> <div class="flex w-full h-full justify-end text-lg items-end"><span>©2025 Troubadour.Tous droits réservés.</span></div></div> 
+                <span>contact@troubadour.com</span><span>(819)-555-5555</span>
+            </div>
+            <div class="flex w-full flex-col font-barlow text-c3">
+                <div class="flex pt-10  gap-x-4 w-full h-full justify-end items-end"><span class="iconify size-9 "
+                        data-icon="iconoir:facebook" data-inline="false"></span> <span class="iconify size-9 "
+                        data-icon="mdi-instagram" data-inline="false"></span> <span class="iconify size-9 "
+                        data-icon="mingcute:social-x-line" data-inline="false"></span></div>
+                <div class="flex w-full h-full justify-end text-lg items-end"><span>©2025 Troubadour.Tous droits
+                        réservés.</span></div>
+            </div>
         </div>
-        
+
+        {{-- Footer mobile et tablette --}}
+        <div class=" w-full flex flex-col h-full lg:hidden  p-2  bg-c1 gap-y-2 font-barlow">
+            <div class="flex pt-5 justify-center text-c2  gap-x-4 w-full h-full"><span class="iconify size-9 "
+                    data-icon="iconoir:facebook" data-inline="false"></span> <span class="iconify size-9 "
+                    data-icon="mdi-instagram" data-inline="false"></span> <span class="iconify size-9 "
+                    data-icon="mingcute:social-x-line" data-inline="false"></span></div>
+            <div class="flex w-full justify-center"> <span class="text-c2 font-bold text-3xl"> TROUBADOUR</span></div>
+            <div class="flex w-full  mx-2 px-2 justify-between">
+                <div
+                    class="flex flex-row justify-center gap-x-4 items-center w-80 rounded-md h-full font-barlow  px-4 text-xl bg-c2 text-c1">
+                    <div class="flex  w-fit"><span class="iconify size-8 " data-icon="mdi-instagram" data-inline="false"></span> </div>
+                   <div class="w-full  flex flex-col  "> <span>3500
+                        RUE DE
+                        COURVAL</span> <span>Trois-Rivières, QC G8Z 1T2</span></div>
+
+                </div>
+                <div
+                class="flex flex-row justify-center gap-x-4 items-center w-80 rounded-md h-full font-barlow  px-4 text-xl bg-c2 text-c1">
+                <div class="flex  w-fit"><span class="iconify size-8 " data-icon="mdi-instagram" data-inline="false"></span> </div>
+               <div class="w-full  flex flex-col  "> <span>3500
+                    RUE DE
+                    COURVAL</span> <span>Trois-Rivières, QC G8Z 1T2</span></div>
+
+            </div>
+            </div>
+            <div class="flex w-full flex-col font-barlow text-c3">
+
+                <div class="flex w-full h-full justify-end text-lg items-end"><span>©2025 Troubadour.Tous droits
+                        réservés.</span></div>
+            </div>
+        </div>
     </footer>
 </body>
 <script>
