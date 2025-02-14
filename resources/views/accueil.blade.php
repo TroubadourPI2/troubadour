@@ -113,7 +113,7 @@
         <div class=" border-c1 border rounded mx-16"></div>
 
         <div id="conteneurCarte"
-            class="grid gap-y-4  grid-cols-2 md:grid-cols-3   xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto py-8 lg:py-0  ">
+            class="grid gap-y-2 gap-x-0.5  overflow-x-hidden   grid-cols-2 md:grid-cols-3   xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto xl:overflow-hidden py-8 lg:py-0  ">
 
         </div>
     </div>
