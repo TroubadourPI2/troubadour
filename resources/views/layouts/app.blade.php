@@ -115,15 +115,15 @@
     <footer>
 
         <div class="flex w-full max-h-40 p-4 bg-c1 gap-x-4">
-            <div class="flex items-center"> <img src="{{ asset('/Images/Logos/logoC5.svg') }}" class="xl:w-32"
+            <div class="flex items-center"> <img src="{{ asset('/Images/Logos/logoC5.svg') }}" class="w-28"
                     alt="Logo Troubadour"></div>
             <div class="flex flex-col justify-center items-start w-80 h-full font-barlow text-c3 text-xl"> <span>3500 RUE DE
                     COURVAL</span> <span>Trois-Rivières, QC G8Z 1T2</span>
                 <span>contact@troubadour.com</span><span>(819)-555-5555</span></div>
                <div class="flex w-full flex-col font-barlow text-c3"> <div  class="flex pt-10  gap-x-4 w-full h-full justify-end items-end"><span
-                class="iconify size-9 " data-icon="mdi-facebook" data-inline="false"></span> <span
+                class="iconify size-9 " data-icon="iconoir:facebook" data-inline="false"></span> <span
                 class="iconify size-9 " data-icon="mdi-instagram" data-inline="false"></span> <span
-                class="iconify size-9 " data-icon="mingcute:social-x-line" data-inline="false"></span></div> <div class="flex w-full h-full justify-end items-end"><span>©2025 Troubadour.Tous droits réservés.</span></div></div> 
+                class="iconify size-9 " data-icon="mingcute:social-x-line" data-inline="false"></span></div> <div class="flex w-full h-full justify-end text-lg items-end"><span>©2025 Troubadour.Tous droits réservés.</span></div></div> 
         </div>
         
     </footer>
