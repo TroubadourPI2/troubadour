@@ -9,7 +9,7 @@ class UsagersController extends Controller
 {
 
     public function ObtenirLieuxUsager(){
-        $lieuxUsager = Lieu::where('proprietaireId', '1')->get();
+        $lieuxUsager = Lieu::where('proprietaireId', 1)->get();
 
         return View('usagers.afficher', compact('lieuxUsager'));
     }

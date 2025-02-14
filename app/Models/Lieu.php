@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lieu extends Model
 {
     use HasFactory;
-    protected $table = 'Lieu';
+    protected $table = 'Lieux';
     protected $fillable = [
         'rue',
         'noCivic',
@@ -27,8 +27,8 @@ class Lieu extends Model
 
      // Relation : Un lieu appartient à un quartier.
  
-    public function quartier()
-    {
-        return $this->belongsTo(Quartier::class, 'quartierId');
-    }
+    // public function quartier()
+    // {
+    //     return $this->belongsTo(Quartier::class, 'quartierId');
+    // }
 }
