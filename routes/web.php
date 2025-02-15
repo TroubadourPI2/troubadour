@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GeolocalisationController;
 
 Route::get('/', function () {
-    return view('accueil');
+    return view('Accueil');
 });
 
 Route::get('/zoom', function () {
@@ -11,3 +12,4 @@ Route::get('/zoom', function () {
 });
 
 //! [LieuxControlleur::class, 'zoom'])->name('Lieu.zoom');
+Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);
