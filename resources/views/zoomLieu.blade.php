@@ -5,9 +5,6 @@
 @section('contenu')
 
     <div class="@container flex flex-col w-full h-full bg-c2">
-        <div class="relative size-20 w-full mb-20">
-            <img class="absolute size-16 left-6 top-2" src="{{ asset('images/logos/logoC1.svg') }}">
-        </div>
 
         <div class="flex flex-row w-full">
 
