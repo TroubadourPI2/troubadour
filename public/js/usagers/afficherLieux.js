@@ -16,9 +16,9 @@ function ObtenirCartesLieux() {
 function AjouterCarterLieuxListeners() {
     carteLieuxMobile.addEventListener("click", TournerCarteLieux);
     
-    let buttons = carteLieuxMobileDerriere.querySelectorAll("button");
-    buttons.forEach(button => {
-        button.addEventListener("click", function(event) {
+    let boutons = carteLieuxMobileDerriere.querySelectorAll("button");
+    boutons.forEach(bouton => {
+        bouton.addEventListener("click", function(event) {
             event.stopPropagation();
         });
     });
