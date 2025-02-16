@@ -13,11 +13,11 @@
                     class="my-1 ml-12 p-3 w-1/4 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1">
                     Musée Boréalis
                 </div>
-                <div class=" w-0.5 my-1 rounded ml-4 bg-c1"></div>
+                <div class=" my-1 ml-4 rounded border-c1 border"></div>  
             </div>
 
             <div class="w-1/2 flex flex-row justify-end">
-                <div class="my-1 mr-12 rounded bg-c1 w-0.5"></div>
+                <div class=" my-1 mr-12 rounded border-c1 border"></div>  
                 <span class="iconify size-10 m-0 mr-24 text-c1" data-icon="f7:heart" data-inline="false"></span>
             </div>
 
@@ -48,11 +48,10 @@
                 </div>
             </div>
 
-            
-            <div class="mb-1 mt-16 justify-center h-2/3 rounded bg-c1 w-0.5"></div>
-
-
             <div class="text-c1 align-middle flex flex-row text-center w-1/4 mt-8">
+
+            <div class=" mb-1 mt-8 rounded border-c1 border"></div>  
+
                 <div class="w-full flex flex-col items-center">
 
                     <div class="flex text-center mb-2">
@@ -72,9 +71,10 @@
                 </div>
             </div>
 
-            <div class="mb-1 mt-16 justify-center h-2/3 rounded bg-c1 w-0.5"></div>
 
             <div class="text-c1 align-middle flex text-center w-1/2 mt-8">
+
+            <div class=" mb-1 mt-8 rounded border-c1 border"></div>  
 
                 <div class="w-full flex justify-center ">
 
