@@ -39,7 +39,7 @@ class LieuSeeder extends Seeder
                 'numeroTelephone' => '8191111112',
                 'actif' => true,
                 'description' => 'Café chaleureux de Trois-Rivières 2',
-                'quartierId' => 1,
+                'quartierId' => 2,
                 'typeLieuId' => 2,
                 'proprietaireId' => 1,
                 'created_at' => now(),
