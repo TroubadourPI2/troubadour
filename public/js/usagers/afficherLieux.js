@@ -25,5 +25,5 @@ function AjouterCarterLieuxListeners() {
 }
 
 function TournerCarteLieux() {
-    carteLieuxMobile.classList.toggle('[transform:rotateY(180deg)]');
+    carteLieuxMobile.classList.toggle("[transform:rotateY(180deg)]");
 }
