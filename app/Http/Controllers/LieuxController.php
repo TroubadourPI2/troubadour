@@ -10,11 +10,8 @@ class LieuxController extends Controller
 {
     public function index(){
         $lieux = Lieu::all();
+        $villes = Lieu::all()->unique('quartierId');
 
-        return View('recherche', compact('lieux'));
-    }
-
-    public function rechercheVilleQuartier($ville, $quartier){
-        
+        return View('recherche', compact('lieux', 'villes'));
     }
 }

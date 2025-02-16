@@ -8,7 +8,7 @@
 
 @section('contenu')
 
-    <div class="bg-c2 flex w-full h-full flex-col items-center">
+    <div class="bg-c2 flex w-full h-full flex-col items-center z-0">
         <!-- Titre de la section de recherche -->
         <h2 class="w-full text-center text-c1 font-bold text-2xl font-barlow">Recherche</h2>
 
@@ -23,12 +23,24 @@
                     <option value="QC">Québec</option>
                 </select>
 
-                <button type="button"
-                    class="flex lg:hidden me-px w-1/2 cursor-pointer hover:bg-c2 bg-c1 rounded-l-full font-barlow text-c3 hover:text-c1 text-center border items-center justify-center border-c3">Choisir
-                    la ville</button>
-                <button type="button"
-                    class="flex lg:hidden w-1/2 cursor-pointer hover:bg-c2 bg-c1 rounded-r-full font-barlow text-c3 hover:text-c1 text-center border items-center justify-center border-c3">Choisir
-                    le quartier</button>
+                <select
+                    class="flex lg:hidden me-px w-1/2 cursor-pointer hover:bg-c2 bg-c1 rounded-l-full font-barlow text-c3 hover:text-c1 text-center border items-center justify-center border-c3 h-full"
+                    id="mbBtnVilles">
+                    @if (count($villes))
+                        @foreach ($villes as $ville)
+                            <option value="{{$ville->quartierId}}">{{$ville->quartierId}}</option>
+                        @endforeach
+                    @endif
+                </select>
+                <select
+                    class="flex lg:hidden w-1/2 cursor-pointer hover:bg-c2 bg-c1 rounded-r-full font-barlow text-c3 hover:text-c1 text-center border items-center justify-center border-c3 h-full"
+                    id="mbBtnQuartier">
+                    @if (count($villes))
+                        @foreach ($villes as $ville)
+                            <option value="{{$ville->quartierId}}">{{$ville->quartierId}}</option>
+                        @endforeach
+                    @endif
+                </select>
 
                 <select
                     class="border enabled:border-c3 hidden lg:flex enabled:bg-c1 justify-center items-center h-full lg:h-8 w-1/2 lg:w-1/5 rounded-r-full font-barlow text-c3 text-center enabled:hover:bg-c2 enabled:hover:text-c1 text-xs md:text-md lg:text-lg enabled:hover:border hover:border-c1 disabled:bg-c2 disabled:text-c1 disabled:border-c1"
@@ -48,7 +60,7 @@
         </div>
 
         <div class="flex lg:hidden w-5/6 bg-c3 rounded-full justify-evenly items-center mt-2 p-2 h-10 lg:h-12">
-            <div class="p-1 flex rounded-full justify-center gap-x-3 flex-row w-full h-full items-center bg-c1 cursor-pointer hover:text-c1 hover:bg-c2 hover:border hover:border-c1">
+            <div class="p-1 flex rounded-full justify-center gap-x-3 flex-row w-full h-full items-center bg-c1 cursor-pointer hover:text-c1 hover:bg-c2 hover:border hover:border-c1" id="mbBtnFiltres">
                 <span
                     class="iconify size-6 p-1 text-c3"
                     data-icon="mdi:filter" data-inline="false"></span>
@@ -116,5 +128,6 @@
 
     <script src="{{ asset('js/filtreRecherche.js') }}"></script>
     <script src="{{ asset('js/JSrechercheTexte.js') }}"></script>
+    <script src="{{ asset('js/modalFiltresMobile.js') }}"></script>
 
 @endsection
