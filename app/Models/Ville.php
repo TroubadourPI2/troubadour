@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ville extends Model
 {
-    protected $table = 'Villes';
+    protected $table = 'Ville';
     protected $fillable = [
         'nom',
         'actif',

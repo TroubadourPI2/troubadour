@@ -36,12 +36,12 @@ class GeolocalisationController extends Controller
 
             if ($ville) {
             
-                $lieux = Lieu::join('Quartiers', 'Lieux.quartierId', '=', 'Quartiers.id')
-                    ->join('Villes', 'Quartiers.villeId', '=', 'Villes.id')
-                    ->where('Villes.id', $ville->id)
-                    ->where('Lieux.actif', true)
-                    ->orderBy('Lieux.created_at', 'desc')
-                    ->select('Lieux.*')
+                $lieux = Lieu::join('Quartier', 'Lieu.quartierId', '=', 'Quartier.id')
+                    ->join('Ville', 'Quartier.quartierId', '=', 'Ville.id')
+                    ->where('Ville.id', $ville->id)
+                    ->where('Lieu.actif', true)
+                    ->orderBy('Lieu.created_at', 'desc')
+                    ->select('Lieu.*')
                     ->take(9)
                     ->get();
 
