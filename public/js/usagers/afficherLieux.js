@@ -1,29 +1,31 @@
-let carteLieuxMobileDevant;
-let carteLieuxMobileDerriere;
+let carteLieuMobileDerriere;
 let carteLieuxMobile;
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     ObtenirCartesLieux();
     AjouterCarterLieuxListeners();
 });
 
 function ObtenirCartesLieux() {
-    carteLieuxMobileDevant = document.getElementById("carteLieuxMobileDevant");
-    carteLieuxMobileDerriere = document.getElementById("carteLieuxMobileDerriere");
-    carteLieuxMobile = document.getElementById("carteLieuxMobile");
+    carteLieuxMobile = document.querySelectorAll('.carteLieuxMobile');
 }
 
 function AjouterCarterLieuxListeners() {
-    carteLieuxMobile.addEventListener("click", TournerCarteLieux);
-    
-    let boutons = carteLieuxMobileDerriere.querySelectorAll("button");
-    boutons.forEach(bouton => {
-        bouton.addEventListener("click", function(event) {
-            event.stopPropagation();
+    carteLieuxMobile.forEach((carte) => {
+        carte.addEventListener('click', () => TournerCarteLieux(carte));
+        carteLieuMobileDerriere = carte.querySelector(
+            '.carteLieuxMobileDerriere'
+        );
+
+        let boutons = carteLieuMobileDerriere.querySelectorAll('button');
+        boutons.forEach((bouton) => {
+            bouton.addEventListener('click', function (event) {
+                event.stopPropagation();
+            });
         });
     });
 }
 
-function TournerCarteLieux() {
-    carteLieuxMobile.classList.toggle("[transform:rotateY(180deg)]");
+function TournerCarteLieux(carte) {
+    carte.classList.toggle('[transform:rotateY(180deg)]');
 }

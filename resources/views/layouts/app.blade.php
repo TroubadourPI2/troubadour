@@ -101,7 +101,7 @@
 
     </header>
 
-    <main class=" w-full h-screen font-barlow lg:px-16 bg-c2">
+    <main class=" w-full h-screen font-barlow lg:px-16 px-10 bg-c2">
         @yield('contenu')
 
     </main>

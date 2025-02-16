@@ -3,26 +3,23 @@
     <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add" data-inline="false"></span>
     AJOUTER
 </button>
-
-{{-- //TODO Afficher avec la BD si pas de lieux afficher "Aucun lieu d'enregistrer" --}}
 @if ($lieuxUsager->isEmpty())
-    <div>Aucun lieu d'enregistré.</div>
+    <div class="text-c1 text-2xl">Aucun lieu d'enregistré.</div>
 @else
     @foreach ($lieuxUsager as $lieu)
         <!-- Carte lieu pour mobile -->
-        <div class="sm:hidden flex flex-col items-center text-c1 rounded-lg shadow-sm">
+        <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg">
             <div id="carteLieuxMobile"
-                class="relative w-full min-h-[36vh] h-auto rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
-
+                class="carteLieuxMobile relative w-full min-h-[40vh] mb-4  rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
                 <div id="carteLieuxMobileDevant"
                     class="absolute bg-c3 inset-0 rounded-lg shadow-lg [backface-visibility:hidden]">
-                    <img class="object-cover w-full h-72 md:h-auto md:w-48 rounded-lg"
+                    <img class="object-cover w-full h-72 md:h-auto md:w-48 rounded-t-lg"
                         src="{{ asset('Images/lieux/borealis.jpg') }}" alt="Musée Boréalis">
                     <h5 class="mb-2 text-2xl font-semibold uppercase p-2 text-center">{{ $lieu->nomEtablissement }}</h5>
                 </div>
 
                 <div id="carteLieuxMobileDerriere"
-                    class="absolute inset-0 bg-c3 rounded-lg shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden] ">
+                    class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden] ">
                     <div class="p-4 flex flex-col justify-between h-full">
                         <div class="mb-2">
                             <div class="uppercase underline text-lg font-semibold">Description</div>
