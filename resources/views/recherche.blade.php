@@ -26,20 +26,12 @@
                 <select
                     class="flex lg:hidden me-px w-1/2 cursor-pointer hover:bg-c2 bg-c1 rounded-l-full font-barlow text-c3 hover:text-c1 text-center border items-center justify-center border-c3 h-full"
                     id="mbBtnVilles">
-                    @if (count($villes))
-                        @foreach ($villes as $ville)
-                            <option value="{{$ville->quartierId}}">{{$ville->quartierId}}</option>
-                        @endforeach
-                    @endif
+                    <option value="default" selected disabled>Ville</option>
                 </select>
                 <select
                     class="flex lg:hidden w-1/2 cursor-pointer hover:bg-c2 bg-c1 rounded-r-full font-barlow text-c3 hover:text-c1 text-center border items-center justify-center border-c3 h-full"
                     id="mbBtnQuartier">
-                    @if (count($villes))
-                        @foreach ($villes as $ville)
-                            <option value="{{$ville->quartierId}}">{{$ville->quartierId}}</option>
-                        @endforeach
-                    @endif
+                    <option value="default"selected disabled>Quartier</option>
                 </select>
 
                 <select
