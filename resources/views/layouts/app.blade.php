@@ -140,27 +140,36 @@
                     data-icon="mdi-instagram" data-inline="false"></span> <span class="iconify size-9 "
                     data-icon="mingcute:social-x-line" data-inline="false"></span></div>
             <div class="flex w-full justify-center"> <span class="text-c2 font-bold text-3xl"> TROUBADOUR</span></div>
-            <div class="flex w-full  mx-2 px-2 justify-between">
-                <div
-                    class="flex flex-row justify-center gap-x-4 items-center w-80 rounded-md h-full font-barlow  px-4 text-xl bg-c2 text-c1">
-                    <div class="flex  w-fit"><span class="iconify size-8 " data-icon="mdi-instagram" data-inline="false"></span> </div>
-                   <div class="w-full  flex flex-col  "> <span>3500
-                        RUE DE
-                        COURVAL</span> <span>Trois-Rivières, QC G8Z 1T2</span></div>
+            <div class="flex w-full flex-col  gap-y-4 ">
+                <div class="flex flex-row justify-center gap-x-4">
+                    <div
+                        class="flex flex-row justify-center gap-x-4 items-center sm:w-80 w-96  h-20 rounded-md font-barlow text-xs min-[500px]:text-lg   px-2 sm:px-4 bg-c2 text-c1">
+                        <div class="flex  w-fit"><span class="iconify size-6 sm:size-8 " data-icon="ic:outline-place"
+                                data-inline="false"></span> </div>
+                        <div class="w-full  flex flex-col  "> <span>3500
+                                RUE DE
+                                COURVAL</span> <span>Trois-Rivières, QC G8Z 1T2</span></div>
 
+                    </div>
+                    <div
+                        class="flex flex-row justify-center gap-x-4 items-center min-[500px]:text-lg text-sm sm:w-80 w-96 rounded-md  font-barlow  h-20   px-2 sm:px-4  bg-c2 text-c1">
+                        <div class="flex  w-fit"><span class="iconify size-6 sm:size-8 "
+                                data-icon="solar:phone-outline" data-inline="false"></span> </div>
+                        <div class="w-full  flex flex-col justify-center items-center "> <span>(819)-555-5555</span>
+                        </div>
+
+                    </div>
                 </div>
-                <div
-                class="flex flex-row justify-center gap-x-4 items-center w-80 rounded-md h-full font-barlow  px-4 text-xl bg-c2 text-c1">
-                <div class="flex  w-fit"><span class="iconify size-8 " data-icon="mdi-instagram" data-inline="false"></span> </div>
-               <div class="w-full  flex flex-col  "> <span>3500
-                    RUE DE
-                    COURVAL</span> <span>Trois-Rivières, QC G8Z 1T2</span></div>
+                <div class="flex w-full justify-center md:px-1.5 ">
+                    <div class="bg-c2 w-11/12 md:w-3/4 flex justify-center items-center    p-2 "> <span
+                            class="text-c1  flex text-base min-[500px]:text-xl"> <span class="iconify size-8 text-c1 "
+                                data-icon="mdi-at" data-inline="false"></span>contact@troubadour.com</span></div>
+                </div>
+            </div>
 
-            </div>
-            </div>
             <div class="flex w-full flex-col font-barlow text-c3">
 
-                <div class="flex w-full h-full justify-end text-lg items-end"><span>©2025 Troubadour.Tous droits
+                <div class="flex w-full h-full justify-center text-lg items-end"><span>©2025 Troubadour.Tous droits
                         réservés.</span></div>
             </div>
         </div>
