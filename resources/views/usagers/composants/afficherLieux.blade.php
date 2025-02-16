@@ -10,9 +10,9 @@
         @foreach ($lieuxUsager as $lieu)
             <!-- Carte lieu pour mobile -->
             <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg">
-                <div id="carteLieuxMobile" class="carteLieuxMobile relative w-full min-h-[40vh] mb-4 rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
-                    <div id="carteLieuxMobileDevant" class="absolute bg-c3 inset-0 rounded-lg shadow-lg [backface-visibility:hidden]">
-                        <img class="object-cover w-full h-72 md:h-auto md:w-48 rounded-t-lg" src="{{ asset('Images/lieux/borealis.jpg') }}" alt="Musée Boréalis">
+                <div id="carteLieuxMobile" class="carteLieuxMobile relative w-full min-h-[44vh] mb-4 rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
+                    <div id="carteLieuxMobileDevant" class="absolute bg-c3 inset-0 rounded-lg shadow-lg  [backface-visibility:hidden]">
+                        <img class="object-cover w-full h-72 md:h-auto md:w-48 rounded-t-lg" src="{{ asset($lieu->photoLieu) }}" alt="{{$lieu->nomEtablissement}}">
                         <h5 class="mb-2 text-2xl font-semibold uppercase p-2 text-center">{{ $lieu->nomEtablissement }}</h5>
                     </div>
                     <div id="carteLieuxMobileDerriere" class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden]">
@@ -26,6 +26,10 @@
                                 <div class="flex flex-col">
                                     <span>{{ $lieu->noCivic }}, {{ $lieu->rue }}</span>
                                     <span>Aller chercher la ville, {{ $lieu->codePostal }}, Aller cherche province</span>
+                                    <span>Aller chercher le pays</span>
+                                    <span>Aller chercher le quartier</span>
+                                    <span>Aller chercher le type</span>
+                                    <span>Aller chercher la région</span>
                                     <span>{{ $lieu->siteWeb }}</span>
                                     <span>{{ $lieu->numeroTelephone }} À formater?</span>
                                 </div>
@@ -39,9 +43,9 @@
                 </div>
             </div>
             <!-- Carte lieu pour web/tablette -->
-            <div class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-sm bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[500px]">
+            <div class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-sm bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[575px]">
                 <div class="w-full sm:w-1/2 rounded-l-lg h-full">
-                    <img class="object-cover w-full h-full rounded-l-lg" src="{{ asset('Images/lieux/borealis.jpg') }}" alt="Musée Boréalis">
+                    <img class="object-cover w-full h-full rounded-l-lg" src="{{  asset($lieu->photoLieu) }}" alt="{{$lieu->nomEtablissement}}">
                 </div>
                 <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-[30px]">
                     <h5 class="text-xl sm:text-3xl font-semibold uppercase mb-2">{{ $lieu->nomEtablissement }}</h5>
@@ -50,10 +54,14 @@
                         <div class="text-xl">{{ $lieu->description }}</div>
                     </div>
                     <div>
-                        <div class="uppercase underline font-semibold text-2xl">Coordonnées</div>
+                        <div class="uppercase underline font-semibold text-2xl">Coordonnées & Informations</div>
                         <div class="flex flex-col text-xl">
                             <span>{{ $lieu->noCivic }}, {{ $lieu->rue }}</span>
-                            <span>Aller chercher la ville, {{ $lieu->codePostal }}, Aller cherche province</span>
+                            <span>{{$lieu->ville()?->nom ?? 'Ville inconnue' }}, {{ $lieu->codePostal }}, {{ $lieu->province()?->nom ?? '' }}</span>
+                            <span>{{ $lieu->pays()?->nom ?? 'Pays inconnu' }}</span>
+                            <span>{{ $lieu->quartier->nom ?? 'Quartier inconnu' }}</span>
+                            <span>{{$lieu->typeLieu->nom ?? 'Type inconnu' }}</span>
+                            <span>{{ $lieu->region()?->nom ?? 'Région inconnue' }}</span>
                             <span>{{ $lieu->siteWeb }}</span>
                             <span>{{ $lieu->numeroTelephone }} À formater?</span>
                         </div>

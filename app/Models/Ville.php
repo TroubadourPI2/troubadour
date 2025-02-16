@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ville extends Model
 {
-    protected $table = 'Ville';
+    use HasFactory;
+    // protected $table = 'Ville';
     protected $fillable = [
         'nom',
         'actif',
@@ -22,11 +24,20 @@ class Ville extends Model
         return $this->belongsTo(Pays::class, 'paysId');
     }
 
-  
      // Recuperer les quartiers de la ville
   
     public function quartiers()
     {
         return $this->hasMany(Quartier::class, 'quartierId');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(RegionAdministrative::class, 'regionId');
+    }
+
+    public function province()
+    {
+        return $this->region?->province ?? null;
     }
 }

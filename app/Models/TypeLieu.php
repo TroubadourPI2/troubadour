@@ -5,20 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Quartier extends Model
+class TypeLieu extends Model
 {
     use HasFactory;
+    protected $table = 'TypeLieux';
 
     protected $fillable = [
         'nom',
-        'actif',
-        'villeId',
     ];
-
-    public function ville()
-    {
-        return $this->belongsTo(Ville::class, 'villeId');
-    }
 
     public function lieux()
     {
