@@ -37,7 +37,7 @@
                         <span class="font-sm text-2xl  underline"> Localisation </span>
                     </div>
 
-                    <div class=" w-3/4 h-2/3 bg-white p-2 rounded overflow-hidden shadow-lg">
+                    <div class=" w-3/4 h-2/3 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 py-4 text-left">
 
                         <p class="text-c1 text-base underline"> bip </p>
@@ -61,7 +61,7 @@
                         <span class="font-sm text-2xl underline"> Activité </span>
                     </div>
 
-                    <div class=" w-3/4 h-2/3 bg-white p-2 rounded overflow-hidden shadow-lg">
+                    <div class=" w-3/4 h-2/3 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 py-4 text-left">
 
                             <p class="text-c1 text-base underline"> bop </p>
@@ -78,15 +78,13 @@
 
                 <div class="w-full flex justify-center ">
 
-                    <div class=" w-full h-2/3 mt-10 bg-white p-2 rounded overflow-hidden shadow-lg mx-12">
+                    <div class=" w-full h-2/3 mt-10 bg-white p-2 rounded-lg overflow-hidden shadow-lg mx-12">
                         <img class="w-full rounded"
                             src="https://www.borealis3r.ca/app/uploads/2021/07/185557013-5924996890851454-6726044064280675408-n.jpeg"
                             alt="Sunset in the mountains">
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">Musée Boréalis</div>
-                            <p class="text-gray-700 text-base">
-
-                            </p>
+                            <p class="text-gray-700 text-base"> </p>
                         </div>
                         <div class="px-6 pt-4 pb-2">
                             <span
