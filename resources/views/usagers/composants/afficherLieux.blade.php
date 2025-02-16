@@ -13,7 +13,7 @@
         <div id="carteLieuxMobile" class="carteLieuxMobile relative w-full min-h-[44vh] mb-4 rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
             <div id="carteLieuxMobileDevant" class="absolute bg-c3 inset-0 rounded-lg shadow-lg  [backface-visibility:hidden]">
                 <img class="object-cover w-full h-72 md:h-auto md:w-48 rounded-t-lg" src="{{ asset($lieu->photoLieu) }}" alt="{{$lieu->nomEtablissement}}">
-                <h5 class="mb-2 text-2xl font-semibold uppercase p-2 text-center">{{ $lieu->nomEtablissement }}</h5>
+                <h5 class="mb-2 text-xl font-semibold uppercase p-2 text-center">{{ $lieu->nomEtablissement }}</h5>
             </div>
             <div id="carteLieuxMobileDerriere" class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <div class="p-4 flex flex-col justify-between h-full">
