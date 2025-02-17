@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\LieuxController;
 use App\Http\Controllers\UsagersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GeolocalisationController;
