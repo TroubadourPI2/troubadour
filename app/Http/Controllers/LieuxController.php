@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Lieu;
+
 
 
 class LieuxController extends Controller
@@ -37,7 +39,10 @@ class LieuxController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //$lieu = Lieu::all();
+        $lieuActuel = Lieu::Where("id", $id)->get();
+
+        return view('zoomLieu', compact('lieuActuel'));
     }
 
     /**
