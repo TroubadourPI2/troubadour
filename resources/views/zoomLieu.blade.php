@@ -40,7 +40,7 @@
                     <div
                         class="lg:h-2/3 2xl:h-full mt-10 bg-white p-2 pb-6 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0">
                         <img class="md:w-full h-3/4 rounded"
-                            src="https://www.borealis3r.ca/app/uploads/2021/07/185557013-5924996890851454-6726044064280675408-n.jpeg"
+                            src="{{ asset($lieuActuel->photoLieu) }}"
                             alt="Musée Boréalis">
                         <div class="px-6 py-3">
                             <div class="font-bold text-xl mb-2 md:w-full truncate"> {{ $lieuActuel->nomEtablissement }}
