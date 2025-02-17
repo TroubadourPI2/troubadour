@@ -2,18 +2,35 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
 
-class Usager extends Model
+class Usager extends Authenticatable
 {
-    use  Authenticatable, CanResetPassword, Notifiable;
+    use HasFactory, Notifiable ;
 
-    protected $table = 'Usagers';
     protected $fillable = [
-       'courriel', 'password', 'prenom', 'nom', 'statutId', 'roleId'
+        'courriel',
+        'password',
+        'prenom',
+        'nom',
+        'statutId',
+        'roleId'
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    public function role()
+    {
+        return $this->belongsTo(RoleUsager::class, 'roleId');
+    }
+
+    public function lieu(){
+        return $this->hasMany(Lieu::class, 'proprietaireId');
+    }
 }

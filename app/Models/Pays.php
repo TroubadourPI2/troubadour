@@ -17,6 +17,6 @@ class Pays extends Model
    
     public function villes()
     {
-        return $this->hasMany(Ville::class, 'paysId');
+        return $this->hasMany(Ville::class);
     }
 }

@@ -1,7 +1,7 @@
 
 function CreerCarte(lieu) {
     const carte = document.createElement("div");
-    carte.className = "transition-all duration-700 w-28 h-48 sm:w-48  bg-c3 rounded-lg flex flex-col justify-between items-center hover:border hover:border-c1 hover:scale-110  cursor-pointer carteLieu opacity-0 p-4";
+    carte.className = "transition-all duration-700 w-40 h-64 sm:w-48 sm:h-72  bg-c3 rounded-lg flex flex-col justify-between items-center hover:border hover:border-c1 hover:scale-110  cursor-pointer carteLieu opacity-0 p-4";
 
     const image = document.createElement("img");
     image.src = lieu.photoLieu || "images/Logos/logoC1.svg";
