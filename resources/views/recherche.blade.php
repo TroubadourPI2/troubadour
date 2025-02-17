@@ -98,7 +98,7 @@
         <!-- ?  Section des cartes (avec scroll seulement ici) [RESPONSIVE]-->
         <div class="flex w-5/6 h-3/4 overflow-y-auto flex-col space-y-10 overflow-x-hidden m-3 snap-y">
             @if (count($lieux))
-                <div class="xl:grid-cols-5  lg:grid-cols-4  md:grid-cols-3 grid-col-1 grid gap-y-5 place-items-center snap-center">
+                <div class="xl:grid-cols-5  lg:grid-cols-4  md:grid-cols-3 grid-cols-1 grid gap-y-5 place-items-center snap-center">
                     @foreach($lieux as $lieu)
                         <div
                             class="snap-start lg:w-3/4 w-2/3 bg-c3 h-full rounded-lg flex flex-col items-center p-3 border-2 border-c3 hover:border-2 hover:border-c1 cursor-pointer carteLieu ">
