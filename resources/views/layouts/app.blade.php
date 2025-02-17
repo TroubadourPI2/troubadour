@@ -16,30 +16,36 @@
     <link rel="shortcut icon" type="image/png" href="" />
 </head>
 
-<body>
+<body class="flex flex-col  min-h-screen">
     <header class="bg-c2 sticky top-0 shadow-lg z-50 lg:z-0 lg:shadow-none lg:relative">
 
         @yield('header')
-  
+
         <div class="w-full p-8 items-center hidden lg:flex ">
-                  {{-- Menu Desktop --}}
+            {{-- Menu Desktop --}}
             <div class="flex w-full items-center gap-x-4">
                 <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class=" w-20 xl:w-24" alt="Logo Troubadour">
                 <span class="text-c1 uppercase text-4xl 2xl:text-5xl font-barlow font-semibold">troubadour</span>
             </div>
             <div class="flex w-full justify-end items-center gap-x-2">
-                     {{-- TODO remplacer par les liens quand les pages seronts faites--}}
-                <a class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition  ">Attraits</a>
+                {{-- TODO remplacer par les liens quand les pages seronts faites --}}
+                <a
+                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition  ">Attraits</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <a class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition   ">À propos</a>
+                <a
+                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition   ">À
+                    propos</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <a class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">compte</a>
+                <a
+                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">compte</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
-               {{--  TODO remplacer par un bouton ou un form en fonction de ce qui a faire mais garder même CSS
+                {{--  TODO remplacer par un bouton ou un form en fonction de ce qui a faire mais garder même CSS
                 TODO Ajouter en fonction de si la personne est connecté ou non l'affichage du bouton connexion deconnexion --}}
-                <a class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition  ">déconnexion</a>
+                <a
+                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition  ">déconnexion</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1   rounded-full transition " data-icon="mdi:search" data-inline="false"></span>
+                <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1   rounded-full transition "
+                    data-icon="mdi:search" data-inline="false"></span>
             </div>
         </div>
         {{-- Menu Mobile --}}
@@ -77,15 +83,15 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
-                            <a href=""
+                    <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>COMPTE</a>
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>CONNEXION</a>
-                            <a href=""
-                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                                class="iconify size-10 " data-icon="mdi:search" data-inline="false"></span>RECHERCHE</a>
+                    <a href=""
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                            class="iconify size-10 " data-icon="mdi:search" data-inline="false"></span>RECHERCHE</a>
 
                     {{-- <!-- TODO Bouton deconnexion pour mobile -->
                 <form action="" method="POST">
@@ -101,24 +107,88 @@
 
     </header>
 
-    <main class=" w-full h-screen">
+    <main class=" flex flex-col w-full flex-grow  bg-c2">
         @yield('contenu')
 
     </main>
-    @yield('footer')
-    <footer>
+    <footer class="position bottom-0 left-0 w-full">
+        @yield('footer')
+        {{-- Footer desktop --}}
+        <div class=" w-full hidden lg:flex max-h-40 p-4 bg-c1 gap-x-4">
+            <div class="flex items-center"> <img src="{{ asset('/Images/Logos/logoC5.svg') }}" class="w-28"
+                    alt="Logo Troubadour"></div>
+            <div class="flex flex-col justify-center items-start w-80 h-full font-barlow text-c3 text-xl">
+                <span>3500
+                    RUE DE
+                    COURVAL</span> <span>Trois-Rivières, QC G8Z 1T2</span>
+                <span>contact@troubadour.com</span><span>(819)-555-5555</span>
+            </div>
+            <div class="flex w-full flex-col font-barlow text-c3">
+                <div class="flex pt-10  gap-x-4 w-full h-full justify-end items-end"><span class="iconify size-9 "
+                        data-icon="iconoir:facebook" data-inline="false"></span> <span class="iconify size-9 "
+                        data-icon="mdi-instagram" data-inline="false"></span> <span class="iconify size-9 "
+                        data-icon="mingcute:social-x-line" data-inline="false"></span></div>
+                <div class="flex w-full h-full justify-end text-lg items-end"><span>©2025 Troubadour.Tous droits
+                        réservés.</span></div>
+            </div>
+        </div>
 
+        {{-- Footer mobile et tablette --}}
+        <div class=" w-full flex flex-col h-full lg:hidden  p-2  bg-c1 gap-y-2 font-barlow">
+            <div class="flex pt-5 justify-center text-c2  gap-x-4 w-full h-full"><span class="iconify size-9 "
+                    data-icon="iconoir:facebook" data-inline="false"></span> <span class="iconify size-9 "
+                    data-icon="mdi-instagram" data-inline="false"></span> <span class="iconify size-9 "
+                    data-icon="mingcute:social-x-line" data-inline="false"></span></div>
+            <div class="flex w-full justify-center"> <span class="text-c2 font-bold text-3xl"> TROUBADOUR</span>
+            </div>
+            <div class="flex w-full flex-col  gap-y-4 ">
+                <div class="flex flex-row justify-center gap-x-4">
+                    <div
+                        class="flex flex-row justify-center gap-x-4 items-center sm:w-80 w-96  h-20 rounded-md font-barlow text-xs min-[500px]:text-lg   px-2 sm:px-4 bg-c2 text-c1">
+                        <div class="flex  w-fit"><span class="iconify size-6 sm:size-8 " data-icon="ic:outline-place"
+                                data-inline="false"></span> </div>
+                        <div class="w-full  flex flex-col  "> <span>3500
+                                RUE DE
+                                COURVAL</span> <span>Trois-Rivières, QC G8Z 1T2</span></div>
+
+                    </div>
+                    <div
+                        class="flex flex-row justify-center gap-x-4 items-center min-[500px]:text-lg text-sm sm:w-80 w-96 rounded-md  font-barlow  h-20   px-2 sm:px-4  bg-c2 text-c1">
+                        <div class="flex  w-fit"><span class="iconify size-6 sm:size-8 "
+                                data-icon="solar:phone-outline" data-inline="false"></span> </div>
+                        <div class="w-full  flex flex-col justify-center items-center ">
+                            <span>(819)-555-5555</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="flex w-full justify-center md:px-1.5 ">
+                    <div class="bg-c2 w-11/12 md:w-3/4 flex justify-center items-center    p-2 "> <span
+                            class="text-c1  flex text-base min-[500px]:text-xl"> <span class="iconify size-8 text-c1 "
+                                data-icon="mdi-at" data-inline="false"></span>contact@troubadour.com</span></div>
+                </div>
+            </div>
+
+            <div class="flex w-full flex-col font-barlow text-c3">
+
+                <div class="flex w-full h-full justify-center text-lg items-end"><span>©2025 Troubadour.Tous droits
+                        réservés.</span></div>
+            </div>
+        </div>
     </footer>
 </body>
- <script>document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
-    const menuMobile = document.getElementById('menuMobile');
-    menuMobile.classList.remove('-translate-x-full');
-    document.body.classList.add('overflow-hidden');
-});
+<script>
+    document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
+        const menuMobile = document.getElementById('menuMobile');
+        menuMobile.classList.remove('-translate-x-full');
+        document.body.classList.add('overflow-hidden');
+    });
 
-document.getElementById('boutonFermerMenu').addEventListener('click', function() {
-    const menuMobile = document.getElementById('menuMobile');
-    menuMobile.classList.add('-translate-x-full');
-    document.body.classList.remove('overflow-hidden'); 
-});</script>
+    document.getElementById('boutonFermerMenu').addEventListener('click', function() {
+        const menuMobile = document.getElementById('menuMobile');
+        menuMobile.classList.add('-translate-x-full');
+        document.body.classList.remove('overflow-hidden');
+    });
+</script>
+
 </html>
