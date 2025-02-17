@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('prenom',32);
             $table->string('nom',32);
+            $table->rememberToken();
             $table->foreignId('statutId')->constrained('Statuts')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('roleId')->constrained('RoleUsagers')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();

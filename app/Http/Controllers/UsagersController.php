@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lieu;
-use App\Models\Quartier;
 use Illuminate\Http\Request;
+use App\Models\Lieu;
 
-
-class LieuxController extends Controller
+class UsagersController extends Controller
 {
+
+    public function ObtenirLieuxUsager(){
+        //TODO Changer la fonction pour variable selon id du responsable connecté
+        $lieuxUsager = Lieu::where('proprietaireId', 1)->get();
+
+        return View('usagers.afficher', compact('lieuxUsager'));
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -16,7 +22,6 @@ class LieuxController extends Controller
     {
         //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -39,10 +44,7 @@ class LieuxController extends Controller
      */
     public function show(string $id)
     {
-        //$lieu = Lieu::all();
-        $lieuActuel = Lieu::Where("id", $id)->first();
-
-        return view('zoomLieu', compact('lieuActuel'));
+        //
     }
 
     /**
@@ -68,4 +70,5 @@ class LieuxController extends Controller
     {
         //
     }
+
 }
