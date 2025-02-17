@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -8,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>@yield('title')</title>
-
 
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -26,7 +24,7 @@
 
     </header>
 
-    <main class="flex w-full h-screen">
+    <main class=" w-full h-screen">
         @yield('contenu')
 
     </main>
