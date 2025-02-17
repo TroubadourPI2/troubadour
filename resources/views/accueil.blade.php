@@ -39,7 +39,7 @@
                         </a>
                     </div>
                     <div class="hidden md:flex ">
-                        <a
+                        <a onclick="showLoginPrompt()"
                             class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
                             CONNEXION
                         </a>
@@ -86,9 +86,10 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
-                    <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                            class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
+                    <a href="#" onclick="showLoginPrompt()"
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                        <span class="iconify size-10" data-icon="mdi:user" data-inline="false"></span> CONNEXION
+                    </a>
 
                     {{-- <!-- TODO Bouton deconnexion pour mobile -->
                 <form action="" method="POST">
@@ -104,7 +105,7 @@
     </div>
 
     <div id="sectionCacher"
-        class="flex flex-col w-full h-screen  gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">
+        class=" flex-col w-full h-screen  gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">
 
         <div class="pt-4 flex justify-center">
             <span id="villeSpan"
@@ -132,8 +133,8 @@
 
 <script>
     async function handleLogin() {
-        const email = document.getElementById("email").value;
-        const mdp = document.getElementById("mdp").value;
+        const courriel = document.getElementById("courriel").value;
+        const password = document.getElementById("password").value;
         const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         const response = await fetch('/login', {
@@ -143,8 +144,8 @@
                 'X-CSRF-TOKEN': token
             },
             body: JSON.stringify({
-                email,
-                mdp
+                courriel,
+                password
             })
         });
 
@@ -162,9 +163,9 @@
 
     async function showLoginPrompt() {
         document.addEventListener("input", function(event) {
-            if (event.target.id === "email") {
+            if (event.target.id === "courriel") {
                 validerCourriel(event.target.value);
-            } else if (event.target.id === "mdp") {
+            } else if (event.target.id === "password") {
                 validerMDP(event.target.value);
             }
         });
@@ -174,10 +175,10 @@
             html: `
             <form id="connexionForm">
                 <div class="flex flex-col items-center space-y-2">
-                    <input type="email" id="email" name="email" class="swal-input w-full p-3 border rounded-lg" placeholder="Courriel" required>
+                    <input type="email" id="courriel" name="courriel" class="swal-input w-full p-3 border rounded-lg" placeholder="Courriel" required>
                     <span class="messagesErreur"><span id="errEmail" class="text-c4"></span></span>
                     
-                    <input type="password" id="mdp" name="mdp" class="swal-input w-full p-3 border rounded-lg" placeholder="Mot de passe" required>
+                    <input type="password" id="password" name="password" class="swal-input w-full p-3 border rounded-lg" placeholder="Mot de passe" required>
                     <span class="messagesErreur"><span id="errMdp" class="text-c4"></span></span>
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -191,9 +192,9 @@
             confirmButtonText: "Se connecter",
             denyButtonText: "S'inscrire",
             didOpen: () => {
-                document.getElementById("email").addEventListener("input", (event) => validerCourriel(
+                document.getElementById("courriel").addEventListener("input", (event) => validerCourriel(
                     event.target.value));
-                document.getElementById("mdp").addEventListener("input", (event) => validerMDP(event
+                document.getElementById("password").addEventListener("input", (event) => validerMDP(event
                     .target.value));
             },
             preConfirm: () => {

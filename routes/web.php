@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UtilisateursController;
-
+use App\Http\Controllers\UsagersController;
 use App\Http\Controllers\GeolocalisationController;
 
 Route::get('/', function () {
@@ -10,5 +9,5 @@ Route::get('/', function () {
 });
 
 
-Route::post('/connexion', [UtilisateurController::class, 'connexion'])->name('connexion');
+Route::post('/connexion', [UsagersController::class, 'connexion'])->name('connexion');
 Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);

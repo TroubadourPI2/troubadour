@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class Utilisateur extends Model
+class Usager extends Model
 {
-    use HasFactory, Authenticatable, CanResetPassword, Notifiable;
+    use  Authenticatable, CanResetPassword, Notifiable;
 
+    protected $table = 'Usagers';
     protected $fillable = [
-       'prenom', 'nom', 'email', 'mdp',
+       'courriel', 'password', 'prenom', 'nom', 'statutId', 'roleId'
     ];
 }

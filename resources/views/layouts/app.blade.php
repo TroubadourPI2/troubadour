@@ -8,6 +8,7 @@
 
     <title>@yield('title')</title>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
+
     @yield('head')
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -85,6 +86,7 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>CONNEXION</a>
+                            
                             <a href=""
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                                 class="iconify size-10 " data-icon="mdi:search" data-inline="false"></span>RECHERCHE</a>

@@ -1,5 +1,5 @@
-var inputCourriel = document.getElementById('email');
-var inputMDP = document.getElementById('mdp');
+var inputCourriel = document.getElementById('courriel');
+var inputMDP = document.getElementById('password');
 
 
 var crit1 = document.getElementById('signeCrit1');
@@ -9,14 +9,14 @@ var crit4 = document.getElementById('signeCrit4');
 var crit5 = document.getElementById('signeCrit5');
 
 var validation = {
-    email: false,
+    courriel: false,
     mdp: false
     
 };
 
-function validateEmail(email) {
+function validateEmail(courriel) {
     var re = /\S+@\S+\.\S+/;
-    return re.test(email);
+    return re.test(courriel);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -41,18 +41,14 @@ function checkInfos() {
     console.log('checkInfos() is running');
 
     console.log('********************************************');
-    console.log('********************************************');
-    console.log('********************************************');
 
-    console.log('courriel:', validation.email);
-    console.log('mdp:', validation.mdp);
-    // console.log('cmdp:', validation.cmdp);
+    console.log('courriel:', validation.courriel);
+    console.log('password:', validation.password);
 
     console.log('********************************************');
-    console.log('********************************************');
-    console.log('********************************************');
 
-    if (validation.email && validation.mdp) {
+
+    if (validation.courriel && validation.password) {
         btnSuivant.disabled = false;
         console.log('Next button enabled');
     } else {
@@ -62,7 +58,7 @@ function checkInfos() {
 }
 console.log("Validation object at startup:", validation);
 function validerCourriel(inputValue) {
-    let emailInput = document.getElementById('email');
+    let emailInput = document.getElementById('courriel');
     let errorSpan = document.getElementById('errEmail');
 
     let regex = /\S+@\S+\.\S+/;
@@ -94,7 +90,7 @@ function validerCourriel(inputValue) {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
         },
-        body: JSON.stringify({ email: inputValue })
+        body: JSON.stringify({ courriel: inputValue })
     })
     .then(response => response.json())
     .then(data => {
@@ -114,7 +110,7 @@ function validerCourriel(inputValue) {
 
 
 function validerMDP(inputValue) {
-    let mdpInput = document.getElementById('mdp');
+    let mdpInput = document.getElementById('password');
     let errorSpan = document.getElementById('errMdp');
     let errorIcon = document.getElementById('sigleMdp');
 
@@ -131,12 +127,12 @@ function validerMDP(inputValue) {
         mdpInput.style.borderColor = 'c4';
         errorSpan.textContent = errorMessage;
         errorIcon.classList.remove("d-none");
-        validation.mdp = false;
+        validation.password = false;
     } else {
         mdpInput.style.borderColor = "lightgray";
         errorSpan.textContent = "";
         errorIcon.classList.add("d-none");
-        validation.mdp = true;
+        validation.password = true;
     }
 }
 
@@ -147,7 +143,7 @@ function finalCheck() {
     validerCourriel(inputCourriel.value);
     validerMDP(inputMDP.value);
 
-    if (validation.email && validation.mdp) {
+    if (validation.courriel && validation.password) {
         return true;
     } else {
         return false;
