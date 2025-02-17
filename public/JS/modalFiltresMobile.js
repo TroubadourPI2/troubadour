@@ -108,9 +108,9 @@ mbBtnFiltres.addEventListener('click', function(){
                 </div>
                 <div class="flex flex-col w-full">
                     <div class="flex flex-row w-full gap-x-2 mb-2">
-                        <span class="w-full border border-c1 text-c1 font-barlow rounded-full">5km</span>
-                        <span class="w-full border border-c1 text-c1 font-barlow rounded-full">15km</span>
-                        <span class="w-full border border-c1 text-c1 font-barlow rounded-full">30km</span>
+                        <span class="w-full border border-c1 text-c1 font-barlow rounded-full">± 5 km</span>
+                        <span class="w-full border border-c1 text-c1 font-barlow rounded-full">± 15 km</span>
+                        <span class="w-full border border-c1 text-c1 font-barlow rounded-full">± 30 km</span>
                     </div>
                 </div>
                 <div class="w-full flex justify-center items-center h-8">
