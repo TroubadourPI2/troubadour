@@ -78,7 +78,7 @@
 
                 <div class="w-full flex justify-center ">
 
-                    <div class=" w-full h-2/3 mt-10 bg-white p-2 rounded-lg overflow-hidden shadow-lg mx-12">
+                    <div class=" w-full h-2/3 mt-10 bg-white p-2 pb-6 rounded-lg overflow-hidden shadow-lg mx-12">
                         <img class="w-full h-3/4 rounded"
                             src="https://www.borealis3r.ca/app/uploads/2021/07/185557013-5924996890851454-6726044064280675408-n.jpeg"
                             alt="Sunset in the mountains">
