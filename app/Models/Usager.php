@@ -16,7 +16,6 @@ class Usager extends Authenticatable
         'password',
         'prenom',
         'nom',
-        'siteWeb',
         'statutId',
         'roleId'
     ];
