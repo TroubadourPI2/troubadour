@@ -4,7 +4,7 @@
 
 @section('contenu')
 
-    <div class="@container flex flex-col w-full h-full bg-c2">
+    <div class="@container flex flex-col w-full h-3/4 bg-c2">
 
         <div class="flex flex-row w-full">
 
@@ -24,7 +24,7 @@
         </div>
 
         <div class="w-full flex">
-            <div class="h-0.5  w-full flex flex-row rounded ml-12 mr-12 bg-c1"></div>
+            <div class="h-0.5 w-full flex flex-row rounded ml-12 mr-12 bg-c1"></div>
         </div>
 
         <div class="h-full w-full flex flex-row">
@@ -50,7 +50,7 @@
 
             <div class="text-c1 align-middle flex flex-row text-center w-1/4 mt-8">
 
-            <div class=" mb-1 mt-8 rounded border-c1 border"></div>  
+            <div class="mt-8 h-2/3 rounded border-c1 border"></div>  
 
                 <div class="w-full flex flex-col items-center">
 
@@ -74,19 +74,18 @@
 
             <div class="text-c1 align-middle flex text-center w-1/2 mt-8">
 
-            <div class=" mb-1 mt-8 rounded border-c1 border"></div>  
+            <div class="mt-8 h-2/3 rounded border-c1 border"></div>  
 
                 <div class="w-full flex justify-center ">
 
                     <div class=" w-full h-2/3 mt-10 bg-white p-2 rounded-lg overflow-hidden shadow-lg mx-12">
-                        <img class="w-full rounded"
+                        <img class="w-full h-3/4 rounded"
                             src="https://www.borealis3r.ca/app/uploads/2021/07/185557013-5924996890851454-6726044064280675408-n.jpeg"
                             alt="Sunset in the mountains">
-                        <div class="px-6 py-4">
+                        <div class="px-6 py-3">
                             <div class="font-bold text-xl mb-2">Musée Boréalis</div>
-                            <p class="text-gray-700 text-base"> </p>
                         </div>
-                        <div class="px-6 pt-4 pb-2">
+                        <div class="px-6 pb-2">
                             <span
                                 class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
                             <span
