@@ -8,16 +8,17 @@
 
         <div class="flex flex-row w-full">
 
-            <div class="w-1/2 sm:w-3/4 flex flex-row  mt-4">
-                <div class="my-1 ml-12 w-3/4 p-3 lg:w-1/4 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1">
-                    {{$lieuActuel->nomEtablissement}}
+            <div class="w-full sm:w-3/4 flex flex-row mt-4">
+                <div
+                    class="my-1 ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1 truncate">
+                    {{ $lieuActuel->nomEtablissement }}
                 </div>
                 <div class=" my-1 ml-4 rounded border-c1 hidden md:block border"></div>
             </div>
 
-            <div class="w-1/2 flex flex-row justify-end items-center">
-                <div class=" my-1 mr-12 rounded border-c1 border hidden md:block"></div>
-                <span class="iconify size-10 m-0 mr-24 text-c1   sm:mr-10" data-icon="f7:heart" data-inline="false"></span>
+            <div class="w-1/2 mt-4 flex flex-row justify-end items-end">
+                <div class=" my-1 mr-4 h-3/4 rounded border-c1 border hidden md:flex"></div>
+                <span class="iconify size-10 ml-6 mr-20 text-c1 sm:mr-10" data-icon="f7:heart" data-inline="false"></span>
             </div>
 
         </div>
@@ -32,16 +33,18 @@
 
             <div class="text-c1 align-middle md:flex text-center sm:w-full sm:order-0 lg:order-2 lg:w-1/2 mt-8 mb-8 m">
 
-            <div class="mt-8 lg:h-2/3 2xl:h-full hidden md:block rounded border-c1 border"></div>
+                <div class="mt-8 lg:h-2/3 2xl:h-full hidden md:block rounded border-c1 border"></div>
 
                 <div class="w-full flex flex-col items-center px-6">
 
-                    <div class="lg:h-2/3 2xl:h-full mt-10 bg-white p-2 pb-6 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0">
+                    <div
+                        class="lg:h-2/3 2xl:h-full mt-10 bg-white p-2 pb-6 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0">
                         <img class="md:w-full h-3/4 rounded"
                             src="https://www.borealis3r.ca/app/uploads/2021/07/185557013-5924996890851454-6726044064280675408-n.jpeg"
                             alt="Musée Boréalis">
                         <div class="px-6 py-3">
-                            <div class="font-bold text-xl mb-2 md:w-full">Musée Boréalis</div>
+                            <div class="font-bold text-xl mb-2 md:w-full truncate"> {{ $lieuActuel->nomEtablissement }}
+                            </div>
                         </div>
                         <div class="px-6 pb-2 hidden md:block">
                             <span
@@ -69,7 +72,10 @@
                     <div class=" w-3/4 lg:h-2/3 2xl:h-full 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 py-4 text-left">
 
-                            <p class="text-c1 text-base underline truncate"> bipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbipbip </p>
+                            <p class="text-c1 text-base underline truncate my-5"> {{ $lieuActuel->noCivic }}, {{ $lieuActuel->rue }} </p>
+                            <p class="text-c1 text-base underline truncate my-5"> {{ $lieuActuel->codePostal }}</p>
+                            <p class="text-c1 text-base underline truncate my-5"> {{ $lieuActuel->numeroTelephone }}</p>
+                            <p class="text-c1 text-base underline truncate my-5"> {{ $lieuActuel->siteWeb }}</p>
 
                         </div>
                     </div>
@@ -94,7 +100,7 @@
                     <div class=" w-3/4 lg:h-2/3 2xl:h-full 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 py-4 text-left">
 
-                            <p class="text-c1 text-base underline truncate"> bop </p>
+                            <p class="text-c1 text-base underline truncate"> MAJ la BD les informations d'activités </p>
 
                         </div>
                     </div>

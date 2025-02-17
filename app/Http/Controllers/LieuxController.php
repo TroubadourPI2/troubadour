@@ -42,7 +42,6 @@ class LieuxController extends Controller
         //$lieu = Lieu::all();
         $lieuActuel = Lieu::Where("id", $id)->first();
 
-
         return view('zoomLieu', compact('lieuActuel'));
     }
 
