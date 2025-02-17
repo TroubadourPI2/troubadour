@@ -1,7 +1,7 @@
-<button
-    class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-36 w-[80px] text-c1 font-semibold my-3">
-    <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add" data-inline="false"></span>
-    AJOUTER
+<button id="boutonAjouterLieu"
+    class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-36 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3">
+    <span class="iconify text-c1 sm:size-6 size-4 sm:mr-2"  data-icon="ion:add" data-inline="false"></span>
+    Ajouter
 </button>
 @if ($lieuxUsager->isEmpty())
     <div class="text-c1 text-2xl">Aucun lieu d'enregistré.</div>
@@ -10,15 +10,17 @@
         @foreach ($lieuxUsager as $lieu)
             <!-- Carte lieu pour mobile -->
             <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg">
-                <div class="carteLieuxMobile relative w-full min-h-[44vh] mb-4 rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
+                <div
+                    class="carteLieuxMobile relative w-full min-h-[44vh] mb-4 rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
                     <div id="carteLieuxMobileDevant"
-                        class="absolute bg-c3 inset-0 rounded-lg shadow-lg  [backface-visibility:hidden]">
+                        class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center [backface-visibility:hidden]">
                         <img class="object-cover w-full h-72 md:h-auto md:w-48 rounded-t-lg"
                             src="{{ asset($lieu->photoLieu) }}" alt="{{ $lieu->nomEtablissement }}">
-                        <h5 class="mb-2 text-xl font-semibold uppercase p-2 text-center">{{ $lieu->nomEtablissement }}
+                        <h5 class="flex items-center  mb-2 text-xl font-semibold uppercase p-2 text-center h-full">{{ $lieu->nomEtablissement }}
                         </h5>
                     </div>
-                    <div class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                    <div
+                        class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden]">
                         <div class="p-4 flex flex-col justify-between h-full">
                             <div class="mb-2">
                                 <div class="uppercase underline text-lg font-semibold">Description</div>
@@ -54,7 +56,8 @@
                 </div>
             </div>
             <!-- Carte lieu pour web/tablette -->
-            <div class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-sm bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[575px]">
+            <div
+                class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-sm bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[575px]">
                 <div class="w-full sm:w-1/2 rounded-l-lg h-full">
                     <img class="object-cover w-full h-full rounded-l-lg" src="{{ asset($lieu->photoLieu) }}"
                         alt="{{ $lieu->nomEtablissement }}">
@@ -95,3 +98,5 @@
         @endforeach
     </div>
 @endif
+
+<!-- <script src="{{ asset('js/usagers/Lieux/AjouterLieux.js') }}"></script> -->
