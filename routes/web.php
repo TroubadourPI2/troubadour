@@ -8,6 +8,10 @@ use App\Http\Controllers\LieuxController;
 Route::get('/', function () {
     return view('Accueil');
 });
+Route::get('/test', function () {
+    return view('test');
+});
+
 
 Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom');
 
