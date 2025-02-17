@@ -14,7 +14,8 @@ class LieuxController extends Controller
      */
     public function index()
     {
-        //
+        $lieux = Lieu::all();
+        return view('recherche', compact('lieux'));
     }
 
 
