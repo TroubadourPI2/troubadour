@@ -1,25 +1,25 @@
 let carteLieuMobileDerriere;
 let carteLieuxMobile;
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     ObtenirCartesLieux();
     AjouterCarterLieuxListeners();
 });
 
 function ObtenirCartesLieux() {
-    carteLieuxMobile = document.querySelectorAll('.carteLieuxMobile');
+    carteLieuxMobile = document.querySelectorAll(".carteLieuxMobile");
 }
 
 function AjouterCarterLieuxListeners() {
     carteLieuxMobile.forEach((carte) => {
-        carte.addEventListener('click', () => TournerCarteLieux(carte));
+        carte.addEventListener("click", () => TournerCarteLieux(carte));
         carteLieuMobileDerriere = carte.querySelector(
-            '.carteLieuxMobileDerriere'
+            ".carteLieuxMobileDerriere"
         );
 
-        let boutons = carteLieuMobileDerriere.querySelectorAll('button');
+        let boutons = carteLieuMobileDerriere.querySelectorAll("button");
         boutons.forEach((bouton) => {
-            bouton.addEventListener('click', function (event) {
+            bouton.addEventListener("click", function (event) {
                 event.stopPropagation();
             });
         });
@@ -27,5 +27,5 @@ function AjouterCarterLieuxListeners() {
 }
 
 function TournerCarteLieux(carte) {
-    carte.classList.toggle('[transform:rotateY(180deg)]');
+    carte.classList.toggle("[transform:rotateY(180deg)]");
 }
