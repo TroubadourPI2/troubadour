@@ -1,25 +1,34 @@
-//sectionsMenuCompte défini dans GestionAffichageMenu.js
 let boutonAjouterLieu;
+let boutonRetourAfficherLieux;
 let ajouterLieu;
-let boutomnRetourAfficherLieux;
+let afficherLieux;
 
 document.addEventListener("DOMContentLoaded", function () {
-    ObtenirElements1();
-    AjouterMenuListeners1();
+    ObtenirElementsMenuLieux();
+    AjouterMenuLieuxListeners();
 });
 
 
-function ObtenirElements1() {
+function ObtenirElementsMenuLieux() {
     boutonAjouterLieu = document.getElementById('boutonAjouterLieu');
+    boutonRetourAfficherLieux = document.getElementById('boutonRetourAfficherLieux');
     ajouterLieu = document.getElementById('ajouterLieu');
-    console.log(boutonAjouterLieu);
-    boutomnRetourAfficherLieux = document.getElementById('boutonRetourAfficherLieux');
+    afficherLieux = document.getElementById('afficherLieux');
 }
 
-function AjouterMenuListeners1() {
-    boutonAjouterLieu.addEventListener("click", function () {
-        console.log("click");
-        ajouterLieu.classList.remove("hidden");
-        boutomnRetourAfficherLieux.classList.add("hidden");
-    }); 
+function AjouterMenuLieuxListeners() {
+    boutonAjouterLieu.addEventListener("click", AfficherSectionAjouterLieu);
+    boutonRetourAfficherLieux.addEventListener("click", AfficherSectionAfficherLieu);
+}
+
+function AfficherSectionAjouterLieu(){
+    ajouterLieu.classList.remove("hidden");
+    afficherLieux.classList.add("hidden");
+    boutonAjouterLieu.classList.add("hidden");
+}
+
+function AfficherSectionAfficherLieu(){
+    ajouterLieu.classList.add("hidden");
+    afficherLieux.classList.remove("hidden");
+    boutonAjouterLieu.classList.remove("hidden");
 }

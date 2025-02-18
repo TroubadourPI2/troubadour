@@ -22,4 +22,7 @@
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/usagers/lieux/AfficherLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/lieux/AjouterLieux.js') }}"></script>
-
+<!-- quand on envoit le FORM-->
+<!-- faire une constante en local storate élément actif -->
+<!-- faire que compte soit deja selectionné au départ -->
+ <!-- window.onload -->

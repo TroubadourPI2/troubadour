@@ -1,6 +1,6 @@
 <button id="boutonAjouterLieu" data-section="ajouterLieu"
     class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-36 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
-    <span class="iconify text-c1 sm:size-6 size-4 sm:mr-2" data-icon="ion:add" data-inline="false"></span>
+    <span class="iconify text-c1 sm:size-6 size-4 sm:mr-2 sm:ml-2" data-icon="ion:add-outline" data-inline="false"></span>
     Ajouter
 </button>
 <div id="afficherLieux">
@@ -103,6 +103,3 @@
 </div>
 
 <div id="ajouterLieu" class="hidden">@include('usagers.composants.AjouterLieu')</div>
-
-
- 
