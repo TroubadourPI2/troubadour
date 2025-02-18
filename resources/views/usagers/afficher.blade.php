@@ -20,5 +20,6 @@
 @endsection
 
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
-<script src="{{ asset('js/usagers/Lieux/AfficherLieux.js') }}"></script>
+<script src="{{ asset('js/usagers/lieux/AfficherLieux.js') }}"></script>
+<script src="{{ asset('js/usagers/lieux/AjouterLieux.js') }}"></script>
 

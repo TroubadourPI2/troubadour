@@ -17,3 +17,5 @@ Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenir
 
 
 Route::get('/compte', [UsagersController::class, 'ObtenirLieuxUsager'])->name('usagerLieux.afficher');
+
+

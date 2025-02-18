@@ -1,8 +1,9 @@
-<button id="boutonAjouterLieu"
+<button id="boutonAjouterLieu" data-section="ajouterLieu"
     class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-36 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
-    <span class="iconify text-c1 sm:size-6 size-4 sm:mr-2"  data-icon="ion:add" data-inline="false"></span>
+    <span class="iconify text-c1 sm:size-6 size-4 sm:mr-2" data-icon="ion:add" data-inline="false"></span>
     Ajouter
 </button>
+<div id="afficherLieux">
 @if ($lieuxUsager->isEmpty())
     <div class="text-c1 text-2xl">Aucun lieu d'enregistré.</div>
 @else
@@ -16,7 +17,8 @@
                         class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center [backface-visibility:hidden]">
                         <img class="object-cover w-full h-72 md:h-auto md:w-48 rounded-t-lg"
                             src="{{ asset($lieu->photoLieu) }}" alt="{{ $lieu->nomEtablissement }}">
-                        <h5 class="flex items-center  mb-2 text-xl font-semibold uppercase p-2 text-center h-full">{{ $lieu->nomEtablissement }}
+                        <h5 class="flex items-center  mb-2 text-xl font-semibold uppercase p-2 text-center h-full">
+                            {{ $lieu->nomEtablissement }}
                         </h5>
                     </div>
                     <div
@@ -98,5 +100,9 @@
         @endforeach
     </div>
 @endif
+</div>
 
-<script src="{{ asset('js/usagers/Lieux/AjouterLieux.js') }}"></script>
+<div id="ajouterLieu" class="hidden">@include('usagers.composants.AjouterLieu')</div>
+
+
+ 

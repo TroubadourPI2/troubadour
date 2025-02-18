@@ -12,7 +12,7 @@ class UsagersController extends Controller
         //TODO Changer la fonction pour variable selon id du responsable connecté
         $lieuxUsager = Lieu::where('proprietaireId', 1)->get();
 
-        return View('usagers.afficher', compact('lieuxUsager'));
+        return View('usagers.Afficher', compact('lieuxUsager'));
     }
 
     /**
