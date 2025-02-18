@@ -25,6 +25,16 @@
                     <input id="photoLieu" name="photoLieu" type="file" class="w-full rounded-lg bg-c3 p-2"
                         accept=".png,.jpg">
                 </div>
+
+                <div class="sm:col-span-4">
+                    <label for="nomLieu" class="block">Nom</label>
+                    <input type="text" name="nomLieu" id="nomLieu" class="block w-full rounded-lg p-1">
+                </div>
+
+                <div class="sm:col-span-4">
+                    <label for="nomLieu" class="block">Nom</label>
+                    <input type="text" name="nomLieu" id="nomLieu" class="block w-full rounded-lg p-1">
+                </div>
             </div>
         </div>
     </div>
