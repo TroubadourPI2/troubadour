@@ -21,4 +21,8 @@ Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenir
 
 Route::get('/compte', [UsagersController::class, 'ObtenirLieuxUsager'])->name('usagerLieux.afficher');
 
-Route::get('/recherche', [LieuxController::class, 'index']);
+Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
+
+Route::post('/recherche2', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
+
+Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
