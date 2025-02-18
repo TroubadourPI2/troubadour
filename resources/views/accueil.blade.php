@@ -107,7 +107,6 @@
     <!-- Test Section -->
     @if (session('user_id'))
         <script>
-            // You can now access the user ID here in JS after page reload
             var currentUserId = @json(session('user_id'));
             console.log("Current User ID: ", currentUserId);
         </script>

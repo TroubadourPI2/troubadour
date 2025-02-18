@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usager;
+use App\Models\Lieu;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
@@ -12,15 +13,17 @@ class UsagersController extends Controller
 
     public function connect(Request $request)
     {
-        $usager = Usager::where('courriel', $request->courriel)->first();
+        $usager = Usager::where('courriel', $request->courriel)->where('statutId', 1)->first();
 
+        
         if ($usager && Hash::check($request->password, $usager->password)) {
             session(['user_id' => $usager->id]);
 
             return response()->json(['success' => true, 'user_id' => $usager->id]);
         }
-
-        return response()->json(['success' => false], 401);
+      
+        
+        return response()->json(['success' => false]);
     }
 
     public function ObtenirLieuxUsager(){

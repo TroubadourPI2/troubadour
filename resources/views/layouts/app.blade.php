@@ -89,7 +89,7 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>COMPTE</a>
-                    <a href=""
+                    <a href="#" onclick="showLoginModal()"
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>CONNEXION</a>
                     <a href=""
@@ -180,6 +180,12 @@
         </div>
     </footer>
 </body>
+
+<!-- @section('head')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+@endsection
+<script src="{{ asset('js/usagers/connexion.js') }}"></script> -->
 <script>
     document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
         const menuMobile = document.getElementById('menuMobile');
