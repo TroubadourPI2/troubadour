@@ -19,9 +19,9 @@ class Lieu extends Model
         'numeroTelephone',
         'actif',
         'description',
-        'quartierId',
-        'typeLieuId',
-        'proprietaireId',
+        'quartier_id',
+        'typeLieu_id',
+        'proprietaire_id',
     ];
 
 
@@ -29,7 +29,7 @@ class Lieu extends Model
 
     public function quartier()
     {
-        return $this->belongsTo(Quartier::class, 'quartierId');
+        return $this->belongsTo(Quartier::class, 'quartier_id');
     }
 
     public function ville()
@@ -54,6 +54,6 @@ class Lieu extends Model
 
     public function typeLieu()
     {
-        return $this->belongsTo(TypeLieu::class, 'typeLieuId');
+        return $this->belongsTo(TypeLieu::class, 'typeLieu_id');
     }
 }

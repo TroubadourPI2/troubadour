@@ -12,8 +12,8 @@ class Ville extends Model
     protected $fillable = [
         'nom',
         'actif',
-        'regionId',
-        'paysId',
+        'region_id',
+        'pays_id',
     ];
 
 
@@ -21,7 +21,7 @@ class Ville extends Model
   
     public function pays()
     {
-        return $this->belongsTo(Pays::class, 'paysId');
+        return $this->belongsTo(Pays::class, 'pays_id');
     }
 
      // Recuperer les quartiers de la ville
@@ -33,7 +33,7 @@ class Ville extends Model
 
     public function region()
     {
-        return $this->belongsTo(RegionAdministrative::class, 'regionId');
+        return $this->belongsTo(RegionAdministrative::class, 'region_id');
     }
 
     public function province()

@@ -13,12 +13,12 @@ class RegionAdministrative extends Model
     protected $fillable = [
         'nom',
         'actif',
-        'provinceId',
+        'province_id',
     ];
 
     public function province()
     {
-        return $this->belongsTo(Province::class, 'provinceId');
+        return $this->belongsTo(Province::class, 'province_id');
     }
 
     public function villes()
