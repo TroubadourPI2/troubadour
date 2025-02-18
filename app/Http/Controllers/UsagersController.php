@@ -3,35 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Usager;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
 {
 
-    public function connexion(Request $request)
+    public function connect(Request $request)
     {
-        $request->validate([
-            'courriel' => 'required|courriel',
-            'password' => 'required'
-        ]);
-
-        $usager = Utilisateur::where('courriel', $request->courriel)->first();
+        $usager = Usager::where('courriel', $request->courriel)->first();
 
         if ($usager && Hash::check($request->password, $usager->password)) {
-            Auth::login($usager);
-            return response()->json(['success' => true, 'message' => 'Connexion réussie!']);
-        } else {
-            return response()->json(['success' => false, 'message' => 'Identifiants invalides.'], 401);
+            session(['user_id' => $usager->id]);
+
+            return response()->json(['success' => true, 'user_id' => $usager->id]);
         }
+
+        return response()->json(['success' => false], 401);
     }
-
-    // public function checkEmail(Request $request)
-    // {
-    //     $email = $request->input('email');
-        
-    //     $exists = Utilisateur::where('email', $email)->exists();
-
-    //     return response()->json(['exists' => $exists]);
-    // }
 
     public function ObtenirLieuxUsager(){
         //TODO Changer la fonction pour variable selon id du responsable connecté

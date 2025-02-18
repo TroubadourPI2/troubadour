@@ -13,7 +13,7 @@ class UsagerSeeder extends Seeder
             [
                 'id' => 1,
                 'courriel'   => 'admin@troisrivieres.ca',
-                'password'   => bcrypt('password12345678'),
+                'password'   => bcrypt('passworD12345678*'),
                 'prenom'     => 'Admin',
                 'nom'        => 'Trois-Rivières',
                 'statutId'   => 1,
@@ -24,7 +24,7 @@ class UsagerSeeder extends Seeder
             [
                 'id' => 2,
                 'courriel'   => 'user@montreal.ca',
-                'password'   => bcrypt('password12345678'),
+                'password'   => bcrypt('passworD*12345678'),
                 'prenom'     => 'Utilisateur',
                 'nom'        => 'Montréal',
                 'statutId'   => 1, 
