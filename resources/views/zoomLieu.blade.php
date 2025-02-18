@@ -11,7 +11,11 @@
             <div class="w-full sm:w-3/4 flex flex-row mt-4">
                 <div
                     class="my-1 ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1 truncate">
-                    {{ $lieuActuel->nomEtablissement }}
+                    @if( $lieuActuel->nomEtablissement)
+                                    {{$lieuActuel->nomEtablissement}}
+                                @else
+                                    inconnu
+                                @endif
                 </div>
                 <div class=" my-1 ml-4 rounded border-c1 hidden md:block border"></div>
             </div>
@@ -20,6 +24,7 @@
                 <div class=" my-1 mr-4 h-3/4 rounded border-c1 border hidden md:flex"></div>
                 <span class="iconify size-10 md:ml-0 lg:ml-0 mr-20 text-c1 sm:ml-0 sm:mr-0 md:mr-20" data-icon="f7:heart"
                     data-inline="false"></span>
+                    <!-- TO DO, Ajouter l'option de mettre un favoris en cliquant sur le coeur -->
             </div>
 
         </div>
@@ -39,15 +44,40 @@
                 <div class="w-full flex flex-col items-center px-6">
 
                     <div
-                        class="lg:h-2/3 2xl:h-full mt-10 bg-white p-2 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0">
-                        <img class="md:w-full h-3/4 rounded" src="{{ asset($lieuActuel->photoLieu) }}" alt="Musée Boréalis">
+                        class="lg:h-2/3 2xl:h-3/4 mt-10 bg-white p-2 mb-28 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 justify-items-center">
+                        @if($lieuActuel->photoLieu && $lieuActuel->nomEtablissement)
+                            <img class="w-1/2 rounded" src="{{ asset($lieuActuel->photoLieu) }}" alt="{{$lieuActuel->nomEtablissement}}">
+                        @elseif($lieuActuel->photoLieu)
+                            <img class="w-1/2 rounded" src="{{ asset($lieuActuel->photoLieu) }}" alt="Troubadour">
+                        @else
+                            <img class="w-1/2 rounded" src="{{ asset('/Images/Logos/logoC1.svg') }}" alt="Troubadour">
+                        @endif
                         <div class="px-6 py-3">
-                            <div class="font-bold text-xl mb-2 md:w-full truncate"> {{ $lieuActuel->nomEtablissement }}
+                            <div class="font-bold text-xl mb-2 md:w-full truncate">  
+                                @if( $lieuActuel->nomEtablissement)
+                                    {{$lieuActuel->nomEtablissement}}
+                                @else
+                                    nom inconnu
+                                @endif
                             </div>
                         </div>
-                        <div class="px-6 pb-2 hidden md:block">
+
+                        <p class="text-c1 text-base mb-5 px-4 line-clamp-3 md:px-20 lg:px-12">
+                                @if( $lieuActuel->description)
+                                    {{$lieuActuel->description}}
+                                @else
+                                    aucune description
+                                @endif
+                            </p>
+
+
+                        <div class="px-6 pb-8">
+                        @if( $type->nom)
                             <span
                                 class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$type->nom}}</span>
+                        @else
+
+                        @endif
                         </div>
                     </div>
 
@@ -67,13 +97,46 @@
                     <div class=" w-3/4 lg:h-2/3 2xl:h-full 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 py-4 text-left">
 
-                            <p class="text-c1 text-base underline truncate my-5">{{ $quartier->nom }}</p>
+                            <p class="text-c1 text-base underline truncate mb-5">
+                                @if( $quartier->nom)
+                                    {{$quartier->nom}}
+                                @else
+                                     Quartier inconnu
+                                @endif
+                            </p>
 
-                            <p class="text-c1 text-base underline truncate my-5"> {{ $lieuActuel->noCivic }},
-                                {{ $lieuActuel->rue }} </p>
-                            <p class="text-c1 text-base underline truncate my-5"> {{ $lieuActuel->codePostal }}</p>
-                            <p class="text-c1 text-base underline truncate my-5"> {{ $lieuActuel->numeroTelephone }}</p>
-                            <p class="text-c1 text-base underline truncate my-5"> {{ $lieuActuel->siteWeb }}</p>
+                            <p class="text-c1 text-base underline truncate my-5">                      
+                                @if( $lieuActuel->noCivic && $lieuActuel->rue)
+                                    {{$lieuActuel->noCivic}}, {{$lieuActuel->rue}}
+                                @else
+                                    Adresse inconnu
+                                @endif
+                            </p>
+
+                            <p class="text-c1 text-base underline truncate my-5"> 
+                                @if( $lieuActuel->codePostal)
+                                    {{$lieuActuel->codePostal}}
+                                @else
+                                    Code Postal inconnu
+                                @endif
+                            </p>
+
+
+                            <p class="text-c1 text-base underline truncate my-5"> 
+                                @if( $lieuActuel->numeroTelephone)
+                                    {{$lieuActuel->numeroTelephone}}
+                                @else
+                                     Telephone inconnu
+                                @endif
+                            </p>
+
+                            <p class="text-c1 text-base underline truncate my-5">        
+                                @if( $lieuActuel->siteWeb)
+                                    {{$lieuActuel->siteWeb}}
+                                @else
+                                    Lien absent
+                                @endif
+                            </p>
 
                         </div>
                     </div>
@@ -98,7 +161,8 @@
                     <div class=" w-3/4 lg:h-2/3 2xl:h-full 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 py-4 text-left">
 
-                            <p class="text-c1 text-base underline truncate"> MAJ la BD les informations d'activités </p>
+                            <p class="text-c1 text-base underline truncate"> MAJ la BD les informations d'activités </p> 
+                            <!-- TO DO, mettre les activités en lien avec le lieu -->
 
                         </div>
                     </div>
