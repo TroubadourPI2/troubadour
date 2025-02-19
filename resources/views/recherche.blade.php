@@ -157,6 +157,9 @@
             </div>
             @endforeach
         </div>
+        <div class="w-full flex-justify-center items-center">
+            {{ $lieux->links('pagination::tailwind') }}
+        </div>
         @else
         <div class="w-full h-full place-content-center">
             <h3 class="text-center text-c1 text-bold font-barlow text-xl">Malheureusement, aucun lieu ne correspond à votre recherche.</h3>

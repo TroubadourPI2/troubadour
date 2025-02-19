@@ -16,7 +16,7 @@ class LieuxController extends Controller
      */
     public function index()
     {
-        $lieux = Lieu::all();
+        $lieux = Lieu::paginate(10);
         $villes = Ville::all();
         $ville = -1;
         return view('recherche', compact('lieux', 'villes', 'ville'));
@@ -38,7 +38,7 @@ class LieuxController extends Controller
         if(isset($request->quartier)){
             Log::debug("Quartier : " . $request->quartier);
             $quartier = $request->quartier;
-            $lieux = $lieux->where('quartierId', $request->quartier);
+            $lieux = $lieux->where('quartierId', $request->quartier)->paginate(10);
         }
 
         if(isset($request->ville)){
