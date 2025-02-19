@@ -6,22 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Lieu;
 use App\Models\Ville;
 use App\Models\Quartier;
+use App\Models\TypeLieu;
 use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
 {
 
-    public function ObtenirDonnesAfficherLieux(Request $request){
+    public function ObtenirDonnesAfficherLieux(){
         //TODO Changer la fonction pour variable selon id du responsable connecté
         $lieuxUsager = Lieu::where('proprietaire_id', 1)->get();
 
-        $villes = Ville::with('quartiers')->get();
-        $villeId = $request->ville_id;
-        $quartiers = null;
-        if($villeId){
-            $quartiers = Quartier::Where('ville_id', $villeId)->get();
-        }
-        return View('usagers.Afficher', compact('lieuxUsager', 'villes'));
+        $villes = Ville::all();
+        $typesLieu = TypeLieu::all();
+   
+        return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)
