@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('prenom',32);
             $table->string('nom',32);
             $table->rememberToken();
-            $table->foreignId('statutId')->constrained('Statuts')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('roleId')->constrained('RoleUsagers')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('statut_id')->constrained('Statuts')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('role_id')->constrained('RoleUsagers')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

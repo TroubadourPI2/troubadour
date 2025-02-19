@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom',64);
             $table->boolean('actif')->default(true);
-            $table->foreignId('villeId')->constrained('Villes')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('ville_id')->constrained('Villes')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
