@@ -12,12 +12,12 @@ class Quartier extends Model
     protected $fillable = [
         'nom',
         'actif',
-        'villeId',
+        'ville_id',
     ];
 
     public function ville()
     {
-        return $this->belongsTo(Ville::class, 'villeId');
+        return $this->belongsTo(Ville::class);
     }
 
     public function lieux()

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nom',64);
             $table->integer('position'); 
             $table->string('chemin',255);
-            $table->foreignId('activiteId')->constrained('Activites')->cascadeOnUpdate()->cascadeOnDelete();  
+            $table->foreignId('activite_id')->constrained('Activites')->cascadeOnUpdate()->cascadeOnDelete();  
             $table->timestamps();
         });
     }
