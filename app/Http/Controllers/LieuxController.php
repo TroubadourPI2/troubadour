@@ -27,14 +27,12 @@ class LieuxController extends Controller
         $ville = $request->ville;
         $quartier = $request->quartier;
         $recherche = $request->txtRecherche;
+        $lieux = Lieu::all();
 
         if(isset($request->txtRecherche)){
             Log::debug("Recherche : " . $request->txtRecherche);
             $recherche = $request->txtRecherche;
             $lieux = Lieu::where('nomEtablissement', 'like', "%$recherche%")->get();
-        }
-        else{
-            $lieux = Lieu::all();
         }
 
         if(isset($request->quartier)){
@@ -49,11 +47,7 @@ class LieuxController extends Controller
         }
 
         $villes = Ville::all();
-
-        Log::debug("Ville : $ville, Quartier : $quartier, Recherche : $recherche");
-
         $quartiers = Quartier::where('villeId', $ville)->get();
-        Log::debug("Liste des quartiers : $quartiers");
 
         return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
     }
