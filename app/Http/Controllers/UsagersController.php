@@ -11,7 +11,7 @@ class UsagersController extends Controller
 
     public function ObtenirDonnesAfficherLieux(){
         //TODO Changer la fonction pour variable selon id du responsable connecté
-        $lieuxUsager = Lieu::where('proprietaireId', 1)->get();
+        $lieuxUsager = Lieu::where('proprietaire_id', 1)->get();
         $villes = Ville::with('quartiers')->get();
         return View('usagers.Afficher', compact('lieuxUsager', 'villes'));
     }
