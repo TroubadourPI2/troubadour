@@ -1,16 +1,16 @@
-function loadCustomCSS() {
+function ChargerCSSPersonnalise() {
     let link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "/connexion.css"; // Adjust path if needed
+    link.href = "/connexion.css"; 
     link.type = "text/css";
     document.head.appendChild(link);
 }
 
-// Call this function before showing the modal
-loadCustomCSS();
 
-function showLoginModal() {
-    // Get CSRF token dynamically
+ChargerCSSPersonnalise();
+
+function AfficherModalConnexion() {
+    
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     Swal.fire({
@@ -47,19 +47,19 @@ function showLoginModal() {
         if (result.isConfirmed) {
             const { courriel, password } = result.value;
 
-            axios.post("/usagers/connect", { courriel, password }, {
+            axios.post("/usagers/Connexion", { courriel, password }, {
                 headers: {
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": token
                 }
             })
             .then(response => {
-                console.log("Response:", response); // Log full response
+                console.log("Réponse :", response); 
                 const data = response.data;
-                console.log("Server Response:", data); // Log server response
+                console.log("Réponse du serveur :", data);
 
                 if (data.success) {
-                    console.log("User ID:", data.user_id);
+                    console.log("ID Usager :", data.user_id);
                     
                     const Toast = Swal.mixin({
                         toast: true,
@@ -86,19 +86,19 @@ function showLoginModal() {
 
                 } else {
                     Swal.fire("Erreur", "Courriel et/ou le mot de passe est invalide.", "error").then(() => {
-                        showLoginModal(); // Reload login modal on error
+                        AfficherModalConnexion(); 
                     });
                 }
             })
             .catch(error => {
-                console.error("Axios Error:", error); // Log the actual Axios error
+                console.error("Erreur Axios :", error); 
                 Swal.fire("Erreur", "Courriel et/ou le mot de passe est invalide .", "error").then(() => {
-                    showLoginModal(); // Reload login modal on error
+                    AfficherModalConnexion(); 
                 });
             });
 
         } else if (result.isDenied) {
-            showRegisterPrompt(); // Call registration modal function
+            AfficherModalInscription(); 
         }
     });
 }

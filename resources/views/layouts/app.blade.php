@@ -9,7 +9,9 @@
     <title>@yield('title')</title>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 
-    @yield('head')
+    @section('head')
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+    @endsection
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap"
@@ -44,6 +46,8 @@
                 <div class="border-r h-12 border-c1 rounded "></div>
                 {{--  TODO remplacer par un bouton ou un form en fonction de ce qui a faire mais garder même CSS
                 TODO Ajouter en fonction de si la personne est connecté ou non l'affichage du bouton connexion deconnexion --}}
+
+                
                 <a
                     class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition  ">déconnexion</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
@@ -89,7 +93,7 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>COMPTE</a>
-                    <a href="#" onclick="showLoginModal()"
+                    <a href="#" onclick="AfficherModalConnexion()"
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>CONNEXION</a>
                     <a href=""
@@ -180,12 +184,15 @@
         </div>
     </footer>
 </body>
+@if (session('ID_Usager'))
+    <script>
+        var IDUsagerActuel = @json(session('ID_Usager'));
+        console.log("ID utilisateur actuel: ", IDUsagerActuel);
+    </script>
+@endif
 
-<!-- @section('head')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-@endsection
-<script src="{{ asset('js/usagers/connexion.js') }}"></script> -->
+<script src="{{ asset('js/usagers/Connexion.js') }}"></script>
+<script src="{{ asset('js/usagers/Inscription.js') }}"></script>
 <script>
     document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
         const menuMobile = document.getElementById('menuMobile');
@@ -201,3 +208,4 @@
 </script>
 
 </html>
+

@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\Log;
 class UsagersController extends Controller
 {
 
-    public function connect(Request $request)
+    public function Connexion(Request $request)
     {
         $usager = Usager::where('courriel', $request->courriel)->where('statutId', 1)->first();
 
         
         if ($usager && Hash::check($request->password, $usager->password)) {
-            session(['user_id' => $usager->id]);
+            session(['ID_Usager' => $usager->id]);
 
-            return response()->json(['success' => true, 'user_id' => $usager->id]);
+            return response()->json(['success' => true, 'ID_Usager' => $usager->id]);
         }
       
         

@@ -17,10 +17,6 @@ Route::get('/test', function () {
 
 Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);
 
-// Route::get('/compte', function () {
-//     return view('usagers/afficher');
-// });
-
-Route::post('/usagers/connect', [UsagersController::class, 'connect'])->name('usagers.connect');
+Route::post('/usagers/Connexion', [UsagersController::class, 'Connexion'])->name('usagers.Connexion');
 
 Route::get('/compte', [UsagersController::class, 'ObtenirLieuxUsager'])->name('usagerLieux.afficher');

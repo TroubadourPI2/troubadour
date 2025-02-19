@@ -1,15 +1,15 @@
-function loadCustomCSS() {
+function ChargerCSSPersonnalise() {
     let link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "/connexion.css"; // Adjust path if needed
+    link.href = "/connexion.css"; 
     link.type = "text/css";
     document.head.appendChild(link);
 }
 
-// Call this function before showing the modal
-loadCustomCSS();
 
-async function showRegisterPrompt() {
+ChargerCSSPersonnalise();
+
+async function AfficherModalInscription() {
     const result = await Swal.fire({
         title: "Inscription",
         html: `
@@ -40,13 +40,7 @@ async function showRegisterPrompt() {
             title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
             confirmButton: 'bg-c1 hover:bg-c3 text-c3 hover:text-c1 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl',
         },
-        // preConfirm: () => {
-        //     return {
-        //         name: document.getElementById("swal-input-name").value,
-        //         email: document.getElementById("swal-input-email").value,
-        //         password: document.getElementById("swal-input-password").value
-        //     };
-        // }
+        
     });
     if (result.isConfirmed) {
         Swal.fire({
@@ -61,6 +55,6 @@ async function showRegisterPrompt() {
                 popup: "bg-c3 shadow-lg rounded-lg",
             }
         });
-        // Swal.fire(`Entered Email: ${formValues.email}\nEntered Password: ${formValues.password}`);
+        
     }
 }

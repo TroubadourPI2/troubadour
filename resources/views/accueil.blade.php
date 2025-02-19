@@ -39,7 +39,7 @@
                         </a>
                     </div>
                     <div class="hidden md:flex ">
-                        <a onclick="showLoginModal()"
+                        <a onclick="AfficherModalConnexion()"
                             class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
                             CONNEXION
                         </a>
@@ -86,12 +86,12 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
-                    <a href="#" onclick="showLoginModal()"
+                    <a href="#" onclick="AfficherModalConnexion()"
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
                         <span class="iconify size-10" data-icon="mdi:user" data-inline="false"></span> CONNEXION
                     </a>
 
-                    {{-- <!-- TODO Bouton deconnexion pour mobile -->
+                    {{-- <!-- TODO : Bouton de déconnexion pour mobile -->
                 <form action="" method="POST">
                     @csrf
                     <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
@@ -104,11 +104,11 @@
         </div>
     </div>
 
-    <!-- Test Section -->
-    @if (session('user_id'))
+    <!-- Test ID_Usager -->
+    @if (session('ID_Usager'))
         <script>
-            var currentUserId = @json(session('user_id'));
-            console.log("Current User ID: ", currentUserId);
+            var IDUsagerActuel = @json(session('ID_Usager'));
+            console.log("ID utilisateur actuel: ", IDUsagerActuel);
         </script>
     @endif
 
@@ -136,9 +136,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 @endsection
-<script src="{{ asset('js/usagers/connexion.js') }}"></script>
-<script src="{{ asset('js/usagers/inscription.js') }}"></script>
-<script src="{{ asset('js/usagers/MDPOublie.js') }}"></script>
-<!-- <script src="{{ asset('js/usagers/validationConnexion.js') }}"></script> -->
+<script src="{{ asset('js/usagers/Connexion.js') }}"></script>
+<script src="{{ asset('js/usagers/Inscription.js') }}"></script>
+<!-- <script src="{{ asset('js/usagers/MDPOublie.js') }}"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
