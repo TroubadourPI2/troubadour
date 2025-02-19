@@ -18,6 +18,6 @@ Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenir
 
 Route::get('/compte', [UsagersController::class, 'ObtenirDonnesAfficherLieux'])->name('usagerLieux.afficher');
 Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
-Route::post('/compte/ajouterLieu', [UsagersController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu');
+Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu');
 
 

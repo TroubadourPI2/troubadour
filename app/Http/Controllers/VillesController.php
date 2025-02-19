@@ -12,9 +12,7 @@ class VillesController extends Controller
      */
     public function index()
     {
-        
 
-        return View('usagers.afficher', compact('villes'));
     }
 
     /**

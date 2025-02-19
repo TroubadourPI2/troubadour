@@ -24,7 +24,7 @@ class LieuRequest extends FormRequest
         return [
             'rue' => 'required|regex:/^[a-zA-Z0-9\'\,\-_À-ÿ ]+$/|max:64',
             'noCivic' => 'required|alpha_num',
-            // 'codePostal' => 'required|regex:/^[A-Za-z0-9 \-]{3,10}$/i',
+            'codePostal' => 'required|regex:/^[A-Za-z0-9 \-]{3,10}$/i',
             'codePostal' => 'required|regex:/^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/i|max:7', // A1A 1A1
             'nomEtablissement' => 'required',
             'photoLieu' => 'required|image|mimes:png,jpg|max:2048',
@@ -32,8 +32,8 @@ class LieuRequest extends FormRequest
             'numeroTelephone',
             'actif' => 'nullable',
             'description' => 'required|max:500',
-            'quartier_id' => 'required',
-            'typeLieu_id' => 'required',
+            'selectQuartierLieu' => 'required',
+            'selectTypeLieu' => 'required',
         ];
     }
 }
