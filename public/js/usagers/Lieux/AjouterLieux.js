@@ -8,6 +8,7 @@ let selectVilleLieu;
 document.addEventListener("DOMContentLoaded", function () {
     ObtenirElementsAjouterLieux();
     AjouterLieuxListeners();
+
 });
 
 
@@ -39,11 +40,30 @@ function AfficherSectionAfficherLieu(){
 }
 
 function ActiverSelectQuartier(){
-   if(selectVilleLieu.value != "")
+   if(selectVilleLieu.value != ""){
     selectQuartier.removeAttribute("disabled");
-   else{
-    selectQuartier.setAttribute("disabled", "");
-    console.log("ici")
+    test();
    }
     
+   else
+    selectQuartier.setAttribute("disabled", "");
+}
+
+async function test(){
+    let quartier = await ObtenirQuartiersParVille(selectQuartier.value);
+    console.log(quartier);
+  }
+
+async function ObtenirQuartiersParVille(villeId){
+    const response = await fetch('/compte/obtenirQuartiers', {
+        method : 'POST',
+        headers :{
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('[name="_token"]').getAttribute('value')
+        },
+        body : JSON.stringify({ville_id : villeId})
+    })
+    console.log(response);
+    const data = await response.json();
+    return data.quartiers;
 }

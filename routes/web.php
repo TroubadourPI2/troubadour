@@ -17,5 +17,6 @@ Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenir
 
 
 Route::get('/compte', [UsagersController::class, 'ObtenirDonnesAfficherLieux'])->name('usagerLieux.afficher');
+Route::post('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille'])->name('usagerLieux.obtenirQuartiers');
 
 
