@@ -36,8 +36,8 @@ class GeolocalisationController extends Controller
 
             if ($ville) {
             
-                $lieux = Lieu::join('Quartiers', 'Lieux.quartierId', '=', 'Quartiers.id')
-                    ->join('Villes', 'Quartiers.villeId', '=', 'Villes.id')
+                $lieux = Lieu::join('Quartiers', 'Lieux.quartier_id', '=', 'Quartiers.id')
+                    ->join('Villes', 'Quartiers.ville_id', '=', 'Villes.id')
                     ->where('Villes.id', $ville->id)
                     ->where('Lieux.actif', true)
                     ->orderBy('Lieux.created_at', 'desc')

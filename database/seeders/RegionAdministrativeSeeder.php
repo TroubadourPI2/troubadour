@@ -13,8 +13,8 @@ class RegionAdministrativeSeeder extends Seeder
     public function run(): void
     {
         DB::table('RegionAdministratives')->insert([
-            ['id' => 1, 'nom' => 'Mauricie et Centre-du-Québec','actif' => true, 'provinceId' => null, 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 2, 'nom' => 'Montréal','actif' => true, 'provinceId' => 2, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 1, 'nom' => 'Mauricie et Centre-du-Québec','actif' => true, 'province_id' => null, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 2, 'nom' => 'Montréal','actif' => true, 'province_id' => 2, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
