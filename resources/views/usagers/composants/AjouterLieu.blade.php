@@ -15,16 +15,16 @@
                     <label for="nomEtablissement" class="block">Nom</label>
                     <input type="text" name="nomEtablissement" id="nomEtablissement"
                         class="block w-full rounded-lg p-1 sm:p-2 font-medium">
-                    @error('nomEtablissement')
-                        <div class="text-red-500">{{ $message }}</div>
-                    @enderror
+                    @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('nomEtablissement'))
+                    <span class="text-red-500">{{ session('erreurAjouterLieu')->first('nomEtablissement') }}</span>
+                    @endif
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="description" class="block">Description</label>
                     <textarea rows="3" name="description" id="description" class="block w-full rounded-lg font-medium p-2"></textarea>
                     @error('description')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -34,11 +34,11 @@
                         class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                         <option value="">Sélectionner un type</option>
                         @foreach ($typesLieu as $type)
-                            <option value="{{ $type->id }}">{{ $type->nom }}</option>
+                        <option value="{{ $type->id }}">{{ $type->nom }}</option>
                         @endforeach
                     </select>
                     @error('selectTypeLieu')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -47,7 +47,7 @@
                     <input type="text" name="numeroTelephone" id="numeroTelephone"
                         class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                     @error('numeroTelephone')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -56,7 +56,7 @@
                     <input type="text" name="siteWeb" id="siteWeb"
                         class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                     @error('siteWeb')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -65,7 +65,7 @@
                     <input type="text" name="noCivic" id="noCivic"
                         class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                     @error('noCivic')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -74,7 +74,7 @@
                     <input id="photoLieu" name="photoLieu" type="file"
                         class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg">
                     @error('photoLieu')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -83,7 +83,7 @@
                     <input type="text" name="rue" id="rue"
                         class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                     @error('rue')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -92,7 +92,7 @@
                     <input type="text" name="codePostal" id="codePostal"
                         class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                     @error('codePostal')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -102,11 +102,11 @@
                         class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                         <option value="">Sélectionner une ville</option>
                         @foreach ($villes as $ville)
-                            <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
+                        <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
                         @endforeach
                     </select>
                     @error('selectVilleLieu')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -117,7 +117,7 @@
                         <option value="">Sélectionner un quartier</option>
                     </select>
                     @error('selectQuartierLieu')
-                        <div class="text-red-500">{{ $message }}</div>
+                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -135,4 +135,3 @@
         </button>
     </div>
 </form>
-

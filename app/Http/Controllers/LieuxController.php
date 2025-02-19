@@ -45,6 +45,8 @@ class LieuxController extends Controller
         // $lieu->typeLieu_id = $request->typeLieu_id;
         // $lieu->proprietaire_id = auth()->user()->id;
         // $lieu->save();
+        
+        //doit rediriger vers la page d'affichage des lieux
         // return redirect()->route('usagerLieux.afficher');
     }
 

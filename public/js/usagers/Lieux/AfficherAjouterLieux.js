@@ -8,7 +8,6 @@ let selectVilleLieu;
 document.addEventListener("DOMContentLoaded", function () {
     ObtenirElementsAjouterLieux();
     AjouterLieuxListeners();
-
 });
 
 
@@ -64,7 +63,7 @@ async function ObtenirQuartiersParVille(villeId) {
 
         const quartiers = await response.json();
         MettreAJourSelectQuartier(quartiers);
-        
+
     } catch (error) {
         console.error(error);
     }
@@ -80,8 +79,8 @@ function MettreAJourSelectQuartier(quartiers) {
 
     quartiers.forEach(quartier => {
         const option = document.createElement("option");
-        option.value = quartier.id;  
-        option.textContent = quartier.nom; 
+        option.value = quartier.id;
+        option.textContent = quartier.nom;
         selectQuartier.appendChild(option);
     });
 

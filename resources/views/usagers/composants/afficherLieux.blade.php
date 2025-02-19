@@ -102,4 +102,4 @@
 @endif
 </div>
 
-<div id="ajouterLieu" class="hidden">@include('usagers.composants.AjouterLieu')</div>
+<div id="ajouterLieu" >@include('usagers.composants.AjouterLieu')</div>
