@@ -16,8 +16,8 @@ class Usager extends Authenticatable
         'password',
         'prenom',
         'nom',
-        'statutId',
-        'roleId'
+        'statut_id',
+        'role_id'
     ];
 
     protected $hidden = [
@@ -27,10 +27,14 @@ class Usager extends Authenticatable
 
     public function role()
     {
-        return $this->belongsTo(RoleUsager::class, 'roleId');
+        return $this->belongsTo(RoleUsager::class, 'role_id');
     }
 
     public function lieu(){
-        return $this->hasMany(Lieu::class, 'proprietaireId');
+        return $this->hasMany(Lieu::class, 'proprietaire_id');
+    }
+
+    public function favoris(){
+        return $this->hasMany(Favori::class, 'usager_id');
     }
 }

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nom',64);
             $table->boolean('actif')->default(true);
-            $table->foreignId('regionId')->nullable()->constrained('RegionAdministratives')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('paysId')->constrained('Pays')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('region_id')->nullable()->constrained('RegionAdministratives')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('pays_id')->constrained('Pays')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

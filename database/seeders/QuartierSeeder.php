@@ -10,8 +10,8 @@ class QuartierSeeder extends Seeder
     public function run()
     {
         DB::table('Quartiers')->insert([
-            ['id' => 1, 'nom' => 'Centre-ville', 'actif' => true, 'villeId' => 1, 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 2, 'nom' => 'Plateau Mont-Royal', 'actif' => true, 'villeId' => 2, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 1, 'nom' => 'Centre-ville', 'actif' => true, 'ville_id' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 2, 'nom' => 'Plateau Mont-Royal', 'actif' => true, 'ville_id' => 2, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
