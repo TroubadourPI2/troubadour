@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('numeroTelephone',15); 
             $table->boolean('actif')->default(true); 
             $table->text('description',500)->nullable(); 
-            $table->foreignId('quartierId')->constrained('Quartiers')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('typeLieuId')->constrained('TypeLieux')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('proprietaireId')->constrained('Usagers')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('quartier_id')->constrained('Quartiers')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('typeLieu_id')->constrained('TypeLieux')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('proprietaire_id')->constrained('Usagers')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
