@@ -6,14 +6,15 @@
 </button>
 
 <form class="mt-2 text-c1" action="#" method="POST">
-@csrf
+    @csrf
     <div class="font-barlow text-c1 font-semibold mb-3">
         <h2 class="uppercase underline text-center text-xl sm:text-2xl">Ajouter un lieu</h2>
         <div class="font-barlow text-c1 font-semibold uppercase mt-3">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg ">
                 <div class="sm:col-span-1">
                     <label for="nomLieu" class="block">Nom</label>
-                    <input type="text" name="nomLieu" id="nomLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
+                    <input type="text" name="nomLieu" id="nomLieu"
+                        class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
@@ -23,58 +24,58 @@
 
                 <div class="sm:col-span-1">
                     <label for="numTelephoneLieu" class="block">Numéro de téléphone</label>
-                    <input type="text" name="numTelephoneLieu" id="numTelephoneLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
+                    <input type="text" name="numTelephoneLieu" id="numTelephoneLieu"
+                        class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="siteWebLieu" class="block">Site web</label>
-                    <input type="text" name="siteWebLieu" id="siteWebLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
+                    <input type="text" name="siteWebLieu" id="siteWebLieu"
+                        class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="numCiviqueLieu" class="block">Numéro civique</label>
-                    <input type="text" name="numCiviqueLieu" id="numCiviqueLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
+                    <input type="text" name="numCiviqueLieu" id="numCiviqueLieu"
+                        class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="photoLieu" class="block">Photo du lieu</label>
-                    <input id="photoLieu" name="photoLieu" type="file" class="w-full rounded-lg bg-c3 p-2 font-medium"
-                        accept=".png,.jpg">
+                    <input id="photoLieu" name="photoLieu" type="file"
+                        class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="rueLieu" class="block">Rue</label>
-                    <input type="text" name="rueLieu" id="rueLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
+                    <input type="text" name="rueLieu" id="rueLieu"
+                        class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="codePostalLieu" class="block">Code postal</label>
-                    <input type="text" name="codePostalLieu" id="codePostalLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
+                    <input type="text" name="codePostalLieu" id="codePostalLieu"
+                        class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="selectVilleLieu" class="block">Ville</label>
-                    <select type="text" name="selectVilleLieu" id="selectVilleLieu" class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
+                    <select type="text" name="selectVilleLieu" id="selectVilleLieu"
+                        class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                         <option value="">Sélectionner une ville</option>
                         @foreach ($villes as $ville)
-                        <option value="{{ $ville->id}}">{{ $ville->nom }}</option>
+                            <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
                         @endforeach
                     </select>
                 </div>
-           
+
                 <div class="sm:col-span-1">
-    <label for="selectQuartierLieu" class="block">Quartier</label>
-    <select type="text" name="selectQuartierLieu" id="selectQuartierLieu" class="block w-full rounded-lg p-2 sm:p-3 bg-c3" disabled>
-        <option value="">Sélectionner un quartier</option>
-        @foreach ($villes as $ville)
-            @foreach ($ville->quartiers as $quartier)
-                <option class="quartier-option quartier-ville-{{ $ville->id }}" value="{{ $quartier->id }}" style="display: none;">
-                    {{ $quartier->nom }}
-                </option>
-            @endforeach
-        @endforeach
-    </select>
-</div>
+                    <label for="selectQuartierLieu" class="block">Quartier</label>
+                    <select type="text" name="selectQuartierLieu" id="selectQuartierLieu"
+                        class="block w-full rounded-lg p-2 sm:p-3 bg-c3" disabled>
+                        <option value="">Sélectionner un quartier</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>

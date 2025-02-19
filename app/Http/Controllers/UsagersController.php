@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Lieu;
 use App\Models\Ville;
 use App\Models\Quartier;
+use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
 {
@@ -23,14 +24,16 @@ class UsagersController extends Controller
         return View('usagers.Afficher', compact('lieuxUsager', 'villes'));
     }
 
-    public function ObtenirQuartiersParVille(Request $request){
+   public function ObtenirQuartiersParVille(Request $request)
+    {
         $villeId = $request->ville_id;
-        $quartiers = null;
-        if($villeId){
-            $quartiers = Quartier::Where('ville_id', $villeId)->get();
-        }
-        return response()->json(['quartiers' => $quartiers->quartiers]);
+        if (!$villeId) 
+            return response()->json([], 400); 
+
+        $quartiers = Quartier::where('ville_id', $villeId)->get();
+        return response()->json($quartiers);
     }
+
 
     /**
      * Display a listing of the resource.

@@ -27,43 +27,63 @@ function AjouterLieuxListeners() {
     selectVilleLieu.addEventListener("change", ActiverSelectQuartier)
 }
 
-function AfficherSectionAjouterLieu(){
+function AfficherSectionAjouterLieu() {
     ajouterLieu.classList.remove("hidden");
     afficherLieux.classList.add("hidden");
     boutonAjouterLieu.classList.add("hidden");
 }
 
-function AfficherSectionAfficherLieu(){
+function AfficherSectionAfficherLieu() {
     ajouterLieu.classList.add("hidden");
     afficherLieux.classList.remove("hidden");
     boutonAjouterLieu.classList.remove("hidden");
 }
 
-function ActiverSelectQuartier(){
-   if(selectVilleLieu.value != ""){
-    selectQuartier.removeAttribute("disabled");
-    test();
-   }
-    
-   else
-    selectQuartier.setAttribute("disabled", "");
+function ActiverSelectQuartier() {
+    if (selectVilleLieu.value != "") {
+        selectQuartier.removeAttribute("disabled");
+        ObtenirQuartiersParVille(selectVilleLieu.value);
+    }
+    else
+        selectQuartier.setAttribute("disabled", "");
 }
 
-async function test(){
-    let quartier = await ObtenirQuartiersParVille(selectQuartier.value);
-    console.log(quartier);
-  }
 
-async function ObtenirQuartiersParVille(villeId){
-    const response = await fetch('/compte/obtenirQuartiers', {
-        method : 'POST',
-        headers :{
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('[name="_token"]').getAttribute('value')
-        },
-        body : JSON.stringify({ville_id : villeId})
-    })
-    console.log(response);
-    const data = await response.json();
-    return data.quartiers;
+async function ObtenirQuartiersParVille(villeId) {
+    try {
+        const response = await fetch(`/compte/obtenirQuartiers?ville_id=${villeId}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+
+        const quartiers = await response.json();
+        MettreAJourSelectQuartier(quartiers);
+        
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function MettreAJourSelectQuartier(quartiers) {
+    selectQuartier.innerHTML = "";
+
+    const optionDefaut = document.createElement("option");
+    optionDefaut.value = "";
+    optionDefaut.textContent = "Sélectionner un quartier";
+    selectQuartier.appendChild(optionDefaut);
+
+    quartiers.forEach(quartier => {
+        const option = document.createElement("option");
+        option.value = quartier.id;  
+        option.textContent = quartier.nom; 
+        selectQuartier.appendChild(option);
+    });
+
+    selectQuartier.removeAttribute("disabled");
 }
