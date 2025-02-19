@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('dateFin')->nullable(); 
             $table->boolean('actif')->default(true); 
             $table->text('description',500)->nullable();
-            $table->foreignId('lieu_id')->constrained('Lieux')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('typeActivite_id')->constrained('TypeActivites')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
