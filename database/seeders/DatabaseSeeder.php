@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\LieuActivite;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,9 @@ class DatabaseSeeder extends Seeder
             UsagerSeeder::class,
             TypeLieuSeeder::class,
             LieuSeeder::class,
+            TypeActivitesSeeder::class,
+            ActivitesSeeder::class,
+            LieuActivitesSeeder::class,
         ]);
     }
 }

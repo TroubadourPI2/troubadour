@@ -57,7 +57,7 @@ class Lieu extends Model
     }
 
     public function activites(){
-        return $this->belongsToMany(Activite::class);
+        return $this->belongsToMany(LieuActivite::class, 'lieu_id');
     }
 
     public function favoris()

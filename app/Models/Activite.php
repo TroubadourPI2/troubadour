@@ -20,11 +20,12 @@ class Activite extends Model
     ];
 
     public function lieux() {
-        return $this->belongsToMany(Lieu::class);
+        return $this->belongsToMany(LieuActivite::class, 'activite_id');
     }
 
     public function favoris()
     {
         return $this->hasMany(Favori::class, 'activite_id'); 
     }
+
 }

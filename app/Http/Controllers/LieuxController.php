@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lieu;
-use App\Models\Quartier;
+use App\Models\LieuActivite;
+use App\Models\Activite;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 
 class LieuxController extends Controller
 {
@@ -43,8 +44,12 @@ class LieuxController extends Controller
         $lieuActuel = Lieu::Where("id", $id)->first();
         $quartier = $lieuActuel->quartier->first();
         $type = $lieuActuel->typeLieu->first();
+        $activites = LieuActivite::Where("lieu_id", $id)->get();
+        
 
-        return view('zoomLieu', compact('lieuActuel', 'quartier', 'type'));
+        Log::debug($activites);
+
+        return view('zoomLieu', compact('lieuActuel', 'quartier', 'type', 'activites'));
     }
 
     /**
