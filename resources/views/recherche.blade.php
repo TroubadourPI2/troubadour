@@ -153,12 +153,12 @@
                 <img src="{{ asset($lieu->photoLieu) }}" alt="Image de l'établissement"
                     class="rounded-md h-52">
                 <h3 class="text-c1 font-barlow text-md my-2 carteTitre">{{$lieu->nomEtablissement}}</h3>
-                <span class="text-black font-barlow text-sm text-center">{{$lieu->description}}</span>
+                <span class="text-blackfont-barlow text-sm text-center">{{$lieu->description}}</span>
             </div>
             @endforeach
         </div>
         <div class="w-full flex-justify-center items-center">
-            {{ $lieux->links('pagination::tailwind') }}
+            {{ $lieux->links() }}
         </div>
         @else
         <div class="w-full h-full place-content-center">
