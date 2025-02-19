@@ -10,8 +10,7 @@
 
             <div class="w-full sm:w-3/4 flex flex-row mt-4">
                 <div
-                    class="my-1 ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1 truncate">
-                    @if ($lieuActuel->nomEtablissement)
+                    class="my-1 ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1                    @if ($lieuActuel->nomEtablissement)
                         {{ $lieuActuel->nomEtablissement }}
                     @else
                         inconnu
@@ -39,12 +38,12 @@
 
             <div class="text-c1 align-middle md:flex text-center sm:w-full sm:order-0 lg:order-2 lg:w-1/2 mt-8 mb-8 ">
 
-                <div class="mt-8 lg:h-2/3 2xl:h-full hidden lg:block rounded border-c1 border"></div>
+                <div class="mt-8 lg:h-2/3 2xl:h-5/6 hidden lg:block rounded border-c1 border"></div>
 
                 <div class="w-full flex flex-col items-center px-6">
 
                     <div
-                        class="lg:h-2/3 2xl:h-3/4 mt-10 bg-white p-2 mb-28 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 justify-items-center">
+                        class="lg:h-2/3 2xl:h-3/4 mt-10 2xl:mt-16 bg-white p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 justify-items-center">
                         @if ($lieuActuel->photoLieu && $lieuActuel->nomEtablissement)
                             <img class="w-1/2 rounded" src="{{ asset($lieuActuel->photoLieu) }}"
                                 alt="{{ $lieuActuel->nomEtablissement }}">
@@ -93,7 +92,7 @@
                         <span class="font-sm text-2xl underline"> Localisation </span>
                     </div>
 
-                    <div class=" w-3/4 lg:h-2/3 2xl:h-full 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
+                    <div class=" w-3/4 lg:h-2/3 2xl:h-3/4 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 py-4 text-left">
 
                             <p class="text-c1 text-base underline truncate mb-5">
@@ -146,7 +145,7 @@
 
             <div class="text-c1 align-middle flex flex-row text-center lg:w-1/4 sm:w-full sm:order-2 lg:order-1 mt-8 mb-8">
 
-                <div class="mt-8 lg:h-2/3 2xl:h-full hidden lg:block rounded border-c1 border"></div>
+                <div class="mt-8 lg:h-2/3 2xl:h-5/6 hidden lg:block rounded border-c1 border"></div>
 
                 <div class="w-full flex flex-col items-center">
 
@@ -156,10 +155,10 @@
                         <span class="font-sm text-2xl underline"> Activité </span>
                     </div>
 
-                    <div class=" w-3/4 lg:h-2/3 2xl:h-full 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
+                    <div class=" w-3/4 lg:h-2/3 2xl:h-3/4 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 py-4 text-left">
-
                             <p class="text-c1 text-base underline truncate"> MAJ la BD les informations d'activités </p>
+                            s
                             <!-- TO DO, mettre les activités en lien avec le lieu -->
 
                         </div>
