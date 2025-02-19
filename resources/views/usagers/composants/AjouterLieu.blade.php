@@ -52,16 +52,20 @@
                 </div>
 
                 <div class="sm:col-span-1">
-                    <label for="villeLieu" class="block">Ville</label>
-                    <select type="text" name="villeLieu" id="villeLieu" class="block w-full rounded-lg p-2 sm:p-3 bg-c3">
-                        <option></option>
+                    <label for="selectVilleLieu" class="block">Ville</label>
+                    <select type="text" name="selectVilleLieu" id="selectVilleLieu" class="block w-full rounded-lg p-2 sm:p-3 bg-c3">
+                        <option value="">Sélectionner une ville</option>
+                        @foreach ($villes as $ville)
+                        <option value="{{ $ville->nom}}">{{ $ville->nom }}</option>
+                        @endforeach
                     </select>
                 </div>
 
                 <div class="sm:col-span-1">
-                    <label for="quartierLieu" class="block">Quartier</label>
-                    <select type="text" name="quartierLieu" id="quartierLieu" class="block w-full rounded-lg p-2 sm:p-3 bg-c3" disabled>
-                        <option></option>
+                    <label for="selectQuartierLieu" class="block">Quartier</label>
+                    <select type="text" name="selectQuartierLieu" id="selectQuartierLieu" class="block w-full rounded-lg p-2 sm:p-3 bg-c3" disabled>
+                        
+                    <option></option>
                     </select>
                 </div>
             </div>
@@ -74,7 +78,7 @@
             Annuler
         </button>
         <button type="submit"
-            class="bg-c1 text-c3 px-3 sm:py-2 sm:px-6 font-barlow font-semibold text-base sm:text-xl  rounded-full w-75 mt-2 uppercase">
+            class="bg-c1 text-c3 px-3 sm:py-2 sm:px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 uppercase">
             Ajouter
         </button>
     </div>

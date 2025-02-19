@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lieu;
+use App\Models\Ville;
 
 class UsagersController extends Controller
 {
 
-    public function ObtenirLieuxUsager(){
+    public function ObtenirDonnesAfficherLieux(){
         //TODO Changer la fonction pour variable selon id du responsable connecté
         $lieuxUsager = Lieu::where('proprietaireId', 1)->get();
-
-        return View('usagers.Afficher', compact('lieuxUsager'));
+        $villes = Ville::with('quartiers')->get();
+        return View('usagers.Afficher', compact('lieuxUsager', 'villes'));
     }
 
     /**

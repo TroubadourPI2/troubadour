@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Lieu;
-use App\Models\Quartier;
 use Illuminate\Http\Request;
 
 
