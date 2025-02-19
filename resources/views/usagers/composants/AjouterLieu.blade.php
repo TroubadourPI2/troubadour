@@ -12,43 +12,43 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg ">
                 <div class="sm:col-span-1">
                     <label for="nomLieu" class="block">Nom</label>
-                    <input type="text" name="nomLieu" id="nomLieu" class="block w-full rounded-lg p-1 sm:p-2">
+                    <input type="text" name="nomLieu" id="nomLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="descriptionLieu" class="block">Description</label>
-                    <textarea rows="3" name="descriptionLieu" id="descriptionLieu" class="block w-full rounded-lg"></textarea>
+                    <textarea rows="3" name="descriptionLieu" id="descriptionLieu" class="block w-full rounded-lg font-medium p-2"></textarea>
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="numTelephoneLieu" class="block">Numéro de téléphone</label>
-                    <input type="text" name="numTelephoneLieu" id="numTelephoneLieu" class="block w-full rounded-lg p-1 sm:p-2">
+                    <input type="text" name="numTelephoneLieu" id="numTelephoneLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="siteWebLieu" class="block">Site web</label>
-                    <input type="text" name="siteWebLieu" id="siteWebLieu" class="block w-full rounded-lg p-1 sm:p-2">
+                    <input type="text" name="siteWebLieu" id="siteWebLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="numCiviqueLieu" class="block">Numéro civique</label>
-                    <input type="text" name="numCiviqueLieu" id="numCiviqueLieu" class="block w-full rounded-lg p-1 sm:p-2">
+                    <input type="text" name="numCiviqueLieu" id="numCiviqueLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="photoLieu" class="block">Photo du lieu</label>
-                    <input id="photoLieu" name="photoLieu" type="file" class="w-full rounded-lg bg-c3 p-2 "
+                    <input id="photoLieu" name="photoLieu" type="file" class="w-full rounded-lg bg-c3 p-2 font-medium"
                         accept=".png,.jpg">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="rueLieu" class="block">Rue</label>
-                    <input type="text" name="rueLieu" id="rueLieu" class="block w-full rounded-lg p-1 sm:p-2">
+                    <input type="text" name="rueLieu" id="rueLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
                     <label for="codePostalLieu" class="block">Code postal</label>
-                    <input type="text" name="codePostalLieu" id="codePostalLieu" class="block w-full rounded-lg p-1 sm:p-2">
+                    <input type="text" name="codePostalLieu" id="codePostalLieu" class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                 </div>
 
                 <div class="sm:col-span-1">
