@@ -21,7 +21,7 @@ class Ville extends Model
   
     public function pays()
     {
-        return $this->belongsTo(Pays::class, 'pays_id');
+        return $this->belongsTo(Pays::class);
     }
 
      // Recuperer les quartiers de la ville

@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Favori', function (Blueprint $table) {
+        Schema::create('Favoris', function (Blueprint $table) {
             $table->id();
             $table->foreignId('activite_id')->constrained('Activites')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
             $table->foreignId('lieu_id')->constrained('Lieux')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
             $table->foreignId('usager_id')->constrained('Usagers')->cascadeOnUpdate()->cascadeOnDelete();
-         
             $table->timestamps();
         });
     }

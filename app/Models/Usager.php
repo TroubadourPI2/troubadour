@@ -33,4 +33,8 @@ class Usager extends Authenticatable
     public function lieu(){
         return $this->hasMany(Lieu::class, 'proprietaire_id');
     }
+
+    public function favoris(){
+        return $this->hasMany(Favori::class, 'usager_id');
+    }
 }

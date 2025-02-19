@@ -24,12 +24,11 @@ class Lieu extends Model
         'proprietaire_id',
     ];
 
-
     // Relation : Un lieu appartient à un quartier.
 
     public function quartier()
     {
-        return $this->belongsTo(Quartier::class, 'quartier_id');
+        return $this->belongsTo(Quartier::class);
     }
 
     public function ville()
@@ -55,5 +54,14 @@ class Lieu extends Model
     public function typeLieu()
     {
         return $this->belongsTo(TypeLieu::class, 'typeLieu_id');
+    }
+
+    public function activites(){
+        return $this->belongsToMany(Activite::class);
+    }
+
+    public function favoris()
+    {
+        return $this->hasMany(Favori::class, 'lieu_id');
     }
 }
