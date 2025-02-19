@@ -24,41 +24,38 @@ class LieuxController extends Controller
 
     public function recherche(Request $request)
     {
-        $ville = $request->ville;
-        $quartier = $request->quartier;
-        $recherche = $request->txtRecherche;
-        $lieux = Lieu::all();
-
-        if(isset($request->txtRecherche)){
-            Log::debug("Recherche : " . $request->txtRecherche);
-            $recherche = $request->txtRecherche;
-            $lieux = Lieu::where('nomEtablissement', 'like', "%$recherche%")->get();
-        }
+        $ville      = $request->ville;
+        $quartier   = $request->quartier;
+        $recherche  = $request->txtRecherche;
+        $lieux      = Lieu::paginate(10);
 
         if(isset($request->quartier)){
-            Log::debug("Quartier : " . $request->quartier);
-            $quartier = $request->quartier;
-            $lieux = $lieux->where('quartierId', $request->quartier)->paginate(10);
+            $quartier   = $request->quartier;
+            $lieux      = Lieu::where('quartierId', $request->quartier)->paginate(10);
         }
 
+        if(isset($request->quartier) && isset($request->txtRecherche)){
+            $quartier   = $request->quartier;
+            $recherche  = $request->txtRecherche;
+            $lieux      = Lieu::where('quartierId', $request->quartier)->where('nomEtablissement', 'like', "%$recherche%")->paginate(10);
+        }
+        
         if(isset($request->ville)){
             Log::debug("Ville : " . $request->ville);
             $ville = $request->ville;
         }
-
-        $villes = Ville::all();
-        $quartiers = Quartier::where('villeId', $ville)->get();
+        
+        $villes     = Ville::all();
+        $quartiers  = Quartier::where('villeId', $ville)->get();
 
         return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
     }
 
     public function quartiers(Request $request)
     {
-        $villeId = $request->villeId;
-        $quartiers = Quartier::where('villeId', $villeId)->get();
-        Log::debug("Liste des quartiers : $quartiers");
+        $villeId    = $request->villeId;
+        $quartiers  = Quartier::where('villeId', $villeId)->get();
         return compact('quartiers');
-        
     }
 
 

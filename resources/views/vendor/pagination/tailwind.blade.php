@@ -40,7 +40,7 @@
             </div>
 
             <div>
-                <span class="relative z-0 inline-flex rtl:flex-row-reverse shadow-sm rounded-md"> <!-- text-c1 dark:text-c2 bg-white dark:bg-c1 border border-c1 dark:border-c1-->
+                <span class="relative z-0 inline-flex rtl:flex-row-reverse shadow-sm rounded-md">
                     {{-- Previous Page Link --}}
                     @if ($paginator->onFirstPage())
                         <span aria-disabled="true" aria-label="{{ __('pagination.previous') }}">
