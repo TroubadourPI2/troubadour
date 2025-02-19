@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Http\Requests\LieuRequest;
 
 
 class LieuxController extends Controller
@@ -26,9 +27,9 @@ class LieuxController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function AjouterUnLieu(LieuRequest $request)
     {
-        //
+        
     }
 
     /**
