@@ -40,11 +40,10 @@ class LieuxController extends Controller
     public function show(string $id)
     {
         //$lieu = Lieu::all();
-        $lieuActuel = Lieu::Where("id", $id)->first();
-        $quartier = $lieuActuel->quartier->first();
-        $type = $lieuActuel->typeLieu->first();
+        $lieuActuel = Lieu::findOrFail($id);
 
-        return view('zoomLieu', compact('lieuActuel', 'quartier', 'type'));
+
+        return view('zoomLieu', compact('lieuActuel'));
     }
 
     /**
