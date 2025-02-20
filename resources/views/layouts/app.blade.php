@@ -43,6 +43,7 @@
                 TODO Ajouter en fonction de si la personne est connecté ou non l'affichage du bouton connexion deconnexion --}}
                 <a
                     class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition  ">déconnexion</a>
+                    
                 <div class="border-r h-12 border-c1 rounded "></div>
                 <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1   rounded-full transition "
                     data-icon="mdi:search" data-inline="false"></span>

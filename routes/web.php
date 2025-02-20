@@ -13,10 +13,11 @@ Route::get('/test', function () {
 });
 
 
+Route::post('/Deconnexion', 
+[App\Http\Controllers\UsagersController::class, 'Deconnexion'])->name('usagers.Deconnexion');
+
+
 Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);
 
-// Route::get('/compte', function () {
-//     return view('usagers/afficher');
-// });
 
 Route::get('/compte', [UsagersController::class, 'ObtenirLieuxUsager'])->name('usagerLieux.afficher');

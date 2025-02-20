@@ -39,10 +39,20 @@
                         </a>
                     </div>
                     <div class="hidden md:flex ">
-                        <a
-                            class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
-                            CONNEXION
-                        </a>
+
+                        @auth
+                            <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                                @csrf
+                                <button class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
+                                   DÉCONNEXION
+                                </button>
+                            </form>
+                        @else
+                            <a
+                                class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
+                                CONNEXION
+                            </a>
+                        @endauth
                     </div>
                 </navbar>
                 <div class="text-c3 border mx-4"></div>
@@ -86,32 +96,26 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
+                    @auth
 
-                    @if (session('ID_Usager') === 'undefined')
+                        <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                            @csrf
+                            <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
+                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
+                            </button>
+                        </form>
+                    @else
                         <a href=""
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                                 class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
-                    @else
-                        {{-- <!-- TODO Bouton deconnexion pour mobile -->
-                    <form action="" method="POST">
-                        @csrf
-                        <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
-                            <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
-                        </button>
-                    </form> --}}
-                    @endif
+
+                    @endauth
+
                 </nav>
 
             </div>
         </div>
     </div>
-
-    @if (session('ID_Usager'))
-        <script>
-            var IDUsagerActuel = @json(session('ID_Usager'));
-            console.log("ID utilisateur actuel: ", IDUsagerActuel);
-        </script>
-    @endif
 
     <div id="sectionCacher"
         class=" flex-col w-full h-screen  gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">

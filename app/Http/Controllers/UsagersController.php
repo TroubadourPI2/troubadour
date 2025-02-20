@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Lieu;
 
@@ -23,10 +24,32 @@ class UsagersController extends Controller
         return response()->json(['success' => false]);
     }
 
-    public function DeconnexionUsager(){
-        
-    }
+    // public function Deconnexion (){
+    //     Auth::logout();
+    //     session()->flush();
+    //     return back();
+    // }
 
+
+    // pour tests -->
+
+    // public function Deconnexion() {
+    //     // Check if a user is currently authenticated
+    //     if (Auth::check()) {
+    //         // Log the user out and clear session data
+    //         Auth::logout();
+    //         session()->flush();
+            
+    //         // Optionally, you could check if the user was logged out successfully by checking again
+    //         if (!Auth::check()) {
+    //             return response()->json(['success' => true, 'message' => 'Logged out successfully.']);
+    //         }
+    //     }
+    
+    //     // If no user was logged in, return a response indicating that
+    //     return response()->json(['success' => false, 'message' => 'No user was logged in.']);
+    // }
+    
 
     public function ObtenirLieuxUsager(){
         //TODO Changer la fonction pour variable selon id du responsable connecté
