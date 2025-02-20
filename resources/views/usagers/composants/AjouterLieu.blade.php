@@ -20,29 +20,31 @@
                         @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('nomEtablissement'))
                         <span class="text-red-500 font-medium">{{ session('erreurAjouterLieu')->first('nomEtablissement') }}</span>
                         @endif
+                        <div class="mt-2">
+                            <label for="selectTypeLieu" class="block">Type de lieu</label>
+                            <select name="selectTypeLieu" id="selectTypeLieu"
+                                class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
+                                <option value="">Sélectionner un type</option>
+                                @foreach ($typesLieu as $type)
+                                <option value="{{ $type->id }}">{{ $type->nom }}</option>
+                                @endforeach
+                            </select>
+                            @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectTypeLieu'))
+                            <div class="text-red-500 font-medium">{{ session('erreurAjouterLieu')->first('selectTypeLieu') }}</div>
+                            @endif
+                        </div>
+
                     </div>
 
                     <div class="sm:col-span-1">
                         <label for="description" class="block">Description</label>
-                        <textarea rows="3" name="description" id="description" class="block w-full rounded-lg font-medium p-2"></textarea>
+                        <textarea rows="4" name="description" id="description" class="block w-full rounded-lg font-medium p-2"></textarea>
                         @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('description'))
                         <div class="text-red-500 font-medium">{{ session('erreurAjouterLieu')->first('description') }}</div>
                         @endif
                     </div>
 
-                    <div class="sm:col-span-1">
-                        <label for="selectTypeLieu" class="block">Type de lieu</label>
-                        <select name="selectTypeLieu" id="selectTypeLieu"
-                            class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
-                            <option value="">Sélectionner un type</option>
-                            @foreach ($typesLieu as $type)
-                            <option value="{{ $type->id }}">{{ $type->nom }}</option>
-                            @endforeach
-                        </select>
-                        @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectTypeLieu'))
-                        <div class="text-red-500 font-medium">{{ session('erreurAjouterLieu')->first('selectTypeLieu') }}</div>
-                        @endif
-                    </div>
+
 
                     <div class="sm:col-span-1">
                         <label for="photoLieu" class="block">Photo du lieu</label>
