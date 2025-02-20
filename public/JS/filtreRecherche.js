@@ -2,15 +2,7 @@ let selectVille = document.getElementById('selectVille');
 let nbOptions = selectQuartier.length;
 
 
-let optionDefault = document.createElement("option");
-optionDefault.text = "Choisir un quartier";
-optionDefault.value = "default";
-optionDefault.disabled = true;
-optionDefault.selected = true;
-optionDefault.hidden = true;
-// selectQuartier.add(optionDefault);
-
-// selectVille.addEventListener('change', setQuartiersPC);
+let optionDefault;
 
 function setQuartiersPC() {
     let selectQuartier = document.getElementById('selectQuartier');
@@ -50,7 +42,7 @@ function deleteAll(element) {
         selectQuartier.remove(0);
     }
 
-    element.add(optionDefault);
+    // element.add(optionDefault);
 }
 
 
@@ -92,10 +84,12 @@ function setQuartiersMobile(){
 function deleteAllMobile(element) {
     let mbBtnQuartier = document.getElementById('mbBtnQuartier');
 
+
     while(mbBtnQuartier.options.length > 0){
         mbBtnQuartier.remove(0);
     }
 
 
-    element.add(optionDefault);
+
+    // element.add(optionDefault);
 }
