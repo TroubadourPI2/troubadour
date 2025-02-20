@@ -30,24 +30,24 @@ class LieuxController extends Controller
      */
     public function AjouterUnLieu(LieuRequest $request)
     {
-        Log::debug($request->nomEtablissement);
-        // $lieu = new Lieu();
-        // $lieu->rue = $request->rue;
-        // $lieu->noCivic = $request->noCivic;
-        // $lieu->codePostal = $request->codePostal;
-        // $lieu->nomEtablissement = $request->nomEtablissement;
-        // $lieu->photoLieu = $request->photoLieu;
-        // $lieu->siteWeb = $request->siteWeb;
-        // $lieu->numeroTelephone = $request->numeroTelephone;
-        // $lieu->actif = $request->actif;
-        // $lieu->description = $request->description;
-        // $lieu->quartier_id = $request->quartier_id;
-        // $lieu->typeLieu_id = $request->typeLieu_id;
-        // $lieu->proprietaire_id = auth()->user()->id;
-        // $lieu->save();
+        $lieu = new Lieu();
+        $lieu->rue = $request->rue;
+        $lieu->noCivic = $request->noCivic;
+        $lieu->codePostal = $request->codePostal;
+        $lieu->nomEtablissement = $request->nomEtablissement;
+        $lieu->photoLieu = $request->photoLieu;
+        $lieu->siteWeb = $request->siteWeb;
+        $lieu->numeroTelephone = $request->numeroTelephone;
+        $lieu->actif = true;
+        $lieu->description = $request->description;
+        $lieu->quartier_id = $request->selectQuartierLieu;
+        $lieu->typeLieu_id = $request->selectTypeLieu;
+        //TODO aller chercher le id de l'usager connecté
+        $lieu->proprietaire_id = 1;
+        $lieu->save();
         
-        //doit rediriger vers la page d'affichage des lieux
-        // return redirect()->route('usagerLieux.afficher');
+        //TODO doit rediriger vers la page d'affichage des lieux
+        return redirect()->route('usagerLieux.afficher');
     }
 
     /**

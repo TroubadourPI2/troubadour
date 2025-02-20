@@ -26,7 +26,7 @@
                     <div class="p-4 flex flex-col justify-between h-full">
                         <div class="mb-2">
                             <div class="uppercase underline text-lg font-semibold">Description</div>
-                            <div>{{ $lieu->description }}.</div>
+                            <div>{{ $lieu->description ?? "Aucune description" }}.</div>
                         </div>
                         <div>
                             <div class="uppercase underline text-lg font-semibold">Coordonnées</div>
@@ -43,7 +43,9 @@
                                 @if ($lieu->region())
                                 <span>{{ $lieu->region()->nom }}</span>
                                 @endif
+                                @if ($lieu->siteWeb)
                                 <span>{{ $lieu->siteWeb }}</span>
+                                @endif
                                 <span>{{ $lieu->numeroTelephone }} À formater?</span>
                             </div>
                         </div>
@@ -102,7 +104,7 @@
     @endif
 </div>
 
-<div id="ajouterLieu">@include('usagers.composants.AjouterLieu')</div>
+<div id="ajouterLieu" class="hidden">@include('usagers.composants.AjouterLieu')</div>
 
 @if(session('erreurAjouterLieu'))
 <script>
