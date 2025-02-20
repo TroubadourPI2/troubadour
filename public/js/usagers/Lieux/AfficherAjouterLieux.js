@@ -1,5 +1,6 @@
 let boutonAjouterLieu;
 let boutonRetourAfficherLieux;
+let boutonAnnuler;
 let ajouterLieu;
 let afficherLieux;
 let selectQuartier;
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function ObtenirElementsAjouterLieux() {
     boutonAjouterLieu = document.getElementById("boutonAjouterLieu");
     boutonRetourAfficherLieux = document.getElementById("boutonRetourAfficherLieux");
+    boutonAnnuler = document.getElementById("boutonAnnuler");
     ajouterLieu = document.getElementById("ajouterLieu");
     afficherLieux = document.getElementById("afficherLieux");
     selectQuartier = document.getElementById("selectQuartierLieu");
@@ -22,6 +24,7 @@ function ObtenirElementsAjouterLieux() {
 
 function AjouterLieuxListeners() {
     boutonAjouterLieu.addEventListener("click", AfficherSectionAjouterLieu);
+    boutonAnnuler.addEventListener("click" , AfficherSectionAfficherLieu);
     boutonRetourAfficherLieux.addEventListener("click", AfficherSectionAfficherLieu);
     selectVilleLieu.addEventListener("change", ActiverSelectQuartier)
 }
@@ -29,13 +32,11 @@ function AjouterLieuxListeners() {
 function AfficherSectionAjouterLieu() {
     ajouterLieu.classList.remove("hidden");
     afficherLieux.classList.add("hidden");
-    boutonAjouterLieu.classList.add("hidden");
 }
 
 function AfficherSectionAfficherLieu() {
     ajouterLieu.classList.add("hidden");
     afficherLieux.classList.remove("hidden");
-    boutonAjouterLieu.classList.remove("hidden");
 }
 
 function ActiverSelectQuartier() {
