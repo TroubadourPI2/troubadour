@@ -14,14 +14,14 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg ">
 
                     <div class="sm:col-span-1">
-                        <label for="nomEtablissement" class="block">Nom</label>
+                        <label for="nomEtablissement" class="block">Nom <span class="text-red-500 ml-2">*</span></label>
                         <input type="text" name="nomEtablissement" id="nomEtablissement"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                         @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('nomEtablissement'))
                         <span class="text-red-500 font-medium">{{ session('erreurAjouterLieu')->first('nomEtablissement') }}</span>
                         @endif
                         <div class="mt-2">
-                            <label for="selectTypeLieu" class="block">Type de lieu</label>
+                            <label for="selectTypeLieu" class="block">Type de lieu <span class="text-red-500 ml-2">*</span></label>
                             <select name="selectTypeLieu" id="selectTypeLieu"
                                 class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                                 <option value="">Sélectionner un type</option>
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="sm:col-span-1">
-                        <label for="noCivic" class="block">Numéro civique</label>
+                        <label for="noCivic" class="block">Numéro civique <span class="text-red-500 ml-2">*</span></label>
                         <input type="text" name="noCivic" id="noCivic"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                         @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('noCivic'))
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="sm:col-span-1">
-                        <label for="rue" class="block">Rue</label>
+                        <label for="rue" class="block">Rue <span class="text-red-500 ml-2">*</span></label>
                         <input type="text" name="rue" id="rue"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                         @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('rue'))
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="sm:col-span-1">
-                        <label for="codePostal" class="block">Code postal</label>
+                        <label for="codePostal" class="block">Code postal <span class="text-red-500 ml-2">*</span></label>
                         <input type="text" name="codePostal" id="codePostal" placeholder="A1A 1A1"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                         @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('codePostal'))
@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="sm:col-span-1">
-                        <label for="selectVilleLieu" class="block">Ville</label>
+                        <label for="selectVilleLieu" class="block">Ville <span class="text-red-500 ml-2">*</span></label>
                         <select name="selectVilleLieu" id="selectVilleLieu"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">Sélectionner une ville</option>
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="sm:col-span-1">
-                        <label for="selectQuartierLieu" class="block">Quartier (choisir une ville avant)</label>
+                        <label for="selectQuartierLieu" class="block">Quartier (choisir une ville avant) <span class="text-red-500 ml-2">*</span></label>
                         <select name="selectQuartierLieu" id="selectQuartierLieu"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium" disabled>
                             <option value="">Sélectionner un quartier</option>
@@ -108,7 +108,7 @@
                     </div>
 
                     <div class="sm:col-span-1">
-                        <label for="numeroTelephone" class="block">Numéro de téléphone</label>
+                        <label for="numeroTelephone" class="block">Numéro de téléphone <span class="text-red-500 ml-2">*</span></label>
                         <input type="text" name="numeroTelephone" id="numeroTelephone"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium">
                         @if(session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('numeroTelephone'))
