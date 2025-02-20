@@ -1,18 +1,63 @@
-let selectVille = document.getElementById('selectVille');
-let nbOptions = selectQuartier.length;
+// const { document } = require("postcss");
+
+let selectVille;
+let selectQuartier;
+let selectQuartierMobile;
+let selectVilleMobile;
+
+let btnRechercher = document.getElementById('btnRechercher');
+
+function elementEstVisible(element) {
+    return element.classList.contains('hidden') ||
+           element.classList.contains('invisible') ||
+           element.classList.contains('opacity-0');
+  }
+
+function checkQuartier() {
+    if(selectQuartierMobile.value !== "default" && selectVilleMobile.value !== "default" && selectQuartierMobile.value !== "aucunResultat" && selectVilleMobile.value !== "aucunResultat" || selectQuartier.value !== "default" && selectVille.value !== "default" && selectQuartier.value !== "aucunResultat" && selectVille.value !== "aucunResultat")
+    {
+        btnRechercher.disabled = false;
+    } 
+    else 
+    {
+        btnRechercher.disabled = true;
+    }
+    // else if (selectVilleMobile.style.display === "none") 
+    // {
+    //     if(selectQuartier.value !== "default" && selectVille.value !== "default" && selectQuartier.value !== "aucunResultat" && selectVille.value !== "aucunResultat")
+    //     {
+    //         btnRechercher.disabled = false;
+    //     }
+    //     else 
+    //     { 
+    //         btnRechercher.disabled = true;
+    //     }
+    // }
+}
 
 
 let optionDefault;
 
-function setQuartiersPC() {
-    let selectQuartier = document.getElementById('selectQuartier');
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("DOM loaded");
+    selectVille             = document.getElementById('selectVille');
+    selectQuartier          = document.getElementById('selectQuartier');
+    selectQuartierMobile    = document.getElementById('selectQuartierMobile');
+    selectVilleMobile       = document.getElementById('selectVilleMobile');
+    checkQuartier();
+});
 
+function setQuartiersPC() {
     let idVille = selectVille.value;
     let optionsExistants = selectQuartier.options;
 
     deleteAll(selectQuartier);
 
     if (idVille !== "default") {
+
+        checkQuartier();
+
+        selectQuartier.disabled = false;
         console.log("idVille: ", idVille);
 
         axios.get(`/quartiers?villeId=${idVille}`)
@@ -32,33 +77,27 @@ function setQuartiersPC() {
             })
             .catch(error => console.error('Error fetching quartiers:', error));
     }
-    else {
-        selectQuartier.add(optionDefault);
-    }
+
+    checkQuartier();
 }
 
 function deleteAll(element) {
-    while(selectQuartier.options.length > 0){
-        selectQuartier.remove(0);
+    console.log("deleteAll");
+    console.log("selectQuartier options : ", selectQuartier.options);
+    if(selectQuartier.options !== undefined)
+    {
+        while(selectQuartier.options.length > 0){
+            selectQuartier.options.remove(0);
+        }
     }
 
-    // element.add(optionDefault);
 }
 
-
-
-var mbBtnVilles = document.getElementById("mbBtnVilles");
-let mbBtnQuartier = document.getElementById('mbBtnQuartier');
-
-// mbBtnVilles.addEventListener('change', setQuartiersMobile);
-
-
 function setQuartiersMobile(){
-    let mbBtnQuartier = document.getElementById('mbBtnQuartier');
-    let idVille = mbBtnVilles.value;
-    let optionsExistants = mbBtnQuartier.options;
+    let idVille = selectQuartierMobile.value;
+    let optionsExistants = selectQuartierMobile.options;
 
-    deleteAllMobile(mbBtnQuartier);
+    deleteAllMobile(selectQuartierMobile);
 
     if (idVille !== "default") {
         axios.get(`/quartiers?villeId=${idVille}`)
@@ -71,25 +110,14 @@ function setQuartiersMobile(){
                     let option = document.createElement("option");
                     option.text = quartier.nom;
                     option.value = quartier.id;
-                    mbBtnQuartier.add(option);
+                    selectQuartierMobile.add(option);
                 });
             })
             .catch(error => console.error('Error fetching quartiers:', error));
     }
     else {
-        mbBtnQuartier.add(optionDefault);
-    }
-}
-
-function deleteAllMobile(element) {
-    let mbBtnQuartier = document.getElementById('mbBtnQuartier');
-
-
-    while(mbBtnQuartier.options.length > 0){
-        mbBtnQuartier.remove(0);
+        // selectQuartierMobile.add(optionDefault);
     }
 
-
-
-    // element.add(optionDefault);
+    checkQuartier();
 }
