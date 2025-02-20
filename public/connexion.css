@@ -1,0 +1,13 @@
+.swal2-actions {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.swal2-timer-progress-bar {
+    background-color: #154C51 !important;
+}
+
+.swal2-icon {
+    border-color: #154C51 !important;
+    color: #154C51 !important;
+}
