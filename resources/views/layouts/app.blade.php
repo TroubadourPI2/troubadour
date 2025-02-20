@@ -89,17 +89,20 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>CONNEXION</a>
-                    <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                            class="iconify size-10 " data-icon="mdi:search" data-inline="false"></span>RECHERCHE</a>
-
-                    {{-- <!-- TODO Bouton deconnexion pour mobile -->
-                <form action="" method="POST">
-                    @csrf
-                    <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
-                        <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
-                    </button>
-                </form> --}}
+                    @if (session('ID_Usager') === 'undefined')
+                        <a href=""
+                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                            <span class="iconify size-10 " data-icon="mdi:search"
+                                data-inline="false"></span>RECHERCHE</a>
+                    @else
+                        {{-- <!-- TODO Bouton deconnexion pour mobile -->
+                        <form action="" method="POST">
+                            @csrf
+                            <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
+                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
+                            </button>
+                        </form> --}}
+                    @endif
                 </nav>
 
             </div>
@@ -192,3 +195,4 @@
 </script>
 
 </html>
+
