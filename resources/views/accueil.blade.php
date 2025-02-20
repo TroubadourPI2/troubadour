@@ -3,7 +3,7 @@
 @section('title', 'Accueil')
 
 @section('contenu')
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="flex w-full h-screen flex-col">
 
         <div class="relative flex flex-col justify-start w-full h-full font-barlow overflow-hidden">
@@ -121,11 +121,6 @@
     </div>
 
     <script src="{{ asset('js/Accueil.js') }}"></script>
-
-@endsection
-
-@section('head')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 @endsection
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
