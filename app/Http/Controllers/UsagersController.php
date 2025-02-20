@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Usager;
 use App\Models\Lieu;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
@@ -17,7 +16,7 @@ class UsagersController extends Controller
         $credentials = [
             'courriel'  => $request->courriel,
             'password'  => $request->password,
-            'statut_id' => 1
+            'statutId' => 1
         ];
      
         if (Auth::attempt($credentials)) {

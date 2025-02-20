@@ -18,8 +18,8 @@ function AfficherModalConnexion() {
         html: `
             
             <div class="flex flex-col items-center space-y-2">
-                <input id="courriel" type="email" class="swal2-input w-full p-3 border rounded-lg" placeholder="Courriel">
-                <input id="password" type="password" class="swal2-input w-full p-3 border rounded-lg" placeholder="Mot de passe">
+                <input id="courriel" type="email" class="swal2-input w-full p-3 border rounded-lg bg-white text-c1" placeholder="Courriel">
+                <input id="password" type="password" class="swal2-input w-full p-3 border rounded-lg bg-white text-c1" placeholder="Mot de passe">
             </div>
             
         `,
@@ -61,7 +61,7 @@ function AfficherModalConnexion() {
                 console.log("Réponse du serveur :", data);
 
                 if (data.success) {
-                    console.log("ID Usager :", data.user_id);
+                   
                     
                     const Toast = Swal.mixin({
                         toast: true,

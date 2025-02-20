@@ -104,14 +104,6 @@
         </div>
     </div>
 
-    <!-- Test ID_Usager -->
-    @if (session('ID_Usager'))
-        <script>
-            var IDUsagerActuel = @json(session('ID_Usager'));
-            console.log("ID utilisateur actuel: ", IDUsagerActuel);
-        </script>
-    @endif
-
     <div id="sectionCacher"
         class=" flex-col w-full h-screen  gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">
 
@@ -138,6 +130,4 @@
 @endsection
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
-<!-- <script src="{{ asset('js/usagers/MDPOublie.js') }}"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
