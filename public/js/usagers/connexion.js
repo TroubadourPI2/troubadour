@@ -16,10 +16,12 @@ function AfficherModalConnexion() {
     Swal.fire({
         title: "Connexion",
         html: `
+            
             <div class="flex flex-col items-center space-y-2">
                 <input id="courriel" type="email" class="swal2-input w-full p-3 border rounded-lg" placeholder="Courriel">
                 <input id="password" type="password" class="swal2-input w-full p-3 border rounded-lg" placeholder="Mot de passe">
             </div>
+            
         `,
         focusConfirm: false,
         showCancelButton: false,
@@ -54,7 +56,7 @@ function AfficherModalConnexion() {
                 }
             })
             .then(response => {
-                console.log("Réponse :", response); 
+                // console.log("Réponse :", response); 
                 const data = response.data;
                 console.log("Réponse du serveur :", data);
 
@@ -92,7 +94,7 @@ function AfficherModalConnexion() {
             })
             .catch(error => {
                 console.error("Erreur Axios :", error); 
-                Swal.fire("Erreur", "Courriel et/ou le mot de passe est invalide .", "error").then(() => {
+                Swal.fire("Erreur", "Courriel et/ou le mot de passe est invalide. ", "error").then(() => {
                     AfficherModalConnexion(); 
                 });
             });

@@ -5,25 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usager;
 use App\Models\Lieu;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
 {
-
+ 
     public function Connexion(Request $request)
     {
-        $usager = Usager::where('courriel', $request->courriel)->where('statutId', 1)->first();
+        $usager = Usager::where('courriel', $request->courriel)
+                        ->where('statutId', 1)
+                        ->first();
 
-        
-        if ($usager && Hash::check($request->password, $usager->password)) {
-            session(['ID_Usager' => $usager->id]);
-
-            return response()->json(['success' => true, 'ID_Usager' => $usager->id]);
+        if (!$usager) {
+            return response()->json(['success' => false]);
         }
-      
+
+        if (!Hash::check($request->password, $usager->password)) {
+            return response()->json(['success' => false]);
+        }
+
+        Auth::login($usager);
         
-        return response()->json(['success' => false]);
+        return response()->json(['success' => true, 'ID_Usager' => $usager->id]);
     }
 
     public function ObtenirLieuxUsager(){

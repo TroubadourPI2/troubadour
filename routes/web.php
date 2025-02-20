@@ -12,11 +12,15 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::post('/usagers/Connexion',
+[App\Http\Controllers\UsagersController::class, 'Connexion'])->name('usagers.Connexion');
 
+// Route::post('logout', 
+// [App\Http\Controllers\UsagersController::class, 'logout'])->name('logout');
 
 
 Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);
 
-Route::post('/usagers/Connexion', [UsagersController::class, 'Connexion'])->name('usagers.Connexion');
-
 Route::get('/compte', [UsagersController::class, 'ObtenirLieuxUsager'])->name('usagerLieux.afficher');
+
+
