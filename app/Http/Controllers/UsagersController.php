@@ -14,21 +14,17 @@ class UsagersController extends Controller
  
     public function Connexion(Request $request)
     {
-        $usager = Usager::where('courriel', $request->courriel)
-                        ->where('statutId', 1)
-                        ->first();
-
-        if (!$usager) {
-            return response()->json(['success' => false]);
+        $credentials = [
+            'courriel'  => $request->courriel,
+            'password'  => $request->password,
+            'statut_id' => 1
+        ];
+     
+        if (Auth::attempt($credentials)) {
+            return response()->json(['success' => true]);
         }
-
-        if (!Hash::check($request->password, $usager->password)) {
-            return response()->json(['success' => false]);
-        }
-
-        Auth::login($usager);
-        
-        return response()->json(['success' => true, 'ID_Usager' => $usager->id]);
+     
+        return response()->json(['success' => false]);
     }
 
     public function ObtenirLieuxUsager(){
