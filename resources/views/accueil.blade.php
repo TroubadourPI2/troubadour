@@ -3,7 +3,7 @@
 @section('title', 'Accueil')
 
 @section('contenu')
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="flex w-full h-screen flex-col">
 
         <div class="relative flex flex-col justify-start w-full h-full font-barlow overflow-hidden">
@@ -48,7 +48,7 @@
                                 </button>
                             </form>
                         @else
-                            <a
+                            <a onclick="AfficherModalConnexion()"
                                 class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
                                 CONNEXION
                             </a>
@@ -105,7 +105,7 @@
                             </button>
                         </form>
                     @else
-                        <a href=""
+                        <a href="#" onclick="AfficherModalConnexion()"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                                 class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
 
@@ -136,4 +136,7 @@
     <script src="{{ asset('js/Accueil.js') }}"></script>
 
 @endsection
+
+<script src="{{ asset('js/usagers/Connexion.js') }}"></script>
+<script src="{{ asset('js/usagers/Inscription.js') }}"></script>
 
