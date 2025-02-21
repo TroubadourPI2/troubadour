@@ -29,8 +29,8 @@ class LieuRequest extends FormRequest
             'codePostal' => 'required|regex:/^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/i|max:7', 
             'nomEtablissement' => 'required',
             'photoLieu' => 'nullable|mimes:png,jpg|max:2048',
-            'siteWeb' => 'nullable|regex:/^(www\.)?([a-zA-Z0-9.-]+)(\.[a-zA-Z]{2,})(\/[^\s]*)?$/|max:64',
-            'numeroTelephone'  => 'required|alpha_num',
+            'siteWeb' => 'nullable|url:https|max:64',
+            'numeroTelephone' => 'required|regex:/^\d{3}-\d{3}-\d{4}$/',
             'actif' => 'nullable',
             'description' => 'nullable|max:500',
             'selectQuartierLieu' => 'required',
@@ -46,7 +46,6 @@ class LieuRequest extends FormRequest
     public function messages(): array
     {
         return [
-            // Rue
             'rue.required' => 'La rue est requise.',
             'rue.regex'    => 'Le format de la rue est invalide.',
             'rue.max'      => 'La rue ne doit pas dépasser 64 caractères.',
@@ -65,11 +64,11 @@ class LieuRequest extends FormRequest
             'photoLieu.mimes'    => 'La photo doit être au format PNG ou JPG.',
             'photoLieu.max'      => 'La taille de la photo ne doit pas dépasser 2 Mo.',
 
-            'siteWeb.regex' => 'Le format du site web est invalide.',
+            'siteWeb.url' => 'Le format du site web est invalide.',
             'siteWeb.max'   => 'Le site web ne doit pas dépasser 64 caractères.',
 
             'numeroTelephone.required'  => 'Le numéro de téléphone est requis.',
-            'numeroTelephone.alpha_num' => 'Le numéro de téléphone doit contenir uniquement des chiffres et des lettres.',
+            'numeroTelephone.regex' => 'Le format du numéro de téléphone est invalide.',
 
             'description.max' => 'La description ne doit pas dépasser 500 caractères.',
 
