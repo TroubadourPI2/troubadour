@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\LieuxController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsagersController;
 use App\Http\Controllers\GeolocalisationController;
+use App\Http\Controllers\LieuxController;
 
 Route::get('/', function () {
     return view('Accueil');
@@ -18,6 +18,8 @@ Route::post('/usagers/Connexion',
 // Route::post('logout', 
 // [App\Http\Controllers\UsagersController::class, 'logout'])->name('logout');
 
+
+Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom');
 
 Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);
 
