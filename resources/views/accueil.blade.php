@@ -3,7 +3,7 @@
 @section('title', 'Accueil')
 
 @section('contenu')
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="flex w-full h-screen flex-col">
 
         <div class="relative flex flex-col justify-start w-full h-full font-barlow overflow-hidden">
@@ -39,7 +39,7 @@
                         </a>
                     </div>
                     <div class="hidden md:flex ">
-                        <a
+                        <a onclick="AfficherModalConnexion()"
                             class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
                             CONNEXION
                         </a>
@@ -86,11 +86,12 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
-                    <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                            class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
+                    <a href="#" onclick="AfficherModalConnexion()"
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                        <span class="iconify size-10" data-icon="mdi:user" data-inline="false"></span> CONNEXION
+                    </a>
 
-                    {{-- <!-- TODO Bouton deconnexion pour mobile -->
+                    {{-- <!-- TODO : Bouton de déconnexion pour mobile -->
                 <form action="" method="POST">
                     @csrf
                     <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
@@ -104,7 +105,7 @@
     </div>
 
     <div id="sectionCacher"
-        class="flex flex-col w-full h-screen  gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">
+        class=" flex-col w-full h-screen  gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">
 
         <div class="pt-4 flex justify-center">
             <span id="villeSpan"
@@ -122,3 +123,6 @@
     <script src="{{ asset('js/Accueil.js') }}"></script>
 
 @endsection
+<script src="{{ asset('js/usagers/Connexion.js') }}"></script>
+<script src="{{ asset('js/usagers/Inscription.js') }}"></script>
+

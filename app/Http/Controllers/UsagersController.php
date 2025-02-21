@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Usager;
 use App\Models\Lieu;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Ville;
 use App\Models\Quartier;
 use App\Models\TypeLieu;
@@ -11,6 +13,20 @@ use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
 {
+    public function Connexion(Request $request)
+    {
+        $credentials = [
+            'courriel'  => $request->courriel,
+            'password'  => $request->password,
+            'statutId' => 1
+        ];
+     
+        if (Auth::attempt($credentials)) {
+            return response()->json(['success' => true]);
+        }
+     
+        return response()->json(['success' => false]);
+    }
 
     public function ObtenirDonnesAfficherLieux(){
         //TODO Changer la fonction pour variable selon id du responsable connecté
