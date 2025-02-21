@@ -44,8 +44,8 @@ class LieuxController extends Controller
         $lieuActuel = Lieu::Where("id", $id)->first();
         $quartier = $lieuActuel->quartier->first();
         $type = $lieuActuel->typeLieu->first();
-        $activites = LieuActivite::Where("lieu_id", $id)->get();
-        
+        $idActivites = LieuActivite::Where("lieu_id", $id)->pluck("activite_id");
+        $activites = Activite::whereIn("id", $idActivites)->get();
 
         Log::debug($activites);
 

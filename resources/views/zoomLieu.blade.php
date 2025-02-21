@@ -157,10 +157,9 @@
 
                     <div class=" w-3/4 lg:h-2/3 2xl:h-3/4 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 py-4 text-left">
-                            <p class="text-c1 text-base underline truncate"> MAJ la BD les informations d'activités </p>
-                            
+
                             @foreach($activites as $activite)
-                            <p class="text-c1 text-base underline truncate"> {{$activite->nom}} </p>
+                            <p class="text-c1 text-base underline truncate mb-5"> {{$activite->nom}} </p>
                             @endforeach
 
                             <!-- TO DO, mettre les activités en lien avec le lieu -->
