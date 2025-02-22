@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Schema::defaultStringLength(191);
         Blade::directive('role', function ($roles) {
             return "<?php if(auth()->check() && in_array(auth()->user()->role->nom, $roles)): ?>";
         });
