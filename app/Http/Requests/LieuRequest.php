@@ -25,7 +25,7 @@ class LieuRequest extends FormRequest
     {
         return [
             'rue' => 'required|regex:/^[a-zA-Z0-9\'\,\-_À-ÿ ]+$/|max:64',
-        'noCivic' => 'required|numeric|max:99999',
+            'noCivic' => 'required|numeric|max:99999',
             'codePostal' => 'required|regex:/^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/i|max:7', 
             'nomEtablissement' => 'required',
             'photoLieu' => 'nullable|mimes:png,jpg|max:2048',
