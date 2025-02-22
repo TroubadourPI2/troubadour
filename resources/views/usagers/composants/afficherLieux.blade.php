@@ -48,7 +48,7 @@
                             <div class="flex justify-end space-x-3 mt-3">
                                 <button><span class="iconify text-ci size-6" data-icon="ion:trash-outline"
                                         data-inline="false"></span></button>
-                                <button><span class="iconify text-ci size-6" data-icon="ep:edit"
+                                <button><span class="iconify text-ci size-6 modifier" data-icon="ep:edit"
                                         data-inline="false"></span></button>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                     <div class="flex justify-end space-x-3 mt-auto">
                         <button><span class="iconify text-ci size-8" data-icon="ion:trash-outline"
                                 data-inline="false"></span></button>
-                        <button><span class="iconify text-ci size-8" data-icon="ep:edit"
+                        <button><span class="iconify text-ci size-8 modifier" data-icon="ep:edit"
                                 data-inline="false"></span></button>
                     </div>
                 </div>
@@ -98,3 +98,8 @@
         @endforeach
     </div>
 @endif
+
+<script>
+   const boutonModifier = document.querySelectorAll(".edit");
+
+</script>

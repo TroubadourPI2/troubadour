@@ -16,7 +16,7 @@ class UsagersController extends Controller
         $credentials = [
             'courriel'  => $request->courriel,
             'password'  => $request->password,
-            'statutId' => 1
+            'statut_id' => 1
         ];
      
         if (Auth::attempt($credentials)) {
