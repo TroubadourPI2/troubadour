@@ -15,10 +15,10 @@ Route::get('/test', function () {
 });
 
 Route::post('/usagers/Connexion',
-[App\Http\Controllers\UsagersController::class, 'Connexion'])->name('usagers.Connexion');
+[UsagersController::class, 'Connexion'])->name('usagers.Connexion');
 
 // Route::post('logout', 
-// [App\Http\Controllers\UsagersController::class, 'logout'])->name('logout');
+// [UsagersController::class, 'logout'])->name('logout');
 
 Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom');
 
