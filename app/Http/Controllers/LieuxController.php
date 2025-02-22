@@ -55,7 +55,11 @@ class LieuxController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //$lieu = Lieu::all();
+        $lieuActuel = Lieu::findOrFail($id);
+
+
+        return view('zoomLieu', compact('lieuActuel'));
     }
 
     /**
