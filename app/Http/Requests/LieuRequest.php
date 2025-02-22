@@ -25,7 +25,7 @@ class LieuRequest extends FormRequest
     {
         return [
             'rue' => 'required|regex:/^[a-zA-Z0-9\'\,\-_À-ÿ ]+$/|max:64',
-            'noCivic' => 'required|numeric',
+        'noCivic' => 'required|numeric|max:99999',
             'codePostal' => 'required|regex:/^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/i|max:7', 
             'nomEtablissement' => 'required',
             'photoLieu' => 'nullable|mimes:png,jpg|max:2048',
@@ -52,6 +52,7 @@ class LieuRequest extends FormRequest
 
             'noCivic.required'   => 'Le numéro civique est requis.',
             'noCivic.numeric'  => 'Le numéro civique doit contenir uniquement des chiffres.',
+            'noCivic.max' => 'Le numéro civique ne peut pas dépasser 99999.',
 
             'codePostal.required' => 'Le code postal est requis.',
             'codePostal.regex'    => 'Le code postal doit être au format A1A 1A1.',
