@@ -47,7 +47,7 @@
                                         @if ($lieu->siteWeb)
                                             <span>{{ $lieu->siteWeb }}</span>
                                         @endif
-                                        <span>{{ $lieu->numeroTelephone }} À formater?</span>
+                                        <span>{{ $lieu->numeroTelephone }}</span>
                                     </div>
                                 </div>
                                 <div class="flex justify-end space-x-3 mt-3">

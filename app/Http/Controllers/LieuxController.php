@@ -36,7 +36,7 @@ class LieuxController extends Controller
             $lieu = new Lieu();
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
-            $lieu->codePostal = $request->codePostal;
+            $lieu->codePostal = (strtoupper($request->codePostal));
             $lieu->nomEtablissement = $request->nomEtablissement;
             //TODO Trouver comment stocker les images
             $lieu->photoLieu = 'Images/lieux/image_defaut.png';
