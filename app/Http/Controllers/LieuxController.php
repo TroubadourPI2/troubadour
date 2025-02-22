@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Lieu;
 use App\Http\Requests\LieuRequest;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class LieuxController extends Controller
 {
@@ -30,24 +31,25 @@ class LieuxController extends Controller
      */
     public function AjouterUnLieu(LieuRequest $request)
     {
+        Log::debug($request->photoLieu);
         $lieu = new Lieu();
         $lieu->rue = $request->rue;
         $lieu->noCivic = $request->noCivic;
         $lieu->codePostal = $request->codePostal;
         $lieu->nomEtablissement = $request->nomEtablissement;
-        $lieu->photoLieu = $request->photoLieu;
+        //TODO Trouver comment stocker les images
+        $lieu->photoLieu = 'Images/lieux/image_defaut.png'; 
         $lieu->siteWeb = $request->siteWeb;
         $lieu->numeroTelephone = $request->numeroTelephone;
         $lieu->actif = true;
         $lieu->description = $request->description;
         $lieu->quartier_id = $request->selectQuartierLieu;
         $lieu->typeLieu_id = $request->selectTypeLieu;
-        //TODO aller chercher le id de l'usager connecté
-        $lieu->proprietaire_id = 1;
+        $lieu->proprietaire_id = Auth::id();
         $lieu->save();
-        
         //TODO doit rediriger vers la page d'affichage des lieux
-        return redirect()->route('usagerLieux.afficher');
+        session()->flash('formulaireValide', 'true');
+       return redirect()->route('usagerLieux.afficher');
     }
 
     /**

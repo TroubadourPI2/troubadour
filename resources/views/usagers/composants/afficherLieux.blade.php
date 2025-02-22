@@ -38,7 +38,7 @@
                                     @endif
                                 </span>
                                 <span>{{ $lieu->pays()?->nom }}</span>
-                                <span>{{ $lieu->quartier->nom ?? 'Quartier inconnu' }}</span>
+                                <span>{{ $lieu->quartier->nom  }}</span>
                                 <span>{{ $lieu->typeLieu->nom }}</span>
                                 @if ($lieu->region())
                                 <span>{{ $lieu->region()->nom }}</span>
@@ -70,7 +70,7 @@
                 <h5 class="text-xl sm:text-3xl font-semibold uppercase mb-2">{{ $lieu->nomEtablissement }}</h5>
                 <div>
                     <div class="uppercase underline text-2xl font-semibold">Description</div>
-                    <div class="text-xl">{{ $lieu->description }}</div>
+                    <div class="text-xl">{{ $lieu->description ?? "Aucune description" }}.</div>
                 </div>
                 <div>
                     <div class="uppercase underline font-semibold text-2xl">Coordonnées & Informations</div>
@@ -82,7 +82,7 @@
                             @endif
                         </span>
                         <span>{{ $lieu->pays()?->nom }}</span>
-                        <span>{{ $lieu->quartier->nom ?? 'Quartier inconnu' }}</span>
+                        <span>{{ $lieu->quartier->nom }}</span>
                         <span>{{ $lieu->typeLieu->nom }}</span>
                         @if ($lieu->region())
                         <span>{{ $lieu->region()->nom }}</span>
@@ -109,21 +109,20 @@
 @if(session('erreurAjouterLieu'))
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('compte').classList.add("hidden");
         const boutonCompte = document.getElementById('boutonCompte');
-        const compte = document.getElementById('compte');
-        compte.classList.add("hidden");
         boutonCompte.classList.remove("bg-c1", "text-c3");
         boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
         const boutonLieu = document.getElementById('boutonLieu');
         boutonLieu.classList.add("bg-c1", "text-c3");
         boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
-        const sectionAjouterLieu = document.getElementById('ajouterLieu');
-        sectionAjouterLieu.classList.remove("hidden");
+
+        document.getElementById('ajouterLieu').classList.remove("hidden");
         const lieux = document.getElementById("lieux");
         lieux.classList.remove("hidden");
-        const sectionAfficherLieux = document.getElementById('afficherLieux');
-        sectionAfficherLieux.classList.add("hidden");
 
+        document.getElementById('afficherLieux').classList.add("hidden");
     });
 </script>
 @php
