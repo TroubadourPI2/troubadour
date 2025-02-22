@@ -49,6 +49,8 @@ class LieuxController extends Controller
         return view('zoomLieu', compact('lieuActuel'));
     }
 
+
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -60,8 +62,9 @@ class LieuxController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function ModificationUnLieu(LieuRequest $request, lieu $lieu)
+    public function ModificationUnLieu(LieuRequest $request, string $id)
     {
+        $lieu = Lieu::where('id', $id)->firstorFail();
         try {
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;

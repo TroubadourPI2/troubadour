@@ -25,3 +25,4 @@
 
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/usagers/AfficherLieux.js') }}"></script>
+<script src="{{ asset('js/usagers/GestionAffichageSectionsLieux.js') }}"></script>

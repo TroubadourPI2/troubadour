@@ -25,6 +25,4 @@ Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenir
 
 Route::get('/compte', [UsagersController::class, 'ObtenirLieuxUsager'])->name('usagerLieux.afficher');
 
-Route::put('/compte/modifierLieu', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu');
-
 

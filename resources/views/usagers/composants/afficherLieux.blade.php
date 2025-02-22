@@ -1,3 +1,5 @@
+
+<div id="afficherLieux">
 <button
     class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-36 w-[80px] text-c1 font-semibold my-3">
     <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add" data-inline="false"></span>
@@ -48,7 +50,7 @@
                             <div class="flex justify-end space-x-3 mt-3">
                                 <button><span class="iconify text-ci size-6" data-icon="ion:trash-outline"
                                         data-inline="false"></span></button>
-                                <button><span class="iconify text-ci size-6 modifier" data-icon="ep:edit"
+                                <button class="modifierMobile"><span class="iconify text-ci size-6" data-icon="ep:edit"
                                         data-inline="false"></span></button>
                             </div>
                         </div>
@@ -90,7 +92,7 @@
                     <div class="flex justify-end space-x-3 mt-auto">
                         <button><span class="iconify text-ci size-8" data-icon="ion:trash-outline"
                                 data-inline="false"></span></button>
-                        <button><span class="iconify text-ci size-8 modifier" data-icon="ep:edit"
+                        <button class="modifierWeb" data-id="{{ $lieu->id }}"><span class="iconify text-ci size-8" data-icon="ep:edit"
                                 data-inline="false"></span></button>
                     </div>
                 </div>
@@ -98,8 +100,7 @@
         @endforeach
     </div>
 @endif
+</div>
 
-<script>
-   const boutonModifier = document.querySelectorAll(".edit");
+<div id="modifierLieu" class="hidden">@include('usagers.composants.ModifierLieu')</div>
 
-</script>
