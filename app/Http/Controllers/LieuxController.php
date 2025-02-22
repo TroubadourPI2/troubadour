@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Lieu;
 use App\Http\Requests\LieuRequest;
@@ -31,25 +32,28 @@ class LieuxController extends Controller
      */
     public function AjouterUnLieu(LieuRequest $request)
     {
-        Log::debug($request->photoLieu);
-        $lieu = new Lieu();
-        $lieu->rue = $request->rue;
-        $lieu->noCivic = $request->noCivic;
-        $lieu->codePostal = $request->codePostal;
-        $lieu->nomEtablissement = $request->nomEtablissement;
-        //TODO Trouver comment stocker les images
-        $lieu->photoLieu = 'Images/lieux/image_defaut.png'; 
-        $lieu->siteWeb = $request->siteWeb;
-        $lieu->numeroTelephone = $request->numeroTelephone;
-        $lieu->actif = true;
-        $lieu->description = $request->description;
-        $lieu->quartier_id = $request->selectQuartierLieu;
-        $lieu->typeLieu_id = $request->selectTypeLieu;
-        $lieu->proprietaire_id = Auth::id();
-        $lieu->save();
-        //TODO doit rediriger vers la page d'affichage des lieux
-        session()->flash('formulaireValide', 'true');
-       return redirect()->route('usagerLieux.afficher');
+        try {
+            $lieu = new Lieu();
+            $lieu->rue = $request->rue;
+            $lieu->noCivic = $request->noCivic;
+            $lieu->codePostal = $request->codePostal;
+            $lieu->nomEtablissement = $request->nomEtablissement;
+            //TODO Trouver comment stocker les images
+            $lieu->photoLieu = 'Images/lieux/image_defaut.png';
+            $lieu->siteWeb = $request->siteWeb;
+            $lieu->numeroTelephone = $request->numeroTelephone;
+            $lieu->actif = true;
+            $lieu->description = $request->description;
+            $lieu->quartier_id = $request->selectQuartierLieu;
+            $lieu->typeLieu_id = $request->selectTypeLieu;
+            $lieu->proprietaire_id = Auth::id();
+            $lieu->save();
+            session()->flash('formulaireValide', 'true');
+            return redirect()->route('usagerLieux.afficher');
+        } catch (\Exception $e) {
+            Log::error("Erreur lors de l'ajout d'un lieu: " . $e->getMessage());
+            return redirect()->route('usagerLieux.afficher');
+        }
     }
 
     /**
