@@ -18,7 +18,7 @@ class UsagersController extends Controller
         $credentials = [
             'courriel'  => $request->courriel,
             'password'  => $request->password,
-            'statutId' => 1
+            'statut_id' => 1
         ];
      
         if (Auth::attempt($credentials)) {
@@ -28,10 +28,9 @@ class UsagersController extends Controller
         return response()->json(['success' => false]);
     }
 
-    public function ObtenirDonnesAfficherLieux(){
-        //TODO Changer la fonction pour variable selon id du responsable connecté
-        $lieuxUsager = Lieu::where('proprietaire_id', 1)->get();
-
+    public function ObtenirDonneesCompte(){
+        $usagerId = Auth::id();
+        $lieuxUsager = Lieu::where('proprietaire_id', $usagerId)->get();
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
    
