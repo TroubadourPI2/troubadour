@@ -108,8 +108,6 @@ class LieuxController extends Controller
     public function ModifierUnLieu(LieuModifierRequest $request, string $id)
     {
         $lieu = Lieu::findOrFail($id);
-        Log::debug($request);
-        Log::debug($lieu);
         try {
             $lieu->rue = $request->rueModifie;
             $lieu->noCivic = $request->noCivicModifie;
