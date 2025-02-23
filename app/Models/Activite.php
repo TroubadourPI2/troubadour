@@ -15,7 +15,6 @@ class Activite extends Model
         'dateFin',
         'description',
         'actif',
-        'lieu_id',
         'typeActivite_id'
     ];
 
