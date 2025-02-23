@@ -26,4 +26,13 @@ class Activite extends Model
     {
         return $this->hasMany(Favori::class, 'activite_id'); 
     }
+    public function photos()
+    {
+        return $this->hasMany(Photo::class, 'activite_id');
+    }
+    public function typeActivite()
+    {
+    return $this->belongsTo(TypeActivite::class, 'typeActivite_id');
+    }
+
 }
