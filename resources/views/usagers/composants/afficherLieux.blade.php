@@ -20,7 +20,6 @@
                                 src="{{ asset($lieu->photoLieu) }}" alt="{{ $lieu->nomEtablissement }}">
                             <h5 class="flex items-center  mb-2 text-xl font-semibold uppercase p-2 text-center h-full">
                                 {{ $lieu->nomEtablissement }}
-                                {{ $lieu->photoLieu}}
                             </h5>
                         </div>
                         <div
