@@ -122,6 +122,20 @@ document.addEventListener("DOMContentLoaded", function() {
                         carteVoirDautres.classList.remove("opacity-0");
                     }, 300);
                 }
+                if (conteneurCarte.children.length === 1) {
+                    conteneurCarte.classList.remove("grid-cols-2", "xl:grid-cols-5");
+                    conteneurCarte.classList.add("grid-cols-1");
+                    const derniereCard = conteneurCarte.children[0];
+                    derniereCard.classList.remove("w-full", "max-h-48");
+                    derniereCard.classList.add("w-64", "h-64", "mx-auto");
+                    const img = derniereCard.querySelector("img");
+              
+                      img.classList.remove("h-52");
+                      img.classList.add("h-32");
+                    
+                }
+                
+                
              
                 sectionCacher.classList.remove("hidden", "opacity-0");
                 setTimeout(function() {
