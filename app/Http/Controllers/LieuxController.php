@@ -6,6 +6,7 @@ use App\Models\Lieu;
 use App\Models\Quartier;
 use Illuminate\Http\Request;
 use App\Http\Requests\LieuRequest;
+use App\Http\Requests\LieuModifierRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -43,20 +44,20 @@ class LieuxController extends Controller
             //TODO Trouver comment stocker les images
             if ($request->hasFile('photoLieu')) {
                 $file = $request->file('photoLieu');
-            
+
                 if ($file->isValid()) {
-                    $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME); 
-                    $extension = $file->getClientOriginalExtension(); 
-                    $fileName = time() . '_' . Str::slug($originalName) . '.' . $extension; 
-            
+                    $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $extension = $file->getClientOriginalExtension();
+                    $fileName = time() . '_' . Str::slug($originalName) . '.' . $extension;
+
                     $file->move(public_path('Images/lieux'), $fileName);
-            
-                    $lieu->photoLieu = 'Images/lieux/' . $fileName; 
+
+                    $lieu->photoLieu = 'Images/lieux/' . $fileName;
                 }
             } else {
                 $lieu->photoLieu = 'Images/lieux/image_defaut.png';
             }
-        
+
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
             $lieu->actif = true;
@@ -79,72 +80,74 @@ class LieuxController extends Controller
      */
     public function show(string $id)
     {
-        //$lieu = Lieu::all();
         $lieuActuel = Lieu::findOrFail($id);
-
-
         return view('zoomLieu', compact('lieuActuel'));
     }
 
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function ObtenirUnLieu(Request $request)
     {
-        //
-    }
+        $lieuId = $request->query('lieu_id'); 
 
-    public function ObtenirLieu(Request $request)
-    {
-        $lieuId = $request->query('lieu_id'); // Récupère le paramètre `lieu_id`
-    
         if (!$lieuId) {
-            return response()->json([], 400); // Si `lieu_id` est manquant, retourne une erreur
+            return response()->json([], 400); 
         }
-    
-        $lieu = Lieu::find($lieuId); // Recherche le lieu par son ID
-    
+
+        $lieu = Lieu::find($lieuId); 
+
         if (!$lieu) {
-            return response()->json(['error' => 'Lieu non trouvé'], 404); // Lieu non trouvé
+            return response()->json(['error' => 'Lieu non trouvé'], 404); 
         }
-    
-        return response()->json($lieu); // Retourne le lieu trouvé en JSON
+
+        return response()->json($lieu); 
     }
-    
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function ModifierLieu(LieuRequest $request, string $id)
-{
-    $lieu = Lieu::findOrFail($id);
-
-    try {
-        $lieu->rue = $request->rue ?? $lieu->rue;
-        $lieu->noCivic = $request->noCivic ?? $lieu->noCivic;
-        $lieu->codePostal = $request->codePostal ?? $lieu->codePostal;
-        $lieu->nomEtablissement = $request->nomEtablissement ?? $lieu->nomEtablissement;
-        $lieu->photoLieu = $request->photoLieu ?? $lieu->photoLieu;
-        $lieu->siteWeb = $request->siteWeb ?? $lieu->siteWeb;
-        $lieu->numeroTelephone = $request->numeroTelephone ?? $lieu->numeroTelephone;
-        $lieu->description = $request->description ?? $lieu->description;
-        $lieu->quartier_id = $request->selectQuartierLieu ?? $lieu->quartier_id;
-        $lieu->typeLieu_id = $request->selectTypeLieu ?? $lieu->typeLieu_id;
-        $lieu->proprietaire_id = Auth::id();
-        $lieu->save();
-
-        session()->flash('formulaireValide', 'true');
-        return redirect()->route('usagerLieux.afficher');
-
-    } catch (\Exception $e) {
-        Log::error("Erreur lors de la modification d'un lieu: " . $e->getMessage());
-        return redirect()->route('usagerLieux.afficher');
-    }
-}
-
+    public function ModifierUnLieu(LieuModifierRequest $request, string $id)
+    {
+        $lieu = Lieu::findOrFail($id);
+        Log::debug($request);
+        Log::debug($lieu);
+        try {
+            $lieu->rue = $request->rueModifie;
+            $lieu->noCivic = $request->noCivicModifie;
+            $lieu->codePostal = $request->codePostalModifie;
+            $lieu->nomEtablissement = $request->nomEtablissementModifie;
+             //TODO Trouver comment stocker les images
+            if ($request->hasFile('photoLieuModifie')) {
+                $file = $request->file('photoLieuModifie');
     
+                if ($file->isValid()) {
+                    if ($lieu->photoLieu && $lieu->photoLieu !== 'Images/lieux/image_defaut.png' && file_exists(public_path($lieu->photoLieu))) {
+                        unlink(public_path($lieu->photoLieu));
+                    }
+    
+                    $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $extension = $file->getClientOriginalExtension();
+                    $fileName = time() . '_' . Str::slug($originalName) . '.' . $extension;
+    
+                    $file->move(public_path('Images/lieux'), $fileName);
+    
+                    $lieu->photoLieu = 'Images/lieux/' . $fileName;
+                }
+            }
+            $lieu->siteWeb = $request->siteWebModifie;
+            $lieu->numeroTelephone = $request->numeroTelephoneModifie;
+            $lieu->description = $request->descriptionModifie;
+            $lieu->quartier_id = $request->selectQuartierLieuModifie;
+            $lieu->typeLieu_id = $request->selectTypeLieuModifie;
+           $lieu->save();
+
+            session()->flash('formulaireModifierValide', 'true');
+            return redirect()->route('usagerLieux.afficher');
+        } catch (\Exception $e) {
+            Log::error("Erreur lors de la modification d'un lieu: " . $e->getMessage());
+            return redirect()->route('usagerLieux.afficher');
+        }
+    }
+
 
     /**
      * Remove the specified resource from storage.
