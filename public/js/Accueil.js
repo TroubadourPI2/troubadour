@@ -30,7 +30,7 @@ function CreerCarte(lieu) {
     
 
     const descriptionContainer = document.createElement("div");
-    descriptionContainer.className = "w-full flex";
+    descriptionContainer.className = "w-full flex ";
     const description = document.createElement("span");
     description.textContent = lieu.description || "Insérer une description";
     description.className = "text-black font-barlow text-sm text-center w-full overflow-hidden truncate";
@@ -123,8 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }, 300);
                 }
                 if (conteneurCarte.children.length === 1) {
-                    conteneurCarte.classList.remove("grid-cols-2", "xl:grid-cols-5");
-                    conteneurCarte.classList.add("grid-cols-1");
+                    conteneurCarte.classList.remove("md:grid-cols-2", "xl:grid-cols-5");
                     const derniereCard = conteneurCarte.children[0];
                     derniereCard.classList.remove("w-full", "max-h-48");
                     derniereCard.classList.add("w-64", "h-64", "mx-auto");
