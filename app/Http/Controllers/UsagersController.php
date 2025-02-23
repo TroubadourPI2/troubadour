@@ -35,7 +35,7 @@ class UsagersController extends Controller
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
-   
+ 
         return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu','activites'));
     }
 

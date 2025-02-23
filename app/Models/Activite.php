@@ -28,8 +28,20 @@ class Activite extends Model
     }
     public function photos()
     {
-        return $this->hasMany(Photo::class, 'activite_id');
+        return $this->hasMany(Photo::class, 'activite_id')->orderBy('position');
     }
+    public function getPhotosJsonAttribute()
+    {
+    return $this->photos
+        ->pluck('chemin')
+        ->map(function($chemin) {
+            return asset($chemin);
+        })
+        ->values()
+        ->toJson();
+    }
+
+    
     public function typeActivite()
     {
     return $this->belongsTo(TypeActivite::class, 'typeActivite_id');
