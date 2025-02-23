@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Usager;
 use App\Models\Lieu;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Ville;
+use App\Models\Quartier;
+use App\Models\TypeLieu;
 use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
 {
- 
     public function Connexion(Request $request)
     {
         $credentials = [
@@ -26,12 +28,25 @@ class UsagersController extends Controller
         return response()->json(['success' => false]);
     }
 
-    public function ObtenirLieuxUsager(){
-        //TODO Changer la fonction pour variable selon id du responsable connecté
-        $lieuxUsager = Lieu::where('proprietaire_id', 1)->get();
-
-        return View('usagers.afficher', compact('lieuxUsager'));
+    public function ObtenirDonneesCompte(){
+        $usagerId = Auth::id();
+        $lieuxUsager = Lieu::where('proprietaire_id', $usagerId)->get();
+        $villes = Ville::all();
+        $typesLieu = TypeLieu::all();
+   
+        return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu'));
     }
+
+   public function ObtenirQuartiersParVille(Request $request)
+    {
+        $villeId = $request->ville_id;
+        if (!$villeId) 
+            return response()->json([], 400); 
+
+        $quartiers = Quartier::where('ville_id', $villeId)->get();
+        return response()->json($quartiers);
+    }
+
 
     /**
      * Display a listing of the resource.

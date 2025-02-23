@@ -1,5 +1,3 @@
-
-<div id="afficherLieux">
 <button
     class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-36 w-[80px] text-c1 font-semibold my-3">
     <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add" data-inline="false"></span>
@@ -38,13 +36,13 @@
                                         @endif
                                     </span>
                                     <span>{{ $lieu->pays()?->nom }}</span>
-                                    <span>{{ $lieu->quartier->nom ?? 'Quartier inconnu' }}</span>
+                                    <span>{{ $lieu->quartier->nom }}</span>
                                     <span>{{ $lieu->typeLieu->nom }}</span>
                                     @if ($lieu->region())
                                         <span>{{ $lieu->region()->nom }}</span>
                                     @endif
                                     <span>{{ $lieu->siteWeb }}</span>
-                                    <span>{{ $lieu->numeroTelephone }} À formater?</span>
+                                    <span>{{ $lieu->numeroTelephone }}</span>
                                 </div>
                             </div>
                             <div class="flex justify-end space-x-3 mt-3">
@@ -80,13 +78,13 @@
                                 @endif
                             </span>
                             <span>{{ $lieu->pays()?->nom }}</span>
-                            <span>{{ $lieu->quartier->nom ?? 'Quartier inconnu' }}</span>
+                            <span>{{ $lieu->quartier->nom }}</span>
                             <span>{{ $lieu->typeLieu->nom }}</span>
                             @if ($lieu->region())
                                 <span>{{ $lieu->region()->nom }}</span>
                             @endif
                             <span>{{ $lieu->siteWeb }}</span>
-                            <span>{{ $lieu->numeroTelephone }} À formater?</span>
+                            <span>{{ $lieu->numeroTelephone }} </span>
                         </div>
                     </div>
                     <div class="flex justify-end space-x-3 mt-auto">
