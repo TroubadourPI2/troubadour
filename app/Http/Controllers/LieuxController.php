@@ -96,34 +96,55 @@ class LieuxController extends Controller
         //
     }
 
+    public function ObtenirLieu(Request $request)
+    {
+        $lieuId = $request->query('lieu_id'); // Récupère le paramètre `lieu_id`
+    
+        if (!$lieuId) {
+            return response()->json([], 400); // Si `lieu_id` est manquant, retourne une erreur
+        }
+    
+        $lieu = Lieu::find($lieuId); // Recherche le lieu par son ID
+    
+        if (!$lieu) {
+            return response()->json(['error' => 'Lieu non trouvé'], 404); // Lieu non trouvé
+        }
+    
+        return response()->json($lieu); // Retourne le lieu trouvé en JSON
+    }
+    
+
     /**
      * Update the specified resource in storage.
      */
-    public function ModificationUnLieu(LieuRequest $request, string $id)
-    {
-        $lieu = Lieu::where('id', $id)->firstorFail();
-        try {
-            $lieu->rue = $request->rue;
-            $lieu->noCivic = $request->noCivic;
-            $lieu->codePostal = $request->codePostal;
-            $lieu->nomEtablissement = $request->nomEtablissement;
-            //TODO Trouver comment stocker les images
-            $lieu->photoLieu = 'Images/lieux/image_defaut.png';
-            $lieu->siteWeb = $request->siteWeb;
-            $lieu->numeroTelephone = $request->numeroTelephone;
-            $lieu->actif = true;
-            $lieu->description = $request->description;
-            $lieu->quartier_id = $request->selectQuartierLieu;
-            $lieu->typeLieu_id = $request->selectTypeLieu;
-            $lieu->proprietaire_id = Auth::id();
-            $lieu->save();
-            session()->flash('formulaireValide', 'true');
-            return redirect()->route('usagerLieux.afficher');
-        } catch (\Exception $e) {
-            Log::error("Erreur lors de l'ajout d'un lieu: " . $e->getMessage());
-            return redirect()->route('usagerLieux.afficher');
-        }
+    public function ModifierLieu(LieuRequest $request, string $id)
+{
+    $lieu = Lieu::findOrFail($id);
+
+    try {
+        $lieu->rue = $request->rue ?? $lieu->rue;
+        $lieu->noCivic = $request->noCivic ?? $lieu->noCivic;
+        $lieu->codePostal = $request->codePostal ?? $lieu->codePostal;
+        $lieu->nomEtablissement = $request->nomEtablissement ?? $lieu->nomEtablissement;
+        $lieu->photoLieu = $request->photoLieu ?? $lieu->photoLieu;
+        $lieu->siteWeb = $request->siteWeb ?? $lieu->siteWeb;
+        $lieu->numeroTelephone = $request->numeroTelephone ?? $lieu->numeroTelephone;
+        $lieu->description = $request->description ?? $lieu->description;
+        $lieu->quartier_id = $request->selectQuartierLieu ?? $lieu->quartier_id;
+        $lieu->typeLieu_id = $request->selectTypeLieu ?? $lieu->typeLieu_id;
+        $lieu->proprietaire_id = Auth::id();
+        $lieu->save();
+
+        session()->flash('formulaireValide', 'true');
+        return redirect()->route('usagerLieux.afficher');
+
+    } catch (\Exception $e) {
+        Log::error("Erreur lors de la modification d'un lieu: " . $e->getMessage());
+        return redirect()->route('usagerLieux.afficher');
     }
+}
+
+    
 
     /**
      * Remove the specified resource from storage.

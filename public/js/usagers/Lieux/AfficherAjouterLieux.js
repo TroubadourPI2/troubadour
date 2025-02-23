@@ -17,7 +17,7 @@ function ObtenirElementsAjouterLieux() {
     boutonRetourAfficherLieux = document.getElementById("boutonRetourAfficherLieux");
     boutonAnnuler = document.getElementById("boutonAnnuler");
     ajouterLieu = document.getElementById("ajouterLieu");
-    afficherLieux = document.getElementById("afficherLieux");
+    afficherLieux = document.getElementById("lieux");
     selectQuartier = document.getElementById("selectQuartierLieu");
     selectVilleLieu = document.getElementById("selectVilleLieu");
 }

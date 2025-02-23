@@ -27,6 +27,7 @@ function ObtenirElementsAjouterLieux() {
     modifierLieu = document.getElementById("modifierLieu");
     selectQuartier = document.getElementById("selectQuartierLieu");
     selectVilleLieu = document.getElementById("selectVilleLieu");
+    console.log(ajouterLieu)
 }
 
 function AjouterLieuxListeners() {
@@ -34,10 +35,23 @@ function AjouterLieuxListeners() {
     boutonAnnuler?.addEventListener("click", () => toggleSection(afficherLieux, ajouterLieu));
     boutonRetourAfficherLieux?.addEventListener("click", () => toggleSection(afficherLieux, ajouterLieu));
     console.log(afficherLieux);
-    boutonsModifierMobile.forEach(bouton => bouton.addEventListener("click", () => toggleSection(modifierLieu, afficherLieux)));
-    boutonsModifierWeb.forEach(bouton => bouton.addEventListener("click", () => toggleSection(modifierLieu, afficherLieux)));
+    boutonsModifierMobile.forEach(bouton => {
+        bouton.addEventListener("click", () => {
+            const lieuId = bouton.getAttribute("data-lieu-id"); // Récupère l'id du lieu
+            ObtenirLieu(lieuId); // Appelle la fonction ObtenirLieu avec l'id du lieu
+            toggleSection(modifierLieu, afficherLieux); // Affiche le formulaire de modification
+        });
+    });
 
-    //selectVilleLieu.addEventListener("change", ActiverSelectQuartier);
+    boutonsModifierWeb.forEach(bouton => {
+        bouton.addEventListener("click", () => {
+            const lieuId = bouton.getAttribute("data-lieu-id"); // Récupère l'id du lieu
+            ObtenirLieu(lieuId); // Appelle la fonction ObtenirLieu avec l'id du lieu
+            toggleSection(modifierLieu, afficherLieux); // Affiche le formulaire de modification
+        });
+    });
+
+    selectVilleLieu.addEventListener("change", ActiverSelectQuartier);
 }
 
 function toggleSection(sectionAfficher, sectionCacher) {
@@ -102,4 +116,25 @@ function MettreAJourSelectQuartier(quartiers) {
     });
 
     selectQuartier.removeAttribute("disabled");
+}
+
+async function ObtenirLieu(lieuId){
+    try {
+        const response = await fetch(`/compte/obtenirLieu?lieu_id=${lieuId}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+
+        const lieu = await response.json();
+       console.log(lieu);
+
+    } catch (error) {
+        console.error(error);
+    }
 }

@@ -21,7 +21,6 @@
         </div>
         {{-- //TODO Importer les composants selon le menu choisi --}}
         <div id="compte" class="SectionMenu">COMPTE</div>
-
         <div id="lieux" class="SectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
         <div id="activites" class="SectionMenu hidden">ACTIVITÉS</div>
 
@@ -31,7 +30,7 @@
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}"></script>
-<script src="{{ asset('js/usagers/GestionAffichageSectionsLieux.js') }}"></script>
+<!-- <script src="{{ asset('js/usagers/GestionAffichageSectionsLieux.js') }}"></script> -->
 @if (session('formulaireValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
