@@ -16,10 +16,11 @@
                         class="carteLieuxMobile relative w-full min-h-[44vh] mb-4 rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
                         <div id="carteLieuxMobileDevant"
                             class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center [backface-visibility:hidden]">
-                            <img class="object-cover w-full h-72 md:h-auto md:w-48 rounded-t-lg"
+                            <img class="object-cover w-full h-full rounded-t-lg"
                                 src="{{ asset($lieu->photoLieu) }}" alt="{{ $lieu->nomEtablissement }}">
                             <h5 class="flex items-center  mb-2 text-xl font-semibold uppercase p-2 text-center h-full">
                                 {{ $lieu->nomEtablissement }}
+                                {{ $lieu->photoLieu}}
                             </h5>
                         </div>
                         <div
@@ -27,7 +28,7 @@
                             <div class="p-4 flex flex-col justify-between h-full">
                                 <div class="mb-2">
                                     <div class="uppercase underline text-lg font-semibold">Description</div>
-                                    <div>{{ $lieu->description ?? 'Aucune description' }}.</div>
+                                    <div class="truncate">{{ $lieu->description ?? 'Aucune description' }}.</div>
                                 </div>
                                 <div>
                                     <div class="uppercase underline text-lg font-semibold">Coordonnées</div>
@@ -62,7 +63,7 @@
                 </div>
                 <!-- Carte lieu pour web/tablette -->
                 <div
-                    class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-sm bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[575px]">
+                    class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-sm bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[575px] ">
                     <div class="w-full sm:w-1/2 rounded-l-lg h-full">
                         <img class="object-cover w-full h-full rounded-l-lg" src="{{ asset($lieu->photoLieu) }}"
                             alt="{{ $lieu->nomEtablissement }}">
@@ -71,7 +72,7 @@
                         <h5 class="text-xl sm:text-3xl font-semibold uppercase mb-2">{{ $lieu->nomEtablissement }}</h5>
                         <div>
                             <div class="uppercase underline text-2xl font-semibold">Description</div>
-                            <div class="text-xl">{{ $lieu->description ?? 'Aucune description' }}.</div>
+                            <div class="text-xl truncate">{{ $lieu->description ?? 'Aucune description' }}.</div>
                         </div>
                         <div>
                             <div class="uppercase underline font-semibold text-2xl">Coordonnées & Informations</div>
@@ -89,7 +90,7 @@
                                     <span>{{ $lieu->region()->nom }}</span>
                                 @endif
                                 <span>{{ $lieu->siteWeb }}</span>
-                                <span>{{ $lieu->numeroTelephone }} À formater?</span>
+                                <span>{{ $lieu->numeroTelephone }}</span>
                             </div>
                         </div>
                         <div class="flex justify-end space-x-3 mt-auto">

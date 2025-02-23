@@ -9,7 +9,7 @@
     <form class="mt-2 text-c1" action="{{ route('usagerLieux.ajouterLieu') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="font-barlow text-c1 font-semibold mb-3">
-            <h2 class="uppercase text-center text-xl sm:text-3xl">Formulaire : Ajouter un lieu</h2>
+            <h2 class="uppercase text-center text-xl sm:text-3xl">Ajouter un lieu</h2>
 
             <!-- Informations générales du lieu -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-3">
@@ -52,7 +52,7 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="photoLieu" class="block">Photo du lieu</label>
+                        <label for="photoLieu" class="block">Photo du lieu  (Ne doit pas dépasser 2mo)</label>
                         <input id="photoLieu" name="photoLieu" type="file"
                             class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('photoLieu'))
