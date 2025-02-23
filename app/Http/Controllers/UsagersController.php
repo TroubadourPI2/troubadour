@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Ville;
 use App\Models\Quartier;
 use App\Models\TypeLieu;
+use App\Models\Activite;
+use App\Models\TypeActivite;
 use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
@@ -29,12 +31,13 @@ class UsagersController extends Controller
     }
 
     public function ObtenirDonneesCompte(){
-        $usagerId = Auth::id();
-        $lieuxUsager = Lieu::where('proprietaire_id', $usagerId)->get();
+        $usager = Auth::user(); 
+        $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)->get();
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
-   
-        return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu'));
+        $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
+        $typesActivite = TypeActivite::all();
+        return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)

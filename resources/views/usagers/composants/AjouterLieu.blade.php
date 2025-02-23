@@ -52,7 +52,7 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="photoLieu" class="block">Photo du lieu  (Ne doit pas dépasser 2mo)</label>
+                        <label for="photoLieu" class="block">Photo du lieu (Ne doit pas dépasser 2mo)</label>
                         <input id="photoLieu" name="photoLieu" type="file"
                             class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('photoLieu'))
@@ -105,7 +105,8 @@
                         </select>
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectVilleLieu'))
                             <div class="text-c5 font-medium">
-                                {{ session('erreurAjouterLieu')->first('selectVilleLieu') }}</div>
+                                {{ session('erreurAjouterLieu')->first('selectVilleLieu') }}
+                            </div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
@@ -118,7 +119,8 @@
                         </select>
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectQuartierLieu'))
                             <div class="text-c5 font-medium">
-                                {{ session('erreurAjouterLieu')->first('selectQuartierLieu') }}</div>
+                                {{ session('erreurAjouterLieu')->first('selectQuartierLieu') }}
+                            </div>
                         @endif
                     </div>
 
@@ -137,7 +139,8 @@
                             value="{{ old('numeroTelephone') }}">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('numeroTelephone'))
                             <div class="text-c5 font-medium">
-                                {{ session('erreurAjouterLieu')->first('numeroTelephone') }}</div>
+                                {{ session('erreurAjouterLieu')->first('numeroTelephone') }}
+                            </div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
@@ -164,5 +167,6 @@
                     Ajouter
                 </button>
             </div>
+        </div>
     </form>
 </div>

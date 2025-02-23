@@ -16,8 +16,8 @@
                         class="carteLieuxMobile relative w-full min-h-[44vh] mb-4 rounded-lg shadow-lg transition-transform duration-500 [transform-style:preserve-3d]">
                         <div id="carteLieuxMobileDevant"
                             class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center [backface-visibility:hidden]">
-                            <img class="object-cover w-full h-72 rounded-t-lg"
-                                src="{{ asset($lieu->photoLieu) }}" alt="{{ $lieu->nomEtablissement }}">
+                            <img class="object-cover w-full h-72 rounded-t-lg" src="{{ asset($lieu->photoLieu) }}"
+                                alt="{{ $lieu->nomEtablissement }}">
                             <h5 class="flex items-center  mb-2 text-xl font-semibold uppercase p-2 text-center h-full">
                                 {{ $lieu->nomEtablissement }}
                             </h5>
