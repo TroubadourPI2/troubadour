@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             TypeActiviteSeeder::class,
             ActiviteSeeder::class,
             LieuActiviteSeeder::class,
+            PhotoSeeder::class,
         ]);
     }
 }
