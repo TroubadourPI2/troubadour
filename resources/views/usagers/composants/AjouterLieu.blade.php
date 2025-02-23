@@ -22,7 +22,7 @@
                             value="{{ old('nomEtablissement') }}">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('nomEtablissement'))
                         <span
-                            class="text-c5 font-medium">{{ session('erreurAjouterLieu')->first('nomEtablissement') }}</span>
+                            class="text-c5 font-medium erreur-message">{{ session('erreurAjouterLieu')->first('nomEtablissement') }}</span>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
@@ -39,7 +39,7 @@
                             @endforeach
                         </select>
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectTypeLieu'))
-                        <div class="text-c5 font-medium">{{ session('erreurAjouterLieu')->first('selectTypeLieu') }}
+                        <div class="text-c5 font-medium erreur-message">{{ session('erreurAjouterLieu')->first('selectTypeLieu') }}
                         </div>
                         @endif
                     </div>
@@ -47,7 +47,7 @@
                         <label for="description" class="block">Description</label>
                         <textarea rows="4" name="description" id="description" class="block w-full rounded-lg font-medium p-2">{{ old('description') }}</textarea>
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('description'))
-                        <div class="text-c5 font-medium">{{ session('erreurAjouterLieu')->first('description') }}
+                        <div class="text-c5 font-medium erreur-message">{{ session('erreurAjouterLieu')->first('description') }}
                         </div>
                         @endif
                     </div>
@@ -56,7 +56,7 @@
                         <input id="photoLieu" name="photoLieu" type="file"
                             class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('photoLieu'))
-                        <div class="text-c5 font-medium">{{ session('erreurAjouterLieu')->first('photoLieu') }}
+                        <div class="text-c5 font-medium erreur-message">{{ session('erreurAjouterLieu')->first('photoLieu') }}
                         </div>
                         @endif
                     </div>
@@ -72,7 +72,7 @@
                         <input type="text" name="noCivic" id="noCivic"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('noCivic') }}">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('noCivic'))
-                        <div class="text-c5 font-medium">{{ session('erreurAjouterLieu')->first('noCivic') }}</div>
+                        <div class="text-c5 font-medium erreur-message">{{ session('erreurAjouterLieu')->first('noCivic') }}</div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
@@ -80,7 +80,7 @@
                         <input type="text" name="rue" id="rue"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('rue') }}">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('rue'))
-                        <div class="text-c5 font-medium">{{ session('erreurAjouterLieu')->first('rue') }}</div>
+                        <div class="text-c5 font-medium erreur-message">{{ session('erreurAjouterLieu')->first('rue') }}</div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
@@ -88,7 +88,7 @@
                         <input type="text" name="codePostal" id="codePostal" placeholder="A1A 1A1"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('codePostal') }}">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('codePostal'))
-                        <div class="text-c5 font-medium">{{ session('erreurAjouterLieu')->first('codePostal') }}
+                        <div class="text-c5 font-medium erreur-message">{{ session('erreurAjouterLieu')->first('codePostal') }}
                         </div>
                         @endif
                     </div>
@@ -104,7 +104,7 @@
                             @endforeach
                         </select>
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectVilleLieu'))
-                        <div class="text-c5 font-medium">
+                        <div class="text-c5 font-medium erreur-message">
                             {{ session('erreurAjouterLieu')->first('selectVilleLieu') }}
                         </div>
                         @endif
@@ -118,7 +118,7 @@
                             <option value="">Sélectionner un quartier</option>
                         </select>
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectQuartierLieu'))
-                        <div class="text-c5 font-medium">
+                        <div class="text-c5 font-medium erreur-message">
                             {{ session('erreurAjouterLieu')->first('selectQuartierLieu') }}
                         </div>
                         @endif
@@ -138,7 +138,7 @@
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" placeholder="###-###-####"
                             value="{{ old('numeroTelephone') }}">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('numeroTelephone'))
-                        <div class="text-c5 font-medium">
+                        <div class="text-c5 font-medium erreur-message">
                             {{ session('erreurAjouterLieu')->first('numeroTelephone') }}
                         </div>
                         @endif
@@ -149,7 +149,7 @@
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium"
                             placeholder="https://www.monsite.com/" value="{{ old('siteWeb') }}">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('siteWeb'))
-                        <div class="text-c5 font-medium">{{ session('erreurAjouterLieu')->first('siteWeb') }}
+                        <div class="text-c5 font-medium erreur-message">{{ session('erreurAjouterLieu')->first('siteWeb') }}
                         </div>
                         @endif
                     </div>

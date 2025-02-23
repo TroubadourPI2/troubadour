@@ -66,3 +66,4 @@ function MettreAJourSelectQuartier(quartiers) {
 
     selectQuartier.removeAttribute("disabled");
 }
+
