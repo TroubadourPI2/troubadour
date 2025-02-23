@@ -1,123 +1,119 @@
-// const { document } = require("postcss");
+var selectQuartierMobile = document.getElementById('selectQuartierMobile');
+let btnRechercherMobile = document.getElementById('btnRechercherMobile');
+var selectVilleMobile = document.getElementById('selectVilleMobile');
+let btnRechercherPC = document.getElementById('btnRechercherPC');
+var selectQuartier = document.getElementById('selectQuartier');
+var selectVille = document.getElementById('selectVille');
 
-let selectVille;
-let selectQuartier;
-let selectQuartierMobile;
-let selectVilleMobile;
+let optionDefault = document.createElement('option');
+optionDefault.text = 'Choisissez un quartier';
+optionDefault.value = 'default';
 
-let btnRechercher = document.getElementById('btnRechercher');
+function ajusterEtatBoutonRecherche(page){
+    if (page === 'PC') {
+        btnRechercherPC.disabled = (
+            selectQuartier.value === 'default' ||
+            selectVille.value === 'default' ||
+            selectQuartier.value === 'aucunResultat' ||
+            selectVille.value === 'aucunResultat' ||
+            selectQuartier.value === ''
+        );
 
-function elementEstVisible(element) {
-    return element.classList.contains('hidden') ||
-           element.classList.contains('invisible') ||
-           element.classList.contains('opacity-0');
-  }
-
-function checkQuartier() {
-    if(selectQuartierMobile.value !== "default" && selectVilleMobile.value !== "default" && selectQuartierMobile.value !== "aucunResultat" && selectVilleMobile.value !== "aucunResultat" || selectQuartier.value !== "default" && selectVille.value !== "default" && selectQuartier.value !== "aucunResultat" && selectVille.value !== "aucunResultat")
-    {
-        btnRechercher.disabled = false;
-    } 
-    else 
-    {
-        btnRechercher.disabled = true;
+    } else if (page === 'Mobile') {
+        btnRechercherMobile.disabled = (
+            selectQuartierMobile.value === 'default' ||
+            selectVilleMobile.value === 'default' ||
+            selectQuartierMobile.value === 'aucunResultat' ||
+            selectVilleMobile.value === 'aucunResultat' ||
+            selectQuartierMobile.value === '');
     }
-    // else if (selectVilleMobile.style.display === "none") 
-    // {
-    //     if(selectQuartier.value !== "default" && selectVille.value !== "default" && selectQuartier.value !== "aucunResultat" && selectVille.value !== "aucunResultat")
-    //     {
-    //         btnRechercher.disabled = false;
-    //     }
-    //     else 
-    //     { 
-    //         btnRechercher.disabled = true;
-    //     }
-    // }
 }
 
-
-let optionDefault;
-
-document.addEventListener('DOMContentLoaded', function () {
-    console.log("DOM loaded");
-    selectVille             = document.getElementById('selectVille');
-    selectQuartier          = document.getElementById('selectQuartier');
-    selectQuartierMobile    = document.getElementById('selectQuartierMobile');
-    selectVilleMobile       = document.getElementById('selectVilleMobile');
-    checkQuartier();
+selectQuartier.addEventListener('change', function () {
+    ajusterEtatBoutonRecherche('PC');
+});
+selectQuartierMobile.addEventListener('change', function () {
+    ajusterEtatBoutonRecherche('Mobile');
 });
 
 function setQuartiersPC() {
     let idVille = selectVille.value;
-    let optionsExistants = selectQuartier.options;
 
-    deleteAll(selectQuartier);
+    ajusterEtatBoutonRecherche('PC');
+    deleteAll('PC');
 
-    if (idVille !== "default") {
+    if (idVille !== 'default') {
+        ajusterEtatBoutonRecherche('PC');
 
-        checkQuartier();
-
-        selectQuartier.disabled = false;
-        console.log("idVille: ", idVille);
-
-        axios.get(`/quartiers?villeId=${idVille}`)
-            .then(response => {
+        axios
+            .get(`/quartiers?villeId=${idVille}`)
+            .then((response) => {
                 let quartiers = response.data;
-                console.log("quartiers : ", quartiers);
-
                 let listeQuartiers = quartiers.quartiers;
-                console.log("listeQuartiers : ", listeQuartiers);
 
-                listeQuartiers.forEach(quartier => {
-                    let option = document.createElement("option");
+                listeQuartiers.forEach((quartier) => {
+                    let option = document.createElement('option');
                     option.text = quartier.nom;
                     option.value = quartier.id;
                     selectQuartier.add(option);
                 });
             })
-            .catch(error => console.error('Error fetching quartiers:', error));
+            .catch((error) =>
+                console.error('Error fetching quartiers:', error)
+            );
+
+        
+        ajusterEtatBoutonRecherche('PC');
     }
 
-    checkQuartier();
+    ajusterEtatBoutonRecherche('PC');
 }
 
-function deleteAll(element) {
-    console.log("deleteAll");
-    console.log("selectQuartier options : ", selectQuartier.options);
-    if(selectQuartier.options !== undefined)
-    {
-        while(selectQuartier.options.length > 0){
+function deleteAll(page) {
+    if (page === 'PC') {
+        while (selectQuartier.options.length > 0) {
             selectQuartier.options.remove(0);
         }
-    }
 
+        selectQuartier.add(optionDefault);
+    } else if (page === 'Mobile') {
+        while (selectQuartierMobile.options.length > 0) {
+            selectQuartierMobile.options.remove(0);
+        }
+
+        selectQuartierMobile.add(optionDefault);
+    }
 }
 
-function setQuartiersMobile(){
-    let idVille = selectQuartierMobile.value;
-    let optionsExistants = selectQuartierMobile.options;
+function setQuartiersMobile() {
+    let idVille = selectVilleMobile.value;
 
-    deleteAllMobile(selectQuartierMobile);
+    ajusterEtatBoutonRecherche('Mobile');
+    deleteAll('Mobile');
 
-    if (idVille !== "default") {
-        axios.get(`/quartiers?villeId=${idVille}`)
-            .then(response => {
-                let quartiers = response.data.quartiers;
+    if (idVille !== 'default') {
+        ajusterEtatBoutonRecherche('Mobile');
 
-                // let listeQuartiers = quartiers.quartiers;
+        axios
+            .get(`/quartiers?villeId=${idVille}`)
+            .then((response) => {
+                let quartiers = response.data;
+                let listeQuartiersMobile = quartiers.quartiers;
 
-                quartiers.forEach(quartier => {
-                    let option = document.createElement("option");
+                listeQuartiersMobile.forEach((quartier) => {
+                    let option = document.createElement('option');
                     option.text = quartier.nom;
                     option.value = quartier.id;
                     selectQuartierMobile.add(option);
                 });
             })
-            .catch(error => console.error('Error fetching quartiers:', error));
-    }
-    else {
-        // selectQuartierMobile.add(optionDefault);
-    }
+            .catch((error) =>
+                console.error('Error fetching quartiers:', error)
+            );
 
-    checkQuartier();
+        ajusterEtatBoutonRecherche('Mobile');
+    }
+    ajusterEtatBoutonRecherche('Mobile');
 }
+
+

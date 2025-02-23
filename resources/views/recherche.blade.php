@@ -34,7 +34,7 @@
 
             <select
                 class="border enabled:border-c3 hidden lg:flex enabled:bg-c1 justify-center items-center h-full lg:h-8 w-1/2 lg:w-1/5 rounded-r-full font-barlow text-c3 text-center enabled:hover:bg-c2 enabled:hover:text-c1 text-xs md:text-md lg:text-lg enabled:hover:border hover:border-c1 disabled:bg-c2 disabled:text-c1 disabled:border-c1"
-                id="selectQuartier" name="quartier" required onchange="checkQuartier()">
+                id="selectQuartier" name="quartier" required>
                 @if(isset($quartiers))
                     @foreach($quartiers as $quartier2)
                         @if(isset($quartier) && $quartier == $quartier2->id)
@@ -52,7 +52,7 @@
                 class="lg:flex hidden w-4/5 h-8 bg-transparent text-c1 font-barlow text-md p-2 mx-1 text-center rounded-full focus:border focus:border-0.5 focus:border-c1 hover:bg-c2 hover:border hover:border-c1"
                 placeholder="{!! __('Que recherchez-vous ?') !!}" id="barreRecherche" name="txtRecherche" value="<?php if (isset($recherche)) { echo $recherche; } ?>">
 
-            <button type="submit" class="lg:flex lg:mr-2 hidden w-1/4 lg:w-1/6 h-8 justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c2  disabled:border disabled:border-c1" id="btnRechercher">
+            <button type="submit" class="lg:flex lg:mr-2 hidden w-1/4 lg:w-1/6 h-8 justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c2  disabled:border disabled:border-c1" id="btnRechercherPC" <?php if(!isset($quartiers)) echo "disabled"; ?>>
                 <span
                     class="lg:flex iconify size-6 text-c3"
                     data-icon="mdi:search" data-inline="false"></span>
@@ -102,7 +102,7 @@
                 class="w-4/5 h-full bg-transparent text-c1 font-barlow text-md p-2 mx-1 text-center rounded-full focus:border focus:border-0.5 focus:border-c1 hover:bg-c2 hover:border hover:border-c1"
                 placeholder="{!! __('Que recherchez-vous ?') !!}" id="barreRecherche2" name="txtRecherche" value="<?php if (isset($recherche)) { echo $recherche; } ?>">
             
-            <button type="submit" class="flex w-1/4 h-full justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c3  disabled:border disabled:border-c1" id="btnRechercher">
+            <button type="submit" class="flex w-1/4 h-full justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c3  disabled:border disabled:border-c1" id="btnRechercherMobile" <?php if(!isset($quartiers)) echo "disabled"; ?>>
                 <span
                     class="iconify size-6 text-c3"
                     data-icon="mdi:search" data-inline="false"></span>
