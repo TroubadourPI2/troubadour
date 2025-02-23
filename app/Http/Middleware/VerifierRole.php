@@ -16,14 +16,15 @@ class VerifierRole
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         $user = $request->user();
+        //dd($user->role->nom);
 
         if (!$user) {
           if (!$request->is('login')) {
-           //retourner vers la page de connexion
+            return redirect()->route('login');
           }
         } else {
           if (!in_array($user->role->nom, $roles)) {
-             //retourner vers la page de connexion
+            return redirect()->route('login');
           }
         }
         return $next($request);

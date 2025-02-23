@@ -125,4 +125,3 @@
 @endsection
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
-

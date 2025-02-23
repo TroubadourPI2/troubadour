@@ -108,7 +108,7 @@
 
     </header>
 
-    <main class=" flex flex-col w-full flex-grow  bg-c2 font-barlow lg:px-16 px-10">
+    <main class=" flex flex-col w-full flex-grow bg-c2 font-barlow lg:px-16 px-10">
         @yield('contenu')
 
     </main>
@@ -196,4 +196,3 @@
 </script>
 
 </html>
-
