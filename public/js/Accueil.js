@@ -1,22 +1,25 @@
-
 function CreerCarte(lieu) {
     const carte = document.createElement("div");
-    carte.className = "transition-all duration-700 w-40 h-64 sm:w-48 sm:h-72  bg-c3 rounded-lg flex flex-col justify-between items-center hover:border hover:border-c1 hover:scale-110  cursor-pointer carteLieu opacity-0 p-4";
+
+    carte.className = "transition-all duration-700 w-40 h-64 bg-c3 rounded-lg flex flex-col justify-between items-center hover:border hover:border-c1 hover:scale-110 cursor-pointer carteLieu opacity-0 p-4";
 
     const image = document.createElement("img");
-    image.src = lieu.photoLieu || "images/Logos/logoC1.svg";
+    image.src = lieu.photoLieu || "images/Lieux/image_defaut.png";
     image.alt = lieu.nomEtablissement || "Image du lieu";
-    image.className = "rounded-md w-full h-64 sm:h-40 ";
+
+    image.className = "rounded-md w-full h-52  object-cover";
     carte.appendChild(image);
 
     const titre = document.createElement("span");
     titre.textContent = lieu.nomEtablissement || "Nom inconnu";
-    titre.className = "text-c1 font-barlow text-lg sm:text-xl text-center font-semibold truncate w-full";
+
+    titre.className = "text-c1 font-barlow text-lg text-center font-semibold w-24 truncate";
     carte.appendChild(titre);
 
     const description = document.createElement("span");
     description.textContent = lieu.description || "Insérer une description";
-    description.className = "text-black font-barlow text-sm text-center w-full h-12 overflow-hidden line-clamp-2";
+ 
+    description.className = "text-black font-barlow text-sm text-center w-20 h-12 overflow-hidden truncate";
     carte.appendChild(description);
 
     carte.addEventListener("click", function() {
@@ -25,6 +28,7 @@ function CreerCarte(lieu) {
 
     return carte;
 }
+
 
 function CreerCarteDerniere(type) {
     const carte = document.createElement("div");
