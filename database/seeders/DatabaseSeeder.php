@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
             UsagerSeeder::class,
             TypeLieuSeeder::class,
             LieuSeeder::class,
+            TypeActiviteSeeder::class,
+            ActiviteSeeder::class,
+            LieuActiviteSeeder::class,
+            PhotoSeeder::class,
         ]);
     }
 }
