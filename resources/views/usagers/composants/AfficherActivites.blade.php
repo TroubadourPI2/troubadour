@@ -8,8 +8,21 @@
                     data-inline="false"></span>
                 AJOUTER
             </button>
+            <select id="filtreLieu" class="rounded-full border-2 w-1/2 border-c1 p-2">
+                <option value="">Tous les lieux</option>
+                @foreach ($lieuxUsager as $lieu)
+                    <option value="{{ $lieu->id }}">{{ $lieu->nomEtablissement }}</option>
+                @endforeach
+            </select>
+            <select id="filtreType" class="rounded-full border-2 w-1/2 border-c1 p-2">
+                <option value="">Tous les types d'activités</option>
+                @foreach ($typesActivite as $type)
+                    <option value="{{ $type->id }}">{{ $type->nom }}</option>
+                @endforeach
+            </select>
+            
         </div>
-
+       
         <div class="flex w-full justify-end">
             <input type="text" id="recherche" placeholder="Rechercher par nom"
                 class="w-full rounded-full border-2 border-c1 p-2" />
@@ -20,6 +33,8 @@
         @foreach ($activites as $activite)
             <div class="activite-carte w-full h-96 flex bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden scale-90 ease-in-out duration-300 border hover:border-2 hover:scale-100 hover:border-c1"
                 data-nom="{{ strtolower($activite->nom) }}"
+                 data-lieu-ids="{{ $activite->lieu_ids }}"
+                 data-type="{{ $activite->typeActivite->id }}"
                 x-data='{
                      current: 0,
                      images: {!! $activite->photos_json !!},
@@ -51,6 +66,9 @@
                 </div>
             </div>
         @endforeach
+    </div>
+    <div id="pasResultat" class="hidden text-center text-lg text-c1 mt-4">
+        Aucune activité n'a été trouvée pour ce lieu.
     </div>
 </div>
 

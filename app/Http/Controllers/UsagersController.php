@@ -10,6 +10,7 @@ use App\Models\Ville;
 use App\Models\Quartier;
 use App\Models\TypeLieu;
 use App\Models\Activite;
+use App\Models\TypeActivite;
 use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
@@ -35,8 +36,8 @@ class UsagersController extends Controller
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
-   
-        return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu','activites'));
+        $typesActivite = TypeActivite::all();
+        return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)

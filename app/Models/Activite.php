@@ -19,7 +19,7 @@ class Activite extends Model
     ];
 
     public function lieux() {
-        return $this->belongsToMany(Lieu::class);
+        return $this->belongsToMany(Lieu::class, 'LieuActivites', 'activite_id', 'lieu_id');
     }
 
     public function favoris()
@@ -41,7 +41,12 @@ class Activite extends Model
         ->toJson();
     }
 
+    public function getLieuIdsAttribute()
+    {
+        return $this->lieux->pluck('id')->implode(',');
+    }
     
+
     public function typeActivite()
     {
     return $this->belongsTo(TypeActivite::class, 'typeActivite_id');
