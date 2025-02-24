@@ -39,12 +39,6 @@ class UsagersController extends Controller
     }
     
 
-    public function ObtenirLieuxUsager(){
-        //TODO Changer la fonction pour variable selon id du responsable connecté
-        $lieuxUsager = Lieu::where('proprietaireId', 1)->get();
-
-        return View('usagers.afficher', compact('lieuxUsager'));
-    }
 
     public function ObtenirDonneesCompte(){
         $usager = Auth::user(); 
