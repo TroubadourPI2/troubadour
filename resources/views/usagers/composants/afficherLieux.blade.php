@@ -13,12 +13,12 @@
                 <!-- Carte lieu pour mobile -->
                 <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg">
                     <div
-                        class="carteLieuxMobile relative w-full min-h-[44vh] mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl">
+                        class="carteLieuxMobile relative w-full min-h-[50vh] mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl">
                         <div
                             class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden]">
                             <img class="object-cover w-full h-72 rounded-t-lg" src="{{ asset($lieu->photoLieu) }}"
                                 alt="{{ $lieu->nomEtablissement }}">
-                            <h5 class="text-xl font-bold uppercase p-2 text-center flex items-center ">
+                            <h5 class="text-xl font-bold uppercase p-2 text-center flex items-center">
                                 {{ $lieu->nomEtablissement }}</h5>
                         </div>
                         <div
@@ -65,7 +65,7 @@
                 </div>
                 <!-- Carte lieu pour web/tablette -->
                 <div
-                    class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-md bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[48vh] hover:shadow-2xl transition">
+                    class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-md bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[65vh] hover:shadow-2xl transition">
                     <div class="w-full sm:w-1/2 rounded-l-lg h-full p-4">
                         <img class="object-cover w-full h-full rounded" src="{{ asset($lieu->photoLieu) }}"
                             alt="{{ $lieu->nomEtablissement }}">
