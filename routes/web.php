@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsagersController;
 use App\Http\Controllers\GeolocalisationController;
 use App\Http\Controllers\LieuxController;
+use App\Http\Controllers\ActivitesController;
 use App\Http\Middleware\VerifierRole;
 
 Route::get('/', function () {
@@ -23,6 +24,8 @@ Route::post('/Deconnexion',
 
 Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom');
 
+Route::get('/activite/zoom/{id}', [ActivitesController::class, 'show'])->name('Activite.zoom');
+
 Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);
 
 
@@ -37,4 +40,8 @@ Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu
 
 
 
+Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
 
+Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
+
+Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
