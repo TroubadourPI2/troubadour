@@ -13,16 +13,6 @@ let carteLieuxMobile;
 document.addEventListener('DOMContentLoaded', function () {
     ObtenirElementsLieux();
     AjouterGestionAffichageListeners();
-    if (localStorage.getItem('afficherLieuxVisible') === 'true') {
-        // Retirer la classe 'hidden' si nécessaire
-        const afficherLieuxSection = document.getElementById('afficherLieux');
-        if (afficherLieuxSection) {
-            afficherLieuxSection.classList.remove('hidden');
-        }
-
-        // Supprimer l'indicateur du localStorage pour éviter que la classe ne soit toujours retirée
-        localStorage.removeItem('afficherLieuxVisible');
-    }
 });
 
 function ObtenirElementsLieux() {

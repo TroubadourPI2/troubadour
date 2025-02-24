@@ -1,11 +1,51 @@
 let boutonsSupprimer;
 let success;
+
 document.addEventListener("DOMContentLoaded", function () {
     ObtenirElementsSupprimer();
     AjouterSupprimerListeners();
-   console.log(localStorage.getItem('afficherLieuxVisible'));
-   
+
+    const toastMessage = localStorage.getItem('toastMessage');
+    if (toastMessage) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+
+        Toast.fire({
+            icon: "success",
+            title: toastMessage
+        });
+
+        localStorage.removeItem('toastMessage');
+    }
+
+    if (localStorage.getItem('afficherLieuxVisible') === 'true') {
+        console.log(localStorage.getItem('afficherLieuxVisible'));
+        document.getElementById("compte").classList.add("hidden");
+        const boutonCompte = document.getElementById("boutonCompte");
+        boutonCompte.classList.remove("bg-c1", "text-c3");
+        boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+        const boutonLieu = document.getElementById("boutonLieu");
+        boutonLieu.classList.add("bg-c1", "text-c3");
+        boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+        const lieux = document.getElementById("lieux");
+        lieux.classList.remove("hidden");
+
+        document.getElementById("afficherLieux").classList.remove("hidden");
+        localStorage.removeItem('afficherLieuxVisible');
+    }
 });
+
 
 function ObtenirElementsSupprimer() {
     boutonsSupprimer = document.querySelectorAll(".boutonSupprimer");
@@ -14,7 +54,7 @@ function ObtenirElementsSupprimer() {
 
 function AjouterSupprimerListeners() {
 
-    
+
     boutonsSupprimer.forEach((bouton) => {
         bouton.addEventListener("click", () => {
             const lieuId = bouton.getAttribute("data-lieuId");
@@ -57,18 +97,14 @@ function AjouterSupprimerListeners() {
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                Toast.fire({
-                                    icon: "success",
-                                    title: data.message
-                                });
+                                localStorage.setItem('toastMessage', data.message);
                                 localStorage.setItem('afficherLieuxVisible', 'true');
                                 location.reload();
-
-
                             } else {
                                 Swal.fire("Erreur", data.message, "error");
                             }
                         })
+
                         .catch(error => {
                             console.error("Erreur :", error);
                             Swal.fire("Erreur", "Une erreur est survenue. Veuillez réessayer.", "error");
