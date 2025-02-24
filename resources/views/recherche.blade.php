@@ -192,7 +192,6 @@
     </div>
 
     <script src="{{ asset('js/filtreRecherche.js') }}"></script>
-    <!-- <script src="{{ asset('js/JSrechercheTexte.js') }}"></script> -->
     <script src="{{ asset('js/modalFiltresMobile.js') }}"></script>
 
 @endsection
