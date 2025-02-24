@@ -91,7 +91,7 @@ class LieuRequest extends FormRequest
                     ->withInput()
             );
         }
-        elseif ($nomRouteActuelle === 'usagerLieux.ajouterLieu') {
+        elseif ($nomRouteActuelle === 'usagerLieux.modifierLieu') {
             session()->put('erreurModifierLieu', $validator->errors());
 
             throw new HttpResponseException(
