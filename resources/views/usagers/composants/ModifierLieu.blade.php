@@ -48,8 +48,7 @@
                     </div>
                     <div class="sm:col-span-2">
                         <label for="descriptionModifie" class="block">Description</label>
-                        <textarea rows="4" name="description" id="descriptionModifie"
-                            class="block w-full rounded-lg font-medium p-2">{{ old('description') }}</textarea>
+                        <textarea rows="4" name="description" id="descriptionModifie" class="block w-full rounded-lg font-medium p-2">{{ old('description') }}</textarea>
                         @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('description'))
                             <div class="text-c5 font-medium erreur-message">
                                 {{ session('erreurModifierLieu')->first('description') }}
@@ -95,8 +94,7 @@
                         <label for="codePostalModifie" class="block">Code postal <span
                                 class="text-c5 ml-2">*</span></label>
                         <input type="text" name="codePostal" id="codePostalModifie" placeholder="A1A 1A1"
-                            class="block w-full rounded-lg p-1 sm:p-2 font-medium"
-                            value="{{ old('codePostal') }}">
+                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('codePostal') }}">
                         @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('codePostal'))
                             <div class="text-c5 font-medium erreur-message">
                                 {{ session('erreurModifierLieu')->first('codePostal') }}
@@ -168,7 +166,6 @@
                 </div>
             </div>
 
-            <!-- Boutons d'action -->
             <div class="flex flex-row justify-center mt-4">
                 <button type="button" id="boutonAnnulerModifier"
                     class="text-c1 py-2 px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 mr-2 hover:bg-c3 transition uppercase">

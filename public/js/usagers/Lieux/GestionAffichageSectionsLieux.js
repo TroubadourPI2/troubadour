@@ -43,9 +43,9 @@ function AjouterGestionAffichageListeners() {
         ChangerSection(afficherLieux, ajouterLieu);
     });
 
-    boutonRetourAfficherLieux.addEventListener('click', () => {
+    boutonAnnulerModifier.addEventListener('click', () => {
         ReinitialiserFormulaire();
-        ChangerSection(afficherLieux, ajouterLieu);
+        ChangerSection(afficherLieux, modifierLieu);
     });
 
     boutonRetourLieux.addEventListener('click', () => {
