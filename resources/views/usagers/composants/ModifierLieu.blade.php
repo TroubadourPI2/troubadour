@@ -19,50 +19,50 @@
                     <div class="sm:col-span-1">
                         <label for="nomEtablissementModifie" class="block">Nom <span
                                 class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="nomEtablissementModifie" id="nomEtablissementModifie"
+                        <input type="text" name="nomEtablissement" id="nomEtablissementModifie"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium"
-                            value="{{ old('nomEtablissementModifie') }}">
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('nomEtablissementModifie'))
+                            value="{{ old('nomEtablissement') }}">
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('nomEtablissement'))
                             <span
-                                class="text-c5 font-medium erreur-message">{{ session('erreurModifierLieu')->first('nomEtablissementModifie') }}</span>
+                                class="text-c5 font-medium erreur-message">{{ session('erreurModifierLieu')->first('nomEtablissement') }}</span>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
                         <label for="selectTypeLieuModifie" class="block">Type de lieu <span
                                 class="text-c5 ml-2">*</span></label>
-                        <select name="selectTypeLieuModifie" id="selectTypeLieuModifie"
+                        <select name="selectTypeLieu" id="selectTypeLieuModifie"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">Sélectionner un type</option>
                             @foreach ($typesLieu as $type)
                                 <option value="{{ $type->id }}"
-                                    {{ old('selectTypeLieuModifie', $lieu->type_lieu_id) == $type->id ? 'selected' : '' }}>
+                                    {{ old('selectTypeLieu', $lieu->type_lieu_id) == $type->id ? 'selected' : '' }}>
                                     {{ $type->nom }}
                                 </option>
                             @endforeach
                         </select>
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('selectTypeLieuModifie'))
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('selectTypeLieu'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('selectTypeLieuModifie') }}
+                                {{ session('erreurModifierLieu')->first('selectTypeLieu') }}
                             </div>
                         @endif
                     </div>
                     <div class="sm:col-span-2">
                         <label for="descriptionModifie" class="block">Description</label>
-                        <textarea rows="4" name="descriptionModifie" id="descriptionModifie"
-                            class="block w-full rounded-lg font-medium p-2">{{ old('descriptionModifie') }}</textarea>
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('descriptionModifie'))
+                        <textarea rows="4" name="description" id="descriptionModifie"
+                            class="block w-full rounded-lg font-medium p-2">{{ old('description') }}</textarea>
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('description'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('descriptionModifie') }}
+                                {{ session('erreurModifierLieu')->first('description') }}
                             </div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
                         <label for="photoLieuModifie" class="block">Photo du lieu (Ne doit pas dépasser 2mo)</label>
-                        <input id="photoLieuModifie" name="photoLieuModifie" type="file"
+                        <input id="photoLieuModifie" name="photoLieu" type="file"
                             class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg">
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('photoLieuModifie'))
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('photoLieu'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('photoLieuModifie') }}
+                                {{ session('erreurModifierLieu')->first('photoLieu') }}
                             </div>
                         @endif
                     </div>
@@ -75,62 +75,62 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <div class="sm:col-span-1">
                         <label for="noCivic" class="block">Numéro civique <span class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="noCivicModifie" id="noCivicModifie"
-                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('noCivicModifie') }}">
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('noCivicModifie'))
+                        <input type="text" name="noCivic" id="noCivicModifie"
+                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('noCivic') }}">
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('noCivic'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('noCivicModifie') }}</div>
+                                {{ session('erreurModifierLieu')->first('noCivic') }}</div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
                         <label for="rueModifie" class="block">Rue <span class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="rueModifie" id="rueModifie"
-                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('rueModifie') }}">
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('rueModifie'))
+                        <input type="text" name="rue" id="rueModifie"
+                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('rue') }}">
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('rue'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('rueModifie') }}</div>
+                                {{ session('erreurModifierLieu')->first('rue') }}</div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
                         <label for="codePostalModifie" class="block">Code postal <span
                                 class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="codePostalModifie" id="codePostalModifie" placeholder="A1A 1A1"
+                        <input type="text" name="codePostal" id="codePostalModifie" placeholder="A1A 1A1"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium"
-                            value="{{ old('codePostalModifie') }}">
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('codePostalModifie'))
+                            value="{{ old('codePostal') }}">
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('codePostal'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('codePostalModifie') }}
+                                {{ session('erreurModifierLieu')->first('codePostal') }}
                             </div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
                         <label for="selectVilleLieuModifie" class="block">Ville</label>
-                        <select name="selectVilleLieuModifie" id="selectVilleLieuModifie"
+                        <select name="selectVilleLieu" id="selectVilleLieuModifie"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">Sélectionner une ville</option>
                             @foreach ($villes as $ville)
                                 <option value="{{ $ville->id }}"
-                                    {{ old('selectVilleLieuModifie', $lieu->ville_id) == $ville->id ? 'selected' : '' }}>
+                                    {{ old('selectVilleLieu', $lieu->ville_id) == $ville->id ? 'selected' : '' }}>
                                     {{ $ville->nom }}
                                 </option>
                             @endforeach
                         </select>
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('selectVilleLieuModifie'))
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('selectVilleLieu'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('selectVilleLieuModifie') }}
+                                {{ session('erreurModifierLieu')->first('selectVilleLieu') }}
                             </div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
                         <label for="selectQuartierLieuModifie" class="block">Quartier (choisir une ville avant) <span
                                 class="text-c5 ml-2">*</span></label>
-                        <select name="selectQuartierLieuModifie" id="selectQuartierLieuModifie"
+                        <select name="selectQuartierLieu" id="selectQuartierLieuModifie"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">Sélectionner un quartier</option>
                         </select>
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('selectQuartierLieuModifie'))
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('selectQuartierLieu'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('selectQuartierLieuModifie') }}
+                                {{ session('erreurModifierLieu')->first('selectQuartierLieu') }}
                             </div>
                         @endif
                     </div>
@@ -145,23 +145,23 @@
                     <div class="sm:col-span-1">
                         <label for="numeroTelephoneModifie" class="block">Numéro de téléphone <span
                                 class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="numeroTelephoneModifie" id="numeroTelephoneModifie"
+                        <input type="text" name="numeroTelephone" id="numeroTelephoneModifie"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" placeholder="###-###-####"
-                            value="{{ old('numeroTelephoneModifie') }}">
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('numeroTelephoneModifie'))
+                            value="{{ old('numeroTelephone') }}">
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('numeroTelephone'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('numeroTelephoneModifie') }}
+                                {{ session('erreurModifierLieu')->first('numeroTelephone') }}
                             </div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
                         <label for="siteWeb" class="block">Site web</label>
-                        <input type="text" name="siteWebModifie" id="siteWebModifie"
+                        <input type="text" name="siteWeb" id="siteWebModifie"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium"
-                            placeholder="https://www.monsite.com/" value="{{ old('siteWebModifie') }}">
-                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('siteWebModifie'))
+                            placeholder="https://www.monsite.com/" value="{{ old('siteWeb') }}">
+                        @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('siteWeb'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurModifierLieu')->first('siteWebModifie') }}
+                                {{ session('erreurModifierLieu')->first('siteWeb') }}
                             </div>
                         @endif
                     </div>

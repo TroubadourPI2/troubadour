@@ -76,6 +76,7 @@ class LieuRequest extends FormRequest
             'selectQuartierLieu.required' => 'Veuillez sélectionner un quartier.',
             'selectTypeLieu.required'     => 'Veuillez sélectionner un type de lieu.',
         ];
+     
     }
 
     protected function failedValidation(Validator $validator)
@@ -84,6 +85,14 @@ class LieuRequest extends FormRequest
 
         if ($nomRouteActuelle === 'usagerLieux.ajouterLieu') {
             session()->put('erreurAjouterLieu', $validator->errors());
+
+            throw new HttpResponseException(
+                redirect()->back()
+                    ->withInput()
+            );
+        }
+        elseif ($nomRouteActuelle === 'usagerLieux.ajouterLieu') {
+            session()->put('erreurModifierLieu', $validator->errors());
 
             throw new HttpResponseException(
                 redirect()->back()

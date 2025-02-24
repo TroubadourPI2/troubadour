@@ -105,17 +105,18 @@ class LieuxController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function ModifierUnLieu(LieuModifierRequest $request, string $id)
+    public function ModifierUnLieu(LieuRequest $request, string $id)
     {
         $lieu = Lieu::findOrFail($id);
+        Log::debug($request);
         try {
-            $lieu->rue = $request->rueModifie;
-            $lieu->noCivic = $request->noCivicModifie;
-            $lieu->codePostal = $request->codePostalModifie;
-            $lieu->nomEtablissement = $request->nomEtablissementModifie;
+            $lieu->rue = $request->rue;
+            $lieu->noCivic = $request->noCivic;
+            $lieu->codePostal = $request->codePostal;
+            $lieu->nomEtablissement = $request->nomEtablissement;
              //TODO Trouver comment stocker les images
-            if ($request->hasFile('photoLieuModifie')) {
-                $file = $request->file('photoLieuModifie');
+            if ($request->hasFile('photoLieu')) {
+                $file = $request->file('photoLieu');
     
                 if ($file->isValid()) {
                     if ($lieu->photoLieu && $lieu->photoLieu !== 'Images/lieux/image_defaut.png' && file_exists(public_path($lieu->photoLieu))) {
@@ -131,11 +132,11 @@ class LieuxController extends Controller
                     $lieu->photoLieu = 'Images/lieux/' . $fileName;
                 }
             }
-            $lieu->siteWeb = $request->siteWebModifie;
-            $lieu->numeroTelephone = $request->numeroTelephoneModifie;
-            $lieu->description = $request->descriptionModifie;
-            $lieu->quartier_id = $request->selectQuartierLieuModifie;
-            $lieu->typeLieu_id = $request->selectTypeLieuModifie;
+            $lieu->siteWeb = $request->siteWeb;
+            $lieu->numeroTelephone = $request->numeroTelephone;
+            $lieu->description = $request->description;
+            $lieu->quartier_id = $request->selectQuartierLieu;
+            $lieu->typeLieu_id = $request->selectTypeLieu;
            $lieu->save();
 
             session()->flash('formulaireModifierValide', 'true');
