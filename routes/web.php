@@ -26,6 +26,8 @@ Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenir
 Route::get('/compte', [UsagersController::class, 'ObtenirDonneesCompte'])->name('usagerLieux.afficher') ->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
 Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
 Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu');
+Route::get('/compte/obtenirLieu', [LieuxController::class, 'ObtenirUnLieu']);
+Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu');
 
 
 
