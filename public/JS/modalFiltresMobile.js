@@ -3,7 +3,6 @@ var mbBtnVilles = document.getElementById("mbBtnVilles")
 
 mbBtnFiltres.addEventListener('click', function(){
     Swal.fire({
-        // title: "<strong>Sélection des filtres</strong>",
         icon: "none",
         html: `
         <div class="w-full h-2/3">
@@ -140,8 +139,6 @@ mbBtnFiltres.addEventListener('click', function(){
         showCancelButton: false,
         showConfirmButton: false,
         focusConfirm: false,
-        confirmButtonAriaLabel: "Thumbs up, great!",
-        cancelButtonAriaLabel: "Thumbs down",
         background: "#fbfbfb",
       });
 });
