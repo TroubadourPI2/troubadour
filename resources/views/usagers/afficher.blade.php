@@ -31,6 +31,7 @@
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherModifierLieu.js') }}"></script>
+<script src="{{ asset('js/usagers/Lieux/SupprimerLieu.js') }}"></script>
 @if (session('formulaireValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
