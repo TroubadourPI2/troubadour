@@ -40,7 +40,7 @@
                 <div class="w-full flex flex-col items-center px-6">
 
                     <div
-                        class="lg:h-2/3 2xl:h-3/4 mt-10 2xl:mt-16 bg-white p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 justify-items-center">
+                        class="lg:h-2/3 2xl:h-3/4 mt-10 2xl:mt-16 bg-white p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
                         @if ($lieuActuel->photoLieu)
                             <img class="w-96 h-52 md:w-100 md:h-[18rem] lg:w-[40rem] 2xl:h-[24rem] rounded"
                                 src="{{ asset($lieuActuel->photoLieu) }}" alt="{{ $lieuActuel->nomEtablissement ?? '' }}">
@@ -72,7 +72,7 @@
 
             <!--        Card pour Localisation      -->
 
-            <div class="text-c1 align-middle flex text-center lg:w-1/4 sm:w-full sm:order-1 lg:order-0 mt-8 mb-8">
+            <div class="text-c1 align-middle flex text-center lg:w-1/3 xl:w-1/4 sm:w-full sm:order-1 lg:order-0 mt-8 mb-8">
                 <div class="w-full flex flex-col items-center">
 
                     <div class="flex text-center mb-2">
@@ -112,7 +112,7 @@
 
             <!--        Card pour Activité      -->
 
-            <div class="text-c1 align-middle flex flex-row text-center lg:w-1/4 sm:w-full sm:order-2 lg:order-1 mt-8 mb-8">
+            <div class="text-c1 align-middle flex flex-row text-center lg:w-1/3 xl:w-1/4 sm:w-full sm:order-2 lg:order-1 mt-8 mb-8">
 
                 <div class="mt-8 lg:h-2/3 2xl:h-5/6 hidden lg:block rounded border-c1 border"></div>
 
@@ -126,7 +126,6 @@
 
                     <div class="w-3/4 lg:h-2/3 2xl:h-3/4 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 h-[10rem] py-4 text-left overflow-y-auto lg:h-[24rem] md:h-[18rem] sm:h-[12rem]">
-                            <!-- Added scroll functionality -->
                             @foreach ($activites as $activite)
                                 <a href="{{ route('Activite.zoom', ['id' => $activite->id]) }}">
                                     <p class="text-c1 text-base underline truncate mb-5">
