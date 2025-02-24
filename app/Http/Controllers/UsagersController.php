@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Usager;
 use App\Models\Lieu;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Ville;
 use App\Models\Quartier;
 use App\Models\TypeLieu;
@@ -29,6 +29,16 @@ class UsagersController extends Controller
      
         return response()->json(['success' => false]);
     }
+
+
+
+    public function Deconnexion (){
+        Auth::logout();
+        session()->flush();
+        return back();
+    }
+    
+
 
     public function ObtenirDonneesCompte(){
         $usager = Auth::user(); 
