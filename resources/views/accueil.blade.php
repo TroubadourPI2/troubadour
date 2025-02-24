@@ -3,7 +3,7 @@
 @section('title', 'Accueil')
 
 @section('contenu')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div class="flex w-full h-screen flex-col">
 
         <div class="relative flex flex-col justify-start w-full h-full font-barlow overflow-hidden">
@@ -118,7 +118,8 @@
     </div>
 
     <div id="sectionCacher"
-        class=" flex-col w-full h-screen  gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out">
+        class=" flex-col 
+     gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out px-4">
 
         <div class="pt-4 flex justify-center">
             <span id="villeSpan"
@@ -127,7 +128,7 @@
         <div class=" border-c1 border rounded mx-16"></div>
 
         <div id="conteneurCarte"
-            class="grid gap-y-2 gap-x-0.5  overflow-x-hidden   grid-cols-2 md:grid-cols-3   xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto xl:overflow-hidden py-8 lg:py-0  ">
+            class="grid gap-y-4 gap-x-4  overflow-x-hidden grid-cols-1  md:grid-cols-2    xl:grid-cols-5 shadow-lg place-items-center w-full h-full overflow-y-auto xl:overflow-hidden py-8 lg:py-0  ">
 
         </div>
     </div>
@@ -139,4 +140,3 @@
 
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
-
