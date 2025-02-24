@@ -21,17 +21,15 @@ class LieuxController extends Controller
      */
     public function index()
     {
-        try{
+        try {
             $lieux = Lieu::where('actif', 1)->paginate(10);
             $villes = Ville::where('actif', 1)->get();
             $ville = -1;
             return view('recherche', compact('lieux', 'villes', 'ville'));
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
             return View('accueil');
-        }
-        catch(QueryException $e){
+        } catch (QueryException $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
             return View('accueil');
         }
@@ -39,8 +37,7 @@ class LieuxController extends Controller
 
     public function recherche(Request $request)
     {
-        try
-        {
+        try {
             $ville      = $request->ville;
             $quartier   = $request->quartier;
             $recherche  = $request->txtRecherche;
@@ -48,34 +45,32 @@ class LieuxController extends Controller
 
 
 
-            if(isset($request->quartier)){
+            if (isset($request->quartier)) {
                 $quartier   = $request->quartier;
                 $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(10);
             }
 
 
 
-            if(isset($request->quartier) && isset($request->txtRecherche)){
+            if (isset($request->quartier) && isset($request->txtRecherche)) {
                 $quartier   = $request->quartier;
                 $recherche  = $request->txtRecherche;
                 $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$recherche%")->where('actif', 1)->paginate(10);
             }
-            
-            if(isset($request->ville)){
+
+            if (isset($request->ville)) {
                 Log::debug("Ville : " . $request->ville);
                 $ville = $request->ville;
             }
-            
+
             $villes     = Ville::all();
             $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
 
             return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
             return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
         }
-
     }
 
     public function quartiers(Request $request)
@@ -85,18 +80,6 @@ class LieuxController extends Controller
         return compact('quartiers');
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function AjouterUnLieu(LieuRequest $request)
     {
         try {
@@ -150,25 +133,21 @@ class LieuxController extends Controller
 
     public function ObtenirUnLieu(Request $request)
     {
-        $lieuId = $request->query('lieu_id'); 
+        $lieuId = $request->query('lieu_id');
 
         if (!$lieuId) {
-            return response()->json([], 400); 
+            return response()->json([], 400);
         }
 
-        $lieu = Lieu::find($lieuId); 
+        $lieu = Lieu::find($lieuId);
 
         if (!$lieu) {
-            return response()->json(['error' => 'Lieu non trouvé'], 404); 
+            return response()->json(['error' => 'Lieu non trouvé'], 404);
         }
 
-        return response()->json($lieu); 
+        return response()->json($lieu);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function ModifierUnLieu(LieuRequest $request, string $id)
     {
         $lieu = Lieu::findOrFail($id);
@@ -177,21 +156,21 @@ class LieuxController extends Controller
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = $request->codePostal;
             $lieu->nomEtablissement = $request->nomEtablissement;
-             //TODO Trouver comment stocker les images
+            //TODO Trouver comment stocker les images
             if ($request->hasFile('photoLieu')) {
                 $file = $request->file('photoLieu');
-    
+
                 if ($file->isValid()) {
                     if ($lieu->photoLieu && $lieu->photoLieu !== 'Images/lieux/image_defaut.png' && file_exists(public_path($lieu->photoLieu))) {
                         unlink(public_path($lieu->photoLieu));
                     }
-    
+
                     $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                     $extension = $file->getClientOriginalExtension();
                     $fileName = time() . '_' . Str::slug($originalName) . '.' . $extension;
-    
+
                     $file->move(public_path('Images/lieux'), $fileName);
-    
+
                     $lieu->photoLieu = 'Images/lieux/' . $fileName;
                 }
             }
@@ -200,7 +179,7 @@ class LieuxController extends Controller
             $lieu->description = $request->description;
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
-           $lieu->save();
+            $lieu->save();
 
             session()->flash('formulaireModifierValide', 'true');
             return redirect()->route('usagerLieux.afficher');
@@ -210,12 +189,16 @@ class LieuxController extends Controller
         }
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function SupprimerUnLieu($id)
     {
-        //
+        try {
+            $lieu = Lieu::findOrFail($id);
+            $lieu->delete();
+            return response()->json(["success" => true, "message" => "Lieu supprimé avec succès."]);
+        } catch (\Exception $e) {
+            Log::error("Erreur lors de la suppression d'un lieu: " . $e->getMessage());
+            return response()->json(["success" => false, "message" => "Erreur lors de la suppression."], 500);
+        }
     }
+    
 }
