@@ -128,10 +128,10 @@
                         <div class="px-6 py-4 text-left">
 
                             @foreach($activites as $activite)
-                            <p class="text-c1 text-base underline truncate mb-5"> {{$activite->nom}} </p>
+                            <a href="{{ route('Activite.zoom', ['id' => $activite->id])}}">
+                                <p class="text-c1 text-base underline truncate mb-5"> {{$activite->nom}} </p>
+                            </a>
                             @endforeach
-
-                            <!-- TO DO, mettre les activités en lien avec le lieu -->
 
                         </div>
                     </div>

@@ -84,14 +84,10 @@ class LieuxController extends Controller
     {
 
         $lieuActuel = Lieu::findOrFail($id);
-        $quartier = $lieuActuel->quartier->first();
-        $type = $lieuActuel->typeLieu->first();
         $idActivites = LieuActivite::Where("lieu_id", $id)->pluck("activite_id");
         $activites = Activite::whereIn("id", $idActivites)->get();
 
-        Log::debug($activites);
-
-        return view('zoomLieu', compact('lieuActuel', 'quartier', 'type', 'activites'));
+        return view('zoomLieu', compact('lieuActuel', 'activites'));
 
     }
 
