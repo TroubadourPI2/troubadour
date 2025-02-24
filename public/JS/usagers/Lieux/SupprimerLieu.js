@@ -1,8 +1,10 @@
 let boutonsSupprimer;
-
+let success;
 document.addEventListener("DOMContentLoaded", function () {
     ObtenirElementsSupprimer();
     AjouterSupprimerListeners();
+   console.log(localStorage.getItem('afficherLieuxVisible'));
+   
 });
 
 function ObtenirElementsSupprimer() {
@@ -11,6 +13,8 @@ function ObtenirElementsSupprimer() {
 }
 
 function AjouterSupprimerListeners() {
+
+    
     boutonsSupprimer.forEach((bouton) => {
         bouton.addEventListener("click", () => {
             const lieuId = bouton.getAttribute("data-lieuId");
@@ -50,27 +54,31 @@ function AjouterSupprimerListeners() {
                             "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
                         }
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            Toast.fire({
-                                icon: "success",
-                                title: data.message 
-                            });
-                    
-                            bouton.closest(".carteLieuxMobile, .max-w-4xl").remove();
-                        } else {
-                            Swal.fire("Erreur", data.message, "error"); 
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Erreur :", error);
-                        Swal.fire("Erreur", "Une erreur est survenue. Veuillez réessayer.", "error");
-                    });
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Toast.fire({
+                                    icon: "success",
+                                    title: data.message
+                                });
+                                localStorage.setItem('afficherLieuxVisible', 'true');
+                                location.reload();
+
+
+                            } else {
+                                Swal.fire("Erreur", data.message, "error");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Erreur :", error);
+                            Swal.fire("Erreur", "Une erreur est survenue. Veuillez réessayer.", "error");
+                        });
                 }
             });
 
         });
     });
 }
+
+
 
