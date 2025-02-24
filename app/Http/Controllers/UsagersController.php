@@ -35,9 +35,19 @@ class UsagersController extends Controller
     public function Deconnexion (){
         Auth::logout();
         session()->flush();
+        session()->put('deconnexion_success', 'Déconnexion réussie!');
         return back();
     }
     
+     /**​
+     * Show the form for editing the specified resource.​
+     *​
+     * @param  int  $id​
+     * @return \Illuminate\Http\Response​
+     */
+    // public function ModificationUsager(Usager $usager){
+    //     return View('usagers.modifier', compact('usager'));
+    // }
 
 
     public function ObtenirDonneesCompte(){

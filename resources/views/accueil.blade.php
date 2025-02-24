@@ -53,6 +53,8 @@
                                 CONNEXION
                             </a>
                         @endauth
+
+                       
                     </div>
                 </navbar>
                 <div class="text-c3 border mx-4"></div>
@@ -110,12 +112,17 @@
                                 class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
 
                     @endauth
-
+                    @if(session()->has('deconnexion_success'))
+                        <script src="{{ asset('js/usagers/Deconnexion.js') }}" defer></script>
+                        @php session()->forget('deconnexion_success'); @endphp
+                    @endif
                 </nav>
 
             </div>
         </div>
     </div>
+
+    
 
     <div id="sectionCacher"
         class=" flex-col 
