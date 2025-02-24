@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\LieuActivite;
 use Illuminate\Database\Seeder;
+use DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,9 +21,10 @@ class DatabaseSeeder extends Seeder
             UsagerSeeder::class,
             TypeLieuSeeder::class,
             LieuSeeder::class,
-            TypeActivitesSeeder::class,
-            ActivitesSeeder::class,
-            LieuActivitesSeeder::class,
+            TypeActiviteSeeder::class,
+            ActiviteSeeder::class,
+            LieuActiviteSeeder::class,
+            PhotoSeeder::class,
         ]);
     }
 }

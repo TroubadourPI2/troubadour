@@ -57,11 +57,17 @@ class Lieu extends Model
     }
 
     public function activites(){
-        return $this->belongsToMany(LieuActivite::class, 'lieu_id');
+        return $this->belongsToMany(Activite::class, 'LieuActivites', 'lieu_id', 'activite_id');
     }
+    
 
     public function favoris()
     {
         return $this->hasMany(Favori::class, 'lieu_id');
     }
+    public function proprietaire()
+    {
+    return $this->belongsTo(Usager::class, 'proprietaire_id');
+    }
+
 }
