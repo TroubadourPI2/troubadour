@@ -112,7 +112,8 @@
 
             <!--        Card pour Activité      -->
 
-            <div class="text-c1 align-middle flex flex-row text-center lg:w-1/3 xl:w-1/4 sm:w-full sm:order-2 lg:order-1 mt-8 mb-8">
+            <div
+                class="text-c1 align-middle flex flex-row text-center lg:w-1/3 xl:w-1/4 sm:w-full sm:order-2 lg:order-1 mt-8 mb-8">
 
                 <div class="mt-8 lg:h-2/3 2xl:h-5/6 hidden lg:block rounded border-c1 border"></div>
 
