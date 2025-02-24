@@ -23,7 +23,7 @@ class LieuxController extends Controller
     {
         try{
             $lieux = Lieu::paginate(10);
-            $villes = Ville::all();
+            $villes = Ville::where('actif', 1)->get();
             $ville = -1;
             return view('recherche', compact('lieux', 'villes', 'ville'));
         }
@@ -67,7 +67,7 @@ class LieuxController extends Controller
             }
             
             $villes     = Ville::all();
-            $quartiers  = Quartier::where('ville_id', $ville)->get();
+            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
 
             return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
         }
