@@ -21,18 +21,16 @@
                 @endforeach
             </select>
             <input type="text" id="recherche" placeholder="Rechercher par nom"
-            class="w-full rounded-full border-2 justify-end border-c1 p-2" />
+                class="w-full rounded-full border-2 justify-end border-c1 p-2" />
         </div>
-       
-    
+
     </div>
 
     <div id="activitesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full mt-2 mb-2">
         @foreach ($activites as $activite)
             <div class="activite-carte w-full h-96 flex bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden scale-90 ease-in-out duration-300 border hover:border-2 hover:scale-100 hover:border-c1"
-                data-nom="{{ strtolower($activite->nom) }}"
-                 data-lieu-ids="{{ $activite->lieu_ids }}"
-                 data-type="{{ $activite->typeActivite->id }}"
+                data-nom="{{ strtolower($activite->nom) }}" data-lieu-ids="{{ $activite->lieu_ids }}"
+                data-type="{{ $activite->typeActivite->id }}"
                 x-data='{
                      current: 0,
                      images: {!! $activite->photos_json !!},

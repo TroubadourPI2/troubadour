@@ -1,8 +1,3 @@
-let boutonAjouterLieu;
-let boutonRetourAfficherLieux;
-let boutonAnnuler;
-let ajouterLieu;
-let afficherLieux;
 let selectQuartier;
 let selectVilleLieu;
 
@@ -13,30 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function ObtenirElementsAjouterLieux() {
-    boutonAjouterLieu = document.getElementById("boutonAjouterLieu");
-    boutonRetourAfficherLieux = document.getElementById("boutonRetourAfficherLieux");
-    boutonAnnuler = document.getElementById("boutonAnnuler");
-    ajouterLieu = document.getElementById("ajouterLieu");
-    afficherLieux = document.getElementById("afficherLieux");
     selectQuartier = document.getElementById("selectQuartierLieu");
     selectVilleLieu = document.getElementById("selectVilleLieu");
 }
 
 function AjouterLieuxListeners() {
-    boutonAjouterLieu.addEventListener("click", AfficherSectionAjouterLieu);
-    boutonAnnuler.addEventListener("click" , AfficherSectionAfficherLieu);
-    boutonRetourAfficherLieux.addEventListener("click", AfficherSectionAfficherLieu);
     selectVilleLieu.addEventListener("change", ActiverSelectQuartier)
-}
-
-function AfficherSectionAjouterLieu() {
-    ajouterLieu.classList.remove("hidden");
-    afficherLieux.classList.add("hidden");
-}
-
-function AfficherSectionAfficherLieu() {
-    ajouterLieu.classList.add("hidden");
-    afficherLieux.classList.remove("hidden");
 }
 
 function ActiverSelectQuartier() {
@@ -64,6 +41,8 @@ async function ObtenirQuartiersParVille(villeId) {
 
         const quartiers = await response.json();
         MettreAJourSelectQuartier(quartiers);
+        //Fonction dans le fichier AfficherModifierLieu.js
+        MettreAJourSelectQuartierModifie(quartiers);
 
     } catch (error) {
         console.error(error);
@@ -87,3 +66,4 @@ function MettreAJourSelectQuartier(quartiers) {
 
     selectQuartier.removeAttribute("disabled");
 }
+
