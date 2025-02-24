@@ -28,8 +28,9 @@
 @endsection
 
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
-<script src="{{ asset('js/usagers/Lieux/AfficherLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}"></script>
+<script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}"></script>
+<script src="{{ asset('js/usagers/Lieux/AfficherModifierLieu.js') }}"></script>
 @if (session('formulaireValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -45,9 +46,71 @@
             boutonCompte.classList.remove("bg-c1", "text-c3");
             boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
 
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: "Ajout effectué avec succès!",
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
         });
     </script>
     @php
         session()->forget('formulaireValide');
+    @endphp
+@endif
+
+@if (session('formulaireModifierValide') === 'true')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('lieux').classList.remove('hidden');
+            document.getElementById('compte').classList.add('hidden');
+            document.getElementById('activites').classList.add('hidden');
+
+            const boutonLieu = document.getElementById('boutonLieu');
+            boutonLieu.classList.add("bg-c1", "text-c3");
+            boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonCompte = document.getElementById('boutonCompte');
+            boutonCompte.classList.remove("bg-c1", "text-c3");
+            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: "Modification effectuée avec succès!",
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('formulaireModifierValide');
     @endphp
 @endif
