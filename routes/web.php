@@ -18,7 +18,7 @@ Route::post('/usagers/Connexion',
 [UsagersController::class, 'Connexion'])->name('usagers.Connexion');
 
 Route::post('/Deconnexion', 
-[UsagersController::class, 'Deconnexion'])->name('usagers.Deconnexion');
+[UsagersController::class, 'Deconnexion'])->name('usagers.Deconnexion')->middleware('auth');
 
 
 Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom');
