@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Usager;
 use App\Models\Lieu;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
@@ -17,7 +17,7 @@ class UsagersController extends Controller
         $credentials = [
             'courriel'  => $request->courriel,
             'password'  => $request->password,
-            'statutId' => 1
+            'statut_id' => 1
         ];
      
         if (Auth::attempt($credentials)) {
@@ -27,46 +27,13 @@ class UsagersController extends Controller
         return response()->json(['success' => false]);
     }
 
-    public function Connexion(Request $request)
-    {
-        $usager = Usager::where('courriel', $request->courriel)->where('statutId', 1)->first();
 
-        
-        if ($usager && Hash::check($request->password, $usager->password)) {
-            session(['ID_Usager' => $usager->id]);
 
-            return response()->json(['success' => true, 'ID_Usager' => $usager->id]);
-        }
-      
-        
-        return response()->json(['success' => false]);
+    public function Deconnexion (){
+        Auth::logout();
+        session()->flush();
+        return back();
     }
-
-    // public function Deconnexion (){
-    //     Auth::logout();
-    //     session()->flush();
-    //     return back();
-    // }
-
-
-    // pour tests -->
-
-    // public function Deconnexion() {
-    //     // Check if a user is currently authenticated
-    //     if (Auth::check()) {
-    //         // Log the user out and clear session data
-    //         Auth::logout();
-    //         session()->flush();
-            
-    //         // Optionally, you could check if the user was logged out successfully by checking again
-    //         if (!Auth::check()) {
-    //             return response()->json(['success' => true, 'message' => 'Logged out successfully.']);
-    //         }
-    //     }
-    
-    //     // If no user was logged in, return a response indicating that
-    //     return response()->json(['success' => false, 'message' => 'No user was logged in.']);
-    // }
     
 
     public function ObtenirLieuxUsager(){
