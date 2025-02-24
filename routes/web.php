@@ -17,9 +17,6 @@ Route::get('/test', function () {
 Route::post('/usagers/Connexion',
 [UsagersController::class, 'Connexion'])->name('usagers.Connexion');
 
-// Route::post('logout', 
-// [UsagersController::class, 'logout'])->name('logout');
-
 Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom');
 
 Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);

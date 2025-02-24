@@ -30,6 +30,12 @@ class UsagersController extends Controller
         return response()->json(['success' => false]);
     }
 
+
+
+    public function Suppression(){
+        
+    }
+
     public function ObtenirDonneesCompte(){
         $usager = Auth::user(); 
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)->get();
