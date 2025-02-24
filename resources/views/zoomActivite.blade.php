@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title',"activite")
+@section('title', 'activite')
 
 @section('contenu')
 
-<p>Zoom Activite</p>
+    <p>Zoom Activite</p>
 
 @endsection
