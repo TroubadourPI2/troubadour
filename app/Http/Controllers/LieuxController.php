@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\LieuActivite;
+use App\Models\Activite;
 use App\Models\Lieu;
 use App\Models\Quartier;
 use Illuminate\Http\Request;
@@ -13,6 +16,7 @@ use App\Http\Requests\LieuModifierRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+
 
 class LieuxController extends Controller
 {
@@ -144,8 +148,13 @@ class LieuxController extends Controller
      */
     public function show(string $id)
     {
+
         $lieuActuel = Lieu::findOrFail($id);
-        return view('zoomLieu', compact('lieuActuel'));
+        $idActivites = LieuActivite::Where("lieu_id", $id)->pluck("activite_id");
+        $activites = Activite::whereIn("id", $idActivites)->where('actif', 1)->get();
+
+        return view('zoomLieu', compact('lieuActuel', 'activites'));
+
     }
 
     public function ObtenirUnLieu(Request $request)

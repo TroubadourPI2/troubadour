@@ -18,6 +18,18 @@ class LieuActiviteSeeder extends Seeder
                 'updated_at'   => now(),
             ],
             [
+                'lieu_id'      => 1,
+                'activite_id'  => 2,
+                'created_at'   => now(),
+                'updated_at'   => now(),
+            ],
+            [
+                'lieu_id'      => 1,
+                'activite_id'  => 4,
+                'created_at'   => now(),
+                'updated_at'   => now(),
+            ],
+            [
                 'lieu_id'      => 2,
                 'activite_id'  => 1,
                 'created_at'   => now(),

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\LieuActivite;
 use Illuminate\Database\Seeder;
 use DB;
 
