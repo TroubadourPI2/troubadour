@@ -166,13 +166,13 @@
                     <div
                         class="2xl:grid-cols-5 xl:grid-cols-4  lg:grid-cols-4  md:grid-cols-2 grid-cols-1 grid gap-y-5 place-items-center snap-center">
                         @foreach ($lieux as $lieu)
-                            <div
+                            <a href="/lieu/zoom/{{ $lieu->id }}"
                                 class="snap-start lg:w-3/4 w-2/3 bg-c3 h-full rounded-lg flex flex-col items-center p-3 border-2 border-c3 hover:border-2 hover:border-c1 cursor-pointer carteLieu ">
                                 <img src="{{ asset($lieu->photoLieu) }}" alt="{!! __('Image de l\'établissement') !!}"
                                     class="rounded-md h-52">
                                 <h3 class="text-c1 font-barlow text-md my-2 carteTitre">{{ $lieu->nomEtablissement }}</h3>
                                 <span class="text-blackfont-barlow text-sm text-center">{{ $lieu->description }}</span>
-                            </div>
+                            </a>
                         @endforeach
                     </div>
                     <div class="w-full flex-justify-center items-center">

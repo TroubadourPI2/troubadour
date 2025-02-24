@@ -22,7 +22,7 @@ class LieuxController extends Controller
     public function index()
     {
         try{
-            $lieux = Lieu::paginate(10);
+            $lieux = Lieu::where('actif', 1)->paginate(10);
             $villes = Ville::where('actif', 1)->get();
             $ville = -1;
             return view('recherche', compact('lieux', 'villes', 'ville'));
@@ -50,7 +50,7 @@ class LieuxController extends Controller
 
             if(isset($request->quartier)){
                 $quartier   = $request->quartier;
-                $lieux      = Lieu::where('quartier_id', $request->quartier)->paginate(10);
+                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(10);
             }
 
 
@@ -58,7 +58,7 @@ class LieuxController extends Controller
             if(isset($request->quartier) && isset($request->txtRecherche)){
                 $quartier   = $request->quartier;
                 $recherche  = $request->txtRecherche;
-                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$recherche%")->paginate(10);
+                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$recherche%")->where('actif', 1)->paginate(10);
             }
             
             if(isset($request->ville)){
