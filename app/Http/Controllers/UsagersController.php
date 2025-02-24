@@ -6,17 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\Usager;
 use App\Models\Lieu;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Ville;
+use App\Models\Quartier;
+use App\Models\TypeLieu;
+use App\Models\Activite;
+use App\Models\TypeActivite;
 use Illuminate\Support\Facades\Log;
 
 class UsagersController extends Controller
 {
- 
     public function Connexion(Request $request)
     {
         $credentials = [
             'courriel'  => $request->courriel,
             'password'  => $request->password,
-            'statutId' => 1
+            'statut_id' => 1
         ];
      
         if (Auth::attempt($credentials)) {
@@ -26,12 +30,26 @@ class UsagersController extends Controller
         return response()->json(['success' => false]);
     }
 
-    public function ObtenirLieuxUsager(){
-        //TODO Changer la fonction pour variable selon id du responsable connecté
-        $lieuxUsager = Lieu::where('proprietaire_id', 1)->get();
-
-        return View('usagers.afficher', compact('lieuxUsager'));
+    public function ObtenirDonneesCompte(){
+        $usager = Auth::user(); 
+        $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)->get();
+        $villes = Ville::all();
+        $typesLieu = TypeLieu::all();
+        $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
+        $typesActivite = TypeActivite::all();
+        return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
     }
+
+   public function ObtenirQuartiersParVille(Request $request)
+    {
+        $villeId = $request->ville_id;
+        if (!$villeId) 
+            return response()->json([], 400); 
+
+        $quartiers = Quartier::where('ville_id', $villeId)->get();
+        return response()->json($quartiers);
+    }
+
 
     /**
      * Display a listing of the resource.
