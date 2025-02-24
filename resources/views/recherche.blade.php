@@ -13,7 +13,7 @@
                 action="{{ route('lieux.recherche2') }}" method="post">
                 @csrf
                 <select
-                    class="border border-c3 hidden lg:flex bg-c1 hover:bg-c2 justify-center items-center h-full lg:h-8 w-1/2 lg:w-1/5 me-px rounded-l-full font-barlow text-c3 text-center hover:text-c1 text-xs md:text-md lg:text-lg hover:border hover:border-c1"
+                    class="border border-c3 hidden lg:flex bg-c1 hover:bg-c2 justify-center items-center h-full lg:h-8 w-1/2 lg:w-1/3 xl:w-1/3 2xl:1/3 me-px rounded-l-full font-barlow text-c3 text-center hover:text-c1 text-xs md:text-md lg:text-lg hover:border hover:border-c1"
                     id="selectVille" name="ville" required onchange="setQuartiersPC()">
                     <option value="default" disabled hidden <?php if ($ville == -1) {
                         echo 'selected';
@@ -36,7 +36,7 @@
                 </select>
 
                 <select
-                    class="border enabled:border-c3 hidden lg:flex enabled:bg-c1 justify-center items-center h-full lg:h-8 w-1/2 lg:w-1/5 rounded-r-full font-barlow text-c3 text-center enabled:hover:bg-c2 enabled:hover:text-c1 text-xs md:text-md lg:text-lg enabled:hover:border hover:border-c1 disabled:bg-c2 disabled:text-c1 disabled:border-c1"
+                    class="border enabled:border-c3 hidden lg:flex enabled:bg-c1 justify-center items-center h-full lg:h-8 w-1/3 lg:w-1/5 xl:w-1/3 2xl:1/3 rounded-r-full font-barlow text-c3 text-center enabled:hover:bg-c2 enabled:hover:text-c1 text-xs md:text-md lg:text-lg enabled:hover:border hover:border-c1 disabled:bg-c2 disabled:text-c1 disabled:border-c1"
                     id="selectQuartier" name="quartier" required>
                     @if (isset($quartiers))
                         @foreach ($quartiers as $quartier2)
