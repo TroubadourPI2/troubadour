@@ -34,8 +34,7 @@
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">Sélectionner un type</option>
                             @foreach ($typesLieu as $type)
-                                <option value="{{ $type->id }}"
-                                >
+                                <option value="{{ $type->id }}">
                                     {{ $type->nom }}
                                 </option>
                             @endforeach
@@ -107,8 +106,7 @@
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">Sélectionner une ville</option>
                             @foreach ($villes as $ville)
-                                <option value="{{ $ville->id }}"
-                                   >
+                                <option value="{{ $ville->id }}">
                                     {{ $ville->nom }}
                                 </option>
                             @endforeach

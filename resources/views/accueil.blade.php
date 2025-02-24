@@ -43,8 +43,9 @@
                         @auth
                             <form action="{{ route('usagers.Deconnexion') }}" method="POST">
                                 @csrf
-                                <button class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
-                                   DÉCONNEXION
+                                <button
+                                    class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
+                                    DÉCONNEXION
                                 </button>
                             </form>
                         @else

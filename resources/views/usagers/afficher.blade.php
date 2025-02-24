@@ -35,7 +35,7 @@
 @if (session('formulaireValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
+
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.add('hidden');
