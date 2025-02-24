@@ -46,6 +46,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        'DevActivite' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/Images/Activites'),
+            'url' => env('APP_URL').'/storage/Images/Activites',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

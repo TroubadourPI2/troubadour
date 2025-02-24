@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Lieu;
+use App\Models\Activite;
+use App\Models\TypeActivite;
+use App\Http\Requests\ActiviteRequest;
 class ActivitesController extends Controller
 {
     /**
@@ -20,6 +23,12 @@ class ActivitesController extends Controller
     public function create()
     {
         //
+    }
+
+    public function AjouterUneActivite(){
+
+
+
     }
 
     /**
