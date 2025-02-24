@@ -117,7 +117,7 @@
                     } ?>">
 
                 <button type="submit"
-                    class="flex w-1/4 h-full justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c3  disabled:border disabled:border-c1"
+                    class="flex w-1/4 h-full justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c2  disabled:border disabled:border-c1"
                     id="btnRechercherMobile" <?php if (!isset($quartiers)) {
                         echo 'disabled';
                     } ?>>

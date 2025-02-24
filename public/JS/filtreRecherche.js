@@ -10,22 +10,22 @@ optionDefault.text = 'Choisissez un quartier';
 optionDefault.value = 'default';
 
 function ajusterEtatBoutonRecherche(page){
-    if (page === 'PC') {
+    if (page === 'PC' || 'Mobile') {
+ 
         btnRechercherPC.disabled = (
             selectQuartier.value === 'default' ||
             selectVille.value === 'default' ||
             selectQuartier.value === 'aucunResultat' ||
             selectVille.value === 'aucunResultat' ||
-            selectQuartier.value === ''
-        );
-
-    } else if (page === 'Mobile') {
+            selectQuartier.value === '');
+ 
         btnRechercherMobile.disabled = (
             selectQuartierMobile.value === 'default' ||
             selectVilleMobile.value === 'default' ||
             selectQuartierMobile.value === 'aucunResultat' ||
             selectVilleMobile.value === 'aucunResultat' ||
             selectQuartierMobile.value === '');
+           
     }
 }
 
