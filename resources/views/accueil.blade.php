@@ -39,10 +39,20 @@
                         </a>
                     </div>
                     <div class="hidden md:flex ">
-                        <a onclick="AfficherModalConnexion()"
-                            class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
-                            CONNEXION
-                        </a>
+
+                        @auth
+                            <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                                @csrf
+                                <button class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
+                                   DÉCONNEXION
+                                </button>
+                            </form>
+                        @else
+                            <a onclick="AfficherModalConnexion()"
+                                class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
+                                CONNEXION
+                            </a>
+                        @endauth
                     </div>
                 </navbar>
                 <div class="text-c3 border mx-4"></div>
@@ -86,18 +96,21 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
-                    <a href="#" onclick="AfficherModalConnexion()"
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                        <span class="iconify size-10" data-icon="mdi:user" data-inline="false"></span> CONNEXION
-                    </a>
+                    @auth
 
-                    {{-- <!-- TODO : Bouton de déconnexion pour mobile -->
-                <form action="" method="POST">
-                    @csrf
-                    <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
-                        <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
-                    </button>
-                </form> --}}
+                        <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                            @csrf
+                            <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
+                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
+                            </button>
+                        </form>
+                    @else
+                        <a href="#" onclick="AfficherModalConnexion()"
+                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                                class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
+
+                    @endauth
+
                 </nav>
 
             </div>
@@ -124,5 +137,6 @@
     <script src="{{ asset('js/Accueil.js') }}"></script>
 
 @endsection
+
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>

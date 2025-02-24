@@ -39,11 +39,20 @@
                 <a
                     class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">compte</a>
                 <div class="border-r h-12 border-c1 rounded "></div>
-                {{--  TODO remplacer par un bouton ou un form en fonction de ce qui a faire mais garder même CSS
-                TODO Ajouter en fonction de si la personne est connecté ou non l'affichage du bouton connexion deconnexion --}}
 
-                <a
-                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition  ">déconnexion</a>
+                @auth
+                    <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="m-0">
+                        @csrf
+                        <button class=" text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition">
+                            DÉCONNEXION
+                        </button>
+                    </form>
+                @else 
+                    <a onclick="AfficherModalConnexion()"
+                        class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">CONNEXION</a>
+                    <div class="border-r h-12 border-c1 rounded "></div>
+                @endauth
+                    
                 <div class="border-r h-12 border-c1 rounded "></div>
                 <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1   rounded-full transition "
                     data-icon="mdi:search" data-inline="false"></span>
@@ -87,20 +96,29 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>COMPTE</a>
-                    <a href="#" onclick="AfficherModalConnexion()"
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                            class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>CONNEXION</a>
-                    <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                            class="iconify size-10 " data-icon="mdi:search" data-inline="false"></span>RECHERCHE</a>
-
-                    {{-- <!-- TODO Bouton deconnexion pour mobile -->
-                <form action="" method="POST">
-                    @csrf
-                    <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
-                        <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
-                    </button>
-                </form> --}}
+                    
+                        <a href=""
+                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                            <span class="iconify size-10 " data-icon="mdi:search"
+                                data-inline="false"></span>RECHERCHE</a>
+                    
+                        
+                         @auth
+                            <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                                @csrf
+                                <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
+                                    <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
+                                </button>
+                            </form>
+                        @else
+                            <a href="#" onclick="AfficherModalConnexion()"
+                                class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                                <span class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>
+                                CONNEXION
+                            </a>
+                        @endauth
+                    
+                   
                 </nav>
 
             </div>
