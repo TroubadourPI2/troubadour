@@ -35,4 +35,8 @@ Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu
 
 
 
+Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
 
+Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
+
+Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
