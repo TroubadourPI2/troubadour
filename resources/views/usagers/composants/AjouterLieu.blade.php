@@ -163,7 +163,6 @@
                 </div>
             </div>
 
-            <!-- Boutons d'action -->
             <div class="flex flex-row justify-center mt-4">
                 <button type="button" id="boutonAnnuler"
                     class="text-c1 py-2 px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 mr-2 hover:bg-c3 transition uppercase">
