@@ -22,7 +22,7 @@
         {{-- //TODO Importer les composants selon le menu choisi --}}
         <div id="compte" class="SectionMenu">COMPTE</div>
         <div id="lieux" class="SectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
-        <div id="activites" class="SectionMenu hidden">ACTIVITÉS</div>
+        <div id="activites" class="SectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
 
     </div>
 @endsection
