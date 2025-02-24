@@ -36,6 +36,7 @@ Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->n
 Route::get('/compte/obtenirLieu', [LieuxController::class, 'ObtenirUnLieu']);
 Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu');
 
+Route::post('/compte/ajouterActivite', [ActivitesController::class, 'AjouterUneActivite'])->name('usagerLieux.ajouterActivite');
 
 
 Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');

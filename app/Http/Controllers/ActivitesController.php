@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lieu;
+use App\Models\Photo;
 use App\Models\Activite;
 use App\Models\TypeActivite;
+use App\Models\LieuActivite;
 use App\Http\Requests\ActiviteRequest;
 class ActivitesController extends Controller
 {
@@ -25,9 +27,8 @@ class ActivitesController extends Controller
         //
     }
 
-    public function AjouterUneActivite(){
-
-
+    public function AjouterUneActivite()
+    {
 
     }
 
