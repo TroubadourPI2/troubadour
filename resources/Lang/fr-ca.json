@@ -14,5 +14,6 @@
     "Type" : "Type",
     "Distance": "Distance",
     "Corporation" : "Organisme",
-    "Rating" : "Avis"
+    "Rating" : "Avis",
+    "Order by" : "Trier par"
 }

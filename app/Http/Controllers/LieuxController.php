@@ -69,6 +69,18 @@ class LieuxController extends Controller
                 Log::debug("Ville : " . $request->ville);
                 $ville = $request->ville;
             }
+
+            if(isset($request->triNom))
+            {
+                if($request->triNom == "az")
+                {
+                    $lieux = Lieu::where('actif', 1)->orderBy('nomEtablissement', 'asc')->paginate(10);
+                }
+                else if($request->triNom == "za")
+                {
+                    $lieux = Lieu::where('actif', 1)->orderBy('nomEtablissement', 'desc')->paginate(10);
+                }
+            }
             
             $villes     = Ville::all();
             $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();

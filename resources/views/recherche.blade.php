@@ -142,21 +142,26 @@
 
         <!-- Boutons de filtres -->
         <div class="w-5/6 h-12 justify-center items-center space-x-5 my-4 flex-row hidden lg:flex">
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Prix') !!}</h3>
-            </div>
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Type') !!}</h3>
-            </div>
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Distance') !!}</h3>
-            </div>
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Organisme') !!}</h3>
-            </div>
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Avis') !!}</h3>
-            </div>
+            <select class="w-32 p-1 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 text-c1 font-barlow text-lg text-center hover:text-c3" id="triNom" name="triNom" onchange="triNom()">
+                <option value="defaut">{!! __('Trier par') !!}</option>
+                <option value="az">Nom (A-Z)</option>
+                <option value="za">Nom (Z-A)</option>
+            </select>
+            <select class="w-40 p-1 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 text-c1 font-barlow text-lg text-center hover:text-c3" >
+                <option value="defaut">{!! __('Prix') !!}</option>
+            </select>
+            <select class="w-40 p-1 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 text-c1 font-barlow text-lg text-center hover:text-c3">
+                <option value="defaut">{!! __('Type') !!}</option>
+            </select>
+            <select class="w-40 p-1 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 text-c1 font-barlow text-lg text-center hover:text-c3">
+                <option value="defaut">{!! __('Distance') !!}</option>
+            </select>
+            <select class="w-40 p-1 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 text-c1 font-barlow text-lg text-center hover:text-c3">
+                <option value="defaut">{!! __('Organisme') !!}</option>
+            </select>
+            <select class="w-40 p-1 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1 text-c1 font-barlow text-lg text-center hover:text-c3">
+                <option value="defaut">{!! __('Avis') !!}</option>
+            </select>
         </div>
 
         <!-- ?  Section des cartes (avec scroll seulement ici) [RESPONSIVE]-->
@@ -171,7 +176,7 @@
                                 <img src="{{ asset($lieu->photoLieu) }}" alt="{!! __('Image de l\'établissement') !!}"
                                     class="rounded-md h-52">
                                 <h3 class="text-c1 font-barlow text-md my-2 carteTitre">{{ $lieu->nomEtablissement }}</h3>
-                                <span class="text-blackfont-barlow text-sm text-center">{{ $lieu->description }}</span>
+                                <span class="text-blackfont-barlow text-sm text-center"><?php if($lieu->description == "") {echo "Aucune description fournie";} else {echo $lieu->description;} ?></span>
                             </a>
                         @endforeach
                     </div>
@@ -191,7 +196,7 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/triRecherche.js') }}"></script>
     <script src="{{ asset('js/filtreRecherche.js') }}"></script>
     <script src="{{ asset('js/modalFiltresMobile.js') }}"></script>
-
 @endsection
