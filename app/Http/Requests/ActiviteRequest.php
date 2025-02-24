@@ -62,4 +62,28 @@ class ActiviteRequest extends FormRequest
             'photos.*.position.integer'        => 'La position de chaque photo doit être un nombre entier.',
         ];
     }
+
+    protected function failedValidation(Validator $validator)
+    {
+        $nomRouteActuelle = $this->route()->getName();
+
+        if ($nomRouteActuelle === 'usagerActivites.ajouterActivite') {
+            session()->put('erreurAjouterLieu', $validator->errors());
+
+            throw new HttpResponseException(
+                redirect()->back()
+                    ->withInput()
+            );
+        }
+        // elseif ($nomRouteActuelle === 'usagerLieux.modifierLieu') {
+        //     session()->put('erreurModifierLieu', $validator->errors());
+
+        //     throw new HttpResponseException(
+        //         redirect()->back()
+        //             ->withInput()
+        //     );
+        // }
+
+        parent::failedValidation($validator);
+    }
 }
