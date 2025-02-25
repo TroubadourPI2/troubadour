@@ -17,6 +17,7 @@ use App\Http\Requests\LieuModifierRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 
 class LieuxController extends Controller
@@ -74,14 +75,35 @@ class LieuxController extends Controller
             if(isset($request->txtRecherche))
             {
                 try{
-                    $nouvelleRecherche = new Recherche();
-                    $nouvelleRecherche->terme_recherche = $request->txtRecherche;
-                    $nouvelleRecherche->ville_id = $ville;
-                    $nouvelleRecherche->quartier_id = $quartier;
-                    $nouvelleRecherche->save();
+                    $recherches = Recherche::where('terme_recherche', $request->txtRecherche)->where('ville_id', $ville)->where('quartier_id', $quartier)->first();
+
+                    if($recherches){
+                        $recherches->nbOccurences = $recherches->nbOccurences + 1;
+                        $recherches->save();
+                    }
+                    else{
+                        Log::debug("MANUEL - Aucune recherche trouvée");
+
+                        $nouvelleRecherche = new Recherche();
+                        $nouvelleRecherche->terme_recherche = $request->txtRecherche;
+                        $nouvelleRecherche->ville_id = $ville;
+                        $nouvelleRecherche->quartier_id = $quartier;
+                        $nouvelleRecherche->nbOccurences = 1;
+                        $nouvelleRecherche->save();
+                    }
                 }
                 catch(\Exception $e){
-                    Log::debug("MANUEL - Erreur lors de l'ajout de la recherche : " . $e->getMessage());
+                    if($e->getMessage() == "No query results for model [App\Models\Recherche]"){
+                        $nouvelleRecherche = new Recherche();
+                        $nouvelleRecherche->terme_recherche = $request->txtRecherche;
+                        $nouvelleRecherche->ville_id = $ville;
+                        $nouvelleRecherche->quartier_id = $quartier;
+                        $nouvelleRecherche->nbOccurences = 1;
+                        $nouvelleRecherche->save();
+                    }
+                    else{
+                        Log::debug("MANUEL - Erreur lors de l'ajout de la recherche à l'historique : " . $e->getMessage());
+                    }
                 }
             }
             
@@ -91,7 +113,7 @@ class LieuxController extends Controller
             return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
         }
         catch(\Exception $e){
-            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
+            Log::debug("MANUEL - Erreur lors de la recherche : " . $e->getMessage());
             return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
         }
 
@@ -107,7 +129,39 @@ class LieuxController extends Controller
     public function historique()
     {
         $recherches = Recherche::all();
-        return view('historiqueRecherche', compact('recherches'));
+        $quartiers = Recherche::all()->unique('quartier_id');
+
+        $listeQuartiers = array();
+        foreach($quartiers as $quartier){
+            $listeQuartiers[] = Quartier::find($quartier->quartier_id);
+        }
+
+        $villes = Recherche::all()->unique('ville_id');
+
+        $listeVilles = array();
+        foreach($villes as $ville){
+            $listeVilles[] = Ville::find($ville->ville_id);
+        }
+
+        $resultatsVilles = DB::table('recherches')
+            ->join('villes', 'recherches.ville_id', '=', 'villes.id')
+            ->select('villes.id as ville_id', 'villes.nom as nom_ville', DB::raw('count(*) as total'))
+            ->groupBy('villes.id', 'villes.nom')
+            ->groupBy('ville_id')
+            ->get();
+
+        $resultatsQuartiers = DB::table('recherches')
+            ->join('quartiers', 'recherches.ville_id', '=', 'quartiers.id')
+            ->select('quartiers.id as ville_id', 'quartiers.nom as nom_quartiers', DB::raw('count(*) as total'))
+            ->groupBy('quartiers.id', 'quartiers.nom')
+            ->groupBy('quartier_id')
+            ->get();
+
+
+        Log::debug("Resultats quartiers : " . $resultatsQuartiers);
+
+        // Log::debug("Villes : " . $villesNbRecherche);
+        return view('historiqueRecherche', compact('recherches', 'listeQuartiers', 'listeVilles', 'villes', 'resultatsVilles', 'resultatsQuartiers'));
     }
 
     /**

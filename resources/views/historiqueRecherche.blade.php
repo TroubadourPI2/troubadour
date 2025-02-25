@@ -26,60 +26,15 @@
         <div class="flex flex-row w-5/6 h-3/4 m-3">
             <h3 class="font-barlow text-c1 w-60 text-right px-3">Termes les plus recherchés</h3>
             <div class="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-5 gap-x-3 gap-y-1 w-5/6 h-3/4 ">
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Café</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
+                @foreach ($recherches as $recherche)
+                    <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
+                        <h3 class="text-c1 font-barlow text-lg">{{$recherche->terme_recherche}}</h3>
+                        <div class="flex bg-c1 rounded-full justify-center items-center w-20">
+                            <h3 class="text-c3 font-barlow text-md p-1 text-center">{{$recherche->nbOccurences}}</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Restaurant</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Café</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Restaurant</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Café</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Restaurant</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Café</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Restaurant</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Restaurant</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
+                @endforeach
+
                 <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
                     <h3 class="text-c1 font-barlow text-lg">Voir d'autres</h3>
                     <span class="iconify size-6 text-c1" data-icon="mdi:arrow-right" data-inline="false"></span>
@@ -89,60 +44,15 @@
         <div class="flex flex-row w-5/6 h-3/4 m-3">
             <h3 class="font-barlow text-c1 w-60 text-right px-3">Villes les plus recherchés</h3>
             <div class="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-5 gap-x-3 gap-y-1 w-5/6 h-3/4">
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Trois-Rivières</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
+                @foreach($resultatsVilles as $resultat)
+                    <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
+                        <h3 class="text-c1 font-barlow text-lg">{{$resultat->nom_ville}}</h3>
+                        <div class="flex bg-c1 rounded-full justify-center items-center w-20">
+                            <h3 class="text-c3 font-barlow text-md p-1 text-center">{{$resultat->total}}</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Montréal</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">58</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Trois-Rivières</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Montréal</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">58</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Trois-Rivières</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Montréal</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">58</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Trois-Rivières</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Montréal</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">58</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <h3 class="text-c1 font-barlow text-lg">Trois-Rivières</h3>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
+                @endforeach
+
                 <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
                     <h3 class="text-c1 font-barlow text-lg">Voir d'autres</h3>
                     <span class="iconify size-6 text-c1" data-icon="mdi:arrow-right" data-inline="false"></span>
@@ -150,44 +60,19 @@
             </div>
         </div>
         <div class="flex flex-row w-5/6 h-3/4 m-3">
-            <h3 class="font-barlow text-c1 w-60 text-right px-3">Villes les plus recherchés</h3>
+            <h3 class="font-barlow text-c1 w-60 text-right px-3">Quartiers les plus recherchés</h3>
             <div class="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-5 gap-x-2 w-5/6">
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <div class="flex flex-col py-3"> 
-                        <h3 class="text-c1 font-barlow text-lg">Centre-Ville</h3>
-                        <h6 class="text-c1 font-barlow text-xs">Trois-Rivières</h6>
+                @foreach ($resultatsQuartiers as $quartiers)
+                    <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
+                        <div class="flex flex-col py-3"> 
+                            <h3 class="text-c1 font-barlow text-lg">{{$quartiers->nom_quartiers}}</h3>
+                        </div>
+                        <div class="flex bg-c1 rounded-full justify-center items-center w-20">
+                            <h3 class="text-c3 font-barlow text-md p-1 text-center">{{ $quartiers->total }}</h3>
+                        </div>
                     </div>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <div class="flex flex-col py-3"> 
-                        <h3 class="text-c1 font-barlow text-lg">Centre-Ville</h3>
-                        <h6 class="text-c1 font-barlow text-xs">Montréal</h6>
-                    </div>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <div class="flex flex-col py-3"> 
-                        <h3 class="text-c1 font-barlow text-lg">Centre-Ville</h3>
-                        <h6 class="text-c1 font-barlow text-xs">Trois-Rivières</h6>
-                    </div>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
-                <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
-                    <div class="flex flex-col py-3"> 
-                        <h3 class="text-c1 font-barlow text-lg">Centre-Ville</h3>
-                        <h6 class="text-c1 font-barlow text-xs">Montréal</h6>
-                    </div>
-                    <div class="flex bg-c1 rounded-full justify-center items-center w-20">
-                        <h3 class="text-c3 font-barlow text-md p-1 text-center">99+</h3>
-                    </div>
-                </div>
+                @endforeach
+                
                 <div class="flex w-full h-1/2 justify-between items-center bg-c3 rounded-md p-3 py-5 ">
                     <h3 class="text-c1 font-barlow text-lg">Voir d'autres</h3>
                     <span class="iconify size-6 text-c1" data-icon="mdi:arrow-right" data-inline="false"></span>

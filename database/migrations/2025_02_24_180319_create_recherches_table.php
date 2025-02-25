@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('ville_id')->constrained();
             $table->foreignId('quartier_id')->constrained();
             $table->string('terme_recherche');
+            $table->integer('nbOccurences');
         });
     }
 
