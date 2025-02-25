@@ -19,7 +19,8 @@
                             <img class="object-cover w-full h-72 rounded-t-lg" src="{{ asset($lieu->photoLieu) }}"
                                 alt="{{ $lieu->nomEtablissement }}">
                             <h5 class="text-xl font-bold uppercase p-2 text-center flex items-center">
-                                {{ $lieu->nomEtablissement }}</h5>
+                                {{ $lieu->nomEtablissement }}
+                            </h5>
                         </div>
                         <div
                             class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
@@ -52,10 +53,11 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-end space-x-3 mt-3">
-                                    <button class="hover:text-red-500"><span class="iconify size-6"
+                                    <button class="boutonSupprimer text-red-500" data-lieuId="{{ $lieu->id }}"
+                                        data-nomLieu="{{ $lieu->nomEtablissement }}"><span class="iconify size-6"
                                             data-icon="ion:trash-outline" data-inline="false"></span></button>
-                                    <button class="modifierMobile hover:text-blue-500"
-                                        data-lieuId="{{ $lieu->id }}" data-villeId="{{ $lieu->ville()?->id }}"
+                                    <button class="boutonModifier" data-lieuId="{{ $lieu->id }}"
+                                        data-villeId="{{ $lieu->ville()?->id }}"
                                         data-typeLieuId="{{ $lieu->typeLieu->id }}"><span class="iconify size-6"
                                             data-icon="ep:edit" data-inline="false"></span></button>
                                 </div>
@@ -101,11 +103,12 @@
                         </div>
                         <div class="flex justify-end space-x-4 mt-auto">
                             <button
-                                class="transform transition duration-300 hover:scale-110 text-red-500 hover:text-red-700">
+                                class="boutonSupprimer transform transition duration-300 hover:scale-110 text-red-500 hover:text-red-700"
+                                data-lieuId="{{ $lieu->id }}" data-nomLieu="{{ $lieu->nomEtablissement }}">
                                 <span class="iconify size-8" data-icon="ion:trash-outline" data-inline="false"></span>
                             </button>
                             <button
-                                class="modifierWeb transform transition duration-300 hover:scale-110 text-c1-500 hover:text-c1-700"
+                                class="boutonModifier transform transition duration-300 hover:scale-110 text-c1-500 hover:text-c1-700"
                                 data-lieuId="{{ $lieu->id }}" data-villeId="{{ $lieu->ville()?->id }}"
                                 data-typeLieuId="{{ $lieu->typeLieu->id }}">
                                 <span class="iconify size-8" data-icon="ep:edit" data-inline="false"></span>
