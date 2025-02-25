@@ -89,8 +89,8 @@
                 <!-- Liens de navigation pour mobile -->
                 <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full">
                     <a href="/"
-                        class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
-                            class="iconify size-10 " data-icon="mdi-camera" data-inline="false"></span>ATTRAITS</a>
+                        class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                        <span class="iconify size-10 " data-icon="mdi-camera" data-inline="false"></span>ATTRAITS</a>
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>

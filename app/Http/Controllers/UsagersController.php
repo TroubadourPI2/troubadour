@@ -49,7 +49,7 @@ class UsagersController extends Controller
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::all();
-        return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
+        return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)
@@ -101,14 +101,13 @@ class UsagersController extends Controller
      *  @param  int  $id​
      *  @return \Illuminate\Http\Response​
      */
-    public function ModificationUsager(UsagerRequest $request, Usager $usager){
+    public function ModificationUsager(Request $request, Usager $usager){
         try{
             $usager->prenom = $request->prenom;
             $usager->nom = $request->nom;
             $usager->courriel = $request->courriel;
-            if ($request->filled('password')) {
-                $usager->password = Hash::make($request->password);
-            }
+            $usager->password =$request->password;
+           
 
             return redirect()->route('usagers.afficher', $usager->id)
             ->with('message', "Modification de " . $usager->nom . " réussie!");
@@ -124,7 +123,7 @@ class UsagersController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Usager $usager){
-        return view('usagers.afficher', compact('usager'));
+        return view('usagers.Afficher', compact('usager'));
     }
 
 

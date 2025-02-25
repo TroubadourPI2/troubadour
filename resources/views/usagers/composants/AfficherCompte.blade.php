@@ -1,6 +1,6 @@
 <div class=" mt-2">
     @if (isset($usager))
-        <form method="POST" action="{{ route('usagers.afficher', $usager->id) }}" >
+        <form method="POST" action="{{ route('usagers.modifier', $usager->id) }}">
 
             @csrf
             @method('PATCH')
@@ -23,7 +23,7 @@
                         <input id="courriel" type="email" class="w-full p-3 border rounded-lg bg-white text-c1"
                             placeholder="Courriel" value="{{ old('courriel', $usager->courriel) }}" name="courriel">
                         <input id="password" type="password" class="w-full p-3 border rounded-lg bg-white text-c1"
-                            placeholder="Mot de passe" name="password">
+                            placeholder="Mot de passe" name="password" value="{{ old('password', $usager->password) }}">
                     </div>
 
                 </div>
@@ -31,9 +31,12 @@
                 <div class="space-y-2">
                     <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline">Rôle</h1>
                     <div class="flex flex-row space-x-3">
-                        <label for="role_id" class="text-xl">Gestionnaire</label>
-                        <input id="role_id" name="role_id" type="checkbox"
-                            class="w-5 p-3 border rounded-lg bg-white text-c1" placeholder="Mot de passe">
+                        @php
+                            $roles = [1 => 'Admin', 2 => 'Utilisateur', 3 => 'Gestionnaire'];
+                        @endphp
+
+                        <h1 class="text-xl">{{ $roles[$usager->role_id] ?? 'Rôle inconnu' }}</h1>
+
                     </div>
                 </div>
 
@@ -54,4 +57,5 @@
         <p>Utilisateur introuvable.</p>
     @endif
 </div>
+
 
