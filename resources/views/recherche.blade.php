@@ -142,10 +142,10 @@
 
         <!-- Boutons de filtres -->
         <div class="w-5/6 h-12 justify-center items-center space-x-5 my-4 flex-row hidden lg:flex">
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Prix') !!}</h3>
-            </div>
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
+            <a class="w-1/2 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1" href="{{ route('recherches.historique') }}">
+                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Consulter l'historique des recherches</h3>
+            </a>
+            {{-- <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
                 <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Type') !!}</h3>
             </div>
             <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
@@ -156,7 +156,7 @@
             </div>
             <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
                 <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Avis') !!}</h3>
-            </div>
+            </div> --}}
         </div>
 
         <!-- ?  Section des cartes (avec scroll seulement ici) [RESPONSIVE]-->

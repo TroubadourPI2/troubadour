@@ -7,6 +7,7 @@ use App\Models\LieuActivite;
 use App\Models\Activite;
 use App\Models\Lieu;
 use App\Models\Quartier;
+use App\Models\Recherche;
 use Illuminate\Http\Request;
 use App\Models\Ville;
 use Exception;
@@ -69,6 +70,20 @@ class LieuxController extends Controller
                 Log::debug("Ville : " . $request->ville);
                 $ville = $request->ville;
             }
+
+            if(isset($request->txtRecherche))
+            {
+                try{
+                    $nouvelleRecherche = new Recherche();
+                    $nouvelleRecherche->terme_recherche = $request->txtRecherche;
+                    $nouvelleRecherche->ville_id = $ville;
+                    $nouvelleRecherche->quartier_id = $quartier;
+                    $nouvelleRecherche->save();
+                }
+                catch(\Exception $e){
+                    Log::debug("MANUEL - Erreur lors de l'ajout de la recherche : " . $e->getMessage());
+                }
+            }
             
             $villes     = Ville::all();
             $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
@@ -89,6 +104,11 @@ class LieuxController extends Controller
         return compact('quartiers');
     }
 
+    public function historique()
+    {
+        $recherches = Recherche::all();
+        return view('historiqueRecherche', compact('recherches'));
+    }
 
     /**
      * Show the form for creating a new resource.

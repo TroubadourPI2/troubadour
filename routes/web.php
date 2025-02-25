@@ -28,7 +28,7 @@ Route::get('/activite/zoom/{id}', [ActivitesController::class, 'show'])->name('A
 
 Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);
 
-
+Route::get('/recherche/historique', [LieuxController::class, 'historique'])->name('recherches.historique');
 
 Route::get('/compte', [UsagersController::class, 'ObtenirDonneesCompte'])->name('usagerLieux.afficher') ->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
 Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
