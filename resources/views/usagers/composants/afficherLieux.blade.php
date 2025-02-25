@@ -172,9 +172,3 @@
         session()->forget('erreurModifierLieu');
     @endphp
 @endif
-
-<script defer>
-    if (localStorage.getItem('afficherLieuxVisible') === true) {
-        console.log("yolo");
-    }
-</script>
