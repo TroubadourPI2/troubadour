@@ -39,15 +39,7 @@ class UsagersController extends Controller
         return back();
     }
     
-     /**​
-     * Show the form for editing the specified resource.​
-     *​
-     * @param  int  $id​
-     * @return \Illuminate\Http\Response​
-     */
-    // public function ModificationUsager(Usager $usager){
-    //     return View('usagers.modifier', compact('usager'));
-    // }
+     
 
 
     public function ObtenirDonneesCompte(){
@@ -102,14 +94,39 @@ class UsagersController extends Controller
     {
         //
     }
+    
+/**​
+     * Show the form for editing the specified resource.​
+     *​
+     *  @param  int  $id​
+     *  @return \Illuminate\Http\Response​
+     */
+    public function ModificationUsager(UsagerRequest $request, Usager $usager){
+        try{
+            $usager->prenom = $request->prenom;
+            $usager->nom = $request->nom;
+            $usager->courriel = $request->courriel;
+            if ($request->filled('password')) {
+                $usager->password = Hash::make($request->password);
+            }
 
+            return redirect()->route('usagers.afficher', $usager->id)
+            ->with('message', "Modification de " . $usager->nom . " réussie!");
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+            return redirect()->route('usagers.edit', $usager->id)
+            ->withErrors(['La modification n\'a pas fonctionné.']);
+        }
+       
+    }
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(Usager $usager){
+        return view('usagers.afficher', compact('usager'));
     }
+
 
     /**
      * Update the specified resource in storage.
