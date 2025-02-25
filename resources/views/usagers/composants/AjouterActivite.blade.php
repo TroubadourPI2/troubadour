@@ -10,20 +10,20 @@
     <form class="mt-2 text-c1" action="{{ route('usagerLieux.ajouterLieu') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="font-barlow text-c1 font-semibold mb-3">
-            <h2 class="uppercase text-center text-xl sm:text-3xl">Ajouter un lieu</h2>
+            <h2 class="uppercase text-center text-xl sm:text-3xl">Ajouter une activité</h2>
 
-            <!-- Informations générales du lieu -->
+            <!-- Informations générales d'une activité -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-3">
                 <h3 class="text-lg sm:text-2xl mb-2 underline">Informations générales</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <div class="sm:col-span-1">
-                        <label for="nomEtablissement" class="block">Nom <span class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="nomEtablissement" id="nomEtablissement"
+                        <label for="nomActivite" class="block">Nom <span class="text-c5 ml-2">*</span></label>
+                        <input type="text" name="nom" id="nomActivite"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium"
-                            value="{{ old('nomEtablissement') }}">
-                        @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('nomEtablissement'))
+                            value="{{ old('nomActivite') }}">
+                        @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('nomActivite'))
                             <span
-                                class="text-c5 font-medium erreur-message">{{ session('erreurAjouterLieu')->first('nomEtablissement') }}</span>
+                                class="text-c5 font-medium erreur-message">{{ session('erreurAjouterActivite')->first('nomActivite') }}</span>
                         @endif
                     </div>
                     <div class="sm:col-span-1">

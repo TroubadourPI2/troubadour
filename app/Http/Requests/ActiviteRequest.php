@@ -24,7 +24,7 @@ class ActiviteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom'               => 'required|string|max:64',
+            'nomActivite'               => 'required|string|max:64',
             'dateDebut'         => 'required|date|after_or_equal:today',
             'dateFin'           => 'nullable|date|after_or_equal:dateDebut',
             'actif'             => 'boolean',
@@ -43,8 +43,8 @@ class ActiviteRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nom.required'                     => 'Le champ nom est obligatoire.',
-            'nom.max'                          => 'Le champ nom ne doit pas dépasser 64 caractères.',
+            'nomActivite.required'                     => 'Le champ nom est obligatoire.',
+            'nomActivite.max'                          => 'Le champ nom ne doit pas dépasser 64 caractères.',
             'dateDebut.required'               => 'La date de début est obligatoire.',
             'dateDebut.date'                   => 'La date de début doit être une date valide.',
             'dateDebut.after_or_equal'         => 'La date de début ne doit pas être antérieure à aujourd\'hui.',
