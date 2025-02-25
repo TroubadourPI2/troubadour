@@ -6,7 +6,6 @@
         Retour
     </button>
 
-
     <form class="mt-2 text-c1" action="{{ route('usagerLieux.ajouterLieu') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="font-barlow text-c1 font-semibold mb-3">
@@ -16,47 +15,65 @@
             <div class="font-barlow text-c1 font-semibold uppercase mt-3">
                 <h3 class="text-lg sm:text-2xl mb-2 underline">Informations générales</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
-                    <div class="sm:col-span-1">
+                    <div class="sm:col-span-2">
                         <label for="nomActivite" class="block">Nom <span class="text-c5 ml-2">*</span></label>
                         <input type="text" name="nom" id="nomActivite"
-                            class="block w-full rounded-lg p-1 sm:p-2 font-medium"
-                            value="{{ old('nomActivite') }}">
+                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('nomActivite') }}">
                         @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('nomActivite'))
                             <span
                                 class="text-c5 font-medium erreur-message">{{ session('erreurAjouterActivite')->first('nomActivite') }}</span>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="selectTypeLieu" class="block">Type de lieu <span
+                        <label for="typeActivite_id" class="block">Type d'activite <span
                                 class="text-c5 ml-2">*</span></label>
-                        <select name="selectTypeLieu" id="selectTypeLieu"
+                        <select name="typeActivite_id" id="typeActivite_id"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">Sélectionner un type</option>
-                            @foreach ($typesLieu as $type)
+                            @foreach ($typesActivite as $type)
                                 <option value="{{ $type->id }}"
-                                    {{ old('selectTypeLieu') == $type->id ? 'selected' : '' }}>
+                                    {{ old('typeActivite_id') == $type->id ? 'selected' : '' }}>
                                     {{ $type->nom }}
                                 </option>
                             @endforeach
                         </select>
-                        @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectTypeLieu'))
+                        @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('typeActivite_id'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurAjouterLieu')->first('selectTypeLieu') }}
-                            </div>
-                        @endif
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label for="description" class="block">Description</label>
-                        <textarea rows="4" name="description" id="description" class="block w-full rounded-lg font-medium p-2">{{ old('description') }}</textarea>
-                        @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('description'))
-                            <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurAjouterLieu')->first('description') }}
+                                {{ session('erreurAjouterActivite')->first('typeActivite_id') }}
                             </div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="photoLieu" class="block">Photo du lieu (Ne doit pas dépasser 2mo)</label>
-                        <input id="photoLieu" name="photoLieu" type="file"
+                        <label for="lieu_id" class="block">Lieux <span class="text-c5 ml-2">*</span></label>
+                        <select name="lieu_id" id="lieu_id"
+                            class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
+                            <option value="">Sélectionner un lieu</option>
+                            @foreach ($lieuxUsager as $lieu)
+                                <option value="{{ $type->id }}" {{ old('lieu_id') == $lieu->id ? 'selected' : '' }}>
+                                    {{ $lieu->nomEtablissement }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('lieu_id'))
+                            <div class="text-c5 font-medium erreur-message">
+                                {{ session('erreurAjouterActivite')->first('lieu_id') }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="descriptionActivite" class="block">Description</label>
+                        <textarea rows="4" name="descriptionActivite" id="descriptionActivite"
+                            class="block w-full rounded-lg font-medium p-2">{{ old('descriptionActivite') }}</textarea>
+                        @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('descriptionActivite'))
+                            <div class="text-c5 font-medium erreur-message">
+                                {{ session('erreurAjouterActivite')->first('descriptionActivite') }}
+                            </div>
+                        @endif
+
+                    </div>
+                    <div class="sm:col-span-1">
+                        <label for="photos" class="block">Photo du lieu (Ne doit pas dépasser 2mo)</label>
+                        <input id="photos" name="photos.*" type="file"
                             class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg">
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('photoLieu'))
                             <div class="text-c5 font-medium erreur-message">
@@ -67,99 +84,35 @@
                 </div>
             </div>
 
-            <!-- Adresse du lieu -->
+            <!-- DATE ACTIVITE -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-6">
-                <h3 class="text-lg sm:text-2xl mb-2 underline">Adresse</h3>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <div class="sm:col-span-1">
-                        <label for="noCivic" class="block">Numéro civique <span class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="noCivic" id="noCivic"
-                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('noCivic') }}">
-                        @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('noCivic'))
-                            <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurAjouterLieu')->first('noCivic') }}</div>
-                        @endif
-                    </div>
-                    <div class="sm:col-span-1">
-                        <label for="rue" class="block">Rue <span class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="rue" id="rue"
-                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('rue') }}">
-                        @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('rue'))
-                            <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurAjouterLieu')->first('rue') }}</div>
-                        @endif
-                    </div>
-                    <div class="sm:col-span-1">
-                        <label for="codePostal" class="block">Code postal <span class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="codePostal" id="codePostal" placeholder="A1A 1A1"
-                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('codePostal') }}">
-                        @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('codePostal'))
-                            <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurAjouterLieu')->first('codePostal') }}
-                            </div>
-                        @endif
-                    </div>
-                    <div class="sm:col-span-1">
-                        <label for="selectVilleLieu" class="block">Ville</label>
-                        <select name="selectVilleLieu" id="selectVilleLieu"
-                            class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
-                            <option value="">Sélectionner une ville</option>
-                            @foreach ($villes as $ville)
-                                <option value="{{ $ville->id }}">
-                                    {{ $ville->nom }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectVilleLieu'))
-                            <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurAjouterLieu')->first('selectVilleLieu') }}
-                            </div>
-                        @endif
-                    </div>
-                    <div class="sm:col-span-1">
-                        <label for="selectQuartierLieu" class="block">Quartier (choisir une ville avant) <span
-                                class="text-c5 ml-2">*</span></label>
-                        <select name="selectQuartierLieu" id="selectQuartierLieu"
-                            class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium"
-                            {{ old('selectVilleLieu') ? '' : 'disabled' }}>
-                            <option value="">Sélectionner un quartier</option>
-                        </select>
-                        @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('selectQuartierLieu'))
-                            <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurAjouterLieu')->first('selectQuartierLieu') }}
-                            </div>
-                        @endif
-                    </div>
+                    <div class="flex flex-col w-1/2">
+                        <label for="start">Date de début</label>
 
-                </div>
-            </div>
-
-            <!-- Coordonnées de contact -->
-            <div class="font-barlow text-c1 font-semibold uppercase mt-6">
-                <h3 class="text-lg sm:text-2xl mb-2 underline">Coordonnées</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
-                    <div class="sm:col-span-1">
-                        <label for="numeroTelephone" class="block">Numéro de téléphone <span
-                                class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="numeroTelephone" id="numeroTelephone"
-                            class="block w-full rounded-lg p-1 sm:p-2 font-medium" placeholder="###-###-####"
-                            value="{{ old('numeroTelephone') }}">
+                        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+                            max="2018-12-31" />
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('numeroTelephone'))
                             <div class="text-c5 font-medium erreur-message">
                                 {{ session('erreurAjouterLieu')->first('numeroTelephone') }}
                             </div>
                         @endif
+                        </div>
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="siteWeb" class="block">Site web</label>
-                        <input type="text" name="siteWeb" id="siteWeb"
-                            class="block w-full rounded-lg p-1 sm:p-2 font-medium"
-                            placeholder="https://www.monsite.com/" value="{{ old('siteWeb') }}">
+                        <div class="flex flex-col w-1/2">
+                        <label for="start">Date de fin</label>
+
+                        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+                            max="2018-12-31" />
                         @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('siteWeb'))
                             <div class="text-c5 font-medium erreur-message">
                                 {{ session('erreurAjouterLieu')->first('siteWeb') }}
                             </div>
                         @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,9 +130,6 @@
         </div>
     </form>
 </div>
-
-
-
 
 @if (session('erreurAjouterActivite'))
     <script>
@@ -204,3 +154,4 @@
         session()->forget('erreurAjouterActivite');
     @endphp
 @endif
+
