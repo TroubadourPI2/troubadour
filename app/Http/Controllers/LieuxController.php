@@ -128,7 +128,7 @@ class LieuxController extends Controller
 
     public function historique()
     {
-        $recherches = Recherche::all();
+        $recherches = Recherche::all()->sortByDesc('nbOccurences');
         $quartiers = Recherche::all()->unique('quartier_id');
 
         $listeQuartiers = array();
