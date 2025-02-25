@@ -35,6 +35,7 @@ Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuarti
 Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu');
 Route::get('/compte/obtenirLieu', [LieuxController::class, 'ObtenirUnLieu']);
 Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu');
+Route::delete('/compte/supprimerLieu/{id}', [LieuxController::class, 'SupprimerUnLieu']);
 
 Route::post('/compte/ajouterActivite', [ActivitesController::class, 'AjouterUneActivite'])->name('usagerActivites.ajouterActivite');
 

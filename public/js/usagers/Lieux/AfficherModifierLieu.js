@@ -1,5 +1,4 @@
-let boutonsModifierMobile;
-let boutonsModifierWeb;
+let boutonsModifier;
 let selectQuartierLieuModifie;
 let selectVilleLieuModifie;
 let selectTypeLieuModifie;
@@ -16,8 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function ObtenirElementsModifier() {
-    boutonsModifierMobile = document.querySelectorAll(".modifierMobile");
-    boutonsModifierWeb = document.querySelectorAll(".modifierWeb");
+    boutonsModifier = document.querySelectorAll(".boutonModifier");
     selectQuartierLieuModifie = document.getElementById(
         "selectQuartierLieuModifie"
     );
@@ -26,19 +24,7 @@ function ObtenirElementsModifier() {
 }
 
 function AjouterModifierListeners() {
-    boutonsModifierMobile.forEach((bouton) => {
-        bouton.addEventListener("click", () => {
-            const lieuId = bouton.getAttribute("data-lieuId");
-            villeId = bouton.getAttribute("data-villeId");
-            typeLieuId = bouton.getAttribute("data-typeLieuId");
-            ObtenirLieu(lieuId);
-            //Fonction dans AfficherAjouterLieux.js
-            ObtenirQuartiersParVille(villeId);
-            ChangerSection(modifierLieu, afficherLieux);
-        });
-    });
-
-    boutonsModifierWeb.forEach((bouton) => {
+    boutonsModifier.forEach((bouton) => {
         bouton.addEventListener("click", () => {
             const lieuId = bouton.getAttribute("data-lieuId");
             villeId = bouton.getAttribute("data-villeId");
