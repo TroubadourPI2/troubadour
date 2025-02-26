@@ -11,6 +11,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap"
         rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+   
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/png" href="" />
@@ -43,16 +45,17 @@
                 @auth
                     <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="m-0">
                         @csrf
-                        <button class=" text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition">
+                        <button
+                            class=" text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition">
                             DÉCONNEXION
                         </button>
                     </form>
-                @else 
+                @else
                     <a onclick="AfficherModalConnexion()"
                         class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">CONNEXION</a>
                     <div class="border-r h-12 border-c1 rounded "></div>
                 @endauth
-                    
+
                 <div class="border-r h-12 border-c1 rounded "></div>
                 <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1   rounded-full transition "
                     data-icon="mdi:search" data-inline="false"></span>
@@ -96,29 +99,26 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>COMPTE</a>
-                    
-                        <a href=""
+
+                    <a href=""
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                        <span class="iconify size-10 " data-icon="mdi:search" data-inline="false"></span>RECHERCHE</a>
+
+                    @auth
+                        <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                            @csrf
+                            <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
+                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
+                            </button>
+                        </form>
+                    @else
+                        <a href="#" onclick="AfficherModalConnexion()"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                            <span class="iconify size-10 " data-icon="mdi:search"
-                                data-inline="false"></span>RECHERCHE</a>
-                    
-                        
-                         @auth
-                            <form action="{{ route('usagers.Deconnexion') }}" method="POST">
-                                @csrf
-                                <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
-                                    <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
-                                </button>
-                            </form>
-                        @else
-                            <a href="#" onclick="AfficherModalConnexion()"
-                                class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                                <span class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>
-                                CONNEXION
-                            </a>
-                        @endauth
-                    
-                   
+                            <span class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>
+                            CONNEXION
+                        </a>
+                    @endauth
+
                 </nav>
 
             </div>
@@ -199,6 +199,9 @@
 
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+<script src="//unpkg.com/alpinejs"defer></script>
+
 <script>
     document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
         const menuMobile = document.getElementById('menuMobile');

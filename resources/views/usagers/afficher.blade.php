@@ -31,9 +31,11 @@
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherModifierLieu.js') }}"></script>
+<script src="{{ asset('js/usagers/Lieux/SupprimerLieu.js') }}"></script>
 @if (session('formulaireValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.add('hidden');
@@ -94,10 +96,6 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
             });
 
             Toast.fire({
@@ -112,5 +110,45 @@
     </script>
     @php
         session()->forget('formulaireModifierValide');
+    @endphp
+@endif
+
+
+@if (session('formulaireAjoutActiviteValide') === 'true')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            document.getElementById('lieux').classList.add('hidden');
+            document.getElementById('compte').classList.add('hidden');
+            document.getElementById('activites').classList.remove('hidden');
+
+            const boutonActivites = document.getElementById('boutonActivites');
+            boutonActivites.classList.add("bg-c1", "text-c3");
+            boutonActivites.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonCompte = document.getElementById('boutonCompte');
+            boutonCompte.classList.remove("bg-c1", "text-c3");
+            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: "Ajout effectué avec succès!",
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('formulaireAjoutActiviteValide');
     @endphp
 @endif

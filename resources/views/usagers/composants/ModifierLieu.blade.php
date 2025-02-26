@@ -5,7 +5,7 @@
             data-inline="false"></span>
         Retour
     </button>
-    <form id="formModifierLieu" class="mt-2 text-c1" action="{{ route('usagerLieux.modifierLieu', [$lieu->id]) }}"
+    <form id="formModifierLieu" class="mt-2 text-c1" action="{{ route('usagerLieux.modifierLieu', ['id' => 1]) }}"
         method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -34,8 +34,7 @@
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">Sélectionner un type</option>
                             @foreach ($typesLieu as $type)
-                                <option value="{{ $type->id }}"
-                                    {{ old('selectTypeLieu', $lieu->type_lieu_id) == $type->id ? 'selected' : '' }}>
+                                <option value="{{ $type->id }}">
                                     {{ $type->nom }}
                                 </option>
                             @endforeach
@@ -107,8 +106,7 @@
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">Sélectionner une ville</option>
                             @foreach ($villes as $ville)
-                                <option value="{{ $ville->id }}"
-                                    {{ old('selectVilleLieu', $lieu->ville_id) == $ville->id ? 'selected' : '' }}>
+                                <option value="{{ $ville->id }}">
                                     {{ $ville->nom }}
                                 </option>
                             @endforeach

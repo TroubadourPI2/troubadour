@@ -16,7 +16,6 @@ class VerifierRole
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         $user = $request->user();
-        //dd($user->role->nom);
 
         if (!$user) {
           if (!$request->is('login')) {

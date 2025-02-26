@@ -43,8 +43,9 @@
                         @auth
                             <form action="{{ route('usagers.Deconnexion') }}" method="POST">
                                 @csrf
-                                <button class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
-                                   DÉCONNEXION
+                                <button
+                                    class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
+                                    DÉCONNEXION
                                 </button>
                             </form>
                         @else
@@ -119,7 +120,7 @@
 
     <div id="sectionCacher"
         class=" flex-col 
-     gap-y-8 sm:gap-y-16 bg-c2 text-c2 font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out px-4">
+     gap-y-8 sm:gap-y-16 bg-c2  font-barlow text-5xl opacity-0 transition-opacity hidden duration-1000 ease-out px-4">
 
         <div class="pt-4 flex justify-center">
             <span id="villeSpan"
