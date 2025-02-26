@@ -28,9 +28,11 @@
                         <input type="text" name="nomActivite" id="nomActivite"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('nomActivite') }}">
                         @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('nomActivite'))
+                        <div class="erreurAjouterActiviteMessages">
                             <span class="text-c5 font-medium erreur-message">
                                 {{ session('erreurAjouterActivite')->first('nomActivite') }}
                             </span>
+                        </div>
                         @endif
                     </div>
                     <div class="sm:col-span-1">
@@ -47,7 +49,7 @@
                             @endforeach
                         </select>
                         @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('typeActivite_id'))
-                            <div class="text-c5 font-medium erreur-message">
+                            <div class="text-c5 font-medium erreurAjouterActiviteMessages">
                                 {{ session('erreurAjouterActivite')->first('typeActivite_id') }}
                             </div>
                         @endif
@@ -66,7 +68,7 @@
 
 
                         @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('lieu_id'))
-                            <div class="text-c5 font-medium erreur-message">
+                            <div class="text-c5 font-medium erreurAjouterActiviteMessages">
                                 {{ session('erreurAjouterActivite')->first('lieu_id') }}
                             </div>
                         @endif
@@ -77,7 +79,7 @@
                         <textarea rows="4" name="descriptionActivite" id="descriptionActivite"
                             class="block w-full rounded-lg font-medium p-2">{{ old('descriptionActivite') }}</textarea>
                         @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('descriptionActivite'))
-                            <div class="text-c5 font-medium erreur-message">
+                            <div class="text-c5 font-medium erreurAjouterActiviteMessages">
                                 {{ session('erreurAjouterActivite')->first('descriptionActivite') }}
                             </div>
                         @endif
@@ -102,7 +104,7 @@
                             @endphp
 
                             @foreach ($errorMessages as $uniqueMessage)
-                                <div class="text-c5 font-medium erreur-message">{{ $uniqueMessage }}</div>
+                                <div class="text-c5 font-medium erreurAjouterActiviteMessages">{{ $uniqueMessage }}</div>
                             @endforeach
                         @endif
 
@@ -131,7 +133,7 @@
                                 value="{{ old('dateDebut', $aujourdhui) }}" min="{{ $aujourdhui }}"
                                 max="{{ $dateLimite }}" />
                             @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('dateDebut'))
-                                <div class="text-c5 font-medium erreur-message">
+                                <div class="text-c5 font-medium erreurAjouterActiviteMessages">
                                     {{ session('erreurAjouterActivite')->first('dateDebut') }}
                                 </div>
                             @endif
@@ -145,7 +147,7 @@
                                 value="{{ old('dateFin', $aujourdhui) }}" min="{{ $aujourdhui }}"
                                 max="{{ $dateLimite }}" />
                             @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('dateFin'))
-                                <div class="text-c5 font-medium erreur-message">
+                                <div class="text-c5 font-medium erreurAjouterActiviteMessages">
                                     {{ session('erreurAjouterActivite')->first('dateFin') }}
                                 </div>
                             @endif

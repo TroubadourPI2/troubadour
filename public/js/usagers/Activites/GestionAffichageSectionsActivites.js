@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("ajouterActivite").classList.add("hidden");
     
         document.getElementById("afficherActivites").classList.remove("hidden");
+        document.querySelectorAll('.erreurAjouterActiviteMessages').forEach(function(container) {
+            container.remove();
+        });
     });
 });
 
