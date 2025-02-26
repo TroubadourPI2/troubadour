@@ -98,3 +98,4 @@
 <script src="//unpkg.com/alpinejs" defer></script>
 <script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>
+<script src="{{ asset('js/usagers/Activites/AjouterActivite.js') }}" defer></script>
