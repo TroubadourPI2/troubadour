@@ -33,7 +33,7 @@ class ActiviteRequest extends FormRequest
             'lieu_id.*'          => 'exists:Lieux,id',
             'photos'            => 'nullable|array',
             'photos.*'          => 'nullable|mimes:png,jpg|max:2048',
-            'photos.*.position' => 'required|integer',
+            'photos.*.position' => 'required|integer|distinct',
         ];
     }
     
@@ -60,6 +60,7 @@ class ActiviteRequest extends FormRequest
             'photos.*.max'                     => 'Chaque photo ne doit pas dépasser 2048 kilo-octets.',
             'photos.*.position.required'       => 'La position de chaque photo est obligatoire.',
             'photos.*.position.integer'        => 'La position de chaque photo doit être un nombre entier.',
+            'photos.*.position.distinct'      => 'Les positions des photos doivent être uniques.',
         ];
     }
 
