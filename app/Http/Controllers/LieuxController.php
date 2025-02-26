@@ -118,7 +118,7 @@ class LieuxController extends Controller
 
     public function historique()
     {
-        $recherches = Recherche::all();
+        $recherches = Recherche::all()->sortByDesc('nbOccurences');
         $quartiers = Recherche::all()->unique('quartier_id');
 
         $listeQuartiers = array();
@@ -159,6 +159,19 @@ class LieuxController extends Controller
         $villeId    = $request->villeId;
         $quartiers  = Quartier::where('ville_id', $villeId)->get();
         return compact('quartiers');
+    }
+
+    public function supprimerRecherche($id)
+    {
+        try{
+            $recherche = Recherche::findOrFail($id);
+            $recherche->delete();
+            return response()->json(["success" => true, "message" => "Recherche supprimée avec succès."]);
+        }
+        catch(\Exception $e){
+            Log::error("Erreur lors de la suppression de la recherche : " . $e->getMessage());
+            return response()->json(["success" => false, "message" => "Erreur lors de la suppression."], 500);
+        }
     }
 
     public function AjouterUnLieu(LieuRequest $request)

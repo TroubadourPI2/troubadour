@@ -43,5 +43,6 @@ Route::post('/compte/ajouterActivite', [ActivitesController::class, 'AjouterUneA
 Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
 
 Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
+Route::get('/recherche/supprimer/{id}/', [LieuxController::class, 'supprimerRecherche'])->name('recherche.supprimer');
 
 Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
