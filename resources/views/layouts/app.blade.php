@@ -11,6 +11,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap"
         rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+   
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/png" href="" />
@@ -219,6 +221,9 @@
 
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+<script src="//unpkg.com/alpinejs"defer></script>
+
 <script>
     document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
         const menuMobile = document.getElementById('menuMobile');
