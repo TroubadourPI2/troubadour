@@ -28,49 +28,61 @@ class ActivitesController extends Controller
     }
 
     public function AjouterUneActivite(ActiviteRequest $request)
-    {
+{
+    try {
+     
+        $activite = Activite::create([
+            'nom'             => $request->nomActivite,
+            'description'     => $request->descriptionActivite,
+            'typeActivite_id' => $request->typeActivite_id,
+            'dateDebut'       => $request->dateDebut,
+            'dateFin'         => $request->dateFin,
+            'actif'           => true, 
+        ]);
 
-        try {
-        
-            $validated = $request->validated();
     
-          
-            $activite = Activite::create([
-                'nom'                => $validated['nom'],
-                'descriptionActivite'=> $validated['descriptionActivite'] ?? null,
-                'typeActivite_id'    => $validated['typeActivite_id'],
-                'lieu_id'            => $validated['lieu_id'],
-                'trip_start'         => $validated['trip-start'],
-                'trip_end'           => $validated['trip-end'],
-            ]);
-    
-        
-            if ($request->hasFile('photos')) {
-                foreach ($request->file('photos') as $index => $photo) {
-              
-                    //TODO REMPLACER PAR PROD ACTIVITE 
-                    $path = $photo->store('activites', 'DevActivite');
-    
-                   
-              
-                    $position = $validated['positions'][$index] ?? null;
-    
-                    $activite->photos()->create([
-                        'path'     => $path,
-                        'position' => $position,
-                    ]);
-                }
+        if ($request->has('lieu_id')) {
+            foreach ($request->lieu_id as $lieuId) {
+                LieuActivite::create([
+                    'activite_id' => $activite->id,
+                    'lieu_id'     => $lieuId,
+                ]);
             }
-    
-            return redirect()->route('activites.index')->with('success', 'Activité ajoutée avec succès !');
-        } catch (\Exception $e) {
-          
-            return redirect()->back()->with('error', "Erreur lors de l'ajout de l'activité : " . $e->getMessage());
         }
+
+ 
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $index => $photoFile) {
+
+               //TODO REMPLACER PAR ProdActivite 
+                $chemin = $photoFile->store('activites', 'DevActivite');
+              
+
+               
+                $position = $request->input("photos.$index.position", null);
+      
+
+                
+                $photoCreated = Photo::create([
+                    'chemin'      => $chemin,
+                    'position'    => $position,
+                    'activite_id' => $activite->id,
+                    'nom'         => $photoFile->getClientOriginalName(), 
+                ]);
+        
+            }
+        }
+
+        return redirect()->route('usagerLieux.afficher')
+            ->with('success', 'Activité ajoutée avec succès !');
+    } catch (\Exception $e) {
+        return redirect()->back()
+            ->with('error', "Erreur lors de l'ajout de l'activité : " . $e->getMessage());
     }
-    public function store()
-    {
-    }
+}
+
+
+
     
     /**
      * Store a newly created resource in storage.
