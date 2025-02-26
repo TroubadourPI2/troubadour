@@ -48,8 +48,8 @@ return [
         ],
         'DevActivite' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/Images/Activites'),
-            'url' => env('APP_URL').'/storage/Images/Activites',
+            'root' => storage_path('app/public/Images'),
+            'url' => env('APP_URL').'/storage/Images',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

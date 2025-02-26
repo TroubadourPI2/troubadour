@@ -1,4 +1,4 @@
-<div class="flex w-full h-full flex-col hidden" id="afficherActivites">
+<div class="flex w-full h-full flex-col  " id="afficherActivites">
 
     <div class="flex flex-col sm:flex-row w-full gap-4 items-center mb-4">
         <div class="flex w-full lg:flex-row flex-col gap-x-4 gap-y-4 lg:gap-y-0 items-center">
@@ -69,6 +69,6 @@
 </div>
 
 
-<div id="ajouterActivite" class="">@include('usagers.composants.AjouterActivite')</div>
+<div id="ajouterActivite" class="hidden">@include('usagers.composants.AjouterActivite')</div>
 <script src="//unpkg.com/alpinejs" defer></script>
 <script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>
