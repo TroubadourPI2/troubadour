@@ -61,7 +61,7 @@
                 <div class="w-full h-full flex justify-evenly items-center flex-col">
                     <div class="flex flex-col w-full items-center">
                         <span class="text-c3 font-barlow text-5xl lg:text-9xl">TROUBADOUR</span>
-                        <span class="text-c3 text-xl lg:text-5xl uppercase">{{ __('compte') }}</span>
+                        <span class="text-c3 text-xl lg:text-5xl uppercase">Explorez sans limites</span>
                     </div>
                     <div>
                         <button id="activerSection"

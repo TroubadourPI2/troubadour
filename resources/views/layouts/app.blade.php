@@ -30,33 +30,36 @@
             <div class="flex w-full justify-end items-center gap-x-2">
                 {{-- TODO remplacer par les liens quand les pages seronts faites --}}
                 <a
-                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition  ">Attraits</a>
-                <div class="border-r h-12 border-c1 rounded "></div>
+                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow text-semibold cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition  ">Attraits</a>
+                <div class="border-r-2 h-10 border-c1 rounded "></div>
                 <a
-                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition   ">À
+                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer text-semibold hover:bg-c3 px-2 py-1 rounded-full transition   ">À
                     propos</a>
-                <div class="border-r h-12 border-c1 rounded "></div>
+                <div class="border-r-2 h-10 border-c1 rounded "></div>
                 <a
-                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">compte</a>
-                <div class="border-r h-12 border-c1 rounded "></div>
+                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">compte</a>
+                <div class="border-r-2 h-10 border-c1 rounded "></div>
 
                 @auth
                     <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="m-0">
                         @csrf
                         <button
-                            class=" text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition">
+                            class=" text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition">
                             DÉCONNEXION
                         </button>
                     </form>
                 @else
                     <a onclick="AfficherModalConnexion()"
                         class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">CONNEXION</a>
-                    <div class="border-r h-12 border-c1 rounded "></div>
+                    <div class="border-r-2 h-10 border-c1 rounded "></div>
                 @endauth
 
-                <div class="border-r h-12 border-c1 rounded "></div>
+                <div class="border-r-2 h-10 border-c1 rounded "></div>
+                <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1   rounded-full transition "
+                    data-icon="iconoir:language" data-inline="false"></span>
                 <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1   rounded-full transition "
                     data-icon="mdi:search" data-inline="false"></span>
+                
             </div>
         </div>
         {{-- Menu Mobile --}}
