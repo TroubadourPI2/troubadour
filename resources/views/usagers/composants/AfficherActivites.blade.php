@@ -1,8 +1,8 @@
-<div class="flex w-full h-full flex-col">
+<div class="flex w-full h-full flex-col  " id="afficherActivites">
 
     <div class="flex flex-col sm:flex-row w-full gap-4 items-center mb-4">
         <div class="flex w-full lg:flex-row flex-col gap-x-4 gap-y-4 lg:gap-y-0 items-center">
-            <button
+            <button  id="boutonAjouterActivite"
                 class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full w-fit max-w-64 text-c1 font-semibold my-3 px-4">
                 <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add"
                     data-inline="false"></span>
@@ -68,5 +68,34 @@
     </div>
 </div>
 
-<script src="//unpkg.com/alpinejs" defer></script>
+
+<div id="ajouterActivite" class="hidden">@include('usagers.composants.AjouterActivite')</div>
+
+@if (session('erreurAjouterActivite'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("compte").classList.add("hidden");
+
+            const boutonCompte = document.getElementById("boutonCompte");
+            boutonCompte.classList.remove("bg-c1", "text-c3");
+            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonActivites = document.getElementById("boutonActivites");
+            boutonActivites.classList.add("bg-c1", "text-c3");
+            boutonActivites.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            document.getElementById("ajouterActivite").classList.remove("hidden");
+            const activites = document.getElementById("activites");
+            activites.classList.remove("hidden");
+
+            document.getElementById("afficherActivites").classList.add("hidden");
+        });
+    </script>
+    @php
+        session()->forget('erreurAjouterActivite');
+    @endphp
+@endif
+
 <script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>
+<script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>
+<script src="{{ asset('js/usagers/Activites/AjouterActivite.js') }}" defer></script>
