@@ -2,7 +2,7 @@
 
     <div class="flex flex-col sm:flex-row w-full gap-4 items-center mb-4">
         <div class="flex w-full lg:flex-row flex-col gap-x-4 gap-y-4 lg:gap-y-0 items-center">
-            <button  id="boutonAjouterActivite"
+            <button id="boutonAjouterActivite"
                 class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full w-fit max-w-64 text-c1 font-semibold my-3 px-4">
                 <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add"
                     data-inline="false"></span>
@@ -54,11 +54,21 @@
                         x-transition:enter="transition transform duration-300"
                         x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" />
                 </template>
-                <div class="w-full flex justify-center items-end">
-                    <span
-                        class="bg-c1 opacity-90 flex h-16 text-2xl font-bold text-c3 font-barlow w-full justify-center items-center">
-                        {{ $activite->nom }}
-                    </span>
+                <div class="w-full flex  justify-center items-end">
+                    <div class="opacity-90 bg-c1 flex  w-full h-16 items-center">
+                        <span class="  text-2xl font-bold text-c3 font-barlow w-full truncate justify-start px-4 items-center">
+                            {{ $activite->nom }}
+                        </span>
+                        <div class="flex gap-x-2 px-4  ">
+                            <button class="boutonSupprimer text-red-500" data-lieuId="{{ $lieu->id }}"
+                                data-nomLieu="{{ $lieu->nomEtablissement }}"><span class="iconify size-6"
+                                    data-icon="ion:trash-outline" data-inline="false"></span></button>
+                            <button class="boutonModifier" data-lieuId="{{ $lieu->id }}"
+                                data-villeId="{{ $lieu->ville()?->id }}"
+                                data-typeLieuId="{{ $lieu->typeLieu->id }}"><span class="iconify size-6 text-c3"
+                                    data-icon="ep:edit" data-inline="false"></span></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endforeach
@@ -67,7 +77,6 @@
         Aucune activité n'a été trouvée pour ce lieu.
     </div>
 </div>
-
 
 <div id="ajouterActivite" class="hidden">@include('usagers.composants.AjouterActivite')</div>
 
@@ -99,3 +108,4 @@
 <script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/AjouterActivite.js') }}" defer></script>
+

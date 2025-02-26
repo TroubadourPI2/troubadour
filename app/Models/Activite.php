@@ -40,6 +40,7 @@ class Activite extends Model
             })
             ->values()
             ->toJson();
+            
     }
     
 
