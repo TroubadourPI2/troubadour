@@ -32,7 +32,7 @@ class Activite extends Model
         return $this->hasMany(Photo::class, 'activite_id')->orderBy('position');
     }
     public function getPhotosJsonAttribute()
-    {
+    {   //TODO A CHANGER EN PROD POUR LE BON CHEMIN
         return $this->photos
             ->map(function ($photo) {
         

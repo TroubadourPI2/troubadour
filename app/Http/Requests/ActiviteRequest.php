@@ -68,7 +68,7 @@ class ActiviteRequest extends FormRequest
         $nomRouteActuelle = $this->route()->getName();
 
         if ($nomRouteActuelle === 'usagerActivites.ajouterActivite') {
-            session()->put('erreurAjouterLieu', $validator->errors());
+            session()->put('erreurAjouterActivite', $validator->errors());
 
             throw new HttpResponseException(
                 redirect()->back()

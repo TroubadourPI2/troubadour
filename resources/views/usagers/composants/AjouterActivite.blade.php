@@ -54,7 +54,8 @@
                     </div>
                     <div class="sm:col-span-1">
                         <label for="lieu_id" class="block">Lieux <span class="text-c5 ml-2">*</span></label>
-                        <select name="lieu_id[]" id="lieu_id" class="block w-full rounded-lg p-1  bg-c3 font-medium" multiple>
+                        <select name="lieu_id[]" id="lieu_id" class="block w-full rounded-lg p-1  bg-c3 font-medium"
+                            multiple>
                             @foreach ($lieuxUsager as $lieu)
                                 <option value="{{ $lieu->id }}"
                                     {{ in_array($lieu->id, old('lieu_id', [])) ? 'selected' : '' }}>
@@ -87,11 +88,25 @@
                             image)</label>
                         <input id="photos" name="photos[]" type="file"
                             class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg" multiple>
-                        @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('photos'))
-                            <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurAjouterActivite')->first('photos') }}
-                            </div>
+                        @if (session('erreurAjouterActivite'))
+                            @php
+                                $errorMessages = [];
+                                foreach (session('erreurAjouterActivite')->getMessages() as $key => $messages) {
+                                    if (substr($key, 0, 6) === 'photos') {
+                                        foreach ($messages as $message) {
+                                            $errorMessages[] = $message;
+                                        }
+                                    }
+                                }
+                                $errorMessages = array_unique($errorMessages);
+                            @endphp
+
+                            @foreach ($errorMessages as $uniqueMessage)
+                                <div class="text-c5 font-medium erreur-message">{{ $uniqueMessage }}</div>
+                            @endforeach
                         @endif
+
+
                     </div>
                 </div>
             </div>
@@ -153,30 +168,7 @@
         </div>
     </form>
 </div>
-@if (session('erreurAjouterActivite'))
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("compte").classList.add("hidden");
 
-            const boutonCompte = document.getElementById("boutonCompte");
-            boutonCompte.classList.remove("bg-c1", "text-c3");
-            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
-
-            const boutonActivites = document.getElementById("boutonActivites");
-            boutonActivites.classList.add("bg-c1", "text-c3");
-            boutonActivites.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
-
-            document.getElementById("ajouterActivite").classList.remove("hidden");
-            const activites = document.getElementById("activites");
-            activites.classList.remove("hidden");
-
-            document.getElementById("afficherActivites").classList.add("hidden");
-        });
-    </script>
-    @php
-        session()->forget('erreurAjouterActivite');
-    @endphp
-@endif
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         new TomSelect("#lieu_id", {
@@ -187,25 +179,24 @@
 </script>
 
 <<!-- Script de création des champs de position pour les photos -->
-<script>
-
+    <script>
         const champPhotos = document.getElementById('photos');
         const conteneurPositions = document.getElementById('positionInputs');
-    
+
         champPhotos.addEventListener('change', function() {
-            conteneurPositions.innerHTML = ''; // Réinitialise les inputs
+            conteneurPositions.innerHTML = '';
             const fichiers = champPhotos.files;
-    
+
             for (let i = 0; i < fichiers.length; i++) {
                 const fichier = fichiers[i];
                 const div = document.createElement('div');
                 div.className = 'mb-2';
-    
+
                 const label = document.createElement('label');
                 label.setAttribute('for', 'photos_' + i);
                 label.className = 'block text-sm';
                 label.innerText = 'Position pour "' + fichier.name + '"';
-    
+
                 const input = document.createElement('input');
                 input.type = 'number';
                 input.id = 'photos_' + i;
@@ -215,51 +206,49 @@
                 input.placeholder = 'Position';
                 // Ajout d'une classe pour la validation
                 input.classList.add('position-input');
-    
+
                 div.appendChild(label);
                 div.appendChild(input);
                 conteneurPositions.appendChild(div);
             }
         });
-
     </script>
-    
- <!-- Script de validation des positions avant soumission du formulaire -->
-<script>
-    document.getElementById('activiteForm').addEventListener('submit', function(e) {
-        console.log('Validation des positions exécutée');
-        
-        const positionInputs = document.querySelectorAll('.position-input');
-        let tousRemplis = true;
-        const positions = [];
-        
-        positionInputs.forEach(function(input) {
-            const value = input.value.trim();
-            if (value === '') {
-                tousRemplis = false;
-                input.classList.add('border-c5');
-            } else {
-                input.classList.remove('border-c5');
-                positions.push(value);
+
+    <!-- Script de validation des positions avant soumission du formulaire -->
+    <script>
+        document.getElementById('activiteForm').addEventListener('submit', function(e) {
+            console.log('Validation des positions exécutée');
+
+            const positionInputs = document.querySelectorAll('.position-input');
+            let tousRemplis = true;
+            const positions = [];
+
+            positionInputs.forEach(function(input) {
+                const value = input.value.trim();
+                if (value === '') {
+                    tousRemplis = false;
+                    input.classList.add('border-c5');
+                } else {
+                    input.classList.remove('border-c5');
+                    positions.push(value);
+                }
+            });
+
+            // Vérifier l'unicité des positions
+            const uniquePositions = new Set(positions);
+            const positionsDupliquees = (uniquePositions.size !== positions.length);
+
+            if (!tousRemplis || positionsDupliquees) {
+                e.preventDefault();
+                let message = 'Veuillez renseigner la position pour chaque image.';
+                if (positionsDupliquees) {
+                    message = 'Les positions des images doivent être uniques.';
+                }
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Attention',
+                    text: message
+                });
             }
         });
-    
-        // Vérifier l'unicité des positions
-        const uniquePositions = new Set(positions);
-        const positionsDupliquees = (uniquePositions.size !== positions.length);
-    
-        if (!tousRemplis || positionsDupliquees) {
-            e.preventDefault();
-            let message = 'Veuillez renseigner la position pour chaque image.';
-            if (positionsDupliquees) {
-                message = 'Les positions des images doivent être uniques.';
-            }
-            Swal.fire({
-                icon: 'error',
-                title: 'Attention',
-                text: message
-            });
-        }
-    });
     </script>
-    
