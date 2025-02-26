@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\UsagerRequest;
 use App\Models\Usager;
 use App\Models\Lieu;
 use App\Models\Ville;
@@ -39,9 +40,6 @@ class UsagersController extends Controller
         return back();
     }
     
-     
-
-
     public function ObtenirDonneesCompte(){
         $usager = Auth::user(); 
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)->get();
@@ -61,6 +59,8 @@ class UsagersController extends Controller
         $quartiers = Quartier::where('ville_id', $villeId)->get();
         return response()->json($quartiers);
     }
+
+    
 
 
     /**
@@ -101,13 +101,27 @@ class UsagersController extends Controller
      *  @param  int  $id​
      *  @return \Illuminate\Http\Response​
      */
-    public function ModificationUsager(Request $request, Usager $usager){
+    
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Usager $usager)
+    {
+        $usager = Auth::user();
+
+        return view('usagers.afficher',compact('usager'));
+    }
+
+    public function ModificationUsager(UsagerRequest $request, Usager $usager){
         try{
             $usager->prenom = $request->prenom;
             $usager->nom = $request->nom;
             $usager->courriel = $request->courriel;
-            $usager->password =$request->password;
+            // $usager->password =$request->password;
            
+            if ($request->filled('password')) {
+                $usager->password = Hash::make($request->password);
+            }
 
             return redirect()->route('usagers.afficher', $usager->id)
             ->with('message', "Modification de " . $usager->nom . " réussie!");
@@ -118,12 +132,6 @@ class UsagersController extends Controller
             ->withErrors(['La modification n\'a pas fonctionné.']);
         }
        
-    }
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Usager $usager){
-        return view('usagers.Afficher', compact('usager'));
     }
 
 
