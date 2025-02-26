@@ -15,7 +15,15 @@
   "Avis" : "Rating",
   "Image de l'établissement" : "Establishment image",
 
+  "slogan" : "Explore without limits",
+  "aPropos" : "About",
+  "deconnexion" : "Log out",
+  "connexion" : "Log in",
   "compte": "Account",
   "lieux": "Locations",
-  "activites": "Activities"
+  "activites": "Activities",
+  "villes" : "Cities",
+
+  "droitsReserves" : "All rights reserved.",
+  "voirPlus" : "See more..."
 }

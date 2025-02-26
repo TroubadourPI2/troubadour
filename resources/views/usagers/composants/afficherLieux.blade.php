@@ -18,7 +18,7 @@
                             class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden]">
                             <img class="object-cover w-full h-72 rounded-t-lg" src="{{ asset($lieu->photoLieu) }}"
                                 alt="{{ $lieu->nomEtablissement }}">
-                            <h5 class="text-xl font-bold uppercase p-2 text-center flex items-center">
+                            <h5 class="text-xl font-bold uppercase p-2 text-center h-full flex items-center">
                                 {{ $lieu->nomEtablissement }}
                             </h5>
                         </div>
@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-end space-x-3 mt-3">
-                                    <button class="boutonSupprimer text-red-500" data-lieuId="{{ $lieu->id }}"
+                                    <button class="boutonSupprimer text-[#B20101]" data-lieuId="{{ $lieu->id }}"
                                         data-nomLieu="{{ $lieu->nomEtablissement }}"><span class="iconify size-6"
                                             data-icon="ion:trash-outline" data-inline="false"></span></button>
                                     <button class="boutonModifier" data-lieuId="{{ $lieu->id }}"
@@ -103,7 +103,7 @@
                         </div>
                         <div class="flex justify-end space-x-4 mt-auto">
                             <button
-                                class="boutonSupprimer transform transition duration-300 hover:scale-110 text-red-500 hover:text-red-700"
+                                class="boutonSupprimer transform transition duration-300 hover:scale-110 text-[#B20101] hover:text-[#B50000]"
                                 data-lieuId="{{ $lieu->id }}" data-nomLieu="{{ $lieu->nomEtablissement }}">
                                 <span class="iconify size-8" data-icon="ion:trash-outline" data-inline="false"></span>
                             </button>

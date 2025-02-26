@@ -17,7 +17,7 @@
 
             <div class="relative z-10 w-full h-full flex flex-col">
 
-                <navbar class="w-full flex justify-between p-8">
+                <navbar class="w-full flex justify-between p-8 uppercase">
                     {{-- Bouton ouverture Menu Mobile --}}
                     <div class="md:hidden flex justify-end w-full items-center text-c3 gap-2">
 
@@ -35,7 +35,7 @@
                         </a>
                         <a
                             class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
-                            À PROPOS
+                           {{__('aPropos')}}
                         </a>
                     </div>
                     <div class="hidden md:flex ">
@@ -44,14 +44,14 @@
                             <form action="{{ route('usagers.Deconnexion') }}" method="POST">
                                 @csrf
                                 <button
-                                    class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
-                                    DÉCONNEXION
+                                    class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow uppercase">
+                                    {{__('deconnexion')}}
                                 </button>
                             </form>
                         @else
                             <a onclick="AfficherModalConnexion()"
-                                class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
-                                CONNEXION
+                                class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow uppercase">
+                                {{__('connexion')}}
                             </a>
                         @endauth
                     </div>
@@ -61,12 +61,12 @@
                 <div class="w-full h-full flex justify-evenly items-center flex-col">
                     <div class="flex flex-col w-full items-center">
                         <span class="text-c3 font-barlow text-5xl lg:text-9xl">TROUBADOUR</span>
-                        <span class="text-c3 text-xl lg:text-5xl uppercase">Explorez sans limites</span>
+                        <span class="text-c3 text-xl lg:text-5xl uppercase">{{__('slogan')}}</span>
                     </div>
                     <div>
                         <button id="activerSection"
                             class="group items-center flex-col text-4xl flex p-1.5 text-c1 font-barlow hover:scale-110 transition-transform duration-500 ease-out">
-                            <span class="bg-c2 shadow-lg px-6 rounded-full">VILLES</span>
+                            <span class="bg-c2 shadow-lg px-6 rounded-full uppercase">{{__('villes')}}</span>
                             <span
                                 class="iconify text-c3 size-12 transform transition-all duration-1000 ease-out group-hover:translate-y-3"
                                 data-icon="fluent:arrow-down-24-regular" data-inline="false"></span>
@@ -90,25 +90,25 @@
                 </div>
                 <!-- Liens de navigation pour mobile -->
 
-                <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full">
+                <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full uppercase">
                     <a href="/"
                         class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
                             class="iconify size-10 " data-icon="mdi:home" data-inline="false"></span>ACCUEIL</a>
                     <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                            class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full "> <span
+                            class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>{{__('aPropos')}}</a>
                     @auth
 
                         <form action="{{ route('usagers.Deconnexion') }}" method="POST">
                             @csrf
                             <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
-                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
+                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> {{__('deconnexion')}}
                             </button>
                         </form>
                     @else
                         <a href="#" onclick="AfficherModalConnexion()"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                                class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
+                                class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>{{__('connexion')}}</a>
 
                     @endauth
 
@@ -136,8 +136,11 @@
     </div>
 
     <script src="{{ asset('js/Accueil.js') }}"></script>
+    
 
 @endsection
 
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
+
+

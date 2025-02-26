@@ -16,7 +16,16 @@
   "Corporation" : "Organisme",
   "Rating" : "Avis",
 
+  "slogan" : "Explorez sans limites",
+  "aPropos" : "À propos",
+  "deconnexion" : "Déconnexion",
+  "connexion" : "Connexion",
   "compte": "Compte",
   "lieux": "Lieux",
-  "activites": "Activités"
+  "activites": "Activités",
+  "villes" : "Villes",
+
+  "droitsReserves" : "Tous droits réservés.",
+  "voirPlus" : "Voir plus",
+
 }

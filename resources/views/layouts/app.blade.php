@@ -30,36 +30,47 @@
             <div class="flex w-full justify-end items-center gap-x-2">
                 {{-- TODO remplacer par les liens quand les pages seronts faites --}}
                 <a
-                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow text-semibold cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition  ">Attraits</a>
+                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow text-semibold cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition  "
+                    href="{{ route('lieux.recherche') }}">{{__('lieux')}}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
                 <a
-                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer text-semibold hover:bg-c3 px-2 py-1 rounded-full transition   ">À
-                    propos</a>
+                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer text-semibold hover:bg-c3 px-2 py-1 rounded-full transition   ">{{__('aPropos')}}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
                 <a
-                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">compte</a>
+                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition"
+                    href="{{ route('usagerLieux.afficher')}}">{{__('compte')}}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
 
                 @auth
-                    <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="m-0">
-                        @csrf
-                        <button
-                            class=" text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition">
-                            DÉCONNEXION
-                        </button>
-                    </form>
+                <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="m-0">
+                    @csrf
+                    <button
+                        class=" text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition">
+                        {{__('deconnexion')}}
+                    </button>
+                </form>
                 @else
-                    <a onclick="AfficherModalConnexion()"
-                        class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">CONNEXION</a>
-                    <div class="border-r-2 h-10 border-c1 rounded "></div>
+                <a onclick="AfficherModalConnexion()"
+                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">{{__('connexion')}}</a>
+                <div class="border-r-2 h-10 border-c1 rounded "></div>
                 @endauth
 
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
-                <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1   rounded-full transition "
-                    data-icon="iconoir:language" data-inline="false"></span>
-                <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1   rounded-full transition "
+                <div x-data="{ open: false }" class="relative font-barlow">
+                    <div @click="open = !open" class="cursor-pointer hover:bg-c3 px-2 py-1 text-c1 rounded-full transition">
+                        <span class="iconify size-5 2xl:size-6" data-icon="iconoir:language" data-inline="false"></span>
+                    </div>
+
+                    <div x-show="open" @click.outside="open = false"
+                        class="absolute right-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
+                        <a href="{{ route('langue', ['locale' => 'fr-ca']) }}" class="block px-4 py-2 text-c1 hover:bg-c3 transition">🇨🇦 Français (Canada)</a>
+                        <a href="{{ route('langue', ['locale' => 'en']) }}" class="block px-4 py-2 text-c1 hover:bg-c3 transition">🇨🇦 English (Canada)</a>
+                    </div>
+                </div>
+
+                <span class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1 text-c1 rounded-full transition "
                     data-icon="mdi:search" data-inline="false"></span>
-                
+
             </div>
         </div>
         {{-- Menu Mobile --}}
@@ -104,20 +115,31 @@
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
                         <span class="iconify size-10 " data-icon="mdi:search" data-inline="false"></span>RECHERCHE</a>
+                    <div x-data="{ open: false }" class="relative font-barlow">
+                        <a @click="open = !open" class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full cursor-pointer">
+                            <span class="iconify size-10" data-icon="iconoir:language" data-inline="false"></span> Langues
+                        </a>
+
+                        <div x-show="open" @click.outside="open = false"
+                            class="absolute left-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
+                            <a href="?lang=fr-CA" class="block px-4 py-2 text-c1 hover:bg-c3 transition">🇨🇦 Français (Canada)</a>
+                            <a href="?lang=en-CA" class="block px-4 py-2 text-c1 hover:bg-c3 transition">🇨🇦 English (Canada)</a>
+                        </div>
+                    </div>
 
                     @auth
-                        <form action="{{ route('usagers.Deconnexion') }}" method="POST">
-                            @csrf
-                            <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
-                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
-                            </button>
-                        </form>
+                    <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                        @csrf
+                        <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
+                            <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> {{__('deconnexion')}}
+                        </button>
+                    </form>
                     @else
-                        <a href="#" onclick="AfficherModalConnexion()"
-                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                            <span class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>
-                            CONNEXION
-                        </a>
+                    <a href="#" onclick="AfficherModalConnexion()"
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                        <span class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>
+                        {{__('connexion')}}
+                    </a>
                     @endauth
 
                 </nav>
@@ -148,8 +170,7 @@
                         data-icon="iconoir:facebook" data-inline="false"></span> <span class="iconify size-9 "
                         data-icon="mdi-instagram" data-inline="false"></span> <span class="iconify size-9 "
                         data-icon="mingcute:social-x-line" data-inline="false"></span></div>
-                <div class="flex w-full h-full justify-end text-lg items-end"><span>©2025 Troubadour.Tous droits
-                        réservés.</span></div>
+                <div class="flex w-full h-full justify-end text-lg items-end"><span>©2025 Troubadour.{{__('droitsReserves')}}</span></div>
             </div>
         </div>
 
@@ -190,9 +211,7 @@
             </div>
 
             <div class="flex w-full flex-col font-barlow text-c3">
-
-                <div class="flex w-full h-full justify-center text-lg items-end"><span>©2025 Troubadour.Tous droits
-                        réservés.</span></div>
+                <div class="flex w-full h-full justify-center text-lg items-end"><span>©2025 Troubadour.{{__('droitsReserves')}}</span></div>
             </div>
         </div>
     </footer>
@@ -213,5 +232,6 @@
         document.body.classList.remove('overflow-hidden');
     });
 </script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </html>
