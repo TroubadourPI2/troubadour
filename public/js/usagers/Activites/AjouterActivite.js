@@ -21,9 +21,9 @@ champPhotos.addEventListener('change', function() {
         input.name = 'photos[' + i + '][position]';
         input.min = 1;
         input.max = fichiers.length;
-        input.placeholder = 'Position';
+     
         // Ajout d'une classe pour la validation
-        input.classList.add('position-input');
+        input.classList.add('position-input','p-2','font-medium','rounded-lg','bg-c3');
 
         div.appendChild(label);
         div.appendChild(input);
@@ -49,7 +49,7 @@ document.getElementById('activiteForm').addEventListener('submit', function(e) {
         }
     });
 
-    // Vérifier l'unicité des positions
+
     const uniquePositions = new Set(positions);
     const positionsDupliquees = (uniquePositions.size !== positions.length);
 

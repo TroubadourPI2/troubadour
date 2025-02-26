@@ -36,7 +36,7 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="typeActivite_id" class="block">Type d'activite <span
+                        <label for="typeActivite_id" class="block">Type d'activité <span
                                 class="text-c5 ml-2">*</span></label>
                         <select name="typeActivite_id" id="typeActivite_id"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
@@ -119,7 +119,7 @@
                 <h3 class="text-lg sm:text-2xl mb-2 underline">Position des images</h3>
                 <p class="text-sm mb-2 text-c1 opacity-40 italic">Pour chaque image sélectionnée, indiquez sa position.
                 </p>
-                <div id="positionInputs" class="grid grid-cols-1 gap-4"></div>
+                <div id="positionInputs" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
 
             </div>
 
@@ -132,7 +132,7 @@
                             <label for="dateDebut">Date de début</label>
                             <input type="date" id="dateDebut" name="dateDebut"
                                 value="{{ old('dateDebut', $aujourdhui) }}" min="{{ $aujourdhui }}"
-                                max="{{ $dateLimite }}" />
+                                max="{{ $dateLimite }}" class="p-2 font-medium rounded-lg bg-c3" />
                             @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('dateDebut'))
                                 <div class="text-c5 font-medium erreurAjouterActiviteMessages">
                                     {{ session('erreurAjouterActivite')->first('dateDebut') }}
@@ -146,7 +146,7 @@
                             <label for="dateFin">Date de fin</label>
                             <input type="date" id="dateFin" name="dateFin"
                                 value="{{ old('dateFin', $aujourdhui) }}" min="{{ $aujourdhui }}"
-                                max="{{ $dateLimite }}" />
+                                max="{{ $dateLimite }}" class="p-2 font-medium rounded-lg bg-c3" />
                             @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('dateFin'))
                                 <div class="text-c5 font-medium erreurAjouterActiviteMessages">
                                     {{ session('erreurAjouterActivite')->first('dateFin') }}

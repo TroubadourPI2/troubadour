@@ -201,6 +201,7 @@
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 <script src="//unpkg.com/alpinejs"defer></script>
+
 <script>
     document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
         const menuMobile = document.getElementById('menuMobile');
