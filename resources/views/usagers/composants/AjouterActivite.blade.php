@@ -170,6 +170,7 @@
             </div>
         </div>
     </form>
+    
 </div>
 {{-- Initialisation de TomSelect --}}
 <script>
@@ -180,4 +181,3 @@
         });
     });
 </script>
-s
