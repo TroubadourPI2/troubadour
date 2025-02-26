@@ -24,11 +24,10 @@ class ActiviteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nomActivite'               => 'required|string|max:64',
+            'nomActivite'       => 'required|string|max:64',
             'dateDebut'         => 'required|date|after_or_equal:today',
             'dateFin'           => 'nullable|date|after_or_equal:dateDebut',
-            'actif'             => 'boolean',
-            'descriptionActivite'       => 'nullable|string|max:500',
+            'descriptionActivite'=> 'nullable|string|max:500',
             'typeActivite_id'   => 'required|exists:TypeActivites,id',
             'lieu_id'           => 'required|exists:Lieux,id',
             'photos'            => 'nullable|array',
