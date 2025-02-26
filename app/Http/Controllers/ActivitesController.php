@@ -72,7 +72,7 @@ class ActivitesController extends Controller
         
             }
         }
-
+        session()->flash('formulaireAjoutActiviteValide', 'true');
         return redirect()->route('usagerLieux.afficher')
             ->with('success', 'Activité ajoutée avec succès !');
     } catch (\Exception $e) {
