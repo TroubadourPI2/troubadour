@@ -16,7 +16,7 @@
                         class="carteLieuxMobile relative w-full min-h-[50vh] mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl">
                         <div
                             class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden]">
-                            <img class="object-cover w-full h-72 rounded-t-lg" src="{{ asset($lieu->photoLieu) }}"
+                            <img class="object-cover w-full h-72 rounded-t-lg" src="{{ $lieu->photo_lieu_url }}"
                                 alt="{{ $lieu->nomEtablissement }}">
                             <h5 class="text-xl font-bold uppercase p-2 text-center h-full flex items-center">
                                 {{ $lieu->nomEtablissement }}
@@ -69,7 +69,7 @@
                 <div
                     class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-md bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[65vh] hover:shadow-2xl transition">
                     <div class="w-full sm:w-1/2 rounded-l-lg h-full p-4">
-                        <img class="object-cover w-full h-full rounded" src="{{ asset($lieu->photoLieu) }}"
+                        <img class="object-cover w-full h-full rounded" src="{{ $lieu->photo_lieu_url }}"
                             alt="{{ $lieu->nomEtablissement }}">
                     </div>
                     <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-4">
