@@ -1,8 +1,8 @@
 @php
     // Date du jour (au format YYYY-MM-DD)
-    $today = date('Y-m-d');
+    $aujourdhui = date('Y-m-d');
     // Date d'aujourd'hui + 5 ans
-    $maxDate = date('Y-m-d', strtotime('+5 years'));
+    $dateLimite = date('Y-m-d', strtotime('+5 years'));
 @endphp
 <div>
     <!-- Bouton Retour -->
@@ -13,8 +13,8 @@
         Retour
     </button>
 
-    <form class="mt-2 text-c1" action="{{ route('usagerActivites.ajouterActivite') }}" method="POST" enctype="multipart/form-data"
-        id="activiteForm">
+    <form class="mt-2 text-c1" action="{{ route('usagerActivites.ajouterActivite') }}" method="POST"
+        enctype="multipart/form-data" id="activiteForm">
         @csrf
         <div class="font-barlow text-c1 font-semibold mb-3">
             <h2 class="uppercase text-center text-xl sm:text-3xl">Ajouter une activité</h2>
@@ -25,7 +25,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <div class="sm:col-span-2">
                         <label for="nomActivite" class="block">Nom <span class="text-c5 ml-2">*</span></label>
-                        <input type="text" name="nom" id="nomActivite"
+                        <input type="text" name="nomActivite" id="nomActivite"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('nomActivite') }}">
                         @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('nomActivite'))
                             <span class="text-c5 font-medium erreur-message">
@@ -54,21 +54,23 @@
                     </div>
                     <div class="sm:col-span-1">
                         <label for="lieu_id" class="block">Lieux <span class="text-c5 ml-2">*</span></label>
-                        <select name="lieu_id" id="lieu_id"
-                            class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
-                            <option value="">Sélectionner un lieu</option>
+                        <select name="lieu_id[]" id="lieu_id" class="block w-full rounded-lg p-1  bg-c3 font-medium" multiple>
                             @foreach ($lieuxUsager as $lieu)
-                                <option value="{{ $lieu->id }}" {{ old('lieu_id') == $lieu->id ? 'selected' : '' }}>
+                                <option value="{{ $lieu->id }}"
+                                    {{ in_array($lieu->id, old('lieu_id', [])) ? 'selected' : '' }}>
                                     {{ $lieu->nomEtablissement }}
                                 </option>
                             @endforeach
                         </select>
+
+
                         @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('lieu_id'))
                             <div class="text-c5 font-medium erreur-message">
                                 {{ session('erreurAjouterActivite')->first('lieu_id') }}
                             </div>
                         @endif
                     </div>
+
                     <div class="sm:col-span-2">
                         <label for="descriptionActivite" class="block">Description</label>
                         <textarea rows="4" name="descriptionActivite" id="descriptionActivite"
@@ -85,9 +87,9 @@
                             image)</label>
                         <input id="photos" name="photos[]" type="file"
                             class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg" multiple>
-                        @if (session('erreurAjouterLieu') && session('erreurAjouterLieu')->has('photoLieu'))
+                        @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('photos'))
                             <div class="text-c5 font-medium erreur-message">
-                                {{ session('erreurAjouterLieu')->first('photoLieu') }}
+                                {{ session('erreurAjouterActivite')->first('photos') }}
                             </div>
                         @endif
                     </div>
@@ -97,28 +99,41 @@
             <!-- Section Position des images -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-6">
                 <h3 class="text-lg sm:text-2xl mb-2 underline">Position des images</h3>
-                <p class="text-sm mb-2 text-c1 opacity-40 italic">Pour chaque image sélectionnée, indiquez sa position. </p>
+                <p class="text-sm mb-2 text-c1 opacity-40 italic">Pour chaque image sélectionnée, indiquez sa position.
+                </p>
                 <div id="positionInputs" class="grid grid-cols-1 gap-4"></div>
+
             </div>
 
             <!-- DATE ACTIVITE -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg  ">
                     <!-- Date de début -->
                     <div class="sm:col-span-1">
                         <div class="flex flex-col w-1/2">
-                            <label for="start">Date de début</label>
-                            <input type="date" id="start" name="trip-start"
-                                value="{{ old('trip-start', $today) }}" min="{{ $today }}"
-                                max="{{ $maxDate }}" />
+                            <label for="dateDebut">Date de début</label>
+                            <input type="date" id="dateDebut" name="dateDebut"
+                                value="{{ old('dateDebut', $aujourdhui) }}" min="{{ $aujourdhui }}"
+                                max="{{ $dateLimite }}" />
+                            @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('dateDebut'))
+                                <div class="text-c5 font-medium erreur-message">
+                                    {{ session('erreurAjouterActivite')->first('dateDebut') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <!-- Date de fin -->
                     <div class="sm:col-span-1">
                         <div class="flex flex-col w-1/2">
-                            <label for="end">Date de fin</label>
-                            <input type="date" id="end" name="trip-end" value="{{ old('trip-end', $today) }}"
-                                min="{{ $today }}" max="{{ $maxDate }}" />
+                            <label for="dateFin">Date de fin</label>
+                            <input type="date" id="dateFin" name="dateFin"
+                                value="{{ old('dateFin', $aujourdhui) }}" min="{{ $aujourdhui }}"
+                                max="{{ $dateLimite }}" />
+                            @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('dateFin'))
+                                <div class="text-c5 font-medium erreur-message">
+                                    {{ session('erreurAjouterActivite')->first('dateFin') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -138,11 +153,11 @@
         </div>
     </form>
 </div>
-
 @if (session('erreurAjouterActivite'))
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("compte").classList.add("hidden");
+
             const boutonCompte = document.getElementById("boutonCompte");
             boutonCompte.classList.remove("bg-c1", "text-c3");
             boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
@@ -162,65 +177,46 @@
         session()->forget('erreurAjouterActivite');
     @endphp
 @endif
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        new TomSelect("#lieu_id", {
+            plugins: ['remove_button'],
+            placeholder: "Sélectionnez un ou plusieurs lieux"
+        });
+    });
+</script>
 
 <!-- Script de gestion des positions d'images -->
 <script>
-    const photosInput = document.getElementById('photos');
-    const positionInputsContainer = document.getElementById('positionInputs');
+    const champPhotos = document.getElementById('photos');
+    const conteneurPositions = document.getElementById('positionInputs');
 
-    photosInput.addEventListener('change', function() {
+    champPhotos.addEventListener('change', function() {
+        conteneurPositions.innerHTML = '';
+        const fichiers = champPhotos.files;
 
-        positionInputsContainer.innerHTML = '';
-        const files = photosInput.files;
-
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
+        for (let i = 0; i < fichiers.length; i++) {
+            const fichier = fichiers[i];
             const div = document.createElement('div');
             div.className = 'mb-2';
 
-
             const label = document.createElement('label');
-            label.setAttribute('for', 'position_' + i);
+            label.setAttribute('for', 'photos_' + i);
             label.className = 'block text-sm';
-            label.innerText = 'Position pour "' + file.name + '"';
-
+            label.innerText = 'Position pour "' + fichier.name + '"';
 
             const input = document.createElement('input');
             input.type = 'number';
-            input.id = 'position_' + i;
-            input.name = 'positions[]';
+            input.id = 'photos_' + i;
+
+            input.name = 'photos[' + i + '][position]';
             input.min = 1;
-            input.max = files.length;
+            input.max = fichiers.length;
             input.placeholder = 'Position';
 
             div.appendChild(label);
             div.appendChild(input);
-            positionInputsContainer.appendChild(div);
-        }
-    });
-
-
-    const activiteForm = document.getElementById('activiteForm');
-    activiteForm.addEventListener('submit', function(e) {
-        const positionInputs = document.getElementsByName('positions[]');
-        let allFilled = true;
-        for (let input of positionInputs) {
-            if (input.value.trim() === '') {
-                allFilled = false;
-                input.classList.add('border-c5');
-            } else {
-                input.classList.remove('border-c5');
-            }
-        }
-        if (!allFilled) {
-            e.preventDefault();
-            Swal.fire({
-                icon: 'error',
-                title: 'Attention',
-                text: 'Veuillez renseigner la position pour chaque image.'
-            });
+            conteneurPositions.appendChild(div);
         }
     });
 </script>
-

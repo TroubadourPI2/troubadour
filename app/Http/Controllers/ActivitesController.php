@@ -48,6 +48,7 @@ class ActivitesController extends Controller
             if ($request->hasFile('photos')) {
                 foreach ($request->file('photos') as $index => $photo) {
               
+                    //TODO REMPLACER PAR PROD ACTIVITE 
                     $path = $photo->store('activites', 'DevActivite');
     
                    
