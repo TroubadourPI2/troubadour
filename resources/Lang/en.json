@@ -19,11 +19,12 @@
   "aPropos" : "About",
   "deconnexion" : "Log out",
   "connexion" : "Log in",
+  "langues" : "Languages",
   "compte": "Account",
   "lieux": "Locations",
   "activites": "Activities",
   "villes" : "Cities",
-"decouvrir"  : "Discover",
+  "decouvrir"  : "Discover",
   "droitsReserves" : "All rights reserved.",
   "voirPlus" : "See more..."
 }

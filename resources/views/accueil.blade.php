@@ -61,8 +61,16 @@
 
                         <div x-show="open" @click.outside="open = false"
                             class="absolute right-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
-                            <a href="{{ route('langue', ['locale' => 'fr-ca']) }}" class="block px-4 py-2 text-c1 hover:bg-c3 transition">🇨🇦 Français (Canada)</a>
-                            <a href="{{ route('langue', ['locale' => 'en']) }}" class="block px-4 py-2 text-c1 hover:bg-c3 transition">🇨🇦 English (Canada)</a>
+                            @foreach (config('langue.locales') as $locale => $nom)
+                        <a href="{{ route('langue', ['locale' => $locale]) }}" class=" px-4 py-2 text-c1 hover:bg-c3 transition flex flex-row items-center ">
+                            @if($locale == 'en')
+                            <span class="iconify mr-2 size-6" data-icon="emojione-v1:flag-for-united-states"></span>
+                            @elseif($locale == 'fr-ca')
+                            <span class="iconify mr-2 size-6" data-icon="emojione-v1:flag-for-canada"></span>
+                            @endif
+                            {{$nom}}
+                        </a>
+                        @endforeach
                         </div>
                     </div>
                 </div>
@@ -77,7 +85,7 @@
                 </div>
                 <div>
                     <button id="activerSection"
-                        class="group items-center flex-col text-5xl flex p-1.5 text-c3 font-barlow hover:scale-110 transition-transform duration-500 ease-out">
+                        class="group items-center flex-col text-2xl lg:text-5xl flex p-1.5 text-c3 font-barlow hover:scale-110 transition-transform duration-500 ease-out">
                         <span class="shadow-lg px-6 rounded-full uppercase">{{__('decouvrir')}}</span>
                         <span
                             class="iconify text-c3 size-12 transform transition-all duration-1000 ease-out group-hover:translate-y-3"
@@ -105,10 +113,28 @@
             <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full uppercase">
                 <a href="/"
                     class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
-                        class="iconify size-10 " data-icon="mdi:home" data-inline="false"></span>ACCUEIL</a>
+                        class="iconify size-10 " data-icon="mdi:home" data-inline="false"></span>{{(__('lieux'))}}</a>
                 <a href=""
                     class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full "> <span
-                        class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>{{__('aPropos')}}</a>
+                        class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>{{__('aPropos')}}</a> <div x-data="{ open: false }" class="relative font-barlow">
+                    <a @click="open = !open" class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full cursor-pointer">
+                        <span class="iconify size-10" data-icon="iconoir:language" data-inline="false"></span> {{__('langues')}}
+                    </a>
+
+                    <div x-show="open" @click.outside="open = false"
+                        class="absolute left-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
+                        @foreach (config('langue.locales') as $locale => $nom)
+                            <a href="?lang={{ $locale }}" class="flex flex-row items-center px-4 py-2 text-c1 hover:bg-c3 transition text-xl">
+                                @if($locale == 'en')
+                                <span class="iconify mr-2" data-icon="emojione-v1:flag-for-united-states"></span> 
+                                @elseif($locale == 'fr-ca')
+                                <span class="iconify mr-2" data-icon="emojione-v1:flag-for-canada"></span> 
+                                @endif
+                                {{ $nom }} 
+                            </a>
+                            @endforeach
+                    </div>
+                </div>
                 @auth
 
                 <form action="{{ route('usagers.Deconnexion') }}" method="POST">
@@ -123,17 +149,7 @@
                         class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>{{__('connexion')}}</a>
 
                 @endauth
-                <div x-data="{ open: false }" class="relative font-barlow">
-                    <a @click="open = !open" class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full cursor-pointer">
-                        <span class="iconify size-10" data-icon="iconoir:language" data-inline="false"></span> Langues
-                    </a>
-
-                    <div x-show="open" @click.outside="open = false"
-                        class="absolute left-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
-                        <a href="?lang=fr-CA" class="block px-4 py-2 text-c1 hover:bg-c3 transition">🇨🇦 Français (Canada)</a>
-                        <a href="?lang=en-CA" class="block px-4 py-2 text-c1 hover:bg-c3 transition">🇨🇦 English (Canada)</a>
-                    </div>
-                </div>
+               
             </nav>
 
         </div>
