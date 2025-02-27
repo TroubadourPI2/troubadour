@@ -40,12 +40,13 @@
                 </div>
                 <div class="hidden md:flex md:items-center">
                     @auth
-                    <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                    <button id="btnDeconnexion"
+                    class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow uppercase">
+                    {{__('deconnexion')}}
+                </button>
+                    <form action="{{ route('usagers.Deconnexion') }}" method="POST" id="formDeconnexion">
                         @csrf
-                        <button
-                            class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow uppercase">
-                            {{__('deconnexion')}}
-                        </button>
+                  
                     </form>
                     @else
                     <button onclick="AfficherModalConnexion()"
@@ -163,6 +164,14 @@
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
 <script>
+    @auth
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("btnDeconnexion").addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("formDeconnexion").submit();
+        });
+    });
+    @endauth
     let locale = "{{ session('locale', config('app.locale')) }}";
 </script>
 <script src="{{ asset('js/translations.js') }}"></script>
