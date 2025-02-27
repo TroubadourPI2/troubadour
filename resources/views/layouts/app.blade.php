@@ -222,6 +222,7 @@
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="//unpkg.com/alpinejs"defer></script>
 
 <script>
@@ -237,6 +238,6 @@
         document.body.classList.remove('overflow-hidden');
     });
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 
 </html>
