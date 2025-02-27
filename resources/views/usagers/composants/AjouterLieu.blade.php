@@ -1,4 +1,4 @@
-<div class="md:mx-20">
+<div>
     <button id="boutonRetourAfficherLieux"
         class="flex items-center text-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-32 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
         <span class="iconify text-c1 sm:size-5 size-4 sm:mr-2 sm:ml-2 mr-1" data-icon="ion:arrow-back-outline"
@@ -6,7 +6,7 @@
         Retour
     </button>
 
-    <form class="mt-2 text-c1" action="{{ route('usagerLieux.ajouterLieu') }}" method="POST" enctype="multipart/form-data">
+    <form class="mt-2 text-c1 md:mx-10 xl:mx-20 2xl:mx-60" action="{{ route('usagerLieux.ajouterLieu') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="font-barlow text-c1 font-semibold mb-3">
             <h2 class="uppercase text-center text-xl sm:text-3xl">Ajouter un lieu</h2>
