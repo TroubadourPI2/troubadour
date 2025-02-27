@@ -43,7 +43,7 @@ function CreerCarte(lieu) {
   
 
     carte.addEventListener("click", function() {
-      window.location.href = `/lieu/${lieu.id}`;
+      window.location.href = `/lieu/zoom/${lieu.id}`;
     });
   
     return carte;
