@@ -36,14 +36,14 @@
 
             <!--        Card pour Images      -->
 
-            <div class="text-c1 align-middle md:flex text-center sm:w-full sm:order-0 lg:order-2 lg:w-2/3 mt-8 mb-8 ">
+            <div class="text-c1 align-middle md:flex text-center sm:w-full sm:order-0 lg:order-2 lg:w-2/3 mt-10 mb-8 ">
 
                 <div class="mt-8 lg:h-5/6 2xl:h-5/6 hidden lg:block rounded border-c1 border"></div>
 
                 <div class="w-full flex flex-col items-center px-6 ">
 
                     <div
-                        class="lg:h-5/6 2xl:h-5/6 mt-10 2xl:mt-16 bg-white mx-6 p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
+                        class="h-[30rem] w-[20rem] mt-10 2xl:mt-16 bg-white mx-6 p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
 
                         <img class="w-96 h-52 md:w-100 md:h-[18rem] lg:w-[40rem] rounded"
                             src="{{ asset($photo) }}" alt="{{ $activite->nom ?? '' }}">
@@ -74,7 +74,7 @@
                         <span class="font-sm text-2xl underline"> Informations </span>
                     </div>
 
-                    <div class="card w-[20rem] rounded-lg overflow-hidden shadow-lg bg-white mt-2 mx-2 lg:w-[18rem]">
+                    <div class="card w-[20rem] h-[30rem] rounded-lg overflow-hidden shadow-lg bg-white mt-2 mx-2 lg:w-[20rem]">
                         <div class="bg-c3 text-c2 text-base p-4 flex items-center h-4">
                         </div>
 
