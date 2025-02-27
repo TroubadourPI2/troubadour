@@ -12,10 +12,9 @@ use App\Models\Ville;
 use Exception;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\LieuRequest;
-use App\Http\Requests\LieuModifierRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class LieuxController extends Controller
@@ -158,12 +157,13 @@ class LieuxController extends Controller
             $lieu->codePostal = $request->codePostal;
             $lieu->nomEtablissement = $request->nomEtablissement;
             if ($request->hasFile('photoLieu')) {
+                if ($lieu->photoLieu && $lieu->photoLieu !== 'Images/lieux/image_defaut.png') {
+                    Storage::disk('DevActivite')->delete($lieu->photoLieu);
+                }
+    
                 $file = $request->file('photoLieu');
-                $chemin = $file->store('lieux','DevActivite');
+                $chemin = $file->store('lieux', 'DevActivite');
                 $lieu->photoLieu = $chemin;
-             
-            } else {
-                $lieu->photoLieu = 'Images/lieux/image_defaut.png';
             }
             
             $lieu->siteWeb = $request->siteWeb;
@@ -185,6 +185,9 @@ class LieuxController extends Controller
     {
         try {
             $lieu = Lieu::findOrFail($id);
+            if ($lieu->photoLieu && $lieu->photoLieu !== 'Images/lieux/image_defaut.png') {
+                Storage::disk('DevActivite')->delete($lieu->photoLieu);
+            }
             $lieu->delete();
             return response()->json(["success" => true, "message" => "Lieu supprimé avec succès."]);
         } catch (\Exception $e) {
