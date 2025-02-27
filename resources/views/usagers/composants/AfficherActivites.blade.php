@@ -104,6 +104,29 @@
         session()->forget('erreurAjouterActivite');
     @endphp
 @endif
+@if (session('erreurModifierActivite'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("compte").classList.add("hidden");
+            const boutonCompte = document.getElementById("boutonCompte");
+            boutonCompte.classList.remove("bg-c1", "text-c3");
+            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonLieu = document.getElementById("boutonLieu");
+            boutonLieu.classList.add("bg-c1", "text-c3");
+            boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            document.getElementById("modifierLieu").classList.remove("hidden");
+            const lieux = document.getElementById("lieux");
+            lieux.classList.remove("hidden");
+
+            document.getElementById("afficherLieux").classList.add("hidden");
+        });
+    </script>
+    @php
+        session()->forget('erreurModifierLieu');
+    @endphp
+@endif
 <script src="{{ asset('js/usagers/Activites/SupprimerActivite.js') }}" ></script>
 <script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>

@@ -86,5 +86,67 @@ class ActivitesController extends Controller
     }
     }
 
+    public function ModifierActivite(ActiviteRequest $request, string $id)
+    {
+        try {
+            $activite = Activite::findOrFail($id);
+
+     
+            $activite->update([
+                'nom'             => $request->nomActivite,
+                'description'     => $request->descriptionActivite,
+                'typeActivite_id' => $request->typeActivite_id,
+                'dateDebut'       => $request->dateDebut,
+                'dateFin'         => $request->dateFin,
+                'actif'           => $request->has('actif'),
+            ]);
+
+            if ($request->has('lieu_id')) {
+                $activite->lieux()->sync($request->lieu_id);
+            }
+
+         
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $index => $photoFile) {
+
+                     // TODO CHANGER POUR PROD ACTIVITE
+                    $chemin = $photoFile->store('activites', 'DevActivite');
+
+               
+                    $position = $request->input("photos.$index.position", null);
+
+                  
+                    Photo::create([
+                        'chemin'      => $chemin,
+                        'position'    => $position,
+                        'activite_id' => $activite->id,
+                        'nom'         => $photoFile->getClientOriginalName(),
+                    ]);
+                }
+            }
+
+          
+            if ($request->has('photos_a_supprimer')) {
+                $photosASupprimer = $request->photos_a_supprimer;
+                foreach ($photosASupprimer as $photoId) {
+                    $photo = Photo::find($photoId);
+                    if ($photo) {
+                     
+                        \Storage::disk('DevActivite')->delete($photo->chemin);
+                    
+                        $photo->delete();
+                    }
+                }
+            }
+
+            session()->flash('formulaireModificationActiviteValide', 'true');
+            return redirect()->route('usagerLieux.afficher')
+                ->with('success', 'Activité modifiée avec succès !');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', "Erreur lors de la modification de l'activité : " . $e->getMessage());
+        }
+    }
+
 
 }
