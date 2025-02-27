@@ -63,7 +63,7 @@ function CreerCarteDerniere(type) {
 
     const titre = document.createElement("span");
     titre.textContent = (type === "voirPlus") ? Lang.get('strings.voirPlus') : "VOIR D'AUTRES VILLES";
-    titre.className = "text-c1 font-barlow text-xl text-center font-semibold";
+    titre.className = "text-c1 font-barlow text-xl text-center font-semibold uppercase";
     carte.appendChild(titre);
 
     carte.addEventListener("click", function() {
