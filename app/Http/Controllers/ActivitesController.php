@@ -11,112 +11,80 @@ use App\Models\LieuActivite;
 use App\Http\Requests\ActiviteRequest;
 class ActivitesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+ 
     public function AjouterUneActivite(ActiviteRequest $request)
-{
-    try {
-     
-        $activite = Activite::create([
-            'nom'             => $request->nomActivite,
-            'description'     => $request->descriptionActivite,
-            'typeActivite_id' => $request->typeActivite_id,
-            'dateDebut'       => $request->dateDebut,
-            'dateFin'         => $request->dateFin,
-            'actif'           => true, 
-        ]);
+    {
+        try {
+        
+            $activite = Activite::create([
+                'nom'             => $request->nomActivite,
+                'description'     => $request->descriptionActivite,
+                'typeActivite_id' => $request->typeActivite_id,
+                'dateDebut'       => $request->dateDebut,
+                'dateFin'         => $request->dateFin,
+                'actif'           => true, 
+            ]);
+
+        
+            if ($request->has('lieu_id')) {
+                foreach ($request->lieu_id as $lieuId) {
+                    LieuActivite::create([
+                        'activite_id' => $activite->id,
+                        'lieu_id'     => $lieuId,
+                    ]);
+                }
+            }
 
     
-        if ($request->has('lieu_id')) {
-            foreach ($request->lieu_id as $lieuId) {
-                LieuActivite::create([
-                    'activite_id' => $activite->id,
-                    'lieu_id'     => $lieuId,
-                ]);
-            }
-        }
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $index => $photoFile) {
 
- 
-        if ($request->hasFile('photos')) {
-            foreach ($request->file('photos') as $index => $photoFile) {
-
-               //TODO REMPLACER PAR ProdActivite 
-                $chemin = $photoFile->store('activites', 'DevActivite');
-              
-
-               
-                $position = $request->input("photos.$index.position", null);
-      
+                //TODO REMPLACER PAR ProdActivite 
+                    $chemin = $photoFile->store('activites', 'DevActivite');
+                
 
                 
-                $photoCreated = Photo::create([
-                    'chemin'      => $chemin,
-                    'position'    => $position,
-                    'activite_id' => $activite->id,
-                    'nom'         => $photoFile->getClientOriginalName(), 
-                ]);
+                    $position = $request->input("photos.$index.position", null);
         
+
+                    
+                    $photoCreated = Photo::create([
+                        'chemin'      => $chemin,
+                        'position'    => $position,
+                        'activite_id' => $activite->id,
+                        'nom'         => $photoFile->getClientOriginalName(), 
+                    ]);
+            
+                }
             }
+            session()->flash('formulaireAjoutActiviteValide', 'true');
+            return redirect()->route('usagerLieux.afficher')
+                ->with('success', 'Activité ajoutée avec succès !');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', "Erreur lors de l'ajout de l'activité : " . $e->getMessage());
         }
-        session()->flash('formulaireAjoutActiviteValide', 'true');
-        return redirect()->route('usagerLieux.afficher')
-            ->with('success', 'Activité ajoutée avec succès !');
-    } catch (\Exception $e) {
-        return redirect()->back()
-            ->with('error', "Erreur lors de l'ajout de l'activité : " . $e->getMessage());
     }
-}
 
 
+    public function SupprimerActivite(string $id)
+    {
+    try {
+        $activite = Activite::findOrFail($id);
 
-    
-    /**
-     * Store a newly created resource in storage.
-     */
+        // TODO CHANGER POUR PROD ACTIVITE
+        foreach ($activite->photos as $photo) {
+            \Storage::disk('DevActivite')->delete($photo->chemin);
+        }
+
  
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        return view('zoomActivite');
+        $activite->delete();
+
+        return response()->json(['success' => true, 'message' => 'Activité supprimée avec succès.']);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

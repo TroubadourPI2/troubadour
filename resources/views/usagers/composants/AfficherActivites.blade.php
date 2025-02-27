@@ -60,8 +60,8 @@
                             {{ $activite->nom }}
                         </span>
                         <div class="flex gap-x-2 px-4  ">
-                            <button class="boutonSupprimer text-red-500" data-lieuId="{{ $lieu->id }}"
-                                data-nomLieu="{{ $lieu->nomEtablissement }}"><span class="iconify size-6"
+                            <button class="boutonSupprimerActivite text-red-500" data-activite-id="{{ $activite->id }}"
+                                data-nomActivite="{{ $activite->nom }}"><span class="iconify size-6"
                                     data-icon="ion:trash-outline" data-inline="false"></span></button>
                             <button class="boutonModifier" data-lieuId="{{ $lieu->id }}"
                                 data-villeId="{{ $lieu->ville()?->id }}"
@@ -104,7 +104,7 @@
         session()->forget('erreurAjouterActivite');
     @endphp
 @endif
-
+<script src="{{ asset('js/usagers/Activites/SupprimerActivite.js') }}" ></script>
 <script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/AjouterActivite.js') }}" defer></script>

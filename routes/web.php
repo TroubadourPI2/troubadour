@@ -38,6 +38,7 @@ Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu
 Route::delete('/compte/supprimerLieu/{id}', [LieuxController::class, 'SupprimerUnLieu']);
 
 Route::post('/compte/ajouterActivite', [ActivitesController::class, 'AjouterUneActivite'])->name('usagerActivites.ajouterActivite')->middleware('VerifierRole:Admin,Gestionnaire');;
+Route::delete('/compte/supprimerActivites/{id}', [ActivitesController::class, 'SupprimerActivite'])->name('usagerActivites.supprimerActivite');
 
 
 Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
