@@ -25,6 +25,17 @@
   "activites": "Activities",
   "villes" : "Cities",
   "decouvrir"  : "Discover",
+  "ajouter" : "Add",
+  "description" : "Description",
+  "adresse" : "Address",
+  "ville" : "City",
+  "quartier" : "Neighborhood",
+  "pays" : "Country",
+  "province" : "Province",
+  "region" : "Area",
+  "siteWeb" : "Website",
+  "telephone" : "Phone number",
+  "typeLieu" : "Location type",
   "droitsReserves" : "All rights reserved.",
   "voirPlus" : "See more..."
 }

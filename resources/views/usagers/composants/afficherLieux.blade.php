@@ -1,9 +1,9 @@
 <div id="afficherLieux">
     <button id="boutonAjouterLieu"
-        class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-36 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
+        class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full   {{ App::getLocale() == 'en' ? 'sm:w-36 w-[80px]' : 'sm:w-48 w-[120px]' }}  text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
         <span class="iconify text-c1 sm:size-6 size-4 sm:mr-2 sm:ml-2" data-icon="ion:add-outline"
             data-inline="false"></span>
-        Ajouter
+        {{__('ajouter')}}
     </button>
     @if ($lieuxUsager->isEmpty())
         <div class="text-c1 text-2xl">Aucun lieu d"enregistré.</div>
@@ -26,30 +26,30 @@
                             class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                             <div class="flex flex-col justify-between h-full">
                                 <div class="mb-2">
-                                    <div class="uppercase underline text-base font-semibold">Description</div>
+                                    <div class="uppercase underline text-base font-semibold">{{__('description')}}</div>
                                     <div class="truncate">{{ $lieu->description ?? 'Aucune description' }}.</div>
                                 </div>
                                 <div class="mb-4">
                                     <div class="uppercase underline text-lg font-semibold">Coordonnées</div>
                                     <div class="text-sm">
-                                        <p><strong>Adresse :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}</p>
-                                        <p><strong>Ville :</strong>
+                                        <p><strong>{{__('adresse')}} :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}</p>
+                                        <p><strong>{{__('ville')}} :</strong>
                                             {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal : '' }}
                                         </p>
-                                        <p><strong>Pays :</strong> {{ $lieu->pays()?->nom }}</p>
-                                        <p><strong>Quartier :</strong> {{ $lieu->quartier->nom }}</p>
+                                        <p><strong>{{__('pays')}} :</strong> {{ $lieu->pays()?->nom }}</p>
+                                        <p><strong>{{__('quartier')}} :</strong> {{ $lieu->quartier->nom }}</p>
                                         @if ($lieu->province())
-                                            <p><strong>Province :</strong> {{ $lieu->province()->nom }}</p>
+                                            <p><strong>{{__('province')}} :</strong> {{ $lieu->province()->nom }}</p>
                                         @endif
                                         @if ($lieu->region())
-                                            <p><strong>Région :</strong> {{ $lieu->region()->nom }}</p>
+                                            <p><strong>{{__('region')}} :</strong> {{ $lieu->region()->nom }}</p>
                                         @endif
                                         @if ($lieu->siteWeb)
-                                            <p><strong>Site Web :</strong> <a href="{{ $lieu->siteWeb }}"
+                                            <p><strong>{{__('siteWeb')}} :</strong> <a href="{{ $lieu->siteWeb }}"
                                                     class="text-blue-500 underline">{{ $lieu->siteWeb }}</a></p>
                                         @endif
-                                        <p><strong>Téléphone :</strong> {{ $lieu->numeroTelephone }}</p>
-                                        <p><strong>Type de lieu :</strong> {{ $lieu->typeLieu->nom }}</p>
+                                        <p><strong>{{__('telephone')}} :</strong> {{ $lieu->numeroTelephone }}</p>
+                                        <p><strong>{{__('typeLieu')}} :</strong> {{ $lieu->typeLieu->nom }}</p>
                                     </div>
                                 </div>
                                 <div class="flex justify-end space-x-3 mt-3">
@@ -81,24 +81,24 @@
                         <div class="mb-4">
                             <div class="uppercase underline text-lg font-semibold">Coordonnées & Informations</div>
                             <div class="text-base">
-                                <p><strong>Adresse :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}</p>
-                                <p><strong>Ville :</strong>
+                                <p><strong>{{__('adresse')}} :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}</p>
+                                <p><strong>{{__('ville')}} :</strong>
                                     {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal : '' }}
                                 </p>
-                                <p><strong>Pays :</strong> {{ $lieu->pays()?->nom }}</p>
-                                <p><strong>Quartier :</strong> {{ $lieu->quartier->nom }}</p>
+                                <p><strong>{{__('pays')}} :</strong> {{ $lieu->pays()?->nom }}</p>
+                                <p><strong>{{__('quartier')}} :</strong> {{ $lieu->quartier->nom }}</p>
                                 @if ($lieu->province())
-                                    <p><strong>Province :</strong> {{ $lieu->province()->nom }}</p>
+                                    <p><strong>{{__('province')}} :</strong> {{ $lieu->province()->nom }}</p>
                                 @endif
                                 @if ($lieu->region())
-                                    <p><strong>Région :</strong> {{ $lieu->region()->nom }}</p>
+                                    <p><strong>{{__('region')}} :</strong> {{ $lieu->region()->nom }}</p>
                                 @endif
                                 @if ($lieu->siteWeb)
-                                    <p><strong>Site Web :</strong> <a href="{{ $lieu->siteWeb }}"
+                                    <p><strong>{{__('siteWeb')}} :</strong> <a href="{{ $lieu->siteWeb }}"
                                             class="text-blue-500 underline truncate">{{ $lieu->siteWeb }}</a></p>
                                 @endif
-                                <p><strong>Téléphone :</strong> {{ $lieu->numeroTelephone }}</p>
-                                <p><strong>Type de lieu :</strong> {{ $lieu->typeLieu->nom }}</p>
+                                <p><strong>{{__('telephone')}} :</strong> {{ $lieu->numeroTelephone }}</p>
+                                <p><strong>{{__('typeLieu')}} :</strong> {{ $lieu->typeLieu->nom }}</p>
                             </div>
                         </div>
                         <div class="flex justify-end space-x-4 mt-auto">

@@ -24,9 +24,18 @@
   "compte": "Compte",
   "lieux": "Lieux",
   "activites": "Activités",
-  "villes" : "Villes",
   "decouvrir" : "Découvrir",
-
+  "ajouter" : "Ajouter",
+  "description" : "Descirption",
+  "adresse" : "Adresse",
+  "ville" : "Ville",
+  "pays" : "Pays",
+  "quartier" : "Quartier",
+  "province" : "Province",
+  "region" : "Région",
+  "siteWeb" : "Site web",
+  "telephone" : "Téléphone",
+  "typeLieu" : "Type de lieu",
   "droitsReserves" : "Tous droits réservés.",
   "voirPlus" : "Voir plus..."
 
