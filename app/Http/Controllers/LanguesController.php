@@ -9,14 +9,13 @@ class LanguesController extends Controller
 {
     public function __invoke($locale)
     {
-        if (! in_array($locale, ['en', 'fr', 'fr-ca'])) {
-            abort(400);  
+        $locales = array_keys(config('langue.locales'));
+        if (! in_array($locale, $locales)) {
+            abort(400, 'Langue non supportée');
+        } else {
+            Session::put('locale', $locale);
+            App::setLocale($locale);
         }
-
-        Session::put('locale', $locale);
-
-        App::setLocale($locale);
-
         return redirect()->back();
     }
 }
