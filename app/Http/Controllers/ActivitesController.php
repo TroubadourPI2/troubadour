@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activite;
+use App\Models\LieuActivite;
+use App\Models\Lieu;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 
 class ActivitesController extends Controller
@@ -35,7 +39,13 @@ class ActivitesController extends Controller
      */
     public function show(string $id)
     {
-        return view('zoomActivite');
+        $activite = Activite::findOrFail($id);
+        $idLieu = LieuActivite::Where("lieu_id", $id)->pluck("lieu_id");
+        $lieu = Lieu::whereIn("id", $idLieu)->where('actif', 1)->first();
+        $photo = Photo::where("activite_id", $id)->pluck("chemin")->first();
+
+
+        return view('zoomActivite', compact('activite', 'lieu', 'photo'));
     }
 
     /**

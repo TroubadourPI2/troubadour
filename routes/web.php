@@ -26,6 +26,7 @@ Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom
 
 Route::get('/activite/zoom/{id}', [ActivitesController::class, 'show'])->name('Activite.zoom');
 
+
 Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenirVilleUtilisateur']);
 
 
