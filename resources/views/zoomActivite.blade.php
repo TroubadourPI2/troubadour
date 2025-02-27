@@ -70,8 +70,8 @@
                 <div class="w-full flex flex-col items-center">
 
                     <div class="flex text-center mb-2">
-                        <span class="iconify size-8  text-c1" data-icon="bx:map" data-inline="false"></span>
-                        <span class="font-sm text-2xl underline"> Localisation </span>
+                        <span class="iconify size-8  text-c1" data-icon="cil:description" data-inline="false"></span>
+                        <span class="font-sm text-2xl underline"> Informations </span>
                     </div>
 
                     <div class="card w-[20rem] rounded-lg overflow-hidden shadow-lg bg-white mt-4 mx-2 lg:w-[18rem]">
