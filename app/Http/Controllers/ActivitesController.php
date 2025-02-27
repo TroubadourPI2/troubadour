@@ -91,11 +91,10 @@ class ActivitesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, string $idLieu)
     {
         $activite = Activite::findOrFail($id);
-        $idLieu = LieuActivite::Where("lieu_id", $id)->pluck("lieu_id");
-        $lieu = Lieu::whereIn("id", $idLieu)->where('actif', 1)->first();
+        $lieu = Lieu::findOrFail($idLieu);
         $photo = Photo::where("activite_id", $id)->pluck("chemin")->first();
 
 
