@@ -74,7 +74,7 @@
                         <span class="font-sm text-2xl underline"> Informations </span>
                     </div>
 
-                    <div class="card w-[20rem] rounded-lg overflow-hidden shadow-lg bg-white mt-4 mx-2 lg:w-[18rem]">
+                    <div class="card w-[20rem] rounded-lg overflow-hidden shadow-lg bg-white mt-2 mx-2 lg:w-[18rem]">
                         <div class="bg-c3 text-c2 text-base p-4 flex items-center h-4">
                         </div>
 
@@ -82,7 +82,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:event-available" data-inline="false"></span></div>
+                                    data-icon="mdi:event-available" data-inline="false"></span><span class="mr-2"> Début: </span></div>
                             <div class="text"> {{ $activite->dateDebut ?? '' }} </div>
                         </div>
 
@@ -90,7 +90,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:event-busy" data-inline="false"></div>
+                                    data-icon="mdi:event-busy" data-inline="false"></span><span class="mr-6"> Fin: </span></div>
                             <div class="text"> {{ $activite->dateFin ?? '' }} </div>
                         </div>
 
@@ -98,7 +98,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:local-activity" data-inline="false"></span></div>
+                                    data-icon="mdi:local-activity" data-inline="false"></span><span class="mr-3"> Type: </span></div>
                             <div class="text"> {{ $lieu->typeLieu->nom ?? '' }} </div>
                         </div>
 
@@ -106,7 +106,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:link" data-inline="false"></span></div>
+                                    data-icon="mdi:link" data-inline="false"></span><span class="mr-4"> Site: </span></div>
                             <div class="text">
                                 @if ($lieu->siteWeb)
                                     <a href="{{ $lieu->siteWeb ?? '' }}">
