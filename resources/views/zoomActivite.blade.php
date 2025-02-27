@@ -107,7 +107,13 @@
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
                                     data-icon="mdi:link" data-inline="false"></span></div>
-                            <div class="text"><a href="{{ $lieu->siteWeb ?? '' }}"> {{ $lieu->siteWeb ?? '' }} </a></div>
+                            <div class="text">
+                                @if ($lieu->siteWeb)
+                                  <a href="{{ $lieu->siteWeb ?? '' }}"> {{ !empty($lieu->siteWeb) ? $lieu->siteWeb : 'Aucun site web' }}</a>
+                                @else
+                                {{ !empty($lieu->siteWeb) ? $lieu->siteWeb : 'Aucun site web' }}
+                                @endif
+                            </div>
                         </div>
 
                         <div class=" my-1 mx-3 rounded border-c1 bg-white border flex"></div>
