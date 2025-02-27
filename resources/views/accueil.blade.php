@@ -31,7 +31,7 @@
                 <div class="hidden md:flex gap-x-8 items-center">
                     <a
                         class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
-                        ACCUEIL
+                        {{__('lieux')}}
                     </a>
                     <a
                         class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
