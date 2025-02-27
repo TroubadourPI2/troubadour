@@ -71,7 +71,12 @@ class ActivitesController extends Controller
     {
     try {
         $activite = Activite::findOrFail($id);
-
+        $utilisateur = auth()->user(); 
+        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
+        if (!$estProprietaire && !$estAdmin) {
+            return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
+        }
         // TODO CHANGER POUR PROD ACTIVITE
         foreach ($activite->photos as $photo) {
             \Storage::disk('DevActivite')->delete($photo->chemin);
