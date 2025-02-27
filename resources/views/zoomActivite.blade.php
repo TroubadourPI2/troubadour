@@ -109,9 +109,10 @@
                                     data-icon="mdi:link" data-inline="false"></span></div>
                             <div class="text">
                                 @if ($lieu->siteWeb)
-                                  <a href="{{ $lieu->siteWeb ?? '' }}"> {{ !empty($lieu->siteWeb) ? $lieu->siteWeb : 'Aucun site web' }}</a>
+                                    <a href="{{ $lieu->siteWeb ?? '' }}">
+                                        {{ !empty($lieu->siteWeb) ? $lieu->siteWeb : 'Aucun site web' }}</a>
                                 @else
-                                {{ !empty($lieu->siteWeb) ? $lieu->siteWeb : 'Aucun site web' }}
+                                    {{ !empty($lieu->siteWeb) ? $lieu->siteWeb : 'Aucun site web' }}
                                 @endif
                             </div>
                         </div>
