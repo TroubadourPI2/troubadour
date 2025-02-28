@@ -71,5 +71,9 @@
   "confirmationSuppression" : "Êtes-vous certain(e) de vouloir supprimer ce lieu : ",
   "succesSupprimer" : "Supprimé avec succès!",
 
+  "erreurSuppression" :"Erreur lors de la suppression",
+  "erreur" : "Erreur",
+  "erreurGenerale" : "Une erreur est survenue. Veuillez réessayer.",
+
   "droitsReserves" : "Tous droits réservés." 
 }

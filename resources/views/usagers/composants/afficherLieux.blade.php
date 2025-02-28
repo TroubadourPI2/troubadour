@@ -67,7 +67,7 @@
                 </div>
                 <!-- Carte lieu pour web/tablette -->
                 <div
-                    class="flex flex-col sm:flex-row text-c1 rounded-lg shadow-md bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[65vh] hover:shadow-2xl transition">
+                    class="carteWeb flex flex-col sm:flex-row text-c1 rounded-lg shadow-md bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[65vh] hover:shadow-2xl transition">
                     <div class="w-full sm:w-1/2 rounded-l-lg h-full p-4">
                         <img class="object-cover w-full h-full rounded" src="{{ $lieu->photo_lieu_url }}"
                             alt="{{ $lieu->nomEtablissement }}">

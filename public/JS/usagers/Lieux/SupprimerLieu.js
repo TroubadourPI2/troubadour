@@ -6,53 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsSupprimer();
     AjouterSupprimerListeners();
-
-    const toastMessage = localStorage.getItem('toastMessage');
-    if (toastMessage) {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-        });
-
-        Toast.fire({
-            icon: "success",
-            title: toastMessage
-        });
-
-        localStorage.removeItem('toastMessage');
-    }
-
-    if (localStorage.getItem('afficherLieuxVisible') === 'true') {
-        console.log(localStorage.getItem('afficherLieuxVisible'));
-        document.getElementById("compte").classList.add("hidden");
-        const boutonCompte = document.getElementById("boutonCompte");
-        boutonCompte.classList.remove("bg-c1", "text-c3");
-        boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
-
-        const boutonLieu = document.getElementById("boutonLieu");
-        boutonLieu.classList.add("bg-c1", "text-c3");
-        boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
-
-        const lieux = document.getElementById("lieux");
-        lieux.classList.remove("hidden");
-
-        document.getElementById("afficherLieux").classList.remove("hidden");
-        localStorage.removeItem('afficherLieuxVisible');
-    }
 });
 
 
 function ObtenirElementsSupprimer() {
     boutonsSupprimer = document.querySelectorAll(".boutonSupprimer");
-
 }
 
 function AjouterSupprimerListeners() {
-
-
     boutonsSupprimer.forEach((bouton) => {
         bouton.addEventListener("click", () => {
             const lieuId = bouton.getAttribute("data-lieuId");
@@ -63,18 +24,13 @@ function AjouterSupprimerListeners() {
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
             });
 
             Swal.fire({
                 title: Lang.get('strings.confirmation'),
                 text: `${Lang.get('strings.confirmationSuppression')} ${nomEtablissement} ?`,
                 icon: "warning",
-                showDenyButton: false,
-                showCancelButton: true, 
+                showCancelButton: true,
                 confirmButtonText: Lang.get('strings.supprimer'),
                 cancelButtonText: Lang.get('strings.annuler'),
                 reverseButtons: true,
@@ -93,27 +49,46 @@ function AjouterSupprimerListeners() {
                             "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
                         }
                     })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                localStorage.setItem('toastMessage', data.message);
-                                localStorage.setItem('afficherLieuxVisible', 'true');
-                                location.reload();
-                            } else {
-                                Swal.fire("Erreur", data.message, "error");
+                    .then(response => {
+                        if (!response.ok) throw new Error(Lang.get('strings.erreurSuppression'));
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            // Supprimer la carte mobile
+                            let lieuElementMobile = document.querySelector(`[data-lieuId="${lieuId}"]`).closest(".carteLieuxMobile");
+                            if (lieuElementMobile) {
+                                lieuElementMobile.style.transition = "opacity 0.3s ease-out";
+                                lieuElementMobile.style.opacity = "0";
+                                setTimeout(() => lieuElementMobile.remove(), 300);
                             }
-                        })
-
-                        .catch(error => {
-                            console.error("Erreur :", error);
-                            Swal.fire("Erreur", "Une erreur est survenue. Veuillez réessayer.", "error");
-                        });
+                    
+                            // Supprimer la carte web/tablette
+                            let lieuElementWeb = document.querySelector(`.carteWeb  [data-lieuId="${lieuId}"]`).closest(".carteWeb");
+                            if (lieuElementWeb) {
+                                lieuElementWeb.style.transition = "opacity 0.3s ease-out";
+                                lieuElementWeb.style.opacity = "0";
+                                setTimeout(() => lieuElementWeb.remove(), 300);
+                            }
+                    
+                            Toast.fire({
+                                icon: "success",
+                                title: data.message
+                            });
+                        } else {
+                            Swal.fire(Lang.get('strings.erreur'), data.message, "error");
+                        }
+                    })                    
+                    .catch(error => {
+                        console.error("Erreur :", error);
+                        Swal.fire(Lang.get('strings.erreur'), Lang.get('strings.erreurGenerale'), "error");
+                    });
                 }
             });
-
         });
     });
 }
+
 
 
 

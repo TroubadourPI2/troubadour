@@ -69,5 +69,10 @@
   "confirmationSuppression" : "Are you sure you want to delete this location : ",
   "succesSupprimer" : "Deleted successfully!",
 
+  "erreurSuppression": "Error during deletion",
+  "erreur" : "Error",
+  "erreurGenerale": "An error occurred. Please try again.",
+
+
   "droitsReserves" : "All rights reserved." 
 }

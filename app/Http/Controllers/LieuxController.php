@@ -185,7 +185,7 @@ class LieuxController extends Controller
             return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
             Log::error("Erreur lors de la modification d'un lieu: " . $e->getMessage());
-            return redirect()->route('usagerLieux.afficher')->with('error', 'Une erreur est survenue.');
+            return redirect()->route('usagerLieux.afficher')->with('error',  __('erreurGenerale'));
         }
     }
 
@@ -208,7 +208,7 @@ class LieuxController extends Controller
             return response()->json(["success" => true, "message" => __('succesSupprimer')]);
         } catch (\Exception $e) {
             Log::error("Erreur lors de la suppression d'un lieu: " . $e->getMessage());
-            return response()->json(["success" => false, "message" => "Erreur lors de la suppression."], 500);
+            return response()->json(["success" => false, "message" =>  __('erreurSuppresion')], 500);
         }
     }
 }
