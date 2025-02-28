@@ -32,7 +32,7 @@
 <script src="{{ asset('js/usagers/Lieux/SupprimerLieu.js') }}"></script>
 
 @if (session('formulaireValide') === 'true')
-    <script >
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const succesMessage = "{{ __('succesModifier') }}";
             document.getElementById('lieux').classList.remove('hidden');
@@ -112,7 +112,6 @@
         session()->forget('formulaireModifierValide');
     @endphp
 @endif
-
 
 @if (session('formulaireAjoutActiviteValide') === 'true')
     <script>
