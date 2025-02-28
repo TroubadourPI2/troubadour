@@ -5,6 +5,10 @@
 @section('contenu')
     <div class="container mx-auto p-8">
         <h1 class="text-4xl font-bold text-center text-c1">Page de Test Blade</h1>
+        <a href="{{ route('langue', ['locale' => 'fr-ca']) }}">Français</a>
+        <a href="{{ route('langue', ['locale' => 'en']) }}">English</a>
+
+        <p>{{ __('No results found') }}</p>
         <p class="mt-4 text-center text-lg">
             Ceci est une page de test pour vérifier l'appel des sections dans Blade.
             Aucune logique de création de carte n'est présente ici.

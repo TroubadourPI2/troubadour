@@ -2,7 +2,7 @@
 
     <div class="flex flex-col sm:flex-row w-full gap-4 items-center mb-4">
         <div class="flex w-full lg:flex-row flex-col gap-x-4 gap-y-4 lg:gap-y-0 items-center">
-            <button  id="boutonAjouterActivite"
+            <button id="boutonAjouterActivite"
                 class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full w-fit max-w-64 text-c1 font-semibold my-3 px-4">
                 <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add"
                     data-inline="false"></span>
@@ -67,7 +67,6 @@
         Aucune activité n'a été trouvée pour ce lieu.
     </div>
 </div>
-
 
 <div id="ajouterActivite" class="hidden">@include('usagers.composants.AjouterActivite')</div>
 
