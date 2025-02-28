@@ -66,7 +66,6 @@
                             @endforeach
                         </select>
 
-
                         @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('lieu_id'))
                             <div class="text-c5 font-medium erreurAjouterActiviteMessages">
                                 {{ session('erreurAjouterActivite')->first('lieu_id') }}
@@ -108,7 +107,6 @@
                                 </div>
                             @endforeach
                         @endif
-
 
                     </div>
                 </div>
@@ -170,7 +168,7 @@
             </div>
         </div>
     </form>
-    
+
 </div>
 {{-- Initialisation de TomSelect --}}
 <script>

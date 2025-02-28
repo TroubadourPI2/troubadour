@@ -17,7 +17,7 @@
 
             <div class="relative z-10 w-full h-full flex flex-col">
 
-                <navbar class="w-full flex justify-between p-8">
+                <navbar class="w-full flex justify-between p-8 uppercase">
                     {{-- Bouton ouverture Menu Mobile --}}
                     <div class="md:hidden flex justify-end w-full items-center text-c3 gap-2">
 
@@ -29,47 +29,72 @@
 
                     </div>
                     <div class="hidden md:flex gap-x-8 items-center">
-                        <a
+                        <a href="{{ route('lieux.recherche') }}"
                             class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
-                            ACCUEIL
+                            {{ __('lieux') }}
                         </a>
                         <a
                             class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
-                            À PROPOS
+                            {{ __('aPropos') }}
                         </a>
                     </div>
-                    <div class="hidden md:flex ">
-
+                    <div class="hidden md:flex md:items-center">
                         @auth
-                            <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                            <button id="btnDeconnexion"
+                                class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow uppercase">
+                                {{ __('deconnexion') }}
+                            </button>
+                            <form action="{{ route('usagers.Deconnexion') }}" method="POST" id="formDeconnexion">
                                 @csrf
-                                <button
-                                    class=" text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
-                                    DÉCONNEXION
-                                </button>
+
                             </form>
                         @else
-                            <a onclick="AfficherModalConnexion()"
-                                class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow">
-                                CONNEXION
-                            </a>
+                            <button onclick="AfficherModalConnexion()"
+                                class="text-xl lg:text-2xl rounded-full p-1.5 px-4 hover:bg-c3 hover:text-c1 cursor-pointer text-c3 font-barlow uppercase">
+                                {{ __('connexion') }}
+                            </button>
                         @endauth
+                        <div x-data="{ open: false }" class="relative font-barlow">
+                            <div @click="open = !open"
+                                class="cursor-pointer hover:bg-c3 hover:text-c1 text-c3 px-2 py-1 text-c1 rounded-full transition">
+                                <span class="iconify size-5 2xl:size-6" data-icon="iconoir:language"
+                                    data-inline="false"></span>
+                            </div>
+
+                            <div x-show="open" @click.outside="open = false"
+                                class="absolute right-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
+                                @foreach (config('langue.locales') as $locale => $nom)
+                                    <a href="{{ route('langue', ['locale' => $locale]) }}"
+                                        class=" px-4 py-2 text-c1 hover:bg-c3 transition flex flex-row items-center ">
+                                        @if ($locale == 'en')
+                                            <span class="iconify mr-2 size-6"
+                                                data-icon="emojione-v1:flag-for-united-states"></span>
+                                        @elseif($locale == 'fr-ca')
+                                            <span class="iconify mr-2 size-6"
+                                                data-icon="emojione-v1:flag-for-canada"></span>
+                                        @endif
+                                        {{ $nom }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
+
                 </navbar>
                 <div class="text-c3 border mx-4"></div>
 
                 <div class="w-full h-full flex justify-evenly items-center flex-col">
                     <div class="flex flex-col w-full items-center">
                         <span class="text-c3 font-barlow text-5xl lg:text-9xl">TROUBADOUR</span>
-                        <span class="text-c3 text-xl lg:text-5xl uppercase">Explorez sans limites</span>
+                        <span class="text-c3 text-xl lg:text-5xl uppercase">{{ __('slogan') }}</span>
                     </div>
                     <div>
                         <button id="activerSection"
-                            class="group items-center flex-col text-4xl flex p-1.5 text-c1 font-barlow hover:scale-110 transition-transform duration-500 ease-out">
-                            <span class="bg-c2 shadow-lg px-6 rounded-full">VILLES</span>
+                            class="group items-center flex-col text-2xl lg:text-5xl flex p-1.5 text-c3 font-barlow hover:scale-110 transition-transform duration-500 ease-out">
+                            <span class="shadow-lg px-6 rounded-full uppercase">{{ __('decouvrir') }}</span>
                             <span
                                 class="iconify text-c3 size-12 transform transition-all duration-1000 ease-out group-hover:translate-y-3"
-                                data-icon="fluent:arrow-down-24-regular" data-inline="false"></span>
+                                data-icon="ep:arrow-down" data-inline="false"></span>
                         </button>
                     </div>
                 </div>
@@ -90,25 +115,51 @@
                 </div>
                 <!-- Liens de navigation pour mobile -->
 
-                <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full">
-                    <a href="/"
+                <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full uppercase">
+                    <a href="{{ route('lieux.recherche') }}"
                         class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
-                            class="iconify size-10 " data-icon="mdi:home" data-inline="false"></span>ACCUEIL</a>
+                            class="iconify size-10 " data-icon="mdi:home"
+                            data-inline="false"></span>{{ __('lieux') }}</a>
                     <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                            class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>À PROPOS</a>
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full "> <span
+                            class="iconify size-10 " data-icon="mdi:about"
+                            data-inline="false"></span>{{ __('aPropos') }}</a>
+                    <div x-data="{ open: false }" class="relative font-barlow">
+                        <a @click="open = !open"
+                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full cursor-pointer">
+                            <span class="iconify size-10" data-icon="iconoir:language" data-inline="false"></span>
+                            {{ __('langues') }}
+                        </a>
+
+                        <div x-show="open" @click.outside="open = false"
+                            class="absolute left-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
+                            @foreach (config('langue.locales') as $locale => $nom)
+                                <a href="{{ route('langue', ['locale' => $locale]) }}"
+                                    class="flex flex-row items-center px-4 py-2 text-c1 hover:bg-c3 transition text-xl">
+                                    @if ($locale == 'en')
+                                        <span class="iconify mr-2" data-icon="emojione-v1:flag-for-united-states"></span>
+                                    @elseif($locale == 'fr-ca')
+                                        <span class="iconify mr-2" data-icon="emojione-v1:flag-for-canada"></span>
+                                    @endif
+                                    {{ $nom }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
                     @auth
 
                         <form action="{{ route('usagers.Deconnexion') }}" method="POST">
                             @csrf
-                            <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
-                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> DÉCONNEXION
+                            <button class="hover:bg-c4 p-2 transition duration-300 flex items-center w-full uppercase">
+                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span>
+                                {{ __('deconnexion') }}
                             </button>
                         </form>
                     @else
                         <a href="#" onclick="AfficherModalConnexion()"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                                class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>CONNEXION</a>
+                                class="iconify size-10 " data-icon="mdi:user"
+                                data-inline="false"></span>{{ __('connexion') }}</a>
 
                     @endauth
 
@@ -124,7 +175,7 @@
 
         <div class="pt-4 flex justify-center">
             <span id="villeSpan"
-                class="font-bold animate-pulse uppercase text-xl md:text-2xl lg:text-4xl xl:text-7xl text-c1">Chargement...</span>
+                class="font-bold animate-pulse uppercase text-xl md:text-2xl lg:text-4xl xl:text-7xl text-c1">{{ __('chargement') }}</span>
         </div>
         <div class=" border-c1 border rounded mx-16"></div>
 
@@ -136,8 +187,18 @@
     </div>
 
     <script src="{{ asset('js/Accueil.js') }}"></script>
-
 @endsection
 
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
+<script>
+    @auth
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("btnDeconnexion").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.getElementById("formDeconnexion").submit();
+        });
+    });
+    @endauth
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

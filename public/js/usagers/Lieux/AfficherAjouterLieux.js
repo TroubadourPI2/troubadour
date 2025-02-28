@@ -2,6 +2,7 @@ let selectQuartier;
 let selectVilleLieu;
 
 document.addEventListener("DOMContentLoaded", function () {
+    Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsAjouterLieux();
     AjouterLieuxListeners();
 });
@@ -54,7 +55,7 @@ function MettreAJourSelectQuartier(quartiers) {
 
     const optionDefaut = document.createElement("option");
     optionDefaut.value = "";
-    optionDefaut.textContent = "Sélectionner un quartier";
+    optionDefaut.textContent = Lang.get('strings.choisirQuartier');
     selectQuartier.appendChild(optionDefaut);
 
     quartiers.forEach(quartier => {
