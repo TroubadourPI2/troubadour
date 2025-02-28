@@ -144,7 +144,7 @@ class ActivitesController extends Controller
                 }
             }
 
-            session()->flash('formulaireModificationActiviteValide', 'true');
+            session()->flash('formulaireModifierActiviteValide', 'true');
             return redirect()->route('usagerLieux.afficher')
                 ->with('success', 'Activité modifiée avec succès !');
         } catch (\Exception $e) {
@@ -152,6 +152,8 @@ class ActivitesController extends Controller
                 ->with('error', "Erreur lors de la modification de l'activité : " . $e->getMessage());
         }
     }
+
+
 
 
 }

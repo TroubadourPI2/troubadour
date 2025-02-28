@@ -34,6 +34,9 @@ class ActiviteRequest extends FormRequest
             'photos'            => 'nullable|array',
             'photos.*'          => 'nullable|mimes:png,jpg|max:2048',
             'photos.*.position' => 'required|integer|distinct',
+            'photos_a_supprimer'   => 'nullable|array',
+            'photos_a_supprimer.*' => 'exists:photos,id',
+
         ];
     }
     
@@ -60,7 +63,9 @@ class ActiviteRequest extends FormRequest
             'photos.*.max'                     => 'Chaque photo ne doit pas dépasser 2048 kilo-octets.',
             'photos.*.position.required'       => 'La position de chaque photo est obligatoire.',
             'photos.*.position.integer'        => 'La position de chaque photo doit être un nombre entier.',
-            'photos.*.position.distinct'      => 'Les positions des photos doivent être uniques.',
+            'photos.*.position.distinct'       => 'Les positions des photos doivent être uniques.',
+            'photos_a_supprimer.*.exists'      => 'Une des photos sélectionnées pour la suppression est invalide.',
+
         ];
     }
 
@@ -76,14 +81,14 @@ class ActiviteRequest extends FormRequest
                     ->withInput()
             );
         }
-        // elseif ($nomRouteActuelle === 'usagerLieux.modifierLieu') {
-        //     session()->put('erreurModifierLieu', $validator->errors());
+         elseif ($nomRouteActuelle === 'usagerActivites.modifierActivite') {
+             session()->put('erreurModifierActivite', $validator->errors());
 
-        //     throw new HttpResponseException(
-        //         redirect()->back()
-        //             ->withInput()
-        //     );
-        // }
+                        throw new HttpResponseException(
+                        redirect()->back()
+                            ->withInput()
+                    );
+                }
 
         parent::failedValidation($validator);
     }
