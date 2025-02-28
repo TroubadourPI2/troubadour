@@ -2,6 +2,8 @@ let boutonsSupprimer;
 let success;
 
 document.addEventListener("DOMContentLoaded", function () {
+    //configure la lang pour le fichier JS
+    Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsSupprimer();
     AjouterSupprimerListeners();
 
@@ -68,12 +70,13 @@ function AjouterSupprimerListeners() {
             });
 
             Swal.fire({
-                title: "Confirmation",
-                text: `Êtes-vous certain(e) de vouloir supprimer ce lieu : ${nomEtablissement} ?`,
+                title: Lang.get('strings.confirmation'),
+                text: `${Lang.get('strings.confirmationSuppression')} ${nomEtablissement} ?`,
                 icon: "warning",
                 showDenyButton: false,
-                showCancelButton: true, confirmButtonText: "Supprimer",
-                cancelButtonText: `Annuler`,
+                showCancelButton: true, 
+                confirmButtonText: Lang.get('strings.supprimer'),
+                cancelButtonText: Lang.get('strings.annuler'),
                 reverseButtons: true,
                 customClass: {
                     popup: 'font-barlow text-xl text-c1 bg-c2',

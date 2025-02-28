@@ -29,6 +29,7 @@
   "retour" : "Retour",
   "annuler" : "Annuler",
   "enregistrer" : "Enregistrer",
+  "supprimer" : "Supprimer",
 
   "compte": "Compte",
   "lieux": "Lieux",
@@ -66,6 +67,9 @@
 
   "succesAjout" : "Ajout effectué avec succès!",
   "succesModifier" : "Modification effectuée avec succès!",
+  "confirmation" : "Confirmation",
+  "confirmationSuppression" : "Êtes-vous certain(e) de vouloir supprimer ce lieu : ",
+  "succesSupprimer" : "Supprimé avec succès!",
 
   "droitsReserves" : "Tous droits réservés." 
 }

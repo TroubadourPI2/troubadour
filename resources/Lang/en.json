@@ -28,6 +28,7 @@
   "retour" : "Back",
   "annuler" : "Cancel",
   "enregistrer" : "Save",
+  "supprimer" : "Delete",
 
   "compte": "Account",
   "lieux": "Locations",
@@ -64,6 +65,9 @@
 
   "succesAjout" : "Added successfully!",
   "succesModifier" : "Modified successfully!",
+  "confirmation" : "Confirmation",
+  "confirmationSuppression" : "Are you sure you want to delete this location : ",
+  "succesSupprimer" : "Deleted successfully!",
 
   "droitsReserves" : "All rights reserved." 
 }

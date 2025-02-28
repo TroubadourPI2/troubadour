@@ -1,9 +1,9 @@
 <div>
     <button id="boutonRetourLieux"
-        class="flex items-center text-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-32 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
+        class="flex items-center text-center text-sm sm:text-xl border-c1 border-2 rounded-full {{ App::getLocale() == 'en' ? 'sm:w-24 w-16' : 'sm:w-32 w-20' }} text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
         <span class="iconify text-c1 sm:size-5 size-4 sm:mr-2 sm:ml-2 mr-1" data-icon="ion:arrow-back-outline"
             data-inline="false"></span>
-        Retour
+        {{__('retour')}}
     </button>
     <form id="formModifierLieu" class="mt-2 text-c1 md:mx-10 xl:mx-20 2xl:mx-60" action="{{ route('usagerLieux.modifierLieu', ['id' => 1]) }}"
         method="POST" enctype="multipart/form-data">

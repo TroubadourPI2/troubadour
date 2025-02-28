@@ -205,7 +205,7 @@ class LieuxController extends Controller
                 Storage::disk('DevActivite')->delete($lieu->photoLieu);
             }
             $lieu->delete();
-            return response()->json(["success" => true, "message" => "Lieu supprimé avec succès."]);
+            return response()->json(["success" => true, "message" => __('succesSupprimer')]);
         } catch (\Exception $e) {
             Log::error("Erreur lors de la suppression d'un lieu: " . $e->getMessage());
             return response()->json(["success" => false, "message" => "Erreur lors de la suppression."], 500);
