@@ -5,7 +5,6 @@
 @section('contenu')
 
     <div class="flex flex-col w-full h-full ">
-
         <div
             class="flex items-center sm:justify-start text-c1 justify-center md:space-x-2 space-x-4 sm:border-b-[3px] border-b-2 border-c1 sm:h-10 h-6 w-full my-3">
             <button id="boutonCompte" data-section="compte"
@@ -26,16 +25,16 @@
 
     </div>
 @endsection
-
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherModifierLieu.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/SupprimerLieu.js') }}"></script>
-@if (session('formulaireValide') === 'true')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
 
+@if (session('formulaireValide') === 'true')
+    <script >
+        document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('succesModifier') }}";
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.add('hidden');
@@ -62,7 +61,7 @@
 
             Toast.fire({
                 icon: "success",
-                title: "Ajout effectué avec succès!",
+                title: succesMessage,
                 customClass: {
                     title: "text-c1 font-bold",
                     timerProgressBar: "color-c1",
@@ -78,6 +77,7 @@
 @if (session('formulaireModifierValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('succesModifier') }}";
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.add('hidden');
@@ -100,7 +100,7 @@
 
             Toast.fire({
                 icon: "success",
-                title: "Modification effectuée avec succès!",
+                title: succesMessage,
                 customClass: {
                     title: "text-c1 font-bold",
                     timerProgressBar: "color-c1",

@@ -155,7 +155,7 @@ class LieuxController extends Controller
         $estAdmin = $utilisateur->role->nom === 'admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
-            return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
+            return redirect()->route('usagerLieux.afficher');
         }
 
         try {

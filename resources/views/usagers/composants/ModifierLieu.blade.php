@@ -5,19 +5,19 @@
             data-inline="false"></span>
         Retour
     </button>
-    <form id="formModifierLieu" class="mt-2 text-c1" action="{{ route('usagerLieux.modifierLieu', ['id' => 1]) }}"
+    <form id="formModifierLieu" class="mt-2 text-c1 md:mx-10 xl:mx-20 2xl:mx-60" action="{{ route('usagerLieux.modifierLieu', ['id' => 1]) }}"
         method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="font-barlow text-c1 font-semibold mb-3">
-            <h2 class="uppercase text-center text-xl sm:text-3xl">Modifier un lieu</h2>
+            <h2 class="uppercase text-center text-xl sm:text-3xl">{{__('modifierLieu')}}</h2>
 
             <!-- Informations générales du lieu -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-3">
-                <h3 class="text-lg sm:text-2xl mb-2 underline">Informations générales</h3>
+                <h3 class="text-lg sm:text-2xl mb-2 underline">{{__('infoGenerales')}}</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <div class="sm:col-span-1">
-                        <label for="nomEtablissementModifie" class="block">Nom <span
+                        <label for="nomEtablissementModifie" class="block">{{__('nom')}} <span
                                 class="text-c5 ml-2">*</span></label>
                         <input type="text" name="nomEtablissement" id="nomEtablissementModifie"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium"
@@ -28,11 +28,11 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="selectTypeLieuModifie" class="block">Type de lieu <span
+                        <label for="selectTypeLieuModifie" class="block">{{__('typeLieu')}} <span
                                 class="text-c5 ml-2">*</span></label>
                         <select name="selectTypeLieu" id="selectTypeLieuModifie"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
-                            <option value="">Sélectionner un type</option>
+                            <option value="">{{__('selectionnerType')}}</option>
                             @foreach ($typesLieu as $type)
                                 <option value="{{ $type->id }}">
                                     {{ $type->nom }}
@@ -46,7 +46,7 @@
                         @endif
                     </div>
                     <div class="sm:col-span-2">
-                        <label for="descriptionModifie" class="block">Description</label>
+                        <label for="descriptionModifie" class="block">{{__('description')}}</label>
                         <textarea rows="4" name="description" id="descriptionModifie" class="block w-full rounded-lg font-medium p-2">{{ old('description') }}</textarea>
                         @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('description'))
                             <div class="text-c5 font-medium erreur-message">
@@ -55,7 +55,7 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="photoLieuModifie" class="block">Photo du lieu (Ne doit pas dépasser 2mo)</label>
+                        <label for="photoLieuModifie" class="block">{{ __('photoLieu') }} {{ __('maxTaille') }}</label>
                         <input id="photoLieuModifie" name="photoLieu" type="file"
                             class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg">
                         @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('photoLieu'))
@@ -69,10 +69,10 @@
 
             <!-- Adresse du lieu -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-6">
-                <h3 class="text-lg sm:text-2xl mb-2 underline">Adresse</h3>
+                <h3 class="text-lg sm:text-2xl mb-2 underline">{{__('adresse')}}</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <div class="sm:col-span-1">
-                        <label for="noCivic" class="block">Numéro civique <span class="text-c5 ml-2">*</span></label>
+                        <label for="noCivic" class="block">{{__('numCivique')}} <span class="text-c5 ml-2">*</span></label>
                         <input type="text" name="noCivic" id="noCivicModifie"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('noCivic') }}">
                         @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('noCivic'))
@@ -81,7 +81,7 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="rueModifie" class="block">Rue <span class="text-c5 ml-2">*</span></label>
+                        <label for="rueModifie" class="block">{{__('rue')}} <span class="text-c5 ml-2">*</span></label>
                         <input type="text" name="rue" id="rueModifie"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('rue') }}">
                         @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('rue'))
@@ -90,7 +90,7 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="codePostalModifie" class="block">Code postal <span
+                        <label for="codePostalModifie" class="block">{{__('codePostal')}} <span
                                 class="text-c5 ml-2">*</span></label>
                         <input type="text" name="codePostal" id="codePostalModifie" placeholder="A1A 1A1"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('codePostal') }}">
@@ -101,10 +101,10 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="selectVilleLieuModifie" class="block">Ville</label>
+                        <label for="selectVilleLieuModifie" class="block">{{__('ville')}}</label>
                         <select name="selectVilleLieu" id="selectVilleLieuModifie"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
-                            <option value="">Sélectionner une ville</option>
+                            <option value="">{{__('choisirVille')}}</option>
                             @foreach ($villes as $ville)
                                 <option value="{{ $ville->id }}">
                                     {{ $ville->nom }}
@@ -118,11 +118,11 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="selectQuartierLieuModifie" class="block">Quartier (choisir une ville avant) <span
+                        <label for="selectQuartierLieuModifie" class="block">{{__('quartier') }} {{__('villeAvant') }} <span
                                 class="text-c5 ml-2">*</span></label>
                         <select name="selectQuartierLieu" id="selectQuartierLieuModifie"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
-                            <option value="">Sélectionner un quartier</option>
+                            <option value="">{{__('choisirQuartier') }}</option>
                         </select>
                         @if (session('erreurModifierLieu') && session('erreurModifierLieu')->has('selectQuartierLieu'))
                             <div class="text-c5 font-medium erreur-message">
@@ -136,10 +136,10 @@
 
             <!-- Coordonnées de contact -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-6">
-                <h3 class="text-lg sm:text-2xl mb-2 underline">Coordonnées</h3>
+                <h3 class="text-lg sm:text-2xl mb-2 underline">{{__('coordonnees')}}</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <div class="sm:col-span-1">
-                        <label for="numeroTelephoneModifie" class="block">Numéro de téléphone <span
+                        <label for="numeroTelephoneModifie" class="block">{{__('telephone')}} <span
                                 class="text-c5 ml-2">*</span></label>
                         <input type="text" name="numeroTelephone" id="numeroTelephoneModifie"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" placeholder="###-###-####"
@@ -151,7 +151,7 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="siteWeb" class="block">Site web</label>
+                        <label for="siteWeb" class="block">{{__('siteWeb')}}</label>
                         <input type="text" name="siteWeb" id="siteWebModifie"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium"
                             placeholder="https://www.monsite.com/" value="{{ old('siteWeb') }}">
@@ -167,11 +167,11 @@
             <div class="flex flex-row justify-center mt-4">
                 <button type="button" id="boutonAnnulerModifier"
                     class="text-c1 py-2 px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 mr-2 hover:bg-c3 transition uppercase">
-                    Annuler
+                    {{__('annuler')}}
                 </button>
                 <button type="submit"
                     class="bg-c1 text-c3 px-3 sm:py-2 sm:px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 uppercase">
-                    Enregistrer
+                    {{__('enregistrer')}}
                 </button>
             </div>
         </div>

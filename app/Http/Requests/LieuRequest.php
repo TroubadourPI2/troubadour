@@ -46,7 +46,7 @@ class LieuRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'rue.required' => 'La rue est requise.',
+            'rue.required' => __('validation.rueRequired'),
             'rue.regex'    => 'Le format de la rue est invalide.',
             'rue.max'      => 'La rue ne doit pas dépasser 64 caractères.',
 

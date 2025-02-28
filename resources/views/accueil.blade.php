@@ -30,6 +30,7 @@
                 </div>
                 <div class="hidden md:flex gap-x-8 items-center">
                     <a
+                        href="{{ route('lieux.recherche') }}"
                         class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                         {{__('lieux')}}
                     </a>
@@ -111,7 +112,7 @@
             <!-- Liens de navigation pour mobile -->
 
             <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full uppercase">
-                <a href="/"
+                <a href="{{ route('lieux.recherche') }}"
                     class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
                         class="iconify size-10 " data-icon="mdi:home" data-inline="false"></span>{{(__('lieux'))}}</a>
                 <a href=""
@@ -124,7 +125,7 @@
                     <div x-show="open" @click.outside="open = false"
                         class="absolute left-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
                         @foreach (config('langue.locales') as $locale => $nom)
-                            <a href="?lang={{ $locale }}" class="flex flex-row items-center px-4 py-2 text-c1 hover:bg-c3 transition text-xl">
+                            <a href="{{ route('langue', ['locale' => $locale]) }}" class="flex flex-row items-center px-4 py-2 text-c1 hover:bg-c3 transition text-xl">
                                 @if($locale == 'en')
                                 <span class="iconify mr-2" data-icon="emojione-v1:flag-for-united-states"></span> 
                                 @elseif($locale == 'fr-ca')
@@ -139,7 +140,7 @@
 
                 <form action="{{ route('usagers.Deconnexion') }}" method="POST">
                     @csrf
-                    <button class="hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
+                    <button class="hover:bg-c4 p-2 transition duration-300 flex items-center w-full uppercase">
                         <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> {{__('deconnexion')}}
                     </button>
                 </form>
@@ -162,7 +163,7 @@
 
     <div class="pt-4 flex justify-center">
         <span id="villeSpan"
-            class="font-bold animate-pulse uppercase text-xl md:text-2xl lg:text-4xl xl:text-7xl text-c1">Chargement...</span>
+            class="font-bold animate-pulse uppercase text-xl md:text-2xl lg:text-4xl xl:text-7xl text-c1">{{__('chargement')}}</span>
     </div>
     <div class=" border-c1 border rounded mx-16"></div>
 
@@ -174,7 +175,6 @@
 </div>
 
 <script src="{{ asset('js/Accueil.js') }}"></script>
-</script>
 @endsection
 
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
@@ -188,7 +188,5 @@
         });
     });
     @endauth
-    let locale = "{{ session('locale', config('app.locale')) }}";
 </script>
-<script src="{{ asset('js/translations.js') }}"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

@@ -15,18 +15,26 @@
   "Avis" : "Rating",
   "Image de l'établissement" : "Establishment image",
 
+  "decouvrir"  : "Discover",
   "slogan" : "Explore without limits",
+  "chargement" : "Loading...",
+  "voirPlus" : "See more...",
   "aPropos" : "About",
   "deconnexion" : "Log out",
   "connexion" : "Log in",
   "langues" : "Languages",
+
+  "ajouter" : "Add",
+  "retour" : "Back",
+  "annuler" : "Cancel",
+  "enregistrer" : "Save",
+
   "compte": "Account",
   "lieux": "Locations",
   "activites": "Activities",
-  "villes" : "Cities",
-  "decouvrir"  : "Discover",
-  "ajouter" : "Add",
   "description" : "Description",
+  "aucuneDescription" : "No description",
+  "coordonneesEtInfo" : "Contact details & information",
   "adresse" : "Address",
   "ville" : "City",
   "quartier" : "Neighborhood",
@@ -36,6 +44,38 @@
   "siteWeb" : "Website",
   "telephone" : "Phone number",
   "typeLieu" : "Location type",
+
+  "ajouterLieu" : "Add a location",
+  "infoGenerales" : "General information",
+  "nom" : "Name",
+  "selectionnerType" : "Select a type",
+  "photoLieu" : "Location photo",
+  "maxTaille": "(Can't exceed 2mb)",
+  "aucunFichier" : "No file selected",
+  "coordonnees" : "Contact details",
+  "choisirVille" : "Select a city",
+  "choisirQuartier" : "Select a neighborhood",
+  "villeAvant" : "(Select a city before)",
+  "numCivique" : "Civic number",
+  "rue" : "Street",
+  "codePostal" : "Postal code",
+
+  "modifierLieu" : "Edit a location",
+
+  "succesAjout" : "Added successfully!",
+  "succesModifier" : "Modified successfully!",
+
   "droitsReserves" : "All rights reserved.",
-  "voirPlus" : "See more..."
+
+
+        "rueRequired": "The street is required.",
+        "rue_regex": "The street format is invalid.",
+        "rue_max": "The street must not exceed 64 characters.",
+        "noCivic_required": "The civic number is required.",
+        "noCivic_numeric": "The civic number must contain only digits.",
+        "noCivic_max": "The civic number cannot exceed 99999.",
+        "codePostal_required": "The postal code is required.",
+        "codePostal_regex": "The postal code must be in A1A 1A1 format.",
+        "codePostal_max": "The postal code must not exceed 7 characters."
+    
 }

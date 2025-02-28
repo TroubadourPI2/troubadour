@@ -18,7 +18,7 @@
     <link rel="shortcut icon" type="image/png" href="" />
 </head>
 
-<body class="flex flex-col  min-h-screen">
+<body class="flex flex-col min-h-screen" data-locale="{{ session('locale', config('app.locale')) }}">
     <header class="bg-c2 sticky top-0 shadow-lg z-50 lg:z-0 lg:shadow-none lg:relative">
 
         @yield('header')
@@ -53,11 +53,10 @@
                 </form>
                 @else
                 <a onclick="AfficherModalConnexion()"
-                    class="text-c1 uppercase text-lg 2xl:text-3xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">{{__('connexion')}}</a>
+                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">{{__('connexion')}}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
                 @endauth
 
-                <div class="border-r-2 h-10 border-c1 rounded "></div>
                 <div x-data="{ open: false }" class="relative font-barlow">
                     <div @click="open = !open" class="cursor-pointer hover:bg-c3 px-2 py-1 text-c1 rounded-full transition">
                         <span class="iconify size-5 2xl:size-6" data-icon="iconoir:language" data-inline="false"></span>
@@ -111,13 +110,13 @@
                 </div>
                 <!-- Liens de navigation pour mobile -->
                 <nav class="space-y-8 mt-4 text-c1 font-bold font-barlow text-4xl flex flex-col h-full uppercase">
-                    <a href="/"
+                    <a href="{{ route('lieux.recherche') }}"
                         class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
                             class="iconify size-10 " data-icon="mdi-camera" data-inline="false"></span>{{__('lieux')}}</a>
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about" data-inline="false"></span>{{__('aPropos')}}</a>
-                    <a href=""
+                    <a href="{{ route('usagerLieux.afficher')}}"
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:user" data-inline="false"></span>{{__('compte')}}</a>
 
@@ -131,21 +130,21 @@
                         <div x-show="open" @click.outside="open = false"
                             class="absolute left-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
                             @foreach (config('langue.locales') as $locale => $nom)
-                            <a href="?lang={{ $locale }}" class="flex flex-row items-center px-4 py-2 text-c1 hover:bg-c3 transition text-xl">
+                            <a href="{{ route('langue', ['locale' => $locale]) }}" class="flex flex-row items-center px-4 py-2 text-c1 hover:bg-c3 transition text-xl">
                                 @if($locale == 'en')
-                                <span class="iconify mr-2" data-icon="emojione-v1:flag-for-united-states"></span> 
+                                <span class="iconify mr-2" data-icon="emojione-v1:flag-for-united-states"></span>
                                 @elseif($locale == 'fr-ca')
-                                <span class="iconify mr-2" data-icon="emojione-v1:flag-for-canada"></span> 
+                                <span class="iconify mr-2" data-icon="emojione-v1:flag-for-canada"></span>
                                 @endif
-                                {{ $nom }} 
+                                {{ $nom }}
                             </a>
                             @endforeach
                         </div>
                     </div>
                     @auth
-                    <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="uppercase">
+                    <form action="{{ route('usagers.Deconnexion') }}" method="POST">
                         @csrf
-                        <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full">
+                        <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full uppercase">
                             <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span> {{__('deconnexion')}}
                         </button>
                     </form>
@@ -161,10 +160,9 @@
 
             </div>
         </div>
-
     </header>
 
-    <main class=" flex flex-col w-full flex-grow bg-c2 font-barlow lg:px-16 px-10">
+    <main  class=" flex flex-col w-full flex-grow bg-c2 font-barlow lg:px-16 px-10" data-locale="{{ session('locale', config('app.locale')) }}">
         @yield('contenu')
 
     </main>
@@ -232,6 +230,7 @@
     </footer>
 </body>
 
+<script defer src="{{ asset('js/translations.js') }}"></script>
 <script src="{{ asset('js/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/Inscription.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>

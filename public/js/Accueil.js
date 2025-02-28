@@ -57,12 +57,12 @@ function CreerCarteDerniere(type) {
 
     const image = document.createElement("img");
     image.src = "images/Logos/logoC1.svg";
-    image.alt = (type === "voirPlus") ? Lang.get('strings.voirPlus') : "Voir d'autres villes";
+    image.alt = (type === "voirPlus") ? Lang.get('strings.succesAjout') : "Voir d'autres villes";
     image.className = "w-full h-52 object-cover";
     carte.appendChild(image);
 
     const titre = document.createElement("span");
-    titre.textContent = (type === "voirPlus") ? Lang.get('strings.voirPlus') : "VOIR D'AUTRES VILLES";
+    titre.textContent = (type === "voirPlus") ? Lang.get('strings.succesAjout') : "VOIR D'AUTRES VILLES";
     titre.className = "text-c1 font-barlow text-xl text-center font-semibold uppercase";
     carte.appendChild(titre);
 
@@ -77,7 +77,7 @@ function CreerCarteDerniere(type) {
 
 document.addEventListener("DOMContentLoaded", function() {
     //configure la lang pour le fichier JS
-    Lang.setLocale(locale);
+    Lang.setLocale(document.body.getAttribute('data-locale'));
 
     const boutonVilles = document.getElementById("activerSection");
     const villeSpan = document.getElementById("villeSpan");

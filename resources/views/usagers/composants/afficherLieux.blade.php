@@ -1,7 +1,7 @@
 <div id="afficherLieux">
     <button id="boutonAjouterLieu"
-        class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full   {{ App::getLocale() == 'en' ? 'sm:w-36 w-[80px]' : 'sm:w-48 w-[120px]' }}  text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
-        <span class="iconify text-c1 sm:size-6 size-4 sm:mr-2 sm:ml-2" data-icon="ion:add-outline"
+        class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full  {{ App::getLocale() == 'en' ? 'sm:w-24 w-14' : 'sm:w-36 w-24' }}  text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
+        <span class="iconify text-c1 sm:size-6 size-4 sm:mr-2 sm:ml-2 mr-2" data-icon="ion:add-outline"
             data-inline="false"></span>
         {{__('ajouter')}}
     </button>
@@ -27,10 +27,10 @@
                             <div class="flex flex-col justify-between h-full">
                                 <div class="mb-2">
                                     <div class="uppercase underline text-base font-semibold">{{__('description')}}</div>
-                                    <div class="truncate">{{ $lieu->description ?? 'Aucune description' }}.</div>
+                                    <div class="truncate">{{ $lieu->description ?? __('aucuneDescription') }}.</div>
                                 </div>
                                 <div class="mb-4">
-                                    <div class="uppercase underline text-lg font-semibold">Coordonnées</div>
+                                    <div class="uppercase underline text-lg font-semibold">{{__('coordonneesEtInfo')}}</div>
                                     <div class="text-sm">
                                         <p><strong>{{__('adresse')}} :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}</p>
                                         <p><strong>{{__('ville')}} :</strong>
@@ -75,11 +75,11 @@
                     <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-4">
                         <h5 class="text-xl font-bold uppercase">{{ $lieu->nomEtablissement }}</h5>
                         <div>
-                            <div class="uppercase underline text-lg font-semibold">Description</div>
-                            <div class="text-base truncate">{{ $lieu->description ?? 'Aucune description' }}.</div>
+                            <div class="uppercase underline text-lg font-semibold">{{__('description')}}</div>
+                            <div class="text-base truncate">{{ $lieu->description ?? __('aucuneDescription') }}.</div>
                         </div>
                         <div class="mb-4">
-                            <div class="uppercase underline text-lg font-semibold">Coordonnées & Informations</div>
+                            <div class="uppercase underline text-lg font-semibold">{{__('coordonneesEtInfo')}}</div>
                             <div class="text-base">
                                 <p><strong>{{__('adresse')}} :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}</p>
                                 <p><strong>{{__('ville')}} :</strong>
