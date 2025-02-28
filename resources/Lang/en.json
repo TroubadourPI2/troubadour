@@ -65,17 +65,5 @@
   "succesAjout" : "Added successfully!",
   "succesModifier" : "Modified successfully!",
 
-  "droitsReserves" : "All rights reserved.",
-
-
-        "rueRequired": "The street is required.",
-        "rue_regex": "The street format is invalid.",
-        "rue_max": "The street must not exceed 64 characters.",
-        "noCivic_required": "The civic number is required.",
-        "noCivic_numeric": "The civic number must contain only digits.",
-        "noCivic_max": "The civic number cannot exceed 99999.",
-        "codePostal_required": "The postal code is required.",
-        "codePostal_regex": "The postal code must be in A1A 1A1 format.",
-        "codePostal_max": "The postal code must not exceed 7 characters."
-    
+  "droitsReserves" : "All rights reserved." 
 }

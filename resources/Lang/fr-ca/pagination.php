@@ -7,7 +7,6 @@ return [
     'to' => 'à',
     'of' => 'de',
     'results' => 'résultats',
-    'test' => 'yo',
 ];
 
 ?>

@@ -67,17 +67,5 @@
   "succesAjout" : "Ajout effectué avec succès!",
   "succesModifier" : "Modification effectuée avec succès!",
 
-  "droitsReserves" : "Tous droits réservés.",
-
- 
-        "rueRequired": "La rue est requise.",
-        "rue_regex": "Le format de la rue est invalide.",
-        "rue_max": "La rue ne doit pas dépasser 64 caractères.",
-        "noCivic_required": "Le numéro civique est requis.",
-        "noCivic_numeric": "Le numéro civique doit contenir uniquement des chiffres.",
-        "noCivic_max": "Le numéro civique ne peut pas dépasser 99999.",
-        "codePostal_required": "Le code postal est requis.",
-        "codePostal_regex": "Le code postal doit être au format A1A 1A1.",
-        "codePostal_max": "Le code postal ne doit pas dépasser 7 caractères."
-    
+  "droitsReserves" : "Tous droits réservés." 
 }
