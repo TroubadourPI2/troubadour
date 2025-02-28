@@ -23,6 +23,7 @@
   "deconnexion" : "Log out",
   "connexion" : "Log in",
   "langues" : "Languages",
+  "administration" : "Admnistration",
 
   "ajouter" : "Add",
   "retour" : "Back",
@@ -73,6 +74,7 @@
   "erreur" : "Error",
   "erreurGenerale": "An error occurred. Please try again.",
 
+  "demandes" : "Requests",
 
   "droitsReserves" : "All rights reserved." 
 }

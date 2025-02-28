@@ -5,6 +5,7 @@ use App\Http\Controllers\UsagersController;
 use App\Http\Controllers\GeolocalisationController;
 use App\Http\Controllers\LieuxController;
 use App\Http\Controllers\ActivitesController;
+use App\Http\Controllers\AdministrateursController;
 use App\Http\Controllers\LanguesController;
 use App\Http\Middleware\Langue;
 use App\Http\Middleware\VerifierRole;
@@ -58,4 +59,6 @@ Route::middleware(Langue::class)
         Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
 
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
+
+        Route::get('/admin', [AdministrateursController::class, 'afficher'])->name('admin')->middleware('VerifierRole:Admin');
     });

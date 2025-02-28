@@ -22,7 +22,6 @@
         <div id="compte" class="sectionMenu">COMPTE</div>
         <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
         <div id="activites" class="sectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
-
     </div>
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>

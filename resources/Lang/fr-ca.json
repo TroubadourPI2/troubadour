@@ -24,6 +24,7 @@
   "deconnexion" : "Déconnexion",
   "connexion" : "Connexion",
   "langues" : "Langues",
+  "administration" : "Admnistration",
 
   "ajouter" : "Ajouter",
   "retour" : "Retour",
@@ -61,10 +62,8 @@
   "numCivique" : "Numéro civique",
   "rue" : "Rue",
   "codePostal" : "Code postal",
-
   "modifierLieu" : "Modifier un lieu",
   
-
   "succesAjout" : "Ajout effectué avec succès!",
   "succesModifier" : "Modification effectuée avec succès!",
   "confirmation" : "Confirmation",
@@ -74,6 +73,8 @@
   "erreurSuppression" :"Erreur lors de la suppression",
   "erreur" : "Erreur",
   "erreurGenerale" : "Une erreur est survenue. Veuillez réessayer.",
+
+  "demandes" : "Demandes",
 
   "droitsReserves" : "Tous droits réservés." 
 }
