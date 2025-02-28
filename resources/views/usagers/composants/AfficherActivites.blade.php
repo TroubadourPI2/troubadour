@@ -79,63 +79,16 @@
     </div>
 </div>
 
+
+    
+
+
+
 <div id="ajouterActivite" class="hidden">@include('usagers.composants.AjouterActivite')</div>
 <div id="modifierActivite" class="hidden">@include('usagers.composants.ModifierActivite')</div>
 
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.boutonModifierActivite').forEach(bouton => {
-            bouton.addEventListener('click', function() {
-                const idActivite = this.getAttribute('data-activite-id');
-                console.log("ID de l'activité à modifier :", idActivite);
-    
-                axios.get(`/compte/obtenirActivite/${idActivite}`)
-                    .then(reponse => {
-                        console.log("Données de l'activité :", reponse.data);
-                     
-                        const activite = reponse.data.data;
-    
-                  
-                        document.getElementById('nomActiviteModif').value = activite.nom || '';
-                        document.getElementById('descriptionActiviteModif').value = activite.description || '';
-                        document.getElementById('dateDebutModif').value = activite.dateDebut || '';
-                        document.getElementById('dateFinModif').value = activite.dateFin || '';
-    
-                 
-                        document.getElementById('typeActiviteModif').value = activite.type_activite ? activite.type_activite.id : '';
-    
-                
-                        if (document.getElementById('lieuIdModif').tomselect) {
-                            document.getElementById('lieuIdModif').tomselect.setValue(activite.lieux.map(lieu => lieu.id));
-                        }
-    
-                        
-                        document.getElementById('photos_a_supprimer').value = JSON.stringify([]);
-    
-                      
-                        const photosActuelles = activite.photos.map(photo => ({
-                            id: photo.id,
-                            nom: photo.nom,
-                            position: photo.position
-                        }));
-                        document.getElementById('photos_actuelles').value = JSON.stringify(photosActuelles);
-    
-                      
-                        document.getElementById('activiteForm').setAttribute('action', `/compte/modifierActivites/${idActivite}`);
-    
-                       
-                        document.getElementById("afficherActivites").classList.add("hidden");
-                        document.getElementById("modifierActivite").classList.remove("hidden");
-                    })
-                    .catch(erreur => {
-                        console.error("Erreur lors de la récupération de l'activité :", erreur);
-                    });
-            });
-        });
-    });
-    </script>
     
     
 
@@ -172,20 +125,20 @@
             boutonCompte.classList.remove("bg-c1", "text-c3");
             boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
 
-            const boutonLieu = document.getElementById("boutonLieu");
-            boutonLieu.classList.add("bg-c1", "text-c3");
-            boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+            const boutonActivites = document.getElementById("boutonActivites");
+            boutonActivites.classList.add("bg-c1", "text-c3");
+            boutonActivites.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
 
-            document.getElementById("modifierLieu").classList.remove("hidden");
-            const lieux = document.getElementById("lieux");
-            lieux.classList.remove("hidden");
+            document.getElementById("modifierActivite").classList.remove("hidden");
+            const activites = document.getElementById("activites");
+            activites.classList.remove("hidden");
 
-            document.getElementById("afficherLieux").classList.add("hidden");
+            document.getElementById("afficherActivites").classList.add("hidden");
         });
     </script>
-    @php
-        session()->forget('erreurModifierLieu');
-    @endphp
+  @php
+        session()->forget('erreurModifierActivite');
+    @endphp 
 @endif
 <script src="{{ asset('js/usagers/Activites/SupprimerActivite.js') }}"></script>
 <script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>

@@ -96,7 +96,6 @@ class ActivitesController extends Controller
         try {
             $activite = Activite::findOrFail($id);
 
-     
             $activite->update([
                 'nom'             => $request->nomActivite,
                 'description'     => $request->descriptionActivite,
@@ -106,21 +105,18 @@ class ActivitesController extends Controller
                 'actif'           => $request->has('actif'),
             ]);
 
+     
             if ($request->has('lieu_id')) {
                 $activite->lieux()->sync($request->lieu_id);
             }
 
-         
+        
             if ($request->hasFile('photos')) {
                 foreach ($request->file('photos') as $index => $photoFile) {
-
-                     // TODO CHANGER POUR PROD ACTIVITE
+                
                     $chemin = $photoFile->store('activites', 'DevActivite');
-
-               
                     $position = $request->input("photos.$index.position", null);
 
-                  
                     Photo::create([
                         'chemin'      => $chemin,
                         'position'    => $position,
@@ -130,15 +126,22 @@ class ActivitesController extends Controller
                 }
             }
 
-          
+            if ($request->has('positionsActuelles')) {
+                foreach ($request->positionsActuelles as $photoId => $nouvellePosition) {
+                    $photo = Photo::find($photoId);
+                    if ($photo) {
+                        $photo->update(['position' => $nouvellePosition]);
+                    }
+                }
+            }
+
+       
             if ($request->has('photos_a_supprimer')) {
                 $photosASupprimer = $request->photos_a_supprimer;
                 foreach ($photosASupprimer as $photoId) {
                     $photo = Photo::find($photoId);
                     if ($photo) {
-                     
                         \Storage::disk('DevActivite')->delete($photo->chemin);
-                    
                         $photo->delete();
                     }
                 }

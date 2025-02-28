@@ -36,6 +36,8 @@ class ActiviteRequest extends FormRequest
             'photos.*.position' => 'required|integer|distinct',
             'photos_a_supprimer'   => 'nullable|array',
             'photos_a_supprimer.*' => 'exists:photos,id',
+            'positionsActuelles'      => 'nullable|array',
+            'positionsActuelles.*'    => 'required|integer|distinct',
 
         ];
     }
@@ -64,10 +66,45 @@ class ActiviteRequest extends FormRequest
             'photos.*.position.required'       => 'La position de chaque photo est obligatoire.',
             'photos.*.position.integer'        => 'La position de chaque photo doit être un nombre entier.',
             'photos.*.position.distinct'       => 'Les positions des photos doivent être uniques.',
+            'positionsActuelles.*.integer'       => 'La position de chaque photo existante doit être un nombre entier.',
+            'positionsActuelles.*.distinct'      => 'Les positions des photos existantes doivent être uniques.',
             'photos_a_supprimer.*.exists'      => 'Une des photos sélectionnées pour la suppression est invalide.',
 
         ];
     }
+    protected function withValidator($validator)
+    {
+        if ($this->route()->getName() === 'usagerActivites.modifierActivite') {
+            $validator->after(function ($validator) {
+              
+                $positionsNouvelles = [];
+                if ($this->has('positionsNouvelles') && is_array($this->positionsNouvelles)) {
+                    foreach ($this->positionsNouvelles as $pos) {
+                        $positionsNouvelles[] = (int) $pos;
+                    }
+                }
+           
+                $positionsExistantes = [];
+                if ($this->has('positionsActuelles') && is_array($this->positionsActuelles)) {
+                    foreach ($this->positionsActuelles as $pos) {
+                        $positionsExistantes[] = (int) $pos;
+                    }
+                }
+      
+                $positionsTotales = array_merge($positionsNouvelles, $positionsExistantes);
+                sort($positionsTotales);
+                $nb = count($positionsTotales);
+                if ($nb > 0) {
+                  
+                    $attendu = range(1, $nb);
+                    if ($positionsTotales !== $attendu) {
+                        $validator->errors()->add('positions', 'Les positions doivent être une suite séquentielle sans trou (1, 2, …, ' . $nb . ').');
+                    }
+                }
+            });
+        }
+    }
+    
 
     protected function failedValidation(Validator $validator)
     {
@@ -83,6 +120,8 @@ class ActiviteRequest extends FormRequest
         }
          elseif ($nomRouteActuelle === 'usagerActivites.modifierActivite') {
              session()->put('erreurModifierActivite', $validator->errors());
+             session()->put('idActiviteErreur', $activite->id);
+
 
                         throw new HttpResponseException(
                         redirect()->back()
