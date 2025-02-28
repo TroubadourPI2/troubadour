@@ -56,14 +56,15 @@
                 </template>
                 <div class="w-full flex  justify-center items-end">
                     <div class="opacity-90 bg-c1 flex  w-full h-16 items-center">
-                        <span class="  text-2xl font-bold text-c3 font-barlow w-full truncate justify-start px-4 items-center">
+                        <span
+                            class="  text-2xl font-bold text-c3 font-barlow w-full truncate justify-start px-4 items-center">
                             {{ $activite->nom }}
                         </span>
                         <div class="flex gap-x-2 px-4  ">
                             <button class="boutonSupprimerActivite text-red-500" data-activite-id="{{ $activite->id }}"
                                 data-nomActivite="{{ $activite->nom }}"><span class="iconify size-6"
                                     data-icon="ion:trash-outline" data-inline="false"></span></button>
-                            <button class="boutonModifier" data-lieuId="{{ $lieu->id }}"
+                            <button class="boutonModifierActivite" data-activite-id="{{ $activite->id }}"
                                 data-villeId="{{ $lieu->ville()?->id }}"
                                 data-typeLieuId="{{ $lieu->typeLieu->id }}"><span class="iconify size-6 text-c3"
                                     data-icon="ep:edit" data-inline="false"></span></button>
@@ -79,6 +80,65 @@
 </div>
 
 <div id="ajouterActivite" class="hidden">@include('usagers.composants.AjouterActivite')</div>
+<div id="modifierActivite" class="hidden">@include('usagers.composants.ModifierActivite')</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.boutonModifierActivite').forEach(bouton => {
+            bouton.addEventListener('click', function() {
+                const idActivite = this.getAttribute('data-activite-id');
+                console.log("ID de l'activité à modifier :", idActivite);
+    
+                axios.get(`/compte/obtenirActivite/${idActivite}`)
+                    .then(reponse => {
+                        console.log("Données de l'activité :", reponse.data);
+                     
+                        const activite = reponse.data.data;
+    
+                  
+                        document.getElementById('nomActiviteModif').value = activite.nom || '';
+                        document.getElementById('descriptionActiviteModif').value = activite.description || '';
+                        document.getElementById('dateDebutModif').value = activite.dateDebut || '';
+                        document.getElementById('dateFinModif').value = activite.dateFin || '';
+    
+                 
+                        document.getElementById('typeActiviteModif').value = activite.type_activite ? activite.type_activite.id : '';
+    
+                
+                        if (document.getElementById('lieuIdModif').tomselect) {
+                            document.getElementById('lieuIdModif').tomselect.setValue(activite.lieux.map(lieu => lieu.id));
+                        }
+    
+                        
+                        document.getElementById('photos_a_supprimer').value = JSON.stringify([]);
+    
+                      
+                        const photosActuelles = activite.photos.map(photo => ({
+                            id: photo.id,
+                            nom: photo.nom,
+                            position: photo.position
+                        }));
+                        document.getElementById('photos_actuelles').value = JSON.stringify(photosActuelles);
+    
+                      
+                        document.getElementById('activiteForm').setAttribute('action', `/compte/modifierActivites/${idActivite}`);
+    
+                       
+                        document.getElementById("afficherActivites").classList.add("hidden");
+                        document.getElementById("modifierActivite").classList.remove("hidden");
+                    })
+                    .catch(erreur => {
+                        console.error("Erreur lors de la récupération de l'activité :", erreur);
+                    });
+            });
+        });
+    });
+    </script>
+    
+    
+
 
 @if (session('erreurAjouterActivite'))
     <script>
@@ -127,8 +187,7 @@
         session()->forget('erreurModifierLieu');
     @endphp
 @endif
-<script src="{{ asset('js/usagers/Activites/SupprimerActivite.js') }}" ></script>
+<script src="{{ asset('js/usagers/Activites/SupprimerActivite.js') }}"></script>
 <script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/AjouterActivite.js') }}" defer></script>
-

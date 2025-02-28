@@ -152,7 +152,24 @@ class ActivitesController extends Controller
                 ->with('error', "Erreur lors de la modification de l'activité : " . $e->getMessage());
         }
     }
-
+    public function obtenirActivite(string $activiteId)
+    {
+        try {
+         
+            $activite = Activite::with(['photos', 'lieux', 'typeActivite'])->findOrFail($activiteId);
+    
+            return response()->json([
+                'success' => true,
+                'data'    => $activite
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Erreur lors de la récupération de l'activité : " . $e->getMessage()
+            ], 500);
+        }
+    }
+    
 
 
 
