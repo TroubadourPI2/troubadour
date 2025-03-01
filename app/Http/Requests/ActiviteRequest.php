@@ -48,28 +48,27 @@ class ActiviteRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nomActivite.required'             => 'Le champ nom est obligatoire.',
-            'nomActivite.max'                  => 'Le champ nom ne doit pas dépasser 64 caractères.',
-            'dateDebut.required'               => 'La date de début est obligatoire.',
-            'dateDebut.date'                   => 'La date de début doit être une date valide.',
-            'dateDebut.after_or_equal'         => 'La date de début ne doit pas être antérieure à aujourd\'hui.',
-            'dateFin.date'                     => 'La date de fin doit être une date valide.',
-            'dateFin.after_or_equal'           => 'La date de fin ne doit jamais être avant la date de début.',
-            'actif.boolean'                    => 'Le champ actif doit être vrai ou faux.',
-            'descriptionActivite.max'          => 'La description ne doit pas dépasser 500 caractères.',
-            'typeActivite_id.required'         => 'Le type d\'activité est obligatoire.',
-            'typeActivite_id.exists'           => 'Le type d\'activité sélectionné est invalide.',
-            'lieu_id.required'                 => 'Le(s) lieu(x) est/sont obligatoire(s).',
-            'lieu_id.*.exists'                 => 'Le(s) lieu(x) sélectionné(s) est/sont invalide(s).',
-            'photos.*.mimes'                   => 'Chaque photo doit être au format PNG ou JPG.',
-            'photos.*.max'                     => 'Chaque photo ne doit pas dépasser 2048 kilo-octets.',
-            'photos.*.position.required'       => 'La position de chaque photo est obligatoire.',
-            'photos.*.position.integer'        => 'La position de chaque photo doit être un nombre entier.',
-            'photos.*.position.distinct'       => 'Les positions des photos doivent être uniques.',
-            'positionsActuelles.*.integer'       => 'La position de chaque photo existante doit être un nombre entier.',
-            'positionsActuelles.*.distinct'      => 'Les positions des photos existantes doivent être uniques.',
-            'photos_a_supprimer.*.exists'      => 'Une des photos sélectionnées pour la suppression est invalide.',
-
+            'nomActivite.required'             => __('validations.nomActiviteRequise'),
+            'nomActivite.max'                  => __('validations.nomActiviteMax'),
+            'dateDebut.required'               => __('validations.dateDebutRequise'),
+            'dateDebut.date'                   => __('validations.dateDebutDate'),
+            'dateDebut.after_or_equal'         => __('validations.dateDebutAfterOrEqual'),
+            'dateFin.date'                     => __('validations.dateFinDate'),
+            'dateFin.after_or_equal'           => __('validations.dateFinAfterOrEqual'),
+            'actif.boolean'                    => __('validations.actifBoolean'),
+            'descriptionActivite.max'          => __('validations.descriptionActiviteMax'),
+            'typeActivite_id.required'         => __('validations.typeActiviteIdRequise'),
+            'typeActivite_id.exists'           => __('validations.typeActiviteIdExiste'),
+            'lieu_id.required'                 => __('validations.lieuIdRequis'),
+            'lieu_id.*.exists'                 => __('validations.lieuIdExiste'),
+            'photos.*.mimes'                   => __('validations.photoMime'),
+            'photos.*.max'                     => __('validations.photoMax'),
+            'photos.*.position.required'       => __('validations.photoPositionRequise'),
+            'photos.*.position.integer'        => __('validations.photoPositionInteger'),
+            'photos.*.position.distinct'       => __('validations.photoPositionDistinct'),
+            'positionsActuelles.*.integer'     => __('validations.positionsActuellesInteger'),
+            'positionsActuelles.*.distinct'    => __('validations.positionsActuellesDistinct'),
+            'photos_a_supprimer.*.exists'      => __('validations.photoASupprimerExiste'),
         ];
     }
     protected function withValidator($validator)
@@ -98,7 +97,7 @@ class ActiviteRequest extends FormRequest
                   
                     $attendu = range(1, $nb);
                     if ($positionsTotales !== $attendu) {
-                        $validator->errors()->add('positions', 'Les positions doivent être une suite séquentielle sans trou (1, 2, …, ' . $nb . ').');
+                        $validator->errors()->add('positions', __('validations.positionsSequentielle', ['nb' => $nb]));
                     }
                 }
             });
