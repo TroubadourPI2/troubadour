@@ -175,7 +175,7 @@
         Lang.setLocale(document.body.getAttribute('data-locale'))
         new TomSelect("#lieu_id", {
             plugins: ['remove_button'],
-            placeholder: Lang.get('strings.photoPositionRequise')
+            placeholder: Lang.get('strings.selectMultipleLieux')
         });
     });
 

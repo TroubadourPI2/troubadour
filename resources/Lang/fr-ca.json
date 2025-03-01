@@ -92,5 +92,6 @@
   "dateDebut": "Date de début",
   "dateFin": "Date de fin",
   "positionPour": "Position pour",
-  "attention":"Attention"
+  "attention":"Attention",
+  "selectMultipleLieux":"Sélectionnez un ou plusieurs lieux"
 }
