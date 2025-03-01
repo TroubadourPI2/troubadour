@@ -120,9 +120,9 @@
 
             <!-- Section Position des nouvelles images -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-6">
-                <h3 class="text-lg sm:text-2xl mb-2 underline">Position des nouvelles images</h3>
+                <h3 class="text-lg sm:text-2xl mb-2 underline">{{ __('positionNouvelleImage') }}</h3>
                 <p class="text-sm mb-2 text-c1 opacity-40 italic">
-                    Pour chaque nouvelle image sélectionnée, indiquez sa position.
+                    {{ __('positionNouvelleImageIndiquer') }}
                 </p>
                 <div id="positionInputsModif" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
             </div>

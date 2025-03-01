@@ -95,6 +95,10 @@
   "attention":"Attention",
   "selectMultipleLieux":"Sélectionnez un ou plusieurs lieux",
   "confirmationSuppressionActivite" : "Êtes-vous certain(e) de vouloir supprimer cette activité : ",
-  "photosActuelle":"Photos actuelles"
+  "photosActuelle":"Photos actuelles",
+  "positionNouvelleImage": "Position des nouvelles images",
+  "positionNouvelleImageIndiquer":"Pour chaque nouvelle image sélectionnée, indiquez sa position. "
+
+
 
 }

@@ -198,7 +198,7 @@ document.getElementById('photosModif').addEventListener('change', function() {
         const label = document.createElement('label');
         label.setAttribute('for', 'photos_modif_' + i);
         label.className = 'block text-sm';
-        label.innerText = 'Position for ' + fichier.name;
+        label.innerText =  Lang.get('strings.positionPour')+" "  + fichier.name;
         
         const input = document.createElement('input');
         input.type = 'number';
