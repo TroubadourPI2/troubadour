@@ -90,5 +90,7 @@
   "informationsGenerales": "Informations générales",
   "SelectionnerType": "Sélectionner un type",
   "dateDebut": "Date de début",
-  "dateFin": "Date de fin"
+  "dateFin": "Date de fin",
+  "positionPour": "Position pour",
+  "attention":"Attention"
 }

@@ -1,5 +1,12 @@
+document.addEventListener("DOMContentLoaded", function() {
+
+    Lang.setLocale(document.body.getAttribute('data-locale'));
+
+});
+
 const champPhotos = document.getElementById('photos');
 const conteneurPositions = document.getElementById('positionInputs');
+
 champPhotos.addEventListener('change', function() {
     conteneurPositions.innerHTML = '';
     const fichiers = champPhotos.files;
@@ -12,7 +19,7 @@ champPhotos.addEventListener('change', function() {
         const label = document.createElement('label');
         label.setAttribute('for', 'photos_' + i);
         label.className = 'block text-sm';
-        label.innerText = 'Position pour "' + fichier.name + '"';
+        label.innerText =  Lang.get('strings.positionPour')+" " + fichier.name + '"';
 
         const input = document.createElement('input');
         input.type = 'number';
@@ -31,7 +38,7 @@ champPhotos.addEventListener('change', function() {
 });
 
 document.getElementById('activiteForm').addEventListener('submit', function(e) {
-    console.log('Validation des positions exécutée');
+
 
     const positionInputs = document.querySelectorAll('.position-input');
     let tousRemplis = true;
@@ -47,20 +54,20 @@ document.getElementById('activiteForm').addEventListener('submit', function(e) {
             positions.push(value);
         }
     });
-
+  
 
     const uniquePositions = new Set(positions);
     const positionsDupliquees = (uniquePositions.size !== positions.length);
 
     if (!tousRemplis || positionsDupliquees) {
         e.preventDefault();
-        let message = 'Veuillez renseigner la position pour chaque image.';
+        let message = Lang.get('validations.photoPositionRequise')
         if (positionsDupliquees) {
-            message = 'Les positions des images doivent être uniques.';
+            message = Lang.get('validations.photoPositionDistinct')
         }
         Swal.fire({
             icon: 'error',
-            title: 'Attention',
+            title: Lang.get('strings.attention'),
             text: message
         });
     }

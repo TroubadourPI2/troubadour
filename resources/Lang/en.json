@@ -88,7 +88,9 @@
     "informationsGenerales": "General information",
     "SelectionnerType": "Select a type",
     "dateDebut": "Start date",
-    "dateFin": "End date"
+    "dateFin": "End date",
+    "positionPour": "Position for",
+    "attention":"Warning"
 
   
   

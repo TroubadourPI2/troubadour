@@ -116,7 +116,7 @@
 @if (session('formulaireAjoutActiviteValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
+            const succesMessage = "{{ __('succesAjout') }}";
             document.getElementById('lieux').classList.add('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.remove('hidden');
@@ -139,7 +139,7 @@
 
             Toast.fire({
                 icon: "success",
-                title: "Ajout effectué avec succès!",
+                title: succesMessage,
                 customClass: {
                     title: "text-c1 font-bold",
                     timerProgressBar: "color-c1",
@@ -156,6 +156,7 @@
 @if (session('formulaireModifierActiviteValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('succesModifier') }}";
             document.getElementById('lieux').classList.add('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.remove('hidden');
@@ -178,7 +179,7 @@
 
             Toast.fire({
                 icon: "success",
-                title: "Modification effectuée avec succès!",
+                title: succesMessage,
                 customClass: {
                     title: "text-c1 font-bold",
                     timerProgressBar: "color-c1",
