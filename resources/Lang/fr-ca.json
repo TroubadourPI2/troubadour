@@ -39,7 +39,7 @@
   "aucuneDescription" : "Aucune description",
   "coordonneesEtInfo" : "Coordonnées & informations",
   "adresse" : "Adresse",
-  "ville" : "Ville",
+  "ville": "{1} Ville|[2,*] Villes",
   "pays" : "Pays",
   "quartier" : "Quartier",
   "province" : "Province",
@@ -75,6 +75,7 @@
   "erreurGenerale" : "Une erreur est survenue. Veuillez réessayer.",
 
   "demandes" : "Demandes",
+  
 
   "droitsReserves" : "Tous droits réservés." 
 }

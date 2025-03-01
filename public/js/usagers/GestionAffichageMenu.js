@@ -1,5 +1,5 @@
-let boutonsMenuCompte;
-let sectionsMenuCompte;
+let boutonsMenu;
+let sectionsMenu;
 
 document.addEventListener("DOMContentLoaded", function () {
     InitialiserMenu();
@@ -11,8 +11,8 @@ function InitialiserMenu() {
 }
 
 function ObtenirElements() {
-    boutonsMenuCompte = document.querySelectorAll(".boutonMenuCompte");
-    sectionsMenuCompte = document.querySelectorAll(".sectionMenu");
+    boutonsMenu = document.querySelectorAll(".boutonMenu");
+    sectionsMenu = document.querySelectorAll(".sectionMenu");
 }
 
 function BasculerClassesBouton(boutonMenu, ajouterClasses, retirerClasses) {
@@ -21,23 +21,21 @@ function BasculerClassesBouton(boutonMenu, ajouterClasses, retirerClasses) {
 }
 
 function CacherToutesLesSections() {
-    sectionsMenuCompte.forEach((section) => {
+    sectionsMenu.forEach((section) => {
         section.classList.add("hidden");
     });
 }
 
 function AjouterMenuListeners() {
-    boutonsMenuCompte.forEach((boutonMenu) => {
+    boutonsMenu.forEach((boutonMenu) => {
         boutonMenu.addEventListener("click", function () {
             // Réinitialiser l'état des boutons
-            boutonsMenuCompte.forEach((btn) => {
+            boutonsMenu.forEach((btn) => {
                 BasculerClassesBouton(btn, ["sm:hover:bg-c1", "sm:hover:text-c3"], ["bg-c1", "text-c3"]);
             });
 
-            // Appliquer les classes actives au bouton cliqué
             BasculerClassesBouton(boutonMenu, ["bg-c1", "text-c3"], ["sm:hover:bg-c1", "sm:hover:text-c3"]);
 
-            // Cacher toutes les sections et afficher celle correspondante
             CacherToutesLesSections();
             const sectionId = boutonMenu.getAttribute("data-section");
             document.getElementById(sectionId).classList.remove("hidden");

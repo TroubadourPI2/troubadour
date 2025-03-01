@@ -4,7 +4,7 @@
 
 @section('contenu')
 
-    <div class="bg-c2 flex w-full h-full flex-col items-center z-0">
+    <div class="bg-c2 flex w-full h-full flex-col items-center">
         <!-- Titre de la section de recherche -->
         <h2 class="w-full text-center text-c1 font-bold text-2xl font-barlow">{!! __('Recherche') !!}</h2>
 

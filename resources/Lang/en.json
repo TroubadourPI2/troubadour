@@ -38,7 +38,7 @@
   "aucuneDescription" : "No description",
   "coordonneesEtInfo" : "Contact details & information",
   "adresse" : "Address",
-  "ville" : "City",
+  "ville" : "City|Cities",
   "quartier" : "Neighborhood",
   "pays" : "Country",
   "province" : "Province",
