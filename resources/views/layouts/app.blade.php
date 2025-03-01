@@ -24,8 +24,8 @@
 
         <div class="w-full p-8 items-center hidden lg:flex ">
             {{-- Menu Desktop --}}
-            <div class="flex w-full items-center gap-x-4">
-                <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class=" w-20 xl:w-24" alt="Logo Troubadour">
+            <div class="flex w-auto items-center gap-x-4 flex-grow-0">
+                <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class="w-20 xl:w-24" alt="Logo Troubadour">
                 <span class="text-c1 uppercase text-4xl 2xl:text-5xl font-barlow font-semibold">troubadour</span>
             </div>
             <div class="flex w-full justify-end items-center gap-x-2">
@@ -36,28 +36,26 @@
                 <a
                     class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer text-semibold hover:bg-c3 px-2 py-1 rounded-full transition   ">{{ __('aPropos') }}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
-                @role(['Utilisateur', 'Gestionnaire'])
                 <a class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition"
                     href="{{ route('usagerLieux.afficher') }}">{{ __('compte') }}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
-                @endrole
                 @role(['Admin'])
                 <a class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition"
                     href="{{ route('admin') }}">{{ __('administration') }}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
                 @endrole
                 @auth
-                    <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="m-0">
-                        @csrf
-                        <button
-                            class=" text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition">
-                            {{ __('deconnexion') }}
-                        </button>
-                    </form>
+                <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="m-0">
+                    @csrf
+                    <button
+                        class=" text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition">
+                        {{ __('deconnexion') }}
+                    </button>
+                </form>
                 @else
-                    <a onclick="AfficherModalConnexion()"
-                        class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">{{ __('connexion') }}</a>
-                    <div class="border-r-2 h-10 border-c1 rounded "></div>
+                <a onclick="AfficherModalConnexion()"
+                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition   ">{{ __('connexion') }}</a>
+                <div class="border-r-2 h-10 border-c1 rounded "></div>
                 @endauth
 
                 <div x-data="{ open: false }" class="relative font-barlow">
@@ -68,16 +66,16 @@
                     <div x-show="open" @click.outside="open = false"
                         class="absolute right-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
                         @foreach (config('langue.locales') as $locale => $nom)
-                            <a href="{{ route('langue', ['locale' => $locale]) }}"
-                                class=" px-4 py-2 text-c1 hover:bg-c3 transition flex flex-row items-center ">
-                                @if ($locale == 'en')
-                                    <span class="iconify mr-2 size-6"
-                                        data-icon="emojione-v1:flag-for-united-states"></span>
-                                @elseif($locale == 'fr-ca')
-                                    <span class="iconify mr-2 size-6" data-icon="emojione-v1:flag-for-canada"></span>
-                                @endif
-                                {{ $nom }}
-                            </a>
+                        <a href="{{ route('langue', ['locale' => $locale]) }}"
+                            class=" px-4 py-2 text-c1 hover:bg-c3 transition flex flex-row items-center ">
+                            @if ($locale == 'en')
+                            <span class="iconify mr-2 size-6"
+                                data-icon="emojione-v1:flag-for-united-states"></span>
+                            @elseif($locale == 'fr-ca')
+                            <span class="iconify mr-2 size-6" data-icon="emojione-v1:flag-for-canada"></span>
+                            @endif
+                            {{ $nom }}
+                        </a>
                         @endforeach
                     </div>
                 </div>
@@ -129,7 +127,12 @@
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:user"
                             data-inline="false"></span>{{ __('compte') }}</a>
-
+                    @role(['Admin'])
+                    <a href="{{ route('admin') }}"
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                            class="iconify size-10 " data-icon="mdi:user"
+                            data-inline="false"></span>{{ __('administration') }}</a>
+                    @endrole
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
                         <span class="iconify size-10 " data-icon="mdi:search"
@@ -143,33 +146,33 @@
                         <div x-show="open" @click.outside="open = false"
                             class="absolute left-0 mt-2 w-60 bg-white shadow-lg rounded-lg overflow-hidden border border-c1">
                             @foreach (config('langue.locales') as $locale => $nom)
-                                <a href="{{ route('langue', ['locale' => $locale]) }}"
-                                    class="flex flex-row items-center px-4 py-2 text-c1 hover:bg-c3 transition text-xl">
-                                    @if ($locale == 'en')
-                                        <span class="iconify mr-2"
-                                            data-icon="emojione-v1:flag-for-united-states"></span>
-                                    @elseif($locale == 'fr-ca')
-                                        <span class="iconify mr-2" data-icon="emojione-v1:flag-for-canada"></span>
-                                    @endif
-                                    {{ $nom }}
-                                </a>
+                            <a href="{{ route('langue', ['locale' => $locale]) }}"
+                                class="flex flex-row items-center px-4 py-2 text-c1 hover:bg-c3 transition text-xl">
+                                @if ($locale == 'en')
+                                <span class="iconify mr-2"
+                                    data-icon="emojione-v1:flag-for-united-states"></span>
+                                @elseif($locale == 'fr-ca')
+                                <span class="iconify mr-2" data-icon="emojione-v1:flag-for-canada"></span>
+                                @endif
+                                {{ $nom }}
+                            </a>
                             @endforeach
                         </div>
                     </div>
                     @auth
-                        <form action="{{ route('usagers.Deconnexion') }}" method="POST">
-                            @csrf
-                            <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full uppercase">
-                                <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span>
-                                {{ __('deconnexion') }}
-                            </button>
-                        </form>
+                    <form action="{{ route('usagers.Deconnexion') }}" method="POST">
+                        @csrf
+                        <button class="  hover:bg-c4 p-2 transition duration-300 flex items-center w-full uppercase">
+                            <span class="iconify size-10" data-icon="mdi:logout" data-inline="false"></span>
+                            {{ __('deconnexion') }}
+                        </button>
+                    </form>
                     @else
-                        <a href="#" onclick="AfficherModalConnexion()"
-                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                            <span class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>
-                            {{ __('connexion') }}
-                        </a>
+                    <a href="#" onclick="AfficherModalConnexion()"
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                        <span class="iconify size-10 " data-icon="mdi:login" data-inline="false"></span>
+                        {{ __('connexion') }}
+                    </a>
                     @endauth
 
                 </nav>

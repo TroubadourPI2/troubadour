@@ -13,6 +13,9 @@
         <button id="boutonLieu" data-section="lieux"
             class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ trans_choice('ville', 2) }}</button>
         <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1"></div>
+        <button id="boutonLieu" data-section="lieux"
+            class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('lieux') }}</button>
+        <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1"></div>
         <button id="boutonActivites" data-section="activites"
             class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('activites') }}</button>
     </div>
