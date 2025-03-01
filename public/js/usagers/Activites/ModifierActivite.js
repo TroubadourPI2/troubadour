@@ -95,7 +95,6 @@ function mettreAJourSectionPhotos(activite) {
 
 
 document.getElementById('formulaireActiviteModif').addEventListener('submit', function(e) {
-  
     const inputsPositions = document.querySelectorAll('.position-input');
     let toutRempli = true;
     const valeursPositions = [];
@@ -107,19 +106,31 @@ document.getElementById('formulaireActiviteModif').addEventListener('submit', fu
             input.classList.add('border-c5');
         } else {
             input.classList.remove('border-c5');
-            valeursPositions.push(valeur);
+            valeursPositions.push(parseInt(valeur, 10));
         }
     });
 
     const positionsUniques = new Set(valeursPositions);
     const doublons = (positionsUniques.size !== valeursPositions.length);
 
-    if (!toutRempli || doublons) {
-        e.preventDefault();
-        let message = 'Veuillez renseigner la position pour chaque image.';
-        if (doublons) {
-            message = 'Les positions des images doivent être uniques.';
+    valeursPositions.sort((a, b) => a - b);
+    let estSequentiel = true;
+    for (let i = 0; i < valeursPositions.length; i++) {
+        if (valeursPositions[i] !== i + 1) {
+            estSequentiel = false;
+            break;
         }
+    }
+
+    if (!toutRempli || doublons || !estSequentiel) {
+        e.preventDefault();
+        let message = Lang.get('validations.photoPositionRequise');
+        if (doublons) {
+            message = Lang.get('validations.photoPositionDistinct');
+        } else if (!estSequentiel) {
+            message = Lang.get('validations.positionsSequentielle');
+        }
+
         Swal.fire({
             icon: 'error',
             title: 'Attention',
@@ -130,6 +141,7 @@ document.getElementById('formulaireActiviteModif').addEventListener('submit', fu
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    Lang.setLocale(document.body.getAttribute('data-locale'));
     document.querySelectorAll('.boutonModifierActivite').forEach(bouton => {
         bouton.addEventListener('click', function() {
             const idActivite = this.getAttribute('data-activite-id');

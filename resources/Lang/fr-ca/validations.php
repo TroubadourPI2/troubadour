@@ -42,5 +42,5 @@ return [
     'positionsActuellesInteger'=> 'La position de chaque photo existante doit être un nombre entier.',
     'positionsActuellesDistinct'=> 'Les positions des photos existantes doivent être uniques.',
     'photoASupprimerExiste'    => 'Une des photos sélectionnées pour la suppression est invalide.',
-    'positionsSequentielle' => 'Les positions doivent être une suite séquentielle sans trou (1, 2, …, :nb).',
+    'positionsSequentielle' => 'Les positions doivent être une suite séquentielle sans trou (1, 2, …, ).',
 ];

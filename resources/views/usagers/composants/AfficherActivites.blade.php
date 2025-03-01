@@ -142,6 +142,7 @@
                     .then(reponse => {
                         const activite = reponse.data.data;
                         mettreAJourSectionPhotos(activite);
+                     document.getElementById('formulaireActiviteModif').setAttribute('action', `/compte/modifierActivites/${idActiviteErreur}`);
                     
                   
                     })

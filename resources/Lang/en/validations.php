@@ -42,5 +42,5 @@ return [
     'positionsActuellesInteger'=> 'The position of each existing photo must be an integer.',
     'positionsActuellesDistinct'=> 'The positions of the existing photos must be unique.',
     'photoASupprimerExiste'    => 'One of the selected photos for deletion is invalid.',
-    'positionsSequentielle' => 'The positions must form a sequential series without gaps (1, 2, …, :nb).',
+    'positionsSequentielle' => 'The positions must form a sequential series without gaps (1, 2, …, ).',
 ];

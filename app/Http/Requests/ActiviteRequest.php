@@ -91,7 +91,7 @@ class ActiviteRequest extends FormRequest
                 if ($nb > 0) {
                     $attendu = range(1, $nb);
                     if ($positions !== $attendu) {
-                        $validator->errors()->add('positions', __('validations.positionsSequentielle', ['nb' => $nb]));
+                        $validator->errors()->add('positions', __('validations.positionsSequentielle'));
                     }
                 }
             });
@@ -99,35 +99,28 @@ class ActiviteRequest extends FormRequest
 
 
 
-        if ($this->route()->getName() === 'usagerActivites.modifierActivite') {
-            $validator->after(function ($validator) {
-              
-                $positionsNouvelles = [];
-                if ($this->has('positionsNouvelles') && is_array($this->positionsNouvelles)) {
-                    foreach ($this->positionsNouvelles as $pos) {
-                        $positionsNouvelles[] = (int) $pos;
-                    }
-                }
-           
-                $positionsExistantes = [];
-                if ($this->has('positionsActuelles') && is_array($this->positionsActuelles)) {
-                    foreach ($this->positionsActuelles as $pos) {
-                        $positionsExistantes[] = (int) $pos;
-                    }
-                }
+    if ($this->route()->getName() === 'usagerActivites.modifierActivite') {
+        $validator->after(function ($validator) {
+            $positionsNouvelles = $this->input('photos.*.position', []);
+            $positionsExistantes = $this->input('positionsActuelles', []);
+
+    
+            $positionsNouvelles = array_map('intval', $positionsNouvelles);
+            $positionsExistantes = array_map('intval', $positionsExistantes);
+
       
-                $positionsTotales = array_merge($positionsNouvelles, $positionsExistantes);
-                sort($positionsTotales);
-                $nb = count($positionsTotales);
-                if ($nb > 0) {
-                  
-                    $attendu = range(1, $nb);
-                    if ($positionsTotales !== $attendu) {
-                        $validator->errors()->add('positions', __('validations.positionsSequentielle', ['nb' => $nb]));
-                    }
+            $positionsTotales = array_merge($positionsNouvelles, $positionsExistantes);
+
+            sort($positionsTotales);
+            $nb = count($positionsTotales);
+            if ($nb > 0) {
+                $attendu = range(1, $nb);
+                if ($positionsTotales !== $attendu) {
+                    $validator->errors()->add('positions', __('validations.positionsSequentielle'));
                 }
-            });
-        }
+            }
+        });
+    }
     }
     
 

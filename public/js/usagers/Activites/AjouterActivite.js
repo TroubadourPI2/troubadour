@@ -71,7 +71,7 @@ document.getElementById('activiteForm').addEventListener('submit', function(e) {
         if (positionsDupliquees) {
             message = Lang.get('validations.photoPositionDistinct');
         } else if (!estSequentiel) {
-            message = Lang.get('validations.positionsSequentielle').replace(':nb', positions.length);
+            message = Lang.get('validations.positionsSequentielle');
         }
 
         Swal.fire({
