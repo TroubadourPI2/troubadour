@@ -44,40 +44,41 @@ class LieuRequest extends FormRequest
      * @return array<string, string>
      */
     public function messages(): array
-    {
-        return [
-            'rue.required' => 'La rue est requise.',
-            'rue.regex'    => 'Le format de la rue est invalide.',
-            'rue.max'      => 'La rue ne doit pas dépasser 64 caractères.',
+{
+    return [
+        'rue.required' => __('validations.rueRequise'),
+        'rue.regex' => __('validations.rueFormatInvalide'),
+        'rue.max' => __('validations.rueMax'),
 
-            'noCivic.required'   => 'Le numéro civique est requis.',
-            'noCivic.numeric'  => 'Le numéro civique doit contenir uniquement des chiffres.',
-            'noCivic.max' => 'Le numéro civique ne peut pas dépasser 99999.',
+        'noCivic.required' => __('validations.noCivicRequis'),
+        'noCivic.numeric' => __('validations.noCivicNumerique'),
+        'noCivic.max' => __('validations.noCivicMax'),
 
-            'codePostal.required' => 'Le code postal est requis.',
-            'codePostal.regex'    => 'Le code postal doit être au format A1A 1A1.',
-            'codePostal.max'      => 'Le code postal ne doit pas dépasser 7 caractères.',
+        'codePostal.required' => __('validations.codePostalRequis'),
+        'codePostal.regex' => __('validations.codePostalFormat'),
+        'codePostal.max' => __('validations.codePostalMax'),
 
-            'nomEtablissement.required' => 'Le nom de l\'établissement est requis.',
+        'nomEtablissement.required' => __('validations.nomEtablissementRequis'),
 
-            'photoLieu.required' => 'La photo du lieu est requise.',
-            'photoLieu.image'    => 'Le fichier doit être une image.',
-            'photoLieu.mimes'    => 'La photo doit être au format PNG ou JPG.',
-            'photoLieu.max'      => 'La taille de la photo ne doit pas dépasser 2 Mo.',
+        'photoLieu.required' => __('validations.photoLieuRequise'),
+        'photoLieu.image' => __('validations.photoLieuImage'),
+        'photoLieu.mimes' => __('validations.photoLieuFormat'),
+        'photoLieu.max' => __('validations.photoLieuMax'),
 
-            'siteWeb.url' => 'Le format du site web est invalide.',
-            'siteWeb.max'   => 'Le site web ne doit pas dépasser 64 caractères.',
+        'siteWeb.url' => __('validations.siteWebInvalide'),
+        'siteWeb.max' => __('validations.siteWebMax'),
 
-            'numeroTelephone.required'  => 'Le numéro de téléphone est requis.',
-            'numeroTelephone.regex' => 'Le format du numéro de téléphone est invalide.',
+        'numeroTelephone.required' => __('validations.telephoneRequis'),
+        'numeroTelephone.regex' => __('validations.telephoneFormat'),
 
-            'description.max' => 'La description ne doit pas dépasser 500 caractères.',
+        'description.max' => __('validations.descriptionMax'),
 
-            'selectQuartierLieu.required' => 'Veuillez sélectionner un quartier.',
-            'selectTypeLieu.required'     => 'Veuillez sélectionner un type de lieu.',
-        ];
-     
-    }
+        'selectQuartierLieu.required' => __('validations.quartierRequis'),
+        'selectTypeLieu.required' => __('validations.typeLieuRequis'),
+    ];
+}
+
+    
 
     protected function failedValidation(Validator $validator)
     {

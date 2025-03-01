@@ -11,8 +11,8 @@ function InitialiserMenu() {
 }
 
 function ObtenirElements() {
-    boutonsMenuCompte = document.querySelectorAll(".BoutonMenuCompte");
-    sectionsMenuCompte = document.querySelectorAll(".SectionMenu");
+    boutonsMenuCompte = document.querySelectorAll(".boutonMenuCompte");
+    sectionsMenuCompte = document.querySelectorAll(".sectionMenu");
 }
 
 function BasculerClassesBouton(boutonMenu, ajouterClasses, retirerClasses) {
