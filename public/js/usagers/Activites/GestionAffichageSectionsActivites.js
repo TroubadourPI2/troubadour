@@ -21,4 +21,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         });
     });
+
+
+    const btnRetourModif = document.querySelectorAll( '.boutonRetourAfficherActiviteModif');
+    btnRetourModif.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            document.getElementById('modifierActivite').classList.add('hidden');
+
+            document
+                .getElementById('afficherActivites')
+                .classList.remove('hidden');
+            document
+                .querySelectorAll('.erreurModifierActiviteMessages')
+                .forEach(function (container) {
+                    container.remove();
+                });
+        });
+    });
 });
