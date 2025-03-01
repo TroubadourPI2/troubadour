@@ -123,10 +123,12 @@
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about"
                             data-inline="false"></span>{{ __('aPropos') }}</a>
+                    @role(['Admin', 'Utilisateur', 'Gestionnaire'])
                     <a href="{{ route('usagerLieux.afficher') }}"
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:user"
                             data-inline="false"></span>{{ __('compte') }}</a>
+                    @endrole
                     @role(['Admin'])
                     <a href="{{ route('admin') }}"
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
