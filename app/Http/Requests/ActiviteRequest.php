@@ -73,6 +73,32 @@ class ActiviteRequest extends FormRequest
     }
     protected function withValidator($validator)
     {
+        if ($this->route()->getName() === 'usagerActivites.ajouterActivite') {
+            $validator->after(function ($validator) {
+              
+                $positionsNouvelles = $this->input('photos', []);
+                $positions = [];
+        
+                foreach ($positionsNouvelles as $index => $photo) {
+                    if (isset($photo['position'])) {
+                        $positions[] = (int) $photo['position'];
+                    }
+                }
+        
+              
+                sort($positions);
+                $nb = count($positions);
+                if ($nb > 0) {
+                    $attendu = range(1, $nb);
+                    if ($positions !== $attendu) {
+                        $validator->errors()->add('positions', __('validations.positionsSequentielle', ['nb' => $nb]));
+                    }
+                }
+            });
+    }
+
+
+
         if ($this->route()->getName() === 'usagerActivites.modifierActivite') {
             $validator->after(function ($validator) {
               

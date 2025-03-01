@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-
     Lang.setLocale(document.body.getAttribute('data-locale'));
-
 });
 
 const champPhotos = document.getElementById('photos');
@@ -19,7 +17,7 @@ champPhotos.addEventListener('change', function() {
         const label = document.createElement('label');
         label.setAttribute('for', 'photos_' + i);
         label.className = 'block text-sm';
-        label.innerText =  Lang.get('strings.positionPour')+" " + fichier.name + '"';
+        label.innerText = Lang.get('strings.positionPour') + " " + fichier.name;
 
         const input = document.createElement('input');
         input.type = 'number';
@@ -27,9 +25,9 @@ champPhotos.addEventListener('change', function() {
         input.name = 'photos[' + i + '][position]';
         input.min = 1;
         input.max = fichiers.length;
-     
+
         // Ajout d'une classe pour la validation
-        input.classList.add('position-input','p-2','font-medium','rounded-lg','bg-c3');
+        input.classList.add('position-input', 'p-2', 'font-medium', 'rounded-lg', 'bg-c3');
 
         div.appendChild(label);
         div.appendChild(input);
@@ -38,11 +36,9 @@ champPhotos.addEventListener('change', function() {
 });
 
 document.getElementById('activiteForm').addEventListener('submit', function(e) {
-
-
     const positionInputs = document.querySelectorAll('.position-input');
     let tousRemplis = true;
-    const positions = [];
+    let positions = [];
 
     positionInputs.forEach(function(input) {
         const value = input.value.trim();
@@ -51,20 +47,33 @@ document.getElementById('activiteForm').addEventListener('submit', function(e) {
             input.classList.add('border-c5');
         } else {
             input.classList.remove('border-c5');
-            positions.push(value);
+            positions.push(parseInt(value, 10));
         }
     });
-  
 
     const uniquePositions = new Set(positions);
     const positionsDupliquees = (uniquePositions.size !== positions.length);
 
-    if (!tousRemplis || positionsDupliquees) {
-        e.preventDefault();
-        let message = Lang.get('validations.photoPositionRequise')
-        if (positionsDupliquees) {
-            message = Lang.get('validations.photoPositionDistinct')
+    // Vérification de l'ordre séquentiel (1,2,3,... sans trou)
+    positions.sort((a, b) => a - b);
+    let estSequentiel = true;
+    for (let i = 0; i < positions.length; i++) {
+        if (positions[i] !== i + 1) {
+            estSequentiel = false;
+            break;
         }
+    }
+
+    if (!tousRemplis || positionsDupliquees || !estSequentiel) {
+        e.preventDefault();
+        let message = Lang.get('validations.photoPositionRequise');
+
+        if (positionsDupliquees) {
+            message = Lang.get('validations.photoPositionDistinct');
+        } else if (!estSequentiel) {
+            message = Lang.get('validations.positionsSequentielle').replace(':nb', positions.length);
+        }
+
         Swal.fire({
             icon: 'error',
             title: Lang.get('strings.attention'),

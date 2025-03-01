@@ -173,3 +173,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+document.getElementById('photosModif').addEventListener('change', function() {
+    const conteneurPositions = document.getElementById('positionInputsModif');
+    conteneurPositions.innerHTML = '';
+    const fichiers = this.files;
+    
+    for (let i = 0; i < fichiers.length; i++) {
+        const fichier = fichiers[i];
+        const div = document.createElement('div');
+        div.className = 'mb-2';
+        
+        const label = document.createElement('label');
+        label.setAttribute('for', 'photos_modif_' + i);
+        label.className = 'block text-sm';
+        label.innerText = 'Position for ' + fichier.name;
+        
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.id = 'photos_modif_' + i;
+        input.name = 'photos[' + i + '][position]';
+        input.min = 1;
+   
+        input.classList.add('position-input','p-2','font-medium','rounded-lg','bg-c3');
+        
+        div.appendChild(label);
+        div.appendChild(input);
+        conteneurPositions.appendChild(div);
+    }
+    
+    mettreAJourMaxDesPositions();
+});

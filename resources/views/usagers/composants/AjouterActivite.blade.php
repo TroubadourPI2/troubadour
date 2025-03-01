@@ -117,6 +117,12 @@
                 <p class="text-sm mb-2 text-c1 opacity-40 italic">{{ __('indiquerPosition') }}
                 </p>
                 <div id="positionInputs" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
+                @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('positions'))
+    <div class="text-c5 font-medium erreurAjouterActiviteMessages">
+        {{ session('erreurAjouterActivite')->first('positions') }}
+    </div>
+@endif
+
 
             </div>
 
