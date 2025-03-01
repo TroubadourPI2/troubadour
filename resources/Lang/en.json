@@ -23,7 +23,7 @@
   "deconnexion" : "Log out",
   "connexion" : "Log in",
   "langues" : "Languages",
-  "administration" : "Admnistration",
+  "administration" : "Administration",
 
   "ajouter" : "Add",
   "retour" : "Back",
@@ -61,8 +61,9 @@
   "numCivique" : "Civic number",
   "rue" : "Street",
   "codePostal" : "Postal code",
-
   "modifierLieu" : "Edit a location",
+  "actif" : "Actif",
+  "inactif" : "Inactive",
 
   "succesAjout" : "Added successfully!",
   "succesModifier" : "Modified successfully!",

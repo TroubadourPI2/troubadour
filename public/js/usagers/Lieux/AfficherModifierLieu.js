@@ -5,6 +5,9 @@ let selectTypeLieuModifie;
 let villeId;
 let quartierId;
 let typeLieuId;
+let boutonBascule;
+let texteActif ; 
+let statutLieuCache;
 
 document.addEventListener("DOMContentLoaded", function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
@@ -22,6 +25,9 @@ function ObtenirElementsModifier() {
     );
     selectVilleLieuModifie = document.getElementById("selectVilleLieuModifie");
     selectTypeLieuModifie = document.getElementById("selectTypeLieuModifie");
+    boutonBascule = document.getElementById("boutonBascule");
+    texteActif = document.getElementById("texteActif");
+    statutLieuCache = document.getElementById("statutLieuCache");
 }
 
 function AjouterModifierListeners() {
@@ -41,6 +47,17 @@ function AjouterModifierListeners() {
         "change",
         ActiverSelectQuartierModifie
     );
+
+    boutonBascule.addEventListener('change', function () {
+        if (boutonBascule.checked) {
+            texteActif.textContent = Lang.get('actif');
+            statutLieuCache.value = 1;
+        } else {
+            texteActif.textContent = Lang.get('inactif'); 
+            statutLieuCache.value = 0;
+        }
+        console.log(statutLieuCache.value)
+    });
 }
 
 function ActiverSelectQuartierModifie() {
@@ -83,6 +100,18 @@ async function ObtenirLieu(lieuId) {
 
         const lieu = await response.json();
 
+        boutonBascule.checked = lieu.actif === 1;
+
+        if (lieu.actif === 1) {
+            texteActif.textContent = Lang.get('actif');
+            statutLieuCache.value = 1;
+        } else {
+            texteActif.textContent = Lang.get('inactif'); 
+            statutLieuCache.value = 0;
+        }
+
+        
+
         document.getElementById("nomEtablissementModifie").value =
             lieu.nomEtablissement;
         document.getElementById("rueModifie").value = lieu.rue;
@@ -92,7 +121,6 @@ async function ObtenirLieu(lieuId) {
         document.getElementById("siteWebModifie").value = lieu.siteWeb;
         document.getElementById("numeroTelephoneModifie").value =
             lieu.numeroTelephone;
-
         selectVilleLieuModifie.value = villeId;
         selectTypeLieuModifie.value = typeLieuId;
         quartierId = lieu.quartier_id;

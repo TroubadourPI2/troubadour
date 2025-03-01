@@ -156,6 +156,7 @@ class LieuxController extends Controller
     public function ModifierUnLieu(LieuRequest $request, string $id)
     {
         $lieu = Lieu::findOrFail($id);
+        Log::debug($request->actif);
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
@@ -168,7 +169,7 @@ class LieuxController extends Controller
             if (!Storage::disk('DevActivite')->exists($photoDefautPath)) {
                 Storage::disk('DevActivite')->put($photoDefautPath, file_get_contents(public_path('Images/lieux/image_defaut.png')));
             }
-    
+            $lieu->actif = $request->actif;
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = $request->codePostal;

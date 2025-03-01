@@ -24,7 +24,7 @@
   "deconnexion" : "Déconnexion",
   "connexion" : "Connexion",
   "langues" : "Langues",
-  "administration" : "Admnistration",
+  "administration" : "Administration",
 
   "ajouter" : "Ajouter",
   "retour" : "Retour",
@@ -63,6 +63,8 @@
   "rue" : "Rue",
   "codePostal" : "Code postal",
   "modifierLieu" : "Modifier un lieu",
+  "actif" : "Actif",
+  "inactif" : "Inactif",
   
   "succesAjout" : "Ajout effectué avec succès!",
   "succesModifier" : "Modification effectuée avec succès!",

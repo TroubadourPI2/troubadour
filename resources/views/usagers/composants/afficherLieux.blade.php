@@ -171,6 +171,8 @@
             lieux.classList.remove("hidden");
 
             document.getElementById("afficherLieux").classList.add("hidden");
+
+            const texteActif = document.getElementById("texteActif");
         });
     </script>
     @php
