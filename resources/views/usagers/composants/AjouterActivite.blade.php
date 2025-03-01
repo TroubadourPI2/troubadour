@@ -6,8 +6,8 @@
 @endphp
 <div>
     <!-- Bouton Retour -->
-    <button id="boutonRetourAfficherActivite"
-        class="flex items-center text-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-32 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
+    <button 
+        class="boutonRetourAfficherActivite flex items-center text-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-32 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
         <span class="iconify text-c1 sm:size-5 size-4 sm:mr-2 sm:ml-2 mr-1" data-icon="ion:arrow-back-outline"
             data-inline="false"></span>
             {{ __('retour') }}
@@ -156,8 +156,8 @@
 
             <!-- Boutons du formulaire -->
             <div class="flex flex-row justify-center mt-4">
-                <button type="button" id="boutonAnnuler"
-                    class="text-c1 py-2 px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 mr-2 hover:bg-c3 transition uppercase">
+                <button type="button"
+                    class=" boutonRetourAfficherActivite text-c1 py-2 px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 mr-2 hover:bg-c3 transition uppercase">
                     {{ __('annuler') }}
                 </button>
                 <button type="submit"
