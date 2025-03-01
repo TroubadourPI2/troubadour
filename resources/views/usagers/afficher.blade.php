@@ -22,13 +22,10 @@
         {{-- //TODO Importer les composants selon le menu choisi --}}
         <div id="compte" class="SectionMenu">@include('usagers.composants.AfficherCompte')</div>
         <div id="lieux" class="SectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
-       
-
         <div id="activites" class="SectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
 
     </div>
 @endsection
-
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}"></script>
@@ -114,6 +111,40 @@
     </script>
     @php
         session()->forget('formulaireModifierValide');
+    @endphp
+@endif
+
+@if (session('formulaireModifierUValide'))
+    <script>
+        function ModifUsager() {
+            window.onload = function() {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+
+                Toast.fire({
+                    icon: "success",
+                    title: "Modification effectuée avec succès!",
+                    customClass: {
+                        title: "text-c1 font-bold",
+                        timerProgressBar: "color-c1",
+                    }
+                })
+            };
+        }
+        ModifUsager()
+    </script>
+    @php
+        session()->forget('formulaireModifierUValide');
+        session()->forget('erreurModifierUsager');
     @endphp
 @endif
 

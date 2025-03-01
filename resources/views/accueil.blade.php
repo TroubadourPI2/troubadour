@@ -67,7 +67,7 @@
                     <div>
                         <button id="activerSection"
                             class="group items-center flex-col text-4xl flex p-1.5 text-c1 font-barlow hover:scale-110 transition-transform duration-500 ease-out">
-                            <span class="bg-c2 shadow-lg px-6 rounded-full">VILLES</span>
+                           <span class="bg-c2 shadow-lg px-6 rounded-full">VILLES</span>  <!-- changer villes par:  Explorez -->
                             <span
                                 class="iconify text-c3 size-12 transform transition-all duration-1000 ease-out group-hover:translate-y-3"
                                 data-icon="fluent:arrow-down-24-regular" data-inline="false"></span>

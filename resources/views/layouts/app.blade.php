@@ -118,6 +118,7 @@
                                 CONNEXION
                             </a>
                         @endauth
+                        
                         @if(session()->has('deconnexion_success'))
                             <script src="{{ asset('js/usagers/Deconnexion.js') }}" defer></script>
                             @php session()->forget('deconnexion_success'); @endphp

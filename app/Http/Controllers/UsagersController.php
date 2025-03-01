@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsagerRequest;
@@ -105,11 +106,11 @@ class UsagersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Usager $usager)
+    public function edit()
     {
         $usager = Auth::user();
 
-        return view('usagers.afficher',compact('usager'));
+        return view('usagers.Afficher',compact('usager'));
     }
 
     public function ModificationUsager(UsagerRequest $request, Usager $usager){
@@ -117,22 +118,26 @@ class UsagersController extends Controller
             $usager->prenom = $request->prenom;
             $usager->nom = $request->nom;
             $usager->courriel = $request->courriel;
-            // $usager->password =$request->password;
-           
-            if ($request->filled('password')) {
-                $usager->password = Hash::make($request->password);
-            }
+    
 
-            return redirect()->route('usagers.afficher', $usager->id)
-            ->with('message', "Modification de " . $usager->nom . " réussie!");
+            //check password 
+            if ($request->filled('password')) {
+                $usager->password = bcrypt($request->password);
+            }
+            
+    
+            $usager->save();
+            session()->flash('formulaireModifierUValide', 'true');
+            return redirect()->route('usagerLieux.afficher')
+                ->with('message', "Modification de " . $usager->nom . " réussie!");
         }
         catch(\Throwable $e){
             Log::debug($e);
-            return redirect()->route('usagers.edit', $usager->id)
-            ->withErrors(['La modification n\'a pas fonctionné.']);
+            return redirect()->route('usagerLieux.afficher')
+                ->withErrors(['La modification n\'a pas fonctionné.']);
         }
-       
     }
+    
 
 
     /**

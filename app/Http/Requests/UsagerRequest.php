@@ -23,15 +23,21 @@ class UsagerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-
-
-            'prenom'=> 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',   
-            'nom'=> 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
-            'courriel'=> 'required|email|regex:/^[\w\.-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,6}$/|max:64',
-            'password' => 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8',
+        $rules = [
+            'prenom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
+            'nom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
+            'courriel' => 'required|email|regex:/^[\w\.-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,6}$/|max:64',
         ];
+    
+        if ($this->isMethod('post')) { 
+            $rules['password'] = 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
+        } else { 
+            $rules['password'] = 'sometimes|required_with:password_confirmation|nullable|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
+        } 
+    
+        return $rules;
     }
+    
 
     /**
      * Définit les messages d'erreur personnalisés.
@@ -56,33 +62,36 @@ class UsagerRequest extends FormRequest
             'password.required' => 'Le mot de passe est requis.',
             'password.regex' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.',
             'password.min' => 'Le mot de passe doit contenir au moins 8 caractères.',
+            'password.confirmed' => 'Les mots de passe ne correspondent pas.',
+            'password.required_with' => 'Le mot de passe est requis lorsque la confirmation du mot de passe est présente.',
 
             
         ];
      
     }
 
-    // protected function failedValidation(Validator $validator)
-    // {
-    //     $nomRouteActuelle = $this->route()->getName();
+    protected function failedValidation(Validator $validator)
+    {
+        $nomRouteActuelle = $this->route()->getName();
 
-    //     if ($nomRouteActuelle === 'usagerLieux.ajouterLieu') {
-    //         session()->put('erreurAjouterLieu', $validator->errors());
 
-    //         throw new HttpResponseException(
-    //             redirect()->back()
-    //                 ->withInput()
-    //         );
-    //     }
-    //     elseif ($nomRouteActuelle === 'usagerLieux.modifierLieu') {
-    //         session()->put('erreurModifierLieu', $validator->errors());
+        // if ($nomRouteActuelle === 'usagerLieux.ajouterLieu') {
+        //     session()->put('erreurAjouterLieu', $validator->errors());
 
-    //         throw new HttpResponseException(
-    //             redirect()->back()
-    //                 ->withInput()
-    //         );
-    //     }
+        //     throw new HttpResponseException(
+        //         redirect()->back()
+        //             ->withInput()
+        //     );
+        // }
+        if ($nomRouteActuelle === 'usagers.modifier') {
+            session()->put('erreurModifierUsager', $validator->errors());
 
-    //     parent::failedValidation($validator);
-    // }
+            throw new HttpResponseException(
+                redirect()->back()
+                    ->withInput()
+            );
+        }
+
+        parent::failedValidation($validator);
+    }
 }

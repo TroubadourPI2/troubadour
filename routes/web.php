@@ -33,7 +33,7 @@ Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'obtenir
 Route::get('/compte', [UsagersController::class, 'ObtenirDonneesCompte'])->name('usagerLieux.afficher') ->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
 
 Route::get('/compte/{usager}/modifier', [UsagersController::class, 'edit'])->name('usagers.edit')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
-Route::patch('/compte/{usager}/modifierUsager', [UsagersController::class, 'ModificationUsager'])->name('usagers.modifier');
+Route::patch('/compte/{usager}/modifier', [UsagersController::class, 'ModificationUsager'])->name('usagers.modifier')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
 
 Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
 Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu');
