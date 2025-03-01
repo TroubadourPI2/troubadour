@@ -104,7 +104,7 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="selectVilleLieuModifie" class="block">{{ __('ville') }}</label>
+                        <label for="selectVilleLieuModifie" class="block">{{ trans_choice('ville', 1) }}</label>
                         <select name="selectVilleLieu" id="selectVilleLieuModifie"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                             <option value="">{{ __('choisirVille') }}</option>

@@ -36,7 +36,7 @@
                                     <div class="text-sm">
                                         <p><strong>{{ __('adresse') }} :</strong> {{ $lieu->noCivic }},
                                             {{ $lieu->rue }}</p>
-                                        <p><strong>{{ __('ville') }} :</strong>
+                                        <p><strong>{{ trans_choice('ville', 1) }} :</strong>
                                             {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal : '' }}
                                         </p>
                                         <p><strong>{{ __('pays') }} :</strong> {{ $lieu->pays()?->nom }}</p>
@@ -87,7 +87,7 @@
                             <div class="text-base">
                                 <p><strong>{{ __('adresse') }} :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}
                                 </p>
-                                <p><strong>{{ __('ville') }} :</strong>
+                                <p><strong>{{  trans_choice('ville', 1) }} :</strong>
                                     {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal : '' }}
                                 </p>
                                 <p><strong>{{ __('pays') }} :</strong> {{ $lieu->pays()?->nom }}</p>
@@ -99,8 +99,8 @@
                                     <p><strong>{{ __('region') }} :</strong> {{ $lieu->region()->nom }}</p>
                                 @endif
                                 @if ($lieu->siteWeb)
-                                    <p><strong>{{ __('siteWeb') }} :</strong> <a href="{{ $lieu->siteWeb }}"
-                                            class="text-blue-500 underline truncate">{{ $lieu->siteWeb }}</a></p>
+                                    <p class="truncate"><strong>{{ __('siteWeb') }} :</strong> <a href="{{ $lieu->siteWeb }}"
+                                            class="text-blue-500 underline">{{ $lieu->siteWeb }}</a></p>
                                 @endif
                                 <p><strong>{{ __('telephone') }} :</strong> {{ $lieu->numeroTelephone }}</p>
                                 <p><strong>{{ __('typeLieu') }} :</strong> {{ $lieu->typeLieu->nom }}</p>
