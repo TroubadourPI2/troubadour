@@ -162,13 +162,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if(document.getElementById('typeActiviteModif'))
                         document.getElementById('typeActiviteModif').value = activite.type_activite ? activite.type_activite.id : '';
-
+                    if(document.getElementById('actifModif'))
+                        document.getElementById('actifModif').checked = activite.actif === 1;
                     const selectLieux = document.getElementById('lieuIdModif');
                     if(selectLieux && selectLieux.tomselect) {
                         selectLieux.tomselect.setValue(activite.lieux.map(lieu => lieu.id));
                     }
 
-              
+                
                     document.getElementById('conteneur_photos_a_supprimer').innerHTML = '';
 
                

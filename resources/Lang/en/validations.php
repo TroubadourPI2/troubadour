@@ -28,6 +28,7 @@ return [
     'dateDebutAfterOrEqual'    => 'The start date must not be earlier than today.',
     'dateFinDate'              => 'The end date must be a valid date.',
     'dateFinAfterOrEqual'      => 'The end date must not be before the start date.',
+    'actifRequis'               => 'Le active field is required',
     'actifBoolean'             => 'The active field must be true or false.',
     'descriptionActiviteMax'   => 'The description must not exceed 500 characters.',
     'typeActiviteIdRequise'    => 'The activity type is required.',

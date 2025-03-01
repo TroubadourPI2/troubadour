@@ -28,6 +28,7 @@ return [
     'dateDebutAfterOrEqual'    => 'La date de début ne doit pas être antérieure à aujourd\'hui.',
     'dateFinDate'              => 'La date de fin doit être une date valide.',
     'dateFinAfterOrEqual'      => 'La date de fin ne doit jamais être avant la date de début.',
+    'actifRequis'               => 'Le champ actif est requis',
     'actifBoolean'             => 'Le champ actif doit être vrai ou faux.',
     'descriptionActiviteMax'   => 'La description ne doit pas dépasser 500 caractères.',
     'typeActiviteIdRequise'    => 'Le type d\'activité est obligatoire.',

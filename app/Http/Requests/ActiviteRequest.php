@@ -23,7 +23,7 @@ class ActiviteRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'nomActivite'       => 'required|string|max:64',
             'dateDebut'         => 'required|date|after_or_equal:today',
             'dateFin'           => 'nullable|date|after_or_equal:dateDebut',
@@ -38,8 +38,14 @@ class ActiviteRequest extends FormRequest
             'photos_a_supprimer.*' => 'exists:photos,id',
             'positionsActuelles'      => 'nullable|array',
             'positionsActuelles.*'    => 'required|integer|distinct',
-
         ];
+    
+       
+        if ($this->route()->getName() === 'usagerActivites.modifierActivite') {
+            $rules['actif'] = 'required|boolean';
+        }
+    
+        return $rules;
     }
     
     /**
@@ -55,6 +61,7 @@ class ActiviteRequest extends FormRequest
             'dateDebut.after_or_equal'         => __('validations.dateDebutAfterOrEqual'),
             'dateFin.date'                     => __('validations.dateFinDate'),
             'dateFin.after_or_equal'           => __('validations.dateFinAfterOrEqual'),
+            'actif.required'                   => __('validations.actifRequis'),
             'actif.boolean'                    => __('validations.actifBoolean'),
             'descriptionActivite.max'          => __('validations.descriptionActiviteMax'),
             'typeActivite_id.required'         => __('validations.typeActiviteIdRequise'),
