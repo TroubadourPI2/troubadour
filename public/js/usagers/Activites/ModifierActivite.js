@@ -25,7 +25,7 @@ function mettreAJourSectionPhotos(activite) {
     activite.photos.forEach(photo => {
  
         const divPhoto = document.createElement('div');
-        divPhoto.className = 'photo-actuelle mb-2 flex items-center  gap-2 border p-2 rounded justify-between';
+        divPhoto.className = 'photo-actuelle mb-2 flex items-center  gap-2 border border-c1 p-2 rounded justify-between';
 
    
         const conteneurGauche = document.createElement('div');
