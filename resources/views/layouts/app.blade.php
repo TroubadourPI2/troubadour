@@ -174,9 +174,9 @@
                             {{ __('connexion') }}
                         </a>
                     @endauth
-                    @if (session()->has('deconnexion_success'))
-                        <script src="{{ asset('js/usagers/Deconnexion.js') }}" defer></script>
-                        @php session()->forget('deconnexion_success'); @endphp
+                    @if (session()->has('deconnexionSucces'))
+                        <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
+                        @php session()->forget('deconnexionSucces'); @endphp
                     @endif
 
                 </nav>
@@ -257,8 +257,8 @@
 </body>
 
 <script defer src="{{ asset('js/translations.js') }}"></script>
-<script src="{{ asset('js/usagers/Connexion.js') }}"></script>
-<script src="{{ asset('js/usagers/Inscription.js') }}"></script>
+<script src="{{ asset('js/usagers/usagers/Connexion.js') }}"></script>
+<script src="{{ asset('js/usagers/usagers/Inscription.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="//unpkg.com/alpinejs" defer></script>

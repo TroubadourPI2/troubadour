@@ -37,7 +37,7 @@ class UsagersController extends Controller
     public function Deconnexion (){
         Auth::logout();
         session()->flush();
-        session()->put('deconnexion_success', 'Déconnexion réussie!');
+        session()->put('deconnexionSucces', 'Déconnexion réussie!');
         return back();
     }
     
@@ -96,31 +96,19 @@ class UsagersController extends Controller
         //
     }
     
-/**​
-     * Show the form for editing the specified resource.​
-     *​
-     *  @param  int  $id​
-     *  @return \Illuminate\Http\Response​
-     */
-    
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit()
-    {
-        $usager = Auth::user();
-
-        return view('usagers.Afficher',compact('usager'));
-    }
-
     public function ModificationUsager(UsagerRequest $request, Usager $usager){
         try{
+
+            if (auth()->user()->id !== $usager->id) {
+                return redirect()->route('usagerLieux.afficher')
+                    ->withErrors(['Vous n\'êtes pas autorisé à modifier cet utilisateur.']);
+            }
+
+
             $usager->prenom = $request->prenom;
             $usager->nom = $request->nom;
             $usager->courriel = $request->courriel;
-    
 
-            //check password 
             if ($request->filled('password')) {
                 $usager->password = bcrypt($request->password);
             }
