@@ -22,6 +22,13 @@
             </select>
             <input type="text" id="recherche" placeholder= "{{ __('rechercherNom') }}"
                 class="w-full rounded-full border-2 justify-end border-c1 p-2" />
+                <div class="flex items-center gap-x-1.5">
+                <label for="actifModif" class="cursor-pointer">ACTIF</label>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox"  id="actif" class="sr-only peer" >
+                <div class="w-11 h-6 bg-c3 rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-c1 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-c1 peer-checked:after:bg-white"></div>
+            </label>
+            </div>
         </div>
 
     </div>
@@ -30,7 +37,7 @@
         @foreach ($activites as $activite)
             <div class="activite-carte w-full h-96 flex bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden scale-90 ease-in-out duration-300 border hover:border-2 hover:scale-100 hover:border-c1"
                 data-nom="{{ strtolower($activite->nom) }}" data-lieu-ids="{{ $activite->lieu_ids }}"
-                data-type="{{ $activite->typeActivite->id }}"
+                data-type="{{ $activite->typeActivite->id }}"     data-actif="{{ $activite->actif }}"
                 x-data='{
                      current: 0,
                      images: {!! $activite->photos_json !!},
