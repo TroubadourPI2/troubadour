@@ -7,6 +7,9 @@ use App\Http\Controllers\LieuxController;
 use App\Http\Controllers\ActivitesController;
 use App\Http\Middleware\VerifierRole;
 
+
+
+
 Route::get('/', function () {
     return view('Accueil');
 })->name('login');
