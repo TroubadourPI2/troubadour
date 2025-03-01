@@ -91,7 +91,8 @@
     "dateFin": "End date",
     "positionPour": "Position for",
     "attention":"Warning",
-    "selectMultipleLieux":"Select one or more locations"
+    "selectMultipleLieux":"Select one or more locations",
+  "confirmationSuppressionActivite" : "Are you sure you want to delete this activity : "
 
   
   

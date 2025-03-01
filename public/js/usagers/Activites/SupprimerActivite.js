@@ -9,19 +9,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
+          
             });
 
             Swal.fire({
-                title: "Confirmation",
-                text: `Êtes-vous certain(e) de vouloir supprimer cette activité : ${nomActivite} ?`,
+                title:  Lang.get('strings.confirmation'),
+                text: `${Lang.get('strings.confirmationSuppressionActivite')} ${nomActivite} ?`,
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "Supprimer",
-                cancelButtonText: "Annuler",
+                confirmButtonText: Lang.get('strings.supprimer'),
+                cancelButtonText: Lang.get('strings.annuler'),
                 reverseButtons: true,
                 customClass: {
                     popup: 'font-barlow text-xl text-c1 bg-c2',
@@ -50,11 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         Toast.fire({
                             icon: "success",
-                            title: "Activité supprimée avec succès."
+                            title:Lang.get('strings.succesSupprimer')
                         });
                     })
                     .catch(error => {
-                        Swal.fire("Erreur", "Une erreur est survenue : " + error.message, "error");
+                        Swal.fire(Lang.get('strings.erreur') + error.message, "error");
                     });
                 }
             });

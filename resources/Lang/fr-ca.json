@@ -93,5 +93,6 @@
   "dateFin": "Date de fin",
   "positionPour": "Position pour",
   "attention":"Attention",
-  "selectMultipleLieux":"Sélectionnez un ou plusieurs lieux"
+  "selectMultipleLieux":"Sélectionnez un ou plusieurs lieux",
+  "confirmationSuppressionActivite" : "Êtes-vous certain(e) de vouloir supprimer cette activité : "
 }
