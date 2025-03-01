@@ -10,9 +10,9 @@
             class="flex items-center text-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-32 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
         <span class="iconify text-c1 sm:size-5 size-4 sm:mr-2 sm:ml-2 mr-1"
               data-icon="ion:arrow-back-outline" data-inline="false"></span>
-        Retour
+              {{ __('retour') }}
     </button>
-
+    
     <!-- Formulaire de modification de l'activité -->
     <form class="mt-2 text-c1"
           action="{{ isset($activiteChoisit) ? route('usagerActivites.modifierActivite', $activiteChoisit->id) : '' }}"
@@ -20,16 +20,16 @@
         @csrf
         @method('PUT')
         <div class="font-barlow text-c1 font-semibold mb-3">
-            <h2 class="uppercase text-center text-xl sm:text-3xl">Modifier l'activité</h2>
+            <h2 class="uppercase text-center text-xl sm:text-3xl">   {{ __('modifierActivite') }}</h2>
 
 
             <!-- Informations générales -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-3">
-                <h3 class="text-lg sm:text-2xl mb-2 underline">Informations générales</h3>
+                <h3 class="text-lg sm:text-2xl mb-2 underline">{{ __('informationsGenerales') }}</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <!-- Nom -->
                     <div class="sm:col-span-2">
-                        <label for="nomActiviteModif" class="block">Nom <span class="text-c5 ml-2">*</span></label>
+                        <label for="nomActiviteModif" class="block">{{ __('nom') }}<span class="text-c5 ml-2">*</span></label>
                         <input type="text" name="nomActivite" id="nomActiviteModif"
                                class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('nomActivite') }}">
                         @if (session('erreurModifierActivite') && session('erreurModifierActivite')->has('nomActivite'))
@@ -42,10 +42,10 @@
                     </div>
                     <!-- Type d'activité -->
                     <div class="sm:col-span-1">
-                        <label for="typeActiviteModif" class="block">Type d'activité <span class="text-c5 ml-2">*</span></label>
+                        <label for="typeActiviteModif" class="block">{{ __('typeActivite') }} <span class="text-c5 ml-2">*</span></label>
                         <select name="typeActivite_id" id="typeActiviteModif"
                                 class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
-                            <option value="">Sélectionner un type</option>
+                            <option value="">{{ __('SelectionnerType') }}</option>
                             @foreach ($typesActivite as $type)
                                 <option value="{{ $type->id }}" {{ old('typeActivite_id') == $type->id ? 'selected' : '' }}>
                                     {{ $type->nom }}
@@ -60,7 +60,7 @@
                     </div>
                     <!-- Lieux (TomSelect) -->
                     <div class="sm:col-span-1">
-                        <label for="lieuIdModif" class="block">Lieux <span class="text-c5 ml-2">*</span></label>
+                        <label for="lieuIdModif" class="block">{{ __('lieux') }}<span class="text-c5 ml-2">*</span></label>
                         <select name="lieu_id[]" id="lieuIdModif"
                                 class="block w-full rounded-lg p-1 bg-c3 font-medium" multiple>
                             @foreach ($lieuxUsager as $lieu)
@@ -77,7 +77,7 @@
                     </div>
                     <!-- Description -->
                     <div class="sm:col-span-2">
-                        <label for="descriptionActiviteModif" class="block">Description</label>
+                        <label for="descriptionActiviteModif" class="block">{{ __('description') }}</label>
                         <textarea rows="4" name="descriptionActivite" id="descriptionActiviteModif"
                                   class="block w-full rounded-lg font-medium p-2">{{ old('descriptionActivite') }}</textarea>
                         @if (session('erreurModifierActivite') && session('erreurModifierActivite')->has('descriptionActivite'))
@@ -88,7 +88,7 @@
                     </div>
                     <!-- Nouvelles photos -->
                     <div class="sm:col-span-1">
-                        <label for="photosModif" class="block">Nouvelles photos (max 2mo par image)</label>
+                        <label for="photosModif" class="block">{{ __('photoActivite') }} {{ __('maxTaille') }}</label>
                         <input id="photosModif" name="photos[]" type="file"
                                class="w-full rounded-lg bg-c3 p-2 font-medium" accept=".png,.jpg" multiple>
                         @if (session('erreurModifierActivite'))
@@ -122,7 +122,7 @@
 
             <!-- Section des photos actuelles -->
             <div id="positionActuellesContainer" class="mt-4">
-                <h3 class="text-lg sm:text-2xl mb-2 underline">Photos actuelles</h3>
+                <h3 class="text-lg sm:text-2xl mb-2 underline"></h3>
                 <div id="positionActuelles" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
             </div>
 
@@ -132,7 +132,7 @@
                     <!-- Date de début -->
                     <div class="sm:col-span-1">
                         <div class="flex flex-col w-1/2">
-                            <label for="dateDebutModif">Date de début</label>
+                            <label for="dateDebutModif">{{ __('dateDebut') }}</label>
                             <input type="date" id="dateDebutModif" name="dateDebut"
                                    value="{{ old('dateDebut', $aujourdhui) }}" min="{{ $aujourdhui }}" max="{{ $dateLimite }}"
                                    class="p-2 font-medium rounded-lg bg-c3" />
@@ -146,7 +146,7 @@
                 
                     <div class="sm:col-span-1">
                         <div class="flex flex-col w-1/2">
-                            <label for="dateFinModif">Date de fin</label>
+                            <label for="dateFinModif">{{ __('dateFin') }}</label>
                             <input type="date" id="dateFinModif" name="dateFin"
                                    value="{{ old('dateFin', $aujourdhui) }}" min="{{ $aujourdhui }}" max="{{ $dateLimite }}"
                                    class="p-2 font-medium rounded-lg bg-c3" />
@@ -171,11 +171,11 @@
             <div class="flex flex-row justify-center mt-4">
                 <button type="button" id="boutonAnnuler"
                         class="text-c1 py-2 px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 mr-2 hover:bg-c3 transition uppercase">
-                    Annuler
+                        {{ __('annuler') }}
                 </button>
                 <button type="submit"
                         class="bg-c1 text-c3 px-3 sm:py-2 sm:px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 uppercase">
-                    Modifier
+                        {{ __('enregistrer') }}
                 </button>
             </div>
         </div>
@@ -185,9 +185,10 @@
 {{-- Initialisation de TomSelect pour le select des lieux --}}
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        Lang.setLocale(document.body.getAttribute('data-locale'))
         new TomSelect("#lieuIdModif", {
             plugins: ['remove_button'],
-            placeholder: "Sélectionnez un ou plusieurs lieux"
+            placeholder:  Lang.get('strings.selectMultipleLieux')
         });
     });
 </script>
