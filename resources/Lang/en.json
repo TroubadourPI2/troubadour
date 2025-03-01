@@ -74,5 +74,24 @@
   "erreurGenerale": "An error occurred. Please try again.",
 
 
-  "droitsReserves" : "All rights reserved." 
+  "droitsReserves" : "All rights reserved." ,
+  
+  "seConnecter":"Log in",
+  "sInscrire":"Sign in",
+
+
+  "prenomNom" : "First Name & Last Name",
+  "prenom": "First name",
+  "nomF": "Last name",
+  "courriel":"Email",
+  "courrielMDP" : "Email & password",
+  "role": "Role",
+  "admin":"Administrator",
+  "gestion":"Manager",
+  "utilisateur":"User",
+  "mDP":"Password",
+  "confirmationMDP":"Password Confirmation",
+  "modifierMDP":"Modify your password",
+  "supLeCompte":"Delete Account"
+
 }

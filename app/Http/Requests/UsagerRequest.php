@@ -47,24 +47,23 @@ class UsagerRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'prenom.required' => 'Le prénom est requis.',
-            'prenom.regex' => 'Le prénom ne peut contenir que des lettres, des apostrophes, des traits d\'union et des espaces.',
-            'prenom.max' => 'Le prénom ne peut pas dépasser 32 caractères.',
+            'prenom.required' => __('validations.prenomRequis'),
+            'prenom.regex' => __('validations.prenomRegex'),
+            'prenom.max' => __('validations.prenomMax'),
 
-            'nom.required' => 'Le nom est requis.',
-            'nom.regex' => 'Le nom ne peut contenir que des lettres, des apostrophes, des traits d\'union et des espaces.',
-            'nom.max' => 'Le nom ne peut pas dépasser 32 caractères.',
+            'nom.required' => __('validations.nomRequis'),
+            'nom.regex' => __('validations.nomRegex'),
+            'nom.max' => __('validations.nomMax'),
 
-            'courriel.required' => 'Le courriel est requis.',
-            'courriel.email' => 'L\'adresse courriel n\'est pas valide.', 
-            'courriel.regex' => "L'adresse courriel n'est pas dans un format valide.", 
+            'courriel.required' => __('validations.courrielRequis'),
+            'courriel.email' => __('validations.courrielEmail'),
+            'courriel.regex' => __('validations.courrielRegex'),
 
-            'password.required' => 'Le mot de passe est requis.',
-            'password.regex' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.',
-            'password.min' => 'Le mot de passe doit contenir au moins 8 caractères.',
-            'password.confirmed' => 'Les mots de passe ne correspondent pas.',
-            'password.required_with' => 'Le mot de passe est requis lorsque la confirmation du mot de passe est présente.',
-
+            'password.required' => __('validations.passwordRequis'),
+            'password.regex' => __('validations.passwordRegex'),
+            'password.min' => __('validations.passwordMin'),
+            'password.confirmed' => __('validations.passwordConfirme'),
+            'password.required_with' => __('validations.passwordRequisAvec'),
             
         ];
      

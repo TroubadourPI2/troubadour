@@ -136,7 +136,9 @@
                         title: "text-c1 font-bold",
                         timerProgressBar: "color-c1",
                     }
-                })
+                }).then(() => {
+                    window.location.reload();
+                });
             };
         }
         ModifUsager()
@@ -146,7 +148,6 @@
         session()->forget('erreurModifierUsager');
     @endphp
 @endif
-
 
 @if (session('formulaireAjoutActiviteValide') === 'true')
     <script>
@@ -186,3 +187,4 @@
         session()->forget('formulaireAjoutActiviteValide');
     @endphp
 @endif
+

@@ -37,6 +37,15 @@
                             class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             {{ __('aPropos') }}
                         </a>
+                        @auth
+                            @if (!request()->is('compte'))
+                                <a href="{{ route('usagerLieux.afficher') }}"
+                                    class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                                    {{ __('compte') }}
+                                </a>
+                            @endif
+                        @endauth
+
                     </div>
                     <div class="hidden md:flex md:items-center">
                         @auth
@@ -124,6 +133,15 @@
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full "> <span
                             class="iconify size-10 " data-icon="mdi:about"
                             data-inline="false"></span>{{ __('aPropos') }}</a>
+
+                    @auth
+                        @if (!request()->is('compte'))
+                            <a href="{{ route('usagerLieux.afficher') }}"
+                                class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                                <span class="iconify size-10 " data-icon="mdi:user"
+                                    data-inline="false"></span>{{ __('compte') }}</a>
+                        @endif
+                    @endauth
                     <div x-data="{ open: false }" class="relative font-barlow">
                         <a @click="open = !open"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full cursor-pointer">
@@ -162,7 +180,7 @@
                                 data-inline="false"></span>{{ __('connexion') }}</a>
 
                     @endauth
-                    @if(session()->has('deconnexion_success'))
+                    @if (session()->has('deconnexion_success'))
                         <script src="{{ asset('js/usagers/Deconnexion.js') }}" defer></script>
                         @php session()->forget('deconnexion_success'); @endphp
                     @endif
@@ -171,8 +189,6 @@
             </div>
         </div>
     </div>
-
-    
 
     <div id="sectionCacher"
         class=" flex-col 
@@ -207,3 +223,4 @@
     @endauth
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+

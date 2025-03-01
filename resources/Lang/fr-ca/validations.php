@@ -21,4 +21,20 @@ return [
     'descriptionMax' => 'La description ne doit pas dépasser 500 caractères.',
     'quartierRequis' => 'Veuillez sélectionner un quartier.',
     'typeLieuRequis' => 'Veuillez sélectionner un type de lieu.',
+
+    'prenomRequis' => 'Le prénom est requis.',
+    'prenomRegex' => 'Le prénom ne peut contenir que des lettres, des apostrophes, des traits d\'union et des espaces.',
+    'prenomMax' => 'Le prénom ne peut pas dépasser 32 caractères.',
+    'nomRequis' => 'Le nom est requis.',
+    'nomRegex' => 'Le nom ne peut contenir que des lettres, des apostrophes, des traits d\'union et des espaces.',
+    'nomMax' => 'Le nom ne peut pas dépasser 32 caractères.',
+    'courrielRequis' => 'Le courriel est requis.',
+    'courrielEmail' => 'L\'adresse courriel n\'est pas valide.', 
+    'courrielRegex' => "L'adresse courriel n'est pas dans un format valide.", 
+    'passwordRequis' => 'Le mot de passe est requis.',
+    'passwordRegex' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.',
+    'passwordMin' => 'Le mot de passe doit contenir au moins 8 caractères.',
+    'passwordConfirme' => 'Les mots de passe ne correspondent pas.',
+    'passwordRequisAvec' => 'Le mot de passe est requis lorsque la confirmation du mot de passe est présente.',
+
 ];
