@@ -33,7 +33,7 @@
 @if (session('formulaireValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const succesMessage = "{{ __('succesModifier') }}";
+            const succesMessage = "{{ __('succesAjout') }}";
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.add('hidden');
