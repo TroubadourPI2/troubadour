@@ -172,9 +172,12 @@
 {{-- Initialisation de TomSelect --}}
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        Lang.setLocale(document.body.getAttribute('data-locale'))
         new TomSelect("#lieu_id", {
             plugins: ['remove_button'],
-            placeholder: "Sélectionnez un ou plusieurs lieux"
+            placeholder: Lang.get('strings.photoPositionRequise')
         });
     });
+
+    
 </script>

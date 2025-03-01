@@ -1,6 +1,5 @@
 const champPhotos = document.getElementById('photos');
 const conteneurPositions = document.getElementById('positionInputs');
-
 champPhotos.addEventListener('change', function() {
     conteneurPositions.innerHTML = '';
     const fichiers = champPhotos.files;
