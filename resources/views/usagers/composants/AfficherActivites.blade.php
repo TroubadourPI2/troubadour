@@ -134,13 +134,30 @@
             activites.classList.remove("hidden");
 
             document.getElementById("afficherActivites").classList.add("hidden");
+            const idActiviteErreur = "{{ session('idActiviteErreur') }}";
+       
+            
+            if (idActiviteErreur) {
+                axios.get(`/compte/obtenirActivite/${idActiviteErreur}`)
+                    .then(reponse => {
+                        const activite = reponse.data.data;
+                        mettreAJourSectionPhotos(activite);
+                    
+                  
+                    })
+                    .catch(erreur => {
+                        console.error("Erreur lors du rafraîchissement des photos actuelles :", erreur);
+                    });
+            }
         });
     </script>
   @php
         session()->forget('erreurModifierActivite');
     @endphp 
 @endif
+
 <script src="{{ asset('js/usagers/Activites/SupprimerActivite.js') }}"></script>
 <script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/AjouterActivite.js') }}" defer></script>
+<script src="{{ asset('js/usagers/Activites/ModifierActivite.js') }}" defer></script>

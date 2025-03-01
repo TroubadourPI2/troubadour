@@ -120,7 +120,8 @@ class ActiviteRequest extends FormRequest
         }
          elseif ($nomRouteActuelle === 'usagerActivites.modifierActivite') {
              session()->put('erreurModifierActivite', $validator->errors());
-             session()->put('idActiviteErreur', $activite->id);
+             session()->put('idActiviteErreur', $this->route('id'));
+
 
 
                         throw new HttpResponseException(
