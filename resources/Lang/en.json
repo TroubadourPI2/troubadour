@@ -78,5 +78,18 @@
   "tousLesLieux": " All locations",
   "tousLesTypesActivites" : "All types of activities",
   "rechercherNom": "Search by name",
-  "pasResultatFiltreActivites":"No activities were found with these filters."
+  "pasResultatFiltreActivites":"No activities were found with these filters.",
+  "modifierActivite": "Edit an activity",
+  "ajouterActivite":"Add an activity",
+  "photoActivite": "Activity photos",
+  "typeActivite": "Activity type",
+    "positionImages": "Image positions",
+    "indiquerPosition": "For each selected image, indicate its position.",
+    "informationsGenerales": "General information",
+    "SelectionnerType": "Select a type",
+    "dateDebut": "Start date",
+    "dateFin": "End date"
+
+  
+  
 }
