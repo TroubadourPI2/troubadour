@@ -3,24 +3,24 @@
     <div class="flex flex-col sm:flex-row w-full gap-4 items-center mb-4">
         <div class="flex w-full lg:flex-row flex-col gap-x-4 gap-y-4 lg:gap-y-0 items-center">
             <button id="boutonAjouterActivite"
-                class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full w-fit max-w-64 text-c1 font-semibold my-3 px-4">
+                class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full w-fit max-w-64 text-c1my-3 px-4 uppercase  sm:hover:bg-c3 sm:hover:border-c3 transition">
                 <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add"
                     data-inline="false"></span>
-                AJOUTER
+                    {{ __('ajouter') }}
             </button>
             <select id="filtreLieu" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
-                <option value="">Tous les lieux</option>
+                <option value="">  {{ __('tousLesLieux') }}</option>
                 @foreach ($lieuxUsager as $lieu)
                     <option value="{{ $lieu->id }}">{{ $lieu->nomEtablissement }}</option>
                 @endforeach
             </select>
             <select id="filtreType" class="rounded-full border-2  w-full lg:w-1/2 border-c1 p-2">
-                <option value="">Tous les types d'activités</option>
+                <option value="">{{ __('tousLesTypesActivites') }}</option>
                 @foreach ($typesActivite as $type)
                     <option value="{{ $type->id }}">{{ $type->nom }}</option>
                 @endforeach
             </select>
-            <input type="text" id="recherche" placeholder="Rechercher par nom"
+            <input type="text" id="recherche" placeholder= "{{ __('rechercherNom') }}"
                 class="w-full rounded-full border-2 justify-end border-c1 p-2" />
         </div>
 
@@ -65,8 +65,8 @@
                                 data-nomActivite="{{ $activite->nom }}"><span class="iconify size-6"
                                     data-icon="ion:trash-outline" data-inline="false"></span></button>
                             <button class="boutonModifierActivite" data-activite-id="{{ $activite->id }}"
-                                data-villeId="{{ $lieu->ville()?->id }}"
-                                data-typeLieuId="{{ $lieu->typeLieu->id }}"><span class="iconify size-6 text-c3"
+                             
+                               ><span class="iconify size-6 text-c3"
                                     data-icon="ep:edit" data-inline="false"></span></button>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
         @endforeach
     </div>
     <div id="pasResultat" class="hidden text-center text-lg text-c1 mt-4">
-        Aucune activité n'a été trouvée pour ce lieu.
+        {{ __('pasResultatFiltreActivites') }}  
     </div>
 </div>
 

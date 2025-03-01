@@ -74,5 +74,9 @@
   "erreurGenerale": "An error occurred. Please try again.",
 
 
-  "droitsReserves" : "All rights reserved." 
+  "droitsReserves" : "All rights reserved." ,
+  "tousLesLieux": " All locations",
+  "tousLesTypesActivites" : "All types of activities",
+  "rechercherNom": "Search by name",
+  "pasResultatFiltreActivites":"No activities were found with these filters."
 }
