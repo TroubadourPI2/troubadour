@@ -61,12 +61,12 @@
                             {{ $activite->nom }}
                         </span>
                         <div class="flex gap-x-2 px-4  ">
-                            <button class="boutonSupprimerActivite text-red-500" data-activite-id="{{ $activite->id }}"
+                            <button class="boutonSupprimerActivite text-red-500 transform transition duration-300 hover:scale-110" data-activite-id="{{ $activite->id }}"
                                 data-nomActivite="{{ $activite->nom }}"><span class="iconify size-6"
                                     data-icon="ion:trash-outline" data-inline="false"></span></button>
-                            <button class="boutonModifierActivite" data-activite-id="{{ $activite->id }}"
+                            <button class="boutonModifierActivite text-c3  transform transition duration-300 hover:scale-110" data-activite-id="{{ $activite->id }}"
                              
-                               ><span class="iconify size-6 text-c3"
+                               ><span class="iconify size-6 "
                                     data-icon="ep:edit" data-inline="false"></span></button>
                         </div>
                     </div>
