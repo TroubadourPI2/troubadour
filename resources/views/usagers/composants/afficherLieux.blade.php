@@ -6,37 +6,59 @@
         {{ __('ajouter') }}
     </button>
     @if ($lieuxUsager->isEmpty())
-        <div class="text-c1 text-2xl">Aucun lieu d"enregistré.</div>
+        <div class="text-c1 text-2xl">{{ __('aucunLieu') }}.</div>
     @else
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
             @foreach ($lieuxUsager as $lieu)
                 <!-- Carte lieu pour mobile -->
-                <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg">
+                <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg ">
                     <div
-                        class="carteLieuxMobile relative w-full min-h-[50vh] mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl">
+                        class="carteLieuxMobile relative w-full min-h-[50vh] mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl ">
                         <div
-                            class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden]">
+                            class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden] {{ !$lieu->actif ? 'bg-[#B0B7B7]' : '' }}">
                             <img class="object-cover w-full h-72 rounded-t-lg" src="{{ $lieu->photo_lieu_url }}"
                                 alt="{{ $lieu->nomEtablissement }}">
+
                             <h5 class="text-xl font-bold uppercase p-2 text-center h-full flex items-center">
                                 {{ $lieu->nomEtablissement }}
                             </h5>
                         </div>
                         <div
-                            class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                            class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden] ">
                             <div class="flex flex-col justify-between h-full">
+
                                 <div class="mb-2">
+                                    <div class="flex justify-end gap-2">
+                                        <span class="text-lg font-semibold text-c1 uppercase texteActif"
+                                            data-lieuId="{{ $lieu->id }}" data-actif="{{ $lieu->actif }}">
+                                            {{ $lieu->actif === 1 ? __('actif') : __('inactif') }}
+                                        </span>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" name="actif" class="boutonBascule sr-only peer "
+                                                data-lieuId="{{ $lieu->id }}"
+                                                data-nomLieu="{{ $lieu->nomEtablissement }}"
+                                                {{ $lieu->actif === 1 ? 'checked' : '' }}>
+
+                                            <div
+                                                class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full 
+                    rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] 
+                    after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
+                                            </div>
+                                        </label>
+                                    </div>
                                     <div class="uppercase underline text-base font-semibold">{{ __('description') }}
                                     </div>
                                     <div class="truncate">{{ $lieu->description ?? __('aucuneDescription') }}.</div>
                                 </div>
                                 <div class="mb-4">
-                                    <div class="uppercase underline text-lg font-semibold">{{ __('coordonneesEtInfo') }}
+                                    <div class="uppercase underline text-lg font-semibold">
+                                        {{ __('coordonneesEtInfo') }}
                                     </div>
                                     <div class="text-sm">
                                         <p><strong>{{ __('adresse') }} :</strong> {{ $lieu->noCivic }},
-                                            {{ $lieu->rue }}</p>
-                                        <p><strong>{{ __('ville') }} :</strong>
+                                            {{ $lieu->rue }}
+                                        </p>
+                                        <p><strong>{{ trans_choice('ville', 1) }} :</strong>
                                             {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal : '' }}
                                         </p>
                                         <p><strong>{{ __('pays') }} :</strong> {{ $lieu->pays()?->nom }}</p>
@@ -76,8 +98,27 @@
                         <img class="object-cover w-full h-full rounded" src="{{ $lieu->photo_lieu_url }}"
                             alt="{{ $lieu->nomEtablissement }}">
                     </div>
-                    <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-4">
-                        <h5 class="text-xl font-bold uppercase">{{ $lieu->nomEtablissement }}</h5>
+                    <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-4 relative">
+                        <div class="flex justify-end gap-2">
+                            <span class="text-lg font-semibold text-c1 uppercase texteActif"
+                                data-lieuId="{{ $lieu->id }}" data-actif="{{ $lieu->actif }}">
+                                {{ $lieu->actif === 1 ? __('actif') : __('inactif') }}
+                            </span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="actif" class="boutonBascule sr-only peer "
+                                    data-lieuId="{{ $lieu->id }}" data-nomLieu="{{ $lieu->nomEtablissement }}"
+                                    {{ $lieu->actif === 1 ? 'checked' : '' }}>
+
+                                <div
+                                    class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full 
+                    rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] 
+                    after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
+                                </div>
+                            </label>
+                        </div>
+
+                        <h5 class="text-xl font-bold uppercase truncate">{{ $lieu->nomEtablissement }}</h5>
+
                         <div>
                             <div class="uppercase underline text-lg font-semibold">{{ __('description') }}</div>
                             <div class="text-base truncate">{{ $lieu->description ?? __('aucuneDescription') }}.</div>
@@ -87,7 +128,7 @@
                             <div class="text-base">
                                 <p><strong>{{ __('adresse') }} :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}
                                 </p>
-                                <p><strong>{{ __('ville') }} :</strong>
+                                <p><strong>{{ trans_choice('ville', 1) }} :</strong>
                                     {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal : '' }}
                                 </p>
                                 <p><strong>{{ __('pays') }} :</strong> {{ $lieu->pays()?->nom }}</p>
@@ -99,14 +140,16 @@
                                     <p><strong>{{ __('region') }} :</strong> {{ $lieu->region()->nom }}</p>
                                 @endif
                                 @if ($lieu->siteWeb)
-                                    <p><strong>{{ __('siteWeb') }} :</strong> <a href="{{ $lieu->siteWeb }}"
-                                            class="text-blue-500 underline truncate">{{ $lieu->siteWeb }}</a></p>
+                                    <p class="truncate"><strong>{{ __('siteWeb') }} :</strong> <a
+                                            href="{{ $lieu->siteWeb }}"
+                                            class="text-blue-500 underline">{{ $lieu->siteWeb }}</a></p>
                                 @endif
                                 <p><strong>{{ __('telephone') }} :</strong> {{ $lieu->numeroTelephone }}</p>
                                 <p><strong>{{ __('typeLieu') }} :</strong> {{ $lieu->typeLieu->nom }}</p>
                             </div>
                         </div>
                         <div class="flex justify-end space-x-4 mt-auto">
+
                             <button
                                 class="boutonSupprimer transform transition duration-300 hover:scale-110 text-[#B20101] hover:text-[#B50000]"
                                 data-lieuId="{{ $lieu->id }}" data-nomLieu="{{ $lieu->nomEtablissement }}">
@@ -120,6 +163,7 @@
                             </button>
                         </div>
                     </div>
+
                 </div>
             @endforeach
         </div>
@@ -170,6 +214,8 @@
             lieux.classList.remove("hidden");
 
             document.getElementById("afficherLieux").classList.add("hidden");
+
+            const texteActif = document.getElementById("texteActif");
         });
     </script>
     @php

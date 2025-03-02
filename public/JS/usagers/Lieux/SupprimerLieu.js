@@ -28,7 +28,7 @@ function AjouterSupprimerListeners() {
 
             Swal.fire({
                 title: Lang.get('strings.confirmation'),
-                text: `${Lang.get('strings.confirmationSuppression')} ${nomEtablissement} ?`,
+                text: `${Lang.get('strings.confirmationSuppressionLieu')} ${nomEtablissement} ?`,
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: Lang.get('strings.supprimer'),

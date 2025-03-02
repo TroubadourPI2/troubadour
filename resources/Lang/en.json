@@ -23,6 +23,7 @@
   "deconnexion" : "Log out",
   "connexion" : "Log in",
   "langues" : "Languages",
+  "administration" : "Administration",
 
   "ajouter" : "Add",
   "retour" : "Back",
@@ -33,11 +34,12 @@
   "compte": "Account",
   "lieux": "Locations",
   "activites": "Activities",
+  "aucunLieu" : "No locations saved",
   "description" : "Description",
   "aucuneDescription" : "No description",
   "coordonneesEtInfo" : "Contact details & information",
   "adresse" : "Address",
-  "ville" : "City",
+  "ville" : "City|Cities",
   "quartier" : "Neighborhood",
   "pays" : "Country",
   "province" : "Province",
@@ -60,28 +62,29 @@
   "numCivique" : "Civic number",
   "rue" : "Street",
   "codePostal" : "Postal code",
-
   "modifierLieu" : "Edit a location",
+  "activer" : "activate",
+  "desactiver" : "deactivate",
 
   "succesAjout" : "Added successfully!",
   "succesModifier" : "Modified successfully!",
   "confirmation" : "Confirmation",
-  "confirmationSuppression" : "Are you sure you want to delete this location : ",
+  "confirmationSuppressionLieu" : "Are you sure you want to delete this location : ",
   "succesSupprimer" : "Deleted successfully!",
+  "confirmationChangerEtat" : "Are you sure you want to :action this location : :lieu ?",
 
   "erreurSuppression": "Error during deletion",
   "erreur" : "Error",
   "erreurGenerale": "An error occurred. Please try again.",
 
+  "demandes" : "Requests",
 
   "droitsReserves" : "All rights reserved." ,
 
-  
   "seConnecter":"Log in",
   "sInscrire":"Sign in",
 
   "deconnexionMessage": "Logout successful!",
-
 
   "prenomNom" : "First Name & Last Name",
   "prenom": "First name",
@@ -101,7 +104,7 @@
   "messageSup": "You will not be able to go back!",
   "messageSup2Titre": "Deleted!",
   "messageSup2": "Your account has been deleted.",
-  "boutonOuiSup": "Yes, delete it!"
+  "boutonOuiSup": "Yes, delete it!",
 
   "tousLesLieux": " All locations",
   "tousLesTypesActivites" : "All types of activities",
@@ -111,23 +114,20 @@
   "ajouterActivite":"Add an activity",
   "photoActivite": "Activity photos",
   "typeActivite": "Activity type",
-    "positionImages": "Image positions",
-    "indiquerPosition": "For each selected image, indicate its position.",
-    "dateDebut": "Start date",
-    "dateFin": "End date",
-    "positionPour": "Position for",
-    "attention":"Warning",
-    "selectMultipleLieux":"Select one or more locations",
+  "positionImages": "Image positions",
+  "indiquerPosition": "For each selected image, indicate its position.",
+  "dateDebut": "Start date",
+  "dateFin": "End date",
+  "positionPour": "Position for",
+  "attention":"Warning",
+  "selectMultipleLieux":"Select one or more locations",
   "confirmationSuppressionActivite" : "Are you sure you want to delete this activity : ",
-    "photosActuelle":"Current photos",
-    "positionNouvelleImage": "Position of new images",
-    "positionNouvelleImageIndiquer":"For each new selected image, indicate its position.",
-    "actif":"Active",
-    "inactif":"Inactive",
-    "activerActivite": "Would you like to activate the activity",
-    "desactiverActivite":"Would you like to deactivate the activity",
-    "successModifierStatutActivite": "Activity status updated successfully"
-
-
- 
+  "photosActuelle":"Current photos",
+  "positionNouvelleImage": "Position of new images",
+  "positionNouvelleImageIndiquer":"For each new selected image, indicate its position.",
+  "actif":"Active",
+  "inactif":"Inactive",
+  "activerActivite": "Would you like to activate the activity",
+  "desactiverActivite":"Would you like to deactivate the activity",
+  "successModifierStatutActivite": "Activity status updated successfully"
 }
