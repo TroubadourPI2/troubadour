@@ -19,9 +19,9 @@
             @endrole
         </div>
         {{-- //TODO Importer les composants selon le menu choisi --}}
-        <div id="compte" class="sectionMenu">COMPTE</div>
-        <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
-        <div id="activites" class="sectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
+        <div id="compte" class="SectionMenu">@include('usagers.composants.AfficherCompte')</div>
+        <div id="lieux" class="SectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
+        <div id="activites" class="SectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
 
     </div>
 @endsection
@@ -53,10 +53,6 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
             });
 
             Toast.fire({
@@ -113,6 +109,44 @@
     @endphp
 @endif
 
+@if (session('formulaireModifierUValide'))
+    <script>
+        const succesMessage = "{{ __('succesModifier') }}";
+        function ModifUsager() {
+            window.onload = function() {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+
+                });
+
+                Toast.fire({
+                    icon: "success",
+                    title: succesMessage,
+                    customClass: {
+                        title: "text-c1 font-bold",
+                        timerProgressBar: "color-c1",
+                    }
+                }).then(() => {
+                    window.location.reload();
+                });
+            };
+        }
+        ModifUsager()
+    </script>
+    @php
+        session()->forget('formulaireModifierUValide');
+        session()->forget('erreurModifierUsager');
+    @endphp
+@endif
+@if (session('erreurModifierUsager'))
+    @php
+        session()->forget('erreurModifierUsager'); 
+    @endphp
+@endif
 @if (session('formulaireAjoutActiviteValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -151,3 +185,4 @@
         session()->forget('formulaireAjoutActiviteValide');
     @endphp
 @endif
+

@@ -37,6 +37,15 @@
                             class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             {{ __('aPropos') }}
                         </a>
+                        @auth
+
+                            <a href="{{ route('usagerLieux.afficher') }}"
+                                class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                                {{ __('compte') }}
+                            </a>
+
+                        @endauth
+
                     </div>
                     <div class="hidden md:flex md:items-center">
                         @auth
@@ -124,6 +133,15 @@
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full "> <span
                             class="iconify size-10 " data-icon="mdi:about"
                             data-inline="false"></span>{{ __('aPropos') }}</a>
+
+                    @auth
+
+                        <a href="{{ route('usagerLieux.afficher') }}"
+                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                            <span class="iconify size-10 " data-icon="mdi:user"
+                                data-inline="false"></span>{{ __('compte') }}</a>
+
+                    @endauth
                     <div x-data="{ open: false }" class="relative font-barlow">
                         <a @click="open = !open"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full cursor-pointer">
@@ -162,7 +180,10 @@
                                 data-inline="false"></span>{{ __('connexion') }}</a>
 
                     @endauth
-
+                    @if (session()->has('deconnexionSucces'))
+                        <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
+                        @php session()->forget('deconnexionSucces'); @endphp
+                    @endif
                 </nav>
 
             </div>
@@ -189,8 +210,8 @@
     <script src="{{ asset('js/Accueil.js') }}"></script>
 @endsection
 
-<script src="{{ asset('js/usagers/Connexion.js') }}"></script>
-<script src="{{ asset('js/usagers/Inscription.js') }}"></script>
+<script src="{{ asset('js/usagers/usagers/Connexion.js') }}"></script>
+<script src="{{ asset('js/usagers/usagers/Inscription.js') }}"></script>
 <script>
     @auth
     document.addEventListener("DOMContentLoaded", function() {
@@ -202,3 +223,4 @@
     @endauth
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
