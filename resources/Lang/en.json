@@ -79,8 +79,8 @@
   "seConnecter":"Log in",
   "sInscrire":"Sign in",
 
+  "deconnexionMessage": "Logout successful!",
 
-  
 
   "prenomNom" : "First Name & Last Name",
   "prenom": "First name",

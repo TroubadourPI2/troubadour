@@ -10,7 +10,7 @@ function ChargerCSSPersonnalise() {
 
 ChargerCSSPersonnalise();
 
-const test =   "{{ __('messageSupTitre') }}";
+const deconnexionMessage = window.translations.deconnexionMessage ;
 
 function AfficherModalDeconnexion() {
 
@@ -25,7 +25,7 @@ function AfficherModalDeconnexion() {
 
     Toast.fire({
         icon: "success",
-        title: "Déconnexion réussie!",
+        title: deconnexionMessage,
         customClass: {
             title: "text-c1 font-bold",
             timerProgressBar: "color-c5",

@@ -181,6 +181,11 @@
 
                     @endauth
                     @if (session()->has('deconnexionSucces'))
+                        <script>
+                            window.translations = {
+                                deconnexionMessage: @json(__('deconnexionMessage'))
+                            };
+                        </script>
                         <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
                         @php session()->forget('deconnexionSucces'); @endphp
                     @endif
