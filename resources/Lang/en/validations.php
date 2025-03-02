@@ -37,22 +37,6 @@ return [
     'passwordConfirme' => 'The passwords do not match.',
     'passwordRequisAvec' => 'The password is required when the password confirmation is present.',
 
-
-    'prenomRequis' => 'The first name is required.',
-    'prenomRegex' => 'The first name may only contain letters, apostrophes, hyphens, and spaces.',
-    'prenomMax' => 'The first name may not exceed 32 characters.',
-    'nomRequis' => 'The last name is required.',
-    'nomRegex' => 'The last name may only contain letters, apostrophes, hyphens, and spaces.',
-    'nomMax' => 'The last name may not exceed 32 characters.',
-    'courrielRequis' => 'The email is required.',
-    'courrielEmail' => 'The email address is not valid.',
-    'courrielRegex' => 'The email address is not in a valid format.',
-    'passwordRequis' => 'The password is required.',
-    'passwordRegex' => 'The password must contain at least 8 characters, one uppercase letter, one number, and one special character.',
-    'passwordMin' => 'The password must contain at least 8 characters.',
-    'passwordConfirme' => 'The passwords do not match.',
-    'passwordRequisAvec' => 'The password is required when the password confirmation is present.',
-
     'nomActiviteRequise'       => 'The name field is required.',
     'nomActiviteMax'           => 'The name field must not exceed 64 characters.',
     'dateDebutRequise'         => 'The start date is required.',
