@@ -3,7 +3,7 @@
     <div class="flex flex-col sm:flex-row w-full gap-4 items-center mb-4">
         <div class="flex w-full lg:flex-row flex-col gap-x-4 gap-y-4 lg:gap-y-0 items-center">
             <button id="boutonAjouterActivite"
-                class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full w-fit max-w-64 text-c1my-3 px-4 uppercase  sm:hover:bg-c3 sm:hover:border-c3 transition">
+                class="flex items-center text-c1 font-barlow text-sm sm:text-xl border-c1 border-2 rounded-full w-fit max-w-64 text-c1my-3 px-4 uppercase  sm:hover:bg-c3 sm:hover:border-c3 transition">
                 <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add"
                     data-inline="false"></span>
                     {{ __('ajouter') }}
@@ -30,7 +30,6 @@
             </label>
             </div>
         </div>
-
     </div>
 
     <div id="activitesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full mt-2 mb-2">
