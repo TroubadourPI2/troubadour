@@ -81,12 +81,10 @@
 
   "droitsReserves" : "All rights reserved." ,
 
-  
   "seConnecter":"Log in",
   "sInscrire":"Sign in",
 
   "deconnexionMessage": "Logout successful!",
-
 
   "prenomNom" : "First Name & Last Name",
   "prenom": "First name",
@@ -132,7 +130,4 @@
   "activerActivite": "Would you like to activate the activity",
   "desactiverActivite":"Would you like to deactivate the activity",
   "successModifierStatutActivite": "Activity status updated successfully"
-
-
- 
 }

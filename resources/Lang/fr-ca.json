@@ -66,7 +66,7 @@
   "modifierLieu" : "Modifier un lieu",
   "activer" : "activer",
   "desactiver" : "désactiver",
-  
+
   "succesAjout" : "Ajout effectué avec succès!",
   "succesModifier" : "Modification effectuée avec succès!",
   "confirmation" : "Confirmation",
@@ -131,6 +131,4 @@
   "activerActivite": "Voulez-vous rendre actif l'activité ",
   "desactiverActivite":"Voulez-vous rendre inactif l'activité ",
   "successModifierStatutActivite" : "Modification du statut de l'activité avec succès"
-
-
 }
