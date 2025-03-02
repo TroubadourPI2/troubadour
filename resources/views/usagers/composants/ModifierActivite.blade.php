@@ -33,6 +33,13 @@
                 <input type="checkbox" name="actif" id="actifModif" class="sr-only peer" {{ old('actif', isset($activiteChoisit) ? $activiteChoisit->actif : 0) ? 'checked' : '' }}>
                 <div class="w-11 h-6 bg-c3 rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-c1 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-c1 peer-checked:after:bg-white"></div>
             </label>
+            @if (session('erreurModifierActivite') && session('erreurModifierActivite')->has('actif'))
+            <div class="erreurModifierActiviteMessages">
+                <span class="text-c5 font-medium erreur-message">
+                    {{ session('erreurModifierActivite')->first('actif') }}
+                </span>
+            </div>
+        @endif
             </div>
         </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
