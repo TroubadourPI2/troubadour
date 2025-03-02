@@ -1,4 +1,4 @@
-function mettreAJourMaxDesPositions() {
+function MettreAJourMaxDesPositions() {
    
     const nbPhotosActuelles = parseInt(document.getElementById('nombrePhotosActuelles').value) || 0;
     const nouveauxInputs = document.querySelectorAll('#positionInputsModif .position-input');
@@ -15,7 +15,7 @@ function mettreAJourMaxDesPositions() {
     });
 }
 
-function mettreAJourSectionPhotos(activite) {
+function MettreAJourSectionPhotos(activite) {
     const nbActuelles = activite.photos.length;
     document.getElementById('nombrePhotosActuelles').value = nbActuelles;
 
@@ -77,7 +77,7 @@ function mettreAJourSectionPhotos(activite) {
 
             const nb = parseInt(document.getElementById('nombrePhotosActuelles').value) || 0;
             document.getElementById('nombrePhotosActuelles').value = nb - 1;
-            mettreAJourMaxDesPositions();
+            MettreAJourMaxDesPositions();
         });
 
         conteneurDroite.appendChild(inputPositionPhoto);
@@ -90,7 +90,7 @@ function mettreAJourSectionPhotos(activite) {
         conteneurPhotosActuelles.appendChild(divPhoto);
     });
 
-    mettreAJourMaxDesPositions();
+    MettreAJourMaxDesPositions();
 }
 
 
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('conteneur_photos_a_supprimer').innerHTML = '';
 
                
-                    mettreAJourSectionPhotos(activite);
+                    MettreAJourSectionPhotos(activite);
 
                  
                     document.getElementById('formulaireActiviteModif').setAttribute('action', `/compte/modifierActivites/${idActivite}`);
@@ -214,7 +214,7 @@ document.getElementById('photosModif').addEventListener('change', function() {
         conteneurPositions.appendChild(div);
     }
     
-    mettreAJourMaxDesPositions();
+    MettreAJourMaxDesPositions();
 });
 
 

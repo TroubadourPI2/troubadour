@@ -3,23 +3,23 @@ document.addEventListener("DOMContentLoaded", function() {
     Lang.setLocale(document.body.getAttribute('data-locale'));
 
     checkboxActif.checked = true;
-    mettreAJourLabelActif(checkboxActif.checked);
+    MettreAJourLabelActif(checkboxActif.checked);
 
-    filtrerCartes();
+    FiltrerCartes();
 
 
     checkboxActif.addEventListener('change', function () {
-        mettreAJourLabelActif(this.checked);
-        filtrerCartes();
+        MettreAJourLabelActif(this.checked);
+        FiltrerCartes();
     });
 });
 
-function mettreAJourLabelActif(estActif) {
+function MettreAJourLabelActif(estActif) {
     const labelActif = document.getElementById('labelActif');
     labelActif.textContent = estActif ? Lang.get('strings.actif') : Lang.get('strings.inactif');
 }
 
-function filtrerCartes() {
+function FiltrerCartes() {
     const requeteRecherche = document.getElementById('recherche').value.toLowerCase();
     const lieuSelectionne = document.getElementById('filtreLieu').value;
     const typeSelectionne = document.getElementById('filtreType').value;
@@ -54,6 +54,6 @@ function filtrerCartes() {
 }
 
 
-document.getElementById('recherche').addEventListener('keyup', filtrerCartes);
-document.getElementById('filtreLieu').addEventListener('change', filtrerCartes);
-document.getElementById('filtreType').addEventListener('change', filtrerCartes);
+document.getElementById('recherche').addEventListener('keyup', FiltrerCartes);
+document.getElementById('filtreLieu').addEventListener('change', FiltrerCartes);
+document.getElementById('filtreType').addEventListener('change', FiltrerCartes);

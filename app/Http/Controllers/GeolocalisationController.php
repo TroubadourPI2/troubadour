@@ -8,7 +8,7 @@ use App\Models\Lieu;
 
 class GeolocalisationController extends Controller
 {
-    public function obtenirVilleUtilisateur()
+    public function ObtenirVilleUtilisateur()
     {
         $ip = request()->ip();
 

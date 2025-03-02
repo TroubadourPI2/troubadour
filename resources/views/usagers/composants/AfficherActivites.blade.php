@@ -169,7 +169,7 @@
                 axios.get(`/compte/obtenirActivite/${idActiviteErreur}`)
                     .then(reponse => {
                         const activite = reponse.data.data;
-                        mettreAJourSectionPhotos(activite);
+                        MettreAJourSectionPhotos(activite);
                         document.getElementById('formulaireActiviteModif').setAttribute('action',
                             `/compte/modifierActivites/${idActiviteErreur}`);
 

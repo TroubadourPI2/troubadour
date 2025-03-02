@@ -160,7 +160,7 @@ class ActivitesController extends Controller
                 ->with('error', "Erreur lors de la modification de l'activité : " . $e->getMessage());
         }
     }
-    public function obtenirActivite(string $activiteId)
+    public function ObtenirActivite(string $activiteId)
     {
         try {
          
@@ -178,7 +178,7 @@ class ActivitesController extends Controller
         }
     }
 
-    public function modifierStatutActivite(ActiviteRequest $request, string $id)
+    public function ModifierStatutActivite(ActiviteRequest $request, string $id)
 {
     try {
    
