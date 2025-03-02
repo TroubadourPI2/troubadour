@@ -23,19 +23,34 @@ class ActiviteRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'nomActivite'       => 'required|string|max:64',
-            'dateDebut'         => 'required|date|after_or_equal:today',
-            'dateFin'           => 'nullable|date|after_or_equal:dateDebut',
-            'descriptionActivite'=> 'nullable|string|max:500',
-            'typeActivite_id'   => 'required|exists:TypeActivites,id',
-            'lieu_id'            => 'required|array',
-            'lieu_id.*'          => 'exists:Lieux,id',
-            'photos'            => 'nullable|array',
-            'photos.*'          => 'nullable|mimes:png,jpg|max:2048',
-            'photos.*.position' => 'required|integer|distinct',
+   
+        if ($this->route()->getName() === 'usagerActivites.modifierStatutActivite') {
+            return [
+                'actif' => 'required|boolean',
+            ];
+        }
+    
+
+        $rules = [
+            'nomActivite'         => 'required|string|max:64',
+            'dateDebut'           => 'required|date|after_or_equal:today',
+            'dateFin'             => 'nullable|date|after_or_equal:dateDebut',
+            'descriptionActivite' => 'nullable|string|max:500',
+            'typeActivite_id'     => 'required|exists:TypeActivites,id',
+            'lieu_id'             => 'required|array',
+            'lieu_id.*'           => 'exists:Lieux,id',
+            'photos'              => 'nullable|array',
+            'photos.*'            => 'nullable|mimes:png,jpg|max:2048',
+            'photos.*.position'   => 'required|integer|distinct',
+            'photos_a_supprimer'  => 'nullable|array',
+            'photos_a_supprimer.*'=> 'exists:photos,id',
+            'positionsActuelles'  => 'nullable|array',
+            'positionsActuelles.*'=> 'required|integer|distinct',
         ];
+    
+        return $rules;
     }
+    
     
     /**
      * Personnalise les messages d'erreur de validation.
@@ -43,26 +58,82 @@ class ActiviteRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nomActivite.required'             => 'Le champ nom est obligatoire.',
-            'nomActivite.max'                  => 'Le champ nom ne doit pas dépasser 64 caractères.',
-            'dateDebut.required'               => 'La date de début est obligatoire.',
-            'dateDebut.date'                   => 'La date de début doit être une date valide.',
-            'dateDebut.after_or_equal'         => 'La date de début ne doit pas être antérieure à aujourd\'hui.',
-            'dateFin.date'                     => 'La date de fin doit être une date valide.',
-            'dateFin.after_or_equal'           => 'La date de fin ne doit jamais être avant la date de début.',
-            'actif.boolean'                    => 'Le champ actif doit être vrai ou faux.',
-            'descriptionActivite.max'          => 'La description ne doit pas dépasser 500 caractères.',
-            'typeActivite_id.required'         => 'Le type d\'activité est obligatoire.',
-            'typeActivite_id.exists'           => 'Le type d\'activité sélectionné est invalide.',
-            'lieu_id.required'                 => 'Le(s) lieu(x) est/sont obligatoire(s).',
-            'lieu_id.*.exists'                 => 'Le(s) lieu(x) sélectionné(s) est/sont invalide(s).',
-            'photos.*.mimes'                   => 'Chaque photo doit être au format PNG ou JPG.',
-            'photos.*.max'                     => 'Chaque photo ne doit pas dépasser 2048 kilo-octets.',
-            'photos.*.position.required'       => 'La position de chaque photo est obligatoire.',
-            'photos.*.position.integer'        => 'La position de chaque photo doit être un nombre entier.',
-            'photos.*.position.distinct'      => 'Les positions des photos doivent être uniques.',
+            'nomActivite.required'             => __('validations.nomActiviteRequise'),
+            'nomActivite.max'                  => __('validations.nomActiviteMax'),
+            'dateDebut.required'               => __('validations.dateDebutRequise'),
+            'dateDebut.date'                   => __('validations.dateDebutDate'),
+            'dateDebut.after_or_equal'         => __('validations.dateDebutAfterOrEqual'),
+            'dateFin.date'                     => __('validations.dateFinDate'),
+            'dateFin.after_or_equal'           => __('validations.dateFinAfterOrEqual'),
+            'actif.required'                   => __('validations.actifRequis'),
+            'actif.boolean'                    => __('validations.actifBoolean'),
+            'descriptionActivite.max'          => __('validations.descriptionActiviteMax'),
+            'typeActivite_id.required'         => __('validations.typeActiviteIdRequise'),
+            'typeActivite_id.exists'           => __('validations.typeActiviteIdExiste'),
+            'lieu_id.required'                 => __('validations.lieuIdRequis'),
+            'lieu_id.*.exists'                 => __('validations.lieuIdExiste'),
+            'photos.*.mimes'                   => __('validations.photoMime'),
+            'photos.*.max'                     => __('validations.photoMax'),
+            'photos.*.position.required'       => __('validations.photoPositionRequise'),
+            'photos.*.position.integer'        => __('validations.photoPositionInteger'),
+            'photos.*.position.distinct'       => __('validations.photoPositionDistinct'),
+            'positionsActuelles.*.integer'     => __('validations.positionsActuellesInteger'),
+            'positionsActuelles.*.distinct'    => __('validations.positionsActuellesDistinct'),
+            'photos_a_supprimer.*.exists'      => __('validations.photoASupprimerExiste'),
         ];
     }
+    protected function withValidator($validator)
+    {
+        if ($this->route()->getName() === 'usagerActivites.ajouterActivite') {
+            $validator->after(function ($validator) {
+              
+                $positionsNouvelles = $this->input('photos', []);
+                $positions = [];
+        
+                foreach ($positionsNouvelles as $index => $photo) {
+                    if (isset($photo['position'])) {
+                        $positions[] = (int) $photo['position'];
+                    }
+                }
+        
+              
+                sort($positions);
+                $nb = count($positions);
+                if ($nb > 0) {
+                    $attendu = range(1, $nb);
+                    if ($positions !== $attendu) {
+                        $validator->errors()->add('positions', __('validations.positionsSequentielle'));
+                    }
+                }
+            });
+    }
+
+
+
+    if ($this->route()->getName() === 'usagerActivites.modifierActivite') {
+        $validator->after(function ($validator) {
+            $positionsNouvelles = $this->input('photos.*.position', []);
+            $positionsExistantes = $this->input('positionsActuelles', []);
+
+    
+            $positionsNouvelles = array_map('intval', $positionsNouvelles);
+            $positionsExistantes = array_map('intval', $positionsExistantes);
+
+      
+            $positionsTotales = array_merge($positionsNouvelles, $positionsExistantes);
+
+            sort($positionsTotales);
+            $nb = count($positionsTotales);
+            if ($nb > 0) {
+                $attendu = range(1, $nb);
+                if ($positionsTotales !== $attendu) {
+                    $validator->errors()->add('positions', __('validations.positionsSequentielle'));
+                }
+            }
+        });
+    }
+    }
+    
 
     protected function failedValidation(Validator $validator)
     {
@@ -76,14 +147,17 @@ class ActiviteRequest extends FormRequest
                     ->withInput()
             );
         }
-        // elseif ($nomRouteActuelle === 'usagerLieux.modifierLieu') {
-        //     session()->put('erreurModifierLieu', $validator->errors());
+         elseif ($nomRouteActuelle === 'usagerActivites.modifierActivite') {
+             session()->put('erreurModifierActivite', $validator->errors());
+             session()->put('idActiviteErreur', $this->route('id'));
 
-        //     throw new HttpResponseException(
-        //         redirect()->back()
-        //             ->withInput()
-        //     );
-        // }
+
+
+                        throw new HttpResponseException(
+                        redirect()->back()
+                            ->withInput()
+                    );
+                }
 
         parent::failedValidation($validator);
     }

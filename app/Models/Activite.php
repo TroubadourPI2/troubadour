@@ -19,6 +19,7 @@ class Activite extends Model
         'typeActivite_id'
     ];
 
+    
     public function lieux() {
         return $this->belongsToMany(Lieu::class, 'LieuActivites', 'activite_id', 'lieu_id');
     }
@@ -40,6 +41,7 @@ class Activite extends Model
             })
             ->values()
             ->toJson();
+            
     }
     
 
