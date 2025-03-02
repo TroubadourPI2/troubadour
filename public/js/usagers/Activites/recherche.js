@@ -1,11 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
-  
-    document.getElementById('actif').checked = true;
-    
-   
+    const checkboxActif = document.getElementById('actif');
+    Lang.setLocale(document.body.getAttribute('data-locale'));
+
+    checkboxActif.checked = true;
+    mettreAJourLabelActif(checkboxActif.checked);
+
     filtrerCartes();
+
+
+    checkboxActif.addEventListener('change', function () {
+        mettreAJourLabelActif(this.checked);
+        filtrerCartes();
+    });
 });
 
+function mettreAJourLabelActif(estActif) {
+    const labelActif = document.getElementById('labelActif');
+    labelActif.textContent = estActif ? Lang.get('strings.actif') : Lang.get('strings.inactif');
+}
 
 function filtrerCartes() {
     const requeteRecherche = document.getElementById('recherche').value.toLowerCase();
@@ -44,4 +56,3 @@ function filtrerCartes() {
 document.getElementById('recherche').addEventListener('keyup', filtrerCartes);
 document.getElementById('filtreLieu').addEventListener('change', filtrerCartes);
 document.getElementById('filtreType').addEventListener('change', filtrerCartes);
-document.getElementById('actif').addEventListener('change', filtrerCartes); 

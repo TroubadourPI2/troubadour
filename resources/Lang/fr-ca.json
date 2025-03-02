@@ -97,7 +97,9 @@
   "confirmationSuppressionActivite" : "Êtes-vous certain(e) de vouloir supprimer cette activité : ",
   "photosActuelle":"Photos actuelles",
   "positionNouvelleImage": "Position des nouvelles images",
-  "positionNouvelleImageIndiquer":"Pour chaque nouvelle image sélectionnée, indiquez sa position. "
+  "positionNouvelleImageIndiquer":"Pour chaque nouvelle image sélectionnée, indiquez sa position. ",
+  "actif":"Actif",
+   "inactif":"Inactif"
 
 
 

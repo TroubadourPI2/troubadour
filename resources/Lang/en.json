@@ -95,7 +95,9 @@
   "confirmationSuppressionActivite" : "Are you sure you want to delete this activity : ",
     "photosActuelle":"Current photos",
     "positionNouvelleImage": "Position of new images",
-    "positionNouvelleImageIndiquer":"For each new selected image, indicate its position."
+    "positionNouvelleImageIndiquer":"For each new selected image, indicate its position.",
+    "actif":"Active",
+    "inactif":"Inactive"
 
   
   
