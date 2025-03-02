@@ -88,10 +88,12 @@
                         <select name="lieu_id[]" id="lieuIdModif" class="block w-full rounded-lg p-1 bg-c3 font-medium"
                             multiple>
                             @foreach ($lieuxUsager as $lieu)
+                            @if ($lieu->actif == 1)
                                 <option value="{{ $lieu->id }}"
                                     {{ in_array($lieu->id, old('lieu_id', [])) ? 'selected' : '' }}>
                                     {{ $lieu->nomEtablissement }}
                                 </option>
+                                @endif
                             @endforeach
                         </select>
                         @if (session('erreurModifierActivite') && session('erreurModifierActivite')->has('lieu_id'))
