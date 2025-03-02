@@ -81,5 +81,60 @@
 
   "demandes" : "Requests",
 
-  "droitsReserves" : "All rights reserved." 
+  "droitsReserves" : "All rights reserved." ,
+
+  
+  "seConnecter":"Log in",
+  "sInscrire":"Sign in",
+
+  "deconnexionMessage": "Logout successful!",
+
+
+  "prenomNom" : "First Name & Last Name",
+  "prenom": "First name",
+  "nomF": "Last name",
+  "courriel":"Email",
+  "courrielMotDePasse" : "Email & password",
+  "role": "Role",
+  "admin":"Administrator",
+  "gestion":"Manager",
+  "utilisateur":"User",
+  "motDePasse":"Password",
+  "confirmationMotDePasse":"Password Confirmation",
+  "modifierMotDePasse":"Modify your password",
+  "supLeCompte":"Delete Account",
+
+  "messageSupTitre": "Are you sure?",
+  "messageSup": "You will not be able to go back!",
+  "messageSup2Titre": "Deleted!",
+  "messageSup2": "Your account has been deleted.",
+  "boutonOuiSup": "Yes, delete it!"
+
+  "tousLesLieux": " All locations",
+  "tousLesTypesActivites" : "All types of activities",
+  "rechercherNom": "Search by name",
+  "pasResultatFiltreActivites":"No activities were found with these filters.",
+  "modifierActivite": "Edit an activity",
+  "ajouterActivite":"Add an activity",
+  "photoActivite": "Activity photos",
+  "typeActivite": "Activity type",
+    "positionImages": "Image positions",
+    "indiquerPosition": "For each selected image, indicate its position.",
+    "dateDebut": "Start date",
+    "dateFin": "End date",
+    "positionPour": "Position for",
+    "attention":"Warning",
+    "selectMultipleLieux":"Select one or more locations",
+  "confirmationSuppressionActivite" : "Are you sure you want to delete this activity : ",
+    "photosActuelle":"Current photos",
+    "positionNouvelleImage": "Position of new images",
+    "positionNouvelleImageIndiquer":"For each new selected image, indicate its position.",
+    "actif":"Active",
+    "inactif":"Inactive",
+    "activerActivite": "Would you like to activate the activity",
+    "desactiverActivite":"Would you like to deactivate the activity",
+    "successModifierStatutActivite": "Activity status updated successfully"
+
+
+ 
 }

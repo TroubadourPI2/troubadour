@@ -64,9 +64,7 @@
   "rue" : "Rue",
   "codePostal" : "Code postal",
   "modifierLieu" : "Modifier un lieu",
-  "actif" : "Actif",
   "activer" : "activer",
-  "inactif" : "Inactif",
   "desactiver" : "désactiver",
   
   "succesAjout" : "Ajout effectué avec succès!",
@@ -82,6 +80,57 @@
 
   "demandes" : "Demandes",
   
+  "droitsReserves" : "Tous droits réservés.",
 
-  "droitsReserves" : "Tous droits réservés." 
+  "seConnecter":"Se connecter",
+  "sInscrire":"S'inscrire",
+ 
+  "deconnexionMessage":"Déconnexion réussie!",
+
+  "prenomNom" : "Prénom et nom",
+  "prenom": "Prénom",
+  "nomF": "Nom",
+  "courriel":"Courriel",
+  "courrielMotDePasse" : "Courriel & mot de passe",
+  "role": "Rôle",
+  "admin":"Administrateur",
+  "gestion":"Gestionnaire",
+  "utilisateur":"Utilisateur",
+  "motDePasse":"Mot de passe",
+  "confirmationMotDePasse":"Confirmation du mot de passe",
+  "modifierMotDePasse":"Modifier votre mot de passe",
+  "supLeCompte":"Supprimer votre compte",
+  
+  "messageSupTitre":"Etes-vous sûr?",
+  "messageSup":"Vous ne pourrez pas revenir en arrière!",
+  "messageSup2Titre":"Supprimé!",
+  "messageSup2":"Votre compte a été supprimé.",
+  "boutonOuiSup":"Oui, supprime-le!",
+
+  "tousLesLieux": "Tous les lieux",
+  "tousLesTypesActivites" : "Tous les types d'activités",
+  "rechercherNom": "Rechercher par nom",
+  "pasResultatFiltreActivites":"Aucune activité n'a été trouvée avec ces filtres.",
+  "modifierActivite": "Modifier une activité",
+  "ajouterActivite":"Ajouter une activité",
+  "photoActivite": "Photos de l'activité",
+  "typeActivite": "type d'activité",
+  "positionImages": "Positions des images",
+  "indiquerPosition": "Pour chaque image sélectionnée, indiquez sa position.",
+  "dateDebut": "Date de début",
+  "dateFin": "Date de fin",
+  "positionPour": "Position pour",
+  "attention":"Attention",
+  "selectMultipleLieux":"Sélectionnez un ou plusieurs lieux",
+  "confirmationSuppressionActivite" : "Êtes-vous certain(e) de vouloir supprimer cette activité : ",
+  "photosActuelle":"Photos actuelles",
+  "positionNouvelleImage": "Position des nouvelles images",
+  "positionNouvelleImageIndiquer":"Pour chaque nouvelle image sélectionnée, indiquez sa position. ",
+  "actif":"Actif",
+  "inactif":"Inactif",
+  "activerActivite": "Voulez-vous rendre actif l'activité ",
+  "desactiverActivite":"Voulez-vous rendre inactif l'activité ",
+  "successModifierStatutActivite" : "Modification du statut de l'activité avec succès"
+
+
 }

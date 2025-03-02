@@ -18,8 +18,7 @@
                     class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('activites') }}</button>
             @endrole
         </div>
-        {{-- //TODO Importer les composants selon le menu choisi --}}
-        <div id="compte" class="sectionMenu">COMPTE</div>
+        <div id="compte" class="sectionMenu">@include('usagers.composants.AfficherCompte')</div>
         <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
         <div id="activites" class="sectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
     </div>
@@ -52,10 +51,6 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
             });
 
             Toast.fire({
@@ -112,9 +107,48 @@
     @endphp
 @endif
 
+@if (session('formulaireModifierUValide'))
+    <script>
+        const succesMessage = "{{ __('succesModifier') }}";
+        function ModifUsager() {
+            window.onload = function() {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+
+                });
+
+                Toast.fire({
+                    icon: "success",
+                    title: succesMessage,
+                    customClass: {
+                        title: "text-c1 font-bold",
+                        timerProgressBar: "color-c1",
+                    }
+                }).then(() => {
+                    window.location.reload();
+                });
+            };
+        }
+        ModifUsager()
+    </script>
+    @php
+        session()->forget('formulaireModifierUValide');
+        session()->forget('erreurModifierUsager');
+    @endphp
+@endif
+@if (session('erreurModifierUsager'))
+    @php
+        session()->forget('erreurModifierUsager'); 
+    @endphp
+@endif
 @if (session('formulaireAjoutActiviteValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('succesAjout') }}";
             document.getElementById('lieux').classList.add('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.remove('hidden');
@@ -137,7 +171,7 @@
 
             Toast.fire({
                 icon: "success",
-                title: "Ajout effectué avec succès!",
+                title: succesMessage,
                 customClass: {
                     title: "text-c1 font-bold",
                     timerProgressBar: "color-c1",
@@ -149,6 +183,87 @@
         session()->forget('formulaireAjoutActiviteValide');
     @endphp
 @endif
+
+@if (session('formulaireModifierActiviteValide') === 'true')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('succesModifier') }}";
+            document.getElementById('lieux').classList.add('hidden');
+            document.getElementById('compte').classList.add('hidden');
+            document.getElementById('activites').classList.remove('hidden');
+
+            const boutonActivites = document.getElementById('boutonActivites');
+            boutonActivites.classList.add("bg-c1", "text-c3");
+            boutonActivites.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonCompte = document.getElementById('boutonCompte');
+            boutonCompte.classList.remove("bg-c1", "text-c3");
+            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: succesMessage,
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('formulaireModifierActiviteValide');
+    @endphp
+@endif
+
+
+
+@if (session('formulaireModifierActiviteStatutValide') === 'true')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('successModifierStatutActivite') }}";
+            document.getElementById('lieux').classList.add('hidden');
+            document.getElementById('compte').classList.add('hidden');
+            document.getElementById('activites').classList.remove('hidden');
+
+            const boutonActivites = document.getElementById('boutonActivites');
+            boutonActivites.classList.add("bg-c1", "text-c3");
+            boutonActivites.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonCompte = document.getElementById('boutonCompte');
+            boutonCompte.classList.remove("bg-c1", "text-c3");
+            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: succesMessage,
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('formulaireModifierActiviteStatutValide');
+    @endphp
+@endif
+
 
 @if (session('formulaireModifierLieuStatutValide') === 'true')
     <script>

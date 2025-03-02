@@ -37,6 +37,15 @@
                             class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             {{ __('aPropos') }}
                         </a>
+                        @auth
+
+                            <a href="{{ route('usagerLieux.afficher') }}"
+                                class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                                {{ __('compte') }}
+                            </a>
+
+                        @endauth
+
                         @role(['Admin'])
                             <a href="{{ route('admin') }}"
                                 class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
@@ -130,12 +139,12 @@
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full "> <span
                             class="iconify size-10 " data-icon="mdi:about"
                             data-inline="false"></span>{{ __('aPropos') }}</a>
-                    @role(['Admin', 'Utilisateur', 'Gestionnaire'])
+                    @auth
                         <a href="{{ route('usagerLieux.afficher') }}"
-                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                                class="iconify size-10 " data-icon="mdi:user"
+                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                            <span class="iconify size-10 " data-icon="mdi:user"
                                 data-inline="false"></span>{{ __('compte') }}</a>
-                    @endrole
+                    @endauth
                     @role(['Admin'])
                         <a href="{{ route('admin') }}"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
@@ -180,7 +189,15 @@
                                 data-inline="false"></span>{{ __('connexion') }}</a>
 
                     @endauth
-
+                    @if (session()->has('deconnexionSucces'))
+                        <script>
+                            window.translations = {
+                                deconnexionMessage: @json(__('deconnexionMessage'))
+                            };
+                        </script>
+                        <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
+                        @php session()->forget('deconnexionSucces'); @endphp
+                    @endif
                 </nav>
 
             </div>
@@ -207,8 +224,8 @@
     <script src="{{ asset('js/Accueil.js') }}"></script>
 @endsection
 
-<script src="{{ asset('js/usagers/Connexion.js') }}"></script>
-<script src="{{ asset('js/usagers/Inscription.js') }}"></script>
+<script src="{{ asset('js/usagers/usagers/Connexion.js') }}"></script>
+<script src="{{ asset('js/usagers/usagers/Inscription.js') }}"></script>
 <script>
     @auth
     document.addEventListener("DOMContentLoaded", function() {
@@ -220,3 +237,4 @@
     @endauth
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
