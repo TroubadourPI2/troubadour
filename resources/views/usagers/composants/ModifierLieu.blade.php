@@ -17,10 +17,7 @@
             <div class="flex items-center justify-between w-full mb-2 uppercase">
                 <h3 class="text-lg sm:text-2xl underline">{{ __('infoGenerales') }}</h3>
                 <div class="flex items-center gap-2">
-                    <!-- Texte dynamique -->
                     <span id="texteActif" class="text-lg font-semibold text-c1">{{ __('actif') }}</span>
-
-                    <!-- Toggle Switch -->
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="hidden" id="statutLieuCache" name="actif" value="0">
                         <input type="checkbox" id="boutonBascule" class="sr-only peer" checked>
