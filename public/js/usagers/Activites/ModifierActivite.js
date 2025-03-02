@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.getElementById('typeActiviteModif').value = activite.type_activite ? activite.type_activite.id : '';
                     if(document.getElementById('actifModif'))
                         document.getElementById('actifModif').checked = activite.actif === 1;
+                        mettreAJourLabelActifModif(document.getElementById('actifModif').checked)
                     const selectLieux = document.getElementById('lieuIdModif');
                     if(selectLieux && selectLieux.tomselect) {
                         selectLieux.tomselect.setValue(activite.lieux.map(lieu => lieu.id));
@@ -179,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('formulaireActiviteModif').setAttribute('action', `/compte/modifierActivites/${idActivite}`);
                     document.getElementById("afficherActivites").classList.add("hidden");
                     document.getElementById("modifierActivite").classList.remove("hidden");
+                    
                 })
                 .catch(erreur => {
                     console.error("Erreur lors de la récupération de l'activité :", erreur);
@@ -216,3 +218,12 @@ document.getElementById('photosModif').addEventListener('change', function() {
     
     mettreAJourMaxDesPositions();
 });
+
+function mettreAJourLabelActifModif(estActif) {
+    const labelActifModif = document.getElementById('labelActifModif');
+    labelActifModif.textContent = estActif ? Lang.get('Actif') : Lang.get('Inactif');
+}
+
+document.getElementById('actifModif').addEventListener('change',function(){
+    mettreAJourLabelActifModif(this.checked)
+})

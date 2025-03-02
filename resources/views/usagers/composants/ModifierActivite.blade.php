@@ -28,7 +28,7 @@
                             <div class="flex  w-full  ">
                             <h3 class="text-lg sm:text-2xl w-full mb-2 underline">{{ __('informationsGenerales') }}</h3>
                             <div class="items-center flex w-full justify-end gap-x-1.5">
-                                <label for="actifModif" class="cursor-pointer">ACTIF</label>
+                                <label for="actifModif" id="labelActifModif" class="cursor-pointer">ACTIF</label>
                             <label class="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" name="actif" id="actifModif" class="sr-only peer" {{ old('actif', isset($activiteChoisit) ? $activiteChoisit->actif : 0) ? 'checked' : '' }}>
                 <div class="w-11 h-6 bg-c3 rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-c1 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-c1 peer-checked:after:bg-white"></div>
@@ -211,5 +211,7 @@
             plugins: ['remove_button'],
             placeholder: Lang.get('strings.selectMultipleLieux')
         });
+        const checkboxActifModif = document.getElementById('actifModif');
     });
 </script>
+
