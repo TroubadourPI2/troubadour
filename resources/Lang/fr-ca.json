@@ -35,6 +35,7 @@
   "compte": "Compte",
   "lieux": "Lieux",
   "activites": "Activités",
+  "aucunLieu" : "Aucun lieu d'enregistré",
   "description" : "Description",
   "aucuneDescription" : "Aucune description",
   "coordonneesEtInfo" : "Coordonnées & informations",

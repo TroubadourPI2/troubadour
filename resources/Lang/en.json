@@ -34,6 +34,7 @@
   "compte": "Account",
   "lieux": "Locations",
   "activites": "Activities",
+  "aucunLieu" : "No locations saved",
   "description" : "Description",
   "aucuneDescription" : "No description",
   "coordonneesEtInfo" : "Contact details & information",

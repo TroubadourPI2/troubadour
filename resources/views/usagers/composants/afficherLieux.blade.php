@@ -6,7 +6,7 @@
         {{ __('ajouter') }}
     </button>
     @if ($lieuxUsager->isEmpty())
-        <div class="text-c1 text-2xl">Aucun lieu d"enregistré.</div>
+        <div class="text-c1 text-2xl">{{__('aucunLieu')}}.</div>
     @else
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
             @foreach ($lieuxUsager as $lieu)

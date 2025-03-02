@@ -156,7 +156,6 @@ class LieuxController extends Controller
     public function ModifierUnLieu(LieuRequest $request, string $id)
     {
         $lieu = Lieu::findOrFail($id);
-        Log::debug($request->actif);
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
