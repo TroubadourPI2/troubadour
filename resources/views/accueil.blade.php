@@ -181,11 +181,6 @@
 
                     @endauth
                     @if (session()->has('deconnexionSucces'))
-                        <script>
-                            window.translations = {
-                                deconnexionMessage: @json(__('deconnexionMessage'))
-                            };
-                        </script>
                         <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
                         @php session()->forget('deconnexionSucces'); @endphp
                     @endif
@@ -214,7 +209,20 @@
 
     <script src="{{ asset('js/Accueil.js') }}"></script>
 @endsection
-
+<script>
+    window.translations = {
+        deconnexionMessage: "{{ __('deconnexionMessage') }}",
+        titreConnexion : "{{ __('connexion') }}",
+        courriel: "{{ __('courriel') }}",
+        motDePasse : "{{ __('motDePasse') }}",
+        messageErreurConnexion : "{{ __('messageErreurConnexion') }}",
+        connexionMessage: "{{ __('connexionMessage') }}",
+        erreur : "{{ __('erreur') }}",
+        erreurConnexion : "{{ __('erreurConnexion') }}",
+        btnConfirmation: "{{ __('seConnecter') }}",
+        btnInscription : "{{ __('sInscrire') }}"
+    };
+</script>
 <script src="{{ asset('js/usagers/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/usagers/Inscription.js') }}"></script>
 <script>

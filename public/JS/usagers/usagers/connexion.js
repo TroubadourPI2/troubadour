@@ -12,22 +12,37 @@ ChargerCSSPersonnalise();
 function AfficherModalConnexion() {
     
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+   
+    const titreConnexion = window.translations.titreConnexion;
+    const btnConfirmation = window.translations.btnConfirmation;
+    const btnInscription = window.translations.btnInscription;
+    const courriel = window.translations.courriel;
+    const motDePasse = window.translations.motDePasse;
+    const messageErreurConnexion = window.translations.messageErreurConnexion;
+    const connexionMessage = window.translations.connexionMessage;
+    const erreur = window.translations.erreur;
+    const erreurConnexion = window.translations.erreurConnexion;
 
     Swal.fire({
-        title: "Connexion",
+        title: titreConnexion,
         html: `
-            
-            <div class="flex flex-col items-center space-y-2">
-                <input id="courriel" type="email" class="swal2-input w-full p-3 border rounded-lg bg-white text-c1" placeholder="Courriel">
-                <input id="password" type="password" class="swal2-input w-full p-3 border rounded-lg bg-white text-c1" placeholder="Mot de passe">
+            <div class="flex flex-col items-center w-full space-y-2">
+                <div class="w-full text-left">
+                    <label for="courriel" class="text-lg font-bold text-c1 uppercase font-barlow">${courriel}</label>
+                </div>
+                <input id="courriel" type="email" class="swal2-input w-full p-3 border rounded-lg bg-white text-c1" >
+
+                <div class="w-full text-left">
+                    <label for="password" class="text-lg font-bold text-c1 uppercase font-barlow">${motDePasse}</label>
+                </div>
+                <input id="password" type="password" class="swal2-input w-full p-3 border rounded-lg bg-white text-c1">
             </div>
-            
         `,
         focusConfirm: false,
         showCancelButton: false,
         showDenyButton: true,
-        confirmButtonText: "Se connecter",
-        denyButtonText: "S'inscrire",
+        confirmButtonText: btnConfirmation,
+        denyButtonText: btnInscription,
         customClass: {
             popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
             title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
@@ -39,7 +54,7 @@ function AfficherModalConnexion() {
             const password = document.getElementById("password").value;
 
             if (!courriel || !password) {
-                Swal.showValidationMessage("Veuillez remplir tous les champs.");
+                Swal.showValidationMessage(messageErreurConnexion);
                 return false;
             }
 
@@ -74,7 +89,7 @@ function AfficherModalConnexion() {
 
                     Toast.fire({
                         icon: "success",
-                        title: "Connexion réussie!",
+                        title: connexionMessage,
                         customClass: {
                             title: "text-c1 font-bold",
                             timerProgressBar: "color-c1",
@@ -84,14 +99,14 @@ function AfficherModalConnexion() {
                     });
 
                 } else {
-                    Swal.fire("Erreur", "Courriel et/ou le mot de passe est invalide.", "error").then(() => {
+                    Swal.fire(erreur, erreurConnexion, "error").then(() => {
                         AfficherModalConnexion(); 
                     });
                 }
             })
             .catch(error => {
                 console.error("Erreur Axios :", error); 
-                Swal.fire("Erreur", "Courriel et/ou le mot de passe est invalide. ", "error").then(() => {
+                Swal.fire(erreur, erreurConnexion, "error").then(() => {
                     AfficherModalConnexion(); 
                 });
             });

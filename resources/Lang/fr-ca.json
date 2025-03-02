@@ -79,7 +79,9 @@
 
   "seConnecter":"Se connecter",
   "sInscrire":"S'inscrire",
- 
+  "messageErreurConnexion":"Veuillez remplir tous les champs.",
+  "erreurConnexion":"Courriel et/ou le mot de passe est invalide.",
+  "connexionMessage":"Connexion réussie!",
   "deconnexionMessage":"Déconnexion réussie!",
 
   "prenomNom" : "Prénom et nom",
@@ -122,10 +124,10 @@
   "positionNouvelleImage": "Position des nouvelles images",
   "positionNouvelleImageIndiquer":"Pour chaque nouvelle image sélectionnée, indiquez sa position. ",
   "actif":"Actif",
-   "inactif":"Inactif",
-   "activerActivite": "Voulez-vous rendre actif l'activité ",
-   "desactiverActivite":"Voulez-vous rendre inactif l'activité ",
-   "successModifierStatutActivite" : "Modification du statut de l'activité avec succès"
+  "inactif":"Inactif",
+  "activerActivite": "Voulez-vous rendre actif l'activité ",
+  "desactiverActivite":"Voulez-vous rendre inactif l'activité ",
+  "successModifierStatutActivite" : "Modification du statut de l'activité avec succès"
 
 
 }

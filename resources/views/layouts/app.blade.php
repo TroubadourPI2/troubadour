@@ -251,7 +251,20 @@
         </div>
     </footer>
 </body>
-
+<script>
+    window.translations = {
+        deconnexionMessage: "{{ __('deconnexionMessage') }}",
+        titreConnexion : "{{ __('connexion') }}",
+        courriel: "{{ __('courriel') }}",
+        motDePasse : "{{ __('motDePasse') }}",
+        messageErreurConnexion : "{{ __('messageErreurConnexion') }}",
+        connexionMessage: "{{ __('connexionMessage') }}",
+        erreur : "{{ __('erreur') }}",
+        erreurConnexion : "{{ __('erreurConnexion') }}",
+        btnConfirmation: "{{ __('seConnecter') }}",
+        btnInscription : "{{ __('sInscrire') }}"
+    };
+</script>
 <script defer src="{{ asset('js/translations.js') }}"></script>
 <script src="{{ asset('js/usagers/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/usagers/Inscription.js') }}"></script>
