@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="space-y-4">
-                    <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline">{{ __('courrielMDP') }}</h1>
+                    <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline">{{ __('courrielMotDePasse') }}</h1>
                     <div>
                         <label for=""
                             class="text-lg font-bold text-c1 uppercase font-barlow">{{ __('courriel') }}</label>
@@ -48,21 +48,21 @@
 
                     <div class="flex justify-end">
                         <button type="button" id="togglePasswordBtn" class="text-lg hover:White text-c1 font-barlow">
-                            {{ __('modifierMDP') }}
+                            {{ __('modifierMotDePasse') }}
                         </button>
                     </div>
 
                     <div class="flex flex-col sm:flex-row sm:space-x-2 space-y-4 sm:space-y-0">
                         <div class="w-full">
                             <label for=""
-                                class="text-lg font-bold text-c1 uppercase font-barlow">{{ __('mDP') }}</label>
+                                class="text-lg font-bold text-c1 uppercase font-barlow">{{ __('motDePasse') }}</label>
                             <input id="password" type="password"
                                 class="w-full p-3 border rounded-lg bg-light-grey text-c1" name="password"
                                  disabled>
                         </div>
                         <div class="w-full">
                             <label for=""
-                                class="text-lg font-bold text-c1 uppercase font-barlow">{{ __('confirmationMDP') }}</label>
+                                class="text-lg font-bold text-c1 uppercase font-barlow">{{ __('confirmationMotDePasse') }}</label>
                             <input id="passwordV" type="password"
                                 class="w-full p-3 border rounded-lg bg-light-grey text-c1" name="passwordConfirmation"
                                  disabled>
@@ -124,7 +124,7 @@
             passwordField.style.backgroundColor = '#fff';
             passwordVField.style.backgroundColor = '#fff';
         } else {
-            this.textContent = '{{ __('modifierMDP') }}';
+            this.textContent = '{{ __('modifierMotDePasse') }}';
             passwordField.style.backgroundColor = '#f0f0f0';
             passwordVField.style.backgroundColor = '#f0f0f0';
         }

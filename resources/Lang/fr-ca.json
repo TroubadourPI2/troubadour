@@ -85,13 +85,13 @@
   "prenom": "Prénom",
   "nomF": "Nom",
   "courriel":"Courriel",
-  "courrielMDP" : "Courriel & mot de passe",
+  "courrielMotDePasse" : "Courriel & mot de passe",
   "role": "Rôle",
   "admin":"Administrateur",
   "gestion":"Gestionnaire",
   "utilisateur":"Utilisateur",
-  "mDP":"Mot de passe",
-  "confirmationMDP":"Confirmation du mot de passe",
-  "modifierMDP":"Modifier votre mot de passe",
+  "motDePasse":"Mot de passe",
+  "confirmationMotDePasse":"Confirmation du mot de passe",
+  "modifierMotDePasse":"Modifier votre mot de passe",
   "supLeCompte":"Supprimer votre compte"
 }

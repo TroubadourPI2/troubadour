@@ -111,6 +111,7 @@
 
 @if (session('formulaireModifierUValide'))
     <script>
+        const succesMessage = "{{ __('succesModifier') }}";
         function ModifUsager() {
             window.onload = function() {
                 const Toast = Swal.mixin({
@@ -119,12 +120,12 @@
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
-                    
+
                 });
 
                 Toast.fire({
                     icon: "success",
-                    title: "Modification effectuée avec succès!",
+                    title: succesMessage,
                     customClass: {
                         title: "text-c1 font-bold",
                         timerProgressBar: "color-c1",
@@ -141,7 +142,11 @@
         session()->forget('erreurModifierUsager');
     @endphp
 @endif
-
+@if (session('erreurModifierUsager'))
+    @php
+        session()->forget('erreurModifierUsager'); 
+    @endphp
+@endif
 @if (session('formulaireAjoutActiviteValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {

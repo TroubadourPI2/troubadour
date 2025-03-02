@@ -84,14 +84,15 @@
   "prenom": "First name",
   "nomF": "Last name",
   "courriel":"Email",
-  "courrielMDP" : "Email & password",
+  "courrielMotDePasse" : "Email & password",
   "role": "Role",
   "admin":"Administrator",
   "gestion":"Manager",
   "utilisateur":"User",
-  "mDP":"Password",
-  "confirmationMDP":"Password Confirmation",
-  "modifierMDP":"Modify your password",
-  "supLeCompte":"Delete Account"
+  "motDePasse":"Password",
+  "confirmationMotDePasse":"Password Confirmation",
+  "modifierMotDePasse":"Modify your password",
+  "supLeCompte":"Delete Account",
+  "":""
 
 }
