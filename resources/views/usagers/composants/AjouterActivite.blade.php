@@ -131,7 +131,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg  ">
                     <!-- Date de début -->
                     <div class="sm:col-span-1">
-                        <div class="flex flex-col w-1/2">
+                        <div class="flex flex-col w-full md:w-1/2">
                             <label for="dateDebut">{{ __('dateDebut') }}</label>
                             <input type="date" id="dateDebut" name="dateDebut"
                                 value="{{ old('dateDebut', $aujourdhui) }}" min="{{ $aujourdhui }}"
@@ -145,7 +145,7 @@
                     </div>
                     <!-- Date de fin -->
                     <div class="sm:col-span-1">
-                        <div class="flex flex-col w-1/2">
+                        <div class="flex flex-col  w-full md:w-1/2">
                             <label for="dateFin">{{ __('dateFin') }}</label>
                             <input type="date" id="dateFin" name="dateFin"
                                 value="{{ old('dateFin', $aujourdhui) }}" min="{{ $aujourdhui }}"
