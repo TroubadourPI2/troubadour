@@ -80,6 +80,8 @@
   "sInscrire":"Sign in",
 
 
+  
+
   "prenomNom" : "First Name & Last Name",
   "prenom": "First name",
   "nomF": "Last name",
@@ -93,6 +95,11 @@
   "confirmationMotDePasse":"Password Confirmation",
   "modifierMotDePasse":"Modify your password",
   "supLeCompte":"Delete Account",
-  "":""
+
+  "messageSupTitre": "Are you sure?",
+  "messageSup": "You will not be able to go back!",
+  "messageSup2Titre": "Deleted!",
+  "messageSup2": "Your account has been deleted.",
+  "boutonOuiSup": "Yes, delete it!"
 
 }

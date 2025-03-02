@@ -129,21 +129,28 @@
             passwordVField.style.backgroundColor = '#f0f0f0';
         }
     });
+    const suppressionTitre = "{{ __('messageSupTitre') }}";
+    const suppressionMessage = "{{ __('messageSup') }}";
+    const suppressionTitre2 = "{{ __('messageSup2Titre') }}";
+    const suppressionMessage2 = "{{ __('messageSup2') }}";
+    const btn1 = "{{ __('boutonOuiSup') }}";
+    const btn2 = "{{ __('annuler') }}";
 
     function supprimerUsager() {
         Swal.fire({
-            title: "Etes-vous sûr?",
-            text: "Vous ne pourrez pas revenir en arrière!",
+            title: suppressionTitre,
+            text: suppressionMessage,
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Oui, supprime-le!"
+            confirmButtonText: btn1,
+            cancelButtonText: btn2
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Supprimé!",
-                    text: "Votre compte a été supprimé.",
+                    title: suppressionTitre2,
+                    text: suppressionMessage2,
                     icon: "success"
                 });
             }

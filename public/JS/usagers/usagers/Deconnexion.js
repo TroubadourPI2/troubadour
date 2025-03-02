@@ -10,6 +10,8 @@ function ChargerCSSPersonnalise() {
 
 ChargerCSSPersonnalise();
 
+const test =   "{{ __('messageSupTitre') }}";
+
 function AfficherModalDeconnexion() {
 
     const Toast = Swal.mixin({
