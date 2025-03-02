@@ -16,7 +16,7 @@
             <!-- Informations générales du lieu -->
             <div class="flex items-center justify-between w-full mb-2 uppercase">
                 <h3 class="text-lg sm:text-2xl underline">{{ __('infoGenerales') }}</h3>
-               
+
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">

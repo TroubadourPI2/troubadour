@@ -128,9 +128,9 @@
 
                     @auth
                         <a href="{{ route('usagerLieux.afficher') }}"
-                                class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                                <span class="iconify size-10 " data-icon="mdi:user"
-                                    data-inline="false"></span>{{ __('compte') }}</a>
+                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                            <span class="iconify size-10 " data-icon="mdi:user"
+                                data-inline="false"></span>{{ __('compte') }}</a>
                     @endauth
                     @role(['Admin'])
                         <a href="{{ route('admin') }}"
@@ -283,4 +283,3 @@
 </script>
 
 </html>
-

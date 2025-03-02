@@ -110,6 +110,7 @@
 @if (session('formulaireModifierUValide'))
     <script>
         const succesMessage = "{{ __('succesModifier') }}";
+
         function ModifUsager() {
             window.onload = function() {
                 const Toast = Swal.mixin({
@@ -142,7 +143,7 @@
 @endif
 @if (session('erreurModifierUsager'))
     @php
-        session()->forget('erreurModifierUsager'); 
+        session()->forget('erreurModifierUsager');
     @endphp
 @endif
 @if (session('formulaireAjoutActiviteValide') === 'true')
@@ -223,8 +224,6 @@
     @endphp
 @endif
 
-
-
 @if (session('formulaireModifierActiviteStatutValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -264,10 +263,9 @@
     @endphp
 @endif
 
-
 @if (session('formulaireModifierLieuStatutValide') === 'true')
     <script>
-          document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const succesMessage = "{{ __('succesModifier') }}";
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('compte').classList.add('hidden');
