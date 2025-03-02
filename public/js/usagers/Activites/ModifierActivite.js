@@ -168,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         checkbox.checked = activite.actif === 1;
                         hidden.value = activite.actif;  
                         mettreAJourLabelActifModif(checkbox.checked);
+                        console.log(activite.actif)
                         console.log(checkbox.value);
                     }
                     const selectLieux = document.getElementById('lieuIdModif');

@@ -28,7 +28,7 @@
                             <div class="flex  w-full  ">
                             <h3 class="text-lg sm:text-2xl w-full mb-2 underline">{{ __('informationsGenerales') }}</h3>
                             <div class="items-center flex w-full justify-end gap-x-1.5">
-                                <label for="actifModif" id="labelActifModif" class="cursor-pointer">ACTIF</label>
+                                <label for="actifCheck" id="labelActifModif" class="cursor-pointer">ACTIF</label>
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="hidden" id="actifHidden" name="actif" value="{{ old('actif', isset($activiteChoisit) ? $activiteChoisit->actif : 0) }}">
                           
