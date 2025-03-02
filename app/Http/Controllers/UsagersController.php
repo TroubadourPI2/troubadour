@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Requests\UsagerRequest;
 use App\Models\Usager;
 use App\Models\Lieu;
 use App\Models\Ville;
@@ -37,10 +35,11 @@ class UsagersController extends Controller
     public function Deconnexion (){
         Auth::logout();
         session()->flush();
-        session()->put('deconnexionSucces', 'Déconnexion réussie!');
         return back();
     }
     
+
+
     public function ObtenirDonneesCompte(){
         $usager = Auth::user(); 
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)->get();
@@ -48,7 +47,7 @@ class UsagersController extends Controller
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::all();
-        return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
+        return View('usagers.Afficher', compact('lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)
@@ -60,8 +59,6 @@ class UsagersController extends Controller
         $quartiers = Quartier::where('ville_id', $villeId)->get();
         return response()->json($quartiers);
     }
-
-    
 
 
     /**
@@ -95,37 +92,14 @@ class UsagersController extends Controller
     {
         //
     }
-    
-    public function ModificationUsager(UsagerRequest $request, Usager $usager){
-        try{
 
-            if (auth()->user()->id !== $usager->id && auth()->user()->role_id !== 1) {
-                return redirect()->route('usagerLieux.afficher')
-                    ->withErrors(['Vous n\'êtes pas autorisé à modifier cet utilisateur.']);
-            }
-
-            $usager->prenom = $request->prenom;
-            $usager->nom = $request->nom;
-            $usager->courriel = $request->courriel;
-
-            if ($request->filled('password')) {
-                $usager->password = bcrypt($request->password);
-            }
-            
-    
-            $usager->save();
-            session()->flash('formulaireModifierUValide', 'true');
-            return redirect()->route('usagerLieux.afficher')
-                ->with('message', "Modification de " . $usager->nom . " réussie!");
-        }
-        catch(\Throwable $e){
-            Log::debug($e);
-            return redirect()->route('usagerLieux.afficher')
-                ->withErrors(['La modification n\'a pas fonctionné.']);
-        }
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
     }
-    
-
 
     /**
      * Update the specified resource in storage.
