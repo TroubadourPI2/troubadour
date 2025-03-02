@@ -62,7 +62,7 @@
   "rue" : "Street",
   "codePostal" : "Postal code",
   "modifierLieu" : "Edit a location",
-  "actif" : "Actif",
+  "actif" : "Active",
   "inactif" : "Inactive",
 
   "succesAjout" : "Added successfully!",

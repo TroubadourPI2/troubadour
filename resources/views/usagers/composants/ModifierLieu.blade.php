@@ -9,21 +9,21 @@
         action="{{ route('usagerLieux.modifierLieu', ['id' => 1]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="font-barlow text-c1 font-semibold mb-3">
+        <div class="font-barlow text-c1 font-semibold mb-3 uppercase">
 
             <h2 class="uppercase text-center text-xl sm:text-3xl">{{ __('modifierLieu') }}</h2>
 
             <!-- Informations générales du lieu -->
-            <div class="flex items-center justify-between w-full mb-2">
-                <h3 class="text-lg sm:text-2xl  underline">{{ __('infoGenerales') }}</h3>
+            <div class="flex items-center justify-between w-full mb-2 uppercase">
+                <h3 class="text-lg sm:text-2xl underline">{{ __('infoGenerales') }}</h3>
                 <div class="flex items-center gap-2">
                     <!-- Texte dynamique -->
-                    <span id="texteActif" class="text-lg font-semibold text-c1 uppercase">{{ __('actif') }}</span>
+                    <span id="texteActif" class="text-lg font-semibold text-c1">{{ __('actif') }}</span>
 
                     <!-- Toggle Switch -->
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="hidden" id="statutLieuCache" name="actif" value="0">
-                        <input type="checkbox" id="boutonBascule" class="sr-only peer">
+                        <input type="checkbox" id="boutonBascule" class="sr-only peer" checked>
 
                         <div class="w-11 h-6 bg-c3 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full 
                 rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] 

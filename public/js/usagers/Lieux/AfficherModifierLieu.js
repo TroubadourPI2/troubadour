@@ -50,10 +50,10 @@ function AjouterModifierListeners() {
 
     boutonBascule.addEventListener('change', function () {
         if (boutonBascule.checked) {
-            texteActif.textContent = Lang.get('actif');
+            texteActif.textContent = Lang.get('strings.actif');
             statutLieuCache.value = 1;
         } else {
-            texteActif.textContent = Lang.get('inactif'); 
+            texteActif.textContent = Lang.get('strings.inactif'); 
             statutLieuCache.value = 0;
         }
         console.log(statutLieuCache.value)
@@ -103,10 +103,10 @@ async function ObtenirLieu(lieuId) {
         boutonBascule.checked = lieu.actif === 1;
 
         if (lieu.actif === 1) {
-            texteActif.textContent = Lang.get('actif');
+            texteActif.textContent = Lang.get('strings.actif');
             statutLieuCache.value = 1;
         } else {
-            texteActif.textContent = Lang.get('inactif'); 
+            texteActif.textContent = Lang.get('strings.inactif'); 
             statutLieuCache.value = 0;
         }
 

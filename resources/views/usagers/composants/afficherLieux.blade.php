@@ -11,11 +11,11 @@
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
             @foreach ($lieuxUsager as $lieu)
                 <!-- Carte lieu pour mobile -->
-                <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg">
+                <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg ">
                     <div
-                        class="carteLieuxMobile relative w-full min-h-[50vh] mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl">
+                        class="carteLieuxMobile relative w-full min-h-[50vh] mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl ">
                         <div
-                            class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden]">
+                            class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden] {{ !$lieu->actif ? 'bg-[#B0B7B7]' : '' }}">
                             <img class="object-cover w-full h-72 rounded-t-lg" src="{{ $lieu->photo_lieu_url }}"
                                 alt="{{ $lieu->nomEtablissement }}">
                             <h5 class="text-xl font-bold uppercase p-2 text-center h-full flex items-center">
@@ -23,7 +23,7 @@
                             </h5>
                         </div>
                         <div
-                            class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                            class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden] ">
                             <div class="flex flex-col justify-between h-full">
                                 <div class="mb-2">
                                     <div class="uppercase underline text-base font-semibold">{{ __('description') }}
@@ -71,7 +71,7 @@
                 </div>
                 <!-- Carte lieu pour web/tablette -->
                 <div
-                    class="carteWeb flex flex-col sm:flex-row text-c1 rounded-lg shadow-md bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[65vh] hover:shadow-2xl transition">
+                    class="carteWeb flex flex-col sm:flex-row text-c1 rounded-lg shadow-md bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[65vh] hover:shadow-2xl transition  {{ !$lieu->actif ? 'bg-[#B0B7B7]' : '' }}">
                     <div class="w-full sm:w-1/2 rounded-l-lg h-full p-4">
                         <img class="object-cover w-full h-full rounded" src="{{ $lieu->photo_lieu_url }}"
                             alt="{{ $lieu->nomEtablissement }}">
