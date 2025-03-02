@@ -59,7 +59,7 @@ class ActivitesController extends Controller
             }
             session()->flash('formulaireAjoutActiviteValide', 'true');
             return redirect()->route('usagerLieux.afficher')
-                ->with('success', 'Activité ajoutée avec succès !');
+                ->with('success');
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('error', "Erreur lors de l'ajout de l'activité : " . $e->getMessage());
@@ -85,7 +85,7 @@ class ActivitesController extends Controller
  
         $activite->delete();
 
-        return response()->json(['success' => true, 'message' => 'Activité supprimée avec succès.']);
+        return response()->json(['success' => true,]);
     } catch (\Exception $e) {
         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
     }
@@ -149,7 +149,7 @@ class ActivitesController extends Controller
 
             session()->flash('formulaireModifierActiviteValide', 'true');
             return redirect()->route('usagerLieux.afficher')
-                ->with('success', 'Activité modifiée avec succès !');
+                ->with('success',);
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('error', "Erreur lors de la modification de l'activité : " . $e->getMessage());

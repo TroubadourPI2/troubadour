@@ -41,7 +41,7 @@ class ActiviteRequest extends FormRequest
         ];
     
        
-        if ($this->route()->getName() === 'usagerActivites.modifierActivite') {
+        if ($this->route()->getName() === 'usagerActivites.modifierStatutActivite') {
             $rules['actif'] = 'required|boolean';
         }
     

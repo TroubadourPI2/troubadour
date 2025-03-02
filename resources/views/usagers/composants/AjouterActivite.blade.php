@@ -21,7 +21,7 @@
             
             <!-- Informations générales -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-3">
-                <h3 class="text-lg sm:text-2xl mb-2 underline">{{ __('informationsGenerales') }}</h3>
+                <h3 class="text-lg sm:text-2xl mb-2 underline">{{ __('infoGenerales') }}</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <div class="sm:col-span-2">
                         <label for="nomActivite" class="block">    {{ __('nom') }}<span class="text-c5 ml-2">*</span></label>
@@ -40,7 +40,7 @@
                                 class="text-c5 ml-2">*</span></label>
                         <select name="typeActivite_id" id="typeActivite_id"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
-                            <option value="">{{ __('SelectionnerType') }}</option>
+                            <option value="">{{ __('selectionnerType') }}</option>
                             @foreach ($typesActivite as $type)
                                 <option value="{{ $type->id }}"
                                     {{ old('typeActivite_id') == $type->id ? 'selected' : '' }}>

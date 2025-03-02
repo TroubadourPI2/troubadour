@@ -85,8 +85,6 @@
   "typeActivite": "Activity type",
     "positionImages": "Image positions",
     "indiquerPosition": "For each selected image, indicate its position.",
-    "informationsGenerales": "General information",
-    "SelectionnerType": "Select a type",
     "dateDebut": "Start date",
     "dateFin": "End date",
     "positionPour": "Position for",

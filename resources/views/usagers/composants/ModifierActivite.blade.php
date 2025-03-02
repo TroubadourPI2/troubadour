@@ -26,7 +26,7 @@
             <!-- Informations générales -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-3">
                             <div class="flex flex-col sm:flex-row w-full  ">
-                            <h3 class="text-lg sm:text-2xl w-full mb-2 underline">{{ __('informationsGenerales') }}</h3>
+                            <h3 class="text-lg sm:text-2xl w-full mb-2 underline">{{ __('infoGenerales') }}</h3>
                             <div class="items-center flex w-full justify-end gap-x-1.5">
                                 <label for="actifCheck" id="labelActifModif" class="cursor-pointer">ACTIF</label>
                             <label class="relative inline-flex items-center cursor-pointer">
@@ -67,7 +67,7 @@
                                 class="text-c5 ml-2">*</span></label>
                         <select name="typeActivite_id" id="typeActiviteModif"
                             class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
-                            <option value="">{{ __('SelectionnerType') }}</option>
+                            <option value="">{{ __('selectionnerType') }}</option>
                             @foreach ($typesActivite as $type)
                                 <option value="{{ $type->id }}"
                                     {{ old('typeActivite_id') == $type->id ? 'selected' : '' }}>

@@ -133,7 +133,7 @@ document.getElementById('formulaireActiviteModif').addEventListener('submit', fu
 
         Swal.fire({
             icon: 'error',
-            title: 'Attention',
+            title: Lang.get('strings.attention'),
             text: message
         });
     }
