@@ -75,6 +75,34 @@
 
 
   "droitsReserves" : "All rights reserved." ,
+
+  
+  "seConnecter":"Log in",
+  "sInscrire":"Sign in",
+
+  "deconnexionMessage": "Logout successful!",
+
+
+  "prenomNom" : "First Name & Last Name",
+  "prenom": "First name",
+  "nomF": "Last name",
+  "courriel":"Email",
+  "courrielMotDePasse" : "Email & password",
+  "role": "Role",
+  "admin":"Administrator",
+  "gestion":"Manager",
+  "utilisateur":"User",
+  "motDePasse":"Password",
+  "confirmationMotDePasse":"Password Confirmation",
+  "modifierMotDePasse":"Modify your password",
+  "supLeCompte":"Delete Account",
+
+  "messageSupTitre": "Are you sure?",
+  "messageSup": "You will not be able to go back!",
+  "messageSup2Titre": "Deleted!",
+  "messageSup2": "Your account has been deleted.",
+  "boutonOuiSup": "Yes, delete it!"
+
   "tousLesLieux": " All locations",
   "tousLesTypesActivites" : "All types of activities",
   "rechercherNom": "Search by name",
@@ -101,6 +129,5 @@
     "successModifierStatutActivite": "Activity status updated successfully"
 
 
-  
-  
+ 
 }
