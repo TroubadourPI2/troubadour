@@ -33,7 +33,8 @@
                 </div>
 
                 <div class="space-y-4">
-                    <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline">{{ __('courrielMotDePasse') }}</h1>
+                    <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline">
+                        {{ __('courrielMotDePasse') }}</h1>
                     <div>
                         <label for=""
                             class="text-lg font-bold text-c1 uppercase font-barlow">{{ __('courriel') }}</label>
@@ -57,15 +58,14 @@
                             <label for=""
                                 class="text-lg font-bold text-c1 uppercase font-barlow">{{ __('motDePasse') }}</label>
                             <input id="password" type="password"
-                                class="w-full p-3 border rounded-lg bg-light-grey text-c1" name="password"
-                                 disabled>
+                                class="w-full p-3 border rounded-lg bg-light-grey text-c1" name="password" disabled>
                         </div>
                         <div class="w-full">
                             <label for=""
                                 class="text-lg font-bold text-c1 uppercase font-barlow">{{ __('confirmationMotDePasse') }}</label>
                             <input id="passwordV" type="password"
                                 class="w-full p-3 border rounded-lg bg-light-grey text-c1" name="passwordConfirmation"
-                                 disabled>
+                                disabled>
                         </div>
 
                     </div>
@@ -148,11 +148,40 @@
             cancelButtonText: btn2
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                    title: suppressionTitre2,
-                    text: suppressionMessage2,
-                    icon: "success"
-                });
+                // Perform the DELETE request using Axios
+                axios.patch("{{ route('usagers.suppression', $usager->id) }}", {}, {
+                        headers: {
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                'content')
+                        }
+                    })
+                    .then(response => {
+                        // Handle success response
+                        if (response.data.success) {
+                            Swal.fire({
+                                title: suppressionTitre2,
+                                text: suppressionMessage2,
+                                icon: "success"
+                            }).then(() => {
+                                // Redirect to the login page or home page after success
+                                window.location.href = '/';
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Erreur",
+                                text: "Une erreur s'est produite lors de la désactivation.",
+                                icon: "error"
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        // Handle error response
+                        Swal.fire({
+                            title: "Erreur",
+                            text: "Une erreur s'est produite.",
+                            icon: "error"
+                        });
+                    });
             }
         });
     }
