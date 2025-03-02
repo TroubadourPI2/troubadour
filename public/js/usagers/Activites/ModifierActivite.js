@@ -162,15 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if(document.getElementById('typeActiviteModif'))
                         document.getElementById('typeActiviteModif').value = activite.type_activite ? activite.type_activite.id : '';
-                    if(document.getElementById('actifCheck')) {
-                        const checkbox = document.getElementById('actifCheck');
-                        const hidden = document.getElementById('actifHidden');
-                        checkbox.checked = activite.actif === 1;
-                        hidden.value = activite.actif;  
-                        mettreAJourLabelActifModif(checkbox.checked);
-                        console.log(activite.actif)
-                        console.log(checkbox.value);
-                    }
+                   
                     const selectLieux = document.getElementById('lieuIdModif');
                     if(selectLieux && selectLieux.tomselect) {
                         selectLieux.tomselect.setValue(activite.lieux.map(lieu => lieu.id));
@@ -225,24 +217,4 @@ document.getElementById('photosModif').addEventListener('change', function() {
     mettreAJourMaxDesPositions();
 });
 
-function mettreAJourLabelActifModif(estActif) {
-    const labelActifModif = document.getElementById('labelActifModif');
-    labelActifModif.textContent = estActif ? Lang.get('strings.actif') : Lang.get('strings.inactif');
-}
-
-const checkboxActif = document.getElementById('actifCheck');
-const hiddenActif = document.getElementById('actifHidden');
-
-
-console.log('Checkbox checked (avant mise à jour) :', checkboxActif.checked);
-
-
-
-console.log('Hidden actif initial:', hiddenActif.value);
-
-checkboxActif.addEventListener('change', function() {
-    hiddenActif.value = this.checked ? 1 : 0;
-    mettreAJourLabelActifModif(this.checked);
-    console.log('Valeur hidden d\'actif après changement:', hiddenActif.value);
-});
 

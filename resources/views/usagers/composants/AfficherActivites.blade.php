@@ -6,10 +6,10 @@
                 class="flex items-center text-c1 font-barlow text-sm sm:text-xl border-c1 border-2 rounded-full w-fit max-w-64 text-c1my-3 px-4 uppercase  sm:hover:bg-c3 sm:hover:border-c3 transition">
                 <span class="iconify text-c1 sm:size-8 size-4 sm:mr-2 font-semibold" data-icon="ion:add"
                     data-inline="false"></span>
-                    {{ __('ajouter') }}
+                {{ __('ajouter') }}
             </button>
             <select id="filtreLieu" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
-                <option value="">  {{ __('tousLesLieux') }}</option>
+                <option value=""> {{ __('tousLesLieux') }}</option>
                 @foreach ($lieuxUsager as $lieu)
                     <option value="{{ $lieu->id }}">{{ $lieu->nomEtablissement }}</option>
                 @endforeach
@@ -22,12 +22,14 @@
             </select>
             <input type="text" id="recherche" placeholder= "{{ __('rechercherNom') }}"
                 class="w-full rounded-full border-2 justify-end border-c1 p-2" />
-                <div class="flex items-center gap-x-1.5">
+            <div class="flex items-center gap-x-1.5">
                 <label for="actif" id="labelActif" class="cursor-pointer">ACTIF</label>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox"  id="actifFiltre" class="sr-only peer" >
-                <div class="w-11 h-6 bg-c3 rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-c1 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-c1 peer-checked:after:bg-white"></div>
-            </label>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="actifFiltre" class="sr-only peer">
+                    <div
+                        class="w-11 h-6 bg-c3 rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-c1 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-c1 peer-checked:after:bg-white">
+                    </div>
+                </label>
             </div>
         </div>
     </div>
@@ -36,7 +38,7 @@
         @foreach ($activites as $activite)
             <div class="activite-carte w-full h-96 flex bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden scale-90 ease-in-out duration-300 border hover:border-2 hover:scale-100 hover:border-c1"
                 data-nom="{{ strtolower($activite->nom) }}" data-lieu-ids="{{ $activite->lieu_ids }}"
-                data-type="{{ $activite->typeActivite->id }}"     data-actif="{{ $activite->actif }}"
+                data-type="{{ $activite->typeActivite->id }}" data-actif="{{ $activite->actif }}"
                 x-data='{
                      current: 0,
                      images: {!! $activite->photos_json !!},
@@ -67,12 +69,28 @@
                             {{ $activite->nom }}
                         </span>
                         <div class="flex gap-x-2 px-4  ">
-                            <button class="boutonSupprimerActivite text-red-500 transform transition duration-300 hover:scale-110" data-activite-id="{{ $activite->id }}"
-                                data-nomActivite="{{ $activite->nom }}"><span class="iconify size-6"
-                                    data-icon="ion:trash-outline" data-inline="false"></span></button>
-                            <button class="boutonModifierActivite text-c3  transform transition duration-300 hover:scale-110" data-activite-id="{{ $activite->id }}"
-                             
-                               ><span class="iconify size-6 "
+                            <label for="actifCheck-{{ $activite->id }}" id="labelActifModif-{{ $activite->id }}" class="cursor-pointer text-c3">ACTIVE</label>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <!-- Champ caché pour envoyer la valeur réelle de l'état -->
+                                <input type="hidden" id="actifHidden-{{ $activite->id }}" name="activites[{{ $activite->id }}][actif]" value="{{ $activite->actif }}">
+                                <!-- Switch (checkbox) affiché -->
+                                <input type="checkbox" id="actifCheck-{{ $activite->id }}" class="sr-only peer" {{ $activite->actif == 1 ? 'checked' : '' }}>
+                                <div class="w-11 h-6 bg-c3 rounded-full peer 
+                                            peer-checked:after:translate-x-5 peer-checked:after:border-white 
+                                            after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+                                            after:bg-c1 after:border-gray-300 after:border after:rounded-full 
+                                            after:h-5 after:w-5 after:transition-all 
+                                            peer-checked:bg-c2 peer-checked:after:bg-white">
+                                </div>
+                            </label>
+                            <button
+                                class="boutonSupprimerActivite text-red-500 transform transition duration-300 hover:scale-110"
+                                data-activite-id="{{ $activite->id }}" data-nomActivite="{{ $activite->nom }}"><span
+                                    class="iconify size-6" data-icon="ion:trash-outline"
+                                    data-inline="false"></span></button>
+                            <button
+                                class="boutonModifierActivite text-c3  transform transition duration-300 hover:scale-110"
+                                data-activite-id="{{ $activite->id }}"><span class="iconify size-6 "
                                     data-icon="ep:edit" data-inline="false"></span></button>
                         </div>
                     </div>
@@ -81,12 +99,12 @@
         @endforeach
     </div>
     <div id="pasResultat" class="hidden text-center text-lg text-c1 mt-4">
-        {{ __('pasResultatFiltreActivites') }}  
+        {{ __('pasResultatFiltreActivites') }}
     </div>
 </div>
 
 
-    
+
 
 
 
@@ -95,8 +113,8 @@
 
 
 
-    
-    
+
+
 
 
 @if (session('erreurAjouterActivite'))
@@ -141,16 +159,17 @@
 
             document.getElementById("afficherActivites").classList.add("hidden");
             const idActiviteErreur = "{{ session('idActiviteErreur') }}";
-       
-            
+
+
             if (idActiviteErreur) {
                 axios.get(`/compte/obtenirActivite/${idActiviteErreur}`)
                     .then(reponse => {
                         const activite = reponse.data.data;
                         mettreAJourSectionPhotos(activite);
-                     document.getElementById('formulaireActiviteModif').setAttribute('action', `/compte/modifierActivites/${idActiviteErreur}`);
-                    
-                  
+                        document.getElementById('formulaireActiviteModif').setAttribute('action',
+                            `/compte/modifierActivites/${idActiviteErreur}`);
+
+
                     })
                     .catch(erreur => {
                         console.error("Erreur lors du rafraîchissement des photos actuelles :", erreur);
@@ -158,9 +177,9 @@
             }
         });
     </script>
-  @php
+    @php
         session()->forget('erreurModifierActivite');
-    @endphp 
+    @endphp
 @endif
 
 <script src="{{ asset('js/usagers/Activites/SupprimerActivite.js') }}"></script>

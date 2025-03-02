@@ -102,7 +102,7 @@ class ActivitesController extends Controller
                 'typeActivite_id' => $request->typeActivite_id,
                 'dateDebut'       => $request->dateDebut,
                 'dateFin'         => $request->dateFin,
-                'actif'           =>  $request->input('actif')
+           
             ]);
 
      
@@ -172,6 +172,32 @@ class ActivitesController extends Controller
             ], 500);
         }
     }
+
+    public function modifierStatutActivite(Request $request, string $id)
+{
+    try {
+   
+        $activite = Activite::findOrFail($id);
+        $utilisateur = auth()->user(); 
+        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
+        if (!$estProprietaire && !$estAdmin) {
+            return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
+        }
+
+        $activite->update([
+            'actif' => $request->boolean('actif'),
+        ]);
+
+        return response()->json(['success' => true,]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => "Erreur lors de la mise à jour du statut de l'activité : " . $e->getMessage()
+        ], 500);
+    }
+}
+
     
 
 
