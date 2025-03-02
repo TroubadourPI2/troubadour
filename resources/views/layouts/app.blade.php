@@ -36,11 +36,9 @@
                 <a
                     class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer text-semibold hover:bg-c3 px-2 py-1 rounded-full transition   ">{{ __('aPropos') }}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
-                @auth
-                    <a class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition"
-                        href="{{ route('usagerLieux.afficher') }}">{{ __('compte') }}</a>
-                    <div class="border-r-2 h-10 border-c1 rounded "></div>
-                @endauth
+                <a class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition"
+                    href="{{ route('usagerLieux.afficher') }}">{{ __('compte') }}</a>
+                <div class="border-r-2 h-10 border-c1 rounded "></div>
 
                 @auth
                     <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="m-0">
@@ -121,13 +119,10 @@
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
                             class="iconify size-10 " data-icon="mdi:about"
                             data-inline="false"></span>{{ __('aPropos') }}</a>
-
-                    @auth
-                        <a href="{{ route('usagerLieux.afficher') }}"
-                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                            <span class="iconify size-10 " data-icon="mdi:user"
-                                data-inline="false"></span>{{ __('compte') }}</a>
-                    @endauth
+                    <a href="{{ route('usagerLieux.afficher') }}"
+                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
+                            class="iconify size-10 " data-icon="mdi:user"
+                            data-inline="false"></span>{{ __('compte') }}</a>
 
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
@@ -170,10 +165,6 @@
                             {{ __('connexion') }}
                         </a>
                     @endauth
-                    @if (session()->has('deconnexionSucces'))
-                        <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
-                        @php session()->forget('deconnexionSucces'); @endphp
-                    @endif
 
                 </nav>
 
@@ -253,8 +244,8 @@
 </body>
 
 <script defer src="{{ asset('js/translations.js') }}"></script>
-<script src="{{ asset('js/usagers/usagers/Connexion.js') }}"></script>
-<script src="{{ asset('js/usagers/usagers/Inscription.js') }}"></script>
+<script src="{{ asset('js/usagers/Connexion.js') }}"></script>
+<script src="{{ asset('js/usagers/Inscription.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="//unpkg.com/alpinejs" defer></script>
@@ -274,4 +265,3 @@
 </script>
 
 </html>
-

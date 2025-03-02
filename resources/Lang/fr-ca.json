@@ -75,32 +75,7 @@
   "erreur" : "Erreur",
   "erreurGenerale" : "Une erreur est survenue. Veuillez réessayer.",
 
-  "droitsReserves" : "Tous droits réservés.",
-
-  "seConnecter":"Se connecter",
-  "sInscrire":"S'inscrire",
- 
-  "deconnexionMessage":"Déconnexion réussie!",
-
-  "prenomNom" : "Prénom et nom",
-  "prenom": "Prénom",
-  "nomF": "Nom",
-  "courriel":"Courriel",
-  "courrielMotDePasse" : "Courriel & mot de passe",
-  "role": "Rôle",
-  "admin":"Administrateur",
-  "gestion":"Gestionnaire",
-  "utilisateur":"Utilisateur",
-  "motDePasse":"Mot de passe",
-  "confirmationMotDePasse":"Confirmation du mot de passe",
-  "modifierMotDePasse":"Modifier votre mot de passe",
-  "supLeCompte":"Supprimer votre compte",
-  
-  "messageSupTitre":"Etes-vous sûr?",
-  "messageSup":"Vous ne pourrez pas revenir en arrière!",
-  "messageSup2Titre":"Supprimé!",
-  "messageSup2":"Votre compte a été supprimé.",
-  "boutonOuiSup":"Oui, supprime-le!"
+  "droitsReserves" : "Tous droits réservés." ,
 
   "tousLesLieux": "Tous les lieux",
   "tousLesTypesActivites" : "Tous les types d'activités",
@@ -126,6 +101,7 @@
    "activerActivite": "Voulez-vous rendre actif l'activité ",
    "desactiverActivite":"Voulez-vous rendre inactif l'activité ",
    "successModifierStatutActivite" : "Modification du statut de l'activité avec succès"
+
 
 
 }

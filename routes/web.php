@@ -43,8 +43,6 @@ Route::middleware(Langue::class)
 
 
         Route::get('/compte', [UsagersController::class, 'ObtenirDonneesCompte'])->name('usagerLieux.afficher')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
-        Route::patch('/compte/{usager}/modifier', [UsagersController::class, 'ModificationUsager'])->name('usagers.modifier')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
-
         Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
         Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu')->middleware('VerifierRole:Gestionnaire');
         Route::get('/compte/obtenirLieu', [LieuxController::class, 'ObtenirUnLieu']);
@@ -57,7 +55,6 @@ Route::middleware(Langue::class)
         Route::put('/compte/modifierActivites/{id}', [ActivitesController::class, 'ModifierActivite'])->name('usagerActivites.modifierActivite')->middleware('VerifierRole:Admin,Gestionnaire');
         Route::get('/compte/obtenirActivite/{activiteId}', [ActivitesController::class, 'ObtenirActivite'])->name('compte.obtenirActivite')->middleware('VerifierRole:Admin,Gestionnaire');
         Route::patch('compte/activite/statut/{id}', [ActivitesController::class, 'ModifierStatutActivite'])->name('usagerActivites.modifierStatutActivite')->middleware('VerifierRole:Admin,Gestionnaire');
-
 
         Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
 
