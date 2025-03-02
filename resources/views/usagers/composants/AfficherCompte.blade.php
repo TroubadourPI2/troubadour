@@ -135,6 +135,9 @@
     const suppressionMessage2 = "{{ __('messageSup2') }}";
     const btn1 = "{{ __('boutonOuiSup') }}";
     const btn2 = "{{ __('annuler') }}";
+    
+    const titreErreur = "{{ __('erreur') }}";
+    const messageErreur = "{{ __('erreurGenerale') }}";
 
     function supprimerUsager() {
         Swal.fire({
@@ -148,7 +151,6 @@
             cancelButtonText: btn2
         }).then((result) => {
             if (result.isConfirmed) {
-                // Perform the DELETE request using Axios
                 axios.patch("{{ route('usagers.suppression', $usager->id) }}", {}, {
                         headers: {
                             "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute(
@@ -156,20 +158,18 @@
                         }
                     })
                     .then(response => {
-                        // Handle success response
                         if (response.data.success) {
                             Swal.fire({
                                 title: suppressionTitre2,
                                 text: suppressionMessage2,
                                 icon: "success"
                             }).then(() => {
-                                // Redirect to the login page or home page after success
                                 window.location.href = '/';
                             });
                         } else {
                             Swal.fire({
-                                title: "Erreur",
-                                text: "Une erreur s'est produite lors de la désactivation.",
+                                title: titreErreur,
+                                text: messageErreur,
                                 icon: "error"
                             });
                         }
@@ -177,8 +177,8 @@
                     .catch(error => {
                         // Handle error response
                         Swal.fire({
-                            title: "Erreur",
-                            text: "Une erreur s'est produite.",
+                            title: titreErreur,
+                            text: messageErreur,
                             icon: "error"
                         });
                     });

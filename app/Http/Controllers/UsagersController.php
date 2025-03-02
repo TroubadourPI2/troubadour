@@ -120,16 +120,17 @@ class UsagersController extends Controller
         }
     }
     
-    public function Suppression(Request $request)
-    {
-        
+    public function Suppression(Request $request){
         $usager = Auth::user();
     
-        
         if (!$usager) {
             return response()->json(['success' => false, 'message' => 'Utilisateur introuvable.'], 404);
         }
     
+        if (auth()->user()->id !== $usager->id && auth()->user()->role_id !== 1) {
+            return response()->json(['success' => false, 'message' => 'Vous n\'êtes pas autorisé à désactiver cet utilisateur.'], 403);
+        }
+
         try {
             $usager->statut_id = 2;
             $usager->updated_at = now();
