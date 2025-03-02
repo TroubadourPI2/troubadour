@@ -99,11 +99,10 @@ class UsagersController extends Controller
     public function ModificationUsager(UsagerRequest $request, Usager $usager){
         try{
 
-            if (auth()->user()->id !== $usager->id) {
+            if (auth()->user()->id !== $usager->id && auth()->user()->role_id !== 1) {
                 return redirect()->route('usagerLieux.afficher')
                     ->withErrors(['Vous n\'êtes pas autorisé à modifier cet utilisateur.']);
             }
-
 
             $usager->prenom = $request->prenom;
             $usager->nom = $request->nom;

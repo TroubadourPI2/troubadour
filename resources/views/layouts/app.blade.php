@@ -37,11 +37,9 @@
                     class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer text-semibold hover:bg-c3 px-2 py-1 rounded-full transition   ">{{ __('aPropos') }}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
                 @auth
-                    @if (!request()->is('compte'))
-                        <a class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition"
-                            href="{{ route('usagerLieux.afficher') }}">{{ __('compte') }}</a>
-                        <div class="border-r-2 h-10 border-c1 rounded "></div>
-                    @endif
+                    <a class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition"
+                        href="{{ route('usagerLieux.afficher') }}">{{ __('compte') }}</a>
+                    <div class="border-r-2 h-10 border-c1 rounded "></div>
                 @endauth
 
                 @auth
@@ -125,12 +123,10 @@
                             data-inline="false"></span>{{ __('aPropos') }}</a>
 
                     @auth
-                        @if (!request()->is('compte'))
-                            <a href="{{ route('usagerLieux.afficher') }}"
-                                class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                                <span class="iconify size-10 " data-icon="mdi:user"
-                                    data-inline="false"></span>{{ __('compte') }}</a>
-                        @endif
+                        <a href="{{ route('usagerLieux.afficher') }}"
+                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
+                            <span class="iconify size-10 " data-icon="mdi:user"
+                                data-inline="false"></span>{{ __('compte') }}</a>
                     @endauth
 
                     <a href=""
