@@ -18,7 +18,10 @@ class Activite extends Model
         'actif',
         'typeActivite_id'
     ];
-
+    protected $casts = [
+        'actif' => 'boolean',
+    ];
+    
     public function lieux() {
         return $this->belongsToMany(Lieu::class, 'LieuActivites', 'activite_id', 'lieu_id');
     }

@@ -102,7 +102,7 @@ class ActivitesController extends Controller
                 'typeActivite_id' => $request->typeActivite_id,
                 'dateDebut'       => $request->dateDebut,
                 'dateFin'         => $request->dateFin,
-                'actif'           => $request->has('actif'),
+                'actif'           =>  $request->input('actif')
             ]);
 
      
