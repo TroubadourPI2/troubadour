@@ -74,25 +74,5 @@
   "erreurGenerale": "An error occurred. Please try again.",
 
 
-  "droitsReserves" : "All rights reserved." ,
-  
-  "seConnecter":"Log in",
-  "sInscrire":"Sign in",
-
-
-  "prenomNom" : "First Name & Last Name",
-  "prenom": "First name",
-  "nomF": "Last name",
-  "courriel":"Email",
-  "courrielMotDePasse" : "Email & password",
-  "role": "Role",
-  "admin":"Administrator",
-  "gestion":"Manager",
-  "utilisateur":"User",
-  "motDePasse":"Password",
-  "confirmationMotDePasse":"Password Confirmation",
-  "modifierMotDePasse":"Modify your password",
-  "supLeCompte":"Delete Account",
-  "":""
-
+  "droitsReserves" : "All rights reserved." 
 }

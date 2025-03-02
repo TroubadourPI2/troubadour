@@ -75,23 +75,5 @@
   "erreur" : "Erreur",
   "erreurGenerale" : "Une erreur est survenue. Veuillez réessayer.",
 
-  "droitsReserves" : "Tous droits réservés.",
-
-  "seConnecter":"Se connecter",
-  "sInscrire":"S'inscrire",
-  
-
-  "prenomNom" : "Prénom et nom",
-  "prenom": "Prénom",
-  "nomF": "Nom",
-  "courriel":"Courriel",
-  "courrielMotDePasse" : "Courriel & mot de passe",
-  "role": "Rôle",
-  "admin":"Administrateur",
-  "gestion":"Gestionnaire",
-  "utilisateur":"Utilisateur",
-  "motDePasse":"Mot de passe",
-  "confirmationMotDePasse":"Confirmation du mot de passe",
-  "modifierMotDePasse":"Modifier votre mot de passe",
-  "supLeCompte":"Supprimer votre compte"
+  "droitsReserves" : "Tous droits réservés." 
 }
