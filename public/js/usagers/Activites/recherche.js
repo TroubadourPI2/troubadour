@@ -38,7 +38,8 @@ function filtrerCartes() {
         const correspondRecherche = nom.indexOf(requeteRecherche) !== -1;
         const correspondLieu = !lieuSelectionne || idLieux.includes(lieuSelectionne);
         const correspondType = !typeSelectionne || idType === typeSelectionne;
-        const correspondActif = !actifSelectionne || actif; 
+        const correspondActif = actifSelectionne ? actif : !actif;
+
 
         if (correspondRecherche && correspondLieu && correspondType && correspondActif) {
             carte.style.display = '';
