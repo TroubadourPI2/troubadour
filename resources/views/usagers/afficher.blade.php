@@ -30,7 +30,7 @@
 <script src="{{ asset('js/usagers/Lieux/AfficherModifierLieu.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/SupprimerLieu.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/ChangerEtatLieu.js') }}"></script>
-@if (session('formulaireValide') === 'true')
+@if (session('formulaireAjouterLieuValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const succesMessage = "{{ __('succesAjout') }}";
@@ -69,11 +69,11 @@
         });
     </script>
     @php
-        session()->forget('formulaireValide');
+        session()->forget('formulaireAjouterLieuValide');
     @endphp
 @endif
 
-@if (session('formulaireModifierValide') === 'true')
+@if (session('formulaireModifierLieuValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const succesMessage = "{{ __('succesModifier') }}";
@@ -108,14 +108,13 @@
         });
     </script>
     @php
-        session()->forget('formulaireModifierValide');
+        session()->forget('formulaireModifierLieuValide');
     @endphp
 @endif
 
 @if (session('formulaireAjoutActiviteValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
             document.getElementById('lieux').classList.add('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.remove('hidden');
@@ -148,5 +147,44 @@
     </script>
     @php
         session()->forget('formulaireAjoutActiviteValide');
+    @endphp
+@endif
+
+@if (session('formulaireModifierLieuStatutValide') === 'true')
+    <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('succesModifier') }}";
+            document.getElementById('lieux').classList.remove('hidden');
+            document.getElementById('compte').classList.add('hidden');
+            document.getElementById('activites').classList.add('hidden');
+
+            const boutonLieu = document.getElementById('boutonLieu');
+            boutonLieu.classList.add("bg-c1", "text-c3");
+            boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonCompte = document.getElementById('boutonCompte');
+            boutonCompte.classList.remove("bg-c1", "text-c3");
+            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: succesMessage,
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('formulaireModifierLieuStatutValide');
     @endphp
 @endif
