@@ -20,6 +20,7 @@ function AjouterDesactiverListeners() {
         boutonBascule.addEventListener('change', function () {
             const action = boutonBascule.checked ? Lang.get('strings.activer') : Lang.get('strings.desactiver');
             const lieuId = boutonBascule.getAttribute("data-lieuId");
+            const nomEtablissement = boutonBascule.getAttribute("data-nomLieu");
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
@@ -30,7 +31,7 @@ function AjouterDesactiverListeners() {
 
             Swal.fire({
                 title: Lang.get('strings.confirmation'),
-                text: Lang.get('strings.confirmationChangerEtat', { action: action }),
+                text: Lang.get('strings.confirmationChangerEtat', { action: action, lieu: nomEtablissement }) ,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: action,
@@ -44,7 +45,7 @@ function AjouterDesactiverListeners() {
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.put(`/compte/changerEtatLieu/${lieuId}`, {
+                    axios.patch(`/compte/changerEtatLieu/${lieuId}`, {
                         actif: boutonBascule.checked 
                     })
                     .then(response => {

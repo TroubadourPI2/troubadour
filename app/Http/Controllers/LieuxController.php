@@ -217,8 +217,7 @@ class LieuxController extends Controller
         try {
            
             if ($lieu) {
-                // Convertir l'état actif en 1 ou 0 avant de le sauvegarder dans la BD
-                $lieu->actif = $request->actif ? 1 : 0;  // Utilisation d'une valeur 1 pour "actif" et 0 pour "inactif"
+                $lieu->actif = $request->actif ? 1 : 0;  
                 $lieu->save();
     
                 return response()->json([

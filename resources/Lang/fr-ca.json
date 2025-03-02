@@ -74,7 +74,7 @@
   "confirmation" : "Confirmation",
   "confirmationSuppressionLieu" : "Êtes-vous certain(e) de vouloir supprimer ce lieu : ",
   "succesSupprimer" : "Supprimé avec succès!",
-  "confirmationChangerEtat" : "Voulez-vous vraiment :action ce lieu ?",
+  "confirmationChangerEtat" : "Voulez-vous vraiment :action ce lieu : :lieu ?",
 
   "erreurSuppression" :"Erreur lors de la suppression",
   "erreur" : "Erreur",
