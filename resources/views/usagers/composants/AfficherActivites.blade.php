@@ -191,4 +191,4 @@
 <script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/AjouterActivite.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/ModifierActivite.js') }}" defer></script>
-<script src="{{ asset('js/usagers/Activites/statutActivite.js') }}" defer></script>
+<script src="{{ asset('js/usagers/Activites/StatutActivite.js') }}" defer></script>
