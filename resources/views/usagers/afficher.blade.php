@@ -186,8 +186,6 @@
     @endphp
 @endif
 
-
-
 @if (session('formulaireModifierActiviteValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
