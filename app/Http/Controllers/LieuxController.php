@@ -199,11 +199,39 @@ class LieuxController extends Controller
             session()->flash('formulaireModifierValide', 'true');
             return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
-            Log::error("Erreur lors de la modification d'un lieu: " . $e->getMessage());
+            Log::error(__('erreur') . $e->getMessage());
             return redirect()->route('usagerLieux.afficher')->with('error',  __('erreurGenerale'));
         }
     }
     
+    public function ChangerEtatLieu(Request $request, $id)
+    { 
+        Log::debug($request);
+        $lieu = Lieu::findOrFail($id);
+        $utilisateur = auth()->user();
+        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+        if (!$estProprietaire && !$estAdmin) {
+            return response()->json(['success' => false, 'message' => __('erreur')], 403);
+        }
+        try {
+           
+            if ($lieu) {
+                // Convertir l'état actif en 1 ou 0 avant de le sauvegarder dans la BD
+                $lieu->actif = $request->actif ? 1 : 0;  // Utilisation d'une valeur 1 pour "actif" et 0 pour "inactif"
+                $lieu->save();
+    
+                return response()->json([
+                    'success' => true, 
+                    'message' => __('succesModifier')
+                ], 200);
+            }
+        
+        } catch (\Exception $e) {
+            Log::error(__('erreur') . $e->getMessage());
+            return response()->json(["success" => false, "message" =>  __('erreurGenerale')], 500);
+        }
+    }
 
     public function SupprimerUnLieu($id)
     { 
@@ -212,7 +240,7 @@ class LieuxController extends Controller
         $estAdmin = $utilisateur->role->nom === 'admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
-            return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
+            return response()->json(['success' => false, 'message' =>  __('erreur')], 403);
         }
         try {
            
@@ -222,7 +250,7 @@ class LieuxController extends Controller
             $lieu->delete();
             return response()->json(["success" => true, "message" => __('succesSupprimer')]);
         } catch (\Exception $e) {
-            Log::error("Erreur lors de la suppression d'un lieu: " . $e->getMessage());
+            Log::error(__('erreurSuppresion'). $e->getMessage());
             return response()->json(["success" => false, "message" =>  __('erreurSuppresion')], 500);
         }
     }

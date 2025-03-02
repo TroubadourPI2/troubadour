@@ -23,19 +23,24 @@ class LieuRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'rue' => 'required|regex:/^[a-zA-Z0-9\'\,\-_À-ÿ ]+$/|max:64',
             'noCivic' => 'required|numeric|max:99999',
-            'codePostal' => 'required|regex:/^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/i|max:7', 
+            'codePostal' => 'required|regex:/^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/i|max:7',
             'nomEtablissement' => 'required',
             'photoLieu' => 'nullable|mimes:png,jpg|max:2048',
             'siteWeb' => 'nullable|url:https|max:64',
             'numeroTelephone' => 'required|regex:/^\d{3}-\d{3}-\d{4}$/',
-            'actif' => 'nullable',
             'description' => 'nullable|max:500',
             'selectQuartierLieu' => 'required',
             'selectTypeLieu' => 'required',
         ];
+    
+        if ($this->route()->getName() === 'usagerLieux.changerEtatLieu') {
+            $rules['actif'] = 'nulalble|boolean';
+        }
+    
+        return $rules;
     }
 
     /**
@@ -75,6 +80,8 @@ class LieuRequest extends FormRequest
 
         'selectQuartierLieu.required' => __('validations.quartierRequis'),
         'selectTypeLieu.required' => __('validations.typeLieuRequis'),
+
+        'actif.boolean' => __('validations.actifBoolean'),
     ];
 }
 

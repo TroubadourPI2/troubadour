@@ -65,13 +65,16 @@
   "codePostal" : "Code postal",
   "modifierLieu" : "Modifier un lieu",
   "actif" : "Actif",
+  "activer" : "activer",
   "inactif" : "Inactif",
+  "desactiver" : "désactiver",
   
   "succesAjout" : "Ajout effectué avec succès!",
   "succesModifier" : "Modification effectuée avec succès!",
   "confirmation" : "Confirmation",
-  "confirmationSuppression" : "Êtes-vous certain(e) de vouloir supprimer ce lieu : ",
+  "confirmationSuppressionLieu" : "Êtes-vous certain(e) de vouloir supprimer ce lieu : ",
   "succesSupprimer" : "Supprimé avec succès!",
+  "confirmationChangerEtat" : "Voulez-vous vraiment :action ce lieu ?",
 
   "erreurSuppression" :"Erreur lors de la suppression",
   "erreur" : "Erreur",

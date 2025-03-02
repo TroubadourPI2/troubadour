@@ -18,7 +18,7 @@
                     class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden] {{ !$lieu->actif ? 'bg-[#B0B7B7]' : '' }}">
                     <img class="object-cover w-full h-72 rounded-t-lg" src="{{ $lieu->photo_lieu_url }}"
                         alt="{{ $lieu->nomEtablissement }}">
-                        
+
                     <h5 class="text-xl font-bold uppercase p-2 text-center h-full flex items-center">
                         {{ $lieu->nomEtablissement }}
                     </h5>
@@ -26,7 +26,7 @@
                 <div
                     class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden] ">
                     <div class="flex flex-col justify-between h-full">
-                   
+
                         <div class="mb-2">
                             <div class="uppercase underline text-base font-semibold">{{ __('description') }}
                             </div>
@@ -80,23 +80,20 @@
                     alt="{{ $lieu->nomEtablissement }}">
             </div>
             <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-4 relative">
-            <div class="flex justify-end gap-2">
-    <span id="texteActif" class="text-lg font-semibold text-c1">
-        {{ $lieu->actif ? __('actif') : __('inactif') }}
-    </span>
-    <label class="relative inline-flex items-center cursor-pointer">
-        <input type="hidden" id="statutLieuCache" name="actif" value="0">
-        <!-- Le toggle sera checked si $lieu->actif est vrai (1) -->
-        <input type="checkbox" id="boutonBascule" class="sr-only peer" 
-               {{ $lieu->actif ? 'checked' : '' }}>
+                <div class="flex justify-end gap-2">
+                    <span  class="text-lg font-semibold text-c1 uppercase texteActif" data-lieuId="{{ $lieu->id }}" data-actif="{{$lieu->actif}}">
+                        {{ $lieu->actif === 1 ? __('actif') : __('inactif') }}
+                    </span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" name="actif" class="boutonBascule sr-only peer " data-lieuId="{{ $lieu->id }}"
+                            {{ $lieu->actif === 1 ? 'checked' : '' }}>
 
-        <div class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full 
+                        <div class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full 
                     rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] 
                     after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
-        </div>
-    </label>
-</div>
-
+                        </div>
+                    </label>
+                </div>
 
 
                 <h5 class="text-xl font-bold uppercase truncate">{{ $lieu->nomEtablissement }}</h5>
