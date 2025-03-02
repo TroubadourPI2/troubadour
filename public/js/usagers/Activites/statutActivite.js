@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 Swal.fire({
                     title: Lang.get('strings.confirmation'),
-                    html: `${ messageConfirmation} <strong>${nomActivite}</strong> `,
+                    html: `${ messageConfirmation} <strong>${nomActivite}</strong> ?`,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: Lang.get('strings.enregistrer'),

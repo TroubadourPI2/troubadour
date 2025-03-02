@@ -189,6 +189,7 @@ class ActivitesController extends Controller
             'actif' => $request->boolean('actif'),
         ]);
 
+        session()->flash('formulaireModifierActiviteStatutValide', 'true');
         return response()->json(['success' => true,]);
     } catch (\Exception $e) {
         return response()->json([

@@ -96,8 +96,10 @@
     "positionNouvelleImageIndiquer":"For each new selected image, indicate its position.",
     "actif":"Active",
     "inactif":"Inactive",
-    "activerActivite": "Would you like to activate the activity?",
-    "desactiverActivite":"Would you like to deactivate the activity?"
+    "activerActivite": "Would you like to activate the activity",
+    "desactiverActivite":"Would you like to deactivate the activity",
+    "successModifierStatutActivite": "Activity status updated successfully"
+
 
   
   

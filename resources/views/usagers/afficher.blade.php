@@ -192,3 +192,43 @@
     @endphp
 @endif
 
+
+
+@if (session('formulaireModifierActiviteStatutValide') === 'true')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('successModifierStatutActivite') }}";
+            document.getElementById('lieux').classList.add('hidden');
+            document.getElementById('compte').classList.add('hidden');
+            document.getElementById('activites').classList.remove('hidden');
+
+            const boutonActivites = document.getElementById('boutonActivites');
+            boutonActivites.classList.add("bg-c1", "text-c3");
+            boutonActivites.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonCompte = document.getElementById('boutonCompte');
+            boutonCompte.classList.remove("bg-c1", "text-c3");
+            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: succesMessage,
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('formulaireModifierActiviteStatutValide');
+    @endphp
+@endif
