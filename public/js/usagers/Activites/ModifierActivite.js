@@ -221,7 +221,7 @@ document.getElementById('photosModif').addEventListener('change', function() {
 
 function mettreAJourLabelActifModif(estActif) {
     const labelActifModif = document.getElementById('labelActifModif');
-    labelActifModif.textContent = estActif ? Lang.get('Actif') : Lang.get('Inactif');
+    labelActifModif.textContent = estActif ? Lang.get('strings.actif') : Lang.get('strings.inactif');
 }
 
 document.getElementById('actifModif').addEventListener('change',function(){

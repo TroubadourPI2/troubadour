@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const checkboxActif = document.getElementById('actif');
+    const checkboxActif = document.getElementById('actifFiltre');
     Lang.setLocale(document.body.getAttribute('data-locale'));
 
     checkboxActif.checked = true;
@@ -23,7 +23,7 @@ function filtrerCartes() {
     const requeteRecherche = document.getElementById('recherche').value.toLowerCase();
     const lieuSelectionne = document.getElementById('filtreLieu').value;
     const typeSelectionne = document.getElementById('filtreType').value;
-    const actifSelectionne = document.getElementById('actif').checked; 
+    const actifSelectionne = document.getElementById('actifFiltre').checked; 
 
     const cartes = document.querySelectorAll('.activite-carte');
     let nombreVisible = 0;
