@@ -173,7 +173,7 @@ class ActivitesController extends Controller
         }
     }
 
-    public function modifierStatutActivite(Request $request, string $id)
+    public function modifierStatutActivite(ActiviteRequest $request, string $id)
 {
     try {
    
