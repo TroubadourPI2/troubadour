@@ -16,19 +16,7 @@
             <!-- Informations générales du lieu -->
             <div class="flex items-center justify-between w-full mb-2 uppercase">
                 <h3 class="text-lg sm:text-2xl underline">{{ __('infoGenerales') }}</h3>
-                <div class="flex items-center gap-2">
-                    <span id="texteActif" class="text-lg font-semibold text-c1">{{ __('actif') }}</span>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="hidden" id="statutLieuCache" name="actif" value="0">
-                        <input type="checkbox" id="boutonBascule" class="sr-only peer" checked>
-
-                        <div
-                            class="w-11 h-6 bg-c3 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full 
-                rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] 
-                after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
-                        </div>
-                    </label>
-                </div>
+               
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">

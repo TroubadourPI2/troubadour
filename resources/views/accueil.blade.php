@@ -30,16 +30,16 @@
                     </div>
                     <div class="hidden md:flex gap-x-8 items-center">
                         <a href="{{ route('lieux.recherche') }}"
-                            class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                            class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             {{ __('lieux') }}
                         </a>
                         <a
-                            class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                            class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             {{ __('aPropos') }}
                         </a>
                         @role(['Admin'])
                             <a href="{{ route('admin') }}"
-                                class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                                class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                                 {{ __('administration') }}
                             </a>
                         @endrole
