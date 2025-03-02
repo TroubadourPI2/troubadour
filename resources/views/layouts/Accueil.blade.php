@@ -17,7 +17,7 @@
     <link rel="shortcut icon" type="image/png" href="" />
 </head>
 
-<body>
+<body data-locale="{{ session('locale', config('app.locale')) }}">
     <header>
 
         @yield('header')
@@ -33,5 +33,6 @@
 
     </footer>
 </body>
+<script src="{{ asset('js/translations.js') }}"></script>
 
 </html>

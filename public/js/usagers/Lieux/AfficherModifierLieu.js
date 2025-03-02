@@ -1,5 +1,4 @@
-let boutonsModifierMobile;
-let boutonsModifierWeb;
+let boutonsModifier;
 let selectQuartierLieuModifie;
 let selectVilleLieuModifie;
 let selectTypeLieuModifie;
@@ -8,6 +7,7 @@ let quartierId;
 let typeLieuId;
 
 document.addEventListener("DOMContentLoaded", function () {
+    Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsModifier();
     AjouterModifierListeners();
     if (selectVilleLieuModifie.value) {
@@ -16,8 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function ObtenirElementsModifier() {
-    boutonsModifierMobile = document.querySelectorAll(".modifierMobile");
-    boutonsModifierWeb = document.querySelectorAll(".modifierWeb");
+    boutonsModifier = document.querySelectorAll(".boutonModifier");
     selectQuartierLieuModifie = document.getElementById(
         "selectQuartierLieuModifie"
     );
@@ -26,19 +25,7 @@ function ObtenirElementsModifier() {
 }
 
 function AjouterModifierListeners() {
-    boutonsModifierMobile.forEach((bouton) => {
-        bouton.addEventListener("click", () => {
-            const lieuId = bouton.getAttribute("data-lieuId");
-            villeId = bouton.getAttribute("data-villeId");
-            typeLieuId = bouton.getAttribute("data-typeLieuId");
-            ObtenirLieu(lieuId);
-            //Fonction dans AfficherAjouterLieux.js
-            ObtenirQuartiersParVille(villeId);
-            ChangerSection(modifierLieu, afficherLieux);
-        });
-    });
-
-    boutonsModifierWeb.forEach((bouton) => {
+    boutonsModifier.forEach((bouton) => {
         bouton.addEventListener("click", () => {
             const lieuId = bouton.getAttribute("data-lieuId");
             villeId = bouton.getAttribute("data-villeId");
@@ -67,7 +54,7 @@ function MettreAJourSelectQuartierModifie(quartiers) {
     selectQuartierLieuModifie.innerHTML = "";
     const optionDefaut = document.createElement("option");
     optionDefaut.value = "";
-    optionDefaut.textContent = "Sélectionner un quartier";
+    optionDefaut.textContent = Lang.get('strings.choisirQuartier');
     selectQuartierLieuModifie.appendChild(optionDefaut);
 
     quartiers.forEach((quartier) => {
