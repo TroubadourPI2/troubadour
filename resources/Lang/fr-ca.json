@@ -97,7 +97,9 @@
   "positionNouvelleImage": "Position des nouvelles images",
   "positionNouvelleImageIndiquer":"Pour chaque nouvelle image sélectionnée, indiquez sa position. ",
   "actif":"Actif",
-   "inactif":"Inactif"
+   "inactif":"Inactif",
+   "activerActivite": "Voulez-vous rendre actif l'activité ?",
+   "desactiverActivite":"Voulez-vous rendre inactif l'activité ?"
 
 
 

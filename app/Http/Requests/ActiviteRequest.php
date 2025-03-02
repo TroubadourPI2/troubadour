@@ -23,30 +23,34 @@ class ActiviteRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'nomActivite'       => 'required|string|max:64',
-            'dateDebut'         => 'required|date|after_or_equal:today',
-            'dateFin'           => 'nullable|date|after_or_equal:dateDebut',
-            'descriptionActivite'=> 'nullable|string|max:500',
-            'typeActivite_id'   => 'required|exists:TypeActivites,id',
-            'lieu_id'            => 'required|array',
-            'lieu_id.*'          => 'exists:Lieux,id',
-            'photos'            => 'nullable|array',
-            'photos.*'          => 'nullable|mimes:png,jpg|max:2048',
-            'photos.*.position' => 'required|integer|distinct',
-            'photos_a_supprimer'   => 'nullable|array',
-            'photos_a_supprimer.*' => 'exists:photos,id',
-            'positionsActuelles'      => 'nullable|array',
-            'positionsActuelles.*'    => 'required|integer|distinct',
-        ];
-    
-       
+   
         if ($this->route()->getName() === 'usagerActivites.modifierStatutActivite') {
-            $rules['actif'] = 'required|boolean';
+            return [
+                'actif' => 'required|boolean',
+            ];
         }
+    
+
+        $rules = [
+            'nomActivite'         => 'required|string|max:64',
+            'dateDebut'           => 'required|date|after_or_equal:today',
+            'dateFin'             => 'nullable|date|after_or_equal:dateDebut',
+            'descriptionActivite' => 'nullable|string|max:500',
+            'typeActivite_id'     => 'required|exists:TypeActivites,id',
+            'lieu_id'             => 'required|array',
+            'lieu_id.*'           => 'exists:Lieux,id',
+            'photos'              => 'nullable|array',
+            'photos.*'            => 'nullable|mimes:png,jpg|max:2048',
+            'photos.*.position'   => 'required|integer|distinct',
+            'photos_a_supprimer'  => 'nullable|array',
+            'photos_a_supprimer.*'=> 'exists:photos,id',
+            'positionsActuelles'  => 'nullable|array',
+            'positionsActuelles.*'=> 'required|integer|distinct',
+        ];
     
         return $rules;
     }
+    
     
     /**
      * Personnalise les messages d'erreur de validation.

@@ -69,13 +69,17 @@
                             {{ $activite->nom }}
                         </span>
                         <div class="flex gap-x-2 px-4  ">
-                            <label for="actifCheck-{{ $activite->id }}" id="labelActifModif-{{ $activite->id }}" class="cursor-pointer text-c3">ACTIVE</label>
+                            <label for="actifCheck-{{ $activite->id }}" id="labelActifModif-{{ $activite->id }}"
+                                class="cursor-pointer text-c3"> {{ $activite->actif == 1 ? __('actif') : __('inactif') }}</label>
                             <label class="relative inline-flex items-center cursor-pointer">
-                                <!-- Champ caché pour envoyer la valeur réelle de l'état -->
-                                <input type="hidden" id="actifHidden-{{ $activite->id }}" name="activites[{{ $activite->id }}][actif]" value="{{ $activite->actif }}">
-                                <!-- Switch (checkbox) affiché -->
-                                <input type="checkbox" id="actifCheck-{{ $activite->id }}" class="sr-only peer" {{ $activite->actif == 1 ? 'checked' : '' }}>
-                                <div class="w-11 h-6 bg-c3 rounded-full peer 
+
+                                <input type="hidden" id="actifHidden-{{ $activite->id }}"
+                                    name="activites[{{ $activite->id }}][actif]" value="{{ $activite->actif }}">
+
+                                <input type="checkbox" id="actifCheck-{{ $activite->id }}" class="sr-only peer"
+                                    {{ $activite->actif == 1 ? 'checked' : '' }} data-nom="{{ strtolower($activite->nom) }}" >
+                                <div
+                                    class="w-11 h-6 bg-c3 rounded-full peer 
                                             peer-checked:after:translate-x-5 peer-checked:after:border-white 
                                             after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
                                             after:bg-c1 after:border-gray-300 after:border after:rounded-full 
@@ -187,3 +191,4 @@
 <script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/AjouterActivite.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/ModifierActivite.js') }}" defer></script>
+<script src="{{ asset('js/usagers/Activites/statutActivite.js') }}" defer></script>
