@@ -120,7 +120,7 @@ class UsagersController extends Controller
         }
     }
     
-    public function Suppression(Request $request){
+    public function Suppression(Request $request, Usager $usager) {
         $usager = Auth::user();
     
         if (!$usager) {

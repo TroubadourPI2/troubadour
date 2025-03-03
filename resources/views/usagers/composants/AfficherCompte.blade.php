@@ -136,8 +136,8 @@
             text: Lang.get('strings.messageSup'),
             icon: "warning",
             showCancelButton: true,
-            confirmButtonText:  Lang.get('strings.boutonOuiSup'),
-            cancelButtonText:  Lang.get('strings.annuler'),
+            confirmButtonText: Lang.get('strings.boutonOuiSup'),
+            cancelButtonText: Lang.get('strings.annuler'),
             customClass: {
                 popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
                 title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
@@ -157,7 +157,12 @@
                             Swal.fire({
                                 title: Lang.get('strings.messageSup2Titre'),
                                 text: Lang.get('strings.messageSup2'),
-                                icon: "success"
+                                icon: "success",
+                                customClass: {
+                                    popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
+                                    title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                                    confirmButton: 'bg-c5 hover:bg-white text-c3 hover:text-c5 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl'
+                                }
                             }).then(() => {
                                 window.location.href = '/';
                             });
@@ -165,7 +170,12 @@
                             Swal.fire({
                                 title: Lang.get('strings.erreur'),
                                 text: Lang.get('strings.erreurGenerale'),
-                                icon: "error"
+                                icon: "error",
+                                customClass: {
+                                    popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
+                                    title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                                    confirmButton: 'bg-c5 hover:bg-white text-c3 hover:text-c5 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl'
+                                }
                             });
                         }
                     })
@@ -173,7 +183,12 @@
                         Swal.fire({
                             title: Lang.get('strings.erreur'),
                             text: Lang.get('strings.erreurGenerale'),
-                            icon: "error"
+                            icon: "error",
+                            customClass: {
+                                popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
+                                title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                                confirmButton: 'bg-c5 hover:bg-white text-c3 hover:text-c5 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl'
+                            }
                         });
                     });
             }
