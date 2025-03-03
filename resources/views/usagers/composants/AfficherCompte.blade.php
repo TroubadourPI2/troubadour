@@ -135,7 +135,7 @@
     const suppressionMessage2 = "{{ __('messageSup2') }}";
     const btn1 = "{{ __('boutonOuiSup') }}";
     const btn2 = "{{ __('annuler') }}";
-    
+
     const titreErreur = "{{ __('erreur') }}";
     const messageErreur = "{{ __('erreurGenerale') }}";
 
@@ -145,10 +145,14 @@
             text: suppressionMessage,
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
             confirmButtonText: btn1,
-            cancelButtonText: btn2
+            cancelButtonText: btn2,
+            customClass: {
+                popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
+                title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                confirmButton: 'bg-c5 hover:bg-White text-c3 hover:text-c5 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl',
+                cancelButton: 'bg-c3 hover:bg-c1 text-c1 hover:text-c3 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl',
+            },
         }).then((result) => {
             if (result.isConfirmed) {
                 axios.patch("{{ route('usagers.suppression', $usager->id) }}", {}, {
@@ -175,7 +179,6 @@
                         }
                     })
                     .catch(error => {
-                        // Handle error response
                         Swal.fire({
                             title: titreErreur,
                             text: messageErreur,
