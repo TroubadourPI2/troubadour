@@ -9,8 +9,7 @@ function ChargerCSSPersonnalise() {
 
 
 ChargerCSSPersonnalise();
-
-const deconnexionMessage = window.translations.deconnexionMessage ;
+Lang.setLocale(document.body.getAttribute('data-locale'));
 
 function AfficherModalDeconnexion() {
 
@@ -25,7 +24,7 @@ function AfficherModalDeconnexion() {
 
     Toast.fire({
         icon: "success",
-        title: deconnexionMessage,
+        title: Lang.get('strings.deconnexionMessage'),
         customClass: {
             title: "text-c1 font-bold",
             timerProgressBar: "color-c5",
