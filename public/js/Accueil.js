@@ -57,12 +57,12 @@ function CreerCarteDerniere(type) {
 
     const image = document.createElement("img");
     image.src = "images/Logos/logoC1.svg";
-    image.alt = (type === "voirPlus") ? Lang.get('strings.voirPlus') : "Voir d'autres villes";
+    image.alt = (type === "voirPlus") ? Lang.get('strings.voirPlus') : Lang.get('strings.autreVille');
     image.className = "w-full h-52 object-cover";
     carte.appendChild(image);
 
     const titre = document.createElement("span");
-    titre.textContent = (type === "voirPlus") ? Lang.get('strings.voirPlus') : "VOIR D'AUTRES VILLES";
+    titre.textContent = (type === "voirPlus") ? Lang.get('strings.voirPlus') : Lang.get('strings.autreVille');
     titre.className = "text-c1 font-barlow text-xl text-center font-semibold uppercase";
     carte.appendChild(titre);
 
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }, donnee.lieux.length * 300);
                 } else {
                  
-                    villeSpan.textContent = "Bientôt disponible dans votre ville";
+                    villeSpan.textContent = Lang.get('strings.bientotVille');
                     conteneurCarte.innerHTML = "";
                     const carteVoirDautres = CreerCarteDerniere("voirDautresVilles");
                     conteneurCarte.appendChild(carteVoirDautres);
