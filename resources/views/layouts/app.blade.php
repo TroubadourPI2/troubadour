@@ -260,7 +260,6 @@
         </div>
     </footer>
 </body>
-
 <script defer src="{{ asset('js/translations.js') }}"></script>
 <script src="{{ asset('js/usagers/usagers/Connexion.js') }}"></script>
 <script src="{{ asset('js/usagers/usagers/Inscription.js') }}"></script>
