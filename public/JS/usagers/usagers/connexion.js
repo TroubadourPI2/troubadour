@@ -5,8 +5,7 @@ function ChargerCSSPersonnalise() {
     link.type = "text/css";
     document.head.appendChild(link);
 }
-
-
+ 
 ChargerCSSPersonnalise();
 
 function AfficherModalConnexion() {
