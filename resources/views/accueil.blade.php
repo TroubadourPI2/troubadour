@@ -30,28 +30,22 @@
                     </div>
                     <div class="hidden md:flex gap-x-8 items-center">
                         <a href="{{ route('lieux.recherche') }}"
-                            class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                            class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             {{ __('lieux') }}
                         </a>
                         <a
-                            class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                            class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             {{ __('aPropos') }}
                         </a>
                         @auth
 
                             <a href="{{ route('usagerLieux.afficher') }}"
-                                class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
+                                class="text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                                 {{ __('compte') }}
                             </a>
 
                         @endauth
 
-                        @role(['Admin'])
-                            <a href="{{ route('admin') }}"
-                                class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
-                                {{ __('administration') }}
-                            </a>
-                        @endrole
                     </div>
                     <div class="hidden md:flex md:items-center">
                         @auth
@@ -139,18 +133,15 @@
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full "> <span
                             class="iconify size-10 " data-icon="mdi:about"
                             data-inline="false"></span>{{ __('aPropos') }}</a>
+
                     @auth
+
                         <a href="{{ route('usagerLieux.afficher') }}"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
                             <span class="iconify size-10 " data-icon="mdi:user"
                                 data-inline="false"></span>{{ __('compte') }}</a>
+
                     @endauth
-                    @role(['Admin'])
-                        <a href="{{ route('admin') }}"
-                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                                class="iconify size-10 " data-icon="mdi:user"
-                                data-inline="false"></span>{{ __('administration') }}</a>
-                    @endrole
                     <div x-data="{ open: false }" class="relative font-barlow">
                         <a @click="open = !open"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full cursor-pointer">
@@ -245,3 +236,4 @@
     @endauth
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+

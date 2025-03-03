@@ -15,8 +15,8 @@ export default {
                 c1: '#154C51',
                 c2: '#C8E3DF',
                 c3: '#FBFBFB',
-                c4: '#E3C8CC',
-                c5: '#8F0005'
+                c4: '#e3c8cc',
+                c5 : '#8F0005'
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],

@@ -6,9 +6,6 @@ let villeId;
 let quartierId;
 let typeLieuId;
 
-
-let statutLieuCache;
-
 document.addEventListener("DOMContentLoaded", function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsModifier();
@@ -25,9 +22,6 @@ function ObtenirElementsModifier() {
     );
     selectVilleLieuModifie = document.getElementById("selectVilleLieuModifie");
     selectTypeLieuModifie = document.getElementById("selectTypeLieuModifie");
-  
-  
-    statutLieuCache = document.getElementById("statutLieuCache");
 }
 
 function AjouterModifierListeners() {
@@ -47,8 +41,6 @@ function AjouterModifierListeners() {
         "change",
         ActiverSelectQuartierModifie
     );
-
-   
 }
 
 function ActiverSelectQuartierModifie() {
@@ -91,11 +83,6 @@ async function ObtenirLieu(lieuId) {
 
         const lieu = await response.json();
 
-      
-
-     
-        
-
         document.getElementById("nomEtablissementModifie").value =
             lieu.nomEtablissement;
         document.getElementById("rueModifie").value = lieu.rue;
@@ -105,6 +92,7 @@ async function ObtenirLieu(lieuId) {
         document.getElementById("siteWebModifie").value = lieu.siteWeb;
         document.getElementById("numeroTelephoneModifie").value =
             lieu.numeroTelephone;
+
         selectVilleLieuModifie.value = villeId;
         selectTypeLieuModifie.value = typeLieuId;
         quartierId = lieu.quartier_id;
