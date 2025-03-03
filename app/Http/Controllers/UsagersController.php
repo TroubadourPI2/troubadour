@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsagerRequest;
 use App\Models\Usager;
 use App\Models\Lieu;
+use App\Models\Favori;
 use App\Models\Ville;
 use App\Models\Quartier;
 use App\Models\TypeLieu;
@@ -63,7 +64,32 @@ class UsagersController extends Controller
         return response()->json($quartiers);
     }
 
-    
+    public function storefavoris(string $id, string $idLieu)
+    {
+        $favorite = Favori::create([
+            'activite_id' => $id,
+            'lieu_id' => $idLieu,
+            'usager_id' => Auth::id(),
+        ]);
+
+        return redirect()->back(); //->response()->json(['success' => true, 'favorite' => $favorite]);
+    }
+
+
+    public function destroyFavoris(string $idLieu)
+    {
+    $favorite = Favori::where('lieu_id', $idLieu)
+                      ->where('usager_id', Auth::id());
+
+    if ($favorite && $favorite->usager_id == Auth::id()) { 
+        $favorite->delete();
+
+        return redirect()->back()->with('success', 'Favorite removed!');
+    } else {
+
+        return redirect()->back()->with('error', 'Unable to remove favorite.');
+    }
+    }
 
 
     /**
