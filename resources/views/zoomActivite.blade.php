@@ -106,8 +106,8 @@
                             </div>
                         </div>
 
-                        <p class="text-c1 text-base mb-5 px-4 truncate line-clamp-3 md:px-20 lg:px-12">
-                            {{ !empty($activite->description) ? $activite->description : 'Aucune description' }}
+                        <p class="text-c1 text-base mb-5 px-4 md:px-20 lg:px-12 line-clamp-3 overflow-hidden text-ellipsis">
+                            {{ !empty($activite->description) ? $activite->description : 'Aucune description' }} 
                         </p>
 
                     </div>
