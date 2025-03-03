@@ -77,20 +77,21 @@ class UsagersController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function CreationUsager(UsagerRequest $request){
+        try{
+            $usager = new Usager($request->all());
+            $usager->save();
+        }
+        catch(\Throwable $e){
+            Log::debug($e);
+        }
+        if ($errors = session('errors')) {
+            return response()->json([
+                'errors' => $errors->toArray()
+            ]);
+        }
+    
+        return redirect()->route('login');
     }
     
     public function ModificationUsager(UsagerRequest $request, Usager $usager){

@@ -29,6 +29,8 @@ Route::middleware(Langue::class)
             [UsagersController::class, 'Connexion']
         )->name('usagers.Connexion');
 
+        Route::post('/usagers', [UsagersController::class, 'CreationUsager'])->name('usagers.CreationUsager');
+
         Route::post(
             '/Deconnexion',
             [UsagersController::class, 'Deconnexion']

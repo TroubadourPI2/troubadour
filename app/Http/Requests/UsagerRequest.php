@@ -74,15 +74,15 @@ class UsagerRequest extends FormRequest
         $nomRouteActuelle = $this->route()->getName();
 
 
-        // if ($nomRouteActuelle === 'usagerLieux.ajouterLieu') {
-        //     session()->put('erreurAjouterLieu', $validator->errors());
+        if ($nomRouteActuelle === 'usagers.CreationUsager') {
+            session()->put('erreurAjouterUsager', $validator->errors());
 
-        //     throw new HttpResponseException(
-        //         redirect()->back()
-        //             ->withInput()
-        //     );
-        // }
-        if ($nomRouteActuelle === 'usagers.modifier') {
+            throw new HttpResponseException(
+                redirect()->back()
+                    ->withInput()
+            );
+        }
+        elseif ($nomRouteActuelle === 'usagers.modifier') {
             session()->put('erreurModifierUsager', $validator->errors());
 
             throw new HttpResponseException(
