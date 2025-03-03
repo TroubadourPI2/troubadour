@@ -1,28 +1,26 @@
 @extends('layouts.app')
 
-@section('title', 'Compte')
+@section('title', __('compte'))
 
 @section('contenu')
 
-    <div class="flex flex-col w-full h-full ">
+    <div class="flex flex-col w-full h-full">
         <div
             class="flex items-center sm:justify-start text-c1 justify-center md:space-x-2 space-x-4 sm:border-b-[3px] border-b-2 border-c1 sm:h-10 h-6 w-full my-3">
             <button id="boutonCompte" data-section="compte"
-                class="boutonMenuCompte text-base px-4 sm:text-xl font-semibold bg-c1 text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('compte') }}</button>
+                class="boutonMenu text-base px-4 sm:text-xl font-semibold bg-c1 text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('compte') }}</button>
             @role(['Gestionnaire'])
                 <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1"></div>
                 <button id="boutonLieu" data-section="lieux"
-                    class="boutonMenuCompte text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('lieux') }}</button>
+                    class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('lieux') }}</button>
                 <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1"></div>
                 <button id="boutonActivites" data-section="activites"
-                    class="boutonMenuCompte text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('activites') }}</button>
+                    class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('activites') }}</button>
             @endrole
         </div>
-        {{-- //TODO Importer les composants selon le menu choisi --}}
-        <div id="compte" class="SectionMenu">@include('usagers.composants.AfficherCompte')</div>
-        <div id="lieux" class="SectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
-        <div id="activites" class="SectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
-
+        <div id="compte" class="sectionMenu">@include('usagers.composants.AfficherCompte')</div>
+        <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
+        <div id="activites" class="sectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
     </div>
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
@@ -30,11 +28,11 @@
 <script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherModifierLieu.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/SupprimerLieu.js') }}"></script>
-
-@if (session('formulaireValide') === 'true')
+<script src="{{ asset('js/usagers/Lieux/ChangerEtatLieu.js') }}"></script>
+@if (session('formulaireAjouterLieuValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const succesMessage = "{{ __('succesModifier') }}";
+            const succesMessage = "{{ __('succesAjout') }}";
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('compte').classList.add('hidden');
             document.getElementById('activites').classList.add('hidden');
@@ -66,11 +64,11 @@
         });
     </script>
     @php
-        session()->forget('formulaireValide');
+        session()->forget('formulaireAjouterLieuValide');
     @endphp
 @endif
 
-@if (session('formulaireModifierValide') === 'true')
+@if (session('formulaireModifierLieuValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const succesMessage = "{{ __('succesModifier') }}";
@@ -105,13 +103,14 @@
         });
     </script>
     @php
-        session()->forget('formulaireModifierValide');
+        session()->forget('formulaireModifierLieuValide');
     @endphp
 @endif
 
 @if (session('formulaireModifierUValide'))
     <script>
         const succesMessage = "{{ __('succesModifier') }}";
+
         function ModifUsager() {
             window.onload = function() {
                 const Toast = Swal.mixin({
@@ -144,7 +143,7 @@
 @endif
 @if (session('erreurModifierUsager'))
     @php
-        session()->forget('erreurModifierUsager'); 
+        session()->forget('erreurModifierUsager');
     @endphp
 @endif
 @if (session('formulaireAjoutActiviteValide') === 'true')
@@ -225,8 +224,6 @@
     @endphp
 @endif
 
-
-
 @if (session('formulaireModifierActiviteStatutValide') === 'true')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -266,3 +263,41 @@
     @endphp
 @endif
 
+@if (session('formulaireModifierLieuStatutValide') === 'true')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('succesModifier') }}";
+            document.getElementById('lieux').classList.remove('hidden');
+            document.getElementById('compte').classList.add('hidden');
+            document.getElementById('activites').classList.add('hidden');
+
+            const boutonLieu = document.getElementById('boutonLieu');
+            boutonLieu.classList.add("bg-c1", "text-c3");
+            boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonCompte = document.getElementById('boutonCompte');
+            boutonCompte.classList.remove("bg-c1", "text-c3");
+            boutonCompte.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: succesMessage,
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('formulaireModifierLieuStatutValide');
+    @endphp
+@endif

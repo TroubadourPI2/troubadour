@@ -15,6 +15,7 @@ use App\Http\Requests\LieuRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 class LieuxController extends Controller
@@ -84,43 +85,43 @@ class LieuxController extends Controller
     }
 
     public function AjouterUnLieu(LieuRequest $request)
-{
-    try {
-        $lieu = new Lieu();
-        $lieu->rue = $request->rue;
-        $lieu->noCivic = $request->noCivic;
-        $lieu->codePostal = (strtoupper($request->codePostal));
-        $lieu->nomEtablissement = $request->nomEtablissement;
+    {
+        try {
+            $lieu = new Lieu();
+            $lieu->rue = $request->rue;
+            $lieu->noCivic = $request->noCivic;
+            $lieu->codePostal = (strtoupper($request->codePostal));
+            $lieu->nomEtablissement = $request->nomEtablissement;
 
-        $photoDefautPath = 'lieux/image_defaut.png';
-        if (!Storage::disk('DevActivite')->exists($photoDefautPath)) {
-            Storage::disk('DevActivite')->put($photoDefautPath, file_get_contents(public_path('Images/lieux/image_defaut.png')));
+            $photoDefautPath = 'lieux/image_defaut.png';
+            if (!Storage::disk('DevActivite')->exists($photoDefautPath)) {
+                Storage::disk('DevActivite')->put($photoDefautPath, file_get_contents(public_path('Images/lieux/image_defaut.png')));
+            }
+
+            if ($request->hasFile('photoLieu')) {
+                $file = $request->file('photoLieu');
+                $chemin = $file->store('lieux', 'DevActivite');
+                $lieu->photoLieu = $chemin;
+            } else {
+                $lieu->photoLieu = $photoDefautPath;
+            }
+
+            $lieu->siteWeb = $request->siteWeb;
+            $lieu->numeroTelephone = $request->numeroTelephone;
+            $lieu->actif = true;
+            $lieu->description = $request->description;
+            $lieu->quartier_id = $request->selectQuartierLieu;
+            $lieu->typeLieu_id = $request->selectTypeLieu;
+            $lieu->proprietaire_id = Auth::id();
+            $lieu->save();
+
+            session()->flash('formulaireAjouterLieuValide', 'true');
+            return redirect()->route('usagerLieux.afficher');
+        } catch (\Exception $e) {
+            Log::error("Erreur lors de l'ajout d'un lieu: " . $e->getMessage());
+            return redirect()->route('usagerLieux.afficher');
         }
-
-        if ($request->hasFile('photoLieu')) {
-            $file = $request->file('photoLieu');
-            $chemin = $file->store('lieux', 'DevActivite');
-            $lieu->photoLieu = $chemin;
-        } else {
-            $lieu->photoLieu = $photoDefautPath;
-        }
-
-        $lieu->siteWeb = $request->siteWeb;
-        $lieu->numeroTelephone = $request->numeroTelephone;
-        $lieu->actif = true;
-        $lieu->description = $request->description;
-        $lieu->quartier_id = $request->selectQuartierLieu;
-        $lieu->typeLieu_id = $request->selectTypeLieu;
-        $lieu->proprietaire_id = Auth::id();
-        $lieu->save();
-
-        session()->flash('formulaireValide', 'true');
-        return redirect()->route('usagerLieux.afficher');
-    } catch (\Exception $e) {
-        Log::error("Erreur lors de l'ajout d'un lieu: " . $e->getMessage());
-        return redirect()->route('usagerLieux.afficher');
     }
-}
 
 
     /**
@@ -162,13 +163,13 @@ class LieuxController extends Controller
         if (!$estProprietaire && !$estAdmin) {
             return redirect()->route('usagerLieux.afficher');
         }
-    
+
         try {
             $photoDefautPath = 'lieux/image_defaut.png';
             if (!Storage::disk('DevActivite')->exists($photoDefautPath)) {
                 Storage::disk('DevActivite')->put($photoDefautPath, file_get_contents(public_path('Images/lieux/image_defaut.png')));
             }
-    
+            $lieu->actif = $request->actif;
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = $request->codePostal;
@@ -178,51 +179,99 @@ class LieuxController extends Controller
             $lieu->description = $request->description;
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
-    
+
             if ($request->hasFile('photoLieu')) {
                 if ($lieu->photoLieu && $lieu->photoLieu !== $photoDefautPath) {
                     Storage::disk('DevActivite')->delete($lieu->photoLieu);
                 }
-    
+
                 $file = $request->file('photoLieu');
                 $chemin = $file->store('lieux', 'DevActivite');
                 $lieu->photoLieu = $chemin;
             }
-    
+
             if (!$request->hasFile('photoLieu') && $lieu->photoLieu === $photoDefautPath) {
                 $lieu->photoLieu = $photoDefautPath;
             }
-    
+
             // Sauvegarde des modifications
             $lieu->save();
-    
-            session()->flash('formulaireModifierValide', 'true');
+
+            session()->flash('formulaireModifierLieuValide', 'true');
             return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
-            Log::error("Erreur lors de la modification d'un lieu: " . $e->getMessage());
+            Log::error(__('erreur') . $e->getMessage());
             return redirect()->route('usagerLieux.afficher')->with('error',  __('erreurGenerale'));
         }
     }
-    
 
-    public function SupprimerUnLieu($id)
-    { 
+    public function ChangerEtatLieu(LieuRequest $request, $id)
+    {
         $lieu = Lieu::findOrFail($id);
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
-            return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
+            return response()->json(['success' => false, 'message' => __('erreur')], 403);
+        }
+    
+        DB::beginTransaction();
+        
+        try {
+            $lieu->update([
+                'actif' => $request->boolean('actif'),
+            ]);
+    
+            if (!$request->boolean('actif')) {
+                // 1. Récupérer toutes les activités associées au lieu
+                $activites = Activite::whereHas('lieux', function ($query) use ($id) {
+                    $query->where('lieux.id', $id);
+                })->get();
+    
+                $activitesToDeactivate = $activites->filter(function ($activite) use ($id) {
+                    return $activite->lieux()->where('lieux.actif', true)
+                                             ->where('lieux.id', '!=', $id)
+                                             ->count() === 0;
+                });
+                foreach ($activitesToDeactivate as $activite) {
+                    $activite->actif = false;
+                    $activite->save();
+                }
+            }
+    
+            DB::commit();
+    
+            session()->flash('formulaireModifierLieuStatutValide', 'true');
+            return response()->json([
+                'success' => true,
+                'message' => __('succesModifier')
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error(__('erreur') . $e->getMessage());
+            return response()->json(["success" => false, "message" =>  __('erreurGenerale')], 500);
+        }
+    }
+    
+
+    public function SupprimerUnLieu($id)
+    {
+        $lieu = Lieu::findOrFail($id);
+        $utilisateur = auth()->user();
+        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+        if (!$estProprietaire && !$estAdmin) {
+            return response()->json(['success' => false, 'message' =>  __('erreur')], 403);
         }
         try {
-           
+
             if ($lieu->photoLieu && $lieu->photoLieu !== 'Images/lieux/image_defaut.png') {
                 Storage::disk('DevActivite')->delete($lieu->photoLieu);
             }
             $lieu->delete();
             return response()->json(["success" => true, "message" => __('succesSupprimer')]);
         } catch (\Exception $e) {
-            Log::error("Erreur lors de la suppression d'un lieu: " . $e->getMessage());
+            Log::error(__('erreurSuppresion') . $e->getMessage());
             return response()->json(["success" => false, "message" =>  __('erreurSuppresion')], 500);
         }
     }
