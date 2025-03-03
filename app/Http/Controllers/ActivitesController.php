@@ -28,75 +28,63 @@ class ActivitesController extends Controller
     }
 
     public function AjouterUneActivite(ActiviteRequest $request)
-{
-    try {
-     
-        $activite = Activite::create([
-            'nom'             => $request->nomActivite,
-            'description'     => $request->descriptionActivite,
-            'typeActivite_id' => $request->typeActivite_id,
-            'dateDebut'       => $request->dateDebut,
-            'dateFin'         => $request->dateFin,
-            'actif'           => true, 
-        ]);
+    {
+        try {
+        
+            $activite = Activite::create([
+                'nom'             => $request->nomActivite,
+                'description'     => $request->descriptionActivite,
+                'typeActivite_id' => $request->typeActivite_id,
+                'dateDebut'       => $request->dateDebut,
+                'dateFin'         => $request->dateFin,
+                'actif'           => true, 
+            ]);
+
+        
+            if ($request->has('lieu_id')) {
+                foreach ($request->lieu_id as $lieuId) {
+                    LieuActivite::create([
+                        'activite_id' => $activite->id,
+                        'lieu_id'     => $lieuId,
+                    ]);
+                }
+            }
 
     
-        if ($request->has('lieu_id')) {
-            foreach ($request->lieu_id as $lieuId) {
-                LieuActivite::create([
-                    'activite_id' => $activite->id,
-                    'lieu_id'     => $lieuId,
-                ]);
-            }
-        }
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $index => $photoFile) {
 
- 
-        if ($request->hasFile('photos')) {
-            foreach ($request->file('photos') as $index => $photoFile) {
-
-               //TODO REMPLACER PAR ProdActivite 
-                $chemin = $photoFile->store('activites', 'DevActivite');
-              
-
-               
-                $position = $request->input("photos.$index.position", null);
-      
+                //TODO REMPLACER PAR ProdActivite 
+                    $chemin = $photoFile->store('activites', 'DevActivite');
+                
 
                 
-                $photoCreated = Photo::create([
-                    'chemin'      => $chemin,
-                    'position'    => $position,
-                    'activite_id' => $activite->id,
-                    'nom'         => $photoFile->getClientOriginalName(), 
-                ]);
+                    $position = $request->input("photos.$index.position", null);
         
+
+                    
+                    $photoCreated = Photo::create([
+                        'chemin'      => $chemin,
+                        'position'    => $position,
+                        'activite_id' => $activite->id,
+                        'nom'         => $photoFile->getClientOriginalName(), 
+                    ]);
+            
+                }
             }
+            session()->flash('formulaireAjoutActiviteValide', 'true');
+            return redirect()->route('usagerLieux.afficher')
+                ->with('success', 'Activité ajoutée avec succès !');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', "Erreur lors de l'ajout de l'activité : " . $e->getMessage());
         }
-        session()->flash('formulaireAjoutActiviteValide', 'true');
-        return redirect()->route('usagerLieux.afficher')
-            ->with('success', 'Activité ajoutée avec succès !');
-    } catch (\Exception $e) {
-        return redirect()->back()
-            ->with('error', "Erreur lors de l'ajout de l'activité : " . $e->getMessage());
     }
-}
 
-
-
-    
-    /**
-     * Store a newly created resource in storage.
-     */
- 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id, string $idLieu)
     {
         $activite = Activite::findOrFail($id);
         $lieu = Lieu::findOrFail($idLieu);
-       // $photo = Photo::where("activite_id", $id)->pluck("chemin")->first();
-
 
         return view('zoomActivite', compact('activite', 'lieu'));
     }
