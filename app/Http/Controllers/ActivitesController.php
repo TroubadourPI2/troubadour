@@ -203,14 +203,14 @@ class ActivitesController extends Controller
         ], 500);
     }
 
-    public function show(string $id, string $idLieu)
-    {
-        $activite = Activite::findOrFail($id);
-        $lieu = Lieu::findOrFail($idLieu);
-
-        return view('zoomActivite', compact('activite', 'lieu'));
-    }
+}
 
 
+public function show(string $id, string $idLieu)
+{
+    $activite = Activite::findOrFail($id);
+    $lieu = Lieu::findOrFail($idLieu);
 
+    return view('zoomActivite', compact('activite', 'lieu'));
+}
 }
