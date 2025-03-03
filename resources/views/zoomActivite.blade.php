@@ -42,12 +42,13 @@
 
                 <div class="w-full flex flex-col items-center px-6 ">
 
-                <div class="h-[30rem] w-[20rem] sm:w-[40rem] lg:w-[30rem] xl:w-[40rem] mt-10 2xl:mt-16 bg-white mx-6 p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
-                    
+                    <div
+                        class="h-[30rem] w-[20rem] sm:w-[40rem] lg:w-[30rem] xl:w-[40rem] mt-10 2xl:mt-16 bg-white mx-6 p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
+
                         <div class="activite-carte w-full h-96 flex bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden scale-90 ease-in-out duration-300 border hover:border-2 hover:scale-100 hover:border-c1 "
-                data-nom="{{ strtolower($activite->nom) }}" data-lieu-ids="{{ $activite->lieu_ids }}"
-                data-type="{{ $activite->typeActivite->id }}" data-actif="{{ $activite->actif }}"
-                x-data='{
+                            data-nom="{{ strtolower($activite->nom) }}" data-lieu-ids="{{ $activite->lieu_ids }}"
+                            data-type="{{ $activite->typeActivite->id }}" data-actif="{{ $activite->actif }}"
+                            x-data='{
                      current: 0,
                      images: {!! $activite->photos_json !!},
                      interval: null,
@@ -62,30 +63,28 @@
                      stopCarousel() {
                          clearInterval(this.interval);
                      }
-                 }' x-init="startCarousel()"
-            @mouseenter="stopCarousel()" 
-            @mouseleave="startCarousel()">
-                <template x-for="(img, index) in images" :key="index">
-                    <img x-show="current === index" :src="img" alt="Photo de l'activité"
-                        class="w-full h-96 object-cover absolute inset-0 transition duration-300 ease-in-out"
-                        x-transition:enter="transition transform duration-300"
-                        x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" />
-                </template>
-                </div>
-
-
-                    <div class="px-6 py-1">
-                        <div class="font-bold text-xl mb-2 md:w-full truncate">
-                            {{ !empty($activite->nom) ? $activite->nom : 'Inconnu' }}
-
+                 }'
+                            x-init="startCarousel()" @mouseenter="stopCarousel()" @mouseleave="startCarousel()">
+                            <template x-for="(img, index) in images" :key="index">
+                                <img x-show="current === index" :src="img" alt="Photo de l'activité"
+                                    class="w-full h-96 object-cover absolute inset-0 transition duration-300 ease-in-out"
+                                    x-transition:enter="transition transform duration-300"
+                                    x-transition:enter-start="opacity-0 scale-90"
+                                    x-transition:enter-end="opacity-100 scale-100" />
+                            </template>
                         </div>
-                    </div>
 
-                    <p class="text-c1 text-base mb-5 px-4 md:px-20 lg:px-12 line-clamp-3 overflow-hidden text-ellipsis">
-                        {{ !empty($activite->description) ? $activite->description : 'Aucune description' }} 
-                    </p>
+                        <div class="px-6 py-1">
+                            <div class="font-bold text-xl mb-2 md:w-full truncate">
+                                {{ !empty($activite->nom) ? $activite->nom : 'Inconnu' }}
 
-                
+                            </div>
+                        </div>
+
+                        <p class="text-c1 text-base mb-5 px-4 md:px-20 lg:px-12 line-clamp-3 overflow-hidden text-ellipsis">
+                            {{ !empty($activite->description) ? $activite->description : 'Aucune description' }}
+                        </p>
+
                     </div>
                 </div>
             </div>
