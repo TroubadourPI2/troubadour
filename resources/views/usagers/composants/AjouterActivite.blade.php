@@ -6,11 +6,11 @@
 @endphp
 <div>
     <!-- Bouton Retour -->
-    <button 
+    <button
         class="boutonRetourAfficherActivite flex items-center text-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-32 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
         <span class="iconify text-c1 sm:size-5 size-4 sm:mr-2 sm:ml-2 mr-1" data-icon="ion:arrow-back-outline"
             data-inline="false"></span>
-            {{ __('retour') }}
+        {{ __('retour') }}
     </button>
 
     <form class="mt-2 text-c1" action="{{ route('usagerActivites.ajouterActivite') }}" method="POST"
@@ -18,13 +18,14 @@
         @csrf
         <div class="font-barlow text-c1 font-semibold mb-3">
             <h2 class="uppercase text-center text-xl sm:text-3xl">{{ __('ajouterActivite') }}</h2>
-            
+
             <!-- Informations générales -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-3">
                 <h3 class="text-lg sm:text-2xl mb-2 underline">{{ __('infoGenerales') }}</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <div class="sm:col-span-2">
-                        <label for="nomActivite" class="block">    {{ __('nom') }}<span class="text-c5 ml-2">*</span></label>
+                        <label for="nomActivite" class="block"> {{ __('nom') }}<span
+                                class="text-c5 ml-2">*</span></label>
                         <input type="text" name="nomActivite" id="nomActivite"
                             class="block w-full rounded-lg p-1 sm:p-2 font-medium" value="{{ old('nomActivite') }}">
                         @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('nomActivite'))
@@ -55,15 +56,16 @@
                         @endif
                     </div>
                     <div class="sm:col-span-1">
-                        <label for="lieu_id" class="block"> {{ __('lieux') }} <span class="text-c5 ml-2">*</span></label>
+                        <label for="lieu_id" class="block"> {{ __('lieux') }} <span
+                                class="text-c5 ml-2">*</span></label>
                         <select name="lieu_id[]" id="lieu_id" class="block w-full rounded-lg p-1  bg-c3 font-medium"
                             multiple>
                             @foreach ($lieuxUsager as $lieu)
-                            @if ($lieu->actif == 1)
-                                <option value="{{ $lieu->id }}"
-                                    {{ in_array($lieu->id, old('lieu_id', [])) ? 'selected' : '' }}>
-                                    {{ $lieu->nomEtablissement }}
-                                </option>
+                                @if ($lieu->actif == 1)
+                                    <option value="{{ $lieu->id }}"
+                                        {{ in_array($lieu->id, old('lieu_id', [])) ? 'selected' : '' }}>
+                                        {{ $lieu->nomEtablissement }}
+                                    </option>
                                 @endif
                             @endforeach
                         </select>
@@ -120,11 +122,10 @@
                 </p>
                 <div id="positionInputs" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
                 @if (session('erreurAjouterActivite') && session('erreurAjouterActivite')->has('positions'))
-    <div class="text-c5 font-medium erreurAjouterActiviteMessages">
-        {{ session('erreurAjouterActivite')->first('positions') }}
-    </div>
-@endif
-
+                    <div class="text-c5 font-medium erreurAjouterActiviteMessages">
+                        {{ session('erreurAjouterActivite')->first('positions') }}
+                    </div>
+                @endif
 
             </div>
 
@@ -186,6 +187,4 @@
             placeholder: Lang.get('strings.selectMultipleLieux')
         });
     });
-
-    
 </script>
