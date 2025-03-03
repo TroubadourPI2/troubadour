@@ -8,7 +8,7 @@ function CreerCarte(lieu) {
     containerImage.className = "w-full flex h-52 overflow-hidden rounded-md";
     
     const image = document.createElement("img");
-    image.src = lieu.photoLieu || "images/Lieux/image_defaut.png";
+    image.src = lieu.photoLieu ? `storage/Images/${lieu.photoLieu}` : "images/Lieux/image_defaut.png";
     image.alt = lieu.nomEtablissement || "Image du lieu";
 
     image.className = "w-full h-52 object-cover";
