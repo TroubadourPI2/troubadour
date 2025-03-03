@@ -84,7 +84,9 @@
 
   "seConnecter":"Se connecter",
   "sInscrire":"S'inscrire",
- 
+  "messageErreurConnexion":"Veuillez remplir tous les champs.",
+  "erreurConnexion":"Courriel et/ou le mot de passe est invalide.",
+  "connexionMessage":"Connexion réussie!",
   "deconnexionMessage":"Déconnexion réussie!",
 
   "prenomNom" : "Prénom et nom",
@@ -101,7 +103,7 @@
   "modifierMotDePasse":"Modifier votre mot de passe",
   "supLeCompte":"Supprimer votre compte",
   
-  "messageSupTitre":"Etes-vous sûr?",
+  "messageSupTitre":"Êtes-vous sûr?",
   "messageSup":"Vous ne pourrez pas revenir en arrière!",
   "messageSup2Titre":"Supprimé!",
   "messageSup2":"Votre compte a été supprimé.",

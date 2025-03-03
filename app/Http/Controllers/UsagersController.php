@@ -33,15 +33,13 @@ class UsagersController extends Controller
         return response()->json(['success' => false]);
     }
 
-
-
     public function Deconnexion (){
         Auth::logout();
         session()->flush();
         session()->put('deconnexionSucces', 'Déconnexion réussie!');
         return back();
     }
-    
+
     public function ObtenirDonneesCompte(){
         $usager = Auth::user(); 
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)
@@ -153,6 +151,34 @@ class UsagersController extends Controller
         }
     }
     
+    public function Suppression(Request $request, Usager $usager) {
+        $authUser = Auth::user();
+    
+        if (!$authUser) {
+            return response()->json(['success' => false, 'message' => 'Utilisateur introuvable.'], 404);
+        }
+
+        if ($authUser->id !== $usager->id) {
+            return response()->json(['success' => false, 'message' => 'Action non autorisée.'], 403);
+        }
+
+        try {
+            $usager->statut_id = 2;
+            $usager->updated_at = now();
+            $usager->save();
+
+            if ($authUser->id === $usager->id) {
+                auth()->logout();
+            }
+    
+            return response()->json(['success' => true, 'message' => 'Utilisateur désactivé avec succès.', 'usager' => $usager], 200);
+    } catch (\Exception $e) {
+        Log::error("Erreur lors de la suppression de l'utilisateur: " . $e->getMessage());
+        return response()->json(['success' => false, 'message' => 'Une erreur est survenue lors de la désactivation.'], 500);
+        }
+    }
+
+
 
 
     /**
