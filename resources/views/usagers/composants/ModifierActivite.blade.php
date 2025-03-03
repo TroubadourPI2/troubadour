@@ -6,7 +6,7 @@
 @endphp
 <div>
     <!-- Bouton Retour -->
-    <button
+    <button 
         class=" boutonRetourAfficherActiviteModif flex items-center text-center text-sm sm:text-xl border-c1 border-2 rounded-full sm:w-32 w-[80px] text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
         <span class="iconify text-c1 sm:size-5 size-4 sm:mr-2 sm:ml-2 mr-1" data-icon="ion:arrow-back-outline"
             data-inline="false"></span>
@@ -22,20 +22,21 @@
         <div class="font-barlow text-c1 font-semibold mb-3">
             <h2 class="uppercase text-center text-xl sm:text-3xl"> {{ __('modifierActivite') }}</h2>
 
+
             <!-- Informations générales -->
             <div class="font-barlow text-c1 font-semibold uppercase mt-3">
-                <div class="flex flex-col sm:flex-row w-full  ">
-                    <h3 class="text-lg sm:text-2xl w-full mb-2 underline">{{ __('infoGenerales') }}</h3>
-                    <div class="items-center flex w-full justify-end gap-x-1.5">
-                        @if (session('erreurModifierActivite') && session('erreurModifierActivite')->has('actif'))
-                            <div class="erreurModifierActiviteMessages">
-                                <span class="text-c5 font-medium erreur-message">
-                                    {{ session('erreurModifierActivite')->first('actif') }}
-                                </span>
-                            </div>
-                        @endif
-                    </div>
-                </div>
+                            <div class="flex flex-col sm:flex-row w-full  ">
+                            <h3 class="text-lg sm:text-2xl w-full mb-2 underline">{{ __('infoGenerales') }}</h3>
+                            <div class="items-center flex w-full justify-end gap-x-1.5">           
+            @if (session('erreurModifierActivite') && session('erreurModifierActivite')->has('actif'))
+            <div class="erreurModifierActiviteMessages">
+                <span class="text-c5 font-medium erreur-message">
+                    {{ session('erreurModifierActivite')->first('actif') }}
+                </span>
+            </div>
+        @endif
+            </div>
+        </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-base sm:text-lg">
                     <!-- Nom -->
                     <div class="sm:col-span-2">
@@ -78,11 +79,11 @@
                         <select name="lieu_id[]" id="lieuIdModif" class="block w-full rounded-lg p-1 bg-c3 font-medium"
                             multiple>
                             @foreach ($lieuxUsager as $lieu)
-                                @if ($lieu->actif == 1)
-                                    <option value="{{ $lieu->id }}"
-                                        {{ in_array($lieu->id, old('lieu_id', [])) ? 'selected' : '' }}>
-                                        {{ $lieu->nomEtablissement }}
-                                    </option>
+                            @if ($lieu->actif == 1)
+                                <option value="{{ $lieu->id }}"
+                                    {{ in_array($lieu->id, old('lieu_id', [])) ? 'selected' : '' }}>
+                                    {{ $lieu->nomEtablissement }}
+                                </option>
                                 @endif
                             @endforeach
                         </select>
@@ -184,6 +185,7 @@
                 </div>
             </div>
 
+
             <div id="conteneur_photos_a_supprimer"></div>
 
             <input type="hidden" name="photos_actuelles" id="photos_actuelles">
@@ -192,7 +194,7 @@
 
             <!-- Boutons du formulaire -->
             <div class="flex flex-row justify-center mt-4">
-                <button type="button"
+                <button type="button" 
                     class="text-c1 boutonRetourAfficherActiviteModif py-2 px-6 font-barlow font-semibold text-base sm:text-xl rounded-full w-75 mt-2 mr-2 hover:bg-c3 transition uppercase">
                     {{ __('annuler') }}
                 </button>
@@ -207,13 +209,15 @@
 
 {{-- Initialisation de TomSelect pour le select des lieux --}}
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        Lang.setLocale(document.body.getAttribute('data-locale'));
-        new TomSelect("#lieuIdModif", {
-            plugins: ['remove_button'],
-            placeholder: Lang.get('strings.selectMultipleLieux')
-        });
-
-
+document.addEventListener('DOMContentLoaded', () => {
+    Lang.setLocale(document.body.getAttribute('data-locale'));
+    new TomSelect("#lieuIdModif", {
+        plugins: ['remove_button'],
+        placeholder: Lang.get('strings.selectMultipleLieux')
     });
+    
+
+});
+
 </script>
+

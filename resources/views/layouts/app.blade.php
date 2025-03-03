@@ -24,8 +24,8 @@
 
         <div class="w-full p-8 items-center hidden lg:flex ">
             {{-- Menu Desktop --}}
-            <div class="flex w-auto items-center gap-x-4 flex-grow-0">
-                <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class="w-20 xl:w-24" alt="Logo Troubadour">
+            <div class="flex w-full items-center gap-x-4">
+                <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class=" w-20 xl:w-24" alt="Logo Troubadour">
                 <span class="text-c1 uppercase text-4xl 2xl:text-5xl font-barlow font-semibold">troubadour</span>
             </div>
             <div class="flex w-full justify-end items-center gap-x-2">
@@ -41,11 +41,7 @@
                         href="{{ route('usagerLieux.afficher') }}">{{ __('compte') }}</a>
                     <div class="border-r-2 h-10 border-c1 rounded "></div>
                 @endauth
-                @role(['Admin'])
-                    <a class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1  rounded-full transition"
-                        href="{{ route('admin') }}">{{ __('administration') }}</a>
-                    <div class="border-r-2 h-10 border-c1 rounded "></div>
-                @endrole
+
                 @auth
                     <form action="{{ route('usagers.Deconnexion') }}" method="POST" class="m-0">
                         @csrf
@@ -132,12 +128,7 @@
                             <span class="iconify size-10 " data-icon="mdi:user"
                                 data-inline="false"></span>{{ __('compte') }}</a>
                     @endauth
-                    @role(['Admin'])
-                        <a href="{{ route('admin') }}"
-                            class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                                class="iconify size-10 " data-icon="mdi:user"
-                                data-inline="false"></span>{{ __('administration') }}</a>
-                    @endrole
+
                     <a href=""
                         class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
                         <span class="iconify size-10 " data-icon="mdi:search"
@@ -296,3 +287,4 @@
 </script>
 
 </html>
+
