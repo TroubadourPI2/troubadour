@@ -59,7 +59,7 @@
                                             {{ $lieu->rue }}
                                         </p>
                                         <p><strong>{{ trans_choice('ville', 1) }} :</strong>
-                                            {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal }}
+                                            {{ $lieu->ville()?->nom }} . , . {{ $lieu->codePostal }}
                                         </p>
                                         <p><strong>{{ __('pays') }} :</strong> {{ $lieu->pays()?->nom }}</p>
                                         <p><strong>{{ __('quartier') }} :</strong> {{ $lieu->quartier->nom }}</p>
@@ -129,7 +129,7 @@
                                 <p><strong>{{ __('adresse') }} :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}
                                 </p>
                                 <p><strong>{{ trans_choice('ville', 1) }} :</strong>
-                                    {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal }}
+                                    {{ $lieu->ville()?->nom }} {{ $lieu->codePostal }}
                                 </p>
                                 <p><strong>{{ __('pays') }} :</strong> {{ $lieu->pays()?->nom }}</p>
                                 <p><strong>{{ __('quartier') }} :</strong> {{ $lieu->quartier->nom }}</p>
