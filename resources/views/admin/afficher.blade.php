@@ -22,9 +22,14 @@
         {{-- //TODO Importer les composants selon le menu choisi --}}
         <div id="demandes" class="sectionMenu">COMPTE</div>
         <div id="villes" class="sectionMenu hidden">VILLES</div>
-        <div id="lieux" class="sectionMenu hidden">LIEUX</div>
+        <div id="lieux" class="sectionMenu hidden">@include('admin.composants.GestionLieux')</div>
         <div id="activites" class="sectionMenu hidden">ACTIVITES</div>
     </div>
 
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
+<script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}"></script>
+<script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}"></script>
+<script src="{{ asset('js/usagers/Lieux/AfficherModifierLieu.js') }}"></script>
+<script src="{{ asset('js/usagers/Lieux/SupprimerLieu.js') }}"></script>
+<script src="{{ asset('js/usagers/Lieux/ChangerEtatLieu.js') }}"></script>

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Lieu;
+use App\Models\Ville;
+use App\Models\Quartier;
+use App\Models\TypeLieu;
 
 class AdministrateursController extends Controller
 {
@@ -11,7 +15,11 @@ class AdministrateursController extends Controller
      */
     public function afficher()
     {
-        return view('admin.afficher');
+        $lieux = Lieu::all();
+        $villes = Ville::all();
+        $typesLieu = TypeLieu::all();
+
+     return View('admin.Afficher', compact('lieux', 'villes', 'typesLieu'));
     }
 
     /**

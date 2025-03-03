@@ -91,7 +91,6 @@ function AjouterDesactiverListeners() {
 }
 
 function MiseAJourStatutLieu() {
-    console.log('YO');
     boutonsBascule.forEach((boutonBascule) => {
         const lieuId = boutonBascule.getAttribute('data-lieuId');
         const texteActif = document.querySelector(
