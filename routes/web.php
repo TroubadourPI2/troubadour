@@ -45,12 +45,13 @@ Route::middleware(Langue::class)
         Route::patch('/compte/{usager}/modifier', [UsagersController::class, 'ModificationUsager'])->name('usagers.modifier')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
         Route::patch('/compte/{usager}/suppression', [UsagersController::class, 'Suppression'])->name('usagers.suppression')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
 
+        //LIEUX (GESTIONNAIRE)
         Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
-        Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu')->middleware('VerifierRole:Gestionnaire');
+        Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu')->middleware('VerifierRole:Admin,Gestionnaire');
         Route::get('/compte/obtenirLieu', [LieuxController::class, 'ObtenirUnLieu']);
-        Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu')->middleware('VerifierRole:Gestionnaire');
-        Route::delete('/compte/supprimerLieu/{id}', [LieuxController::class, 'SupprimerUnLieu'])->middleware('VerifierRole:Gestionnaire');
-        Route::patch('/compte/changerEtatLieu/{id}', [LieuxController::class, 'ChangerEtatLieu'])->name('usagerLieux.changerEtatLieu')->middleware('VerifierRole:Gestionnaire');
+        Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu')->middleware('VerifierRole:Admin,Gestionnaire');
+        Route::delete('/compte/supprimerLieu/{id}', [LieuxController::class, 'SupprimerUnLieu'])->middleware('VerifierRole:Admin,Gestionnaire');
+        Route::patch('/compte/changerEtatLieu/{id}', [LieuxController::class, 'ChangerEtatLieu'])->name('usagerLieux.changerEtatLieu')->middleware('VerifierRole:Admin,Gestionnaire');
 
         //ACTIVITES
         Route::post('/compte/ajouterActivite', [ActivitesController::class, 'AjouterUneActivite'])->name('usagerActivites.ajouterActivite')->middleware('VerifierRole:Admin,Gestionnaire');
@@ -64,6 +65,10 @@ Route::middleware(Langue::class)
         Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
 
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
-
-        Route::get('/admin', [AdministrateursController::class, 'afficher'])->name('admin')->middleware('VerifierRole:Admin');
+        
+        //ADMINISTRATEUR
+        Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
+        Route::get('/admin/recherche', [LieuxController::class, 'Index'])->name('adminLieux.recherche');
+        Route::post('/admin/recherche', [LieuxController::class, 'Recherche'])->name('adminLieux.recherche2');
+        Route::get('/admin/quartier', [LieuxController::class, 'Quartiers'])->name('adminLieux.quartiers');
     });

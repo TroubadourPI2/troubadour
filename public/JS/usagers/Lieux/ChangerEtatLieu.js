@@ -76,7 +76,6 @@ function AjouterDesactiverListeners() {
                             boutonBascule.checked = !boutonBascule.checked;
                         });
                 } else {
-                    console.log('ici');
                     boutonBascule.checked = !boutonBascule.checked;
                     const texteActif = document.querySelector(
                         `.texteActif[data-lieuId="${lieuId}"]`

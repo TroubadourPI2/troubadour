@@ -169,3 +169,57 @@
         </div>
     @endif
 </div>
+
+<div id="ajouterLieu" class="hidden">@include('usagers.composants.AjouterLieu')</div>
+<div id="modifierLieu" class="hidden">@include('usagers.composants.ModifierLieu')</div>
+
+@if (session('erreurAjouterLieu'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("demandes").classList.add("hidden");
+            const boutonDemandes = document.getElementById("boutonDemandes");
+            boutonDemandes.classList.remove("bg-c1", "text-c3");
+            boutonDemandes.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonLieu = document.getElementById("boutonLieu");
+            boutonLieu.classList.add("bg-c1", "text-c3");
+            boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            document.getElementById("ajouterLieu").classList.remove("hidden");
+            const lieux = document.getElementById("lieux");
+            lieux.classList.remove("hidden");
+
+            document.getElementById("afficherLieux").classList.add("hidden");
+        });
+    </script>
+    @php
+        session()->forget('erreurAjouterLieu');
+    @endphp
+@endif
+
+@if (session('erreurModifierLieu'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("demandes").classList.add("hidden");
+            const boutonDemandes = document.getElementById("boutonDemandes");
+            boutonDemandes.classList.remove("bg-c1", "text-c3");
+            boutonDemandes.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonLieu = document.getElementById("boutonLieu");
+            boutonLieu.classList.add("bg-c1", "text-c3");
+            boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            document.getElementById("modifierLieu").classList.remove("hidden");
+            const lieux = document.getElementById("lieux");
+            lieux.classList.remove("hidden");
+
+            document.getElementById("afficherLieux").classList.add("hidden");
+
+            const texteActif = document.getElementById("texteActif");
+        });
+    </script>
+    @php
+        session()->forget('erreurModifierLieu');
+    @endphp
+@endif
+

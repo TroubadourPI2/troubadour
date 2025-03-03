@@ -7,66 +7,74 @@ use App\Models\Lieu;
 use App\Models\Ville;
 use App\Models\Quartier;
 use App\Models\TypeLieu;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 class AdministrateursController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function afficher()
+    public function Afficher()
     {
-        $lieux = Lieu::all();
+        $lieux = Lieu::orderByDesc('actif')->get();
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
 
-     return View('admin.Afficher', compact('lieux', 'villes', 'typesLieu'));
+        return View('admin.Afficher', compact('lieux', 'villes', 'typesLieu'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function Index()
     {
-        //
+        try {
+            $lieux = Lieu::where('actif', 1)->paginate(10);
+            $villes = Ville::where('actif', 1)->get();
+            $ville = -1;
+            return view('recherche', compact('lieux', 'villes', 'ville'));
+        } catch (\Exception $e) {
+            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
+            return View('accueil');
+        } catch (QueryException $e) {
+            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
+            return View('accueil');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function Recherche(Request $request)
     {
-        //
+        try {
+            $ville      = $request->ville;
+            $quartier   = $request->quartier;
+            $recherche  = $request->txtRecherche;
+            $lieux      = Lieu::paginate(10);
+
+            if (isset($request->quartier)) {
+                $quartier   = $request->quartier;
+                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(10);
+            }
+
+            if (isset($request->quartier) && isset($request->txtRecherche)) {
+                $quartier   = $request->quartier;
+                $recherche  = $request->txtRecherche;
+                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$recherche%")->where('actif', 1)->paginate(10);
+            }
+
+            if (isset($request->ville)) {
+                Log::debug("Ville : " . $request->ville);
+                $ville = $request->ville;
+            }
+
+            $villes     = Ville::all();
+            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
+
+            return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
+        } catch (\Exception $e) {
+            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
+            return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function Quartiers(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $villeId    = $request->villeId;
+        $quartiers  = Quartier::where('ville_id', $villeId)->get();
+        return compact('quartiers');
     }
 }

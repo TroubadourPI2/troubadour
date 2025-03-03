@@ -88,6 +88,9 @@ class LieuxController extends Controller
     {
         try {
             $lieu = new Lieu();
+            $utilisateur = auth()->user(); 
+            $estAdmin = $utilisateur->role->nom === 'Admin';
+
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = (strtoupper($request->codePostal));
@@ -116,6 +119,9 @@ class LieuxController extends Controller
             $lieu->save();
 
             session()->flash('formulaireAjouterLieuValide', 'true');
+            Log::debug($estAdmin);
+            if($estAdmin)
+                return redirect()->route('admin');
             return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
             Log::error("Erreur lors de l'ajout d'un lieu: " . $e->getMessage());
@@ -158,7 +164,7 @@ class LieuxController extends Controller
     {
         $lieu = Lieu::findOrFail($id);
         $utilisateur = auth()->user();
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
             return redirect()->route('usagerLieux.afficher');
@@ -169,7 +175,7 @@ class LieuxController extends Controller
             if (!Storage::disk('DevActivite')->exists($photoDefautPath)) {
                 Storage::disk('DevActivite')->put($photoDefautPath, file_get_contents(public_path('Images/lieux/image_defaut.png')));
             }
-            $lieu->actif = $request->actif;
+            //$lieu->actif = $request->actif;
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = $request->codePostal;
@@ -194,10 +200,15 @@ class LieuxController extends Controller
                 $lieu->photoLieu = $photoDefautPath;
             }
 
-            // Sauvegarde des modifications
             $lieu->save();
 
             session()->flash('formulaireModifierLieuValide', 'true');
+
+            if($estAdmin){
+                 return redirect()->route('admin');
+            }
+               
+
             return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
             Log::error(__('erreur') . $e->getMessage());
@@ -209,7 +220,7 @@ class LieuxController extends Controller
     {
         $lieu = Lieu::findOrFail($id);
         $utilisateur = auth()->user();
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' => __('erreur')], 403);
@@ -223,7 +234,6 @@ class LieuxController extends Controller
             ]);
     
             if (!$request->boolean('actif')) {
-                // 1. Récupérer toutes les activités associées au lieu
                 $activites = Activite::whereHas('lieux', function ($query) use ($id) {
                     $query->where('lieux.id', $id);
                 })->get();
@@ -258,7 +268,7 @@ class LieuxController extends Controller
     {
         $lieu = Lieu::findOrFail($id);
         $utilisateur = auth()->user();
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' =>  __('erreur')], 403);
