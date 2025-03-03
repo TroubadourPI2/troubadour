@@ -24,6 +24,7 @@
   "deconnexion" : "Déconnexion",
   "connexion" : "Connexion",
   "langues" : "Langues",
+  "administration" : "Administration",
 
   "ajouter" : "Ajouter",
   "retour" : "Retour",
@@ -34,11 +35,12 @@
   "compte": "Compte",
   "lieux": "Lieux",
   "activites": "Activités",
+  "aucunLieu" : "Aucun lieu d'enregistré",
   "description" : "Description",
   "aucuneDescription" : "Aucune description",
   "coordonneesEtInfo" : "Coordonnées & informations",
   "adresse" : "Adresse",
-  "ville" : "Ville",
+  "ville": "{1} Ville|[2,*] Villes",
   "pays" : "Pays",
   "quartier" : "Quartier",
   "province" : "Province",
@@ -61,20 +63,23 @@
   "numCivique" : "Numéro civique",
   "rue" : "Rue",
   "codePostal" : "Code postal",
-
   "modifierLieu" : "Modifier un lieu",
-  
+  "activer" : "activer",
+  "desactiver" : "désactiver",
 
   "succesAjout" : "Ajout effectué avec succès!",
   "succesModifier" : "Modification effectuée avec succès!",
   "confirmation" : "Confirmation",
-  "confirmationSuppression" : "Êtes-vous certain(e) de vouloir supprimer ce lieu : ",
+  "confirmationSuppressionLieu" : "Êtes-vous certain(e) de vouloir supprimer ce lieu : ",
   "succesSupprimer" : "Supprimé avec succès!",
+  "confirmationChangerEtat" : "Voulez-vous vraiment :action ce lieu : :lieu ?",
 
   "erreurSuppression" :"Erreur lors de la suppression",
   "erreur" : "Erreur",
   "erreurGenerale" : "Une erreur est survenue. Veuillez réessayer.",
 
+  "demandes" : "Demandes",
+  
   "droitsReserves" : "Tous droits réservés.",
 
   "seConnecter":"Se connecter",
@@ -128,6 +133,4 @@
   "activerActivite": "Voulez-vous rendre actif l'activité ",
   "desactiverActivite":"Voulez-vous rendre inactif l'activité ",
   "successModifierStatutActivite" : "Modification du statut de l'activité avec succès"
-
-
 }
