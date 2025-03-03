@@ -95,10 +95,10 @@ class ActivitesController extends Controller
     {
         $activite = Activite::findOrFail($id);
         $lieu = Lieu::findOrFail($idLieu);
-        $photo = Photo::where("activite_id", $id)->pluck("chemin")->first();
+       // $photo = Photo::where("activite_id", $id)->pluck("chemin")->first();
 
 
-        return view('zoomActivite', compact('activite', 'lieu', 'photo'));
+        return view('zoomActivite', compact('activite', 'lieu'));
     }
 
     /**

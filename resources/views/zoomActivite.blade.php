@@ -6,21 +6,21 @@
 
     <div class="@container flex flex-col w-full h-3/4 bg-c2">
 
-        <div class="flex flex-row w-full">
+        <div class="md:flex md:flex-row grid w-full">
 
-            <div class="w-full sm:w-3/4 flex flex-row mt-4">
+            <div class="w-full md:w-3/4 flex flex-row mt-4">
                 <div
-                    class="my-1 ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1">
+                    class="my-1 ml-10 md:ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1">
                     {{ $activite->nom ?? '' }}
                 </div>
                 <div class=" my-1 ml-4 rounded border-c1 hidden md:block border"></div>
             </div>
 
-            <div class="w-1/2 mt-4 flex flex-row justify-end items-center">
+            <div class="w-full md:mt-4 md:w-1/2 flex flex-row md:justify-end justify-center items-center">
 
                 <div class=" my-1 mr-1 h-3/4 rounded border-c1 border hidden md:flex"></div>
 
-                <p class="text-c1 text-xl px-4 md:px-20 lg:pr-12 lg:pl-4">
+                <p class="text-c1 text-lg lg:text-xl md:px-20 lg:pr-12 lg:pl-4">
                     {{ !empty($lieu->nomEtablissement) ? $lieu->nomEtablissement : 'Aucune description' }}
                 </p>
 
@@ -43,10 +43,61 @@
                 <div class="w-full flex flex-col items-center px-6 ">
 
                     <div
-                        class="h-[30rem] w-[20rem] mt-10 2xl:mt-16 bg-white mx-6 p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
+                        class="h-[30rem] w-[20rem] sm:w-[40rem] lg:w-[30rem] xl:w-[40rem] mt-10 2xl:mt-16 bg-white mx-6 p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
 
-                        <img class="w-96 h-52 md:w-100 md:h-[18rem] lg:w-[40rem] rounded"
-                            src="{{ asset($photo) }}" alt="{{ $activite->nom ?? '' }}">
+                        <div x-data="{
+                            autoplayIntervalTime: 4000,
+                            slides: {{ json_encode(
+                                $activite->photos->map(function ($photo) use ($activite) {
+                                    return [
+                                        'imgSrc' => asset($photo->chemin),
+                                        'imgAlt' => $activite->nom ?? '',
+                                        'title' => '',
+                                        'description' => '',
+                                    ];
+                                }),
+                            ) }},
+                            currentSlideIndex: 1,
+                            isPaused: false,
+                            autoplayInterval: null,
+                        
+                            next() {
+                                if (this.currentSlideIndex < this.slides.length) {
+                                    this.currentSlideIndex = this.currentSlideIndex + 1
+                                } else {
+                                    this.currentSlideIndex = 1
+                                }
+                            },
+                            autoplay() {
+                                this.autoplayInterval = setInterval(() => {
+                                    if (!this.isPaused) {
+                                        this.next()
+                                    }
+                                }, this.autoplayIntervalTime)
+                            },
+                            setAutoplayInterval(newIntervalTime) {
+                                clearInterval(this.autoplayInterval)
+                                this.autoplayIntervalTime = newIntervalTime
+                                this.autoplay()
+                            },
+                        }" x-init="autoplay" class="relative w-full overflow-hidden">
+
+                            <div class="relative min-h-[40svh] w-full">
+                                <template x-for="(slide, index) in slides">
+                                    <div x-cloak x-show="currentSlideIndex == index + 1" class="absolute inset-0"
+                                        x-transition.opacity.duration.1000ms>
+
+                                        <div
+                                            class="lg:px-32 lg:py-14 absolute inset-0 z-10 flex flex-col items-center justify-end gap-2 bg-linear-to-t from-surface-dark/85 to-transparent px-16 py-12 text-center">
+                                        </div>
+
+                                        <img class="absolute w-full h-full inset-0 object-cover text-on-surface dark:text-on-surface-dark"
+                                            x-bind:src="slide.imgSrc" x-bind:alt="slide.imgAlt" />
+                                    </div>
+                                </template>
+                            </div>
+
+                        </div>
 
                         <div class="px-6 py-3">
                             <div class="font-bold text-xl mb-2 md:w-full truncate">
@@ -55,7 +106,7 @@
                             </div>
                         </div>
 
-                        <p class="text-c1 text-base mb-5 px-4 line-clamp-3 md:px-20 lg:px-12">
+                        <p class="text-c1 text-base mb-5 px-4 truncate line-clamp-3 md:px-20 lg:px-12">
                             {{ !empty($activite->description) ? $activite->description : 'Aucune description' }}
                         </p>
 
@@ -74,7 +125,8 @@
                         <span class="font-sm text-2xl underline"> Informations </span>
                     </div>
 
-                    <div class="card w-[20rem] h-[30rem] rounded-lg overflow-hidden shadow-lg bg-white mt-2 mx-2 lg:w-[20rem]">
+                    <div
+                        class="card w-[20rem] h-[30rem] rounded-lg overflow-hidden shadow-lg bg-white mt-2 mx-2 lg:w-[17rem] xl:w-[20rem]">
                         <div class="bg-c3 text-c2 text-base p-4 flex items-center h-4">
                         </div>
 
@@ -82,7 +134,8 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:event-available" data-inline="false"></span><span class="mr-2"> Début: </span></div>
+                                    data-icon="mdi:event-available" data-inline="false"></span><span class="mr-2"> Début:
+                                </span></div>
                             <div class="text"> {{ $activite->dateDebut ?? '' }} </div>
                         </div>
 
@@ -90,7 +143,8 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:event-busy" data-inline="false"></span><span class="mr-6"> Fin: </span></div>
+                                    data-icon="mdi:event-busy" data-inline="false"></span><span class="mr-6"> Fin: </span>
+                            </div>
                             <div class="text"> {{ $activite->dateFin ?? '' }} </div>
                         </div>
 
@@ -98,7 +152,8 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:local-activity" data-inline="false"></span><span class="mr-3"> Type: </span></div>
+                                    data-icon="mdi:local-activity" data-inline="false"></span><span class="mr-3"> Type:
+                                </span></div>
                             <div class="text"> {{ $lieu->typeLieu->nom ?? '' }} </div>
                         </div>
 
@@ -106,7 +161,8 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:link" data-inline="false"></span><span class="mr-4"> Site: </span></div>
+                                    data-icon="mdi:link" data-inline="false"></span><span class="mr-4"> Site: </span>
+                            </div>
                             <div class="text">
                                 @if ($lieu->siteWeb)
                                     <a href="{{ $lieu->siteWeb ?? '' }}">

@@ -128,7 +128,8 @@
                     <div class="w-3/4 lg:h-2/3 2xl:h-3/4 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
                         <div class="px-6 h-[10rem] py-4 text-left overflow-y-auto lg:h-[24rem] md:h-[18rem] sm:h-[12rem]">
                             @foreach ($activites as $activite)
-                                <a href="{{ route('Activite.zoom', ['id' => $activite->id, 'idLieu' => $lieuActuel->id] ) }}">
+                                <a
+                                    href="{{ route('Activite.zoom', ['id' => $activite->id, 'idLieu' => $lieuActuel->id]) }}">
                                     <p class="text-c1 text-base underline truncate mb-5">
                                         {{ $activite->nom }}
                                     </p>
