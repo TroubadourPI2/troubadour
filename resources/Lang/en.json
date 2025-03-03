@@ -83,7 +83,9 @@
 
   "seConnecter":"Log in",
   "sInscrire":"Sign in",
-
+  "messageErreurConnexion": "Please fill in all the fields.",
+  "erreurConnexion": "Email and/or password is invalid.",
+  "connexionMessage": "Login successful!",
   "deconnexionMessage": "Logout successful!",
 
   "prenomNom" : "First Name & Last Name",

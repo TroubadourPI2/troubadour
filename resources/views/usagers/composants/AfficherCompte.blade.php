@@ -95,7 +95,7 @@
                         {{ __('supLeCompte') }}
                     </button>
                     <button type="submit"
-                        class="w-full text-xl lg:text-2xl rounded-full p-3 px-6 hover:bg-c3 cursor-pointer border-2 bg-white text-c1 font-barlow">
+                        class="w-full text-xl lg:text-2xl rounded-full p-3 px-6 hover:bg-c1 hover:text-c3 cursor-pointer border-2 bg-white text-c1 font-barlow">
                         {{ __('enregistrer') }}
                     </button>
                 </div>
@@ -129,30 +129,68 @@
             passwordVField.style.backgroundColor = '#f0f0f0';
         }
     });
-    const suppressionTitre = "{{ __('messageSupTitre') }}";
-    const suppressionMessage = "{{ __('messageSup') }}";
-    const suppressionTitre2 = "{{ __('messageSup2Titre') }}";
-    const suppressionMessage2 = "{{ __('messageSup2') }}";
-    const btn1 = "{{ __('boutonOuiSup') }}";
-    const btn2 = "{{ __('annuler') }}";
 
     function supprimerUsager() {
         Swal.fire({
-            title: suppressionTitre,
-            text: suppressionMessage,
+            title: Lang.get('strings.messageSupTitre'),
+            text: Lang.get('strings.messageSup'),
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: btn1,
-            cancelButtonText: btn2
+            confirmButtonText: Lang.get('strings.boutonOuiSup'),
+            cancelButtonText: Lang.get('strings.annuler'),
+            customClass: {
+                popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
+                title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                confirmButton: 'bg-c5 hover:bg-white text-c3 hover:text-c5 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl',
+                cancelButton: 'bg-c3 hover:bg-c1 text-c1 hover:text-c3 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl',
+            },
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                    title: suppressionTitre2,
-                    text: suppressionMessage2,
-                    icon: "success"
-                });
+                axios.patch("{{ route('usagers.suppression', $usager->id) }}", {}, {
+                        headers: {
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                'content')
+                        }
+                    })
+                    .then(response => {
+                        if (response.data.success) {
+                            Swal.fire({
+                                title: Lang.get('strings.messageSup2Titre'),
+                                text: Lang.get('strings.messageSup2'),
+                                icon: "success",
+                                customClass: {
+                                    popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
+                                    title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                                    confirmButton: 'bg-c5 hover:bg-white text-c3 hover:text-c5 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl'
+                                }
+                            }).then(() => {
+                                window.location.href = '/';
+                            });
+                        } else {
+                            Swal.fire({
+                                title: Lang.get('strings.erreur'),
+                                text: Lang.get('strings.erreurGenerale'),
+                                icon: "error",
+                                customClass: {
+                                    popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
+                                    title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                                    confirmButton: 'bg-c5 hover:bg-white text-c3 hover:text-c5 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl'
+                                }
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: Lang.get('strings.erreur'),
+                            text: Lang.get('strings.erreurGenerale'),
+                            icon: "error",
+                            customClass: {
+                                popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
+                                title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
+                                confirmButton: 'bg-c5 hover:bg-white text-c3 hover:text-c5 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl'
+                            }
+                        });
+                    });
             }
         });
     }

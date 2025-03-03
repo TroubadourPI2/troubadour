@@ -190,11 +190,6 @@
 
                     @endauth
                     @if (session()->has('deconnexionSucces'))
-                        <script>
-                            window.translations = {
-                                deconnexionMessage: @json(__('deconnexionMessage'))
-                            };
-                        </script>
                         <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
                         @php session()->forget('deconnexionSucces'); @endphp
                     @endif
@@ -223,9 +218,8 @@
 
     <script src="{{ asset('js/Accueil.js') }}"></script>
 @endsection
-
-<script src="{{ asset('js/usagers/usagers/Connexion.js') }}"></script>
-<script src="{{ asset('js/usagers/usagers/Inscription.js') }}"></script>
+<script src="{{ asset('js/usagers/usagers/Connexion.js') }}" defer></script>
+<script src="{{ asset('js/usagers/usagers/Inscription.js') }}" defer ></script>
 <script>
     @auth
     document.addEventListener("DOMContentLoaded", function() {
