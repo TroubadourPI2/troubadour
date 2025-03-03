@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Activite;
+use App\Models\LieuActivite;
 use App\Models\Lieu;
 use App\Models\Photo;
-use App\Models\Activite;
+use Illuminate\Http\Request;
 use App\Models\TypeActivite;
-use App\Models\LieuActivite;
 use App\Http\Requests\ActiviteRequest;
 class ActivitesController extends Controller
 {
@@ -202,10 +202,15 @@ class ActivitesController extends Controller
             'message' => "Erreur lors de la mise à jour du statut de l'activité : " . $e->getMessage()
         ], 500);
     }
+
 }
 
-    
 
+public function show(string $id, string $idLieu)
+{
+    $activite = Activite::findOrFail($id);
+    $lieu = Lieu::findOrFail($idLieu);
 
-
+    return view('zoomActivite', compact('activite', 'lieu'));
+}
 }
