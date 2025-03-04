@@ -132,5 +132,6 @@
   "inactif":"Inactif",
   "activerActivite": "Voulez-vous rendre actif l'activité ",
   "desactiverActivite":"Voulez-vous rendre inactif l'activité ",
-  "successModifierStatutActivite" : "Modification du statut de l'activité avec succès"
+  "successModifierStatutActivite" : "Modification du statut de l'activité avec succès",
+  "aucunSiteWeb": "Aucun Site Web"
 }

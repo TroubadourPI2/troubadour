@@ -11,7 +11,7 @@
             <div class="w-full md:w-3/4 flex flex-row mt-4">
                 <div
                     class="my-1 ml-10 md:ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1">
-                    {{ $activite->nom ?? '' }}
+                    {{ $activite->nom}}
                 </div>
                 <div class=" my-1 ml-4 rounded border-c1 hidden md:block border"></div>
             </div>
@@ -21,7 +21,7 @@
                 <div class=" my-1 mr-1 h-3/4 rounded border-c1 border hidden md:flex"></div>
 
                 <p class="text-c1 text-lg lg:text-xl md:px-20 lg:pr-12 lg:pl-4">
-                    {{ !empty($lieu->nomEtablissement) ? $lieu->nomEtablissement : 'Aucune description' }}
+                    {{ $lieu->nomEtablissement}}
                 </p>
 
             </div>
@@ -76,13 +76,14 @@
 
                         <div class="px-6 py-1">
                             <div class="font-bold text-xl mb-2 md:w-full truncate">
-                                {{ !empty($activite->nom) ? $activite->nom : 'Inconnu' }}
+                            {{$activite->nom}}
+
 
                             </div>
                         </div>
 
                         <p class="text-c1 text-base mb-5 px-4 md:px-20 lg:px-12 line-clamp-3 overflow-hidden text-ellipsis">
-                            {{ !empty($activite->description) ? $activite->description : 'Aucune description' }}
+                            {{ !empty($activite->description) ? __('aucuneDescription') }}
                         </p>
 
                     </div>
@@ -110,7 +111,7 @@
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
                                     data-icon="mdi:event-available" data-inline="false"></span><span class="mr-2"> Début:
                                 </span></div>
-                            <div class="text"> {{ $activite->dateDebut ?? '' }} </div>
+                            <div class="text"> {{$activite->dateDebut}} </div>
                         </div>
 
                         <div class=" my-1 mx-3 rounded border-c1 bg-white border flex"></div>
@@ -119,7 +120,7 @@
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
                                     data-icon="mdi:event-busy" data-inline="false"></span><span class="mr-6"> Fin: </span>
                             </div>
-                            <div class="text"> {{ $activite->dateFin ?? '' }} </div>
+                            <div class="text"> {{$activite->dateFin}} </div>
                         </div>
 
                         <div class=" my-1 mx-3 rounded border-c1 bg-white border flex"></div>
@@ -128,7 +129,7 @@
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
                                     data-icon="mdi:local-activity" data-inline="false"></span><span class="mr-3"> Type:
                                 </span></div>
-                            <div class="text"> {{ $lieu->typeLieu->nom ?? '' }} </div>
+                            <div class="text"> {{$lieu->typeLieu->nom}} </div>
                         </div>
 
                         <div class=" my-1 mx-3 rounded border-c1 bg-white border flex"></div>
@@ -140,9 +141,9 @@
                             <div class="text">
                                 @if ($lieu->siteWeb)
                                     <a href="{{ $lieu->siteWeb ?? '' }}">
-                                        {{ !empty($lieu->siteWeb) ? $lieu->siteWeb : 'Aucun site web' }}</a>
+                                    {{$lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
                                 @else
-                                    {{ !empty($lieu->siteWeb) ? $lieu->siteWeb : 'Aucun site web' }}
+                                    {{$lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
                                 @endif
                             </div>
                         </div>

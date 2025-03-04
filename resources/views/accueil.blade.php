@@ -219,7 +219,7 @@
     <script src="{{ asset('js/Accueil.js') }}"></script>
 @endsection
 <script src="{{ asset('js/usagers/usagers/Connexion.js') }}" defer></script>
-<script src="{{ asset('js/usagers/usagers/Inscription.js') }}" defer ></script>
+<script src="{{ asset('js/usagers/usagers/Inscription.js') }}" defer></script>
 <script>
     @auth
     document.addEventListener("DOMContentLoaded", function() {

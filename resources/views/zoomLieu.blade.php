@@ -11,7 +11,7 @@
             <div class="w-full sm:w-3/4 flex flex-row mt-4">
                 <div
                     class="my-1 ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1">
-                    {{ $lieuActuel->nomEtablissement ?? '' }}
+                    {{ $lieuActuel->nomEtablissement }}
                 </div>
                 <div class=" my-1 ml-4 rounded border-c1 hidden md:block border"></div>
             </div>
@@ -50,13 +50,14 @@
                         @endif
                         <div class="px-6 py-3">
                             <div class="font-bold text-xl mb-2 md:w-full truncate">
-                                {{ !empty($lieuActuel->nomEtablissement) ? $lieuActuel->nomEtablissement : 'Inconnu' }}
+                                {{ $lieuActuel->nomEtablissement }}
 
                             </div>
                         </div>
 
                         <p class="text-c1 text-base mb-5 px-4 line-clamp-3 md:px-20 lg:px-12">
-                            {{ !empty($lieuActuel->description) ? $lieuActuel->description : 'Aucune description' }}
+                            {{ $lieuActuel->description ?? __('aucuneDescription') }}
+
                         </p>
 
                         <div class="px-6 pb-20 sm:pb-4 md:pb-6 lg:pb-32">
@@ -84,24 +85,25 @@
                         <div class="px-6 py-4 text-left">
 
                             <p class="text-c1 text-xl underline truncate mb-5">
-                                {{ $lieuActuel->quartier->nom ?? '' }}
+                                {{ $lieuActuel->quartier->nom }}
 
                             </p>
 
                             <p class="text-c1 text-xl underline truncate my-5">
-                                {{ $lieuActuel->noCivic ?? '' }} {{ $lieuActuel->rue ?? '' }}
+                                {{ $lieuActuel->noCivic }} {{ $lieuActuel->rue }}
                             </p>
 
                             <p class="text-c1 text-xl underline truncate my-5">
-                                {{ $lieuActuel->codePostal ?? '' }}
+                                {{ $lieuActuel->codePostal }}
                             </p>
 
                             <p class="text-c1 text-xl underline truncate my-5">
-                                {{ $lieuActuel->numeroTelephone ?? '' }}
+                                {{ $lieuActuel->numeroTelephone }}
                             </p>
 
                             <p class="text-c1 text-xl underline truncate my-5">
-                                {{ !empty($lieuActuel->siteWeb) ? $lieuActuel->siteWeb : 'Aucun site web' }}
+                                {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
+
                             </p>
 
                         </div>

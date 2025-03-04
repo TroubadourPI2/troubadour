@@ -127,7 +127,7 @@ class LieuxController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function ZoomLieu(string $id)
     {
 
         $lieuActuel = Lieu::findOrFail($id);

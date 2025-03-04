@@ -35,9 +35,9 @@ Route::middleware(Langue::class)
         )->name('usagers.Deconnexion')->middleware('auth');
 
 
-        Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom');
+        Route::get('/lieu/zoom/{id}', [LieuxController::class, 'ZoomLieu'])->name('Lieu.zoom');
 
-        Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'show'])->name('Activite.zoom');
+        Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'ZoomActivite'])->name('Activite.zoom');
 
 
         Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'ObtenirVilleUtilisateur']);

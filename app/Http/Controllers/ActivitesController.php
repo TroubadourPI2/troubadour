@@ -206,7 +206,7 @@ class ActivitesController extends Controller
 }
 
 
-public function show(string $id, string $idLieu)
+public function ZoomActivite(string $id, string $idLieu)
 {
     $activite = Activite::findOrFail($id);
     $lieu = Lieu::findOrFail($idLieu);
