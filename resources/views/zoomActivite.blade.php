@@ -45,7 +45,7 @@
                     <div
                         class="h-[30rem] w-[20rem] sm:w-[40rem] lg:w-[30rem] xl:w-[40rem] mt-10 2xl:mt-16 bg-white mx-6 p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
 
-                        <div class="activite-carte w-full h-96 flex bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden scale-90 ease-in-out duration-300 border hover:border-2 hover:scale-100 hover:border-c1 "
+                        <div class="activite-carte w-full h-96 flex bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden ease-in-out duration-300 border hover:border-2 hover:border-c1 "
                             data-nom="{{ strtolower($activite->nom) }}" data-lieu-ids="{{ $activite->lieu_ids }}"
                             data-type="{{ $activite->typeActivite->id }}" data-actif="{{ $activite->actif }}"
                             x-data='{
@@ -109,7 +109,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:event-available" data-inline="false"></span><span class="mr-2"> {{__('debut')}}:
+                                    data-icon="mdi:event-available" data-inline="false"></span><span class="mr-8"> {{__('debut')}}:
                                 </span></div>
                             <div class="text"> {{$activite->dateDebut}} </div>
                         </div>
@@ -118,7 +118,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:event-busy" data-inline="false"></span><span class="mr-6"> {{__('fin')}}: </span>
+                                    data-icon="mdi:event-busy" data-inline="false"></span><span class="mr-12"> {{__('fin')}}: </span>
                             </div>
                             <div class="text"> {{$activite->dateFin}} </div>
                         </div>
@@ -127,7 +127,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:local-activity" data-inline="false"></span><span class="mr-3"> {{__('type')}}:
+                                    data-icon="mdi:local-activity" data-inline="false"></span><span class="mr-11"> {{__('type')}}: 
                                 </span></div>
                             <div class="text"> {{$lieu->typeLieu->nom}} </div>
                         </div>
