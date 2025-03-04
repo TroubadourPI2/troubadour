@@ -79,19 +79,36 @@ class UsagersController extends Controller
 
     public function CreationUsager(UsagerRequest $request){
         try{
-            $usager = new Usager($request->all());
+            $usager = new Usager();
+            $usager->prenom = $request->prenom;
+            $usager->nom = $request->nom;
+            $usager->courriel = $request->courriel;
+            $usager->password = $request->password;
+
+            if ($usager->role == "Utilisateur"){
+                $usager->role = 2;
+                $usager->statut_id = 1;
+            }
+            else{
+                $usager->role = 3;
+                $usager->statut_id = 3;
+            }
             $usager->save();
         }
         catch(\Throwable $e){
             Log::debug($e);
         }
+
         if ($errors = session('errors')) {
             return response()->json([
                 'errors' => $errors->toArray()
             ]);
         }
     
-        return redirect()->route('login');
+        return response()->json([
+        'success' => true,
+        'message' => 'Usager created successfully!'
+        ]);
     }
     
     public function ModificationUsager(UsagerRequest $request, Usager $usager){

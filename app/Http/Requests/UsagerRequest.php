@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -27,12 +28,15 @@ class UsagerRequest extends FormRequest
             'prenom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
             'nom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
             'courriel' => 'required|email|regex:/^[\w\.-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,6}$/|max:64',
+            'password_confirmation' => 'required|same:password',
+
         ];
     
         if ($this->route()->getName() === 'usagers.modifier'){ 
            $rules['password'] = 'sometimes|required_with:password_confirmation|nullable|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
         } else { 
             $rules['password'] = 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
+
         } 
 
         return $rules;
@@ -71,15 +75,18 @@ class UsagerRequest extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
+        $errors = $validator->errors();
+        Log::debug('Validation errors: ', $errors->toArray());
+
         $nomRouteActuelle = $this->route()->getName();
 
 
         if ($nomRouteActuelle === 'usagers.CreationUsager') {
-            session()->put('erreurAjouterUsager', $validator->errors());
-
+            // Return errors as JSON response
             throw new HttpResponseException(
-                redirect()->back()
-                    ->withInput()
+                response()->json([
+                    'errors' => $validator->errors()
+                ], 422)
             );
         }
         elseif ($nomRouteActuelle === 'usagers.modifier') {
