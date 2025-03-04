@@ -133,7 +133,7 @@ class LieuxController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function ZoomLieu(string $id)
     {
 
         $lieuActuel = Lieu::findOrFail($id);
@@ -164,6 +164,7 @@ class LieuxController extends Controller
     {
         Log::debug($request);
         $lieu = Lieu::findOrFail($id);
+      
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;

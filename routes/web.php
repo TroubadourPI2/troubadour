@@ -35,9 +35,10 @@ Route::middleware(Langue::class)
         )->name('usagers.Deconnexion')->middleware('auth');
 
 
-        Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom');
+        Route::get('/lieu/zoom/{id}', [LieuxController::class, 'ZoomLieu'])->name('Lieu.zoom');
 
-        Route::get('/activite/zoom/{id}', [ActivitesController::class, 'show'])->name('Activite.zoom');
+        Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'ZoomActivite'])->name('Activite.zoom');
+
 
         Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'ObtenirVilleUtilisateur']);
 
@@ -65,10 +66,13 @@ Route::middleware(Langue::class)
         Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
 
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
-        
-        //ADMINISTRATEUR
-        Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
+
+        Route::get('/admin', [AdministrateursController::class, 'afficher'])->name('admin')->middleware('VerifierRole:Admin');
         Route::get('/admin/recherche', [LieuxController::class, 'Index'])->name('adminLieux.recherche');
         Route::post('/admin/recherche', [LieuxController::class, 'Recherche'])->name('adminLieux.recherche2');
         Route::get('/admin/quartier', [LieuxController::class, 'Quartiers'])->name('adminLieux.quartiers');
+
+        Route::fallback(function () {
+            return response()->view('Redirection.404', [], 404);
+          });
     });

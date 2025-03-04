@@ -1,0 +1,37 @@
+
+@keyframes animationCiel {
+    0%, 100% { background: linear-gradient(to bottom, #87CEEB, #ffffff); }
+    50% { background: linear-gradient(to bottom, #6EC6FF, #E0F7FA); }
+  }
+  body {
+    animation: animationCiel 10s infinite alternate;
+  }
+
+
+  @keyframes deplacementNuages {
+    0% { transform: translateX(-100vw); }
+    100% { transform: translateX(100vw); }
+  }
+  .nuage {
+    position: absolute;
+    top: 10%;
+    width: 120px;
+    opacity: 0.7;
+    animation: deplacementNuages 25s linear infinite;
+  }
+  .nuage:nth-child(2) { top: 30%; animation-duration: 30s; }
+  .nuage:nth-child(3) { top: 50%; animation-duration: 20s; }
+
+
+  @keyframes vol {
+    0% { transform: translateX(-10%) translateY(10px); }
+    50% { transform: translateX(50vw) translateY(-30px); }
+    100% { transform: translateX(110vw) translateY(10px); }
+  }
+  .montgolfiere {
+    position: absolute;
+    top: 15%;
+    left: -150px;
+    width: 100px;
+    animation: vol 10s ease-in-out infinite;
+  }
