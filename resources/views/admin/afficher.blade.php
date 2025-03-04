@@ -20,7 +20,8 @@
                 class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('activites') }}</button>
         </div>
         {{-- //TODO Importer les composants selon le menu choisi --}}
-        <div id="demandes" class="sectionMenu">COMPTE</div>
+        <!-- Ajout du chemin vers composants pour demande  -->
+        <div id="demandes" class="sectionMenu">@include('admin.Demandes')</div>
         <div id="villes" class="sectionMenu hidden">VILLES</div>
         <div id="lieux" class="sectionMenu hidden">LIEUX</div>
         <div id="activites" class="sectionMenu hidden">ACTIVITES</div>

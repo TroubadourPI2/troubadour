@@ -66,7 +66,10 @@ Route::middleware(Langue::class)
 
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
 
+
+        //ADMIN
         Route::get('/admin', [AdministrateursController::class, 'afficher'])->name('admin')->middleware('VerifierRole:Admin');
+        Route::get('/admin/rechercheUsagers', [AdministrateursController::class, 'usagersPagination'])->name('admin.rechercheUsagers')->middleware('VerifierRole:Admin');
 
         Route::fallback(function () {
             return response()->view('Redirection.404', [], 404);

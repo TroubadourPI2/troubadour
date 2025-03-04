@@ -20,21 +20,30 @@ class AdministrateursController extends Controller
      */
     public function UsagersPagination(Request $request)
     {
-
-            $requete = trim($request->get('recherche'));
+        $rechercheTexte  = trim($request->get('recherche'));
+        $rechercheRole   = $request->get('rechercheRole');
+        $rechercheStatut = $request->get('rechercheStatut');
     
-            $usagers = Usager::when($requete, function ($requetePerso) use ($requete) {
-                    $requetePerso->where('nom', 'LIKE', '%' . $requete . '%')
-                                 ->orWhere('prenom', 'LIKE', '%' . $requete . '%')
-                                 ->orWhere('courriel', 'LIKE', '%' . $requete . '%');
-                })
-                ->orderByRaw("role_id = 3 DESC")   
-                ->orderByRaw("statut_id = 3 DESC") 
-                ->paginate(10);
+        $usagers = Usager::when($rechercheTexte, function ($query) use ($rechercheTexte) {
+                        $query->where(function($q) use ($rechercheTexte) {
+                            $q->where('nom', 'LIKE', '%' . $rechercheTexte . '%')
+                              ->orWhere('prenom', 'LIKE', '%' . $rechercheTexte . '%')
+                              ->orWhere('courriel', 'LIKE', '%' . $rechercheTexte . '%');
+                        });
+                    })
+                    ->when($rechercheRole, function ($query) use ($rechercheRole) {
+                        $query->where('role_id', $rechercheRole);
+                    })
+                    ->when($rechercheStatut, function ($query) use ($rechercheStatut) {
+                        $query->where('statut_id', $rechercheStatut);
+                    })
+                    ->orderByRaw("role_id = 3 DESC")  
+                    ->orderByRaw("statut_id = 3 DESC") 
+                    ->paginate(10);
     
-            return response()->json($usagers);
-  
+        return response()->json($usagers);
     }
+    
     
 
     /**
