@@ -37,7 +37,8 @@
                         class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                         <option value="">{{ __('selectionnerType') }}</option>
                         @foreach ($typesLieu as $type)
-                            <option value="{{ $type->id }}">
+                            <option value="{{ $type->id }}"
+                            {{ old('selectTypeLieu') == $type->id ? 'selected' : '' }}>
                                 {{ $type->nom }}
                             </option>
                         @endforeach
@@ -67,6 +68,8 @@
                             {{ session('erreurModifierLieu')->first('photoLieu') }}
                         </div>
                     @endif
+                    <div id="divPhotoLieu" class="mt-2"></div>
+                    <input type="hidden" id="photoLieuSupprime" name="photoLieuSupprime" value="">
                 </div>
             </div>
         </div>
@@ -114,7 +117,8 @@
                         class="block w-full rounded-lg p-2 sm:p-3 bg-c3 font-medium">
                         <option value="">{{ __('choisirVille') }}</option>
                         @foreach ($villes as $ville)
-                            <option value="{{ $ville->id }}">
+                            <option value="{{ $ville->id }}"
+                            {{ old('selectVilleLieu') == $ville->id ? 'selected' : '' }}>
                                 {{ $ville->nom }}
                             </option>
                         @endforeach

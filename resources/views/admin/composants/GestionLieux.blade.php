@@ -20,7 +20,7 @@
                                 alt="{{ $lieu->nomEtablissement }}">
 
                             <h5 class="text-xl font-bold uppercase p-2 text-center h-full flex items-center">
-                                {{ $lieu->nomEtablissement }}
+                               {{ $lieu->nomEtablissement}}
                             </h5>
                         </div>
                         <div
@@ -170,8 +170,8 @@
     @endif
 </div>
 
-<div id="ajouterLieu" class="hidden">@include('usagers.composants.AjouterLieu')</div>
-<div id="modifierLieu" class="hidden">@include('usagers.composants.ModifierLieu')</div>
+<div id="ajouterLieu" class="hidden">@include('admin.composants.AjouterLieuAdmin')</div>
+<div id="modifierLieu" class="hidden">@include('admin.composants.ModifierLieuAdmin')</div>
 
 @if (session('erreurAjouterLieu'))
     <script>

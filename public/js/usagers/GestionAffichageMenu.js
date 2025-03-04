@@ -12,7 +12,6 @@ function InitialiserMenu() {
 
 function ObtenirElements() {
     boutonsMenu = document.querySelectorAll(".boutonMenu");
-    console.log(boutonsMenu);
     sectionsMenu = document.querySelectorAll(".sectionMenu");
 }
 

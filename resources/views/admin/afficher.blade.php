@@ -91,7 +91,6 @@ session()->forget('formulaireAjouterLieuValide');
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const succesMessage = "{{ __('succesModifier') }}";
-        console.log("ici")
         document.getElementById('lieux').classList.remove('hidden');
         document.getElementById('demandes').classList.add('hidden');
         document.getElementById('activites').classList.add('hidden');

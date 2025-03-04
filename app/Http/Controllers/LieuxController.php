@@ -162,6 +162,7 @@ class LieuxController extends Controller
 
     public function ModifierUnLieu(LieuRequest $request, string $id)
     {
+        Log::debug($request);
         $lieu = Lieu::findOrFail($id);
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'Admin';
@@ -185,6 +186,13 @@ class LieuxController extends Controller
             $lieu->description = $request->description;
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
+
+            if ($request->has('photoLieuSupprime') && $request->photoLieuSupprime == "1") {
+                if ($lieu->photoLieu && $lieu->photoLieu !== $photoDefautPath) {
+                    Storage::disk('DevActivite')->delete($lieu->photoLieu);
+                }
+                $lieu->photoLieu = $photoDefautPath; 
+            }
 
             if ($request->hasFile('photoLieu')) {
                 if ($lieu->photoLieu && $lieu->photoLieu !== $photoDefautPath) {
