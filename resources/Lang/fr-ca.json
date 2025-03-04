@@ -137,5 +137,9 @@
   "informations": "Informations",
   "localisation": "Localisation",
   "fin": "Fin",
-  "debut": "Début"
-}
+  "debut": "Début",
+  "bientotVille":"Bientôt disponible dans votre ville",
+  "autreVille":"Voir d'autres villes",
+  "erreur404": "Erreur 404 - Page non trouvée",
+  "erreur404Texte":"Le motif de votre recherche n'a mené à aucun résultat"
+}  

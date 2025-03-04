@@ -136,5 +136,9 @@
   "informations": "Informations",
   "localisation": "Localisation",
   "fin": "End",
-  "debut": "Start"
+  "debut": "Start",
+  "bientotVille":"Coming soon to your city",
+  "autreVille":"See other cities",
+  "erreur404": "Error 404 - Page not found",
+  "erreur404Texte":"The reason for your search did not return any results"
 }

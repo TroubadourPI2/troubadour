@@ -72,7 +72,7 @@ class ActivitesController extends Controller
     try {
         $activite = Activite::findOrFail($id);
         $utilisateur = auth()->user(); 
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
@@ -96,7 +96,7 @@ class ActivitesController extends Controller
         try {
             $activite = Activite::findOrFail($id);
             $utilisateur = auth()->user(); 
-            $estAdmin = $utilisateur->role->nom === 'admin';
+            $estAdmin = $utilisateur->role->nom === 'Admin';
             $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
             if (!$estProprietaire && !$estAdmin) {
                 return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
@@ -184,7 +184,7 @@ class ActivitesController extends Controller
    
         $activite = Activite::findOrFail($id);
         $utilisateur = auth()->user(); 
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
