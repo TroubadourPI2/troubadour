@@ -97,7 +97,7 @@
 
                     <div class="flex text-center mb-2">
                         <span class="iconify size-8  text-c1" data-icon="cil:description" data-inline="false"></span>
-                        <span class="font-sm text-2xl underline"> Informations </span>
+                        <span class="font-sm text-2xl underline"> __('informations') </span>
                     </div>
 
                     <div
@@ -109,7 +109,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:event-available" data-inline="false"></span><span class="mr-2"> Début:
+                                    data-icon="mdi:event-available" data-inline="false"></span><span class="mr-2"> __('debut')
                                 </span></div>
                             <div class="text"> {{$activite->dateDebut}} </div>
                         </div>
@@ -118,7 +118,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:event-busy" data-inline="false"></span><span class="mr-6"> Fin: </span>
+                                    data-icon="mdi:event-busy" data-inline="false"></span><span class="mr-6"> __('fin') </span>
                             </div>
                             <div class="text"> {{$activite->dateFin}} </div>
                         </div>
@@ -127,7 +127,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:local-activity" data-inline="false"></span><span class="mr-3"> Type:
+                                    data-icon="mdi:local-activity" data-inline="false"></span><span class="mr-3"> __('type'):
                                 </span></div>
                             <div class="text"> {{$lieu->typeLieu->nom}} </div>
                         </div>
@@ -136,7 +136,7 @@
 
                         <div class="text-c1 text-base p-4 flex items-center bg-white">
                             <div class="mr-4 border-r-2 border-c1"><span class="iconify size-7 text-c1 cursor-pointer"
-                                    data-icon="mdi:link" data-inline="false"></span><span class="mr-4"> Site: </span>
+                                    data-icon="mdi:link" data-inline="false"></span><span class="mr-4"> __('siteWeb'): </span>
                             </div>
                             <div class="text">
                                 @if ($lieu->siteWeb)

@@ -78,7 +78,7 @@
 
                     <div class="flex text-center mb-2">
                         <span class="iconify size-8  text-c1" data-icon="bx:map" data-inline="false"></span>
-                        <span class="font-sm text-2xl underline"> Localisation </span>
+                        <span class="font-sm text-2xl underline"> __('localisation') </span>
                     </div>
 
                     <div class=" w-3/4 lg:h-2/3 2xl:h-3/4 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">
@@ -124,7 +124,7 @@
                     <div class="flex text-center mb-2">
                         <span class="iconify size-8 text-c1" data-icon="material-symbols:map-outline"
                             data-inline="false"></span>
-                        <span class="font-sm text-2xl underline"> Activité </span>
+                        <span class="font-sm text-2xl underline"> __('activites') </span>
                     </div>
 
                     <div class="w-3/4 lg:h-2/3 2xl:h-3/4 2xl:mt-6 bg-white p-2 rounded-lg overflow-hidden shadow-lg">

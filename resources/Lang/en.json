@@ -132,5 +132,9 @@
   "activerActivite": "Would you like to activate the activity",
   "desactiverActivite":"Would you like to deactivate the activity",
   "successModifierStatutActivite": "Activity status updated successfully",
-  "aucunSiteWeb": "No Website"
+  "aucunSiteWeb": "No Website",
+  "informations": "Informations",
+  "localisation": "Localisation",
+  "fin": "End",
+  "debut": "Start"
 }
