@@ -41,12 +41,13 @@
 
                     <div
                         class="lg:h-2/3 2xl:h-3/4 mt-10 2xl:mt-16 bg-white p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
-                        @if ($lieuActuel->photoLieu)
-                            <img class="w-96 h-52 md:w-100 md:h-[18rem] lg:w-[40rem] 2xl:h-[24rem] rounded"
-                                src="{{ $lieuActuel->photo_lieu_url }}" alt="{{ $lieuActuel->nomEtablissement }}">
+                        @if ( $lieuActuel->photo_lieu_url)
+                            <img class="w-96 h-52 md:w-[24rem] md:h-[18rem] lg:w-[40rem] 2xl:h-[24rem] rounded"
+                            src="{{ asset($lieuActuel->photo_lieu_url) }}" alt="{{ $lieuActuel->nomEtablissement }}">
                         @else
                             <img class="w-96 h-52 md:w-100 md:h-[18rem] lg:w-[40rem] 2xl:h-[24rem] rounded"
                                 src="{{ asset('/Images/Logos/logoC1.svg') }}" alt="Troubadour">
+                           
                         @endif
                         <div class="px-6 py-3">
                             <div class="font-bold text-xl mb-2 md:w-full truncate">
@@ -144,12 +145,13 @@
                                     data-icon="mdi:link" data-inline="false"></span>
                             </div>
                             <div class="text">
+                            <a href="{{ $lieuActuel->siteWeb ?? '' }}">
                                 @if ($lieuActuel->siteWeb)
-                                    <a href="{{ $lieuActuel->siteWeb ?? '' }}">
-                                        {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
-                                    @else
+                                    {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
+                                @else
                                         {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
                                 @endif
+</a>
                             </div>
                         </div>
 
@@ -185,7 +187,7 @@
                         <div class="bg-c3 text-c2 text-base p-4 flex items-center h-4">
                         </div>
                         <div class=" my-1 mx-3"></div>
-
+                        @if (!empty($activites) && $activites->isNotEmpty())
                         @foreach ($activites as $activite)
                             <div class=" my-1 mx-3 rounded border-c1 bg-c3 border flex"></div>
 
@@ -194,13 +196,15 @@
                                         data-icon="mdi:local-activity" data-inline="false"></span></div>
                                 <div class="text"> <a
                                         href="{{ route('Activite.zoom', ['id' => $activite->id, 'idLieu' => $lieuActuel->id]) }}">
-                                        <p class="text-c1 text-base underline truncate mb-5">{{ $activite->nom }}</p>
+                                        {{ $activite->nom }}
                                     </a>
                                 </div>
                             </div>
 
                             <div class=" my-1 mx-3"></div>
                         @endforeach
+                        @else <div> aucune activité disponible</div>
+                        @endif
                         <div class=" my-1 mx-3 rounded border-c1 bg-c3 border flex"></div>
 
                     </div>
