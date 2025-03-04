@@ -12,6 +12,7 @@ function InitialiserMenu() {
 
 function ObtenirElements() {
     boutonsMenu = document.querySelectorAll(".boutonMenu");
+    console.log(boutonsMenu);
     sectionsMenu = document.querySelectorAll(".sectionMenu");
 }
 
@@ -29,7 +30,6 @@ function CacherToutesLesSections() {
 function AjouterMenuListeners() {
     boutonsMenu.forEach((boutonMenu) => {
         boutonMenu.addEventListener("click", function () {
-            // Réinitialiser l'état des boutons
             boutonsMenu.forEach((btn) => {
                 BasculerClassesBouton(btn, ["sm:hover:bg-c1", "sm:hover:text-c3"], ["bg-c1", "text-c3"]);
             });

@@ -4,23 +4,33 @@
 
 @section('contenu')
 
-<div class="flex flex-col w-full h-full ">
+<div class="flex flex-col w-full h-full">
     <div
-        class="flex items-center sm:justify-start text-c1 justify-center md:space-x-2 space-x-4 border-none sm:border-b-[3px]  border-c1 sm:h-10 h-6 w-full my-3 ">
+        class="flex items-center sm:justify-start text-c1 justify-center md:space-x-2 space-x-4 sm:border-b-[3px]  border-c1 sm:h-10 h-6 w-full my-4">
         <button id="boutonDemandes" data-section="demandes"
-        class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:bg-c1 sm:text-c3 rounded-full sm:w-32 mb-1 uppercase transition flex items-center justify-center">
-        <span class="iconify size-10 sm:hidden" data-icon="ep:edit"></span>
-        <span class="hidden sm:inline">{{ __('demandes') }}</span>
-    </button>
+            class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold bg-c1 text-c3 rounded-full sm:w-32 uppercase transition">
+            <span class="iconify size-8 sm:hidden" data-icon="mingcute:document-line"></span>
+            <span class="hidden sm:inline">{{ __('demandes') }}</span>
+        </button>
+
         <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
         <button id="boutonVilles" data-section="villes"
-            class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ trans_choice('ville', 2) }}</button>
-        <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1"></div>
+            class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
+            <span class="iconify size-8 sm:hidden" data-icon="solar:city-linear"></span>
+            <span class="hidden sm:inline">{{ trans_choice('ville', 2) }}</span>
+        </button>
+        <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
         <button id="boutonLieu" data-section="lieux"
-            class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('lieux') }}</button>
-        <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1"></div>
+            class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
+            <span class="iconify size-8 sm:hidden" data-icon="mingcute:location-3-line"></span>
+            <span class="hidden sm:inline">{{ __('lieux') }}</span>
+        </button>
+        <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
         <button id="boutonActivites" data-section="activites"
-            class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('activites') }}</button>
+            class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
+            <span class="iconify size-8 sm:hidden" data-icon="mdi:events"></span>
+            <span class="hidden sm:inline">{{ __('activites') }}</span>
+        </button>
     </div>
     {{-- //TODO Importer les composants selon le menu choisi --}}
     <div id="demandes" class="sectionMenu">COMPTE</div>
@@ -46,9 +56,9 @@
         document.getElementById('activites').classList.add('hidden');
         document.getElementById('villes').classList.add('hidden');
 
-        const boutonLieux = document.getElementById('boutonLieux');
-        boutonLieux.classList.add("bg-c1", "text-c3");
-        boutonLieux.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+        const boutonLieu = document.getElementById('boutonLieu');
+        boutonLieu.classList.add("bg-c1", "text-c3");
+        boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
 
         const boutonDemandes = document.getElementById('boutonDemandes');
         boutonDemandes.classList.remove("bg-c1", "text-c3");
@@ -81,14 +91,15 @@ session()->forget('formulaireAjouterLieuValide');
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const succesMessage = "{{ __('succesModifier') }}";
+        console.log("ici")
         document.getElementById('lieux').classList.remove('hidden');
         document.getElementById('demandes').classList.add('hidden');
         document.getElementById('activites').classList.add('hidden');
         document.getElementById('villes').classList.add('hidden');
 
-        const boutonLieux = document.getElementById('boutonLieux');
-        boutonLieux.classList.add("bg-c1", "text-c3");
-        boutonLieux.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+        const boutonLieu = document.getElementById('boutonLieu');
+        boutonLieu.classList.add("bg-c1", "text-c3");
+        boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
 
         const boutonDemandes = document.getElementById('boutonDemandes');
         boutonDemandes.classList.remove("bg-c1", "text-c3");
