@@ -18,10 +18,11 @@ function ObtenirElementsRechercheLieux() {
 }
 
 function RechercheLieuxListeners() {
-    filtreVille.addEventListener('change', function () {
+    filtreVille.addEventListener('change', function () { 
+        FiltrerLieux();
         if (filtreVille.value != '') {
             ObtenirQuartiersParVille(filtreVille.value);
-            FiltrerLieux();
+           
         } else {
             filtreQuartier.innerHTML = '';
         }
@@ -81,6 +82,7 @@ function AfficherErreur() {
 }
 
 function AfficherLieux(lieux) {
+    console.log(lieux)
     const container = document.getElementById('affichageDesLieux');
     container.innerHTML = '';
 
@@ -91,8 +93,8 @@ function AfficherLieux(lieux) {
 
     lieux.forEach((lieu) => {
         const div = document.createElement('div');
-        //div.classList.add('lieu');
         // Carte mobile
+        console.log(lieu.nomEtablissement)
         const carteMobile = `
             <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg">
                 <div class="carteLieuxMobile relative w-full min-h-[50vh] mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl">
@@ -139,7 +141,7 @@ function AfficherLieux(lieux) {
                 <div class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
             </label>     
                     </div>
-                    <h5 class="text-xl font-bold uppercase truncate">${lieu.nomEtablissement}</h5>
+                    <h5 class="text-xl font-bold uppercase w-full">${lieu.nomEtablissement}</h5>
                     <div>
                         <div class="uppercase underline text-lg font-semibold">${Lang.get('strings.description')}</div>
                         <div class="text-base truncate">${lieu.description ?? Lang.get('strings.aucuneDescription')}</div>

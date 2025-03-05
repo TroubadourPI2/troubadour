@@ -22,86 +22,76 @@ class AdministrateursController extends Controller
     }
 
     public function Recherche(Request $request)
-    {
-        Log::debug($request);
+{
+    $villeId  = $request->get('villeId');
+    $quartierId = $request->get('quartierId');
+    $rechercheNom = $request->get('rechercheNom');
 
-        // Créer une requête pour filtrer les lieux
-        $query = Lieu::query();
+    // Construire la requête de manière fluide
+    $lieux = Lieu::when($villeId, function ($query) use ($villeId) {
+                            $query->whereHas('quartier', function ($q) use ($villeId) {
+                                $q->where('ville_id', $villeId);
+                            });
+                        })
+                        ->when($quartierId, function ($query) use ($quartierId) {
+                            $query->where('quartier_id', $quartierId);
+                        })
+                        ->when($rechercheNom, function ($query) use ($rechercheNom) {
+                            $query->where('nomEtablissement', 'like', '%' . $rechercheNom . '%');
+                        })
+                        // Si aucun filtre n'est sélectionné, on retourne tous les lieux
+                        ->when(!$villeId && !$quartierId && !$rechercheNom, function ($query) {
+                            $query->select('*'); // Sélectionne tous les lieux
+                        })
+                        ->with(['quartier', 'quartier.ville'])
+                        ->get();
 
-        // Filtrer par ville via le quartier
-        if ($request->ville) {
-            $query->whereHas('quartier', function ($q) use ($request) {
-                $q->where('ville_id', $request->ville);
-            });
-        }
+    // Vérification du nombre de résultats
+    $count = $lieux->count();
 
-        // Filtrer par quartier
-        if ($request->quartier) {
-            $query->where('quartier_id', $request->quartier);
-        }
-
-        // Filtrer par nom de lieu
-        if ($request->rechercheNomLieu) {
-            $query->where('nom_etablissement', 'like', '%' . $request->rechercheNomLieu . '%');
-        }
-
-        // Filtrer par actif ou inactif
-        if ($request->actif !== null) {
-            $query->where('actif', $request->actif);
-        }
-
-        // Charger les relations quartier et ville
-        $lieux = $query->with(['quartier', 'quartier.ville'])->get();
-
-        // Compter le nombre de lieux trouvés
-        $count = $lieux->count();
-
-        // Si aucun lieu trouvé
-        if ($count === 0) {
-            return response()->json(['message' => 'Aucun lieu trouvé pour les critères de recherche.']);
-        }
-
-        Log::debug($count);
-
-        // Format de la réponse avec les informations de quartier et de ville
-        $lieuxWithDetails = $lieux->map(function ($lieu) {
-            return [
-                'id' => $lieu->id,
-                'rue' => $lieu->rue,
-                'noCivic' => $lieu->noCivic,
-                'codePostal' => $lieu->codePostal,
-                'nomEtablissement' => $lieu->nomEtablissement,
-                'photoLieu' => $lieu->photoLieu,
-                'siteWeb' => $lieu->siteWeb,
-                'numeroTelephone' => $lieu->numeroTelephone,
-                'actif' => $lieu->actif,
-                'description' => $lieu->description,
-                'typeLieu' => $lieu->typeLieu->nom,
-                'quartier' => $lieu->quartier ? [
-                    'id' => $lieu->quartier->id,
-                    'nom' => $lieu->quartier->nom,
-                ] : null,
-                'ville' => $lieu->quartier && $lieu->quartier->ville ? [
-                    'id' => $lieu->quartier->ville->id,
-                    'nom' => $lieu->quartier->ville->nom,
-                ] : null,
-                'region' => ($lieu->quartier && $lieu->quartier->ville && $lieu->quartier->ville->region) ? [
-                    'id' => $lieu->quartier->ville->region->id,
-                    'nom' => $lieu->quartier->ville->region->nom,
-                ] : null,
-                'province' => ($lieu->quartier && $lieu->quartier->ville && $lieu->quartier->ville->region && $lieu->quartier->ville->region->province) ? [
-                    'id' => $lieu->quartier->ville->region->province->id,
-                    'nom' => $lieu->quartier->ville->region->province->nom,
-                ] : null,
-                'pays' => ($lieu->quartier && $lieu->quartier->ville && $lieu->quartier->ville->pays) ? [
-                    'id' => $lieu->quartier->ville->pays->id,
-                    'nom' => $lieu->quartier->ville->pays->nom,
-                ] : null,
-            ];
-        });
-
-        Log::debug($lieuxWithDetails);
-        // Retourner les lieux au format JSON avec quartier et ville
-        return response()->json($lieuxWithDetails);
+    if ($count === 0) {
+        return response()->json(['message' => 'Aucun lieu trouvé pour les critères de recherche.']);
     }
+    Log::debug($request);
+    // Transformation des résultats pour les envoyer au front-end
+    $lieuxWithDetails = $lieux->map(function ($lieu) {
+        return [
+            'id' => $lieu->id,
+            'rue' => $lieu->rue,
+            'noCivic' => $lieu->noCivic,
+            'codePostal' => $lieu->codePostal,
+            'nomEtablissement' => $lieu->nomEtablissement,
+            'photoLieu' => $lieu->photoLieu,
+            'siteWeb' => $lieu->siteWeb,
+            'numeroTelephone' => $lieu->numeroTelephone,
+            'actif' => $lieu->actif,
+            'description' => $lieu->description,
+            'typeLieu' => $lieu->typeLieu->nom,
+            'quartier' => $lieu->quartier ? [
+                'id' => $lieu->quartier->id,
+                'nom' => $lieu->quartier->nom,
+            ] : null,
+            'ville' => $lieu->quartier && $lieu->quartier->ville ? [
+                'id' => $lieu->quartier->ville->id,
+                'nom' => $lieu->quartier->ville->nom,
+            ] : null,
+            'region' => ($lieu->quartier && $lieu->quartier->ville && $lieu->quartier->ville->region) ? [
+                'id' => $lieu->quartier->ville->region->id,
+                'nom' => $lieu->quartier->ville->region->nom,
+            ] : null,
+            'province' => ($lieu->quartier && $lieu->quartier->ville && $lieu->quartier->ville->region && $lieu->quartier->ville->region->province) ? [
+                'id' => $lieu->quartier->ville->region->province->id,
+                'nom' => $lieu->quartier->ville->region->province->nom,
+            ] : null,
+            'pays' => ($lieu->quartier && $lieu->quartier->ville && $lieu->quartier->ville->pays) ? [
+                'id' => $lieu->quartier->ville->pays->id,
+                'nom' => $lieu->quartier->ville->pays->nom,
+            ] : null,
+        ];
+    });
+
+    return response()->json($lieuxWithDetails);
+}
+
+
 }

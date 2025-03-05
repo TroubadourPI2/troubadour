@@ -144,5 +144,6 @@
   "erreur404Texte":"Le motif de votre recherche n'a mené à aucun résultat",
 
   "rechercheLieu" : "Recherche par nom de lieu",
-  "toutesVilles" : "Toutes les villes"
+  "toutesVilles" : "Toutes les villes",
+  "selectionnerVilleAvant" : "Sélectionner une ville en premier pour filtrer par quartier."
 }  

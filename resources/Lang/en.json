@@ -143,5 +143,6 @@
   "erreur404Texte":"The reason for your search did not return any results",
 
   "rechercheLieu" : "Search by location name",
-  "toutesVilles" : "All cities"
+  "toutesVilles" : "All cities",
+  "selectionnerVilleAvant" : "Select a city before to filter by neighborhood."
 }

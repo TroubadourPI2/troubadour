@@ -1,7 +1,7 @@
 <div id="afficherLieux">
     <div class="flex flex-col md:flex-row md:items-center md:gap-4">
         <!-- Filtre par ville -->
-        <select name="ville" id="filtreVille" class="border-2 border-c1 p-2 rounded-full w-full md:w-1/4 uppercase">
+        <select name="ville" id="filtreVille" class="border-2 border-c1 p-2 my-2 md:my-0 rounded-full w-full md:w-1/4 uppercase">
             <option value="">{{ __('Toutes les villes') }}</option>
             @foreach ($villes as $ville)
             <option class="uppercase" value="{{ $ville->id }}">
@@ -11,7 +11,7 @@
         </select>
 
         <!-- Filtre par quartier -->
-        <select name="quartier" id="filtreQuartier" class="border-2 border-c1 p-2 rounded-full w-full md:w-1/4 uppercase">
+        <select name="quartier" id="filtreQuartier" class="border-2 border-c1 p-2 mb-2 md:mb-0 rounded-full w-full md:w-1/4 uppercase">
             <!-- Les quartiers seront remplis par JS ou passés en variable -->
         </select>
 
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <span class="text-c1 uppercase font-semibold text-lg italic">Sélectionner une ville en premier pour filtrer par quartier.</span>
+    <span class="text-c1 uppercase font-semibold text-lg italic">{{__('selectionnerVilleAvant')}}</span>
 
 
     <button id="boutonAjouterLieu"
