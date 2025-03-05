@@ -22,9 +22,9 @@ class LieuFavoriRequest extends FormRequest
     public function rules(): array
     {
 
-        if ($this->route()->getName() === 'DeleteFavoris') {
+        if ($this->route()->getName() === 'delete.favoris') {
             return [
-                'id' => 'required|integer|exists:Favoris,id',
+                'id' => 'required|integer|exists:LieuFavoris,id',
             ];
         }
     

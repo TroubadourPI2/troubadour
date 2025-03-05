@@ -21,7 +21,7 @@
 
                 @if(empty($favoris))
 
-                <form action="{{ route('ajouter.favoris', ['idLieu' => $lieuActuel->id, 'id' => 1]) }}" method="POST">
+                <form action="{{ route('ajouter.favoris') }}" method="POST">
                     @csrf
 
                     <input type="hidden" name="idLieu" value="{{$lieuActuel->id}}">
@@ -39,9 +39,11 @@
 
                 @else
 
-                <form action="{{ route('delete.favoris', ['idLieu' => $lieuActuel->id, 'id' => 1]) }}" method="POST">
+                <form action="{{ route('delete.favoris', ['id' => $favoris->id]) }}" method="POST">
                     @csrf
                     
+                    <input type="hidden" name="id" value="{{$favoris->id}}">
+
                     <button type="submit" style="background: none; border: none;">
                         <span class="iconify size-10 md:ml-0 lg:ml-0 mr-20 text-c1 sm:ml-0 sm:mr-0 md:mr-20" 
                             data-icon="line-md:heart-filled"

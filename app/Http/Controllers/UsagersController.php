@@ -76,14 +76,11 @@ class UsagersController extends Controller
     }
 
 
-    public function DeleteFavoris(string $id)
+    public function DeleteFavoris(LieuFavoriRequest $request)
     {
-        $favorite =  LieuFavori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();
+        $favorite =  LieuFavori::where("id",$request->id)->first();
+        $favorite->delete();
 
-        if ($favorite && $favorite->usager_id == Auth::id()) { 
-            $favorite->delete();
-
-        } 
 
         return redirect()->back(); 
 
