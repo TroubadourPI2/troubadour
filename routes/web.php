@@ -35,12 +35,11 @@ Route::middleware(Langue::class)
         )->name('usagers.Deconnexion')->middleware('auth');
 
 
-        Route::get('/lieu/zoom/{id}', [LieuxController::class, 'show'])->name('Lieu.zoom');
+        Route::get('/lieu/zoom/{id}', [LieuxController::class, 'ZoomLieu'])->name('Lieu.zoom');
 
-        Route::post('/ajoutFavori/{id}{idLieu}', [UsagersController::class, 'storefavoris'])->name('store.favoris');
+        Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'ZoomActivite'])->name('Activite.zoom');
 
-        Route::get('/activite/zoom/{id}', [ActivitesController::class, 'show'])->name('Activite.zoom');
-        
+        Route::post('/ajoutFavori/{id}{idLieu}', [UsagersController::class, 'storefavoris'])->name('store.favoris');        
 
         Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'ObtenirVilleUtilisateur']);
 
@@ -69,4 +68,8 @@ Route::middleware(Langue::class)
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
 
         Route::get('/admin', [AdministrateursController::class, 'afficher'])->name('admin')->middleware('VerifierRole:Admin');
+
+        Route::fallback(function () {
+            return response()->view('Redirection.404', [], 404);
+          });
     });

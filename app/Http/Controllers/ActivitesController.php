@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Activite;
+use App\Models\LieuActivite;
 use App\Models\Lieu;
 use App\Models\Photo;
-use App\Models\Activite;
+use Illuminate\Http\Request;
 use App\Models\TypeActivite;
-use App\Models\LieuActivite;
 use App\Http\Requests\ActiviteRequest;
 class ActivitesController extends Controller
 {
@@ -72,7 +72,7 @@ class ActivitesController extends Controller
     try {
         $activite = Activite::findOrFail($id);
         $utilisateur = auth()->user(); 
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
@@ -96,7 +96,7 @@ class ActivitesController extends Controller
         try {
             $activite = Activite::findOrFail($id);
             $utilisateur = auth()->user(); 
-            $estAdmin = $utilisateur->role->nom === 'admin';
+            $estAdmin = $utilisateur->role->nom === 'Admin';
             $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
             if (!$estProprietaire && !$estAdmin) {
                 return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
@@ -184,7 +184,7 @@ class ActivitesController extends Controller
    
         $activite = Activite::findOrFail($id);
         $utilisateur = auth()->user(); 
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
@@ -202,10 +202,15 @@ class ActivitesController extends Controller
             'message' => "Erreur lors de la mise à jour du statut de l'activité : " . $e->getMessage()
         ], 500);
     }
+
 }
 
-    
 
+public function ZoomActivite(string $id, string $idLieu)
+{
+    $activite = Activite::findOrFail($id);
+    $lieu = Lieu::findOrFail($idLieu);
 
-
+    return view('zoomActivite', compact('activite', 'lieu'));
+}
 }
