@@ -25,7 +25,7 @@
         </div>
         
         <div id="compte" class="sectionMenu">@include('usagers.composants.AfficherCompte')</div>
-        <div id="favoris" class="sectionMenu">@include('usagers.composants.AfficherFavoris')</div>
+        <div id="favoris" class="sectionMenu hidden">@include('usagers.composants.AfficherFavoris')</div>
         <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
         <div id="activites" class="sectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
     </div>
