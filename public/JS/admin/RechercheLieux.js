@@ -6,6 +6,8 @@ let filtreForm;
 document.addEventListener('DOMContentLoaded', function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsRechercheLieux();
+    filtreVille.value = "";
+    FiltrerLieux();
     RechercheLieuxListeners();
 });
 
@@ -57,8 +59,6 @@ function FiltrerLieux() {
         .get('/admin/recherche', { params })
         .then((response) => {
             if (response.data) {
-                console.log("test");
-                console.log(response.data);
                 AfficherLieux(response.data);
             } else {
                 AfficherAucunResultat();
@@ -82,7 +82,7 @@ function AfficherErreur() {
 
 function AfficherLieux(lieux) {
     const container = document.getElementById('affichageDesLieux');
-    container.innerHTML = ''; // Reset the container
+    container.innerHTML = '';
 
     if (lieux.length === 0) {
         container.innerHTML = '<p>Aucun lieu trouvé pour les critères de recherche.</p>';
@@ -90,9 +90,8 @@ function AfficherLieux(lieux) {
     }
 
     lieux.forEach((lieu) => {
-        console.log(lieu.typeLieu)
         const div = document.createElement('div');
-        div.classList.add('lieu');
+        //div.classList.add('lieu');
         // Carte mobile
         const carteMobile = `
             <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg">
@@ -131,19 +130,51 @@ function AfficherLieux(lieux) {
                 </div>
                 <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-4 relative">
                     <div class="flex justify-end gap-2">
-                        <span class="text-lg font-semibold text-c1 uppercase texteActif">${lieu.actif === 1 ? 'Actif' : 'Inactif'}</span>
+                        <span class="text-lg font-semibold text-c1 uppercase texteActif"
+                         data-lieuId="{{ $lieu->id }}" data-actif="{{ $lieu->actif }}">
+                        ${lieu.actif === 1 ? Lang.get('strings.actif') : Lang.get('strings.inactif')}
+                        </span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" name="actif" class="boutonBascule sr-only peer" data-lieuId="{{ $lieu->id }}" data-nomLieu="{{ $lieu->nomEtablissement }}" ${lieu.actif === 1 ? 'checked' : ''}>
+                <div class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+            </label>     
                     </div>
                     <h5 class="text-xl font-bold uppercase truncate">${lieu.nomEtablissement}</h5>
                     <div>
-                        <div class="uppercase underline text-lg font-semibold">Description</div>
-                        <div class="text-base truncate">${lieu.description ?? 'Aucune description'}</div>
+                        <div class="uppercase underline text-lg font-semibold">${Lang.get('strings.description')}</div>
+                        <div class="text-base truncate">${lieu.description ?? Lang.get('strings.aucuneDescription')}</div>
                     </div>
                     <div class="mb-4">
-                        <div class="uppercase underline text-lg font-semibold">Coordonnées et Info</div>
-                        <div class="text-base">
-                            <p><strong>Adresse :</strong> ${lieu.noCivic}, ${lieu.rue}</p>
-                    
+                        <div class="uppercase underline text-lg font-semibold">${Lang.get('strings.coordonneesEtInfo')}</div>
+                       <div class="text-base">
+                            <p><strong>${Lang.get('strings.adresse')}:</strong> ${lieu.noCivic}, ${lieu.rue}</p>
+                            <p><strong>${Lang.choice('strings.ville', 1)} :</strong> ${lieu.ville.nom}, ${lieu.codePostal}</p>
+                            <p><strong>${Lang.get('strings.quartier')} :</strong> ${lieu.quartier.nom}</p>
+                            ${lieu.province ? `<p><strong>${Lang.get('strings.province')} :</strong> ${lieu.province.nom}</p>` : ''}
+                            ${lieu.region ? `<p><strong>${Lang.get('strings.region')} :</strong> ${lieu.region.nom}</p>` : ''}
+                            <p><strong>${Lang.get('strings.pays')} :</strong> ${lieu.pays.nom}</p>
+                            <p><strong>${Lang.get('strings.typeLieu')} :</strong> ${lieu.typeLieu}</p>
+                            ${lieu.siteWeb ? 
+                                `<p class="truncate"><strong>${Lang.get('strings.siteWeb')} :</strong> 
+                                    <a href="${lieu.siteWeb}" class="text-blue-500 underline" target="_blank">${lieu.siteWeb}</a>
+                                </p>` 
+                            : ''}
+                            <p><strong>${Lang.get('strings.telephone')} :</strong> ${lieu.numeroTelephone}</p>
                         </div>
+                    </div>
+                     <div class="flex justify-end space-x-4 mt-auto">
+
+                        <button
+                            class="boutonSupprimer transform transition duration-300 hover:scale-110 text-[#B20101] hover:text-[#B50000]"
+                            data-lieuId="{{ $lieu->id }}" data-nomLieu="{{ $lieu->nomEtablissement }}">
+                            <span class="iconify size-8" data-icon="ion:trash-outline" data-inline="false"></span>
+                        </button>
+                        <button
+                            class="boutonModifier transform transition duration-300 hover:scale-110 text-c1-500 hover:text-c1-700"
+                            data-lieuId="{{ $lieu->id }}" data-villeId="{{ $lieu->ville()?->id }}"
+                            data-typeLieuId="{{ $lieu->typeLieu->id }}">
+                            <span class="iconify size-8" data-icon="ep:edit" data-inline="false"></span>
+                        </button>
                     </div>
                 </div>
             </div>

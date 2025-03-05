@@ -16,6 +16,7 @@ function ObtenirElementsSupprimer() {
 function AjouterSupprimerListeners() {
     boutonsSupprimer.forEach((bouton) => {
         bouton.addEventListener("click", () => {
+            console.log("allo")
             const lieuId = bouton.getAttribute("data-lieuId");
             const nomEtablissement = bouton.getAttribute("data-nomLieu");
             const Toast = Swal.mixin({

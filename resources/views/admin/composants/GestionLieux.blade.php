@@ -1,37 +1,39 @@
 <div id="afficherLieux">
-    <!-- Filtre par ville -->
-    <select name="ville" id="filtreVille" class="border-2 border-c1 p-2 rounded-full w-full md:w-1/4 uppercase">
-        <option value="">{{ __('Toutes les villes') }}</option>
-        @foreach ($villes as $ville)
-        <option class="uppercase" value="{{ $ville->id }}" {{ request('ville') == $ville->id ? 'selected' : '' }}>
-            {{ $ville->nom }}
-        </option>
-        @endforeach
-    </select>
+    <div class="flex flex-col md:flex-row md:items-center md:gap-4">
+        <!-- Filtre par ville -->
+        <select name="ville" id="filtreVille" class="border-2 border-c1 p-2 rounded-full w-full md:w-1/4 uppercase">
+            <option value="">{{ __('Toutes les villes') }}</option>
+            @foreach ($villes as $ville)
+            <option class="uppercase" value="{{ $ville->id }}">
+                {{ $ville->nom }}
+            </option>
+            @endforeach
+        </select>
 
-    <!-- Filtre par quartier -->
-    <select name="quartier" id="filtreQuartier" class="border-2 border-c1 p-2 rounded-full w-full md:w-1/4 uppercase">
-        <!-- Les quartiers seront remplis par JS ou passés en variable -->
-    </select>
+        <!-- Filtre par quartier -->
+        <select name="quartier" id="filtreQuartier" class="border-2 border-c1 p-2 rounded-full w-full md:w-1/4 uppercase">
+            <!-- Les quartiers seront remplis par JS ou passés en variable -->
+        </select>
 
-    <!-- Recherche par nom -->
-    <input type="text" name="rechercheNomLieu" id="rechercheNomLieu" placeholder="{{ __('rechercheLieu') }}" class="border-2 border-c1 p-2 rounded-full w-full md:w-2/3" value="{{ request('rechercheNomLieu') }}">
+        <!-- Recherche et Toggle ensemble -->
+        <div class="flex items-center gap-2 w-full justify-betwwen">
+            <!-- Recherche par nom -->
+            <input type="text" name="rechercheNomLieu" id="rechercheNomLieu" placeholder="{{ __('rechercheLieu') }}"
+                class="border-2 border-c1 p-2 rounded-full w-3/4 md:w-4/5">
 
-    <!-- Toggle Actif -->
-    <div class="flex items-center gap-2">
-        <span class="text-lg font-semibold text-c1 uppercase">{{ __('Actif') }}</span>
-        <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" name="actif" class="sr-only peer" {{ request('actif') ? 'checked' : '' }}>
-            <div class="w-11 h-6 bg-c3 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full 
-                rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] 
-                after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
+            <!-- Toggle Actif -->
+            <div class="flex items-center gap-2 w-1/4 md:w-1/5">
+                <span class="text-lg font-semibold text-c1 uppercase">{{ __('Actif') }}</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" name="actif" class="sr-only peer" {{ request('actif') ? 'checked' : '' }}>
+                    <div class="w-11 h-6 bg-c3 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full 
+                    rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] 
+                    after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
+                    </div>
+                </label>
             </div>
-        </label>
+        </div>
     </div>
-
-
-
-
     <span class="text-c1 uppercase font-semibold text-lg italic">Sélectionner une ville en premier pour filtrer par quartier.</span>
 
 
@@ -41,11 +43,10 @@
             data-inline="false"></span>
         {{ __('ajouter') }}
     </button>
-    <div id="affichageDesLieux">
-        @if ($lieux->isEmpty())
-        <div class="text-c1 text-2xl">{{ __('aucunLieu') }}.</div>
-        @else
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-4">
+
+    
+       
+        <div id="affichageDesLieux" class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-4">
             @foreach ($lieux as $lieu)
             <!-- Carte lieu pour mobile -->
             <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg ">
@@ -166,7 +167,7 @@
                             <p><strong>{{ __('adresse') }} :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}
                             </p>
                             <p><strong>{{ trans_choice('ville', 1) }} :</strong>
-                                {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal : '' }}
+                                {{ $lieu->ville()?->nom }}{{ $lieu->codePostal}}
                             </p>
                             <p><strong>{{ __('pays') }} :</strong> {{ $lieu->pays()?->nom }}</p>
                             <p><strong>{{ __('quartier') }} :</strong> {{ $lieu->quartier->nom }}</p>
@@ -204,8 +205,6 @@
             </div>
             @endforeach
         </div>
-        @endif
-    </div>
 </div>
 
 <div id="ajouterLieu" class="hidden">@include('admin.composants.AjouterLieuAdmin')</div>
