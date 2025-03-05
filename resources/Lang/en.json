@@ -140,5 +140,10 @@
   "bientotVille":"Coming soon to your city",
   "autreVille":"See other cities",
   "erreur404": "Error 404 - Page not found",
-  "erreur404Texte":"The reason for your search did not return any results"
+  "erreur404Texte":"The reason for your search did not return any results",
+  "tousLesRoles" : "All the roles",
+  "tousLesStatus" : "All status options",
+  "enAttente" : "Pending",
+    "rechercheAdminDemande": "Search by name, first name, or email",
+      "afficher":"Display"
 }

@@ -2,27 +2,38 @@
     <div class="flex gap-x-2 w-full flex-col md:flex-row gap-y-2 md:gap-y-0">
 
         <select id="rechercheRole" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
-            <option value="">Tous les rôles</option>
+            <option value="">    {{ __('tousLesRoles') }}</option>
             @foreach($roles as $role)
        
-            <option value="{{ $role->id }}">{{ $role->nom }}</option>
+            <option value="{{ $role->id }}"> @if($role->id == 1)
+                {{ __('admin') }}
+            @elseif($role->id == 2)
+                {{ __('utilisateur') }}
+            @elseif($role->id == 3)
+                {{ __('gestion') }}     @endif</option>
+           
             @endforeach
         </select>
         <select id="rechercheStatut" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
-            <option value="">Tous les statuts</option>
+            <option value="">{{ __('tousLesStatus') }}</option>
             @foreach($statuts as $statut)
-            <option value="{{ $statut->id }}">{{ $statut->statut }}</option>
+            <option value="{{ $statut->id }}">@if($statut->id == 1)
+                {{ __('actif') }}
+            @elseif($statut->id == 2)
+                {{ __('inactif') }}
+            @elseif($statut->id== 3)
+                {{ __('enAttente') }}     @endif</option>
             @endforeach
         </select>
         <input type="text" id="rechercheTexte" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2"
-            placeholder="Rechercher par nom, prénom ou courriel">
+            placeholder="{{ __('rechercheAdminDemande') }}">
 
     </div>
 
     <div class="flex w-full flex-col justify-center items-center">
         <div id="pagination" class="mt-4  max-w-7xl w-full  flex justify-center items-center gap-x-2  "> </div>
         <div class="flex justify-end w-full max-w-7xl  py-4">
-            <label for="usagersParPage" class="mr-2 font-bold text-lg">Afficher</label>
+            <label for="usagersParPage" class="mr-2 font-bold text-lg">{{ __('afficher') }}</label>
             <select id="usagersParPage" class="rounded border-2 p-1">
                 <option value="10">10</option>
                 <option value="25">25</option>
@@ -45,6 +56,7 @@
     </div>
 </div>
 <script>
+
      const roles = {
                     1: {
                         name: "Admin",
@@ -54,7 +66,7 @@
                         name: "Utilisateur",
                         icon: "mdi-account"
                     },
-                    3: {
+                    3: {    
                         name: "Gestionnaire",
                         icon: "mdi-account-tie"
                     }
@@ -82,7 +94,7 @@ let pageActuelle = 1;
 
 document.getElementById('usagersParPage').addEventListener('change', function() {
     usagersParPages = parseInt(this.value);
-    Lang.setLocale(document.body.getAttribute('data-locale'));
+
     Recherche(1); 
 });
 
