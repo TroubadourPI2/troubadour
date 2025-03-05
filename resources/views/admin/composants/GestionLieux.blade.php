@@ -95,11 +95,50 @@ session()->forget('erreurAjouterLieu');
         lieux.classList.remove("hidden");
 
         document.getElementById("afficherLieux").classList.add("hidden");
-
-    
     });
 </script>
 @php
 session()->forget('erreurModifierLieu');
 @endphp
+@endif
+
+
+@if (session('formulaireModifierLieuStatutValide') === 'true')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('succesModifier') }}";
+            document.getElementById('lieux').classList.remove('hidden');
+            document.getElementById('demandes').classList.add('hidden');
+            document.getElementById('activites').classList.add('hidden');
+            document.getElementById('villes').classList.add('hidden');
+
+            const boutonLieu = document.getElementById('boutonLieu');
+            boutonLieu.classList.add("bg-c1", "text-c3");
+            boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonDemandes = document.getElementById('boutonDemandes');
+            boutonDemandes.classList.remove("bg-c1", "text-c3");
+            boutonDemandes.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: succesMessage,
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('formulaireModifierLieuStatutValide');
+    @endphp
 @endif

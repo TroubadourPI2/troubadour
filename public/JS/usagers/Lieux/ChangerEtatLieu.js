@@ -3,9 +3,13 @@ let textesActifs;
 
 document.addEventListener('DOMContentLoaded', function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
-    ObtenirElementsDesactiver();
-    AjouterDesactiverListeners();
-    MiseAJourStatutLieu();
+
+    setTimeout(() => {
+        ObtenirElementsDesactiver();
+        AjouterDesactiverListeners();
+        MiseAJourStatutLieu();
+    }, 2000); 
+ 
 });
 
 function ObtenirElementsDesactiver() {
@@ -21,14 +25,7 @@ function AjouterDesactiverListeners() {
                 : Lang.get('strings.desactiver');
             const lieuId = boutonBascule.getAttribute('data-lieuId');
             const nomEtablissement = boutonBascule.getAttribute('data-nomLieu');
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true
-            });
-
+       
             Swal.fire({
                 title: Lang.get('strings.confirmation'),
                 text: Lang.get('strings.confirmationChangerEtat', {
@@ -73,10 +70,12 @@ function AjouterDesactiverListeners() {
                                 icon: 'error',
                                 confirmButtonText: 'Ok'
                             });
-                            boutonBascule.checked = !boutonBascule.checked;
+                            boutonBascule.checked = boutonBascule.checked;
                         });
                 } else {
+                    console.log(boutonBascule.checked)
                     boutonBascule.checked = !boutonBascule.checked;
+                    console.log(boutonBascule.checked)
                     const texteActif = document.querySelector(
                         `.texteActif[data-lieuId="${lieuId}"]`
                     );

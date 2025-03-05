@@ -10,50 +10,48 @@ let photoLieuSupprimer;
 let inputPhotoModifie;
 let lieu;
 let lieuSelectionne;
-let lieuId;
 let statutLieuCache;
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
-    
+
     setTimeout(() => {
         ObtenirElementsModifier();
-        AjouterModifierListeners();  
+        AjouterModifierListeners();
         if (selectVilleLieuModifie.value) {
-        ObtenirQuartiersParVille(selectVilleLieuModifie.value);
-    }
-    }, 2000); 
-   
-    const form = document.getElementById("formModifierLieu");
+            ObtenirQuartiersParVille(selectVilleLieuModifie.value);
+        }
+    }, 1000);
+
+    const form = document.getElementById('formModifierLieu');
     form.action = `/compte/modifierLieu/${localStorage.getItem('lieuId')}`;
 
     const lieuStocke = localStorage.getItem('lieu');
     if (lieuStocke) {
-        lieu = JSON.parse(lieuStocke);  
-        AfficherPhotoLieu(lieu);  
+        lieu = JSON.parse(lieuStocke);
+        AfficherPhotoLieu(lieu);
     }
 });
 
-
 function ObtenirElementsModifier() {
-    boutonsModifier = document.querySelectorAll(".boutonModifier");
+    boutonsModifier = document.querySelectorAll('.boutonModifier');
     selectQuartierLieuModifie = document.getElementById(
-        "selectQuartierLieuModifie"
+        'selectQuartierLieuModifie'
     );
-    selectVilleLieuModifie = document.getElementById("selectVilleLieuModifie");
-    selectTypeLieuModifie = document.getElementById("selectTypeLieuModifie");
-    divPhotoLieu = document.getElementById("divPhotoLieu");
-    photoLieuSupprimer = document.getElementById("photoLieuSupprimer");
-    inputPhotoModifie = document.getElementById("photoLieuModifie");
+    selectVilleLieuModifie = document.getElementById('selectVilleLieuModifie');
+    selectTypeLieuModifie = document.getElementById('selectTypeLieuModifie');
+    divPhotoLieu = document.getElementById('divPhotoLieu');
+    photoLieuSupprimer = document.getElementById('photoLieuSupprimer');
+    inputPhotoModifie = document.getElementById('photoLieuModifie');
 }
 
 function AjouterModifierListeners() {
     boutonsModifier.forEach((bouton) => {
-        bouton.addEventListener("click", () => {
-            lieuId = bouton.getAttribute("data-lieuId");
+        bouton.addEventListener('click', () => {
+            const lieuId = bouton.getAttribute('data-lieuId');
             localStorage.setItem('lieuId', lieuId);
-            villeId = bouton.getAttribute("data-villeId");
-            typeLieuId = bouton.getAttribute("data-typeLieuId");
+            villeId = bouton.getAttribute('data-villeId');
+            typeLieuId = bouton.getAttribute('data-typeLieuId');
             ObtenirLieu(lieuId);
             // Fonction dans AfficherAjouterLieux.js
             ObtenirQuartiersParVille(villeId);
@@ -62,40 +60,36 @@ function AjouterModifierListeners() {
     });
 
     selectVilleLieuModifie.addEventListener(
-        "change",
+        'change',
         ActiverSelectQuartierModifie
     );
 
-    inputPhotoModifie.addEventListener("change", ChangerPhotoChoisie);
-
+    inputPhotoModifie.addEventListener('change', ChangerPhotoChoisie);
 }
 
-function AfficherPageModifierLieuAdmin(){
-    ChangerSection(modifierLieu, afficherLieux);
-}
 
 function ActiverSelectQuartierModifie() {
-    if (selectVilleLieuModifie.value != "") {
-        selectQuartierLieuModifie.removeAttribute("disabled");
+    if (selectVilleLieuModifie.value != '') {
+        selectQuartierLieuModifie.removeAttribute('disabled');
         ObtenirQuartiersParVille(selectVilleLieuModifie.value);
-    } else selectQuartierLieuModifie.setAttribute("disabled", "");
+    } else selectQuartierLieuModifie.setAttribute('disabled', '');
 }
 
 function MettreAJourSelectQuartierModifie(quartiers) {
-    selectQuartierLieuModifie.innerHTML = "";
-    const optionDefaut = document.createElement("option");
-    optionDefaut.value = "";
+    selectQuartierLieuModifie.innerHTML = '';
+    const optionDefaut = document.createElement('option');
+    optionDefaut.value = '';
     optionDefaut.textContent = Lang.get('strings.choisirQuartier');
     selectQuartierLieuModifie.appendChild(optionDefaut);
 
     quartiers.forEach((quartier) => {
-        const option = document.createElement("option");
+        const option = document.createElement('option');
         option.value = quartier.id;
         option.textContent = quartier.nom;
         selectQuartierLieuModifie.appendChild(option);
     });
 
-    selectQuartierLieuModifie.removeAttribute("disabled");
+    selectQuartierLieuModifie.removeAttribute('disabled');
     selectQuartierLieuModifie.value = quartierId;
 }
 
@@ -105,14 +99,16 @@ function ChangerPhotoChoisie() {
         const reader = new FileReader();
 
         reader.onload = function (e) {
-            const divPhotoLieu = document.getElementById("divPhotoLieu");
+            const divPhotoLieu = document.getElementById('divPhotoLieu');
             divPhotoLieu.innerHTML = ''; // Vider le conteneur avant d'ajouter la nouvelle photo
 
             const divConteneurPhoto = document.createElement('div');
-            divConteneurPhoto.className = 'photo-lieu mb-2 flex items-center w-full gap-2 border border-c1 p-2 rounded justify-between';
+            divConteneurPhoto.className =
+                'photo-lieu mb-2 flex items-center w-full gap-2 border border-c1 p-2 rounded justify-between';
 
             const conteneurGauche = document.createElement('div');
-            conteneurGauche.className = 'flex items-center gap-2 w-full justify-between';
+            conteneurGauche.className =
+                'flex items-center gap-2 w-full justify-between';
 
             // Création de l'image de la photo choisie
             const imageLieu = document.createElement('img');
@@ -135,7 +131,8 @@ function ChangerPhotoChoisie() {
             // Création du bouton de suppression
             const boutonSupprimerPhoto = document.createElement('button');
             boutonSupprimerPhoto.type = 'button';
-            boutonSupprimerPhoto.className = 'supprimer-photo bg-red-500 p-1 rounded';
+            boutonSupprimerPhoto.className =
+                'supprimer-photo bg-red-500 p-1 rounded';
             boutonSupprimerPhoto.innerHTML = `
                 <span class="iconify text-c5 size-6" data-icon="ion:trash-outline" data-inline="true"></span>
             `;
@@ -143,7 +140,7 @@ function ChangerPhotoChoisie() {
             // Événement au clic sur le bouton de suppression
             boutonSupprimerPhoto.addEventListener('click', function () {
                 divConteneurPhoto.remove(); // Supprimer la photo affichée
-                document.getElementById("photoLieuSupprime").value = "1"; // Marquer la photo comme supprimée
+                document.getElementById('photoLieuSupprime').value = '1'; // Marquer la photo comme supprimée
             });
 
             // Conteneur pour le bouton de suppression
@@ -163,17 +160,18 @@ function ChangerPhotoChoisie() {
     }
 }
 
-
 function AfficherPhotoLieu(lieu) {
-    const divPhotoLieu = document.getElementById("divPhotoLieu");
+    const divPhotoLieu = document.getElementById('divPhotoLieu');
     divPhotoLieu.innerHTML = '';
 
     if (lieu.photoLieu) {
         const divConteneurPhoto = document.createElement('div');
-        divConteneurPhoto.className = 'photo-lieu mb-2 flex items-center w-full gap-2 border border-c1 p-2 rounded justify-between';
+        divConteneurPhoto.className =
+            'photo-lieu mb-2 flex items-center w-full gap-2 border border-c1 p-2 rounded justify-between';
 
         const conteneurGauche = document.createElement('div');
-        conteneurGauche.className = 'flex items-center gap-2 w-full justify-between';
+        conteneurGauche.className =
+            'flex items-center gap-2 w-full justify-between';
 
         const imageLieu = document.createElement('img');
         if (lieu.photoLieu.startsWith('data:image')) {
@@ -186,21 +184,22 @@ function AfficherPhotoLieu(lieu) {
 
         const titreSpan = document.createElement('span');
         titreSpan.textContent = lieu.photoLieu;
-        titreSpan.className = 'inline-block max-w-sm sm:max-w-xs truncate';  
-  
+        titreSpan.className = 'inline-block max-w-sm sm:max-w-xs truncate';
+
         conteneurGauche.appendChild(imageLieu);
         conteneurGauche.appendChild(titreSpan);
 
         const boutonSupprimerPhoto = document.createElement('button');
         boutonSupprimerPhoto.type = 'button';
-        boutonSupprimerPhoto.className = 'supprimer-photo bg-red-500 p-1 rounded';
+        boutonSupprimerPhoto.className =
+            'supprimer-photo bg-red-500 p-1 rounded';
         boutonSupprimerPhoto.innerHTML = `
             <span class="iconify text-c5 size-6" data-icon="ion:trash-outline" data-inline="true"></span>
         `;
 
         boutonSupprimerPhoto.addEventListener('click', function () {
             divConteneurPhoto.remove();
-            document.getElementById("photoLieuSupprime").value = "1";
+            document.getElementById('photoLieuSupprime').value = '1';
         });
 
         conteneurGauche.appendChild(boutonSupprimerPhoto);
@@ -213,8 +212,8 @@ function AfficherPhotoLieu(lieu) {
 async function ObtenirLieu(lieuId) {
     try {
         const response = await fetch(`/compte/obtenirLieu?lieu_id=${lieuId}`, {
-            method: "GET",
-            headers: { Accept: "application/json" }
+            method: 'GET',
+            headers: { Accept: 'application/json' }
         });
 
         if (!response.ok) {
@@ -223,26 +222,24 @@ async function ObtenirLieu(lieuId) {
 
         lieu = await response.json();
         localStorage.setItem('lieu', JSON.stringify(lieu));
-
-        document.getElementById("nomEtablissementModifie").value = lieu.nomEtablissement;
-        document.getElementById("rueModifie").value = lieu.rue;
-        document.getElementById("noCivicModifie").value = lieu.noCivic;
-        document.getElementById("codePostalModifie").value = lieu.codePostal;
-        document.getElementById("descriptionModifie").value = lieu.description;
-        document.getElementById("siteWebModifie").value = lieu.siteWeb;
-        document.getElementById("numeroTelephoneModifie").value = lieu.numeroTelephone;
-        document.getElementById("selectVilleLieuModifie").value = lieu.ville_id;
-        document.getElementById("selectTypeLieuModifie").value = lieu.typeLieu_id;
-        inputPhotoModifie.value = "";
-        const form = document.getElementById("formModifierLieu");
+        document.getElementById('nomEtablissementModifie').value =
+            lieu.nomEtablissement;
+        document.getElementById('rueModifie').value = lieu.rue;
+        document.getElementById('noCivicModifie').value = lieu.noCivic;
+        document.getElementById('codePostalModifie').value = lieu.codePostal;
+        document.getElementById('descriptionModifie').value = lieu.description;
+        document.getElementById('siteWebModifie').value = lieu.siteWeb;
+        document.getElementById('numeroTelephoneModifie').value =
+            lieu.numeroTelephone;
+        document.getElementById('selectVilleLieuModifie').value = villeId;
+        document.getElementById('selectTypeLieuModifie').value =
+            lieu.typeLieu_id;
+        inputPhotoModifie.value = '';
+        const form = document.getElementById('formModifierLieu');
         form.action = `/compte/modifierLieu/${lieuId}`;
 
         AfficherPhotoLieu(lieu);
-
     } catch (error) {
         console.error(error);
     }
 }
-
-
-

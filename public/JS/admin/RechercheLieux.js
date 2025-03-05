@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     filtreVille.value = "";
     boutonFiltreActif.checked = true;
     actif = boutonFiltreActif.checked ? 1 : 0 ;
-    FiltrerLieux();
+    FiltrerLieux(false);
     RechercheLieuxListeners();
 });
 
@@ -67,7 +67,7 @@ function MettreAjourTexteActif(estActif){
 let pageCourante = 1;
 const lieuxParPage = 10;
 
-function FiltrerLieux() {
+function FiltrerLieux(majStatut = true) {
     const villeId = filtreVille.value;
     const quartierId = filtreQuartier.value;
     const rechercheNom = rechercheNomLieu.value.trim();
@@ -80,7 +80,7 @@ function FiltrerLieux() {
         .get('/admin/recherche', { params })
         .then((response) => {
             if (response.data.lieux) {
-                AfficherLieux(response.data.lieux);
+                AfficherLieux(response.data.lieux,majStatut);
             } else {
                 AfficherMessage(response.data.message);
             }
@@ -88,11 +88,6 @@ function FiltrerLieux() {
         .catch((error) => {
             console.error('Erreur lors du filtrage des lieux', error);
         });
-    
-
-    ObtenirElementsSupprimer();
-    console.log(boutonsSupprimer)
-    AjouterSupprimerListeners();
 }
 
 function AfficherMessage(message) {
@@ -106,7 +101,7 @@ function AfficherErreur() {
 }
 
 
-function AfficherLieux(lieux) {
+function AfficherLieux(lieux, majStatut) {
     const containerLieux = document.getElementById('affichageDesLieux');
     containerLieux.innerHTML = '';
 
@@ -170,11 +165,11 @@ function AfficherLieux(lieux) {
                             </div>
                             <div class="flex justify-end space-x-3 mt-3">
                                 <button class="boutonSupprimer text-[#B20101]" data-lieuId="${lieu.id}"
-                                    data-nomLieu="${lieu.nomEtablissement}" onclick="AjouterSupprimerListenersTest(this)"><span class="iconify size-6"
+                                    data-nomLieu="${lieu.nomEtablissement}" ><span class="iconify size-6"
                                         data-icon="ion:trash-outline" data-inline="false"></span></button>
                                 <button class="boutonModifier" data-lieuId="${lieu.id}"
                                     data-villeId="${lieu.ville.id}"
-                                    data-typeLieuId="${lieu.typeLieu.id}" onclick="AfficherPageModifierLieuAdmin(this)"><span class="iconify size-6"
+                                    data-typeLieuId="${lieu.typeLieu.id}" ><span class="iconify size-6"
                                         data-icon="ep:edit" data-inline="false"></span></button>
                             </div>
 
@@ -197,7 +192,12 @@ function AfficherLieux(lieux) {
                         ${lieu.actif === 1 ? Lang.get('strings.actif') : Lang.get('strings.inactif')}
                         </span>
                           <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" name="actif" class="boutonBascule sr-only peer" data-lieuId="${lieu.id}" data-nomLieu="${lieu.nomEtablissement}" ${lieu.actif === 1 ? 'checked' : ''}>
+                <input type="checkbox" name="actif" class="boutonBascule sr-only peer"
+    data-lieuId="${lieu.id}"
+    data-nomLieu="${lieu.nomEtablissement}"
+    data-checked-initial="${lieu.actif === 1 ? 'true' : 'false'}"
+    ${lieu.actif === 1 ? 'checked' : ''}>
+
                 <div class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
             </label>   
                     </div>
@@ -230,13 +230,13 @@ function AfficherLieux(lieux) {
 
                         <button
                             class="boutonSupprimer transform transition duration-300 hover:scale-110 text-[#B20101] hover:text-[#B50000]"
-                            data-lieuId="${lieu.id}" data-nomLieu="${lieu.nomEtablissement}" onclick="AjouterSupprimerListenersTest(this)">
+                            data-lieuId="${lieu.id}" data-nomLieu="${lieu.nomEtablissement}">
                             <span class="iconify size-8" data-icon="ion:trash-outline" data-inline="false"></span>
                         </button>
                         <button
                             class="boutonModifier transform transition duration-300 hover:scale-110 text-c1-500 hover:text-c1-700"
                             data-lieuId="${lieu.id}" data-villeId="${lieu.ville.id}"
-                            data-typeLieuId="${lieu.typeLieu.id}" onclick="AfficherPageModifierLieuAdmin(this)">
+                            data-typeLieuId="${lieu.typeLieu.id}">
                             <span class="iconify size-8" data-icon="ep:edit" data-inline="false"></span>
                         </button>
                     </div>
@@ -244,7 +244,21 @@ function AfficherLieux(lieux) {
             </div>
         `;
 
-        // Ajouter directement les cartes dans le conteneur sans wrapper supplémentaire
         containerLieux.innerHTML += carteMobile + carteWeb;
     });
+    //Fonctions dans public/js/usagers/lieux/SupprimerLieu.js
+    ObtenirElementsSupprimer();
+    AjouterSupprimerListeners();
+    ObtenirElementsModifier();
+    //Fonctions dans public/js/usagers/lieux/ModifierLieu.js
+    AjouterModifierListeners();
+    if (selectVilleLieuModifie.value) {
+        ObtenirQuartiersParVille(selectVilleLieuModifie.value);
+    }
+    //Fonctions dans public/js/usagers/lieux/ChangerEtatLieu.js
+    if (majStatut) {
+        ObtenirElementsDesactiver();
+        AjouterDesactiverListeners();
+        MiseAJourStatutLieu();
+    }
 }

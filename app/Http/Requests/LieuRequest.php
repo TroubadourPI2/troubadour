@@ -93,7 +93,6 @@ class LieuRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         $nomRouteActuelle = $this->route()->getName();
-        Log::debug($nomRouteActuelle);
         if ($nomRouteActuelle === 'usagerLieux.ajouterLieu') {
             session()->put('erreurAjouterLieu', $validator->errors());
 
