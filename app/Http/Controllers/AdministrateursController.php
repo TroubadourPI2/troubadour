@@ -14,8 +14,12 @@ class AdministrateursController extends Controller
      */
     public function afficher()
     {
-        return view('admin.afficher');
+        $roles = RoleUsager::all(); 
+        $statuts = Statut::all();
+    
+        return view('admin.afficher', compact('roles', 'statuts'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

@@ -3,13 +3,16 @@
 
         <select id="rechercheRole" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
             <option value="">Tous les rôles</option>
-            <option value="3">Gestionnaire</option>
-
+            @foreach($roles as $role)
+       
+            <option value="{{ $role->id }}">{{ $role->nom }}</option>
+            @endforeach
         </select>
         <select id="rechercheStatut" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
             <option value="">Tous les statuts</option>
-            <option value="3">En attente</option>
-
+            @foreach($statuts as $statut)
+            <option value="{{ $statut->id }}">{{ $statut->statut }}</option>
+            @endforeach
         </select>
         <input type="text" id="rechercheTexte" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2"
             placeholder="Rechercher par nom, prénom ou courriel">
