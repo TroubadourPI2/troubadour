@@ -15,11 +15,16 @@ let statutLieuCache;
 
 document.addEventListener("DOMContentLoaded", function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
-    ObtenirElementsModifier();
-    AjouterModifierListeners();
-    if (selectVilleLieuModifie.value) {
+    
+    setTimeout(() => {
+        ObtenirElementsModifier();
+        AjouterModifierListeners();  
+        if (selectVilleLieuModifie.value) {
         ObtenirQuartiersParVille(selectVilleLieuModifie.value);
     }
+    }, 2000); 
+   
+  
 
     const lieuStocke = localStorage.getItem('lieu');
     if (lieuStocke) {

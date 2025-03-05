@@ -2,12 +2,14 @@ let boutonsSupprimer;
 let success;
 
 document.addEventListener("DOMContentLoaded", function () {
-    //configure la lang pour le fichier JS
+    // Configure la langue pour le fichier JS
     Lang.setLocale(document.body.getAttribute('data-locale'));
-    ObtenirElementsSupprimer();
-    AjouterSupprimerListeners();
+    
+    setTimeout(() => {
+        ObtenirElementsSupprimer();
+        AjouterSupprimerListeners();
+    }, 2000); 
 });
-
 
 function ObtenirElementsSupprimer() {
     boutonsSupprimer = document.querySelectorAll(".boutonSupprimer");
@@ -16,7 +18,6 @@ function ObtenirElementsSupprimer() {
 function AjouterSupprimerListeners() {
     boutonsSupprimer.forEach((bouton) => {
         bouton.addEventListener("click", () => {
-            console.log("allo")
             const lieuId = bouton.getAttribute("data-lieuId");
             const nomEtablissement = bouton.getAttribute("data-nomLieu");
             const Toast = Swal.mixin({
@@ -89,7 +90,3 @@ function AjouterSupprimerListeners() {
         });
     });
 }
-
-
-
-

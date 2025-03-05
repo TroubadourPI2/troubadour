@@ -11,8 +11,11 @@ let carteLieuMobileDerriere;
 let carteLieuxMobile;
 
 document.addEventListener('DOMContentLoaded', function () {
-    ObtenirElementsLieux();
-    AjouterGestionAffichageListeners();
+    setTimeout(() => {
+        ObtenirElementsLieux();
+        AjouterGestionAffichageListeners();
+    }, 2000); 
+
 });
 
 function ObtenirElementsLieux() {
