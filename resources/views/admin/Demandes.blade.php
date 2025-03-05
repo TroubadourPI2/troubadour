@@ -1,4 +1,4 @@
-<div class="flex w-full h-full flex-col gap-y-2 ">
+<div class="flex w-full h-full flex-col mb-4 font-barlow">
     <div class="flex gap-x-2 w-full flex-col md:flex-row gap-y-2 md:gap-y-0">
 
         <select id="rechercheRole" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
@@ -13,13 +13,26 @@
         </select>
         <input type="text" id="rechercheTexte" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2"
             placeholder="Rechercher par nom, prénom ou courriel">
-            
+
     </div>
-    <div id="pagination" class="mt-4 flex justify-center items-center gap-x-2 pb-2"></div>
-    <div id="usagersContainer" class="flex justify-center flex-col w-full items-center gap-y-2"></div>
+
+    <div class="flex w-full flex-col justify-center items-center">
+        <div id="pagination" class="mt-4 flex justify-center items-center gap-x-2  py-2"> </div>
+        <div class=" border-2 bg-c3 border-c1 flex max-w-7xl w-full  h-14  justify-center items-center z-10 sticky  text-c1  top-0"
+            id="labelTableau">
+            <div class="flex w-1/4 justify-center font-bold text-xl uppercase items-center"><span
+                    class="iconify size-8" data-icon="mdi-people-outline"></span>Rôle </div>
+            <div class="flex w-1/6 justify-center font-bold text-xl uppercase  items-center"><span
+                    class="iconify size-8" data-icon="mdi-list-status"></span>Statut </div>
+            <div class="flex w-2/4 justify-center font-bold text-xl uppercase items-center"><span
+                    class="iconify size-8" data-icon="mdi-email"></span>Courriel</div>
+            <div class="flex w-1/4 justify-center font-bold text-xl uppercase  items-center"><span
+                    class="iconify size-8" data-icon="mdi-pen"></span>Actions</div>
+        </div>
+        <div id="usagersContainer" class="flex justify-center flex-col w-full items-center gap-y-4 "></div>
 
 
-
+    </div>
 </div>
 <script>
     let usagersParPages = 10;
@@ -45,10 +58,9 @@
             })
             .then(response => {
                 const usagersData = response.data;
-
                 let html = '';
                 usagersData.data.forEach(function(usager) {
-                    html += `<div class=" flex w-full h-24 border-2 justify-center items-center">  (Role: ${usager.role_id}, Statut: ${usager.statut_id})
+                    html += `<div class=" bg-c3 border-2 shadow-md flex max-w-7xl w-full h-24  justify-center items-center">  (Role: ${usager.role_id}, Statut: ${usager.statut_id})
                         - ${usager.courriel}
                      <button class=" border-2"> <span> Modifier Role</span> </button>
                           <button class="border-2 "> <span> Desactiver </span> </button>
