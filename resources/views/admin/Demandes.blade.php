@@ -44,10 +44,10 @@
         </div>
         <div class=" border-2 bg-c3 border-c1 flex max-w-7xl w-full  h-14  justify-center items-center z-10 sticky  text-c1  top-0"
             id="labelTableau">
-            <div class="flex w-1/4 lg:pl-12 justify-center font-bold text-lg lg:text-xl uppercase items-center"></span>Rôle </div>
-            <div class="flex w-1/6 justify-center font-bold text-lg   lg:text-xl uppercase  items-center"></span>Statut </div>
-            <div class="flex w-2/4 justify-center font-bold text-lg   lg:text-xl uppercase items-center"></span>Courriel</div>
-            <div class="flex w-1/4 justify-center font-bold text-lg  lg:text-xl uppercase  items-center "></span>Action</div>
+            <div class="flex w-1/4 lg:pl-12 justify-center font-bold text-lg lg:text-xl uppercase items-center">{{ __('role') }} </div>
+            <div class="flex w-1/6 justify-center font-bold text-lg   lg:text-xl uppercase  items-center">{{ __('statut') }}  </div>
+            <div class="flex w-2/4 justify-center font-bold text-lg   lg:text-xl uppercase items-center">{{ __('courriel') }} </div>
+            <div class="flex w-1/4 justify-center font-bold text-lg  lg:text-xl uppercase  items-center ">{{ __('action') }} </div>
         </div>
         
         <div id="usagersContainer" class="flex justify-center flex-col w-full items-center gap-y-4 "></div>

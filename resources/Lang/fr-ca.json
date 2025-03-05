@@ -146,5 +146,7 @@
   "tousLesStatus" : "Tous les statuts",
   "enAttente" : "En attente",
   "rechercheAdminDemande": "Rechercher par nom, prénom ou courriel",
-  "afficher":"Afficher"
+  "afficher":"Afficher",
+  "statut":"Statut",
+  "action":"Action"
 }  

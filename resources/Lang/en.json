@@ -145,5 +145,7 @@
   "tousLesStatus" : "All status options",
   "enAttente" : "Pending",
     "rechercheAdminDemande": "Search by name, first name, or email",
-      "afficher":"Display"
+      "afficher":"Display",
+  "statut":"Status",
+  "action":"Action"
 }
