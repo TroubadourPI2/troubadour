@@ -145,5 +145,6 @@
 
   "rechercheLieu" : "Recherche par nom de lieu",
   "toutesVilles" : "Toutes les villes",
-  "selectionnerVilleAvant" : "Sélectionner une ville en premier pour filtrer par quartier."
+  "selectionnerVilleAvant" : "Sélectionner une ville en premier pour filtrer par quartier.",
+  "aucunLieuTrouve" : "Aucun lieu trouvé avec ces filtres."
 }  

@@ -144,5 +144,6 @@
 
   "rechercheLieu" : "Search by location name",
   "toutesVilles" : "All cities",
-  "selectionnerVilleAvant" : "Select a city before to filter by neighborhood."
+  "selectionnerVilleAvant" : "Select a city before to filter by neighborhood.",
+  "aucunLieuTrouve" : "No location found with these filters."
 }
