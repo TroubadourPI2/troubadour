@@ -6,10 +6,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsagerRequest;
-use App\Http\Requests\FavoriRequest;
+use App\Http\Requests\LieuFavoriRequest;
 use App\Models\Usager;
 use App\Models\Lieu;
-use App\Models\Favori;
+use App\Models\LieuFavori;
 use App\Models\Ville;
 use App\Models\Quartier;
 use App\Models\TypeLieu;
@@ -63,11 +63,10 @@ class UsagersController extends Controller
         return response()->json($quartiers);
     }
 
-    public function AjouterFavoris(FavoriRequest $request)
+    public function AjouterFavoris(LieuFavoriRequest $request)
     {
 
-        $favoris = Favori::create([
-            'activite_id' => 1,
+        $favoris = LieuFavori::create([
             'lieu_id' => $request->idLieu,
             'usager_id' => Auth::id(),
         ]);
@@ -79,7 +78,7 @@ class UsagersController extends Controller
 
     public function DeleteFavoris(string $id)
     {
-        $favorite =  Favori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();
+        $favorite =  LieuFavori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();
 
         if ($favorite && $favorite->usager_id == Auth::id()) { 
             $favorite->delete();
