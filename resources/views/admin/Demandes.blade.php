@@ -160,7 +160,7 @@ function Recherche(page = 1) {
     <div class="flex gap-2 mt-4">
         <!-- Bouton Première Page -->
         <button type="button"
-            class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center transition 
+            class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center transition 
             ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
             onclick="${functionName}(1)" ${!data.prev_page_url ? 'disabled' : ''}>
             <span class="iconify text-xl" data-icon="mdi-chevron-double-left"></span>
@@ -168,20 +168,20 @@ function Recherche(page = 1) {
 
         <!-- Bouton Page Précédente -->
         <button type="button"
-            class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition 
+            class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition 
             ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
             onclick="${functionName}(${data.current_page - 1})" ${!data.prev_page_url ? 'disabled' : ''}>
             <span class="iconify text-xl" data-icon="mdi-chevron-left"></span>
         </button>
 
         <!-- Page Actuelle -->
-        <span class="bg-c3 text-c1  font-bold py-2 px-4 rounded flex items-center justify-center">
-            Page ${data.current_page} sur ${data.last_page}
+        <span class="bg-c3 text-c1 h-12 text-xs lg:text-lg  font-bold py-2 px-4 rounded flex items-center justify-center">
+             ${data.current_page}/${data.last_page}
         </span>
 
         <!-- Bouton Page Suivante -->
         <button type="button"
-            class="bg-c1 hover:bg-c3 hover:text-c1  text-white font-bold py-2 px-4 flex items-center justify-center transition 
+            class="bg-c1 hover:bg-c3 h-12 hover:text-c1  text-white font-bold py-2 px-4 flex items-center justify-center transition 
             ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
             onclick="${functionName}(${data.current_page + 1})" ${!data.next_page_url ? 'disabled' : ''}>
             <span class="iconify text-xl" data-icon="mdi-chevron-right"></span>
@@ -189,7 +189,7 @@ function Recherche(page = 1) {
 
         <!-- Bouton Dernière Page -->
         <button type="button"   
-            class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition 
+            class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition 
             ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
             onclick="${functionName}(${data.last_page})" ${!data.next_page_url ? 'disabled' : ''}>
             <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
