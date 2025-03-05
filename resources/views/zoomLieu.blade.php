@@ -18,15 +18,18 @@
 
             <div class="w-1/2 mt-4 flex flex-row justify-end md:items-start">
                 <div class=" my-1 mr-4 h-3/4 rounded border-c1 border hidden md:flex"></div>
+                @if(empty($lieuActuel->favoris))
                 <form action="{{ route('store.favoris', ['idLieu' => $lieuActuel->id, 'id' => 1]) }}" method="POST">
-            @csrf
-            
-            <button type="submit" style="background: none; border: none;">
-                <span class="iconify size-10 md:ml-0 lg:ml-0 mr-20 text-c1 sm:ml-0 sm:mr-0 md:mr-20" 
-                      data-icon="f7:heart"
-                      data-inline="false"></span>
-            </button>
-        </form>
+                    @csrf
+                    
+                    <button type="submit" style="background: none; border: none;">
+                        <span class="iconify size-10 md:ml-0 lg:ml-0 mr-20 text-c1 sm:ml-0 sm:mr-0 md:mr-20" 
+                            data-icon="f7:heart"
+                            data-inline="false"></span>
+                    </button>
+                </form>
+
+                @endif
             </div>
 
         </div>
@@ -109,6 +112,8 @@
                             <p class="text-c1 text-xl underline truncate my-5">
                                 {{ !empty($lieuActuel->siteWeb) ? $lieuActuel->siteWeb : 'Aucun site web' }}
                             </p>
+
+                            <p>{{$lieuActuel->favoris}}</p>
 
                         </div>
                     </div>
