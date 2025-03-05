@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     }, 2000); 
    
+  
+
     const lieuStocke = localStorage.getItem('lieu');
     if (lieuStocke) {
         lieu = JSON.parse(lieuStocke);  
@@ -64,10 +66,6 @@ function AjouterModifierListeners() {
 
     inputPhotoModifie.addEventListener("change", ChangerPhotoChoisie);
 
-}
-
-function AfficherPageModifierLieuAdmin(){
-    ChangerSection(modifierLieu, afficherLieux);
 }
 
 function ActiverSelectQuartierModifie() {
