@@ -21,7 +21,7 @@
 
     <div class="flex w-full flex-col justify-center items-center">
         <div id="pagination" class="mt-4  max-w-7xl w-full  flex justify-center items-center gap-x-2  "> </div>
-        <div class="flex justify-end w-full max-w-7xl mb-4">
+        <div class="flex justify-end w-full max-w-7xl  py-4">
             <label for="usagersParPage" class="mr-2 font-bold text-lg">Afficher</label>
             <select id="usagersParPage" class="rounded border-2 p-1">
                 <option value="10">10</option>
@@ -33,10 +33,10 @@
         </div>
         <div class=" border-2 bg-c3 border-c1 flex max-w-7xl w-full  h-14  justify-center items-center z-10 sticky  text-c1  top-0"
             id="labelTableau">
-            <div class="flex w-1/4 pl-12 justify-center font-bold text-xl uppercase items-center"></span>Rôle </div>
-            <div class="flex w-1/6 justify-center font-bold text-xl uppercase  items-center"></span>Statut </div>
-            <div class="flex w-2/4 justify-center font-bold text-xl uppercase items-center"></span>Courriel</div>
-            <div class="flex w-1/4 justify-center font-bold text-xl uppercase  items-center"></span>Actions</div>
+            <div class="flex w-1/4 lg:pl-12 justify-center font-bold text-lg lg:text-xl uppercase items-center"></span>Rôle </div>
+            <div class="flex w-1/6 justify-center font-bold text-lg   lg:text-xl uppercase  items-center"></span>Statut </div>
+            <div class="flex w-2/4 justify-center font-bold text-lg   lg:text-xl uppercase items-center"></span>Courriel</div>
+            <div class="flex w-1/4 justify-center font-bold text-lg  lg:text-xl uppercase  items-center "></span>Action</div>
         </div>
         
         <div id="usagersContainer" class="flex justify-center flex-col w-full items-center gap-y-4 "></div>
@@ -111,28 +111,28 @@ function Recherche(page = 1) {
                 const statutData = statuts[usager.statut_id] || { name: "Inconnu", icon: "mdi-help-circle", color: "text-gray-500" };
 
                 html += `
-                <div class="bg-c3 border-2 shadow-md flex max-w-7xl w-full h-24 justify-center items-center p-4">
+                <div class="bg-c3 border-2 shadow-md flex max-w-7xl w-full h-24 justify-center items-center p-2 lg:p-4">
                     <!-- Rôle -->
-                    <div class="flex w-1/4 justify-start pl-16 font-bold text-xl uppercase items-center">
-                        <span class="iconify text-2xl text-c1" data-icon="${roleData.icon}"></span>
-                        <span class="ml-2">${roleData.name}</span>
+                    <div class="flex w-1/4 justify-start  md:pl-8 lg:pl-16 font-bold text-base lg:text-xl uppercase items-center">
+                        <span class="iconify  size-10 lg:size-8 text-c1" data-icon="${roleData.icon}"></span>
+                        <span class="ml-2 hidden lg:block">${roleData.name}</span>
                     </div>
                     
                     <!-- Statut -->
-                    <div class="flex w-1/4 justify-start font-bold text-xl uppercase items-center ${statutData.color}">
-                        <span class="iconify text-2xl" data-icon="${statutData.icon}"></span>
-                        <span class="ml-2">${statutData.name}</span>
+                    <div class="flex w-1/4 justify-start font-bold text-base lg:text-xl uppercase items-center ${statutData.color}">
+                        <span class="iconify  size-10 lg:size-8" data-icon="${statutData.icon}"></span>
+                        <span class="ml-2  hidden lg:block">${statutData.name}</span>
                     </div>
                     
                     <!-- Courriel -->
-                    <div class="flex w-1/4 justify-center pl-8 font-bold text-xl uppercase items-center">
-                        <span class="w-full text-left">${usager.courriel}</span>
+                    <div class="flex w-1/4 justify-center lg:pl-8 font-bold text-sm lg:text-xl uppercase items-center ">
+                        <span class="w-full text-left truncate">${usager.courriel}</span>
                     </div>
 
                     <!-- Actions -->
-                    <div class="flex w-1/4 justify-center pl-16 font-bold text-lg gap-x-1 uppercase items-center">
-                        <button class="border-2 p-1 rounded"> <span >Modifier Rôle</span> </button>
-                        <button class="border-2 p-1 rounded"> <span>Modifier Statut</span> </button>
+                    <div class="flex w-1/4 justify-center pl-4 lg:pl-16 font-bold text-lg gap-x-1 uppercase items-center flex-col md:flex-row ">
+                        <button class="border-2 p-1 lg:p-2 rounded flex hover:text-c3  hover:bg-c1 transition  text-c1 rounded-md  "> <span class="hidden lg:block text-xl" >Modifier</span> <span class="iconify  size-8 lg:size-6 " data-icon="mdi:pen"></span>   </button>
+                      
                     </div>
                 </div>`;
             });
@@ -159,7 +159,7 @@ function Recherche(page = 1) {
     <div class="flex gap-2 mt-4">
         <!-- Bouton Première Page -->
         <button type="button"
-            class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center 
+            class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center transition 
             ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
             onclick="${functionName}(1)" ${!data.prev_page_url ? 'disabled' : ''}>
             <span class="iconify text-xl" data-icon="mdi-chevron-double-left"></span>
@@ -167,7 +167,7 @@ function Recherche(page = 1) {
 
         <!-- Bouton Page Précédente -->
         <button type="button"
-            class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center
+            class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition 
             ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
             onclick="${functionName}(${data.current_page - 1})" ${!data.prev_page_url ? 'disabled' : ''}>
             <span class="iconify text-xl" data-icon="mdi-chevron-left"></span>
@@ -180,7 +180,7 @@ function Recherche(page = 1) {
 
         <!-- Bouton Page Suivante -->
         <button type="button"
-            class="bg-c1 hover:bg-c3 hover:text-c1  text-white font-bold py-2 px-4 flex items-center justify-center
+            class="bg-c1 hover:bg-c3 hover:text-c1  text-white font-bold py-2 px-4 flex items-center justify-center transition 
             ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
             onclick="${functionName}(${data.current_page + 1})" ${!data.next_page_url ? 'disabled' : ''}>
             <span class="iconify text-xl" data-icon="mdi-chevron-right"></span>
@@ -188,7 +188,7 @@ function Recherche(page = 1) {
 
         <!-- Bouton Dernière Page -->
         <button type="button"
-            class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center
+            class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition 
             ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
             onclick="${functionName}(${data.last_page})" ${!data.next_page_url ? 'disabled' : ''}>
             <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
