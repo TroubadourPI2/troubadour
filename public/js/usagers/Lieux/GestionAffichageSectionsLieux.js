@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
         ObtenirElementsLieux();
         AjouterGestionAffichageListeners();
-    }, 2000); 
+    }, 1000); 
 
 });
 

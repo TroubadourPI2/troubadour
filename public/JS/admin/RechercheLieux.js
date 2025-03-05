@@ -9,9 +9,9 @@ let texteActifRechercheAdmin;
 document.addEventListener('DOMContentLoaded', function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsRechercheLieux();
-    filtreVille.value = "";
+    filtreVille.value = '';
     boutonFiltreActif.checked = true;
-    actif = boutonFiltreActif.checked ? 1 : 0 ;
+    actif = boutonFiltreActif.checked ? 1 : 0;
     FiltrerLieux(false);
     RechercheLieuxListeners();
 });
@@ -20,8 +20,10 @@ function ObtenirElementsRechercheLieux() {
     filtreQuartier = document.getElementById('filtreQuartier');
     filtreVille = document.getElementById('filtreVille');
     rechercheNomLieu = document.getElementById('rechercheNomLieu');
-    boutonFiltreActif = document.getElementById("boutonFiltreActif");
-    texteActifRechercheAdmin = document.getElementById("texteActifRechercheAdmin");
+    boutonFiltreActif = document.getElementById('boutonFiltreActif');
+    texteActifRechercheAdmin = document.getElementById(
+        'texteActifRechercheAdmin'
+    );
 }
 
 function RechercheLieuxListeners() {
@@ -29,7 +31,6 @@ function RechercheLieuxListeners() {
         FiltrerLieux();
         if (filtreVille.value != '') {
             ObtenirQuartiersParVille(filtreVille.value);
-
         } else {
             filtreQuartier.innerHTML = '';
         }
@@ -37,8 +38,8 @@ function RechercheLieuxListeners() {
 
     filtreQuartier.addEventListener('change', FiltrerLieux);
     rechercheNomLieu.addEventListener('input', FiltrerLieux);
-    boutonFiltreActif.addEventListener("change", function () {
-        actif = boutonFiltreActif.checked ? 1 : 0 ;
+    boutonFiltreActif.addEventListener('change', function () {
+        actif = boutonFiltreActif.checked ? 1 : 0;
         MettreAjourTexteActif(actif);
         boutonFiltreActif.checked = actif;
         FiltrerLieux();
@@ -60,8 +61,11 @@ function MettreAJourRechercheQuartier(quartiers) {
     });
 }
 
-function MettreAjourTexteActif(estActif){
-    texteActifRechercheAdmin.textContent = estActif === 1 ? Lang.get('strings.actif') : Lang.get('strings.inactif');
+function MettreAjourTexteActif(estActif) {
+    texteActifRechercheAdmin.textContent =
+        estActif === 1
+            ? Lang.get('strings.actif')
+            : Lang.get('strings.inactif');
 }
 
 let pageCourante = 1;
@@ -80,7 +84,7 @@ function FiltrerLieux(majStatut = true) {
         .get('/admin/recherche', { params })
         .then((response) => {
             if (response.data.lieux) {
-                AfficherLieux(response.data.lieux,majStatut);
+                AfficherLieux(response.data.lieux, majStatut);
             } else {
                 AfficherMessage(response.data.message);
             }
@@ -97,16 +101,17 @@ function AfficherMessage(message) {
 
 function AfficherErreur() {
     const container = document.getElementById('affichageDesLieux');
-    container.innerHTML = '<p>Une erreur est survenue lors de la recherche des lieux. Veuillez réessayer.</p>';
+    container.innerHTML =
+        '<p>Une erreur est survenue lors de la recherche des lieux. Veuillez réessayer.</p>';
 }
-
 
 function AfficherLieux(lieux, majStatut) {
     const containerLieux = document.getElementById('affichageDesLieux');
     containerLieux.innerHTML = '';
 
     if (lieux.length === 0) {
-        containerLieux.innerHTML = '<p>Aucun lieu trouvé pour les critères de recherche.</p>';
+        containerLieux.innerHTML =
+            '<p>Aucun lieu trouvé pour les critères de recherche.</p>';
         return;
     }
 
@@ -119,7 +124,7 @@ function AfficherLieux(lieux, majStatut) {
                         <img class="object-cover w-full h-72 rounded-t-lg" src="${lieu.photo_lieu_url}" alt="${lieu.nomEtablissement}">
                         <h5 class="text-xl font-bold uppercase p-2 text-center h-full flex items-center">${lieu.nomEtablissement}</h5>
                     </div>
-                    <div class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]" onClick="TournerCarteLieux(this)">
+                    <div class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                         <div class="flex flex-col justify-between h-full">
                            <div class="mb-2">
                                 <div class="flex justify-end gap-2">
@@ -155,11 +160,13 @@ function AfficherLieux(lieux, majStatut) {
                             ${lieu.region ? `<p><strong>${Lang.get('strings.region')} :</strong> ${lieu.region.nom}</p>` : ''}
                             <p><strong>${Lang.get('strings.pays')} :</strong> ${lieu.pays.nom}</p>
                             <p><strong>${Lang.get('strings.typeLieu')} :</strong> ${lieu.typeLieu}</p>
-                            ${lieu.siteWeb ?
-                `<p class="truncate"><strong>${Lang.get('strings.siteWeb')} :</strong> 
+                            ${
+                                lieu.siteWeb
+                                    ? `<p class="truncate"><strong>${Lang.get('strings.siteWeb')} :</strong> 
                                     <a href="${lieu.siteWeb}" class="text-blue-500 underline" target="_blank">${lieu.siteWeb}</a>
                                 </p>`
-                : ''}
+                                    : ''
+                            }
                             <p><strong>${Lang.get('strings.telephone')} :</strong> ${lieu.numeroTelephone}</p>
                                 </div>
                             </div>
@@ -218,11 +225,13 @@ function AfficherLieux(lieux, majStatut) {
                             ${lieu.region ? `<p><strong>${Lang.get('strings.region')} :</strong> ${lieu.region.nom}</p>` : ''}
                             <p><strong>${Lang.get('strings.pays')} :</strong> ${lieu.pays.nom}</p>
                             <p><strong>${Lang.get('strings.typeLieu')} :</strong> ${lieu.typeLieu}</p>
-                            ${lieu.siteWeb ?
-                `<p class="truncate"><strong>${Lang.get('strings.siteWeb')} :</strong> 
+                            ${
+                                lieu.siteWeb
+                                    ? `<p class="truncate"><strong>${Lang.get('strings.siteWeb')} :</strong> 
                                     <a href="${lieu.siteWeb}" class="text-blue-500 underline" target="_blank">${lieu.siteWeb}</a>
                                 </p>`
-                : ''}
+                                    : ''
+                            }
                             <p><strong>${Lang.get('strings.telephone')} :</strong> ${lieu.numeroTelephone}</p>
                         </div>
                     </div>
@@ -255,10 +264,14 @@ function AfficherLieux(lieux, majStatut) {
     if (selectVilleLieuModifie.value) {
         ObtenirQuartiersParVille(selectVilleLieuModifie.value);
     }
-    //Fonctions dans public/js/usagers/lieux/ChangerEtatLieu.js
-    if (majStatut) {
+   
+    if (majStatut) { 
+        //Fonctions dans public/js/usagers/lieux/ChangerEtatLieu.js
         ObtenirElementsDesactiver();
         AjouterDesactiverListeners();
         MiseAJourStatutLieu();
+        //Fonctions dans public/js/usagers/lieux/GestionAffichageSectionsLieux.js
+        ObtenirElementsLieux();
+        AjouterGestionAffichageListeners();
     }
 }
