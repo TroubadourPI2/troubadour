@@ -70,7 +70,9 @@ function AjouterModifierListeners() {
 
 }
 
-
+function AfficherPageModifierLieuAdmin(){
+    ChangerSection(modifierLieu, afficherLieux);
+}
 
 function ActiverSelectQuartierModifie() {
     if (selectVilleLieuModifie.value != "") {
