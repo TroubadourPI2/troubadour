@@ -180,7 +180,6 @@ function AfficherLieux(lieux) {
             </div>
         `;
 
-        // Ajout des cartes (mobile et web) dans le container
         div.innerHTML = carteMobile + carteWeb;
         container.appendChild(div);
     });
