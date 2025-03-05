@@ -48,6 +48,8 @@ class UsagersController extends Controller
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::all();
+
+       
         return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
     }
 
@@ -68,6 +70,25 @@ class UsagersController extends Controller
     {
         //
     }
+
+    // public function Favoris($id)
+    // {
+    //     $usager = Usager::with(['activiteFavoris.activite', 'lieuFavoris.lieu'])->find($id);
+
+    //     if (!$usager) {
+    //         return redirect()->back()->with('error', 'Utilisateur introuvable.');
+    //     }
+
+    //     // Debugging: Check the retrieved data
+    //     dd($usager->activiteFavoris, $usager->lieuFavoris);
+
+    //     $activitesFavoris = $usager->activiteFavoris;
+    //     $lieuxFavoris = $usager->lieuFavoris;
+
+    //     return view('usagers.afficher', compact('usager', 'activitesFavoris', 'lieuxFavoris'));
+    // }
+
+    
 
     /**
      * Show the form for creating a new resource.

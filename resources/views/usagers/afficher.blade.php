@@ -10,9 +10,9 @@
             <button id="boutonFavoris" data-section="compte"
                 class="boutonMenu text-base px-4 sm:text-xl font-semibold bg-c1 text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('compte') }}</button>
             @role(['Utilisateur'])
-            <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1"></div>
-            <button id="boutonCompte" data-section="favoris"
-                class="boutonMenu text-base px-4 sm:text-xl font-semibold bg-c1 text-c3 rounded-full sm:w-32 mb-1 uppercase transition">Favoris</button>
+                <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1"></div>
+                <button id="boutonCompte" data-section="favoris"
+                    class="boutonMenu text-base px-4 sm:text-xl font-semibold bg-c1 text-c3 rounded-full sm:w-32 mb-1 uppercase transition">Favoris</button>
             @endrole
             @role(['Gestionnaire'])
                 <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1"></div>
@@ -23,8 +23,9 @@
                     class="boutonMenu text-base px-4 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 mb-1 uppercase transition">{{ __('activites') }}</button>
             @endrole
         </div>
-        <div id="favoris" class="sectionMenu">@include('usagers.composants.AfficherFavoris')</div>
+        
         <div id="compte" class="sectionMenu">@include('usagers.composants.AfficherCompte')</div>
+        <div id="favoris" class="sectionMenu">@include('usagers.composants.AfficherFavoris')</div>
         <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
         <div id="activites" class="sectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
     </div>
@@ -307,3 +308,4 @@
         session()->forget('formulaireModifierLieuStatutValide');
     @endphp
 @endif
+

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LieuFavori extends Model
 {
     use HasFactory;
-
+    protected $table = 'LieuFavoris';
     protected $fillable = [
         'lieu_id', 
         'usager_id'
