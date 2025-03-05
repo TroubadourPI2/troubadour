@@ -1,12 +1,17 @@
 let filtreQuartier;
 let filtreVille;
 let rechercheNomLieu;
+let boutonFiltreActif;
 let filtreForm;
+let actif;
+let texteActifRechercheAdmin;
 
 document.addEventListener('DOMContentLoaded', function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsRechercheLieux();
     filtreVille.value = "";
+    boutonFiltreActif.checked = true;
+    actif = boutonFiltreActif.checked ? 1 : 0 ;
     FiltrerLieux();
     RechercheLieuxListeners();
 });
@@ -15,6 +20,8 @@ function ObtenirElementsRechercheLieux() {
     filtreQuartier = document.getElementById('filtreQuartier');
     filtreVille = document.getElementById('filtreVille');
     rechercheNomLieu = document.getElementById('rechercheNomLieu');
+    boutonFiltreActif = document.getElementById("boutonFiltreActif");
+    texteActifRechercheAdmin = document.getElementById("texteActifRechercheAdmin");
 }
 
 function RechercheLieuxListeners() {
@@ -30,6 +37,12 @@ function RechercheLieuxListeners() {
 
     filtreQuartier.addEventListener('change', FiltrerLieux);
     rechercheNomLieu.addEventListener('input', FiltrerLieux);
+    boutonFiltreActif.addEventListener("change", function () {
+        actif = boutonFiltreActif.checked ? 1 : 0 ;
+        MettreAjourTexteActif(actif);
+        boutonFiltreActif.checked = actif;
+        FiltrerLieux();
+    });
 }
 
 function MettreAJourRechercheQuartier(quartiers) {
@@ -47,6 +60,13 @@ function MettreAJourRechercheQuartier(quartiers) {
     });
 }
 
+function MettreAjourTexteActif(estActif){
+    texteActifRechercheAdmin.textContent = estActif === 1 ? Lang.get('strings.actif') : Lang.get('strings.inactif');
+}
+
+let pageCourante = 1;
+const lieuxParPage = 10;
+
 function FiltrerLieux() {
     const villeId = filtreVille.value;
     const quartierId = filtreQuartier.value;
@@ -55,31 +75,36 @@ function FiltrerLieux() {
     if (villeId) params.villeId = villeId;
     if (quartierId) params.quartierId = quartierId;
     if (rechercheNom) params.rechercheNom = rechercheNom;
-
+    params.actif = actif;
     axios
         .get('/admin/recherche', { params })
         .then((response) => {
-            if (response.data) {
-                AfficherLieux(response.data);
+            if (response.data.lieux) {
+                AfficherLieux(response.data.lieux);
             } else {
-                AfficherAucunResultat();
+                AfficherMessage(response.data.message);
             }
         })
         .catch((error) => {
             console.error('Erreur lors du filtrage des lieux', error);
-            AfficherErreur();
         });
+    
+
+    ObtenirElementsSupprimer();
+    console.log(boutonsSupprimer)
+    AjouterSupprimerListeners();
 }
 
-function AfficherAucunResultat() {
+function AfficherMessage(message) {
     const container = document.getElementById('affichageDesLieux');
-    container.innerHTML = '<p>Aucun lieu trouvé pour les critères de recherche.</p>';
+    container.innerHTML = `<p class="text-lg font-semibold text-c1 uppercase">${message}</p>`;
 }
 
 function AfficherErreur() {
     const container = document.getElementById('affichageDesLieux');
     container.innerHTML = '<p>Une erreur est survenue lors de la recherche des lieux. Veuillez réessayer.</p>';
 }
+
 
 function AfficherLieux(lieux) {
     const containerLieux = document.getElementById('affichageDesLieux');
@@ -94,12 +119,12 @@ function AfficherLieux(lieux) {
         // Carte mobile
         const carteMobile = `
             <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg ">
-                <div class="carteLieuxMobile relative w-full min-h-lvh mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl">
+                <div class="carteLieuxMobile relative w-full h-96 mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl">
                     <div class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden] ${!lieu.actif ? 'bg-[#B0B7B7]' : ''}">
                         <img class="object-cover w-full h-72 rounded-t-lg" src="${lieu.photo_lieu_url}" alt="${lieu.nomEtablissement}">
                         <h5 class="text-xl font-bold uppercase p-2 text-center h-full flex items-center">${lieu.nomEtablissement}</h5>
                     </div>
-                    <div class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                    <div class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]" onClick="TournerCarteLieux(this)">
                         <div class="flex flex-col justify-between h-full">
                            <div class="mb-2">
                                 <div class="flex justify-end gap-2">
@@ -144,12 +169,12 @@ function AfficherLieux(lieux) {
                                 </div>
                             </div>
                             <div class="flex justify-end space-x-3 mt-3">
-                                <button class="boutonSupprimer text-[#B20101]" data-lieuId="{{ $lieu->id }}"
-                                    data-nomLieu="{{ $lieu->nomEtablissement }}"><span class="iconify size-6"
+                                <button class="boutonSupprimer text-[#B20101]" data-lieuId="${lieu.id}"
+                                    data-nomLieu="${lieu.nomEtablissement}" onclick="AjouterSupprimerListenersTest(this)"><span class="iconify size-6"
                                         data-icon="ion:trash-outline" data-inline="false"></span></button>
-                                <button class="boutonModifier" data-lieuId="{{ $lieu->id }}"
-                                    data-villeId="{{ $lieu->ville()?->id }}"
-                                    data-typeLieuId="{{ $lieu->typeLieu->id }}"><span class="iconify size-6"
+                                <button class="boutonModifier" data-lieuId="${lieu.id}"
+                                    data-villeId="${lieu.ville.id}"
+                                    data-typeLieuId="${lieu.typeLieu.id}" onclick="AfficherPageModifierLieuAdmin(this)"><span class="iconify size-6"
                                         data-icon="ep:edit" data-inline="false"></span></button>
                             </div>
 
@@ -205,13 +230,13 @@ function AfficherLieux(lieux) {
 
                         <button
                             class="boutonSupprimer transform transition duration-300 hover:scale-110 text-[#B20101] hover:text-[#B50000]"
-                            data-lieuId="${lieu.id}" data-nomLieu="${lieu.nomEtablissement}">
+                            data-lieuId="${lieu.id}" data-nomLieu="${lieu.nomEtablissement}" onclick="AjouterSupprimerListenersTest(this)">
                             <span class="iconify size-8" data-icon="ion:trash-outline" data-inline="false"></span>
                         </button>
                         <button
                             class="boutonModifier transform transition duration-300 hover:scale-110 text-c1-500 hover:text-c1-700"
                             data-lieuId="${lieu.id}" data-villeId="${lieu.ville.id}"
-                            data-typeLieuId="${lieu.typeLieu.id}">
+                            data-typeLieuId="${lieu.typeLieu.id}" onclick="AfficherPageModifierLieuAdmin(this)">
                             <span class="iconify size-8" data-icon="ep:edit" data-inline="false"></span>
                         </button>
                     </div>
