@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsagerRequest;
+use App\Http\Requests\FavoriRequest;
 use App\Models\Usager;
 use App\Models\Lieu;
 use App\Models\Favori;
@@ -62,20 +63,16 @@ class UsagersController extends Controller
         return response()->json($quartiers);
     }
 
-    public function AjouterFavoris(Request $request,string $id, string $idLieu)
+    public function AjouterFavoris(FavoriRequest $request)
     {
-        $validatedData = $request->validate([
-            'id' => 'required|integer|exists:favoris,id',
-            'idLieu' => 'required|integer|exists:lieux,id',
-        ]);
 
-        $favorite = Favori::create([
-            'activite_id' => $id,
-            'lieu_id' => $idLieu,
+        $favoris = Favori::create([
+            'activite_id' => 1,
+            'lieu_id' => $request->idLieu,
             'usager_id' => Auth::id(),
         ]);
 
-        return redirect()->back(); //->response()->json(['success' => true, 'favorite' => $favorite]);
+        return redirect()->back(); 
 
     }
 

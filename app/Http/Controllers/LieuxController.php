@@ -130,7 +130,7 @@ class LieuxController extends Controller
      */
     public function ZoomLieu(string $id)
     {
-
+        $usager = Auth::user(); 
         $lieuActuel = Lieu::findOrFail($id);
         $idActivites = LieuActivite::Where("lieu_id", $id)->pluck("activite_id");
         $activites = Activite::whereIn("id", $idActivites)->where('actif', 1)->get();
@@ -140,7 +140,7 @@ class LieuxController extends Controller
         }
         catch(Exception $e) {}
 
-        return view('zoomLieu', compact('lieuActuel', 'activites', "favoris"));
+        return view('zoomLieu', compact('usager', 'lieuActuel', 'activites', "favoris"));
     }
 
     public function ObtenirUnLieu(Request $request)

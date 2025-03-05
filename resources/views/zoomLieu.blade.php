@@ -23,12 +23,18 @@
 
                 <form action="{{ route('ajouter.favoris', ['idLieu' => $lieuActuel->id, 'id' => 1]) }}" method="POST">
                     @csrf
+
+                    <input type="hidden" name="idLieu" value="{{$lieuActuel->id}}">
+                    <input type="hidden" name="idUsager" value="{{$usager->id}}">
+
                     
                     <button type="submit" style="background: none; border: none;">
                         <span class="iconify size-10 md:ml-0 lg:ml-0 mr-20 text-c1 sm:ml-0 sm:mr-0 md:mr-20" 
                             data-icon="f7:heart"
                             data-inline="false"></span>
                     </button>
+
+
                 </form>
 
                 @else
@@ -38,7 +44,7 @@
                     
                     <button type="submit" style="background: none; border: none;">
                         <span class="iconify size-10 md:ml-0 lg:ml-0 mr-20 text-c1 sm:ml-0 sm:mr-0 md:mr-20" 
-                            data-icon="f7:heart-fill"
+                            data-icon="line-md:heart-filled"
                             data-inline="false"></span>
                     </button>
                 </form>
@@ -182,7 +188,7 @@
 
                         <div class="bg-c3 text-c2 text-base p-4 flex items-center h-4">
 
-                            <p>{{$lieuActuel->favoris}}</p>
+                        
 
                         </div>
                     </div>
