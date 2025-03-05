@@ -20,14 +20,10 @@
         <div id="pagination" class="mt-4 flex justify-center items-center gap-x-2  py-2"> </div>
         <div class=" border-2 bg-c3 border-c1 flex max-w-7xl w-full  h-14  justify-center items-center z-10 sticky  text-c1  top-0"
             id="labelTableau">
-            <div class="flex w-1/4 justify-center font-bold text-xl uppercase items-center"><span
-                    class="iconify size-8" data-icon="mdi-people-outline"></span>Rôle </div>
-            <div class="flex w-1/6 justify-center font-bold text-xl uppercase  items-center"><span
-                    class="iconify size-8" data-icon="mdi-list-status"></span>Statut </div>
-            <div class="flex w-2/4 justify-center font-bold text-xl uppercase items-center"><span
-                    class="iconify size-8" data-icon="mdi-email"></span>Courriel</div>
-            <div class="flex w-1/4 justify-center font-bold text-xl uppercase  items-center"><span
-                    class="iconify size-8" data-icon="mdi-pen"></span>Actions</div>
+            <div class="flex w-1/4 pl-12 justify-center font-bold text-xl uppercase items-center"></span>Rôle </div>
+            <div class="flex w-1/6 justify-center font-bold text-xl uppercase  items-center"></span>Statut </div>
+            <div class="flex w-2/4 justify-center font-bold text-xl uppercase items-center"></span>Courriel</div>
+            <div class="flex w-1/4 justify-center font-bold text-xl uppercase  items-center"></span>Actions</div>
         </div>
         <div id="usagersContainer" class="flex justify-center flex-col w-full items-center gap-y-4 "></div>
 
@@ -57,14 +53,80 @@
                 }
             })
             .then(response => {
+                const roles = {
+                    1: {
+                        name: "Admin",
+                        icon: "mdi-shield-account"
+                    },
+                    2: {
+                        name: "Utilisateur",
+                        icon: "mdi-account"
+                    },
+                    3: {
+                        name: "Gestionnaire",
+                        icon: "mdi-account-tie"
+                    }
+                };
+
+                const statuts = {
+                    1: {
+                        name: "Actif",
+                        icon: "mdi-check-circle",
+                        color: "text-green-500"
+                    },
+                    2: {
+                        name: "Inactif",
+                        icon: "mdi-close-circle",
+                        color: "text-red-500"
+                    },
+                    3: {
+                        name: "En Attente",
+                        icon: "mdi-timer-sand",
+                        color: "text-yellow-500"
+                    }
+                };
+
                 const usagersData = response.data;
                 let html = '';
+
                 usagersData.data.forEach(function(usager) {
-                    html += `<div class=" bg-c3 border-2 shadow-md flex max-w-7xl w-full h-24  justify-center items-center">  (Role: ${usager.role_id}, Statut: ${usager.statut_id})
-                        - ${usager.courriel}
-                     <button class=" border-2"> <span> Modifier Role</span> </button>
-                          <button class="border-2 "> <span> Desactiver </span> </button>
-                   </div>`;
+                    const roleData = roles[usager.role_id] || {
+                        name: "Inconnu",
+                        icon: "mdi-help-circle"
+                    };
+                    const statutData = statuts[usager.statut_id] || {
+                        name: "Inconnu",
+                        icon: "mdi-help-circle",
+                        color: "text-gray-500"
+                    };
+
+                    html += `
+                <div class="bg-c3 border-2 shadow-md flex max-w-7xl w-full h-24 justify-center items-center p-4">
+                    <!-- Rôle -->
+                   
+                    <div class="flex w-1/4 justify-start pl-16  font-bold text-xl uppercase items-center">
+                        <span class="iconify text-2xl text-c1 " data-icon="${roleData.icon}"></span>
+                        <span class="ml-2">${roleData.name}</span>
+                    </div>
+                    
+                    <!-- Statut -->
+                    <div class="flex w-1/4 justify-start font-bold text-xl uppercase items-center ${statutData.color}">
+                        <span class="iconify text-2xl" data-icon="${statutData.icon}"></span>
+                        <span class="ml-2">${statutData.name}</span>
+                    </div>
+                     <!-- Remplissage -->
+                 
+                    <!-- Courriel -->
+                  <div class="flex w-1/4 justify-center pl-8 font-bold text-xl uppercase items-center">
+                 <span class="w-full text-left"> ${usager.courriel} </span>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex w-1/4 justify-center pl-16 font-bold text-xl uppercase items-center">
+                        <button class="border-2 p-1 rounded"> <span>Modifier Rôle</span> </button>
+                        <button class="border-2 p-1 rounded"> <span>Désactiver</span> </button>
+                    </div>
+                </div>`;
                 });
                 document.getElementById('usagersContainer').innerHTML = html;
 
