@@ -141,7 +141,9 @@ function AfficherLieux(lieux) {
                 <div class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
             </label>     
                     </div>
-                    <h5 class="text-xl font-bold uppercase w-full">${lieu.nomEtablissement}</h5>
+                    <div class="w-full">
+                    <h5 class="text-xl font-bold uppercase w-48 truncate">${lieu.nomEtablissement}</h5>
+                    </div>
                     <div>
                         <div class="uppercase underline text-lg font-semibold">${Lang.get('strings.description')}</div>
                         <div class="text-base truncate">${lieu.description ?? Lang.get('strings.aucuneDescription')}</div>
