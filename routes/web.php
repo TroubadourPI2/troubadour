@@ -70,6 +70,8 @@ Route::middleware(Langue::class)
         //ADMIN
         Route::get('/admin', [AdministrateursController::class, 'afficher'])->name('admin')->middleware('VerifierRole:Admin');
         Route::get('/admin/rechercheUsagers', [AdministrateursController::class, 'usagersPagination'])->name('admin.rechercheUsagers')->middleware('VerifierRole:Admin');
+        Route::post('/admin/usagers/modifier/{id}', [AdministrateursController::class, 'modifierUtilisateur'])->name('admin.modifierUsagers')->middleware('VerifierRole:Admin');
+
 
         Route::fallback(function () {
             return response()->view('Redirection.404', [], 404);

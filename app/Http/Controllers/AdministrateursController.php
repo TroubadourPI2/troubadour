@@ -53,7 +53,26 @@ class AdministrateursController extends Controller
     
 
     
-    
+    public function modifierUtilisateur(UsagerRequest $request, $id)
+{
+   
+    $usager = Usager::findOrFail($id);
+
+
+    $request->validate([
+        'role_id' => 'sometimes|exists:RoleUsagers,id',
+        'statut_id' => 'sometimes|exists:Statuts,id',
+    ]);
+
+ 
+    $usager->update([
+        'role_id' => $request->role_id,
+        'statut_id' => $request->statut_id,
+    ]);
+
+    return response()->json(['success' => true]);
+}
+
 
     /**
      * Store a newly created resource in storage.

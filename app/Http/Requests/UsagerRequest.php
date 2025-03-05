@@ -35,10 +35,14 @@ class UsagerRequest extends FormRequest
             $rules['password'] = 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
         } 
 
-        return $rules;
+        if ($this->route()->getName() === 'admin.modifierUsagers'){ 
+            $rules = [
+            'role_id' => 'sometimes|exists:RoleUsagers,id',
+            'statut_id' => 'sometimes|exists:Statuts,id',
+        ];       
     }
-    
-
+    return $rules;
+}
     /**
      * Définit les messages d'erreur personnalisés.
      *

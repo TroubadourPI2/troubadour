@@ -131,7 +131,7 @@ function Recherche(page = 1) {
 
                     <!-- Actions -->
                     <div class="flex w-1/4 justify-center pl-4 lg:pl-16 font-bold text-lg gap-x-1 uppercase items-center flex-col md:flex-row ">
-                        <button class="border-2 p-1 lg:p-2 rounded flex hover:text-c3  hover:bg-c1 transition  text-c1 rounded-md  "> <span class="hidden lg:block text-xl" >Modifier</span> <span class="iconify  size-8 lg:size-6 " data-icon="mdi:pen"></span>   </button>
+                        <button onclick="modifierUtilisateur(${usager.id}, ${usager.role_id}, ${usager.statut_id}, '${usager.courriel}')" class="border-2 p-1 lg:p-2 rounded flex hover:text-c3  hover:bg-c1 transition  text-c1 rounded-md  "> <span class="hidden lg:block text-xl" >Modifier</span> <span class="iconify  size-8 lg:size-6 " data-icon="mdi:pen"></span>   </button>
                       
                     </div>
                 </div>`;
@@ -187,7 +187,7 @@ function Recherche(page = 1) {
         </button>
 
         <!-- Bouton Dernière Page -->
-        <button type="button"
+        <button type="button"   
             class="bg-c1 hover:bg-c3 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition 
             ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
             onclick="${functionName}(${data.last_page})" ${!data.next_page_url ? 'disabled' : ''}>
@@ -195,5 +195,54 @@ function Recherche(page = 1) {
         </button>
     </div>`;
 }
+
+function modifierUtilisateur(id, roleActuel, statutActuel, email) {
+    Swal.fire({
+        title: `Modifier ${email}`,
+        html: `
+            <label class="block text-left font-bold text-c1 mb-1">Rôle</label>
+            <select id="role_id" class="swal2-input">
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}" ${roleActuel == {{ $role->id }} ? 'selected' : ''}>
+                        {{ $role->nom }}
+                    </option>
+                @endforeach
+            </select>
+
+            <label class="block text-left font-bold text-c1 mb-1 mt-3">Statut</label>
+            <select id="statut_id" class="swal2-input">
+                @foreach($statuts as $statut)
+                    <option value="{{ $statut->id }}" ${statutActuel == {{ $statut->id }} ? 'selected' : ''}>
+                        {{ $statut->statut }}
+                    </option>
+                @endforeach
+            </select>
+        `,
+        showCancelButton: true,
+        confirmButtonText: "Modifier",
+        cancelButtonText: "Annuler",
+        focusConfirm: false,
+        preConfirm: () => {
+            return {
+                role_id: document.getElementById("role_id").value,
+                statut_id: document.getElementById("statut_id").value
+            };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.post(`/admin/usagers/modifier/${id}`, result.value)
+                .then(response => {
+                    Swal.fire("Succès", "L'utilisateur a été modifié.", "success");
+                    Recherche(pageActuelle); 
+                })
+                .catch(error => {
+                    console.error(error);
+                    Swal.fire("Erreur", "La modification a échoué.", "error");
+                });
+        }
+    });
+}
+
+
 
 </script>
