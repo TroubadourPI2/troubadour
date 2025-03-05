@@ -141,5 +141,8 @@
   "bientotVille":"Bientôt disponible dans votre ville",
   "autreVille":"Voir d'autres villes",
   "erreur404": "Erreur 404 - Page non trouvée",
-  "erreur404Texte":"Le motif de votre recherche n'a mené à aucun résultat"
+  "erreur404Texte":"Le motif de votre recherche n'a mené à aucun résultat",
+
+  "rechercheLieu" : "Recherche par nom de lieu",
+  "toutesVilles" : "Toutes les villes"
 }  

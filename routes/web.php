@@ -67,10 +67,9 @@ Route::middleware(Langue::class)
 
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
 
-        Route::get('/admin', [AdministrateursController::class, 'afficher'])->name('admin')->middleware('VerifierRole:Admin');
-        Route::get('/admin/recherche', [LieuxController::class, 'Index'])->name('adminLieux.recherche');
-        Route::post('/admin/recherche', [LieuxController::class, 'Recherche'])->name('adminLieux.recherche2');
-        Route::get('/admin/quartier', [LieuxController::class, 'Quartiers'])->name('adminLieux.quartiers');
+        Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
+        Route::get('/admin/recherche', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche');
+     
 
         Route::fallback(function () {
             return response()->view('Redirection.404', [], 404);

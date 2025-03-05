@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const lieuStocke = localStorage.getItem('lieu');
     if (lieuStocke) {
         lieu = JSON.parse(lieuStocke);  
-        console.log(lieu);
         AfficherPhotoLieu(lieu);  
     }
 });

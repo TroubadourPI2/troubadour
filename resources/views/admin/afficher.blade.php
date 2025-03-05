@@ -46,6 +46,8 @@
 <script src="{{ asset('js/usagers/Lieux/AfficherModifierLieu.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/SupprimerLieu.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/ChangerEtatLieu.js') }}"></script>
+<script src="{{ asset('js/admin/RechercheLieux.js') }}"></script>
+
 
 @if (session('formulaireAjouterLieuValide') === 'true')
 <script>

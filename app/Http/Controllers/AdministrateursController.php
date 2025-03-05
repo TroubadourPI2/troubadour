@@ -21,60 +21,76 @@ class AdministrateursController extends Controller
         return View('admin.Afficher', compact('lieux', 'villes', 'typesLieu'));
     }
 
-    public function Index()
-    {
-        try {
-            $lieux = Lieu::where('actif', 1)->paginate(10);
-            $villes = Ville::where('actif', 1)->get();
-            $ville = -1;
-            return view('recherche', compact('lieux', 'villes', 'ville'));
-        } catch (\Exception $e) {
-            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
-            return View('accueil');
-        } catch (QueryException $e) {
-            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
-            return View('accueil');
-        }
-    }
-
     public function Recherche(Request $request)
-    {
-        try {
-            $ville      = $request->ville;
-            $quartier   = $request->quartier;
-            $recherche  = $request->txtRecherche;
-            $lieux      = Lieu::paginate(10);
+{
+    Log::debug($request);
+    
+    // Créer une requête pour filtrer les lieux
+    $query = Lieu::query();
 
-            if (isset($request->quartier)) {
-                $quartier   = $request->quartier;
-                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(10);
-            }
-
-            if (isset($request->quartier) && isset($request->txtRecherche)) {
-                $quartier   = $request->quartier;
-                $recherche  = $request->txtRecherche;
-                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$recherche%")->where('actif', 1)->paginate(10);
-            }
-
-            if (isset($request->ville)) {
-                Log::debug("Ville : " . $request->ville);
-                $ville = $request->ville;
-            }
-
-            $villes     = Ville::all();
-            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
-
-            return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
-        } catch (\Exception $e) {
-            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
-            return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
-        }
+    // Filtrer par ville via le quartier
+    if ($request->ville) {
+        $query->whereHas('quartier', function ($q) use ($request) {
+            $q->where('ville_id', $request->ville);
+        });
     }
 
-    public function Quartiers(Request $request)
-    {
-        $villeId    = $request->villeId;
-        $quartiers  = Quartier::where('ville_id', $villeId)->get();
-        return compact('quartiers');
+    // Filtrer par quartier
+    if ($request->quartier) {
+        $query->where('quartier_id', $request->quartier);
     }
+
+    // Filtrer par nom de lieu
+    if ($request->rechercheNomLieu) {
+        $query->where('nom_etablissement', 'like', '%' . $request->rechercheNomLieu . '%');
+    }
+
+    // Filtrer par actif ou inactif
+    if ($request->actif !== null) {
+        $query->where('actif', $request->actif);
+    }
+
+    // Charger les relations quartier et ville
+    $lieux = $query->with(['quartier', 'quartier.ville'])->get();
+
+    // Compter le nombre de lieux trouvés
+    $count = $lieux->count();
+
+    // Si aucun lieu trouvé
+    if ($count === 0) {
+        return response()->json(['message' => 'Aucun lieu trouvé pour les critères de recherche.']);
+    }
+
+    Log::debug($lieux);
+
+    // Format de la réponse avec les informations de quartier et de ville
+    $lieuxWithDetails = $lieux->map(function ($lieu) {
+        return [
+            'id' => $lieu->id,
+            'rue' => $lieu->rue,
+            'noCivic' => $lieu->noCivic,
+            'codePostal' => $lieu->codePostal,
+            'nomEtablissement' => $lieu->nomEtablissement,
+            'photoLieu' => $lieu->photoLieu,
+            'siteWeb' => $lieu->siteWeb,
+            'numeroTelephone' => $lieu->numeroTelephone,
+            'actif' => $lieu->actif,
+            'description' => $lieu->description,
+            'typeLieu' => $lieu->typeLieu->nom,
+            'quartier' => $lieu->quartier ? [
+                'id' => $lieu->quartier->id,
+                'nom' => $lieu->quartier->nom,
+            ] : null,
+            'ville' => $lieu->quartier && $lieu->quartier->ville ? [
+                'id' => $lieu->quartier->ville->id,
+                'nom' => $lieu->quartier->ville->nom,
+            ] : null,
+        ];
+    });
+    Log::debug($lieuxWithDetails);
+    // Retourner les lieux au format JSON avec quartier et ville
+    return response()->json($lieuxWithDetails);
+}
+
+    
 }
