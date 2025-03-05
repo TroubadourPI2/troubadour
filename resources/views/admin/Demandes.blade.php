@@ -130,9 +130,9 @@ function Recherche(page = 1) {
                     </div>
 
                     <!-- Actions -->
-                    <div class="flex w-1/4 justify-center pl-16 font-bold text-xl uppercase items-center">
-                        <button class="border-2 p-1 rounded"> <span>Modifier Rôle</span> </button>
-                        <button class="border-2 p-1 rounded"> <span>Désactiver</span> </button>
+                    <div class="flex w-1/4 justify-center pl-16 font-bold text-lg gap-x-1 uppercase items-center">
+                        <button class="border-2 p-1 rounded"> <span >Modifier Rôle</span> </button>
+                        <button class="border-2 p-1 rounded"> <span>Modifier Statut</span> </button>
                     </div>
                 </div>`;
             });
