@@ -138,6 +138,7 @@
             showCancelButton: true,
             confirmButtonText: Lang.get('strings.boutonOuiSup'),
             cancelButtonText: Lang.get('strings.annuler'),
+      
             customClass: {
                 popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
                 title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',

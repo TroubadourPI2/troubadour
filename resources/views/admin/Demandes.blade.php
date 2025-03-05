@@ -198,29 +198,40 @@ function Recherche(page = 1) {
 
 function modifierUtilisateur(id, roleActuel, statutActuel, email) {
     Swal.fire({
-        title: `Modifier ${email}`,
-        html: `
-            <label class="block text-left font-bold text-c1 mb-1">Rôle</label>
-            <select id="role_id" class="swal2-input">
+        title: `Modifier `,
+        html: `<div class="flex flex-col w-full gap-y-4"> <strong class="uppercase">${email}</strong>
+        <div class="flex gap-x-2 items-center justify-center px-2">
+            <label class="block text-left font-bold text-c1 mb-1 w-1/4">Rôle</label>
+            <select id="role_id" class="rounded-full border-2 justify-center w-1/2 border-c1 p-2">
                 @foreach($roles as $role)
                     <option value="{{ $role->id }}" ${roleActuel == {{ $role->id }} ? 'selected' : ''}>
                         {{ $role->nom }}
                     </option>
                 @endforeach
             </select>
-
-            <label class="block text-left font-bold text-c1 mb-1 mt-3">Statut</label>
-            <select id="statut_id" class="swal2-input">
+        </div>
+         <div class="flex gap-x-2 items-center justify-center px-2">
+            <label class="block text-left font-bold text-c1 mb-1 w-1/4 mt-3">Statut</label>
+            <select id="statut_id" class="rounded-full border-2   w-1/2 border-c1 p-2">
                 @foreach($statuts as $statut)
                     <option value="{{ $statut->id }}" ${statutActuel == {{ $statut->id }} ? 'selected' : ''}>
                         {{ $statut->statut }}
                     </option>
                 @endforeach
-            </select>
+            </select></div>
         `,
         showCancelButton: true,
         confirmButtonText: "Modifier",
         cancelButtonText: "Annuler",
+        reverseButtons: true,
+                    customClass: {
+                        popup: 'font-barlow text-xl text-c1 bg-c2',
+                        title: 'text-3xl uppercase underline',
+                        confirmButton:
+                            'bg-c1 text-white font-semibold px-4 py-2 uppercase rounded-full transition',
+                        cancelButton:
+                            'text-c1 uppercase bg-c2 font-semibold rounded-full px-4 py-2 hover:bg-white transition'
+                    },
         focusConfirm: false,
         preConfirm: () => {
             return {
