@@ -218,7 +218,7 @@ class LieuxController extends Controller
             }
                
 
-            return redirect()->route('usagerLieux.afficher');
+           return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
             Log::error(__('erreur') . $e->getMessage());
             return redirect()->route('usagerLieux.afficher')->with('error',  __('erreurGenerale'));

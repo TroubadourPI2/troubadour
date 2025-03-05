@@ -41,7 +41,7 @@ async function ObtenirQuartiersParVille(villeId) {
         }
 
         const quartiers = await response.json();
-        MettreAJourSelectQuartier(quartiers);
+       MettreAJourSelectQuartier(quartiers);
         //Fonction dans le fichier public/js/usagers/Lieux/AfficherModifierLieu.js
         MettreAJourSelectQuartierModifie(quartiers);
         //Fonction dans le fichier public/js/admin/RechercheLieux.js

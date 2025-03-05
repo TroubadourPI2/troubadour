@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Log;
 
 class LieuRequest extends FormRequest
 {
@@ -92,7 +93,7 @@ class LieuRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         $nomRouteActuelle = $this->route()->getName();
-
+        Log::debug($nomRouteActuelle);
         if ($nomRouteActuelle === 'usagerLieux.ajouterLieu') {
             session()->put('erreurAjouterLieu', $validator->errors());
 

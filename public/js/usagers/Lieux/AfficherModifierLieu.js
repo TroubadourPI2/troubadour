@@ -10,7 +10,7 @@ let photoLieuSupprimer;
 let inputPhotoModifie;
 let lieu;
 let lieuSelectionne;
-
+let lieuId;
 let statutLieuCache;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     }, 2000); 
    
-  
+    const form = document.getElementById("formModifierLieu");
+    form.action = `/compte/modifierLieu/${localStorage.getItem('lieuId')}`;
 
     const lieuStocke = localStorage.getItem('lieu');
     if (lieuStocke) {
@@ -49,7 +50,8 @@ function ObtenirElementsModifier() {
 function AjouterModifierListeners() {
     boutonsModifier.forEach((bouton) => {
         bouton.addEventListener("click", () => {
-            const lieuId = bouton.getAttribute("data-lieuId");
+            lieuId = bouton.getAttribute("data-lieuId");
+            localStorage.setItem('lieuId', lieuId);
             villeId = bouton.getAttribute("data-villeId");
             typeLieuId = bouton.getAttribute("data-typeLieuId");
             ObtenirLieu(lieuId);
@@ -67,6 +69,8 @@ function AjouterModifierListeners() {
     inputPhotoModifie.addEventListener("change", ChangerPhotoChoisie);
 
 }
+
+
 
 function ActiverSelectQuartierModifie() {
     if (selectVilleLieuModifie.value != "") {
@@ -228,7 +232,6 @@ async function ObtenirLieu(lieuId) {
         document.getElementById("selectVilleLieuModifie").value = lieu.ville_id;
         document.getElementById("selectTypeLieuModifie").value = lieu.typeLieu_id;
         inputPhotoModifie.value = "";
-
         const form = document.getElementById("formModifierLieu");
         form.action = `/compte/modifierLieu/${lieuId}`;
 
