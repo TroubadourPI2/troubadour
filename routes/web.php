@@ -39,7 +39,9 @@ Route::middleware(Langue::class)
 
         Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'ZoomActivite'])->name('Activite.zoom');
 
-        Route::post('/ajoutFavori/{id}{idLieu}', [UsagersController::class, 'storefavoris'])->name('store.favoris');        
+        Route::post('/ajoutFavori/{id}{idLieu}', [UsagersController::class, 'AjouterFavoris'])->name('ajouter.favoris');  
+
+        Route::post('/deleteFavori/{id}{idLieu}', [UsagersController::class, 'DeleteFavoris'])->name('delete.favoris');        
 
         Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'ObtenirVilleUtilisateur']);
 

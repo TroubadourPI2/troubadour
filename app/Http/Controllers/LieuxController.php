@@ -136,7 +136,7 @@ class LieuxController extends Controller
         $activites = Activite::whereIn("id", $idActivites)->where('actif', 1)->get();
 
         try{
-            $favoris = Favori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->get();
+            $favoris = Favori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();
         }
         catch(Exception $e) {}
 

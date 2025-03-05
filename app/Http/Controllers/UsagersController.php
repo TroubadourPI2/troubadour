@@ -62,7 +62,7 @@ class UsagersController extends Controller
         return response()->json($quartiers);
     }
 
-    public function storefavoris(string $id, string $idLieu)
+    public function AjouterFavoris(string $id, string $idLieu)
     {
         $favorite = Favori::create([
             'activite_id' => $id,
@@ -71,22 +71,21 @@ class UsagersController extends Controller
         ]);
 
         return redirect()->back(); //->response()->json(['success' => true, 'favorite' => $favorite]);
+
     }
 
 
-    public function destroyFavoris(string $idLieu)
+    public function DeleteFavoris(string $id)
     {
-    $favorite = Favori::where('lieu_id', $idLieu)
-                      ->where('usager_id', Auth::id());
+        $favorite =  Favori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();
 
-    if ($favorite && $favorite->usager_id == Auth::id()) { 
-        $favorite->delete();
+        if ($favorite && $favorite->usager_id == Auth::id()) { 
+            $favorite->delete();
 
-        return redirect()->back()->with('success', 'Favorite removed!');
-    } else {
+        } 
 
-        return redirect()->back()->with('error', 'Unable to remove favorite.');
-    }
+        return redirect()->back(); 
+
     }
 
 
