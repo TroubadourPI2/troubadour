@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsagerRequest;
 use App\Models\Usager;
+use App\Models\RoleUsager;
+use App\Models\Statut;
 class AdministrateursController extends Controller
 {
     /**
@@ -23,6 +25,7 @@ class AdministrateursController extends Controller
         $rechercheTexte  = trim($request->get('recherche'));
         $rechercheRole   = $request->get('rechercheRole');
         $rechercheStatut = $request->get('rechercheStatut');
+        $perPage = $request->get('per_page', 10);
     
         $usagers = Usager::when($rechercheTexte, function ($query) use ($rechercheTexte) {
                         $query->where(function($q) use ($rechercheTexte) {
@@ -39,10 +42,12 @@ class AdministrateursController extends Controller
                     })
                     ->orderByRaw("role_id = 3 DESC")  
                     ->orderByRaw("statut_id = 3 DESC") 
-                    ->paginate(10);
+                    ->paginate($perPage); 
     
         return response()->json($usagers);
     }
+    
+
     
     
 
