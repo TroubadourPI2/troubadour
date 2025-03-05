@@ -62,8 +62,13 @@ class UsagersController extends Controller
         return response()->json($quartiers);
     }
 
-    public function AjouterFavoris(string $id, string $idLieu)
+    public function AjouterFavoris(Request $request,string $id, string $idLieu)
     {
+        $validatedData = $request->validate([
+            'id' => 'required|integer|exists:favoris,id',
+            'idLieu' => 'required|integer|exists:lieux,id',
+        ]);
+
         $favorite = Favori::create([
             'activite_id' => $id,
             'lieu_id' => $idLieu,
