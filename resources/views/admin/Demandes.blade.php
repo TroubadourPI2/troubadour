@@ -82,6 +82,7 @@ let pageActuelle = 1;
 
 document.getElementById('usagersParPage').addEventListener('change', function() {
     usagersParPages = parseInt(this.value);
+    Lang.setLocale(document.body.getAttribute('data-locale'));
     Recherche(1); 
 });
 
@@ -197,6 +198,14 @@ function Recherche(page = 1) {
 }
 
 function modifierUtilisateur(id, roleActuel, statutActuel, email) {
+    const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+          
+            });
     Swal.fire({
         title: `Modifier `,
         html: `<div class="flex flex-col w-full gap-y-4"> <strong class="uppercase">${email}</strong>
@@ -243,7 +252,10 @@ function modifierUtilisateur(id, roleActuel, statutActuel, email) {
         if (result.isConfirmed) {
             axios.post(`/admin/usagers/modifier/${id}`, result.value)
                 .then(response => {
-                    Swal.fire("Succès", "L'utilisateur a été modifié.", "success");
+                    Toast.fire({
+                            icon: "success",
+                            title:Lang.get('strings.succesModifier')
+                        });
                     Recherche(pageActuelle); 
                 })
                 .catch(error => {
