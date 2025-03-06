@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     boutonFiltreActif.checked = true;
     actif = boutonFiltreActif.checked ? 1 : 0;
     lieuxParPages = selectParPage.value;
+    rechercheNomLieu.value = '';
     FiltrerLieux(false);
     RechercheLieuxListeners();
 });
