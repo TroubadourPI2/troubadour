@@ -112,12 +112,6 @@ function AfficherMessage(message) {
     containerLieux.innerHTML = `<p class="text-lg font-semibold text-c1 uppercase">${message}</p>`;
 }
 
-function AfficherErreur() {
-    const container = document.getElementById('affichageDesLieux');
-    container.innerHTML =
-        '<p>Une erreur est survenue lors de la recherche des lieux. Veuillez réessayer.</p>';
-}
-
 function AfficherLieux(lieux, majStatut) {
     const containerLieux = document.getElementById('affichageDesLieux');
     containerLieux.innerHTML = '';

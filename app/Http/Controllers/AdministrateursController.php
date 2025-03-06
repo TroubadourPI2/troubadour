@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lieu;
 use App\Models\Ville;
-use App\Models\Quartier;
 use App\Models\TypeLieu;
-use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
 
 class AdministrateursController extends Controller
@@ -42,13 +40,12 @@ class AdministrateursController extends Controller
                 $query->where('actif', $actif);
             })
             ->with(['quartier.ville.region.province', 'quartier.ville.pays', 'typeLieu'])
-            ->paginate($parPage);  
+            ->paginate($parPage);
 
 
-            if ($lieux->isEmpty()) {
-                return response()->json(['message' => __('aucunLieuTrouve')]);
-            }
-Log::debug($lieux);
+        if ($lieux->isEmpty()) {
+            return response()->json(['message' => __('aucunLieuTrouve')]);
+        }
         $lieuxWithDetails = $lieux->map(function ($lieu) {
             return [
                 'id' => $lieu->id,
@@ -94,8 +91,8 @@ Log::debug($lieux);
                 'last_page' => $lieux->lastPage(),
                 'from' => $lieux->firstItem(),
                 'to' => $lieux->lastItem(),
-                'prev_page_url' => $lieux->previousPageUrl(),  
-            'next_page_url' => $lieux->nextPageUrl(),     
+                'prev_page_url' => $lieux->previousPageUrl(),
+                'next_page_url' => $lieux->nextPageUrl(),
             ],
         ]);
     }
