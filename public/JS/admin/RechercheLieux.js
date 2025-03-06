@@ -5,7 +5,8 @@ let boutonFiltreActif;
 let filtreForm;
 let actif;
 let texteActifRechercheAdmin;
-let lieuxParPages = 10;
+let lieuxParPages;
+let selectParPage;
 let pageActuelle = 1;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     filtreVille.value = '';
     boutonFiltreActif.checked = true;
     actif = boutonFiltreActif.checked ? 1 : 0;
+    lieuxParPages = selectParPage.value;
     FiltrerLieux(false);
     RechercheLieuxListeners();
 });
@@ -26,7 +28,7 @@ function ObtenirElementsRechercheLieux() {
     texteActifRechercheAdmin = document.getElementById(
         'texteActifRechercheAdmin'
     );
-    lieuxParPages = document.getElementById("lieuxParPage");
+    selectParPage = document.getElementById("lieuxParPage");
 }
 
 function RechercheLieuxListeners() {
@@ -48,7 +50,7 @@ function RechercheLieuxListeners() {
         FiltrerLieux();
     });
 
-    lieuxParPages.addEventListener("change", function () {
+    selectParPage.addEventListener("change", function () {
         lieuxParPages = parseInt(this.value);
         FiltrerLieux(1)
     })
@@ -81,8 +83,9 @@ function FiltrerLieux(page = 1, majStatut = true) {
     const villeId = filtreVille.value;
     const quartierId = filtreQuartier.value;
     const rechercheNom = rechercheNomLieu.value.trim();
+
     const params = { page: page,
-        parPage: 10 };
+        parPage: lieuxParPages };
     if (villeId) params.villeId = villeId;
     if (quartierId) params.quartierId = quartierId;
     if (rechercheNom) params.rechercheNom = rechercheNom;
@@ -285,10 +288,11 @@ function AfficherLieux(lieux, majStatut) {
 }
 
 function PaginationLieux(donnees, fonction) {
+    console.log(fonction)
     const containerBtnPages = document.getElementById('pagination');
 
     // Générer les boutons de pagination
-    containerBtnPages.innerHTML = `
+    containerBtnPages.innerHTML = 
         <div class="flex gap-2 mt-4">
             <!-- Bouton Première Page -->
             <button type="button"
@@ -327,6 +331,6 @@ function PaginationLieux(donnees, fonction) {
                 <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
             </button>
         </div>
-    `;
+    ;
 }
 
