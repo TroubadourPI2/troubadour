@@ -38,7 +38,7 @@
                         <option value="">{{ __('selectionnerType') }}</option>
                         @foreach ($typesLieu as $type)
                             <option value="{{ $type->id }}"
-                            {{ old('selectTypeLieu') == $type->id ? 'selected' : '' }}>
+                                {{ old('selectTypeLieu') == $type->id ? 'selected' : '' }}>
                                 {{ $type->nom }}
                             </option>
                         @endforeach
@@ -118,7 +118,7 @@
                         <option value="">{{ __('choisirVille') }}</option>
                         @foreach ($villes as $ville)
                             <option value="{{ $ville->id }}"
-                            {{ old('selectVilleLieu') == $ville->id ? 'selected' : '' }}>
+                                {{ old('selectVilleLieu') == $ville->id ? 'selected' : '' }}>
                                 {{ $ville->nom }}
                             </option>
                         @endforeach
