@@ -48,7 +48,7 @@ class AdministrateursController extends Controller
             if ($lieux->isEmpty()) {
                 return response()->json(['message' => __('aucunLieuTrouve')]);
             }
-
+Log::debug($lieux);
         $lieuxWithDetails = $lieux->map(function ($lieu) {
             return [
                 'id' => $lieu->id,
@@ -87,7 +87,16 @@ class AdministrateursController extends Controller
 
         return response()->json([
             'lieux' => $lieuxWithDetails,
-
+            'pagination' => [
+                'current_page' => $lieux->currentPage(),
+                'per_page' => $lieux->perPage(),
+                'total' => $lieux->total(),
+                'last_page' => $lieux->lastPage(),
+                'from' => $lieux->firstItem(),
+                'to' => $lieux->lastItem(),
+                'prev_page_url' => $lieux->previousPageUrl(),  
+            'next_page_url' => $lieux->nextPageUrl(),     
+            ],
         ]);
     }
 }
