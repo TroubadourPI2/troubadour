@@ -5,6 +5,8 @@ let boutonFiltreActif;
 let filtreForm;
 let actif;
 let texteActifRechercheAdmin;
+let lieuxParPages = 10;
+let pageActuelle = 1;
 
 document.addEventListener('DOMContentLoaded', function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
@@ -24,6 +26,7 @@ function ObtenirElementsRechercheLieux() {
     texteActifRechercheAdmin = document.getElementById(
         'texteActifRechercheAdmin'
     );
+    lieuxParPages = document.getElementById("lieuxParPage");
 }
 
 function RechercheLieuxListeners() {
@@ -44,6 +47,11 @@ function RechercheLieuxListeners() {
         boutonFiltreActif.checked = actif;
         FiltrerLieux();
     });
+
+    lieuxParPages.addEventListener("change", function () {
+        lieuxParPages = parseInt(this.value);
+        FiltrerLieux(1)
+    })
 }
 
 function MettreAJourRechercheQuartier(quartiers) {
@@ -68,14 +76,13 @@ function MettreAjourTexteActif(estActif) {
             : Lang.get('strings.inactif');
 }
 
-let pageCourante = 1;
-const lieuxParPage = 10;
-
-function FiltrerLieux(majStatut = true) {
+function FiltrerLieux(page = 1, majStatut = true) {
+    pageActuelle = page;
     const villeId = filtreVille.value;
     const quartierId = filtreQuartier.value;
     const rechercheNom = rechercheNomLieu.value.trim();
-    const params = {};
+    const params = { page: page,
+        parPage: 10 };
     if (villeId) params.villeId = villeId;
     if (quartierId) params.quartierId = quartierId;
     if (rechercheNom) params.rechercheNom = rechercheNom;
@@ -85,6 +92,7 @@ function FiltrerLieux(majStatut = true) {
         .then((response) => {
             if (response.data.lieux) {
                 AfficherLieux(response.data.lieux, majStatut);
+                document.getElementById('pagination').innerHTML = PaginationLieux(response.data.lieux, "FiltrerLieux");
             } else {
                 AfficherMessage(response.data.message);
             }
@@ -95,8 +103,8 @@ function FiltrerLieux(majStatut = true) {
 }
 
 function AfficherMessage(message) {
-    const container = document.getElementById('affichageDesLieux');
-    container.innerHTML = `<p class="text-lg font-semibold text-c1 uppercase">${message}</p>`;
+    const containerLieux = document.getElementById('affichageDesLieux');
+    containerLieux.innerHTML = `<p class="text-lg font-semibold text-c1 uppercase">${message}</p>`;
 }
 
 function AfficherErreur() {
@@ -275,3 +283,50 @@ function AfficherLieux(lieux, majStatut) {
         AjouterGestionAffichageListeners();
     }
 }
+
+function PaginationLieux(donnees, fonction) {
+    const containerBtnPages = document.getElementById('pagination');
+
+    // Générer les boutons de pagination
+    containerBtnPages.innerHTML = `
+        <div class="flex gap-2 mt-4">
+            <!-- Bouton Première Page -->
+            <button type="button"
+                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center transition 
+                ${!donnees.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+                onclick="${fonction}(1)" ${!donnees.prev_page_url ? 'disabled' : ''}>
+                <span class="iconify text-xl" data-icon="mdi-chevron-double-left"></span>
+            </button>
+
+            <!-- Bouton Page Précédente -->
+            <button type="button"
+                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition 
+                ${!donnees.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+                onclick="${fonction}(${donnees.current_page - 1})" ${!donnees.prev_page_url ? 'disabled' : ''}>
+                <span class="iconify text-xl" data-icon="mdi-chevron-left"></span>
+            </button>
+
+            <!-- Page Actuelle -->
+            <span class="bg-c3 text-c1 h-12 text-xs lg:text-lg font-bold py-2 px-4 rounded flex items-center justify-center">
+                 ${donnees.current_page}/${donnees.last_page}
+            </span>
+
+            <!-- Bouton Page Suivante -->
+            <button type="button"
+                class="bg-c1 hover:bg-c3 h-12 hover:text-c1  text-white font-bold py-2 px-4 flex items-center justify-center transition 
+                ${!donnees.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+                onclick="${fonction}(${donnees.current_page + 1})" ${!donnees.next_page_url ? 'disabled' : ''}>
+                <span class="iconify text-xl" data-icon="mdi-chevron-right"></span>
+            </button>
+
+            <!-- Bouton Dernière Page -->
+            <button type="button"   
+                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition 
+                ${!donnees.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+                onclick="${fonction}(${donnees.last_page})" ${!donnees.next_page_url ? 'disabled' : ''}>
+                <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
+            </button>
+        </div>
+    `;
+}
+

@@ -26,7 +26,7 @@ class AdministrateursController extends Controller
         $quartierId = $request->get('quartierId');
         $rechercheNom = $request->get('rechercheNom');
         $actif = $request->get('actif');
-        // $page = $request->get('page', 1); 
+        $parPage = $request->get('parPage', 10);
         $lieux = Lieu::when($villeId, function ($query) use ($villeId) {
             $query->whereHas('quartier', function ($q) use ($villeId) {
                 $q->where('ville_id', $villeId);
@@ -42,14 +42,13 @@ class AdministrateursController extends Controller
                 $query->where('actif', $actif);
             })
             ->with(['quartier.ville.region.province', 'quartier.ville.pays', 'typeLieu'])
-            ->get(); // Suppression de la pagination et récupération de tous les résultats
+            ->paginate($parPage);  
 
 
             if ($lieux->isEmpty()) {
                 return response()->json(['message' => __('aucunLieuTrouve')]);
             }
 
-        // Transformation des résultats pour les envoyer au front-end
         $lieuxWithDetails = $lieux->map(function ($lieu) {
             return [
                 'id' => $lieu->id,
@@ -86,7 +85,6 @@ class AdministrateursController extends Controller
             ];
         });
 
-        //Ajouter les informations de pagination
         return response()->json([
             'lieux' => $lieuxWithDetails,
 
