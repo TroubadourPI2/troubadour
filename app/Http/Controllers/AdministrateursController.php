@@ -27,7 +27,6 @@ class AdministrateursController extends Controller
         $rechercheNom = $request->get('rechercheNom');
         $actif = $request->get('actif');
         $parPage = $request->get('parPage', 10);
-        Log::debug($request->get('parPage'));
         $lieux = Lieu::when($villeId, function ($query) use ($villeId) {
             $query->whereHas('quartier', function ($q) use ($villeId) {
                 $q->where('ville_id', $villeId);

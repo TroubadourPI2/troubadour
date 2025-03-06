@@ -84,8 +84,10 @@ function FiltrerLieux(page = 1, majStatut = true) {
     const quartierId = filtreQuartier.value;
     const rechercheNom = rechercheNomLieu.value.trim();
 
-    const params = { page: page,
-        parPage: lieuxParPages };
+    const params = {
+        page: page,
+        parPage: lieuxParPages
+    };
     if (villeId) params.villeId = villeId;
     if (quartierId) params.quartierId = quartierId;
     if (rechercheNom) params.rechercheNom = rechercheNom;
@@ -171,13 +173,12 @@ function AfficherLieux(lieux, majStatut) {
                             ${lieu.region ? `<p><strong>${Lang.get('strings.region')} :</strong> ${lieu.region.nom}</p>` : ''}
                             <p><strong>${Lang.get('strings.pays')} :</strong> ${lieu.pays.nom}</p>
                             <p><strong>${Lang.get('strings.typeLieu')} :</strong> ${lieu.typeLieu}</p>
-                            ${
-                                lieu.siteWeb
-                                    ? `<p class="truncate"><strong>${Lang.get('strings.siteWeb')} :</strong> 
+                            ${lieu.siteWeb
+                ? `<p class="truncate"><strong>${Lang.get('strings.siteWeb')} :</strong> 
                                     <a href="${lieu.siteWeb}" class="text-blue-500 underline" target="_blank">${lieu.siteWeb}</a>
                                 </p>`
-                                    : ''
-                            }
+                : ''
+            }
                             <p><strong>${Lang.get('strings.telephone')} :</strong> ${lieu.numeroTelephone}</p>
                                 </div>
                             </div>
@@ -236,13 +237,12 @@ function AfficherLieux(lieux, majStatut) {
                             ${lieu.region ? `<p><strong>${Lang.get('strings.region')} :</strong> ${lieu.region.nom}</p>` : ''}
                             <p><strong>${Lang.get('strings.pays')} :</strong> ${lieu.pays.nom}</p>
                             <p><strong>${Lang.get('strings.typeLieu')} :</strong> ${lieu.typeLieu}</p>
-                            ${
-                                lieu.siteWeb
-                                    ? `<p class="truncate"><strong>${Lang.get('strings.siteWeb')} :</strong> 
+                            ${lieu.siteWeb
+                ? `<p class="truncate"><strong>${Lang.get('strings.siteWeb')} :</strong> 
                                     <a href="${lieu.siteWeb}" class="text-blue-500 underline" target="_blank">${lieu.siteWeb}</a>
                                 </p>`
-                                    : ''
-                            }
+                : ''
+            }
                             <p><strong>${Lang.get('strings.telephone')} :</strong> ${lieu.numeroTelephone}</p>
                         </div>
                     </div>
@@ -275,8 +275,8 @@ function AfficherLieux(lieux, majStatut) {
     if (selectVilleLieuModifie.value) {
         ObtenirQuartiersParVille(selectVilleLieuModifie.value);
     }
-   
-    if (majStatut) { 
+
+    if (majStatut) {
         //Fonctions dans public/js/usagers/lieux/ChangerEtatLieu.js
         ObtenirElementsDesactiver();
         AjouterDesactiverListeners();
@@ -288,49 +288,48 @@ function AfficherLieux(lieux, majStatut) {
 }
 
 function PaginationLieux(donnees, fonction) {
-    console.log(fonction)
     const containerBtnPages = document.getElementById('pagination');
 
     // Générer les boutons de pagination
-    containerBtnPages.innerHTML = 
-        <div class="flex gap-2 mt-4">
-            <!-- Bouton Première Page -->
-            <button type="button"
-                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center transition 
-                ${!donnees.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-                onclick="${fonction}(1)" ${!donnees.prev_page_url ? 'disabled' : ''}>
-                <span class="iconify text-xl" data-icon="mdi-chevron-double-left"></span>
-            </button>
+    containerBtnPages.innerHTML = `
+    <div class="flex gap-2 mt-4">
+        <!-- Bouton Première Page -->
+        <button type="button"
+            class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center transition 
+            ${!donnees.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+            onclick="${fonction}(1)" ${!donnees.prev_page_url ? 'disabled' : ''}>
+            <span class="iconify text-xl" data-icon="mdi-chevron-double-left"></span>
+        </button>
 
-            <!-- Bouton Page Précédente -->
-            <button type="button"
-                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition 
-                ${!donnees.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-                onclick="${fonction}(${donnees.current_page - 1})" ${!donnees.prev_page_url ? 'disabled' : ''}>
-                <span class="iconify text-xl" data-icon="mdi-chevron-left"></span>
-            </button>
+        <!-- Bouton Page Précédente -->
+        <button type="button"
+            class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition 
+            ${!donnees.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+            onclick="${fonction}(${donnees.current_page - 1})" ${!donnees.prev_page_url ? 'disabled' : ''}>
+            <span class="iconify text-xl" data-icon="mdi-chevron-left"></span>
+        </button>
 
-            <!-- Page Actuelle -->
-            <span class="bg-c3 text-c1 h-12 text-xs lg:text-lg font-bold py-2 px-4 rounded flex items-center justify-center">
-                 ${donnees.current_page}/${donnees.last_page}
-            </span>
+        <!-- Page Actuelle -->
+        <span class="bg-c3 text-c1 h-12 text-xs lg:text-lg font-bold py-2 px-4 rounded flex items-center justify-center">
+             ${donnees.current_page}/${donnees.last_page}
+        </span>
 
-            <!-- Bouton Page Suivante -->
-            <button type="button"
-                class="bg-c1 hover:bg-c3 h-12 hover:text-c1  text-white font-bold py-2 px-4 flex items-center justify-center transition 
-                ${!donnees.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-                onclick="${fonction}(${donnees.current_page + 1})" ${!donnees.next_page_url ? 'disabled' : ''}>
-                <span class="iconify text-xl" data-icon="mdi-chevron-right"></span>
-            </button>
+        <!-- Bouton Page Suivante -->
+        <button type="button"
+            class="bg-c1 hover:bg-c3 h-12 hover:text-c1  text-white font-bold py-2 px-4 flex items-center justify-center transition 
+            ${!donnees.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+            onclick="${fonction}(${donnees.current_page + 1})" ${!donnees.next_page_url ? 'disabled' : ''}>
+            <span class="iconify text-xl" data-icon="mdi-chevron-right"></span>
+        </button>
 
-            <!-- Bouton Dernière Page -->
-            <button type="button"   
-                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition 
-                ${!donnees.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-                onclick="${fonction}(${donnees.last_page})" ${!donnees.next_page_url ? 'disabled' : ''}>
-                <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
-            </button>
-        </div>
-    ;
+        <!-- Bouton Dernière Page -->
+        <button type="button"   
+            class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition 
+            ${!donnees.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+            onclick="${fonction}(${donnees.last_page})" ${!donnees.next_page_url ? 'disabled' : ''}>
+            <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
+        </button>
+    </div>
+`;
 }
 
