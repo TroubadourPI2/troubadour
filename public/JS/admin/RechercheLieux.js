@@ -288,10 +288,9 @@ function AfficherLieux(lieux, majStatut) {
 }
 
 function PaginationLieux(donnees, fonction) {
-    const containerBtnPages = document.getElementById('pagination');
-
-    // Générer les boutons de pagination
-    containerBtnPages.innerHTML = `
+    
+console.log(donnees)
+    return `
     <div class="flex gap-2 mt-4">
         <!-- Bouton Première Page -->
         <button type="button"
@@ -310,7 +309,7 @@ function PaginationLieux(donnees, fonction) {
         </button>
 
         <!-- Page Actuelle -->
-        <span class="bg-c3 text-c1 h-12 text-xs lg:text-lg font-bold py-2 px-4 rounded flex items-center justify-center">
+        <span class="bg-c3 text-c1 h-12 text-xs lg:text-lg  font-bold py-2 px-4 rounded flex items-center justify-center">
              ${donnees.current_page}/${donnees.last_page}
         </span>
 
@@ -329,7 +328,6 @@ function PaginationLieux(donnees, fonction) {
             onclick="${fonction}(${donnees.last_page})" ${!donnees.next_page_url ? 'disabled' : ''}>
             <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
         </button>
-    </div>
-`;
+    </div>`;
 }
 
