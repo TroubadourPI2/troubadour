@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ActiviteFavori extends Model
 {
     use HasFactory;
+    protected $table = 'ActiviteFavoris';
+
 
     protected $fillable = [
         'activite_id', 

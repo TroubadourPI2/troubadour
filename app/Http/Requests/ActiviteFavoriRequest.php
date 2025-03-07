@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LieuFavoriRequest extends FormRequest
+class ActiviteFavoriRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,15 @@ class LieuFavoriRequest extends FormRequest
     public function rules(): array
     {
 
-        if ($this->route()->getName() === 'delete.favoris.lieu') {
+        if ($this->route()->getName() === 'delete.favoris.activite') {
             return [
-                'id' => 'required|integer|exists:LieuFavoris,id',
+                'id' => 'required|integer|exists:ActiviteFavoris,id',
             ];
         }
     
 
         $rules = [
-            'idLieu' => 'required|integer|exists:lieux,id',
+            'idActivite' => 'required|integer|exists:activites,id',
             'idUsager' => 'required|integer|exists:usagers,id',
         ];
 
@@ -41,7 +41,7 @@ class LieuFavoriRequest extends FormRequest
     {
         return [
             'id.exists'             => __('validations.FavoriIdExiste'),
-            'idLieu.exists'         => __('validations.FavoriLieuIdExiste'),
+            'idActivite.exists'         => __('validations.FavoriActiviteIdExiste'), #----- important de l'ajouter dans le fichier de langue
             'idUsager.exists'       => __('validations.FavoriUsagerIdExiste'),
         ];
     }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsagerRequest;
 use App\Http\Requests\LieuFavoriRequest;
+use App\Http\Requests\ActiviteFavoriRequest;
 use App\Models\Usager;
 use App\Models\Lieu;
 use App\Models\LieuFavori;
@@ -14,6 +15,7 @@ use App\Models\Ville;
 use App\Models\Quartier;
 use App\Models\TypeLieu;
 use App\Models\Activite;
+use App\Models\ActiviteFavori;
 use App\Models\TypeActivite;
 use Illuminate\Support\Facades\Log;
 
@@ -63,7 +65,7 @@ class UsagersController extends Controller
         return response()->json($quartiers);
     }
 
-    public function AjouterFavoris(LieuFavoriRequest $request)
+    public function AjouterFavorisLieu(LieuFavoriRequest $request)
     {
 
         $favoris = LieuFavori::create([
@@ -76,10 +78,33 @@ class UsagersController extends Controller
     }
 
 
-    public function DeleteFavoris(LieuFavoriRequest $request)
+    public function DeleteFavorisLieu(LieuFavoriRequest $request)
     {
-        $favorite =  LieuFavori::where("id",$request->id)->first();
-        $favorite->delete();
+        $favoris = LieuFavori::where("id",$request->id)->first();
+        $favoris->delete();
+
+
+        return redirect()->back(); 
+
+    }
+
+    public function AjouterFavorisActivite(ActiviteFavoriRequest $request)
+    {
+
+        $favoris = ActiviteFavori::create([
+            'activite_id' => $request->idActivite,
+            'usager_id' => Auth::id(),
+        ]);
+
+        return redirect()->back(); 
+
+    }
+
+
+    public function DeleteFavorisActivite(ActiviteFavoriRequest $request)
+    {
+        $favoris = ActiviteFavori::where("id",$request->id)->first();
+        $favoris->delete();
 
 
         return redirect()->back(); 

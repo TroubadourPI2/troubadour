@@ -19,9 +19,9 @@
             <div class="w-1/2 mt-4 flex flex-row justify-end md:items-start">
                 <div class=" my-1 mr-4 h-3/4 rounded border-c1 border hidden md:flex"></div>
 
-                @if(empty($favoris))
+                @if(empty($favoris)  && !empty($usager))
 
-                <form action="{{ route('ajouter.favoris') }}" method="POST">
+                <form action="{{ route('ajouter.favoris.lieu') }}" method="POST">
                     @csrf
 
                     <input type="hidden" name="idLieu" value="{{$lieuActuel->id}}">
@@ -36,10 +36,9 @@
 
 
                 </form>
-
-                @else
-
-                <form action="{{ route('delete.favoris', ['id' => $favoris->id]) }}" method="POST">
+                
+                @elseif (!empty($favoris) && !empty($usager))
+                <form action="{{ route('delete.favoris.lieu', ['id' => $favoris->id]) }}" method="POST">
                     @csrf
                     
                     <input type="hidden" name="id" value="{{$favoris->id}}">
@@ -51,6 +50,10 @@
                     </button>
                 </form>
 
+                @else
+                <span class="iconify size-10 md:ml-0 lg:ml-0 mr-20 text-c1 sm:ml-0 sm:mr-0 md:mr-20" 
+                            data-icon="f7:heart"
+                            data-inline="false"></span>
                 @endif
             </div>
 
@@ -178,8 +181,11 @@
                                 @if ($lieuActuel->siteWeb)
                                     <a href="{{ $lieuActuel->siteWeb ?? '' }}">
                                         {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
+                                    </a>
                                     @else
+                                    <a href="{{ $lieuActuel->siteWeb ?? '' }}">
                                         {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
+                                    </a>
                                 @endif
                             </div>
                         </div>

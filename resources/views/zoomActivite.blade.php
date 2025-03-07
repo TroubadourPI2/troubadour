@@ -24,6 +24,43 @@
                     {{ $lieu->nomEtablissement }}
                 </p>
 
+                @if(empty($favoris) && !empty($usager))
+                <form action="{{ route('ajouter.favoris.activite') }}" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="idActivite" value="{{$activite->id}}">
+                    <input type="hidden" name="idUsager" value="{{$usager->id}}">
+                    
+                    <button type="submit" style="background: none; border: none;">
+                        <span class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c1 sm:ml-0 sm:mr-0 md:mr-20" 
+                            data-icon="f7:heart"
+                            data-inline="false"></span>
+                    </button>
+
+
+                </form>
+
+                @elseif (!empty($favoris) && !empty($usager))
+
+                <form action="{{ route('delete.favoris.activite', ['id' => $favoris->id]) }}" method="POST">
+                    @csrf
+                    
+                    <input type="hidden" name="id" value="{{$favoris->id}}">
+
+                    <button type="submit" style="background: none; border: none;">
+                        <span class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c1 sm:ml-0 sm:mr-0 md:mr-20" 
+                            data-icon="line-md:heart-filled"
+                            data-inline="false"></span>
+                    </button>
+                </form>
+
+                @else 
+                <span class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c1 sm:ml-0 sm:mr-0 md:mr-20" 
+                            data-icon="f7:heart"
+                            data-inline="false"></span>
+                @endif
+            </div>
+
             </div>
 
         </div>

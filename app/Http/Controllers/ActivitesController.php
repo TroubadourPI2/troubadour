@@ -6,9 +6,13 @@ use App\Models\Activite;
 use App\Models\LieuActivite;
 use App\Models\Lieu;
 use App\Models\Photo;
+use Illuminate\Support\Facades\Auth;
+use Exception;
 use Illuminate\Http\Request;
 use App\Models\TypeActivite;
 use App\Http\Requests\ActiviteRequest;
+use App\Models\ActiviteFavori;
+
 class ActivitesController extends Controller
 {
  
@@ -210,7 +214,14 @@ public function ZoomActivite(string $id, string $idLieu)
 {
     $activite = Activite::findOrFail($id);
     $lieu = Lieu::findOrFail($idLieu);
+    $usager = Auth::user(); 
 
-    return view('zoomActivite', compact('activite', 'lieu'));
+
+    try{
+        $favoris = ActiviteFavori::where("activite_id",$id)->where("usager_id", Auth::id(),)->first();
+    }
+    catch(Exception $e) {}
+
+    return view('zoomActivite', compact('activite', 'lieu', 'usager','favoris'));
 }
 }
