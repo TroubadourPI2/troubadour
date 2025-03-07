@@ -26,11 +26,19 @@ class AdministrateursController extends Controller
      */
     public function UsagersPagination(Request $request)
     {
-        $rechercheTexte  = trim($request->get('recherche'));
-        $rechercheRole   = $request->get('rechercheRole');
-        $rechercheStatut = $request->get('rechercheStatut');
-        $perPage = $request->get('per_page', 10);
-    
+
+        $validationDonnee = $request->validate([
+            'recherche'        => 'nullable|string|max:255',
+            'rechercheRole'    => 'nullable|integer|exists:roles,id',
+            'rechercheStatut'  => 'nullable|integer|exists:statuts,id',
+            'per_page'         => 'nullable|integer|in:10,25,50,100',
+       ]);
+   
+       $rechercheTexte  = trim($validationDonnee['recherche'] ?? '');
+       $rechercheRole   = $validationDonnee['rechercheRole'] ?? null;
+       $rechercheStatut = $validationDonnee['rechercheStatut'] ?? null;
+       $perPage         = $validationDonnee['per_page'] ?? 10;
+
         $usagers = Usager::when($rechercheTexte, function ($query) use ($rechercheTexte) {
                         $query->where(function($q) use ($rechercheTexte) {
                             $q->where('nom', 'LIKE', '%' . $rechercheTexte . '%')
