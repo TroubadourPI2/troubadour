@@ -149,5 +149,6 @@
   "afficher":"Afficher",
   "statut":"Statut",
   "action":"Action",
-  "modifier":"Modifier"
+  "modifier":"Modifier",
+  "pasResultatFiltreUsagers":"Aucun utilisateurs n'a été trouvée avec ces filtres."
 }  

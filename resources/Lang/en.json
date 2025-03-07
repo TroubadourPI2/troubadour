@@ -148,5 +148,6 @@
       "afficher":"Display",
   "statut":"Status",
   "action":"Action",
-  "modifier":"Edit"
+  "modifier":"Edit",
+  "pasResultatFiltreUsagers":"No users were found with these filters."
 }

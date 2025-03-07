@@ -116,7 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => {
             const usagersData = response.data;
             let html = '';
-
+            if (usagersData.data.length === 0) {
+        html = `<div class="py-4 text-center font-bold">${Lang.get('strings.pasResultatFiltreUsagers')}</div>`;
+    } else {
             usagersData.data.forEach(function(usager) {
                 const roleData = roles[usager.role_id] || { name: "Inconnu", icon: "mdi-help-circle" };
                 const statutData = statuts[usager.statut_id] || { name: "Inconnu", icon: "mdi-help-circle", color: "text-gray-500" };
@@ -149,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>`;
             });
-
+        }
             document.getElementById('usagersContainer').innerHTML = html;
             document.getElementById('pagination').innerHTML = paginationButtons(usagersData, "RechercheUsagerAdmin");
         })
