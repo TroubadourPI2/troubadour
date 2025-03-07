@@ -216,11 +216,8 @@ public function ZoomActivite(string $id, string $idLieu)
     $lieu = Lieu::findOrFail($idLieu);
     $usager = Auth::user(); 
 
+    $favoris = ActiviteFavori::where("activite_id",$id)->where("usager_id", Auth::id(),)->first();
 
-    try{
-        $favoris = ActiviteFavori::where("activite_id",$id)->where("usager_id", Auth::id(),)->first();
-    }
-    catch(Exception $e) {}
 
     return view('zoomActivite', compact('activite', 'lieu', 'usager','favoris'));
 }

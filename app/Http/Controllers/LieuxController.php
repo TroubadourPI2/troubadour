@@ -135,12 +135,7 @@ class LieuxController extends Controller
         $idActivites = LieuActivite::Where("lieu_id", $id)->pluck("activite_id");
         $activites = Activite::whereIn("id", $idActivites)->where('actif', 1)->get();
 
-        try{
-            $favoris = LieuFavori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();  
-        }
-        catch(Exception $e) {
-            $favoris = "";
-        }
+        $favoris = LieuFavori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();  
 
         return view('zoomLieu', compact('usager', 'lieuActuel', 'activites', 'favoris'));
     }

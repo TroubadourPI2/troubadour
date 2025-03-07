@@ -42,8 +42,8 @@ Route::middleware(Langue::class)
         Route::post('/ajoutFavoriLieu', [UsagersController::class, 'AjouterFavorisLieu'])->name('ajouter.favoris.lieu');  
         Route::post('/ajoutFavoriActivite', [UsagersController::class, 'AjouterFavorisActivite'])->name('ajouter.favoris.activite');  
 
-        Route::post('/deleteFavoriLieu/{id}', [UsagersController::class, 'DeleteFavorisLieu'])->name('delete.favoris.lieu');        
-        Route::post('/deleteFavoriActivite/{id}', [UsagersController::class, 'DeleteFavorisActivite'])->name('delete.favoris.activite');        
+        Route::post('/deleteFavoriLieu/{id}', [UsagersController::class, 'SupprimerFavorisLieu'])->name('delete.favoris.lieu');        
+        Route::post('/deleteFavoriActivite/{id}', [UsagersController::class, 'SupprimerFavorisActivite'])->name('delete.favoris.activite');        
 
         Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'ObtenirVilleUtilisateur']);
 

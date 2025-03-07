@@ -78,7 +78,7 @@ class UsagersController extends Controller
     }
 
 
-    public function DeleteFavorisLieu(LieuFavoriRequest $request)
+    public function SupprimerFavorisLieu(LieuFavoriRequest $request)
     {
         $favoris = LieuFavori::where("id",$request->id)->first();
         $favoris->delete();
@@ -101,7 +101,7 @@ class UsagersController extends Controller
     }
 
 
-    public function DeleteFavorisActivite(ActiviteFavoriRequest $request)
+    public function SupprimerFavorisActivite(ActiviteFavoriRequest $request)
     {
         $favoris = ActiviteFavori::where("id",$request->id)->first();
         $favoris->delete();
