@@ -56,57 +56,55 @@
     </div>
 </div>
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const roles = {
+        1: {
+            name: Lang.get('strings.admin'),
+            icon: "mdi-shield-account"
+        },
+        2: {
+            name: Lang.get('strings.utilisateur'),
+            icon: "mdi-account"
+        },
+        3: {    
+            name: Lang.get('strings.gestion'),
+            icon: "mdi-account-tie"
+        }
+    };
 
-     const roles = {
-                    1: {
-                        name: "Admin",
-                        icon: "mdi-shield-account"
-                    },
-                    2: {
-                        name: "Utilisateur",
-                        icon: "mdi-account"
-                    },
-                    3: {    
-                        name: "Gestionnaire",
-                        icon: "mdi-account-tie"
-                    }
-                };
+    const statuts = {
+        1: {
+            name: "Actif",
+            icon: "mdi-check-circle",
+            color: "text-green-500"
+        },
+        2: {
+            name: "Inactif",
+            icon: "mdi-close-circle",
+            color: "text-red-500"
+        },
+        3: {
+            name: "En Attente",
+            icon: "mdi-timer-sand",
+            color: "text-yellow-500"
+        }
+    };
 
-                const statuts = {
-                    1: {
-                        name: "Actif",
-                        icon: "mdi-check-circle",
-                        color: "text-green-500"
-                    },
-                    2: {
-                        name: "Inactif",
-                        icon: "mdi-close-circle",
-                        color: "text-red-500"
-                    },
-                    3: {
-                        name: "En Attente",
-                        icon: "mdi-timer-sand",
-                        color: "text-yellow-500"
-                    }
-                };
-                let usagersParPages = 10;
-let pageActuelle = 1;
+    let usagersParPages = 10;
+    let pageActuelle = 1;
 
-document.getElementById('usagersParPage').addEventListener('change', function() {
-    usagersParPages = parseInt(this.value);
+    document.getElementById('usagersParPage').addEventListener('change', function() {
+        usagersParPages = parseInt(this.value);
+       RechercheUsagerAdmin(1); 
+    });
 
-    Recherche(1); 
-});
+    function RechercheUsagerAdmin(page = 1) {
+        pageActuelle = page;
+        const rechercheTexte = document.getElementById('rechercheTexte').value.trim();
+        const rechercheRole = document.getElementById('rechercheRole').value;
+        const rechercheStatut = document.getElementById('rechercheStatut').value;
 
-function Recherche(page = 1) {
-    pageActuelle = page;
-    const rechercheTexte = document.getElementById('rechercheTexte').value.trim();
-    const rechercheRole = document.getElementById('rechercheRole').value;
-    const rechercheStatut = document.getElementById('rechercheStatut').value;
-
-    const hasFilter = rechercheTexte || rechercheRole || rechercheStatut;
-
-    axios.get('/admin/rechercheUsagers', {
+        axios.get('/admin/rechercheUsagers', {
             params: {
                 recherche: rechercheTexte,
                 rechercheRole: rechercheRole,
@@ -127,156 +125,151 @@ function Recherche(page = 1) {
                 <div class="bg-c3 border-2 shadow-md flex max-w-7xl w-full h-24 justify-center items-center p-2 lg:p-4">
                     <!-- Rôle -->
                     <div class="flex w-1/4 justify-start  md:pl-8 lg:pl-16 font-bold text-base lg:text-xl uppercase items-center">
-                        <span class="iconify  size-10 lg:size-8 text-c1" data-icon="${roleData.icon}"></span>
+                        <span class="iconify size-10 lg:size-8 text-c1" data-icon="${roleData.icon}"></span>
                         <span class="ml-2 hidden lg:block">${roleData.name}</span>
                     </div>
                     
                     <!-- Statut -->
                     <div class="flex w-1/4 justify-start font-bold text-base lg:text-xl uppercase items-center ${statutData.color}">
-                        <span class="iconify  size-10 lg:size-8" data-icon="${statutData.icon}"></span>
-                        <span class="ml-2  hidden lg:block">${statutData.name}</span>
+                        <span class="iconify size-10 lg:size-8" data-icon="${statutData.icon}"></span>
+                        <span class="ml-2 hidden lg:block">${statutData.name}</span>
                     </div>
                     
                     <!-- Courriel -->
-                    <div class="flex w-1/4 justify-center lg:pl-8 font-bold text-sm lg:text-xl uppercase items-center ">
+                    <div class="flex w-1/4 justify-center lg:pl-8 font-bold text-sm lg:text-xl uppercase items-center">
                         <span class="w-full text-left truncate">${usager.courriel}</span>
                     </div>
 
                     <!-- Actions -->
-                    <div class="flex w-1/4 justify-center pl-4 lg:pl-16 font-bold text-lg gap-x-1 uppercase items-center flex-col md:flex-row ">
-                        <button onclick="modifierUtilisateur(${usager.id}, ${usager.role_id}, ${usager.statut_id}, '${usager.courriel}')" class="border-2 p-1 lg:p-2 rounded flex hover:text-c3  hover:bg-c1 transition  text-c1 rounded-md  "> <span class="hidden lg:block text-xl" >Modifier</span> <span class="iconify  size-8 lg:size-6 " data-icon="mdi:pen"></span>   </button>
-                      
+                    <div class="flex w-1/4 justify-center pl-4 lg:pl-16 font-bold text-lg gap-x-1 uppercase items-center flex-col md:flex-row">
+                        <button onclick="modifierUtilisateur(${usager.id}, ${usager.role_id}, ${usager.statut_id}, '${usager.courriel}')" class="border-2 p-1 lg:p-2 rounded flex hover:text-c3 hover:bg-c1 transition text-c1 rounded-md">
+                            <span class="hidden lg:block text-xl">Modifier</span>
+                            <span class="iconify size-8 lg:size-6" data-icon="mdi:pen"></span>
+                        </button>
                     </div>
                 </div>`;
             });
 
             document.getElementById('usagersContainer').innerHTML = html;
-            document.getElementById('pagination').innerHTML = paginationButtons(usagersData, "Recherche");
+            document.getElementById('pagination').innerHTML = paginationButtons(usagersData, "RechercheUsagerAdmin");
         })
         .catch(error => {
             console.error(error);
         });
-}
+    }
 
+    setTimeout(() =>RechercheUsagerAdmin(), 100);
 
-
-    setTimeout(() => Recherche(), 100);
-
-    document.getElementById('rechercheTexte').addEventListener('input', () => Recherche());
-    document.getElementById('rechercheRole').addEventListener('change', () => Recherche());
-    document.getElementById('rechercheStatut').addEventListener('change', () => Recherche());
-
+    document.getElementById('rechercheTexte').addEventListener('input', () =>RechercheUsagerAdmin());
+    document.getElementById('rechercheRole').addEventListener('change', () =>RechercheUsagerAdmin());
+    document.getElementById('rechercheStatut').addEventListener('change', () =>RechercheUsagerAdmin());
 
     function paginationButtons(data, functionName) {
-    return `
-    <div class="flex gap-2 mt-4">
-        <!-- Bouton Première Page -->
-        <button type="button"
-            class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center transition 
-            ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-            onclick="${functionName}(1)" ${!data.prev_page_url ? 'disabled' : ''}>
-            <span class="iconify text-xl" data-icon="mdi-chevron-double-left"></span>
-        </button>
+        return `
+        <div class="flex gap-2 mt-4">
+            <!-- Bouton Première Page -->
+            <button type="button"
+                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center transition ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+                onclick="${functionName}(1)" ${!data.prev_page_url ? 'disabled' : ''}>
+                <span class="iconify text-xl" data-icon="mdi-chevron-double-left"></span>
+            </button>
+            <!-- Bouton Page Précédente -->
+            <button type="button"
+                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+                onclick="${functionName}(${data.current_page - 1})" ${!data.prev_page_url ? 'disabled' : ''}>
+                <span class="iconify text-xl" data-icon="mdi-chevron-left"></span>
+            </button>
+            <!-- Page Actuelle -->
+            <span class="bg-c3 text-c1 h-12 text-xs lg:text-lg font-bold py-2 px-4 rounded flex items-center justify-center">
+                ${data.current_page}/${data.last_page}
+            </span>
+            <!-- Bouton Page Suivante -->
+            <button type="button"
+                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+                onclick="${functionName}(${data.current_page + 1})" ${!data.next_page_url ? 'disabled' : ''}>
+                <span class="iconify text-xl" data-icon="mdi-chevron-right"></span>
+            </button>
+            <!-- Bouton Dernière Page -->
+            <button type="button"
+                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
+                onclick="${functionName}(${data.last_page})" ${!data.next_page_url ? 'disabled' : ''}>
+                <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
+            </button>
+        </div>`;
+    }
 
-        <!-- Bouton Page Précédente -->
-        <button type="button"
-            class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition 
-            ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-            onclick="${functionName}(${data.current_page - 1})" ${!data.prev_page_url ? 'disabled' : ''}>
-            <span class="iconify text-xl" data-icon="mdi-chevron-left"></span>
-        </button>
-
-        <!-- Page Actuelle -->
-        <span class="bg-c3 text-c1 h-12 text-xs lg:text-lg  font-bold py-2 px-4 rounded flex items-center justify-center">
-             ${data.current_page}/${data.last_page}
-        </span>
-
-        <!-- Bouton Page Suivante -->
-        <button type="button"
-            class="bg-c1 hover:bg-c3 h-12 hover:text-c1  text-white font-bold py-2 px-4 flex items-center justify-center transition 
-            ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-            onclick="${functionName}(${data.current_page + 1})" ${!data.next_page_url ? 'disabled' : ''}>
-            <span class="iconify text-xl" data-icon="mdi-chevron-right"></span>
-        </button>
-
-        <!-- Bouton Dernière Page -->
-        <button type="button"   
-            class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition 
-            ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-            onclick="${functionName}(${data.last_page})" ${!data.next_page_url ? 'disabled' : ''}>
-            <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
-        </button>
-    </div>`;
-}
-
-function modifierUtilisateur(id, roleActuel, statutActuel, email) {
-    const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-          
-            });
-    Swal.fire({
-        title: `Modifier `,
-        html: `<div class="flex flex-col w-full gap-y-4"> <strong class="uppercase">${email}</strong>
-        <div class="flex gap-x-2 items-center justify-center px-2">
-            <label class="block text-left font-bold text-c1 mb-1 w-1/4">Rôle</label>
-            <select id="role_id" class="rounded-full border-2 justify-center w-1/2 border-c1 p-2">
-                @foreach($roles as $role)
-                    <option value="{{ $role->id }}" ${roleActuel == {{ $role->id }} ? 'selected' : ''}>
-                        {{ $role->nom }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-         <div class="flex gap-x-2 items-center justify-center px-2">
-            <label class="block text-left font-bold text-c1 mb-1 w-1/4 mt-3">Statut</label>
-            <select id="statut_id" class="rounded-full border-2   w-1/2 border-c1 p-2">
-                @foreach($statuts as $statut)
-                    <option value="{{ $statut->id }}" ${statutActuel == {{ $statut->id }} ? 'selected' : ''}>
-                        {{ $statut->statut }}
-                    </option>
-                @endforeach
-            </select></div>
-        `,
-        showCancelButton: true,
-        confirmButtonText: "Modifier",
-        cancelButtonText: "Annuler",
-        reverseButtons: true,
-                    customClass: {
-                        popup: 'font-barlow text-xl text-c1 bg-c2',
-                        title: 'text-3xl uppercase underline',
-                        confirmButton:
-                            'bg-c1 text-white font-semibold px-4 py-2 uppercase rounded-full transition',
-                        cancelButton:
-                            'text-c1 uppercase bg-c2 font-semibold rounded-full px-4 py-2 hover:bg-white transition'
-                    },
-        focusConfirm: false,
-        preConfirm: () => {
-            return {
-                role_id: document.getElementById("role_id").value,
-                statut_id: document.getElementById("statut_id").value
-            };
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            axios.post(`/admin/usagers/modifier/${id}`, result.value)
-                .then(response => {
-                    Toast.fire({
+    // Rendre la fonction modifierUtilisateur accessible globalement si elle est appelée inline
+    window.modifierUtilisateur = function(id, roleActuel, statutActuel, email) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+        });
+        Swal.fire({
+            title: `Modifier `,
+            html: `<div class="flex flex-col w-full gap-y-4">
+                        <strong class="uppercase">${email}</strong>
+                        <div class="flex gap-x-2 items-center justify-center px-2">
+                            <label class="block text-left font-bold text-c1 mb-1 w-1/4">Rôle</label>
+                            <select id="role_id" class="rounded-full border-2 justify-center w-1/2 border-c1 p-2">
+                                @foreach($roles as $role)
+                                    <option value="{{ $role->id }}" ${roleActuel == {{ $role->id }} ? 'selected' : ''}>
+                                        {{ $role->nom }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex gap-x-2 items-center justify-center px-2">
+                            <label class="block text-left font-bold text-c1 mb-1 w-1/4 mt-3">Statut</label>
+                            <select id="statut_id" class="rounded-full border-2 w-1/2 border-c1 p-2">
+                                @foreach($statuts as $statut)
+                                    <option value="{{ $statut->id }}" ${statutActuel == {{ $statut->id }} ? 'selected' : ''}>
+                                        {{ $statut->statut }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>`,
+            showCancelButton: true,
+            confirmButtonText: "Modifier",
+            cancelButtonText: "Annuler",
+            reverseButtons: true,
+            customClass: {
+                popup: 'font-barlow text-xl text-c1 bg-c2',
+                title: 'text-3xl uppercase underline',
+                confirmButton: 'bg-c1 text-white font-semibold px-4 py-2 uppercase rounded-full transition',
+                cancelButton: 'text-c1 uppercase bg-c2 font-semibold rounded-full px-4 py-2 hover:bg-white transition'
+            },
+            focusConfirm: false,
+            preConfirm: () => {
+                return {
+                    role_id: document.getElementById("role_id").value,
+                    statut_id: document.getElementById("statut_id").value
+                };
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post(`/admin/usagers/modifier/${id}`, result.value)
+                    .then(response => {
+                        Toast.fire({
                             icon: "success",
-                            title:Lang.get('strings.succesModifier')
+                            title: Lang.get('strings.succesModifier')
                         });
-                    Recherche(pageActuelle); 
-                })
-                .catch(error => {
-                    console.error(error);
-                    Swal.fire("Erreur", "La modification a échoué.", "error");
-                });
-        }
-    });
-}
+                       RechercheUsagerAdmin(pageActuelle); 
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        Swal.fire("Erreur", "La modification a échoué.", "error");
+                    });
+            }
+        });
+    };
+    window.RechercheUsagerAdmin = RechercheUsagerAdmin;
+
+});
+
 
 
 

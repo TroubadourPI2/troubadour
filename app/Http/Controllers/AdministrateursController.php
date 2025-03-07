@@ -29,7 +29,7 @@ class AdministrateursController extends Controller
 
         $validationDonnee = $request->validate([
             'recherche'        => 'nullable|string|max:255',
-            'rechercheRole'    => 'nullable|integer|exists:roles,id',
+            'rechercheRole'    => 'nullable|integer|exists:RoleUsagers,id',
             'rechercheStatut'  => 'nullable|integer|exists:statuts,id',
             'per_page'         => 'nullable|integer|in:10,25,50,100',
        ]);
