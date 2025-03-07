@@ -148,5 +148,6 @@
   "rechercheAdminDemande": "Rechercher par nom, prénom ou courriel",
   "afficher":"Afficher",
   "statut":"Statut",
-  "action":"Action"
+  "action":"Action",
+  "modifier":"Modifier"
 }  

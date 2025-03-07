@@ -147,5 +147,6 @@
     "rechercheAdminDemande": "Search by name, first name, or email",
       "afficher":"Display",
   "statut":"Status",
-  "action":"Action"
+  "action":"Action",
+  "modifier":"Edit"
 }

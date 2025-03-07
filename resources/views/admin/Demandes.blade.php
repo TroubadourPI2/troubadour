@@ -74,17 +74,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const statuts = {
         1: {
-            name: "Actif",
+            name:  Lang.get('strings.actif'),
             icon: "mdi-check-circle",
             color: "text-green-500"
         },
         2: {
-            name: "Inactif",
+            name:  Lang.get('strings.inactif'),
             icon: "mdi-close-circle",
             color: "text-red-500"
         },
         3: {
-            name: "En Attente",
+            name:  Lang.get('strings.enAttente'),
             icon: "mdi-timer-sand",
             color: "text-yellow-500"
         }
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <!-- Actions -->
                     <div class="flex w-1/4 justify-center pl-4 lg:pl-16 font-bold text-lg gap-x-1 uppercase items-center flex-col md:flex-row">
                         <button onclick="modifierUtilisateur(${usager.id}, ${usager.role_id}, ${usager.statut_id}, '${usager.courriel}')" class="border-2 p-1 lg:p-2 rounded flex hover:text-c3 hover:bg-c1 transition text-c1 rounded-md">
-                            <span class="hidden lg:block text-xl">Modifier</span>
+                            <span class="hidden lg:block text-xl">${ Lang.get('strings.modifier')}</span>
                             <span class="iconify size-8 lg:size-6" data-icon="mdi:pen"></span>
                         </button>
                     </div>
