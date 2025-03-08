@@ -29,14 +29,14 @@
         </div>
         {{-- //TODO Importer les composants selon le menu choisi --}}
         <!-- Ajout du chemin vers composants pour demande  -->
-        <div id="demandes" class="sectionMenu">@include('admin.Demandes')</div>
+        <div id="demandes" class="sectionMenu">@include('admin.composants.Demandes')</div>
         <div id="villes" class="sectionMenu hidden">VILLES</div>
         <div id="lieux" class="sectionMenu hidden">@include('admin.composants.GestionLieux')</div>
     </div>
 
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
-<script src="{{ asset('js/GestionDemandeAdmin.js') }}" defer></script>
+<script src="{{ asset('js/admin/GestionDemandeAdmin.js') }}" defer></script>
 <script src="{{ asset('js/admin/RechercheLieux.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}" defer></script>
