@@ -14,12 +14,12 @@ let statutLieuCache;
 
 document.addEventListener('DOMContentLoaded', function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
-
     setTimeout(() => {
         ObtenirElementsModifier();
         AjouterModifierListeners();
         if (selectVilleLieuModifie.value) {
             ObtenirQuartiersParVille(selectVilleLieuModifie.value);
+
         }
     }, 1000);
 
@@ -76,6 +76,7 @@ function ActiverSelectQuartierModifie() {
 }
 
 function MettreAJourSelectQuartierModifie(quartiers) {
+
     selectQuartierLieuModifie.innerHTML = '';
     const optionDefaut = document.createElement('option');
     optionDefaut.value = '';
@@ -232,6 +233,8 @@ async function ObtenirLieu(lieuId) {
         document.getElementById('numeroTelephoneModifie').value =
             lieu.numeroTelephone;
         document.getElementById('selectVilleLieuModifie').value = villeId;
+        await ObtenirQuartiersParVille(villeId);
+        selectQuartierLieuModifie.value = lieu.quartier_id; 
         document.getElementById('selectTypeLieuModifie').value =
             lieu.typeLieu_id;
         inputPhotoModifie.value = '';
