@@ -67,4 +67,8 @@ return [
 
     
 
+    'FavoriIdExiste'      => 'The favorite selected is invalid.',
+    'FavoriLieuIdExiste'      => 'The location selected is invalid.',
+    'FavoriUsagerIdExiste'      => 'The user selected is invalid.',
+
 ];

@@ -66,4 +66,10 @@ return [
     'statutInvalide' => 'Le statut sélectionné est invalide.',
 
 
+    'FavoriIdExiste'      => 'Le favori sélectionné est invalide.',
+    'FavoriLieuIdExiste'      => 'Le lieu sélectionné est invalide.',
+    'FavoriUsagerIdExiste'      => 'L\'usager sélectionné est invalide.',
+
+
+
 ];
