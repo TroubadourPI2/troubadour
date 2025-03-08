@@ -86,7 +86,7 @@ Route::middleware(Langue::class)
             return response()->view('Redirection.404', [], 404);
           });
 
-        Route::fallback(function () {
-            return response()->view('Redirection.429', [], 429);
-        });
+       Route::get('/admin/429', [AdministrateursController::class, 'erreur'])->name('admin.erreur')->middleware('VerifierRole:Admin');
+
+      
     });
