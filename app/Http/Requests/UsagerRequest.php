@@ -27,7 +27,7 @@ class UsagerRequest extends FormRequest
         $nomRouteActuelle = $this->route()->getName();
     
         // Si c'est la route d'admin pour modifier un usager, on valide uniquement role_id et statut_id
-        if ($nomRouteActuelle === 'admin.modifierUsagers') {
+        if ($nomRouteActuelle === 'admin.ModifierUsagers') {
             return [
                 'role_id' => 'required|exists:RoleUsagers,id',
                 'statut_id' => 'required|exists:Statuts,id',
@@ -88,7 +88,7 @@ class UsagerRequest extends FormRequest
     {
         $nomRouteActuelle = $this->route()->getName();
     
-        if ($nomRouteActuelle === 'admin.modifierUsagers') {
+        if ($nomRouteActuelle === 'admin.ModifierUsagers') {
             throw new HttpResponseException(response()->json([
                 'success' => false,
                 'message' => 'Erreur de validation',
