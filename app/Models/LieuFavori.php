@@ -5,19 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Favori extends Model
+class LieuFavori extends Model
 {
     use HasFactory;
 
+    protected $table= 'LieuFavoris';
+
     protected $fillable = [
-        'activite_id', 
         'lieu_id', 
         'usager_id'
     ];
-
-    public function activite() {
-        return $this->belongsTo(Activite::class);
-    }
 
     public function lieu() {
         return $this->belongsTo(Lieu::class);

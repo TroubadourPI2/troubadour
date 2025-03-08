@@ -61,4 +61,8 @@ return [
     'photoASupprimerExiste'    => 'One of the selected photos for deletion is invalid.',
     'positionsSequentielle' => 'The positions must form a sequential series without gaps (1, 2, …, ).',
 
+    'FavoriIdExiste'      => 'The favorite selected is invalid.',
+    'FavoriLieuIdExiste'      => 'The location selected is invalid.',
+    'FavoriUsagerIdExiste'      => 'The user selected is invalid.',
+
 ];
