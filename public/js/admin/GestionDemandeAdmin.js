@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const statutsIcons = {
-        1: { icon: "mdi-check-circle", color: "text-green-500" },
+        1: { icon: "mdi-check-circle", color: "text-c1" },
         2: { icon: "mdi-close-circle", color: "text-red-500" },
         3: { icon: "mdi-timer-sand", color: "text-yellow-500" }
     };
@@ -106,8 +106,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const roleIcon = rolesIcons[usager.role_id] ? rolesIcons[usager.role_id].icon : "mdi-help-circle";
                     const statutDetail = statutsData.find(s => s.id == usager.statut_id) || { statut: Lang.get('strings.inconnu') };
                     const statutIcon = statutsIcons[usager.statut_id] ? statutsIcons[usager.statut_id].icon : "mdi-help-circle";
-                    const statutColor = statutsIcons[usager.statut_id] ? statutsIcons[usager.statut_id].color : "text-gray-500";
-
+                    const statutColor = statutsIcons[usager.statut_id] ? statutsIcons[usager.statut_id].color : "";
+                    console.log(statutColor)
                     contenuHtml += `
                     <div class="bg-c3 border-2 shadow-md flex max-w-7xl w-full h-28 justify-center items-center p-2 lg:p-4">
                         <!-- Rôle -->
@@ -116,9 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span class="ml-2 hidden lg:block">${TraduireRole(roleDetail.nom)}</span>
                         </div>
                         <!-- Statut -->
-                        <div class="flex w-1/4 justify-start font-bold text-base lg:text-xl uppercase items-center ${statutColor}">
-                            <span class="iconify size-10 lg:size-8" data-icon="${statutIcon}"></span>
-                            <span class="ml-2 hidden lg:block">${TraduireStatut(statutDetail.statut)}</span>
+                        <div class="flex w-1/4 justify-start font-bold text-base lg:text-xl uppercase items-center ">
+                            <span class="iconify size-10 lg:size-8  ${statutColor}" data-icon="${statutIcon}"   ></span>
+                            <span class="ml-2 hidden lg:block ${statutColor}">${TraduireStatut(statutDetail.statut)}</span>
                         </div>
                         <!-- Courriel -->
                         <div class="flex w-1/4 justify-center lg:pl-8 font-bold text-sm lg:text-xl uppercase items-center">

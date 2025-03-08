@@ -153,5 +153,6 @@
   "statut":"Status",
   "action":"Action",
   "modifier":"Edit",
-  "pasResultatFiltreUsagers":"No users were found with these filters."
+  "pasResultatFiltreUsagers":"No users were found with these filters.",
+    "inconnu":"Unknown"
 }
