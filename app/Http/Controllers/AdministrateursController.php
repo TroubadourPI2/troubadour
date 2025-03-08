@@ -20,11 +20,19 @@ class AdministrateursController extends Controller
 
     public function Recherche(Request $request)
     {
-        $villeId  = $request->get('villeId');
-        $quartierId = $request->get('quartierId');
-        $rechercheNom = $request->get('rechercheNom');
-        $actif = $request->get('actif');
-        $parPage = $request->get('parPage', 10);
+        $validationDonnees = $request->validate([
+            'villeId' => 'nullable|integer|exists:villes,id',
+            'quartierId' => 'nullable|integer|exists:quartiers,id',
+            'rechercheNom' => 'nullable|string|max:255',
+            'actif' => 'nullable|boolean',
+            'parPage' => 'nullable|integer|in:10,25,50,100',
+        ]);
+        $villeId  = $validationDonnees['villeId'] ?? null;
+        $quartierId = $validationDonnees['quartierId'] ?? null;
+        $rechercheNom = $validationDonnees['rechercheNom'] ?? null;
+        $actif = $validationDonnees['actif'] ?? null;
+        $parPage = $validationDonnees['parPage'] ?? 10;
+    
         $lieux = Lieu::when($villeId, function ($query) use ($villeId) {
             $query->whereHas('quartier', function ($q) use ($villeId) {
                 $q->where('ville_id', $villeId);

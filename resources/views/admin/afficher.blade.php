@@ -42,7 +42,6 @@
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/admin/RechercheLieux.js') }}" defer></script>
-<script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherModifierLieu.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/SupprimerLieu.js') }}" defer></script>

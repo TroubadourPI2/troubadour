@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
         ObtenirElementsLieux();
         AjouterGestionAffichageListeners();
-    }, 1000); 
-
+    }, 1000);
 });
 
 function ObtenirElementsLieux() {
@@ -33,18 +32,25 @@ function ObtenirElementsLieux() {
 }
 
 function AjouterGestionAffichageListeners() {
-    boutonAjouterLieu.addEventListener('click', () =>
-        ChangerSection(ajouterLieu, afficherLieux)
-    );
-    boutonAnnuler.addEventListener('click', () => {
-        ReinitialiserFormulaire();
-        ChangerSection(afficherLieux, ajouterLieu);
-    });
+    if (boutonAjouterLieu) {
+        boutonAjouterLieu.addEventListener('click', () =>
+            ChangerSection(ajouterLieu, afficherLieux)
+        );
+    }
 
-    boutonRetourAfficherLieux.addEventListener('click', () => {
-        ReinitialiserFormulaire();
-        ChangerSection(afficherLieux, ajouterLieu);
-    });
+    if (boutonAnnuler) {
+        boutonAnnuler.addEventListener('click', () => {
+            ReinitialiserFormulaire();
+            ChangerSection(afficherLieux, ajouterLieu);
+        });
+    }
+
+    if(boutonAjouterLieu){
+        boutonRetourAfficherLieux.addEventListener('click', () => {
+            ReinitialiserFormulaire();
+            ChangerSection(afficherLieux, ajouterLieu);
+        });
+    }
 
     boutonAnnulerModifier.addEventListener('click', () => {
         ReinitialiserFormulaire();

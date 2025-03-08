@@ -94,7 +94,7 @@ function FiltrerLieux(page = 1, majStatut = true) {
     if (rechercheNom) params.rechercheNom = rechercheNom;
     params.actif = actif;
     axios
-        .get('/admin/recherche', { params })
+        .get('/admin/recherche/lieux', { params })
         .then((response) => {
             if (response.data.lieux) {
                 AfficherLieux(response.data.lieux, majStatut);
@@ -283,7 +283,6 @@ function AfficherLieux(lieux, majStatut) {
 }
 
 function PaginationLieux(donnees, fonction) {
-    console.log(donnees)
     return `
     <div class="flex gap-2 mt-4">
         <!-- Bouton Première Page -->

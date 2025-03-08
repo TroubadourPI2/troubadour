@@ -40,12 +40,6 @@
     </div>
     <span class="text-c1 uppercase font-semibold text-base sm:text-lg italic">{{ __('selectionnerVilleAvant') }}</span>
 
-    <button id="boutonAjouterLieu"
-        class="flex items-center text-sm sm:text-xl border-c1 border-2 rounded-full  {{ App::getLocale() == 'en' ? 'sm:w-24 w-14' : 'sm:w-36 w-24' }}  text-c1 my-3 uppercase sm:hover:bg-c3 sm:hover:border-c3 transition">
-        <span class="iconify text-c1 sm:size-6 size-4 sm:mr-2 sm:ml-2 mr-2" data-icon="ion:add-outline"
-            data-inline="false"></span>
-        {{ __('ajouter') }}
-    </button>
     <div class="flex w-full flex-col justify-center items-center">
         <div id="pagination" class="mt-4  max-w-7xl w-full  flex justify-center items-center gap-x-2  "> </div>
         <div class="flex justify-end w-full max-w-7xl  py-4">
@@ -62,7 +56,6 @@
     <div id="affichageDesLieux" class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-4"></div>
 </div>
 
-<div id="ajouterLieu" class="hidden">@include('admin.composants.AjouterLieuAdmin')</div>
 <div id="modifierLieu" class="hidden">@include('admin.composants.ModifierLieuAdmin')</div>
 
 @if (session('erreurAjouterLieu'))
