@@ -141,9 +141,18 @@
   "autreVille":"See other cities",
   "erreur404": "Error 404 - Page not found",
   "erreur404Texte":"The reason for your search did not return any results",
-
   "rechercheLieu" : "Search by location name",
   "toutesVilles" : "All cities",
   "selectionnerVilleAvant" : "Select a city before to filter by neighborhood.",
-  "aucunLieuTrouve" : "No location found with these filters."
+  "aucunLieuTrouve" : "No location found with these filters.",
+  "tousLesRoles" : "All the roles",
+  "tousLesStatus" : "All status options",
+  "enAttente" : "Pending",
+    "rechercheAdminDemande": "Search by name, first name, or email",
+      "afficher":"Display",
+  "statut":"Status",
+  "action":"Action",
+  "modifier":"Edit",
+  "pasResultatFiltreUsagers":"No users were found with these filters.",
+    "inconnu":"Unknown"
 }
