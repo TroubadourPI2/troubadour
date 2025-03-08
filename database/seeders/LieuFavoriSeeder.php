@@ -37,6 +37,18 @@ class LieuFavoriSeeder extends Seeder
                 'created_at'   => now(),
                 'updated_at'   => now(),
             ],
+            [
+                'lieu_id' => 1,
+                'usager_id' => 2,
+                'created_at'   => now(),
+                'updated_at'   => now(),
+            ],
+            [
+                'lieu_id' => 2,
+                'usager_id' => 2,
+                'created_at'   => now(),
+                'updated_at'   => now(),
+            ],
             
         ]);
     }

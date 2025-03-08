@@ -154,5 +154,9 @@
   "action":"Action",
   "modifier":"Edit",
   "pasResultatFiltreUsagers":"No users were found with these filters.",
-    "inconnu":"Unknown"
+    "inconnu":"Unknown",
+  
+  "LieuxFavoris":"Favorite locations ",
+  "ActivitesFavorites":"Favorite activities "
+    
 }
