@@ -28,13 +28,15 @@
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
         </div>
         {{-- //TODO Importer les composants selon le menu choisi --}}
-        <div id="demandes" class="sectionMenu">COMPTE</div>
+
+        <div id="demandes" class="sectionMenu">@include('admin.composants.Demandes')</div>
         <div id="villes" class="sectionMenu hidden">VILLES</div>
         <div id="lieux" class="sectionMenu hidden">@include('admin.composants.GestionLieux')</div>
     </div>
 
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
+<script src="{{ asset('js/admin/GestionDemandeAdmin.js') }}" defer></script>
 <script src="{{ asset('js/admin/RechercheLieux.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}" defer></script>

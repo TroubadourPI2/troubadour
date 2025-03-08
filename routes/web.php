@@ -72,7 +72,13 @@ Route::middleware(Langue::class)
 
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
 
+
+        //ADMIN
         Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
+        Route::get('/admin/rechercheUsagers', [AdministrateursController::class, 'usagersPagination'])->name('admin.rechercheUsagers')->middleware('VerifierRole:Admin');
+        Route::post('/admin/usagers/modifier/{id}', [AdministrateursController::class, 'modifierUsagers'])->name('admin.ModifierUsagers')->middleware('VerifierRole:Admin');
+        Route::get('/admin/obtenirRoleStatut', [AdministrateursController::class, 'ObtenirRolesEtStatuts'])->middleware('VerifierRole:Admin');
+
         Route::get('/admin/recherche/lieux', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche')->middleware('VerifierRole:Admin');
      
 
