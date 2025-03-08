@@ -83,9 +83,6 @@ Route::middleware(Langue::class)
      
 
         
-        Route::get('/403', function () {
-            return view('Redirection.403');})->name('Redirection.403');
-        
         Route::fallback(function () {
             return response()->view('Redirection.404', [], 404);
           });
