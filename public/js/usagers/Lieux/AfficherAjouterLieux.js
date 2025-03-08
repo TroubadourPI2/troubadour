@@ -2,7 +2,6 @@ let selectQuartier;
 let selectVilleLieu;
 
 document.addEventListener('DOMContentLoaded', function () {
-    Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsAjouterLieux();
     AjouterLieuxListeners();
 });
