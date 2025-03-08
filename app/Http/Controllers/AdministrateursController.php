@@ -54,6 +54,8 @@ class AdministrateursController extends Controller
         if ($lieux->isEmpty()) {
             return response()->json(['message' => __('aucunLieuTrouve')]);
         }
+
+        Log::debug($lieux);
         $lieuxWithDetails = $lieux->map(function ($lieu) {
             return [
                 'id' => $lieu->id,
@@ -61,7 +63,7 @@ class AdministrateursController extends Controller
                 'noCivic' => $lieu->noCivic,
                 'codePostal' => $lieu->codePostal,
                 'nomEtablissement' => $lieu->nomEtablissement,
-                'photoLieu' => $lieu->photoLieu,
+                'photoLieu' =>  $lieu->photo_lieu_url,
                 'siteWeb' => $lieu->siteWeb,
                 'numeroTelephone' => $lieu->numeroTelephone,
                 'actif' => $lieu->actif,
