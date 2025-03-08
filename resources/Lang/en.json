@@ -154,5 +154,8 @@
   "action":"Action",
   "modifier":"Edit",
   "pasResultatFiltreUsagers":"No users were found with these filters.",
-    "inconnu":"Unknown"
+    "inconnu":"Unknown",
+    "erreur403Texte": "You are not authorized to perform this action",
+      "erreur403": "Erreur 403 - Action not authorized"
+
 }
