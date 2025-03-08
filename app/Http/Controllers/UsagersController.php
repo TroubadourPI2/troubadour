@@ -46,7 +46,7 @@ class UsagersController extends Controller
     public function ObtenirDonneesCompte(){
         $usager = Auth::user(); 
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)
-        ->orderByDesc('actif') // Place les lieux actifs en premier
+        ->orderByDesc('actif') 
         ->get();
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
