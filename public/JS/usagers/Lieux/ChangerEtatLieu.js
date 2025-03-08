@@ -3,7 +3,6 @@ let textesActifs;
 
 document.addEventListener('DOMContentLoaded', function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
-
     setTimeout(() => {
         ObtenirElementsDesactiver();
         AjouterDesactiverListeners();
@@ -73,15 +72,13 @@ function AjouterDesactiverListeners() {
                             boutonBascule.checked = boutonBascule.checked;
                         });
                 } else {
-                    console.log(boutonBascule.checked)
                     boutonBascule.checked = !boutonBascule.checked;
-                    console.log(boutonBascule.checked)
-                    const texteActif = document.querySelector(
-                        `.texteActif[data-lieuId="${lieuId}"]`
-                    );
-                    texteActif.textContent = boutonBascule.checked
-                        ? Lang.get('strings.actif')
-                        : Lang.get('strings.inactif');
+                    // const texteActif = document.querySelector(
+                    //     `.texteActif[data-lieuId="${lieuId}"]`
+                    // );
+                    // texteActif.textContent = boutonBascule.checked
+                    //     ? Lang.get('strings.actif')
+                    //     : Lang.get('strings.inactif');
                 }
             });
         });

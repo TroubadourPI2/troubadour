@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     actif = boutonFiltreActif.checked ? 1 : 0;
     lieuxParPages = selectParPage.value;
     rechercheNomLieu.value = '';
-    FiltrerLieux(false);
+    FiltrerLieux(1,false);
     RechercheLieuxListeners();
 });
 
@@ -206,14 +206,16 @@ function AfficherLieux(lieux, majStatut) {
                         ${lieu.actif === 1 ? Lang.get('strings.actif') : Lang.get('strings.inactif')}
                         </span>
                           <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" name="actif" class="boutonBascule sr-only peer"
-    data-lieuId="${lieu.id}"
-    data-nomLieu="${lieu.nomEtablissement}"
-    data-checked-initial="${lieu.actif === 1 ? 'true' : 'false'}"
-    ${lieu.actif === 1 ? 'checked' : ''}>
-
-                <div class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
-            </label>   
+                            <input type="checkbox" name="actif" class="boutonBascule sr-only peer"
+                            data-lieuId="${lieu.id}"
+                            data-nomLieu="${lieu.nomEtablissement}"
+                            ${lieu.actif === 1 ? 'checked' : ''}>
+ <div
+                                    class="w-11 h-6 bg-c2 rounded-full peer peer-checked:bg-c1 peer-checked:after:translate-x-full 
+                    rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[2px] 
+                    after:bg-c1 peer-checked:after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
+                                </div>
+                         </label>   
                     </div>
                     <div class="w-full">
                     <h5 class="text-xl font-bold uppercase w-48 truncate">${lieu.nomEtablissement}</h5>
@@ -270,7 +272,7 @@ function AfficherLieux(lieux, majStatut) {
     if (selectVilleLieuModifie.value) {
         ObtenirQuartiersParVille(selectVilleLieuModifie.value);
     }
-
+  
     if (majStatut) {
         //Fonctions dans public/js/usagers/lieux/ChangerEtatLieu.js
         ObtenirElementsDesactiver();
