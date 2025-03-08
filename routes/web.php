@@ -69,10 +69,9 @@ Route::middleware(Langue::class)
         // RECHERCHE ( + HISTORIQUE)
         Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
         Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
-        Route::get('/recherche/supprimer/{id}/', [LieuxController::class, 'supprimerRecherche'])->name('recherche.supprimer');
+        Route::get('/recherche/supprimer/{id}/', [LieuxController::class, 'supprimerRecherche'])->name('recherche.supprimer')->middleware('VerifierRole:Admin');
         Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
-        Route::get('/recherche/historique', [LieuxController::class, 'historique'])->name('recherches.historique');
 
         //ADMIN
         Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
