@@ -73,7 +73,7 @@ Route::middleware(Langue::class)
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
 
         Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
-        Route::get('/admin/recherche', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche');
+        Route::get('/admin/recherche/lieux', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche')->middleware('VerifierRole:Admin');
      
 
         Route::fallback(function () {
