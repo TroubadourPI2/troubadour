@@ -157,8 +157,7 @@
   "inconnu":"Unknown",
   
   "LieuxFavoris":"Favorite locations ",
-  "ActivitesFavorites":"Favorite activities "
-    ,
+  "ActivitesFavorites":"Favorite activities ",
   
   "erreur403Texte": "You are not authorized to perform this action",
   "erreur403": "Erreur 403 - Action not authorized",
