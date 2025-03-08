@@ -142,7 +142,8 @@
 
         <!-- Boutons de filtres -->
         <div class="w-5/6 h-12 justify-center items-center space-x-5 my-4 flex-row hidden lg:flex">
-            <a class="w-1/2 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1" href="{{ route('recherches.historique') }}">
+            <a class="w-1/2 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1"
+                href="{{ route('recherches.historique') }}">
                 <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">Consulter l'historique des recherches</h3>
             </a>
             {{-- <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
