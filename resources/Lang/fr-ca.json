@@ -156,6 +156,9 @@
   "modifier":"Modifier",
   "pasResultatFiltreUsagers":"Aucun utilisateur n'a été trouvé avec ces filtres.",
   "inconnu":"Inconnu",
+  
   "erreur403Texte":" Vous n'êtes pas autorisé à faire cette action" ,
-  "erreur403": "Erreur 403 - Action non autorisée"
+  "erreur403": "Erreur 403 - Action non autorisée",
+  "erreur429" : "Erreur 429 - Trop de requêtes",
+  "erreur429Texte" : "Nous sommes désolés, mais vous avez envoyé trop de requêtes récemment. Veuillez réessayer plus tard."
 }  
