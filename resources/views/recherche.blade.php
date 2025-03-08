@@ -103,7 +103,8 @@
                             @endif
                         @endforeach
                     @else
-                        <option value="aucunResultat" disabled selected hidden id="optionDefaut">{{ __('choisirQuartier') }}
+                        <option value="aucunResultat" disabled selected hidden id="optionDefaut">
+                            {{ __('choisirQuartier') }}
                         </option>
                     @endif
                 </select>
