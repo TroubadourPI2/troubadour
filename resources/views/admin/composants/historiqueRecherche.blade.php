@@ -4,11 +4,11 @@
             @if (count($termesRecherche) == 0)
                 <div class="grid-cols-subgrid gap-4 col-span-4 hidden xl:grid">
                     <div class="col-start-3 flex w-full h-full justify-between items-center bg-c3 rounded-md p-1 px-3">
-                        <h3 class="text-c1 font-barlow text-lg text-center">{{ __('Aucune recherche effectuées') }}</h3>
+                        <h3 class="text-c1 font-barlow text-lg text-center">{{ __('aucuneRechercheEffectuee') }}</h3>
                     </div>
                 </div>
                 <div class="flex w-full h-full justify-between items-center bg-c3 rounded-md p-1 px-3 xl:hidden">
-                    <h3 class="text-c1 font-barlow text-lg text-center">{{ __('Aucune recherche effectuées') }}</h3>
+                    <h3 class="text-c1 font-barlow text-lg text-center">{{ __('aucuneRechercheEffectuee') }}</h3>
                 </div>
             @else
                 @foreach ($termesRecherche as $recherche)
