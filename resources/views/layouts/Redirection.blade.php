@@ -34,5 +34,6 @@
     </footer>
 </body>
 <script src="{{ asset('js/translations.js') }}"></script>
+<script src="{{ asset('js/Redirection/Yeux.js') }}" defer></script>
 
 </html>
