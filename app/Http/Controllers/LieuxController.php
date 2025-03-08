@@ -7,6 +7,7 @@ use App\Models\LieuActivite;
 use App\Models\Activite;
 use App\Models\Lieu;
 use App\Models\Quartier;
+use App\Models\LieuFavori;
 use Illuminate\Http\Request;
 use App\Models\Ville;
 use Exception;
@@ -135,12 +136,14 @@ class LieuxController extends Controller
      */
     public function ZoomLieu(string $id)
     {
-
+        $usager = Auth::user(); 
         $lieuActuel = Lieu::findOrFail($id);
         $idActivites = LieuActivite::Where("lieu_id", $id)->pluck("activite_id");
         $activites = Activite::whereIn("id", $idActivites)->where('actif', 1)->get();
 
-        return view('zoomLieu', compact('lieuActuel', 'activites'));
+        $favoris = LieuFavori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();  
+
+        return view('zoomLieu', compact('usager', 'lieuActuel', 'activites', 'favoris'));
     }
 
     public function ObtenirUnLieu(Request $request)
