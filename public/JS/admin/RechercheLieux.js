@@ -10,7 +10,6 @@ let selectParPage;
 let pageActuelle = 1;
 
 document.addEventListener('DOMContentLoaded', function () {
-    Lang.setLocale(document.body.getAttribute('data-locale'));
     ObtenirElementsRechercheLieux();
     filtreVille.value = '';
     boutonFiltreActif.checked = true;

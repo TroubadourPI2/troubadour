@@ -2,9 +2,6 @@ let boutonsSupprimer;
 let success;
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Configure la langue pour le fichier JS
-    Lang.setLocale(document.body.getAttribute('data-locale'));
-    
     setTimeout(() => {
         ObtenirElementsSupprimer();
         AjouterSupprimerListeners();
