@@ -36,5 +36,3 @@
         <div id="usagersContainer" class="flex justify-center flex-col w-full items-center gap-y-4"></div>
     </div>
 </div>
-
-

@@ -155,5 +155,7 @@
   "action":"Action",
   "modifier":"Modifier",
   "pasResultatFiltreUsagers":"Aucun utilisateur n'a été trouvé avec ces filtres.",
-  "inconnu":"Inconnu"
+  "inconnu":"Inconnu",
+  "erreur403Texte":" Vous n'êtes pas autorisé à faire cette action" ,
+  "erreur403": "Erreur 403 - Action non autorisé"
 }  
