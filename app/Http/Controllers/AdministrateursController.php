@@ -3,62 +3,107 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Lieu;
+use App\Models\Ville;
+use App\Models\TypeLieu;
+use Illuminate\Support\Facades\Log;
 
 class AdministrateursController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function afficher()
+    public function Afficher()
     {
-        return view('admin.afficher');
+        $villes = Ville::all();
+        $typesLieu = TypeLieu::all();
+
+        return view('admin.Afficher', compact('villes', 'typesLieu'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function Recherche(Request $request)
     {
-        //
-    }
+        $validationDonnees = $request->validate([
+            'villeId' => 'nullable|integer|exists:villes,id',
+            'quartierId' => 'nullable|integer|exists:quartiers,id',
+            'rechercheNom' => 'nullable|string|max:255',
+            'actif' => 'nullable|boolean',
+            'parPage' => 'nullable|integer|in:10,25,50,100',
+        ]);
+        $villeId  = $validationDonnees['villeId'] ?? null;
+        $quartierId = $validationDonnees['quartierId'] ?? null;
+        $rechercheNom = $validationDonnees['rechercheNom'] ?? null;
+        $actif = $validationDonnees['actif'] ?? null;
+        $parPage = $validationDonnees['parPage'] ?? 10;
+    
+        $lieux = Lieu::when($villeId, function ($query) use ($villeId) {
+            $query->whereHas('quartier', function ($q) use ($villeId) {
+                $q->where('ville_id', $villeId);
+            });
+        })
+            ->when($quartierId, function ($query) use ($quartierId) {
+                $query->where('quartier_id', $quartierId);
+            })
+            ->when($rechercheNom, function ($query) use ($rechercheNom) {
+                $query->where('nomEtablissement', 'like', '%' . $rechercheNom . '%');
+            })
+            ->when(isset($actif), function ($query) use ($actif) {
+                $query->where('actif', $actif);
+            })
+            ->with(['quartier.ville.region.province', 'quartier.ville.pays', 'typeLieu'])
+            ->paginate($parPage);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        if ($lieux->isEmpty()) {
+            return response()->json(['message' => __('aucunLieuTrouve')]);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        Log::debug($lieux);
+        $lieuxWithDetails = $lieux->map(function ($lieu) {
+            return [
+                'id' => $lieu->id,
+                'rue' => $lieu->rue,
+                'noCivic' => $lieu->noCivic,
+                'codePostal' => $lieu->codePostal,
+                'nomEtablissement' => $lieu->nomEtablissement,
+                'photoLieu' =>  $lieu->photo_lieu_url,
+                'siteWeb' => $lieu->siteWeb,
+                'numeroTelephone' => $lieu->numeroTelephone,
+                'actif' => $lieu->actif,
+                'description' => $lieu->description,
+                'typeLieu' => $lieu->typeLieu->nom,
+                'quartier' => $lieu->quartier ? [
+                    'id' => $lieu->quartier->id,
+                    'nom' => $lieu->quartier->nom,
+                ] : null,
+                'ville' => $lieu->quartier && $lieu->quartier->ville ? [
+                    'id' => $lieu->quartier->ville->id,
+                    'nom' => $lieu->quartier->ville->nom,
+                ] : null,
+                'region' => ($lieu->quartier && $lieu->quartier->ville && $lieu->quartier->ville->region) ? [
+                    'id' => $lieu->quartier->ville->region->id,
+                    'nom' => $lieu->quartier->ville->region->nom,
+                ] : null,
+                'province' => ($lieu->quartier && $lieu->quartier->ville && $lieu->quartier->ville->region && $lieu->quartier->ville->region->province) ? [
+                    'id' => $lieu->quartier->ville->region->province->id,
+                    'nom' => $lieu->quartier->ville->region->province->nom,
+                ] : null,
+                'pays' => ($lieu->quartier && $lieu->quartier->ville && $lieu->quartier->ville->pays) ? [
+                    'id' => $lieu->quartier->ville->pays->id,
+                    'nom' => $lieu->quartier->ville->pays->nom,
+                ] : null,
+            ];
+        });
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json([
+            'lieux' => $lieuxWithDetails,
+            'pagination' => [
+                'current_page' => $lieux->currentPage(),
+                'per_page' => $lieux->perPage(),
+                'total' => $lieux->total(),
+                'last_page' => $lieux->lastPage(),
+                'from' => $lieux->firstItem(),
+                'to' => $lieux->lastItem(),
+                'prev_page_url' => $lieux->previousPageUrl(),
+                'next_page_url' => $lieux->nextPageUrl(),
+            ],
+        ]);
     }
 }
