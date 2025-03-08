@@ -82,6 +82,7 @@ Route::middleware(Langue::class)
         Route::get('/admin/recherche/lieux', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche')->middleware('VerifierRole:Admin');
      
 
+        
         Route::fallback(function () {
             return response()->view('Redirection.404', [], 404);
           });
