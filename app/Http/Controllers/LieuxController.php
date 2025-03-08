@@ -25,7 +25,7 @@ class LieuxController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function Index()
     {
         try {
             $lieux = Lieu::where('actif', 1)->paginate(10);
@@ -41,7 +41,7 @@ class LieuxController extends Controller
         }
     }
 
-    public function recherche(Request $request)
+    public function Recherche(Request $request)
     {
         try
         {
@@ -73,6 +73,10 @@ class LieuxController extends Controller
             if(isset($request->txtRecherche))
             {
                 try{
+                    if (preg_match('/<[^>]*>/', $request->txtRecherche)) {
+                        Log::debug("MANUEL - Recherche contient un script ou une balise HTML");
+                        return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
+                    }
                     $recherches = Recherche::where('terme_recherche', $request->txtRecherche)->where('ville_id', $ville)->where('quartier_id', $quartier)->first();
 
                     if($recherches){
@@ -117,7 +121,7 @@ class LieuxController extends Controller
 
     }
 
-    public function historique()
+    public function Historique()
     {
         $recherches = Recherche::all()->sortByDesc('nbOccurences');
         $quartiers = Recherche::all()->unique('quartier_id');
@@ -155,14 +159,14 @@ class LieuxController extends Controller
         return view('historiqueRecherche', compact('recherches', 'listeQuartiers', 'listeVilles', 'villes', 'resultatsVilles', 'resultatsQuartiers'));
     }
 
-    public function quartiers(Request $request)
+    public function Quartiers(Request $request)
     {
         $villeId    = $request->villeId;
         $quartiers  = Quartier::where('ville_id', $villeId)->get();
         return compact('quartiers');
     }
 
-    public function supprimerRecherche($id)
+    public function SupprimerRecherche($id)
     {
         try{
             $recherche = Recherche::findOrFail($id);

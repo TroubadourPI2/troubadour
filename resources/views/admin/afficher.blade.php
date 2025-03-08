@@ -29,7 +29,7 @@
             <button id="boutonRecherches" data-section="recherches"
                 class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
                 <span class="iconify size-8 sm:hidden" data-icon="mingcute:list-search-line"></span>
-                <span class="hidden sm:inline">{{ __('Recherches') }}</span>
+                <span class="hidden sm:inline">{{ __('recherches') }}</span>
             </button>
         </div>
         {{-- //TODO Importer les composants selon le menu choisi --}}
