@@ -154,6 +154,6 @@
   "statut":"Statut",
   "action":"Action",
   "modifier":"Modifier",
-  "pasResultatFiltreUsagers":"Aucun utilisateurs n'a été trouvée avec ces filtres.",
+  "pasResultatFiltreUsagers":"Aucun utilisateur n'a été trouvé avec ces filtres.",
   "inconnu":"Inconnu"
 }  

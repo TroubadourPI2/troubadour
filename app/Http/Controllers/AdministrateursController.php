@@ -153,7 +153,7 @@ class AdministrateursController extends Controller
     
 
     
-    public function modifierUtilisateur(UsagerRequest $request, $id)
+    public function ModifierUsagers(UsagerRequest $request, $id)
     {
    
     $usager = Usager::findOrFail($id);
