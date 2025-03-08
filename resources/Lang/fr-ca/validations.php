@@ -60,5 +60,16 @@ return [
     'positionsActuellesDistinct'=> 'Les positions des photos existantes doivent être uniques.',
     'photoASupprimerExiste'    => 'Une des photos sélectionnées pour la suppression est invalide.',
     'positionsSequentielle' => 'Les positions doivent être une suite séquentielle sans trou (1, 2, …, ).',
+    'roleRequis' => 'Le rôle est requis.',
+    'roleInvalide' => 'Le rôle sélectionné est invalide.',
+    'statutRequis' => 'Le statut est requis.',
+    'statutInvalide' => 'Le statut sélectionné est invalide.',
+
+
+    'FavoriIdExiste'      => 'Le favori sélectionné est invalide.',
+    'FavoriLieuIdExiste'      => 'Le lieu sélectionné est invalide.',
+    'FavoriUsagerIdExiste'      => 'L\'usager sélectionné est invalide.',
+
+
 
 ];

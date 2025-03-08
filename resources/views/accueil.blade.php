@@ -116,7 +116,7 @@
             </div>
         </div>
         <div id="menuMobile"
-            class="fixed inset-0 z-50 bg-c3 transform -translate-x-full transition-transform duration-300 md:hidden ">
+            class="fixed inset-0 z-50  overflow-y-scroll bg-c3 transform -translate-x-full transition-transform duration-300 md:hidden ">
             <div class="p-4 flex w-full h-full flex-col">
 
                 <div class="flex items-center w-full">

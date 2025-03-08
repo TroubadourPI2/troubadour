@@ -6,12 +6,16 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsagerRequest;
+use App\Http\Requests\LieuFavoriRequest;
+use App\Http\Requests\ActiviteFavoriRequest;
 use App\Models\Usager;
 use App\Models\Lieu;
+use App\Models\LieuFavori;
 use App\Models\Ville;
 use App\Models\Quartier;
 use App\Models\TypeLieu;
 use App\Models\Activite;
+use App\Models\ActiviteFavori;
 use App\Models\TypeActivite;
 use Illuminate\Support\Facades\Log;
 
@@ -42,7 +46,7 @@ class UsagersController extends Controller
     public function ObtenirDonneesCompte(){
         $usager = Auth::user(); 
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)
-        ->orderByDesc('actif') // Place les lieux actifs en premier
+        ->orderByDesc('actif') 
         ->get();
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
@@ -62,6 +66,53 @@ class UsagersController extends Controller
         $quartiers = Quartier::where('ville_id', $villeId)->get();
         return response()->json($quartiers);
     }
+
+    public function AjouterFavorisLieu(LieuFavoriRequest $request)
+    {
+
+        $favoris = LieuFavori::create([
+            'lieu_id' => $request->idLieu,
+            'usager_id' => Auth::id(),
+        ]);
+
+        return redirect()->back(); 
+
+    }
+
+
+    public function SupprimerFavorisLieu(LieuFavoriRequest $request)
+    {
+        $favoris = LieuFavori::where("id",$request->id)->first();
+        $favoris->delete();
+
+
+        return redirect()->back(); 
+
+    }
+
+    public function AjouterFavorisActivite(ActiviteFavoriRequest $request)
+    {
+
+        $favoris = ActiviteFavori::create([
+            'activite_id' => $request->idActivite,
+            'usager_id' => Auth::id(),
+        ]);
+
+        return redirect()->back(); 
+
+    }
+
+
+    public function SupprimerFavorisActivite(ActiviteFavoriRequest $request)
+    {
+        $favoris = ActiviteFavori::where("id",$request->id)->first();
+        $favoris->delete();
+
+
+        return redirect()->back(); 
+
+    }
+
 
     /**
      * Display a listing of the resource.
