@@ -10,7 +10,7 @@
 
             <div class="w-full sm:w-3/4 flex flex-row mt-4">
                 <div
-                    class="my-1 ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-1 text-lg font-bold text-center uppercase leading-tight text-white bg-c1">
+                    class="my-1 ml-12 w-3/4 p-4 lg:w-2/5 rounded-full py-2 text-lg font-bold text-center uppercase leading-tight text-white bg-c1">
                     {{ $lieuActuel->nomEtablissement }}
                 </div>
                 <div class=" my-1 ml-4 rounded border-c1 hidden md:block border"></div>
