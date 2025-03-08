@@ -14,10 +14,9 @@ class AdministrateursController extends Controller
      */
     public function afficher()
     {
-        $roles = RoleUsager::all(); 
-        $statuts = Statut::all();
+  
     
-        return view('admin.afficher', compact('roles', 'statuts'));
+        return view('admin.afficher');
     }
     
 
@@ -26,35 +25,34 @@ class AdministrateursController extends Controller
      */
     public function UsagersPagination(Request $request)
     {
-
         $validationDonnee = $request->validate([
-            'recherche'        => 'nullable|string|max:255',
+            'recherche'        => 'nullable|string|max:64',
             'rechercheRole'    => 'nullable|integer|exists:RoleUsagers,id',
             'rechercheStatut'  => 'nullable|integer|exists:statuts,id',
             'per_page'         => 'nullable|integer|in:10,25,50,100',
-       ]);
-   
-       $rechercheTexte  = trim($validationDonnee['recherche'] ?? '');
-       $rechercheRole   = $validationDonnee['rechercheRole'] ?? null;
-       $rechercheStatut = $validationDonnee['rechercheStatut'] ?? null;
-       $perPage         = $validationDonnee['per_page'] ?? 10;
-
-        $usagers = Usager::when($rechercheTexte, function ($query) use ($rechercheTexte) {
-                        $query->where(function($q) use ($rechercheTexte) {
-                            $q->where('nom', 'LIKE', '%' . $rechercheTexte . '%')
-                              ->orWhere('prenom', 'LIKE', '%' . $rechercheTexte . '%')
-                              ->orWhere('courriel', 'LIKE', '%' . $rechercheTexte . '%');
-                        });
-                    })
-                    ->when($rechercheRole, function ($query) use ($rechercheRole) {
-                        $query->where('role_id', $rechercheRole);
-                    })
-                    ->when($rechercheStatut, function ($query) use ($rechercheStatut) {
-                        $query->where('statut_id', $rechercheStatut);
-                    })
-                    ->orderByRaw("role_id = 3 DESC")  
-                    ->orderByRaw("statut_id = 3 DESC") 
-                    ->paginate($perPage); 
+        ]);
+    
+        $rechercheTexte  = trim($validationDonnee['recherche'] ?? '');
+        $rechercheRole   = $validationDonnee['rechercheRole'] ?? null;
+        $rechercheStatut = $validationDonnee['rechercheStatut'] ?? null;
+        $perPage         = $validationDonnee['per_page'] ?? 10;
+    
+        $usagers = Usager::when($rechercheTexte, function ($requete) use ($rechercheTexte) {
+                            $requete->where(function($q) use ($rechercheTexte) {
+                                $q->where('nom', 'LIKE', '%' . $rechercheTexte . '%')
+                                  ->orWhere('prenom', 'LIKE', '%' . $rechercheTexte . '%')
+                                  ->orWhere('courriel', 'LIKE', '%' . $rechercheTexte . '%');
+                            });
+                        })
+                        ->when($rechercheRole, function ($requete) use ($rechercheRole) {
+                            $requete->where('role_id', $rechercheRole);
+                        })
+                        ->when($rechercheStatut, function ($requete) use ($rechercheStatut) {
+                            $requete->where('statut_id', $rechercheStatut);
+                        })
+                        ->orderByRaw("role_id = 3 DESC")
+                        ->orderByRaw("statut_id = 3 DESC")
+                        ->paginate($perPage);
     
         return response()->json($usagers);
     }
@@ -62,24 +60,28 @@ class AdministrateursController extends Controller
 
     
     public function modifierUtilisateur(UsagerRequest $request, $id)
-{
+    {
    
     $usager = Usager::findOrFail($id);
-
-
-    $request->validate([
-        'role_id' => 'sometimes|exists:RoleUsagers,id',
-        'statut_id' => 'sometimes|exists:Statuts,id',
-    ]);
-
- 
     $usager->update([
         'role_id' => $request->role_id,
         'statut_id' => $request->statut_id,
     ]);
 
     return response()->json(['success' => true]);
-}
+    }
+
+    public function ObtenirRolesEtStatuts()
+    {
+    $roles = RoleUsager::all();
+    $statuts = Statut::all();
+
+    return response()->json([
+        'roles' => $roles,
+        'statuts' => $statuts,
+    ]);
+    }
+
 
 
     /**

@@ -29,3 +29,4 @@
 
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
+<script src="{{ asset('js/GestionDemandeAdmin.js') }}" defer></script>

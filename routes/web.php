@@ -71,6 +71,7 @@ Route::middleware(Langue::class)
         Route::get('/admin', [AdministrateursController::class, 'afficher'])->name('admin')->middleware('VerifierRole:Admin');
         Route::get('/admin/rechercheUsagers', [AdministrateursController::class, 'usagersPagination'])->name('admin.rechercheUsagers')->middleware('VerifierRole:Admin');
         Route::post('/admin/usagers/modifier/{id}', [AdministrateursController::class, 'modifierUtilisateur'])->name('admin.modifierUsagers')->middleware('VerifierRole:Admin');
+        Route::get('/admin/obtenirRoleStatut', [AdministrateursController::class, 'ObtenirRolesEtStatuts'])->middleware('VerifierRole:Admin');
 
 
         Route::fallback(function () {

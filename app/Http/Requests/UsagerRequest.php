@@ -23,26 +23,33 @@ class UsagerRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Récupérer le nom de la route actuelle
+        $nomRouteActuelle = $this->route()->getName();
+    
+        // Si c'est la route d'admin pour modifier un usager, on valide uniquement role_id et statut_id
+        if ($nomRouteActuelle === 'admin.modifierUsagers') {
+            return [
+                'role_id' => 'required|exists:RoleUsagers,id',
+                'statut_id' => 'required|exists:Statuts,id',
+            ];
+        }
+    
+        // Sinon, appliquer les règles standards
         $rules = [
             'prenom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
             'nom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
             'courriel' => 'required|email|regex:/^[\w\.-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,6}$/|max:64',
         ];
     
-        if ($this->route()->getName() === 'usagers.modifier'){ 
-           $rules['password'] = 'sometimes|required_with:password_confirmation|nullable|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
-        } else { 
+        if ($nomRouteActuelle === 'usagers.modifier') {
+            $rules['password'] = 'sometimes|required_with:password_confirmation|nullable|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
+        } else {
             $rules['password'] = 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
-        } 
-
-        if ($this->route()->getName() === 'admin.modifierUsagers'){ 
-            $rules = [
-            'role_id' => 'sometimes|exists:RoleUsagers,id',
-            'statut_id' => 'sometimes|exists:Statuts,id',
-        ];       
+        }
+    
+        return $rules;
     }
-    return $rules;
-}
+    
     /**
      * Définit les messages d'erreur personnalisés.
      *
@@ -68,33 +75,36 @@ class UsagerRequest extends FormRequest
             'password.min' => __('validations.passwordMin'),
             'password.confirmed' => __('validations.passwordConfirme'),
             'password.required_with' => __('validations.passwordRequisAvec'),
-            
+
+            'role_id.required' => __('validations.roleRequis'),
+            'role_id.exists' => __('validations.roleInvalide'),
+
+            'statut_id.required' => __('validations.statutRequis'),
+            'statut_id.exists' => __('validations.statutInvalide'),
         ];
      
     }
-
     protected function failedValidation(Validator $validator)
     {
         $nomRouteActuelle = $this->route()->getName();
-
-
-        // if ($nomRouteActuelle === 'usagerLieux.ajouterLieu') {
-        //     session()->put('erreurAjouterLieu', $validator->errors());
-
-        //     throw new HttpResponseException(
-        //         redirect()->back()
-        //             ->withInput()
-        //     );
-        // }
+    
+        if ($nomRouteActuelle === 'admin.modifierUsagers') {
+            throw new HttpResponseException(response()->json([
+                'success' => false,
+                'message' => 'Erreur de validation',
+                'errors' => $validator->errors()
+            ], 422));
+        }
+    
         if ($nomRouteActuelle === 'usagers.modifier') {
             session()->put('erreurModifierUsager', $validator->errors());
-
+    
             throw new HttpResponseException(
-                redirect()->back()
-                    ->withInput()
+                redirect()->back()->withInput()
             );
         }
-
+    
         parent::failedValidation($validator);
     }
+    
 }

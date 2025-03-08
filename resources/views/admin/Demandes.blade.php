@@ -2,37 +2,18 @@
     <div class="flex gap-x-2 w-full flex-col md:flex-row gap-y-2 md:gap-y-0">
 
         <select id="rechercheRole" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
-            <option value="">    {{ __('tousLesRoles') }}</option>
-            @foreach($roles as $role)
-       
-            <option value="{{ $role->id }}"> @if($role->id == 1)
-                {{ __('admin') }}
-            @elseif($role->id == 2)
-                {{ __('utilisateur') }}
-            @elseif($role->id == 3)
-                {{ __('gestion') }}     @endif</option>
-           
-            @endforeach
+            <option value="">{{ __('tousLesRoles') }}</option>
         </select>
         <select id="rechercheStatut" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
-            <option value="">{{ __('tousLesStatus') }}</option>
-            @foreach($statuts as $statut)
-            <option value="{{ $statut->id }}">@if($statut->id == 1)
-                {{ __('actif') }}
-            @elseif($statut->id == 2)
-                {{ __('inactif') }}
-            @elseif($statut->id== 3)
-                {{ __('enAttente') }}     @endif</option>
-            @endforeach
+            <option value="">{{ __('tousLesStatuts') }}</option>
         </select>
         <input type="text" id="rechercheTexte" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2"
             placeholder="{{ __('rechercheAdminDemande') }}">
-
     </div>
-
+  
     <div class="flex w-full flex-col justify-center items-center">
-        <div id="pagination" class="mt-4  max-w-7xl w-full  flex justify-center items-center gap-x-2  "> </div>
-        <div class="flex justify-end w-full max-w-7xl  py-4">
+        <div id="pagination" class="mt-4 max-w-7xl w-full flex justify-center items-center gap-x-2"></div>
+        <div class="flex justify-end w-full max-w-7xl py-4">
             <label for="usagersParPage" class="mr-2 font-bold text-lg">{{ __('afficher') }}</label>
             <select id="usagersParPage" class="rounded border-2 p-1">
                 <option value="10">10</option>
@@ -40,239 +21,18 @@
                 <option value="50">50</option>
                 <option value="100">100</option>
             </select>
-     
         </div>
-        <div class=" border-2 bg-c3 border-c1 flex max-w-7xl w-full  h-14  justify-center items-center z-10 sticky  text-c1  top-0"
-            id="labelTableau">
-            <div class="flex w-1/4 lg:pl-12 justify-center font-bold text-lg lg:text-xl uppercase items-center">{{ __('role') }} </div>
-            <div class="flex w-1/6 justify-center font-bold text-lg   lg:text-xl uppercase  items-center">{{ __('statut') }}  </div>
-            <div class="flex w-2/4 justify-center font-bold text-lg   lg:text-xl uppercase items-center">{{ __('courriel') }} </div>
-            <div class="flex w-1/4 justify-center font-bold text-lg  lg:text-xl uppercase  items-center ">{{ __('action') }} </div>
+        <div id="labelTableau" class="border-2 bg-c3 border-c1 flex max-w-7xl w-full h-14 justify-center items-center z-10 sticky text-c1 top-0">
+            <div class="flex w-1/4 lg:pl-12 justify-center font-bold text-lg lg:text-xl uppercase items-center">{{ __('role') }}</div>
+            <div class="flex w-1/6 justify-center font-bold text-lg lg:text-xl uppercase items-center">{{ __('statut') }}</div>
+            <div class="flex w-2/4 justify-center font-bold text-lg lg:text-xl uppercase items-center">{{ __('courriel') }}</div>
+            <div class="flex w-1/4 justify-center font-bold text-lg lg:text-xl uppercase items-center">{{ __('action') }}</div>
         </div>
-        
-        <div id="usagersContainer" class="flex justify-center flex-col w-full items-center gap-y-4 "></div>
-
-
+        <div id="usagersContainer" class="flex justify-center flex-col w-full items-center gap-y-4"></div>
     </div>
-</div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const roles = {
-        1: {
-            name: Lang.get('strings.admin'),
-            icon: "mdi-shield-account"
-        },
-        2: {
-            name: Lang.get('strings.utilisateur'),
-            icon: "mdi-account"
-        },
-        3: {    
-            name: Lang.get('strings.gestion'),
-            icon: "mdi-account-tie"
-        }
-    };
+  </div>
+  
+  <script>
 
-    const statuts = {
-        1: {
-            name:  Lang.get('strings.actif'),
-            icon: "mdi-check-circle",
-            color: "text-green-500"
-        },
-        2: {
-            name:  Lang.get('strings.inactif'),
-            icon: "mdi-close-circle",
-            color: "text-red-500"
-        },
-        3: {
-            name:  Lang.get('strings.enAttente'),
-            icon: "mdi-timer-sand",
-            color: "text-yellow-500"
-        }
-    };
-
-    let usagersParPages = 10;
-    let pageActuelle = 1;
-
-    document.getElementById('usagersParPage').addEventListener('change', function() {
-        usagersParPages = parseInt(this.value);
-       RechercheUsagerAdmin(1); 
-    });
-
-    function RechercheUsagerAdmin(page = 1) {
-        pageActuelle = page;
-        const rechercheTexte = document.getElementById('rechercheTexte').value.trim();
-        const rechercheRole = document.getElementById('rechercheRole').value;
-        const rechercheStatut = document.getElementById('rechercheStatut').value;
-
-        axios.get('/admin/rechercheUsagers', {
-            params: {
-                recherche: rechercheTexte,
-                rechercheRole: rechercheRole,
-                rechercheStatut: rechercheStatut,
-                page: page,
-                per_page: usagersParPages 
-            }
-        })
-        .then(response => {
-            const usagersData = response.data;
-            let html = '';
-            if (usagersData.data.length === 0) {
-        html = `<div class="py-4 text-center font-bold">${Lang.get('strings.pasResultatFiltreUsagers')}</div>`;
-    } else {
-            usagersData.data.forEach(function(usager) {
-                const roleData = roles[usager.role_id] || { name: "Inconnu", icon: "mdi-help-circle" };
-                const statutData = statuts[usager.statut_id] || { name: "Inconnu", icon: "mdi-help-circle", color: "text-gray-500" };
-
-                html += `
-                <div class="bg-c3 border-2 shadow-md flex max-w-7xl w-full h-24 justify-center items-center p-2 lg:p-4">
-                    <!-- Rôle -->
-                    <div class="flex w-1/4 justify-start  md:pl-8 lg:pl-16 font-bold text-base lg:text-xl uppercase items-center">
-                        <span class="iconify size-10 lg:size-8 text-c1" data-icon="${roleData.icon}"></span>
-                        <span class="ml-2 hidden lg:block">${roleData.name}</span>
-                    </div>
-                    
-                    <!-- Statut -->
-                    <div class="flex w-1/4 justify-start font-bold text-base lg:text-xl uppercase items-center ${statutData.color}">
-                        <span class="iconify size-10 lg:size-8" data-icon="${statutData.icon}"></span>
-                        <span class="ml-2 hidden lg:block">${statutData.name}</span>
-                    </div>
-                    
-                    <!-- Courriel -->
-                    <div class="flex w-1/4 justify-center lg:pl-8 font-bold text-sm lg:text-xl uppercase items-center">
-                        <span class="w-full text-left truncate">${usager.courriel}</span>
-                    </div>
-
-                    <!-- Actions -->
-                    <div class="flex w-1/4 justify-center pl-4 lg:pl-16 font-bold text-lg gap-x-1 uppercase items-center flex-col md:flex-row">
-                        <button onclick="modifierUtilisateur(${usager.id}, ${usager.role_id}, ${usager.statut_id}, '${usager.courriel}')" class="border-2 p-1 lg:p-2 rounded flex hover:text-c3 hover:bg-c1 transition text-c1 rounded-md">
-                            <span class="hidden lg:block text-xl">${ Lang.get('strings.modifier')}</span>
-                            <span class="iconify size-8 lg:size-6" data-icon="mdi:pen"></span>
-                        </button>
-                    </div>
-                </div>`;
-            });
-        }
-            document.getElementById('usagersContainer').innerHTML = html;
-            document.getElementById('pagination').innerHTML = paginationButtons(usagersData, "RechercheUsagerAdmin");
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    }
-
-    setTimeout(() =>RechercheUsagerAdmin(), 100);
-
-    document.getElementById('rechercheTexte').addEventListener('input', () =>RechercheUsagerAdmin());
-    document.getElementById('rechercheRole').addEventListener('change', () =>RechercheUsagerAdmin());
-    document.getElementById('rechercheStatut').addEventListener('change', () =>RechercheUsagerAdmin());
-
-    function paginationButtons(data, functionName) {
-        return `
-        <div class="flex gap-2 mt-4">
-            <!-- Bouton Première Page -->
-            <button type="button"
-                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-l flex items-center justify-center transition ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-                onclick="${functionName}(1)" ${!data.prev_page_url ? 'disabled' : ''}>
-                <span class="iconify text-xl" data-icon="mdi-chevron-double-left"></span>
-            </button>
-            <!-- Bouton Page Précédente -->
-            <button type="button"
-                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition ${!data.prev_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-                onclick="${functionName}(${data.current_page - 1})" ${!data.prev_page_url ? 'disabled' : ''}>
-                <span class="iconify text-xl" data-icon="mdi-chevron-left"></span>
-            </button>
-            <!-- Page Actuelle -->
-            <span class="bg-c3 text-c1 h-12 text-xs lg:text-lg font-bold py-2 px-4 rounded flex items-center justify-center">
-                ${data.current_page}/${data.last_page}
-            </span>
-            <!-- Bouton Page Suivante -->
-            <button type="button"
-                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 flex items-center justify-center transition ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-                onclick="${functionName}(${data.current_page + 1})" ${!data.next_page_url ? 'disabled' : ''}>
-                <span class="iconify text-xl" data-icon="mdi-chevron-right"></span>
-            </button>
-            <!-- Bouton Dernière Page -->
-            <button type="button"
-                class="bg-c1 hover:bg-c3 h-12 hover:text-c1 text-white font-bold py-2 px-4 rounded-r flex items-center justify-center transition ${!data.next_page_url ? 'cursor-not-allowed opacity-50' : ''}"
-                onclick="${functionName}(${data.last_page})" ${!data.next_page_url ? 'disabled' : ''}>
-                <span class="iconify text-xl" data-icon="mdi-chevron-double-right"></span>
-            </button>
-        </div>`;
-    }
-
-    // Rendre la fonction modifierUtilisateur accessible globalement si elle est appelée inline
-    window.modifierUtilisateur = function(id, roleActuel, statutActuel, email) {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-        });
-        Swal.fire({
-            title: `Modifier `,
-            html: `<div class="flex flex-col w-full gap-y-4">
-                        <strong class="uppercase">${email}</strong>
-                        <div class="flex gap-x-2 items-center justify-center px-2">
-                            <label class="block text-left font-bold text-c1 mb-1 w-1/4">Rôle</label>
-                            <select id="role_id" class="rounded-full border-2 justify-center w-1/2 border-c1 p-2">
-                                @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" ${roleActuel == {{ $role->id }} ? 'selected' : ''}>
-                                        {{ $role->nom }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="flex gap-x-2 items-center justify-center px-2">
-                            <label class="block text-left font-bold text-c1 mb-1 w-1/4 mt-3">Statut</label>
-                            <select id="statut_id" class="rounded-full border-2 w-1/2 border-c1 p-2">
-                                @foreach($statuts as $statut)
-                                    <option value="{{ $statut->id }}" ${statutActuel == {{ $statut->id }} ? 'selected' : ''}>
-                                        {{ $statut->statut }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>`,
-            showCancelButton: true,
-            confirmButtonText: "Modifier",
-            cancelButtonText: "Annuler",
-            reverseButtons: true,
-            customClass: {
-                popup: 'font-barlow text-xl text-c1 bg-c2',
-                title: 'text-3xl uppercase underline',
-                confirmButton: 'bg-c1 text-white font-semibold px-4 py-2 uppercase rounded-full transition',
-                cancelButton: 'text-c1 uppercase bg-c2 font-semibold rounded-full px-4 py-2 hover:bg-white transition'
-            },
-            focusConfirm: false,
-            preConfirm: () => {
-                return {
-                    role_id: document.getElementById("role_id").value,
-                    statut_id: document.getElementById("statut_id").value
-                };
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios.post(`/admin/usagers/modifier/${id}`, result.value)
-                    .then(response => {
-                        Toast.fire({
-                            icon: "success",
-                            title: Lang.get('strings.succesModifier')
-                        });
-                       RechercheUsagerAdmin(pageActuelle); 
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        Swal.fire("Erreur", "La modification a échoué.", "error");
-                    });
-            }
-        });
-    };
-    window.RechercheUsagerAdmin = RechercheUsagerAdmin;
-
-});
-
-
-
-
-</script>
+  </script>
+  
