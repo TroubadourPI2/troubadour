@@ -28,7 +28,7 @@
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
         </div>
         {{-- //TODO Importer les composants selon le menu choisi --}}
-        <!-- Ajout du chemin vers composants pour demande  -->
+ 
         <div id="demandes" class="sectionMenu">@include('admin.composants.Demandes')</div>
         <div id="villes" class="sectionMenu hidden">VILLES</div>
         <div id="lieux" class="sectionMenu hidden">@include('admin.composants.GestionLieux')</div>

@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const statutColor = statutsIcons[usager.statut_id] ? statutsIcons[usager.statut_id].color : "text-gray-500";
 
                     contenuHtml += `
-                    <div class="bg-c3 border-2 shadow-md flex max-w-7xl w-full h-24 justify-center items-center p-2 lg:p-4">
+                    <div class="bg-c3 border-2 shadow-md flex max-w-7xl w-full h-28 justify-center items-center p-2 lg:p-4">
                         <!-- Rôle -->
                         <div class="flex w-1/4 justify-start md:pl-8 lg:pl-16 font-bold text-base lg:text-xl uppercase items-center">
                             <span class="iconify size-10 lg:size-8 text-c1" data-icon="${roleIcon}"></span>
@@ -126,13 +126,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <!-- Actions -->
                         <div class="flex w-1/4 justify-center pl-4 lg:pl-16 font-bold text-lg gap-x-1 uppercase items-center flex-col md:flex-row">
-                            <button class="modifier-btn border-2 p-1 lg:p-2 rounded flex hover:text-c3 hover:bg-c1 transition text-c1"
+                            <button class="modifier-btn items-center border-2 p-1 lg:p-2 rounded flex hover:text-c3 hover:bg-c1 transition text-c1"
                                 data-id="${usager.id}"
                                 data-role="${usager.role_id}"
                                 data-statut="${usager.statut_id}"
                                 data-email="${usager.courriel}">
                                 <span class="hidden lg:block text-xl">${Lang.get('strings.modifier')}</span>
-                                <span class="iconify size-8 lg:size-6" data-icon="mdi:pen"></span>
+                                <span class="iconify size-6 " data-icon="mingcute-edit-line"></span>
                             </button>
                         </div>
                     </div>`;
