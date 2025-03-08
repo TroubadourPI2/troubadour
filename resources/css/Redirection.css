@@ -66,6 +66,26 @@ body {
   animation: vol 10s ease-in-out infinite;
 }
 
+  .oeil {
+    width: 120px;          
+    height: 120px;         
+    border-radius: 50%;   
+    overflow: hidden;     
+    border: 2px solid #000;
+    position: relative;
+}
+
+
+.imageOeil {
+    position: absolute;   
+    top: 0;
+    left: 0;
+    width: 150px; 
+    height: auto;
+    transform: translate(0, 0);
+    transition: transform 0.06s ease-out;
+}
+
 /* PAGE 429 */
 .erreur-429 {
   background-color: #1e3142; 

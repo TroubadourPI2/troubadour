@@ -12,7 +12,7 @@
     </div>
 
     <div class="flex w-full flex-col justify-center items-center">
-        <div id="pagination" class="mt-4 max-w-7xl w-full flex justify-center items-center gap-x-2"></div>
+        <div id="paginationUsagers" class="mt-4 max-w-7xl w-full flex justify-center items-center gap-x-2"></div>
         <div class="flex justify-end w-full max-w-7xl py-4">
             <label for="usagersParPage" class="mr-2 font-bold text-lg">{{ __('afficher') }}</label>
             <select id="usagersParPage" class="rounded border-2 p-1">

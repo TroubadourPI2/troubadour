@@ -155,7 +155,10 @@
   "modifier":"Edit",
   "pasResultatFiltreUsagers":"No users were found with these filters.",
   "inconnu":"Unknown",
-
+  
+  "erreur403Texte": "You are not authorized to perform this action",
+  "erreur403": "Erreur 403 - Action not authorized",
   "erreur429" : "Error 429 - Too many requests",
   "erreur429Texte" : "We’re sorry, but you have sent too many requests to us recently. Please try again later."
+
 }
