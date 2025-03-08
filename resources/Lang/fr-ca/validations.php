@@ -61,4 +61,10 @@ return [
     'photoASupprimerExiste'    => 'Une des photos sélectionnées pour la suppression est invalide.',
     'positionsSequentielle' => 'Les positions doivent être une suite séquentielle sans trou (1, 2, …, ).',
 
+    'FavoriIdExiste'      => 'Le favori sélectionné est invalide.',
+    'FavoriLieuIdExiste'      => 'Le lieu sélectionné est invalide.',
+    'FavoriUsagerIdExiste'      => 'L\'usager sélectionné est invalide.',
+
+
+
 ];
