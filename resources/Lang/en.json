@@ -148,11 +148,14 @@
   "tousLesRoles" : "All the roles",
   "tousLesStatus" : "All status options",
   "enAttente" : "Pending",
-    "rechercheAdminDemande": "Search by name, first name, or email",
-      "afficher":"Display",
+  "rechercheAdminDemande": "Search by name, first name, or email",
+  "afficher":"Display",
   "statut":"Status",
   "action":"Action",
   "modifier":"Edit",
   "pasResultatFiltreUsagers":"No users were found with these filters.",
-    "inconnu":"Unknown"
+  "inconnu":"Unknown",
+
+  "erreur429" : "Error 429 - Too many requests",
+  "erreur429Texte" : "We’re sorry, but you have sent too many requests to us recently. Please try again later."
 }
