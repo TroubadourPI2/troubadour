@@ -7,6 +7,7 @@ use App\Models\LieuActivite;
 use App\Models\Activite;
 use App\Models\Lieu;
 use App\Models\Quartier;
+use App\Models\LieuFavori;
 use Illuminate\Http\Request;
 use App\Models\Ville;
 use Exception;
@@ -88,14 +89,17 @@ class LieuxController extends Controller
     {
         try {
             $lieu = new Lieu();
+            $utilisateur = auth()->user(); 
+            $estAdmin = $utilisateur->role->nom === 'Admin';
+
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = (strtoupper($request->codePostal));
             $lieu->nomEtablissement = $request->nomEtablissement;
 
-            $photoDefautPath = 'lieux/image_defaut.png';
-            if (!Storage::disk('DevActivite')->exists($photoDefautPath)) {
-                Storage::disk('DevActivite')->put($photoDefautPath, file_get_contents(public_path('Images/lieux/image_defaut.png')));
+            $photoCheminParDefaut = 'lieux/image_defaut.png';
+            if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
+                Storage::disk('DevActivite')->put($photoCheminParDefaut, file_get_contents(public_path('Images/lieux/image_defaut.png')));
             }
 
             if ($request->hasFile('photoLieu')) {
@@ -103,7 +107,7 @@ class LieuxController extends Controller
                 $chemin = $file->store('lieux', 'DevActivite');
                 $lieu->photoLieu = $chemin;
             } else {
-                $lieu->photoLieu = $photoDefautPath;
+                $lieu->photoLieu = $photoCheminParDefaut;
             }
 
             $lieu->siteWeb = $request->siteWeb;
@@ -116,6 +120,9 @@ class LieuxController extends Controller
             $lieu->save();
 
             session()->flash('formulaireAjouterLieuValide', 'true');
+            Log::debug($estAdmin);
+            if($estAdmin)
+                return redirect()->route('admin');
             return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
             Log::error("Erreur lors de l'ajout d'un lieu: " . $e->getMessage());
@@ -127,14 +134,16 @@ class LieuxController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function ZoomLieu(string $id)
     {
-
+        $usager = Auth::user(); 
         $lieuActuel = Lieu::findOrFail($id);
         $idActivites = LieuActivite::Where("lieu_id", $id)->pluck("activite_id");
         $activites = Activite::whereIn("id", $idActivites)->where('actif', 1)->get();
 
-        return view('zoomLieu', compact('lieuActuel', 'activites'));
+        $favoris = LieuFavori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();  
+
+        return view('zoomLieu', compact('usager', 'lieuActuel', 'activites', 'favoris'));
     }
 
     public function ObtenirUnLieu(Request $request)
@@ -156,20 +165,22 @@ class LieuxController extends Controller
 
     public function ModifierUnLieu(LieuRequest $request, string $id)
     {
+        Log::debug($request);
         $lieu = Lieu::findOrFail($id);
+      
         $utilisateur = auth()->user();
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
             return redirect()->route('usagerLieux.afficher');
         }
 
         try {
-            $photoDefautPath = 'lieux/image_defaut.png';
-            if (!Storage::disk('DevActivite')->exists($photoDefautPath)) {
-                Storage::disk('DevActivite')->put($photoDefautPath, file_get_contents(public_path('Images/lieux/image_defaut.png')));
+            $photoCheminParDefaut = 'lieux/image_defaut.png';
+            if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
+                Storage::disk('DevActivite')->put($photoCheminParDefaut, file_get_contents(public_path('Images/lieux/image_defaut.png')));
             }
-            $lieu->actif = $request->actif;
+            //$lieu->actif = $request->actif;
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = $request->codePostal;
@@ -180,8 +191,15 @@ class LieuxController extends Controller
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
 
+            if ($request->has('photoLieuSupprime') && $request->photoLieuSupprime == "1") {
+                if ($lieu->photoLieu && $lieu->photoLieu !== $photoCheminParDefaut) {
+                    Storage::disk('DevActivite')->delete($lieu->photoLieu);
+                }
+                $lieu->photoLieu = $photoCheminParDefaut; 
+            }
+
             if ($request->hasFile('photoLieu')) {
-                if ($lieu->photoLieu && $lieu->photoLieu !== $photoDefautPath) {
+                if ($lieu->photoLieu && $lieu->photoLieu !== $photoCheminParDefaut) {
                     Storage::disk('DevActivite')->delete($lieu->photoLieu);
                 }
 
@@ -190,15 +208,20 @@ class LieuxController extends Controller
                 $lieu->photoLieu = $chemin;
             }
 
-            if (!$request->hasFile('photoLieu') && $lieu->photoLieu === $photoDefautPath) {
-                $lieu->photoLieu = $photoDefautPath;
+            if (!$request->hasFile('photoLieu') && $lieu->photoLieu === $photoCheminParDefaut) {
+                $lieu->photoLieu = $photoCheminParDefaut;
             }
 
-            // Sauvegarde des modifications
             $lieu->save();
 
             session()->flash('formulaireModifierLieuValide', 'true');
-            return redirect()->route('usagerLieux.afficher');
+
+            if($estAdmin){
+                 return redirect()->route('admin');
+            }
+               
+
+           return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
             Log::error(__('erreur') . $e->getMessage());
             return redirect()->route('usagerLieux.afficher')->with('error',  __('erreurGenerale'));
@@ -209,7 +232,7 @@ class LieuxController extends Controller
     {
         $lieu = Lieu::findOrFail($id);
         $utilisateur = auth()->user();
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' => __('erreur')], 403);
@@ -223,7 +246,6 @@ class LieuxController extends Controller
             ]);
     
             if (!$request->boolean('actif')) {
-                // 1. Récupérer toutes les activités associées au lieu
                 $activites = Activite::whereHas('lieux', function ($query) use ($id) {
                     $query->where('lieux.id', $id);
                 })->get();
@@ -258,7 +280,7 @@ class LieuxController extends Controller
     {
         $lieu = Lieu::findOrFail($id);
         $utilisateur = auth()->user();
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' =>  __('erreur')], 403);

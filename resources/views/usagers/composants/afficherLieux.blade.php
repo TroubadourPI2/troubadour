@@ -59,7 +59,7 @@
                                             {{ $lieu->rue }}
                                         </p>
                                         <p><strong>{{ trans_choice('ville', 1) }} :</strong>
-                                            {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal : '' }}
+                                            {{ $lieu->ville()?->nom }} . , . {{ $lieu->codePostal }}
                                         </p>
                                         <p><strong>{{ __('pays') }} :</strong> {{ $lieu->pays()?->nom }}</p>
                                         <p><strong>{{ __('quartier') }} :</strong> {{ $lieu->quartier->nom }}</p>
@@ -116,8 +116,9 @@
                                 </div>
                             </label>
                         </div>
-
-                        <h5 class="text-xl font-bold uppercase truncate">{{ $lieu->nomEtablissement }}</h5>
+                        <div class="w-full">
+                            <h5 class="text-xl font-bold uppercase w-48 truncate">{{ $lieu->nomEtablissement }}</h5>
+                        </div>
 
                         <div>
                             <div class="uppercase underline text-lg font-semibold">{{ __('description') }}</div>
@@ -129,7 +130,7 @@
                                 <p><strong>{{ __('adresse') }} :</strong> {{ $lieu->noCivic }}, {{ $lieu->rue }}
                                 </p>
                                 <p><strong>{{ trans_choice('ville', 1) }} :</strong>
-                                    {{ $lieu->ville()?->nom }}{{ $lieu->codePostal ? ', ' . $lieu->codePostal : '' }}
+                                    {{ $lieu->ville()?->nom }} {{ $lieu->codePostal }}
                                 </p>
                                 <p><strong>{{ __('pays') }} :</strong> {{ $lieu->pays()?->nom }}</p>
                                 <p><strong>{{ __('quartier') }} :</strong> {{ $lieu->quartier->nom }}</p>

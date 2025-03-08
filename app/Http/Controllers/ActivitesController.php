@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Activite;
+use App\Models\LieuActivite;
 use App\Models\Lieu;
 use App\Models\Photo;
-use App\Models\Activite;
+use Illuminate\Support\Facades\Auth;
+use Exception;
+use Illuminate\Http\Request;
 use App\Models\TypeActivite;
-use App\Models\LieuActivite;
 use App\Http\Requests\ActiviteRequest;
+use App\Models\ActiviteFavori;
+
 class ActivitesController extends Controller
 {
  
@@ -72,7 +76,7 @@ class ActivitesController extends Controller
     try {
         $activite = Activite::findOrFail($id);
         $utilisateur = auth()->user(); 
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
@@ -96,7 +100,7 @@ class ActivitesController extends Controller
         try {
             $activite = Activite::findOrFail($id);
             $utilisateur = auth()->user(); 
-            $estAdmin = $utilisateur->role->nom === 'admin';
+            $estAdmin = $utilisateur->role->nom === 'Admin';
             $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
             if (!$estProprietaire && !$estAdmin) {
                 return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
@@ -184,7 +188,7 @@ class ActivitesController extends Controller
    
         $activite = Activite::findOrFail($id);
         $utilisateur = auth()->user(); 
-        $estAdmin = $utilisateur->role->nom === 'admin';
+        $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
         if (!$estProprietaire && !$estAdmin) {
             return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
@@ -202,10 +206,19 @@ class ActivitesController extends Controller
             'message' => "Erreur lors de la mise à jour du statut de l'activité : " . $e->getMessage()
         ], 500);
     }
+
 }
 
-    
+
+public function ZoomActivite(string $id, string $idLieu)
+{
+    $activite = Activite::findOrFail($id);
+    $lieu = Lieu::findOrFail($idLieu);
+    $usager = Auth::user(); 
+
+    $favoris = ActiviteFavori::where("activite_id",$id)->where("usager_id", Auth::id(),)->first();
 
 
-
+    return view('zoomActivite', compact('activite', 'lieu', 'usager','favoris'));
+}
 }

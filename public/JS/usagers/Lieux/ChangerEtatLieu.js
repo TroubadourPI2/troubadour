@@ -2,10 +2,12 @@ let boutonsBascule;
 let textesActifs;
 
 document.addEventListener('DOMContentLoaded', function () {
-    Lang.setLocale(document.body.getAttribute('data-locale'));
-    ObtenirElementsDesactiver();
-    AjouterDesactiverListeners();
-    MiseAJourStatutLieu();
+    setTimeout(() => {
+        ObtenirElementsDesactiver();
+        AjouterDesactiverListeners();
+        MiseAJourStatutLieu();
+    }, 2000); 
+ 
 });
 
 function ObtenirElementsDesactiver() {
@@ -21,14 +23,7 @@ function AjouterDesactiverListeners() {
                 : Lang.get('strings.desactiver');
             const lieuId = boutonBascule.getAttribute('data-lieuId');
             const nomEtablissement = boutonBascule.getAttribute('data-nomLieu');
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true
-            });
-
+       
             Swal.fire({
                 title: Lang.get('strings.confirmation'),
                 text: Lang.get('strings.confirmationChangerEtat', {
@@ -73,17 +68,16 @@ function AjouterDesactiverListeners() {
                                 icon: 'error',
                                 confirmButtonText: 'Ok'
                             });
-                            boutonBascule.checked = !boutonBascule.checked;
+                            boutonBascule.checked = boutonBascule.checked;
                         });
                 } else {
-                    console.log('ici');
                     boutonBascule.checked = !boutonBascule.checked;
-                    const texteActif = document.querySelector(
-                        `.texteActif[data-lieuId="${lieuId}"]`
-                    );
-                    texteActif.textContent = boutonBascule.checked
-                        ? Lang.get('strings.actif')
-                        : Lang.get('strings.inactif');
+                    // const texteActif = document.querySelector(
+                    //     `.texteActif[data-lieuId="${lieuId}"]`
+                    // );
+                    // texteActif.textContent = boutonBascule.checked
+                    //     ? Lang.get('strings.actif')
+                    //     : Lang.get('strings.inactif');
                 }
             });
         });
@@ -91,7 +85,6 @@ function AjouterDesactiverListeners() {
 }
 
 function MiseAJourStatutLieu() {
-    console.log('YO');
     boutonsBascule.forEach((boutonBascule) => {
         const lieuId = boutonBascule.getAttribute('data-lieuId');
         const texteActif = document.querySelector(

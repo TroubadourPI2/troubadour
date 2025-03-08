@@ -103,7 +103,7 @@
         </div>
 
         <div id="menuMobile"
-            class="fixed inset-0 z-50 bg-c3 transform -translate-x-full transition-transform duration-300 lg:hidden ">
+            class="fixed inset-0 z-50 overflow-y-scroll bg-c3 transform -translate-x-full transition-transform duration-300 lg:hidden ">
             <div class="p-4 flex w-full h-full flex-col">
 
                 <div class="flex items-center w-full">
@@ -262,7 +262,7 @@
 </body>
 <script defer src="{{ asset('js/translations.js') }}"></script>
 <script src="{{ asset('js/usagers/usagers/Connexion.js') }}" defer></script>
-<script src="{{ asset('js/usagers/usagers/Inscription.js') }}"defer></script>
+<script src="{{ asset('js/usagers/usagers/Inscription.js') }}" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="//unpkg.com/alpinejs" defer></script>

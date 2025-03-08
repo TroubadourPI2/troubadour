@@ -2,12 +2,11 @@ let boutonsSupprimer;
 let success;
 
 document.addEventListener("DOMContentLoaded", function () {
-    //configure la lang pour le fichier JS
-    Lang.setLocale(document.body.getAttribute('data-locale'));
-    ObtenirElementsSupprimer();
-    AjouterSupprimerListeners();
+    setTimeout(() => {
+        ObtenirElementsSupprimer();
+        AjouterSupprimerListeners();
+    }, 2000); 
 });
-
 
 function ObtenirElementsSupprimer() {
     boutonsSupprimer = document.querySelectorAll(".boutonSupprimer");
@@ -88,7 +87,3 @@ function AjouterSupprimerListeners() {
         });
     });
 }
-
-
-
-
