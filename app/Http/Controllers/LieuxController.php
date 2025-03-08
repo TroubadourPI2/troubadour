@@ -162,21 +162,19 @@ class LieuxController extends Controller
         return compact('quartiers');
     }
 
-    public function historique()
-    {
-        $recherches = Recherche::all();
-        return view('historiqueRecherche', compact('recherches'));
-    }
     public function supprimerRecherche($id)
     {
         try{
             $recherche = Recherche::findOrFail($id);
             $recherche->delete();
-            return response()->json(["success" => true, "message" => "Recherche supprimée avec succès."]);
+            // return response()->json(["success" => true, "message" => "Recherche supprimée avec succès."]);
+            return redirect()->route('admin');
         }
         catch(\Exception $e){
             Log::error("Erreur lors de la suppression de la recherche : " . $e->getMessage());
-            return response()->json(["success" => false, "message" => "Erreur lors de la suppression."], 500);
+
+            return redirect()->route('admin');
+            // return response()->json(["success" => false, "message" => "Erreur lors de la suppression."], 500);
         }
     }
 

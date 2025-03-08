@@ -26,12 +26,18 @@
                 <span class="hidden sm:inline">{{ __('lieux') }}</span>
             </button>
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
+            <button id="boutonRecherches" data-section="recherches"
+                class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
+                <span class="iconify size-8 sm:hidden" data-icon="mingcute:list-search-line"></span>
+                <span class="hidden sm:inline">{{ __('Recherches') }}</span>
+            </button>
         </div>
         {{-- //TODO Importer les composants selon le menu choisi --}}
 
         <div id="demandes" class="sectionMenu">@include('admin.composants.Demandes')</div>
         <div id="villes" class="sectionMenu hidden">VILLES</div>
         <div id="lieux" class="sectionMenu hidden">@include('admin.composants.GestionLieux')</div>
+        <div id="recherches" class="sectionMenu hidden">@include('admin.composants.historiqueRecherche')</div>
     </div>
 
 @endsection

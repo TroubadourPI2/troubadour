@@ -11,14 +11,17 @@ use App\Http\Requests\UsagerRequest;
 use App\Models\Usager;
 use App\Models\RoleUsager;
 use App\Models\Statut;
+use App\Models\Recherche;
+
 class AdministrateursController extends Controller
 {
     public function Afficher()
     {
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
+        $termesRecherche = Recherche::all()->sortByDesc('nbOccurences');
 
-        return view('admin.Afficher', compact('villes', 'typesLieu'));
+        return view('admin.Afficher', compact('villes', 'typesLieu', 'termesRecherche'));
     }
 
     public function Recherche(Request $request)
