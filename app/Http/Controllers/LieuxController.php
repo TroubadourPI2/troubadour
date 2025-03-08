@@ -97,9 +97,9 @@ class LieuxController extends Controller
             $lieu->codePostal = (strtoupper($request->codePostal));
             $lieu->nomEtablissement = $request->nomEtablissement;
 
-            $photoDefautPath = 'lieux/image_defaut.png';
-            if (!Storage::disk('DevActivite')->exists($photoDefautPath)) {
-                Storage::disk('DevActivite')->put($photoDefautPath, file_get_contents(public_path('Images/lieux/image_defaut.png')));
+            $photoCheminParDefaut = 'lieux/image_defaut.png';
+            if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
+                Storage::disk('DevActivite')->put($photoCheminParDefaut, file_get_contents(public_path('Images/lieux/image_defaut.png')));
             }
 
             if ($request->hasFile('photoLieu')) {
@@ -107,7 +107,7 @@ class LieuxController extends Controller
                 $chemin = $file->store('lieux', 'DevActivite');
                 $lieu->photoLieu = $chemin;
             } else {
-                $lieu->photoLieu = $photoDefautPath;
+                $lieu->photoLieu = $photoCheminParDefaut;
             }
 
             $lieu->siteWeb = $request->siteWeb;
@@ -176,9 +176,9 @@ class LieuxController extends Controller
         }
 
         try {
-            $photoDefautPath = 'lieux/image_defaut.png';
-            if (!Storage::disk('DevActivite')->exists($photoDefautPath)) {
-                Storage::disk('DevActivite')->put($photoDefautPath, file_get_contents(public_path('Images/lieux/image_defaut.png')));
+            $photoCheminParDefaut = 'lieux/image_defaut.png';
+            if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
+                Storage::disk('DevActivite')->put($photoCheminParDefaut, file_get_contents(public_path('Images/lieux/image_defaut.png')));
             }
             //$lieu->actif = $request->actif;
             $lieu->rue = $request->rue;
@@ -192,14 +192,14 @@ class LieuxController extends Controller
             $lieu->typeLieu_id = $request->selectTypeLieu;
 
             if ($request->has('photoLieuSupprime') && $request->photoLieuSupprime == "1") {
-                if ($lieu->photoLieu && $lieu->photoLieu !== $photoDefautPath) {
+                if ($lieu->photoLieu && $lieu->photoLieu !== $photoCheminParDefaut) {
                     Storage::disk('DevActivite')->delete($lieu->photoLieu);
                 }
-                $lieu->photoLieu = $photoDefautPath; 
+                $lieu->photoLieu = $photoCheminParDefaut; 
             }
 
             if ($request->hasFile('photoLieu')) {
-                if ($lieu->photoLieu && $lieu->photoLieu !== $photoDefautPath) {
+                if ($lieu->photoLieu && $lieu->photoLieu !== $photoCheminParDefaut) {
                     Storage::disk('DevActivite')->delete($lieu->photoLieu);
                 }
 
@@ -208,8 +208,8 @@ class LieuxController extends Controller
                 $lieu->photoLieu = $chemin;
             }
 
-            if (!$request->hasFile('photoLieu') && $lieu->photoLieu === $photoDefautPath) {
-                $lieu->photoLieu = $photoDefautPath;
+            if (!$request->hasFile('photoLieu') && $lieu->photoLieu === $photoCheminParDefaut) {
+                $lieu->photoLieu = $photoCheminParDefaut;
             }
 
             $lieu->save();
