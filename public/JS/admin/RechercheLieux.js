@@ -129,7 +129,7 @@ function AfficherLieux(lieux, majStatut) {
             <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg ">
                 <div class="carteLieuxMobile relative w-full h-96 mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl">
                     <div class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden] ${!lieu.actif ? 'bg-[#B0B7B7]' : ''}">
-                        <img class="object-cover w-full h-72 rounded-t-lg" src="${lieu.photo_lieu_url}" alt="${lieu.nomEtablissement}">
+                        <img class="object-cover w-full h-72 rounded-t-lg" src="${lieu.photoLieu}" alt="${lieu.nomEtablissement}">
                         <h5 class="text-xl font-bold uppercase p-2 text-center h-full flex items-center">${lieu.nomEtablissement}</h5>
                     </div>
                     <div class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
@@ -197,7 +197,7 @@ function AfficherLieux(lieux, majStatut) {
         const carteWeb = `
             <div  class="carteWeb  flex-col sm:flex-row text-c1 rounded-lg shadow-md bg-white w-full max-w-4xl mx-auto my-4 hidden sm:flex h-[68vh] hover:shadow-2xl transition">
                 <div class="w-full sm:w-1/2 rounded-l-lg h-full p-4">
-                    <img class="object-cover w-full h-full rounded" src="${lieu.photo_lieu_url}" alt="${lieu.nomEtablissement}">
+                    <img class="object-cover w-full h-full rounded" src="${lieu.photoLieu}" alt="${lieu.nomEtablissement}">
                 </div>
                 <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-4 relative">
                     <div class="flex justify-end gap-2">
