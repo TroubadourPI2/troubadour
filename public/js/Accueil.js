@@ -8,7 +8,7 @@ function CreerCarte(lieu) {
     containerImage.className = "w-full flex h-52 overflow-hidden rounded-md";
     
     const image = document.createElement("img");
-    image.src = lieu.photoLieu || "images/Lieux/image_defaut.png";
+    image.src = lieu.photoLieu ? `storage/Images/${lieu.photoLieu}` : "images/Lieux/image_defaut.png";
     image.alt = lieu.nomEtablissement || "Image du lieu";
 
     image.className = "w-full h-52 object-cover";
@@ -43,7 +43,7 @@ function CreerCarte(lieu) {
   
 
     carte.addEventListener("click", function() {
-      window.location.href = `/lieu/${lieu.id}`;
+      window.location.href = `/lieu/zoom/${lieu.id}`;
     });
   
     return carte;
@@ -57,13 +57,13 @@ function CreerCarteDerniere(type) {
 
     const image = document.createElement("img");
     image.src = "images/Logos/logoC1.svg";
-    image.alt = (type === "voirPlus") ? "Voir plus" : "Voir d'autres villes";
+    image.alt = (type === "voirPlus") ? Lang.get('strings.voirPlus') : Lang.get('strings.autreVille');
     image.className = "w-full h-52 object-cover";
     carte.appendChild(image);
 
     const titre = document.createElement("span");
-    titre.textContent = (type === "voirPlus") ? "VOIR PLUS ..." : "VOIR D'AUTRES VILLES";
-    titre.className = "text-c1 font-barlow text-xl text-center font-semibold";
+    titre.textContent = (type === "voirPlus") ? Lang.get('strings.voirPlus') : Lang.get('strings.autreVille');
+    titre.className = "text-c1 font-barlow text-xl text-center font-semibold uppercase";
     carte.appendChild(titre);
 
     carte.addEventListener("click", function() {
@@ -76,6 +76,9 @@ function CreerCarteDerniere(type) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
+    //configure la lang pour le fichier JS
+    Lang.setLocale(document.body.getAttribute('data-locale'));
+
     const boutonVilles = document.getElementById("activerSection");
     const villeSpan = document.getElementById("villeSpan");
     const sectionCacher = document.getElementById("sectionCacher");
@@ -114,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }, donnee.lieux.length * 300);
                 } else {
                  
-                    villeSpan.textContent = "Bientôt disponible dans votre ville";
+                    villeSpan.textContent = Lang.get('strings.bientotVille');
                     conteneurCarte.innerHTML = "";
                     const carteVoirDautres = CreerCarteDerniere("voirDautresVilles");
                     conteneurCarte.appendChild(carteVoirDautres);

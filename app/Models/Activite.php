@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Activite extends Model
 {
@@ -18,6 +19,7 @@ class Activite extends Model
         'typeActivite_id'
     ];
 
+    
     public function lieux() {
         return $this->belongsToMany(Lieu::class, 'LieuActivites', 'activite_id', 'lieu_id');
     }
@@ -31,15 +33,17 @@ class Activite extends Model
         return $this->hasMany(Photo::class, 'activite_id')->orderBy('position');
     }
     public function getPhotosJsonAttribute()
-    {
-    return $this->photos
-        ->pluck('chemin')
-        ->map(function($chemin) {
-            return asset($chemin);
-        })
-        ->values()
-        ->toJson();
+    {   //TODO A CHANGER EN PROD POUR LE BON CHEMIN
+        return $this->photos
+            ->map(function ($photo) {
+        
+                return asset('storage/Images/' . $photo->chemin);
+            })
+            ->values()
+            ->toJson();
+            
     }
+    
 
     public function getLieuIdsAttribute()
     {
