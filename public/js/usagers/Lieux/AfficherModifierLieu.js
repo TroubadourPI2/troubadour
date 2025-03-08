@@ -13,7 +13,6 @@ let lieuSelectionne;
 let statutLieuCache;
 
 document.addEventListener('DOMContentLoaded', function () {
-    Lang.setLocale(document.body.getAttribute('data-locale'));
     setTimeout(() => {
         ObtenirElementsModifier();
         AjouterModifierListeners();

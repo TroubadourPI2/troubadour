@@ -1,37 +1,164 @@
-
 @keyframes animationCiel {
-    0%, 100% { background: linear-gradient(to bottom, #87CEEB, #ffffff); }
-    50% { background: linear-gradient(to bottom, #6EC6FF, #E0F7FA); }
-  }
-  body {
-    animation: animationCiel 10s infinite alternate;
+
+  0%,
+  100% {
+    background: linear-gradient(to bottom, #87CEEB, #ffffff);
   }
 
+  50% {
+    background: linear-gradient(to bottom, #6EC6FF, #E0F7FA);
+  }
+}
 
-  @keyframes deplacementNuages {
-    0% { transform: translateX(-100vw); }
-    100% { transform: translateX(100vw); }
-  }
-  .nuage {
-    position: absolute;
-    top: 10%;
-    width: 120px;
-    opacity: 0.7;
-    animation: deplacementNuages 25s linear infinite;
-  }
-  .nuage:nth-child(2) { top: 30%; animation-duration: 30s; }
-  .nuage:nth-child(3) { top: 50%; animation-duration: 20s; }
+body {
+  animation: animationCiel 10s infinite alternate;
+}
 
 
-  @keyframes vol {
-    0% { transform: translateX(-10%) translateY(10px); }
-    50% { transform: translateX(50vw) translateY(-30px); }
-    100% { transform: translateX(110vw) translateY(10px); }
+@keyframes deplacementNuages {
+  0% {
+    transform: translateX(-100vw);
   }
-  .montgolfiere {
-    position: absolute;
-    top: 15%;
-    left: -150px;
-    width: 100px;
-    animation: vol 10s ease-in-out infinite;
+
+  100% {
+    transform: translateX(100vw);
   }
+}
+
+.nuage {
+  position: absolute;
+  top: 10%;
+  width: 120px;
+  opacity: 0.7;
+  animation: deplacementNuages 25s linear infinite;
+}
+
+.nuage:nth-child(2) {
+  top: 30%;
+  animation-duration: 30s;
+}
+
+.nuage:nth-child(3) {
+  top: 50%;
+  animation-duration: 20s;
+}
+
+
+@keyframes vol {
+  0% {
+    transform: translateX(-10%) translateY(10px);
+  }
+
+  50% {
+    transform: translateX(50vw) translateY(-30px);
+  }
+
+  100% {
+    transform: translateX(110vw) translateY(10px);
+  }
+}
+
+.montgolfiere {
+  position: absolute;
+  top: 15%;
+  left: -150px;
+  width: 100px;
+  animation: vol 10s ease-in-out infinite;
+}
+
+  .oeil {
+    width: 120px;          
+    height: 120px;         
+    border-radius: 50%;   
+    overflow: hidden;     
+    border: 2px solid #000;
+    position: relative;
+}
+
+
+.imageOeil {
+    position: absolute;   
+    top: 0;
+    left: 0;
+    width: 150px; 
+    height: auto;
+    transform: translate(0, 0);
+    transition: transform 0.06s ease-out;
+}
+
+/* PAGE 429 */
+.erreur-429 {
+  background-color: #1e3142; 
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+.pluieConteneur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+@keyframes pluie {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.eclair {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  animation: lightning 8s infinite;
+}
+
+@keyframes eclair {
+  0%, 95%, 98%, 100% {
+    opacity: 0;
+  }
+  96%, 99% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 10px 5px rgba(231, 76, 60, 0.4);
+  }
+}
+
+@media (max-width: 768px) {
+  .erreurConteneur {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .erreurConteneur {
+    padding: 1rem;
+  }
+}
+
+.pluie {
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(120, 180, 255, 0), rgba(120, 180, 255, 0.5));
+  width: 2px;
+  opacity: 0.8;
+  top: -20px;
+}

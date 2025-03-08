@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
             document.getElementById('usagersContainer').innerHTML = contenuHtml;
-            document.getElementById('pagination').innerHTML = GenererPagination(donneesUsagers);
+            document.getElementById('paginationUsagers').innerHTML = GenererPagination(donneesUsagers);
         })
         .catch(error => {
             console.error(error);
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    document.getElementById('pagination').addEventListener('click', function(e) {
+    document.getElementById('paginationUsagers').addEventListener('click', function(e) {
         const pageBtn = e.target.closest('.page-btn');
         if (pageBtn && pageBtn.hasAttribute('data-page')) {
             const page = parseInt(pageBtn.getAttribute('data-page'));
