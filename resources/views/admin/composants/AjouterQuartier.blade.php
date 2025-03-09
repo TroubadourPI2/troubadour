@@ -1,5 +1,5 @@
 <div class="flex w-full h-full flex-col" id="ajouterQuartier">
-    <button id="boutonAjouterQuartier"
+    <button id="boutonRetourQuartier"
         class="rounded-full w-fit items-center uppercase text-lg flex leading-tight border-c1 border-2 text-c1 bg-c2 hover:bg-c3 pr-4">
             <span class="iconify text-c1 sm:size-8 size-4 sm:ml-2 font-semibold" data-icon="ion:arrow-back-outline"
             data-inline="false"></span>
@@ -7,11 +7,11 @@
     </button>
 
 
-    <form action="{{ route('ajouter.quartier') }}"  method="POST">
+    <form action="{{ route('ajouter.quartier')}}"  method="post">
         @csrf
 
-        <div class="flex flex-row">
-            <input name="nom" value=""
+        <div class="flex flex-row gap-5">
+            <input name="nom" placeholder="nom du quartier"
             class="block w-1/2 rounded-lg p-1 sm:p-2 font-medium">
 
             <select name="actif"
@@ -20,20 +20,25 @@
                 <option value="1"> {{ __('inactif') }}</option>
             </select>
 
-            <select name="ville_id" id="selectVille" 
+            <select name="ville_id" id="selectVilleAjoutQuartier" 
             class="block w-fit rounded-lg p-1 sm:p-2 font-medium">
-                @foreach ($villes as $ville)
-                    <option value="{{ $ville->id }}"
-                        {{ $ville->nom }}
-                    </option>
-                @endforeach
+                <option></option>
             </select>
         </div>
 
         <div>
-        <button type="submit" class="rounded-full w-fit items-center uppercase text-lg flex leading-tight border-c1 border-2 text-c1 bg-c2 hover:bg-c3 px-4"> Enregistrer </button>
+        <button type="submit" class="rounded-full w-fit items-center uppercase text-lg flex leading-tight border-c1 border-2 text-c1 bg-c2 hover:bg-c3 px-4"> {{ __('ajouter') }} </button>
         </div>
     </form> 
 </div>
 
-<script></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("boutonRetourQuartier").addEventListener("click", function () {
+                let affichage = document.getElementById("afficherQuartiers"); // Replace with the actual ID
+                let ajout = document.getElementById("ajouterQuartier"); // Replace with the actual ID
+                ajout.classList.add("hidden"); // Hide first div
+                affichage.classList.remove("hidden"); // Show second div
+            });
+        });
+    </script>

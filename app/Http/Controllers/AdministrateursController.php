@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lieu;
 use App\Models\Ville;
+use App\Models\Quartier;
 use App\Models\TypeLieu;
 use Illuminate\Support\Facades\Log;
 
@@ -21,6 +22,11 @@ class AdministrateursController extends Controller
     public function ObtenirVille() {
         $villes = Ville::all();
         return response()->json($villes);
+    }
+
+    public function ObtenirQuartier() {
+        $quartiers = Quartier::all();
+        return response()->json($quartiers);
     }
 
     public function Recherche(Request $request)

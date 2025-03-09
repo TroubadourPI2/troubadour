@@ -40,7 +40,7 @@ Route::middleware(Langue::class)
 
         Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'ZoomActivite'])->name('Activite.zoom');
 
-        Route::post('/admin/ajoutQuartier', [QuartiersController::class, 'AjouterUnQuartier'])->name('ajouter.quartier')->middleware('VerifierRole:Admin');
+        Route::post('/admin/ajouterQuartier', [QuartiersController::class, 'AjouterUnQuartier'])->name('ajouter.quartier')->middleware('VerifierRole:Admin');
         Route::post('/admin/supprimerQuartier', [QuartiersController::class, 'SupprimerQuartier'])->name(' ')->middleware('VerifierRole:Admin');  
 
         Route::post('/ajoutFavoriLieu', [UsagersController::class, 'AjouterFavorisLieu'])->name('ajouter.favoris.lieu');  
@@ -76,7 +76,10 @@ Route::middleware(Langue::class)
 
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
 
-        Route::get('/admin/villes', [LieuxController::class, 'ObtenirVille'])->name('admin.Villes')->middleware('VerifierRole:Admin');
+        Route::get('/admin/villes', [AdministrateursController::class, 'ObtenirVille'])->name('admin.Villes')->middleware('VerifierRole:Admin');
+        
+        Route::get('/admin/quartiers', [AdministrateursController::class, 'ObtenirQuartier'])->name('admin.Quartiers')->middleware('VerifierRole:Admin');
+
 
         Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
         Route::get('/admin/recherche/lieux', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche')->middleware('VerifierRole:Admin');

@@ -11,7 +11,7 @@ class QuartierRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class QuartierRequest extends FormRequest
     {
         if ($this->route()->getName() === 'ajouter.quartier') {
             return [
-                'ville_id' => 'required|integer|exists:ville,id',
+                'ville_id' => 'required|integer|exists:villes,id',
                 'actif' => 'required|integer',
                 'nom' => 'required|string',
             ];
