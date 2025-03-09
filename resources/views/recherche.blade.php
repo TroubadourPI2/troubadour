@@ -173,7 +173,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/filtreRecherche.js') }}"></script>
-    <script src="{{ asset('js/modalFiltresMobile.js') }}"></script>
+    <script src="{{ asset('js/Recherche/FiltreRecherche.js') }}"></script>
+    <script src="{{ asset('js/Recherche/ModalFiltresMobile.js') }}"></script>
 
 @endsection

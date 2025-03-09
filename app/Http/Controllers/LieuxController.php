@@ -170,11 +170,11 @@ class LieuxController extends Controller
         try{
             $recherche = Recherche::findOrFail($id);
             $recherche->delete();
-            return redirect()->route('admin');
+            return json_encode(['success' => true, 'message' => 'La recherche a été supprimée']);
         }
         catch(\Exception $e){
             Log::error("Erreur lors de la suppression de la recherche : " . $e->getMessage());
-            return redirect()->route('admin');
+            return json_encode(['success' => false, 'message' => 'Une erreur est survenue lors de la suppression de la recherche' . $e->getMessage()]);
         }
     }
 

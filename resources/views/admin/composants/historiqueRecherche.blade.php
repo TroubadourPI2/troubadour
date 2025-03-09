@@ -19,10 +19,10 @@
                                 <h3 class="text-c3 font-barlow text-md p-1 text-center">{{ $recherche->nbOccurences }}
                                 </h3>
                             </div>
-                            <a href="{{ route('recherche.supprimer', ['id' => $recherche->id]) }}">
+                            <button type="button" id="btnSuppTerme" onClick="supprimerTerme('{{ $recherche->id }}')">
                                 <span class="iconify size-7 text-c1 cursor-pointer" data-icon="mdi:trash"
                                     data-inline="false"></span>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 @endforeach
@@ -30,3 +30,6 @@
         </div>
     </div>
 </div>
+
+{{-- <script src="{{ asset('js/admin/SweetAlertSuppTerme.js') }}"></script> --}}
+
