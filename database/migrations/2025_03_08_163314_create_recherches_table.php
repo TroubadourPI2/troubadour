@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('Recherches', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('villeId')->constrained();
-            $table->foreignId('quartierId')->constrained();
-            $table->string('termeRecherche');
+            $table->foreignId('villeId')->constrained('villes', 'id');
+            $table->foreignId('quartierId')->constrained('quartiers', 'id');
+            $table->string('termeRecherche', 64);
             $table->integer('nbOccurences');
         });
     }

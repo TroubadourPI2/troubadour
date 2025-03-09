@@ -159,27 +159,38 @@ class AdministrateursController extends Controller
     public function ModifierUsagers(UsagerRequest $request, $id)
     {
    
-    $usager = Usager::findOrFail($id);
-    $usager->update([
-        'role_id' => $request->role_id,
-        'statut_id' => $request->statut_id,
-    ]);
+        $usager = Usager::findOrFail($id);
+        $usager->update([
+            'role_id' => $request->role_id,
+            'statut_id' => $request->statut_id,
+        ]);
 
-    return response()->json(['success' => true]);
+        return response()->json(['success' => true]);
+        }
+
+        public function ObtenirRolesEtStatuts()
+        {
+        $roles = RoleUsager::all();
+        $statuts = Statut::all();
+
+        return response()->json([
+            'roles' => $roles,
+            'statuts' => $statuts,
+        ]);
     }
 
-    public function ObtenirRolesEtStatuts()
+
+    public function SupprimerTermeRecherche($id)
     {
-    $roles = RoleUsager::all();
-    $statuts = Statut::all();
+        try{
+            $termeRecherche = Recherche::findOrFail($id);
+            $termeRecherche->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => __('termeRechercheIntrouvable')], 404);
+        }
 
-    return response()->json([
-        'roles' => $roles,
-        'statuts' => $statuts,
-    ]);
     }
-
-
 
     /**
      * Store a newly created resource in storage.

@@ -13,7 +13,7 @@
             @else
                 @foreach ($termesRecherche as $recherche)
                     <div class="flex w-full h-full justify-between items-center bg-c3 rounded-md p-1 px-3">
-                        <h3 class="text-c1 font-barlow text-lg">{{ $recherche->terme_recherche }}</h3>
+                        <h3 class="text-c1 font-barlow text-lg"><?php if(strlen($recherche->termeRecherche) > 15){echo substr($recherche->termeRecherche, 0, 12) . "...";}else{echo $recherche->termeRecherche;}?></h3>
                         <div class="flex flex-row gap-x-4 items-center justify-center">
                             <div class="flex bg-c1 rounded-full justify-center items-center w-20">
                                 <h3 class="text-c3 font-barlow text-md p-1 text-center">{{ $recherche->nbOccurences }}

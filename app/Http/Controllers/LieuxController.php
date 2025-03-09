@@ -77,7 +77,7 @@ class LieuxController extends Controller
                         Log::debug("MANUEL - Recherche contient un script ou une balise HTML");
                         return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
                     }
-                    $recherches = Recherche::where('terme_recherche', $request->txtRecherche)->where('ville_id', $ville)->where('quartier_id', $quartier)->first();
+                    $recherches = Recherche::where('termeRecherche', $request->txtRecherche)->where('villeId', $ville)->where('quartierId', $quartier)->first();
 
                     if($recherches){
                         $recherches->nbOccurences = $recherches->nbOccurences + 1;
@@ -87,9 +87,9 @@ class LieuxController extends Controller
                         Log::debug("MANUEL - Aucune recherche trouvée");
 
                         $nouvelleRecherche = new Recherche();
-                        $nouvelleRecherche->terme_recherche = $request->txtRecherche;
-                        $nouvelleRecherche->ville_id = $ville;
-                        $nouvelleRecherche->quartier_id = $quartier;
+                        $nouvelleRecherche->termeRecherche = $request->txtRecherche;
+                        $nouvelleRecherche->villeId = $ville;
+                        $nouvelleRecherche->quartierId = $quartier;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -97,9 +97,9 @@ class LieuxController extends Controller
                 catch(\Exception $e){
                     if($e->getMessage() == "No query results for model [App\Models\Recherche]"){
                         $nouvelleRecherche = new Recherche();
-                        $nouvelleRecherche->terme_recherche = $request->txtRecherche;
-                        $nouvelleRecherche->ville_id = $ville;
-                        $nouvelleRecherche->quartier_id = $quartier;
+                        $nouvelleRecherche->termeRecherche = $request->txtRecherche;
+                        $nouvelleRecherche->villeId = $ville;
+                        $nouvelleRecherche->quartierId = $quartier;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -110,7 +110,7 @@ class LieuxController extends Controller
             }
             
             $villes     = Ville::all();
-            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
+            $quartiers  = Quartier::where('villeId', $ville)->where('actif', 1)->get();
 
             return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
         }
@@ -124,38 +124,37 @@ class LieuxController extends Controller
     public function Historique()
     {
         $recherches = Recherche::all()->sortByDesc('nbOccurences');
-        $quartiers = Recherche::all()->unique('quartier_id');
+        $quartiers = Recherche::all()->unique('quartierId');
 
         $listeQuartiers = array();
         foreach($quartiers as $quartier){
-            $listeQuartiers[] = Quartier::find($quartier->quartier_id);
+            $listeQuartiers[] = Quartier::find($quartier->quartierId);
         }
 
-        $villes = Recherche::all()->unique('ville_id');
+        $villes = Recherche::all()->unique('villeId');
 
         $listeVilles = array();
         foreach($villes as $ville){
-            $listeVilles[] = Ville::find($ville->ville_id);
+            $listeVilles[] = Ville::find($ville->villeId);
         }
 
         $resultatsVilles = DB::table('recherches')
-            ->join('villes', 'recherches.ville_id', '=', 'villes.id')
-            ->select('villes.id as ville_id', 'villes.nom as nom_ville', DB::raw('count(*) as total'))
+            ->join('villes', 'recherches.villeId', '=', 'villes.id')
+            ->select('villes.id as villeId', 'villes.nom as nomVille', DB::raw('count(*) as total'))
             ->groupBy('villes.id', 'villes.nom')
-            ->groupBy('ville_id')
+            ->groupBy('villeId')
             ->get();
 
         $resultatsQuartiers = DB::table('recherches')
-            ->join('quartiers', 'recherches.ville_id', '=', 'quartiers.id')
-            ->select('quartiers.id as ville_id', 'quartiers.nom as nom_quartiers', DB::raw('count(*) as total'))
+            ->join('quartiers', 'recherches.villeId', '=', 'quartiers.id')
+            ->select('quartiers.id as villeId', 'quartiers.nom as nomQuartiers', DB::raw('count(*) as total'))
             ->groupBy('quartiers.id', 'quartiers.nom')
-            ->groupBy('quartier_id')
+            ->groupBy('quartierId')
             ->get();
 
 
         Log::debug("Resultats quartiers : " . $resultatsQuartiers);
 
-        // Log::debug("Villes : " . $villesNbRecherche);
         return view('historiqueRecherche', compact('recherches', 'listeQuartiers', 'listeVilles', 'villes', 'resultatsVilles', 'resultatsQuartiers'));
     }
 
@@ -171,14 +170,11 @@ class LieuxController extends Controller
         try{
             $recherche = Recherche::findOrFail($id);
             $recherche->delete();
-            // return response()->json(["success" => true, "message" => "Recherche supprimée avec succès."]);
             return redirect()->route('admin');
         }
         catch(\Exception $e){
             Log::error("Erreur lors de la suppression de la recherche : " . $e->getMessage());
-
             return redirect()->route('admin');
-            // return response()->json(["success" => false, "message" => "Erreur lors de la suppression."], 500);
         }
     }
 
