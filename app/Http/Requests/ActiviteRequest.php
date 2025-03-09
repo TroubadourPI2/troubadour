@@ -29,7 +29,7 @@ class ActiviteRequest extends FormRequest
                 'actif' => 'required|boolean',
             ];
         }
-    
+    //test
 
         $rules = [
             'nomActivite'         => 'required|string|max:64',
