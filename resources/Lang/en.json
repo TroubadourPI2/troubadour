@@ -158,7 +158,10 @@
   
   "favoris":"Favorites",
   "lieuxFavoris":"Favorite locations ",
+  "aucunFavori": "No locations or activities in favorites",
+  "aucunLieuEnFavoris": "No locations in favorites",
   "activitesFavorites":"Favorite activities ",
+  "aucuneActiviteEnFavoris": "No activities in favorites",
   
   "erreur403Texte": "You are not authorized to perform this action",
   "erreur403": "Erreur 403 - Action not authorized",
