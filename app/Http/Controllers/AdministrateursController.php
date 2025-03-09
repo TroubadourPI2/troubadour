@@ -58,7 +58,6 @@ class AdministrateursController extends Controller
             return response()->json(['message' => __('aucunLieuTrouve')]);
         }
 
-        Log::debug($lieux);
         $lieuxWithDetails = $lieux->map(function ($lieu) {
             return [
                 'id' => $lieu->id,

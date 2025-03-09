@@ -91,11 +91,10 @@ class LieuxController extends Controller
             $lieu = new Lieu();
             $utilisateur = auth()->user(); 
             $estAdmin = $utilisateur->role->nom === 'Admin';
-
-            $lieu->rue = $request->rue;
+            $lieu->rue =  $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = (strtoupper($request->codePostal));
-            $lieu->nomEtablissement = $request->nomEtablissement;
+            $lieu->nomEtablissement = htmlspecialchars($request->nomEtablissement);
 
             $photoCheminParDefaut = 'lieux/image_defaut.png';
             if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
@@ -113,7 +112,7 @@ class LieuxController extends Controller
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
             $lieu->actif = true;
-            $lieu->description = $request->description;
+            $lieu->description = htmlspecialchars($request->description);
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
             $lieu->proprietaire_id = Auth::id();
@@ -184,10 +183,10 @@ class LieuxController extends Controller
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = $request->codePostal;
-            $lieu->nomEtablissement = $request->nomEtablissement;
+            $lieu->nomEtablissement =  htmlspecialchars($request->nomEtablissement);
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
-            $lieu->description = $request->description;
+            $lieu->description = htmlspecialchars($request->description);
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
 
