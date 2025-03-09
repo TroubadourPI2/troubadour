@@ -30,6 +30,3 @@
         </div>
     </div>
 </div>
-
-{{-- <script src="{{ asset('js/admin/SweetAlertSuppTerme.js') }}"></script> --}}
-

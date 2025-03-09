@@ -75,6 +75,10 @@ function supprimerTerme(id) {
                             customClass: {
                                 title: "text-c1 font-bold",
                                 timerProgressBar: "color-c1",
+                                confirmButton: "bg-c1",
+                                confirmButtonText: "text-c3, font-barlow",
+                                cancelButton: "bg-c1",
+                                cancelButtonText: "text-c3, font-barlow",
                             }
                         }).then(() => {
                             window.location.reload();
@@ -89,11 +93,6 @@ function supprimerTerme(id) {
                     console.error('Erreur lors de la suppression : ', error)
                 );
 
-        } else {
-            Swal.fire({
-                title: "Le terme est en sécurité!",
-                icon: "success"});
-            // swal("Le terme est en sécurité!");
         }
     });
 }
