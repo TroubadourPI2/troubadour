@@ -77,7 +77,7 @@ class LieuxController extends Controller
                         Log::debug("MANUEL - Recherche contient un script ou une balise HTML");
                         return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
                     }
-                    $recherches = Recherche::where('termeRecherche', $request->txtRecherche)->where('villeId', $ville)->where('quartierId', $quartier)->first();
+                    $recherches = Recherche::where('termeRecherche', $request->txtRecherche)->where('ville_id', $ville)->where('quartier_id', $quartier)->first();
 
                     if($recherches){
                         $recherches->nbOccurences = $recherches->nbOccurences + 1;
@@ -88,8 +88,8 @@ class LieuxController extends Controller
 
                         $nouvelleRecherche = new Recherche();
                         $nouvelleRecherche->termeRecherche = $request->txtRecherche;
-                        $nouvelleRecherche->villeId = $ville;
-                        $nouvelleRecherche->quartierId = $quartier;
+                        $nouvelleRecherche->ville_id = $ville;
+                        $nouvelleRecherche->quartier_id = $quartier;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -98,8 +98,8 @@ class LieuxController extends Controller
                     if($e->getMessage() == "No query results for model [App\Models\Recherche]"){
                         $nouvelleRecherche = new Recherche();
                         $nouvelleRecherche->termeRecherche = $request->txtRecherche;
-                        $nouvelleRecherche->villeId = $ville;
-                        $nouvelleRecherche->quartierId = $quartier;
+                        $nouvelleRecherche->ville_id = $ville;
+                        $nouvelleRecherche->quartier_id = $quartier;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -124,14 +124,14 @@ class LieuxController extends Controller
     public function Historique()
     {
         $recherches = Recherche::all()->sortByDesc('nbOccurences');
-        $quartiers = Recherche::all()->unique('quartierId');
+        $quartiers = Recherche::all()->unique('quartier_id');
 
         $listeQuartiers = array();
         foreach($quartiers as $quartier){
             $listeQuartiers[] = Quartier::find($quartier->quartierId);
         }
 
-        $villes = Recherche::all()->unique('villeId');
+        $villes = Recherche::all()->unique('ville_id');
 
         $listeVilles = array();
         foreach($villes as $ville){
@@ -139,17 +139,17 @@ class LieuxController extends Controller
         }
 
         $resultatsVilles = DB::table('recherches')
-            ->join('villes', 'recherches.villeId', '=', 'villes.id')
-            ->select('villes.id as villeId', 'villes.nom as nomVille', DB::raw('count(*) as total'))
+            ->join('villes', 'recherches.ville_id', '=', 'villes.id')
+            ->select('villes.id as ville_id', 'villes.nom as nomVille', DB::raw('count(*) as total'))
             ->groupBy('villes.id', 'villes.nom')
-            ->groupBy('villeId')
+            ->groupBy('ville_id')
             ->get();
 
         $resultatsQuartiers = DB::table('recherches')
-            ->join('quartiers', 'recherches.villeId', '=', 'quartiers.id')
-            ->select('quartiers.id as villeId', 'quartiers.nom as nomQuartiers', DB::raw('count(*) as total'))
+            ->join('quartiers', 'recherches.ville_id', '=', 'quartiers.id')
+            ->select('quartiers.id as ville_id', 'quartiers.nom as nomQuartiers', DB::raw('count(*) as total'))
             ->groupBy('quartiers.id', 'quartiers.nom')
-            ->groupBy('quartierId')
+            ->groupBy('quartier_id')
             ->get();
 
 
@@ -174,7 +174,7 @@ class LieuxController extends Controller
         }
         catch(\Exception $e){
             Log::error("Erreur lors de la suppression de la recherche : " . $e->getMessage());
-            return json_encode(['success' => false, 'message' => 'Une erreur est survenue lors de la suppression de la recherche' . $e->getMessage()]);
+            return json_encode(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 

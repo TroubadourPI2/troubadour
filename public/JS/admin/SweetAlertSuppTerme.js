@@ -23,12 +23,19 @@ var btnSuppTerme = document.getElementById('btnSuppTerme');
 
 function supprimerTerme(id) {
     Swal.fire({
-        title: "Êtes-vous sûr?",
-        text: "Une fois supprimé, vous ne pourrez pas récupérer ce terme!",
+        title: Lang.get('strings.titreAlertSupprimer'),
+        text: Lang.get('strings.alertConfirmationSuppression'),
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Oui, supprimer!",
-        cancelButtonText: "Non, annuler!",
+        reverseButtons: true,
+        confirmButtonText: Lang.get('strings.ouiAllezY'),
+        cancelButtonText: Lang.get('strings.nonAnnuler'),
+        customClass: {
+            popup: 'font-barlow text-xl text-c1 bg-c2',
+            title: 'text-3xl uppercase underline',
+            confirmButton: 'bg-c1 text-white font-semibold px-4 py-2 uppercase rounded-full transition',
+            cancelButton: 'text-c1 uppercase bg-c2 font-semibold rounded-full px-4 py-2 hover:bg-white transition',
+        },
         buttons: true,
         dangerMode: true,
     })
@@ -52,12 +59,6 @@ function supprimerTerme(id) {
                     let message = reponse.message;
 
                     if (success) {
-                        // Swal.fire({
-                        //     title: message + "\nLa modification sera visible après un rafraîchissement de la page",
-                        //     icon: "success"});
-
-
-    
                         Toast.fire({
                             icon: "success",
                             title: Lang.get('strings.termeSupprime'),
@@ -75,18 +76,10 @@ function supprimerTerme(id) {
                             customClass: {
                                 title: "text-c1 font-bold",
                                 timerProgressBar: "color-c1",
-                                confirmButton: "bg-c1",
-                                confirmButtonText: "text-c3, font-barlow",
-                                cancelButton: "bg-c1",
-                                cancelButtonText: "text-c3, font-barlow",
                             }
                         }).then(() => {
                             window.location.reload();
                         });
-                        
-                        Swal.fire({
-                            title: message,
-                            icon: "error"});
                     }
                 })
                 .catch((error) =>

@@ -10,8 +10,8 @@ class Recherche extends Model
     use HasFactory;
 
     protected $fillable = [
-        'villeId',
-        'quartierId',
+        'ville_id',
+        'quartier_id',
         'termeRecherche',
         'nbOccurences',
     ];
