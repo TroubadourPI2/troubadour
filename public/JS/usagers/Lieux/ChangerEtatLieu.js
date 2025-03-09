@@ -2,7 +2,6 @@ let boutonsBascule;
 let textesActifs;
 
 document.addEventListener('DOMContentLoaded', function () {
-    Lang.setLocale(document.body.getAttribute('data-locale'));
     setTimeout(() => {
         ObtenirElementsDesactiver();
         AjouterDesactiverListeners();
