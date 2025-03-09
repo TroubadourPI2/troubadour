@@ -18,6 +18,11 @@ class AdministrateursController extends Controller
         return view('admin.Afficher', compact('villes', 'typesLieu'));
     }
 
+    public function ObtenirVille() {
+        $villes = Ville::all();
+        return response()->json($villes);
+    }
+
     public function Recherche(Request $request)
     {
         $validationDonnees = $request->validate([
