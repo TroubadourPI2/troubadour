@@ -156,8 +156,9 @@
   "pasResultatFiltreUsagers":"No users were found with these filters.",
   "inconnu":"Unknown",
   
-  "LieuxFavoris":"Favorite locations ",
-  "ActivitesFavorites":"Favorite activities ",
+  "favoris":"Favorites",
+  "lieuxFavoris":"Favorite locations ",
+  "activitesFavorites":"Favorite activities ",
   
   "erreur403Texte": "You are not authorized to perform this action",
   "erreur403": "Erreur 403 - Action not authorized",

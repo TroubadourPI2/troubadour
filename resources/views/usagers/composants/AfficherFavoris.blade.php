@@ -18,7 +18,7 @@
 </div>
 
 <div class="w-full mb-5">
-    <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline my-5">{!! __('LieuxFavoris') !!}</h1>
+    <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline my-5">{!! __('lieuxFavoris') !!}</h1>
 
     <div dir="ltr">
 
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline my-5">{!! __('ActivitesFavorites') !!}</h1>
+    <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline my-5">{!! __('activitesFavorites') !!}</h1>
     <div dir="ltr">
         <!-- Make the container scrollable horizontally and hide overflow vertically -->
    

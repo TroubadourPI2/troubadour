@@ -157,8 +157,9 @@
   "pasResultatFiltreUsagers":"Aucun utilisateur n'a été trouvé avec ces filtres.",
   "inconnu":"Inconnu",
 
-  "LieuxFavoris":"Lieux Favoris",
-  "ActivitesFavorites":"Activités Favorites",
+  "favoris":"Favoris",
+  "lieuxFavoris":"Lieux Favoris",
+  "activitesFavorites":"Activités Favorites",
   
   "erreur403Texte":" Vous n'êtes pas autorisé à faire cette action" ,
   "erreur403": "Erreur 403 - Action non autorisée",
