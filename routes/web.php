@@ -7,6 +7,7 @@ use App\Http\Controllers\LieuxController;
 use App\Http\Controllers\ActivitesController;
 use App\Http\Controllers\AdministrateursController;
 use App\Http\Controllers\LanguesController;
+use App\Http\Controllers\QuartiersController;
 use App\Http\Middleware\Langue;
 use App\Http\Middleware\VerifierRole;
 use Illuminate\Support\Facades\App;
@@ -38,6 +39,9 @@ Route::middleware(Langue::class)
         Route::get('/lieu/zoom/{id}', [LieuxController::class, 'ZoomLieu'])->name('Lieu.zoom');
 
         Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'ZoomActivite'])->name('Activite.zoom');
+
+        Route::post('/admin/ajoutQuartier', [QuartiersController::class, 'AjouterUnQuartier'])->name('ajouter.quartier')->middleware('VerifierRole:Admin');
+        Route::post('/admin/supprimerQuartier', [QuartiersController::class, 'SupprimerQuartier'])->name(' ')->middleware('VerifierRole:Admin');  
 
         Route::post('/ajoutFavoriLieu', [UsagersController::class, 'AjouterFavorisLieu'])->name('ajouter.favoris.lieu');  
         Route::post('/ajoutFavoriActivite', [UsagersController::class, 'AjouterFavorisActivite'])->name('ajouter.favoris.activite');  
