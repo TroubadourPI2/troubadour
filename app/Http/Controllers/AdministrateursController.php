@@ -166,10 +166,10 @@ class AdministrateursController extends Controller
         ]);
 
         return response()->json(['success' => true]);
-        }
+    }
 
-        public function ObtenirRolesEtStatuts()
-        {
+    public function ObtenirRolesEtStatuts()
+    {
         $roles = RoleUsager::all();
         $statuts = Statut::all();
 

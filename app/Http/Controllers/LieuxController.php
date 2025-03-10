@@ -46,6 +46,8 @@ class LieuxController extends Controller
         try
         {
             $ville      = $request->ville;
+            $villes     = Ville::where('actif', 1)->get();
+            Log::Debug("Villes : " . $villes);
             $quartier   = $request->quartier;
             $recherche  = $request->txtRecherche;
             $lieux      = Lieu::paginate(10);
@@ -109,8 +111,7 @@ class LieuxController extends Controller
                 }
             }
             
-            $villes     = Ville::all();
-            $quartiers  = Quartier::where('villeId', $ville)->where('actif', 1)->get();
+            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
 
             return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
         }
@@ -170,7 +171,8 @@ class LieuxController extends Controller
         try{
             $recherche = Recherche::findOrFail($id);
             $recherche->delete();
-            return json_encode(['success' => true, 'message' => 'La recherche a été supprimée']);
+            session()->flash('formulaireSupprimerRechercheValide', 'true');
+            return response()->json(['success' => true, 'message' => 'La recherche a été supprimée']);
         }
         catch(\Exception $e){
             Log::error("Erreur lors de la suppression de la recherche : " . $e->getMessage());

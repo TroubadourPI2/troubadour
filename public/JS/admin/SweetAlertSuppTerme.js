@@ -59,16 +59,16 @@ function supprimerTerme(id) {
                     let message = reponse.message;
 
                     if (success) {
-                        Toast.fire({
-                            icon: "success",
-                            title: Lang.get('strings.termeSupprime'),
-                            customClass: {
-                                title: "text-c1 font-bold",
-                                timerProgressBar: "color-c1",
-                            }
-                        }).then(() => {
+                        // Toast.fire({
+                        //     icon: "success",
+                        //     title: Lang.get('strings.termeSupprime'),
+                        //     customClass: {
+                        //         title: "text-c1 font-bold",
+                        //         timerProgressBar: "color-c1",
+                        //     }
+                        // }).then(() => {
                             window.location.reload();
-                        });
+                        // });
                     } else {
                         Toast.fire({
                             icon: "error",

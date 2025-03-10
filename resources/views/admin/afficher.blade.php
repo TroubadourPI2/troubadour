@@ -167,3 +167,52 @@
         session()->forget('formulaireModifierLieuStatutValide');
     @endphp
 @endif
+
+@if (session('formulaireSupprimerRechercheValide') === 'true')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const succesMessage = "{{ __('termeSupprime') }}";
+            document.getElementById('lieux').classList.add('hidden');
+            document.getElementById('demandes').classList.add('hidden');
+            document.getElementById('villes').classList.add('hidden');
+            document.getElementById('recherches').classList.remove('hidden');
+
+
+            const boutonDemandes = document.getElementById('boutonDemandes');
+            boutonDemandes.classList.remove("bg-c1", "text-c3");
+            boutonDemandes.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonLieu = document.getElementById('boutonLieu');
+            boutonLieu.classList.remove("bg-c1", "text-c3");
+            boutonLieu.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonVilles = document.getElementById('boutonVilles');
+            boutonVilles.classList.remove("bg-c1", "text-c3");
+            boutonVilles.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const boutonRecherches = document.getElementById('boutonRecherches');
+            boutonRecherches.classList.add("bg-c1", "text-c3");
+            boutonRecherches.classList.add("sm:hover:bg-c1", "sm:hover:text-c3");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: succesMessage,
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('formulaireSupprimerRechercheValide');
+    @endphp
+@endif
