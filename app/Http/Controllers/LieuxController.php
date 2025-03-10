@@ -171,7 +171,7 @@ class LieuxController extends Controller
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
-            return redirect()->route('usagerLieux.afficher');
+            return response()->view('errors.403', [], 403);
         }
 
         try {
@@ -282,7 +282,7 @@ class LieuxController extends Controller
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
         if (!$estProprietaire && !$estAdmin) {
-            return response()->json(['success' => false, 'message' =>  __('erreur')], 403);
+            return response()->view('errors.403', [], 403);
         }
         try {
 
