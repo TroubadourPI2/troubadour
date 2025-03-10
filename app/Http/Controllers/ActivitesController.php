@@ -79,8 +79,13 @@ class ActivitesController extends Controller
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
         if (!$estProprietaire && !$estAdmin) {
-            return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
+            return response()->json([
+                'success' => false,
+                'message' => __('erreur403Texte') 
+            ], 403);
         }
+        
+        
         // TODO CHANGER POUR PROD ACTIVITE
         foreach ($activite->photos as $photo) {
             \Storage::disk('DevActivite')->delete($photo->chemin);
@@ -103,7 +108,7 @@ class ActivitesController extends Controller
             $estAdmin = $utilisateur->role->nom === 'Admin';
             $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
             if (!$estProprietaire && !$estAdmin) {
-                return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
+                return response()->view('errors.403', [], 403);
             }
             $activite->update([
                 'nom'             => $request->nomActivite,
