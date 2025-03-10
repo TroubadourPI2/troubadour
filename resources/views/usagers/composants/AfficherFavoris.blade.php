@@ -29,7 +29,7 @@
                                                 action="{{ route('delete.favoris.lieu', ['id' => $favoriL->lieu->id]) }}"
                                                 method="POST">
                                                 @csrf
-                                                <input type="hidden" name="id" value="{{ $favoriL->lieu->id }}">
+                                                <input type="hidden" name="id" value="{{ $favoriL->id }}">
                                                 <button type="submit" style="background: none; border: none;">
                                                     <span
                                                         class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c2 sm:ml-0 sm:mr-0 md:mr-0"
@@ -39,7 +39,7 @@
                                         @else
                                             <form action="{{ route('ajouter.favoris.lieu') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="idLieu" value="{{ $favoriL->lieu->id }}">
+                                                <input type="hidden" name="idLieu" value="{{ $favoriL->id }}">
                                                 <input type="hidden" name="idUsager" value="{{ $usager->id }}">
                                                 <button type="submit" style="background: none; border: none;">
                                                     <span
@@ -62,7 +62,7 @@
             <div dir="ltr">
                 <div class="grid grid-flow-col overflow-x-auto snap-x space-x-4">
                     @foreach ($usager->activiteFavoris as $favoriA)
-                        <a href="/activite/zoom/{{ $favoriA->activite->id }}/{{ $favoriL->lieu->id }}"
+                        <a href="/activite/zoom/{{ $favoriA->activite->id }}/{{ $favoriA->activite->lieux->first()->id ?? '' }}"
                             class="activite-carte w-[300px] h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col lg:flex-row justify-end"
                             data-nom="{{ strtolower($favoriA->activite->nom) }}"
                             data-lieu-ids="{{ $favoriA->activite->lieu_ids }}"
@@ -104,7 +104,7 @@
                                     <div class="ml-auto px-4 flex justify-end">
                                         @if (in_array($favoriA->activite->id, $favorisActivites))
                                             <form
-                                                action="{{ route('delete.favoris.activite', ['id' => $favoriA->activite->id]) }}"
+                                                action="{{ route('delete.favoris.activite', ['id' => $favoriA->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id"
@@ -119,7 +119,7 @@
                                             <form action="{{ route('ajouter.favoris.activite') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="idActivite"
-                                                    value="{{ $favoriA->activite->id }}">
+                                                    value="{{ $favoriA->id }}">
                                                 <input type="hidden" name="idUsager" value="{{ $usager->id }}">
                                                 <button type="submit" style="background: none; border: none;">
                                                     <span
