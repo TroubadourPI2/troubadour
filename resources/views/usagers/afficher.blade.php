@@ -29,11 +29,7 @@
         <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
         <div id="activites" class="sectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("favoris").classList.contains("hidden");
-        });
-    </script>
+   
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}"></script>

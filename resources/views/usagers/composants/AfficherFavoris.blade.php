@@ -1,7 +1,12 @@
 <div class="w-full mb-5">
     @php
-        $aLieuxFavoris = isset($usager) && $usager->lieuFavoris->isNotEmpty();
-        $aActivitesFavoris = isset($usager) && $usager->activiteFavoris->isNotEmpty();
+        $favorisLieuxData = App\Models\LieuFavori::whereIn('lieu_id', $favorisLieux)->get();
+        $aLieuxFavoris = $favorisLieuxData->isNotEmpty();
+
+        $favorisActivitesData = App\Models\ActiviteFavori::whereIn('activite_id', $favorisActivites)
+            ->with('activite')
+            ->get();
+        $aActivitesFavoris = $favorisActivitesData->isNotEmpty();
     @endphp
     @if (!$aLieuxFavoris && !$aActivitesFavoris)
         <h3 class="text-center text-c1 font-bold font-barlow text-xl">{!! __('aucunFavori') !!}</h3>
@@ -11,7 +16,7 @@
 
             <div dir="ltr">
                 <div class="grid grid-flow-col overflow-x-auto snap-x space-x-4">
-                    @foreach ($usager->lieuFavoris as $favoriL)
+                    @foreach ($favorisLieuxData as $favoriL)
                         <a href="/lieu/zoom/{{ $favoriL->lieu->id }}"
                             class="w-[300px] h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col justify-end">
                             <img src="{{ asset($favoriL->lieu->photo_lieu_url) }}"
@@ -24,30 +29,16 @@
                                         {{ $favoriL->lieu->nomEtablissement }}
                                     </span>
                                     <div class="flex gap-x-2 px-4">
-                                        @if (in_array($favoriL->lieu->id, $favorisLieux))
-                                            <form
-                                                action="{{ route('delete.favoris.lieu', ['id' => $favoriL->lieu->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $favoriL->id }}">
-                                                <button type="submit" style="background: none; border: none;">
-                                                    <span
-                                                        class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c2 sm:ml-0 sm:mr-0 md:mr-0"
-                                                        data-icon="line-md:heart-filled" data-inline="false"></span>
-                                                </button>
-                                            </form>
-                                        @else
-                                            <form action="{{ route('ajouter.favoris.lieu') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="idLieu" value="{{ $favoriL->id }}">
-                                                <input type="hidden" name="idUsager" value="{{ $usager->id }}">
-                                                <button type="submit" style="background: none; border: none;">
-                                                    <span
-                                                        class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c2 sm:ml-0 sm:mr-0 md:mr-0"
-                                                        data-icon="f7:heart" data-inline="false"></span>
-                                                </button>
-                                            </form>
-                                        @endif
+                                        <form action="{{ route('delete.favoris.lieu', ['id' => $favoriL->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $favoriL->id }}">
+                                            <button type="submit" style="background: none; border: none;">
+                                                <span
+                                                    class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c2 sm:ml-0 sm:mr-0 md:mr-0"
+                                                    data-icon="line-md:heart-filled" data-inline="false"></span>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +52,7 @@
             <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline my-5">{!! __('activitesFavorites') !!}</h1>
             <div dir="ltr">
                 <div class="grid grid-flow-col overflow-x-auto snap-x space-x-4">
-                    @foreach ($usager->activiteFavoris as $favoriA)
+                    @foreach ($favorisActivitesData as $favoriA)
                         <a href="/activite/zoom/{{ $favoriA->activite->id }}/{{ $favoriA->activite->lieux->first()->id ?? '' }}"
                             class="activite-carte w-[300px] h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col lg:flex-row justify-end"
                             data-nom="{{ strtolower($favoriA->activite->nom) }}"
@@ -95,39 +86,20 @@
 
                             <div class="w-full flex justify-center items-end">
                                 <div class="opacity-90 bg-c1 flex w-full h-16 items-center">
-                                    <!-- Name of the Activity -->
                                     <span class="text-2xl font-bold text-c3 font-barlow w-full truncate px-4">
                                         {{ $favoriA->activite->nom }}
                                     </span>
-
-                                    <!-- Heart Icon (move to the end) -->
                                     <div class="ml-auto px-4 flex justify-end">
-                                        @if (in_array($favoriA->activite->id, $favorisActivites))
-                                            <form
-                                                action="{{ route('delete.favoris.activite', ['id' => $favoriA->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                <input type="hidden" name="id"
-                                                    value="{{ $favoriA->id }}">
-                                                <button type="submit" style="background: none; border: none;">
-                                                    <span
-                                                        class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c2 sm:ml-0 sm:mr-0 md:mr-0"
-                                                        data-icon="line-md:heart-filled" data-inline="false"></span>
-                                                </button>
-                                            </form>
-                                        @else
-                                            <form action="{{ route('ajouter.favoris.activite') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="idActivite"
-                                                    value="{{ $favoriA->id }}">
-                                                <input type="hidden" name="idUsager" value="{{ $usager->id }}">
-                                                <button type="submit" style="background: none; border: none;">
-                                                    <span
-                                                        class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c2 sm:ml-0 sm:mr-0 md:mr-0"
-                                                        data-icon="f7:heart" data-inline="false"></span>
-                                                </button>
-                                            </form>
-                                        @endif
+                                        <form action="{{ route('delete.favoris.activite', ['id' => $favoriA->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $favoriA->id }}">
+                                            <button type="submit" style="background: none; border: none;">
+                                                <span
+                                                    class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c2 sm:ml-0 sm:mr-0 md:mr-0"
+                                                    data-icon="line-md:heart-filled" data-inline="false"></span>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
