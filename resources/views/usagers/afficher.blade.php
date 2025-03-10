@@ -311,3 +311,31 @@
     @endphp
 @endif
 
+@if (session('favoriSupprime'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('favoris').classList.remove('hidden');
+            document.getElementById('compte').classList.add('hidden');
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: "{{ session('favoriSupprime') }}",
+                customClass: {
+                    title: "text-c1 font-bold",
+                    timerProgressBar: "color-c1",
+                }
+            });
+        });
+    </script>
+    @php
+        session()->forget('favoriSupprime');
+    @endphp
+@endif
+

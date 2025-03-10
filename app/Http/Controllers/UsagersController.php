@@ -84,9 +84,10 @@ class UsagersController extends Controller
     public function SupprimerFavorisLieu(LieuFavoriRequest $request)
     {
         $favoris = LieuFavori::where("id",$request->id)->first();
-        $favoris->delete();
-
-
+        if ($favoris) {
+            $favoris->delete();
+            session()->flash('favoriSupprime', __('messageSuppLieuFavoris'));
+        }
         return redirect()->back(); 
 
     }
@@ -107,9 +108,10 @@ class UsagersController extends Controller
     public function SupprimerFavorisActivite(ActiviteFavoriRequest $request)
     {
         $favoris = ActiviteFavori::where("id",$request->id)->first();
-        $favoris->delete();
-
-
+        if ($favoris) {
+            $favoris->delete();
+            session()->flash('favoriSupprime', __('messageSuppActiviteFavoris'));
+        }
         return redirect()->back(); 
 
     }

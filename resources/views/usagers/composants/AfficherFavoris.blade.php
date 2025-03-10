@@ -15,7 +15,8 @@
             <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline my-5">{!! __('lieuxFavoris') !!}</h1>
 
             <div dir="ltr">
-                <div class="grid grid-flow-col overflow-x-auto snap-x space-x-4">
+                <div class="grid grid-flow-col auto-cols-max gap-x-4 overflow-x-auto snap-x whitespace-nowrap">
+
                     @foreach ($favorisLieuxData as $favoriL)
                         <a href="/lieu/zoom/{{ $favoriL->lieu->id }}"
                             class="w-[300px] h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col justify-end">
@@ -51,7 +52,8 @@
         @if ($aActivitesFavoris)
             <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline my-5">{!! __('activitesFavorites') !!}</h1>
             <div dir="ltr">
-                <div class="grid grid-flow-col overflow-x-auto snap-x space-x-4">
+                <div class="grid grid-flow-col auto-cols-max gap-x-4 overflow-x-auto snap-x whitespace-nowrap">
+
                     @foreach ($favorisActivitesData as $favoriA)
                         <a href="/activite/zoom/{{ $favoriA->activite->id }}/{{ $favoriA->activite->lieux->first()->id ?? '' }}"
                             class="activite-carte w-[300px] h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col lg:flex-row justify-end"
