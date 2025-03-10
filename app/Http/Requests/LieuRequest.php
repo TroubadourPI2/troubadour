@@ -39,8 +39,8 @@ class LieuRequest extends FormRequest
             'siteWeb' => 'nullable|url:https|max:64',
             'numeroTelephone' => 'required|regex:/^\d{3}-\d{3}-\d{4}$/',
             'description' => 'nullable|string|max:500',
-            'selectQuartierLieu' => 'required|integer',
-            'selectTypeLieu' => 'required|integer',
+            'selectQuartierLieu' => 'required|exists:Quartiers,id',
+            'selectTypeLieu' => 'required|exists:TypeLieux,id',
         ];
 
         return $rules;
@@ -81,11 +81,11 @@ class LieuRequest extends FormRequest
 
             'description.max' => __('validations.descriptionMax'),
 
-            'selectQuartierLieu.integer' => __('validations.quartierRequis'),
-            'selectQuartierLieu.required' => __('validations.quartierInteger'),
+            'selectQuartierLieu.required' => __('validations.quartierRequis'),
+            'selectQuartierLieu.exists' => __('validations.quartierExiste'),
 
             'selectTypeLieu.required' => __('validations.typeLieuRequis'),
-            'selectTypeLieu.integer' => __('validations.typeLieuInteger'),
+            'selectTypeLieu.exists' => __('validations.typeLieuExiste'),
 
             'actif.boolean' => __('validations.actifBoolean'),
         ];
