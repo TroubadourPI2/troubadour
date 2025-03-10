@@ -12,6 +12,8 @@
   "imageEtablissement": "Establishment image",
   "titreAlertSupprimer" : "Are you sure ?",
   "alertConfirmationSuppression" : "Once deleted, you can't go back!",
+  "nonAnnuler" : "No, cancel",
+  "ouiAllezY" : "Yes, go ahead !",
 
   "decouvrir"  : "Discover",
   "slogan" : "Explore without limits",
