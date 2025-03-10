@@ -164,12 +164,13 @@ class LieuxController extends Controller
 
     public function ModifierUnLieu(LieuRequest $request, string $id)
     {
-        Log::debug($request);
+      
         $lieu = Lieu::findOrFail($id);
       
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+
         if (!$estProprietaire && !$estAdmin) {
             return response()->view('errors.403', [], 403);
         }
@@ -179,7 +180,7 @@ class LieuxController extends Controller
             if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
                 Storage::disk('DevActivite')->put($photoCheminParDefaut, file_get_contents(public_path('Images/lieux/image_defaut.png')));
             }
-            //$lieu->actif = $request->actif;
+
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = $request->codePostal;
@@ -219,7 +220,6 @@ class LieuxController extends Controller
                  return redirect()->route('admin');
             }
                
-
            return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
             Log::error(__('erreur') . $e->getMessage());
@@ -233,8 +233,9 @@ class LieuxController extends Controller
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+
         if (!$estProprietaire && !$estAdmin) {
-            return response()->json(['success' => false, 'message' => __('erreur')], 403);
+            return response()->view('errors.403', [], 403);
         }
     
         DB::beginTransaction();
@@ -281,6 +282,7 @@ class LieuxController extends Controller
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+        
         if (!$estProprietaire && !$estAdmin) {
             return response()->view('errors.403', [], 403);
         }
