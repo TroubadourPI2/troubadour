@@ -49,9 +49,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         return response.json();
                     })
                     .then(data => {
-                        let quartierElement = document.querySelector(`[data-quartier-id="${quartierId}"]`);
+                        let quartierElement = document.querySelector(`[id="${quartierId}"]`);
                         if (quartierElement) { // Vérifier si l'élément existe avant d'accéder à .closest()
                             let quartierCarte = quartierElement.closest(".quartier-carte");
+                            console.log(quartierCarte);
                             if (quartierCarte) {
                                 quartierCarte.style.transition = "opacity 0.3s ease-out";
                                 quartierCarte.style.opacity = "0";
