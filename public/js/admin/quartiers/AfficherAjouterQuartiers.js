@@ -121,6 +121,15 @@ function CartesQuartier(quartiers) {
 
         card.appendChild(pill);
 
+        const boutonSupprimer = document.createElement('button');
+        boutonSupprimer.type = 'button';
+        boutonSupprimer.className =
+            'bg-red-500 p-1 rounded';
+            boutonSupprimer.innerHTML = `
+            <span class="iconify text-c5 size-6" data-icon="ion:trash-outline" data-inline="true"></span>
+        `;
+        card.appendChild(boutonSupprimer);
+
         affichageQuartiers.appendChild(card);
 
     });
