@@ -96,7 +96,7 @@ function CartesQuartier(quartiers) {
     quartiers.forEach((quartier) => {
        
         const card = document.createElement('div');
-        card.classList.add('quartier-carte', 'bg-white', 'shadow-md', 'rounded-lg', 'p-4', 'w-40', 'flex', 'items-center', 'my-2', 'justify-center');
+        card.classList.add('quartier-carte', 'bg-white', 'shadow-md', 'rounded-lg', 'p-4', 'w-60', 'flex', 'items-center', 'my-2', 'justify-center');
 
         const pill = document.createElement('span');
         pill.classList.add('bg-blue-500', 'text-c1', 'text-sm', 'truncate', 'font-semibold', 'px-3', 'py-1', 'rounded-full');
@@ -115,6 +115,17 @@ function CartesQuartier(quartiers) {
             <span class=" iconify text-c5 size-6" data-icon="ion:trash-outline" data-inline="true"></span>
         `;
         card.appendChild(boutonSupprimer);
+
+        const boutonModifier = document.createElement('button');
+        boutonModifier.type = 'button';
+        boutonModifier.id = quartier.id;
+        boutonModifier.nom = quartier.nom;
+        boutonModifier.className =
+            'boutonModifierQuartier bg-red-500 p-1 rounded';
+            boutonModifier.innerHTML = `
+            <span class=" iconify text-c1 size-6" data-icon="ep:edit" data-inline="true"></span>
+        `;
+        card.appendChild(boutonModifier);
 
         affichageQuartiers.appendChild(card);
 

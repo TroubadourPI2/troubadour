@@ -14,17 +14,12 @@
             </button>
 
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
-            <button id="boutonVilles" data-section="villes"
-                class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
-                <span class="iconify size-8 sm:hidden" data-icon="solar:city-linear"></span>
-                <span class="hidden sm:inline">{{ trans_choice('ville', 2) }}</span>
-            </button>
-            <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
             <button id="boutonLieu" data-section="lieux"
                 class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
                 <span class="iconify size-8 sm:hidden" data-icon="mingcute:location-3-line"></span>
                 <span class="hidden sm:inline">{{ __('lieux') }}</span>
             </button>
+            
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
             <button id="boutonQuartier" data-section="quartiers"
                 class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
@@ -36,7 +31,6 @@
         {{-- //TODO Importer les composants selon le menu choisi --}}
 
         <div id="demandes" class="sectionMenu">@include('admin.composants.Demandes')</div>
-        <div id="villes" class="sectionMenu hidden">VILLES</div>
         <div id="lieux" class="sectionMenu hidden">@include('admin.composants.GestionLieux')</div>
         <div id="quartiers" class="sectionMenu hidden">@include('admin.composants.afficherQuartier')</div>
     </div>
@@ -59,9 +53,7 @@
             const succesMessage = "{{ __('succesAjout') }}";
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('demandes').classList.add('hidden');
-            document.getElementById('villes').classList.add('hidden');
             document.getElementById('quartiers').classList.add('hidden');
-
 
             const boutonLieu = document.getElementById('boutonLieu');
             boutonLieu.classList.add("bg-c1", "text-c3");
@@ -104,7 +96,6 @@
             const succesMessage = "{{ __('succesModifier') }}";
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('demandes').classList.add('hidden');
-            document.getElementById('villes').classList.add('hidden');
             document.getElementById('quartiers').classList.add('hidden');
 
 
@@ -149,7 +140,6 @@
             const succesMessage = "{{ __('succesModifier') }}";
             document.getElementById('lieux').classList.remove('hidden');
             document.getElementById('demandes').classList.add('hidden');
-            document.getElementById('villes').classList.add('hidden');
             document.getElementById('quartiers').classList.add('hidden');
 
             const boutonLieux = document.getElementById('boutonLieu');
