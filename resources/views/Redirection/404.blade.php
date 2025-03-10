@@ -6,7 +6,7 @@
 
     <div class="flex items-center justify-center h-screen overflow-hidden relative font-barlow">
 
-        <div class="absolute inset-x-0 top-5 z-10 text-center w-fit ">
+        <div class="absolute inset-x-0 top-5 z-10 text-center w-fit">
             <a href="/" class="flex items-center hover:text-c3  transition text-c1">
                 <span class="iconify text-5xl  " data-icon="ion:arrow-undo" data-inline="false"></span>
                 <span class="font-bold text-3xl"> {{ __('retour') }}</span>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="text-center z-10">
-            <h1 class=" text-4xl md:text-6xl font-extrabold text-c1 drop-shadow-lg">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-c1 drop-shadow-lg">
                 {{ __('erreur404') }}
             </h1>
             <p class=" text-lg md:text-2xl mt-4 text-c1 font-semibold drop-shadow-lg">

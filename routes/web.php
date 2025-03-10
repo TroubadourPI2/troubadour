@@ -76,15 +76,20 @@ Route::middleware(Langue::class)
 
         Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
 
-        Route::get('/admin/villes', [AdministrateursController::class, 'ObtenirVille'])->name('admin.Villes')->middleware('VerifierRole:Admin');
         
+        //ADMIN
+        Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
+        Route::get('/admin/rechercheUsagers', [AdministrateursController::class, 'usagersPagination'])->name('admin.rechercheUsagers')->middleware('VerifierRole:Admin');
+        Route::post('/admin/usagers/modifier/{id}', [AdministrateursController::class, 'modifierUsagers'])->name('admin.ModifierUsagers')->middleware('VerifierRole:Admin');
+        Route::get('/admin/obtenirRoleStatut', [AdministrateursController::class, 'ObtenirRolesEtStatuts'])->middleware('VerifierRole:Admin');
+        Route::get('/admin/villes', [AdministrateursController::class, 'ObtenirVille'])->name('admin.Villes')->middleware('VerifierRole:Admin');
         Route::get('/admin/quartiers', [AdministrateursController::class, 'ObtenirQuartier'])->name('admin.Quartiers')->middleware('VerifierRole:Admin');
 
 
-        Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
         Route::get('/admin/recherche/lieux', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche')->middleware('VerifierRole:Admin');
      
 
+        
         Route::fallback(function () {
             return response()->view('Redirection.404', [], 404);
           });

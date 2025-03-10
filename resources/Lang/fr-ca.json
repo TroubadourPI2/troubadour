@@ -142,11 +142,25 @@
   "autreVille":"Voir d'autres villes",
   "erreur404": "Erreur 404 - Page non trouvée",
   "erreur404Texte":"Le motif de votre recherche n'a mené à aucun résultat",
-
   "rechercheLieu" : "Recherche par nom de lieu",
   "toutesVilles" : "Toutes les villes",
   "selectionnerVilleAvant" : "Sélectionner une ville en premier pour filtrer par quartier.",
   "aucunLieuTrouve" : "Aucun lieu trouvé avec ces filtres.",
-  "confirmationSuppressionQuartier" : "Êtes-vous certain(e) de vouloir supprimer ce lieu : "
+  "confirmationSuppressionQuartier" : "Êtes-vous certain(e) de vouloir supprimer ce lieu : ",
 
+  "tousLesRoles" : "Tous les rôles",
+  "tousLesStatus" : "Tous les statuts",
+  "enAttente" : "En attente",
+  "rechercheAdminDemande": "Rechercher par nom, prénom ou courriel",
+  "afficher":"Afficher",
+  "statut":"Statut",
+  "action":"Action",
+  "modifier":"Modifier",
+  "pasResultatFiltreUsagers":"Aucun utilisateur n'a été trouvé avec ces filtres.",
+  "inconnu":"Inconnu",
+  
+  "erreur403Texte":" Vous n'êtes pas autorisé à faire cette action" ,
+  "erreur403": "Erreur 403 - Action non autorisée",
+  "erreur429" : "Erreur 429 - Trop de requêtes",
+  "erreur429Texte" : "Nous sommes désolés, mais vous avez envoyé trop de requêtes récemment. Veuillez réessayer plus tard."
 }  
