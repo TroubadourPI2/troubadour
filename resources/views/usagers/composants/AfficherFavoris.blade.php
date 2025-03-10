@@ -108,7 +108,7 @@
                                                 method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id"
-                                                    value="{{ $favoriA->activite->id }}">
+                                                    value="{{ $favoriA->id }}">
                                                 <button type="submit" style="background: none; border: none;">
                                                     <span
                                                         class="iconify size-10 md:ml-0 lg:ml-0 ml-5 text-c2 sm:ml-0 sm:mr-0 md:mr-0"
