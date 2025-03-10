@@ -31,7 +31,7 @@ class QuartierRequest extends FormRequest
 
         if ($this->route()->getName() === 'supprimer.quartier') {
             return [
-                'id' => 'required|integer|exists:quartier,id',
+                'id' => 'required|integer|exists:Quartiers,id',
             ];
         }
     
@@ -41,5 +41,16 @@ class QuartierRequest extends FormRequest
         ];
 
         return $rules;
+    }
+
+    public function messages(): array
+    {
+        return [
+            'id.exists'             => __('validations.quartierIdExiste'),
+            'id.required'             => __('validations.quartierIdRequis'),
+            'ville_id.exists'             => __('validations.villeIdExiste'),
+            'nom.required'             => __('validations.nomQuartierRequis'),
+            'actif.required'             => __('validations.quartierActif'),
+        ];
     }
 }

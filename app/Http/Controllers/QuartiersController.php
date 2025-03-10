@@ -66,8 +66,12 @@ class QuartiersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function SupprimerQuartier(string $id)
+    public function SupprimerQuartier(QuartierRequest $request)
     {
-        //
+        $quartier = Quartier::where("id",$request->id)->first();
+        $quartier->delete();
+
+
+        return redirect()->back(); 
     }
 }

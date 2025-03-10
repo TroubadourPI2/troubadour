@@ -65,6 +65,12 @@ return [
     'FavoriLieuIdExiste'      => 'Le lieu sélectionné est invalide.',
     'FavoriUsagerIdExiste'      => 'L\'usager sélectionné est invalide.',
 
+    'nomQuartierRequis' => 'Le nom du quartier est requis.',
+    'quartierActif' => 'Selectionnez l\'état du quartier.',
+    'villeIdExiste' => 'La ville sélectionné n\'éxiste pas',
+    'quartierIdRequis' => 'le quartier est requis',
+    'quartierIdExiste' => 'le quartier sélectionné n\'éxiste pas',
+
 
 
 ];

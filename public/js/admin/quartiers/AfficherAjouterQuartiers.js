@@ -96,6 +96,7 @@ function CartesQuartier(quartiers) {
     quartiers.forEach((quartier) => {
        
         const card = document.createElement('div');
+        card.classList.add('quartier-carte');
         card.classList.add('bg-white');
         card.classList.add('shadow-md');
         card.classList.add('rounded-lg');
@@ -123,10 +124,12 @@ function CartesQuartier(quartiers) {
 
         const boutonSupprimer = document.createElement('button');
         boutonSupprimer.type = 'button';
+        boutonSupprimer.id = quartier.id;
+        boutonSupprimer.nom = quartier.nom;
         boutonSupprimer.className =
-            'bg-red-500 p-1 rounded';
+            'boutonSupprimerQuartier bg-red-500 p-1 rounded';
             boutonSupprimer.innerHTML = `
-            <span class="iconify text-c5 size-6" data-icon="ion:trash-outline" data-inline="true"></span>
+            <span class=" iconify text-c5 size-6" data-icon="ion:trash-outline" data-inline="true"></span>
         `;
         card.appendChild(boutonSupprimer);
 

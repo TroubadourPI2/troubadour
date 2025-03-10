@@ -35,10 +35,10 @@
 <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("boutonRetourQuartier").addEventListener("click", function () {
-                let affichage = document.getElementById("afficherQuartiers"); // Replace with the actual ID
-                let ajout = document.getElementById("ajouterQuartier"); // Replace with the actual ID
-                ajout.classList.add("hidden"); // Hide first div
-                affichage.classList.remove("hidden"); // Show second div
+                let affichage = document.getElementById("afficherQuartiers"); 
+                let ajout = document.getElementById("ajouterQuartier"); 
+                ajout.classList.add("hidden"); 
+                affichage.classList.remove("hidden"); 
             });
         });
     </script>

@@ -65,4 +65,12 @@ return [
     'FavoriLieuIdExiste'      => 'The location selected is invalid.',
     'FavoriUsagerIdExiste'      => 'The user selected is invalid.',
 
+    'nomQuartierRequis' => 'The name of the neighborhood is required.',
+    'quartierActif' => 'Select the state of the neighborhood.',
+    'villeIdExiste' => 'the city selected doesn\'t exist',
+    'quartierIdRequis' => 'The neighborhood is required',
+    'quartierIdExiste' => 'The neighborhood selected doesn\'t exist',
+
+    
+
 ];

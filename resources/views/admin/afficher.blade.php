@@ -43,6 +43,7 @@
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/admin/quartiers/AfficherAjouterQuartiers.js') }}"></script>
+<script src="{{ asset('js/admin/quartiers/SupprimerQuartier.js') }}" defer></script>
 <script src="{{ asset('js/admin/RechercheLieux.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Lieux/GestionAffichageSectionsLieux.js') }}" defer></script>

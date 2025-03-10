@@ -41,7 +41,7 @@ Route::middleware(Langue::class)
         Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'ZoomActivite'])->name('Activite.zoom');
 
         Route::post('/admin/ajouterQuartier', [QuartiersController::class, 'AjouterUnQuartier'])->name('ajouter.quartier')->middleware('VerifierRole:Admin');
-        Route::post('/admin/supprimerQuartier', [QuartiersController::class, 'SupprimerQuartier'])->name(' ')->middleware('VerifierRole:Admin');  
+        Route::delete('/admin/supprimerQuartier/{id}', [QuartiersController::class, 'SupprimerQuartier'])->name('supprimer.quartier')->middleware('VerifierRole:Admin');  
 
         Route::post('/ajoutFavoriLieu', [UsagersController::class, 'AjouterFavorisLieu'])->name('ajouter.favoris.lieu');  
         Route::post('/ajoutFavoriActivite', [UsagersController::class, 'AjouterFavorisActivite'])->name('ajouter.favoris.activite');  
