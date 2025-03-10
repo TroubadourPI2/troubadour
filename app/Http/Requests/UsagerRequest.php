@@ -41,7 +41,7 @@ class UsagerRequest extends FormRequest
             'nom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
             'courriel' => 'required|email|regex:/^[\w\.-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,6}$/|max:64',
             'password_confirmation' => 'required|same:password',
-
+            'role_id' => 'required'
         ];
     
         if ($nomRouteActuelle === 'usagers.modifier') {
@@ -111,6 +111,16 @@ class UsagerRequest extends FormRequest
             );
         }
     
+        if($nomRouteActuelle === 'usagers.CreationUsager'){
+            throw new HttpResponseException(response()->json([
+                'success' => false,
+                'message' => 'Erreur de validation',
+                'errors' => $validator->errors()
+            ], 422));
+        }
+        
+
+
         parent::failedValidation($validator);
     }
     

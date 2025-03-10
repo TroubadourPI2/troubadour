@@ -112,54 +112,35 @@ class UsagersController extends Controller
     }
 
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     public function CreationUsager(UsagerRequest $request){
         try{
             $usager = new Usager();
             $usager->prenom = $request->prenom;
             $usager->nom = $request->nom;
             $usager->courriel = $request->courriel;
-            $usager->password = $request->password;
+            $usager->password = bcrypt($request->password);
+            $usager->role_id = $request->role_id ;
 
-            if ($usager->role == "Utilisateur"){
-                $usager->role = 2;
-                $usager->statut_id = 1;
-            }
-            else{
-                $usager->role = 3;
+            if ($usager->role_id == 2) {
+                $usager->statut_id = 1; // User role, set statut to 1
+            } else {
                 $usager->statut_id = 3;
             }
-            $usager->save();
-        }
-        catch(\Throwable $e){
-            Log::debug($e);
-        }
 
-        if ($errors = session('errors')) {
+            $usager->save();
+
             return response()->json([
-                'errors' => $errors->toArray()
+                'success' => true,
+                'message' => 'Usager created successfully!'
+            ]);
+        } catch (\Throwable $e) {
+            Log::debug($e);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while creating the user.'
             ]);
         }
-    
-        return response()->json([
-        'success' => true,
-        'message' => 'Usager created successfully!'
-        ]);
     }
     
     public function ModificationUsager(UsagerRequest $request, Usager $usager){
@@ -178,7 +159,7 @@ class UsagersController extends Controller
                 $usager->password = bcrypt($request->password);
             }
             
-    
+             
             $usager->save();
             session()->flash('formulaireModifierUValide', 'true');
             return redirect()->route('usagerLieux.afficher')
