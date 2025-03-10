@@ -68,10 +68,15 @@ class QuartiersController extends Controller
      */
     public function SupprimerQuartier(QuartierRequest $request)
     {
-        $quartier = Quartier::where("id",$request->id)->first();
+        $quartier = Quartier::find($request->id); // Utilisation de find() pour récupérer directement l'élément
+    
+        if (!$quartier) {
+            return response()->json(['message' => __('validations.quartierNonTrouve')], 404);
+        }
+    
         $quartier->delete();
-
-
-        return redirect()->back(); 
+    
+        return response()->json(['message' => __('strings.succesSupprimer')], 200);
     }
+    
 }

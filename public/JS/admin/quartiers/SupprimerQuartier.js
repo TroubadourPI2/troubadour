@@ -34,29 +34,37 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`admin/supprimerQuartier/${quartierId}`, {
+                    fetch(`admin/supprimerQuartier`, { // Enlever l'ID de l'URL
                         method: "DELETE",
                         headers: {
                             "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
                             "Accept": "application/json",
-                        body: JSON.stringify(data) 
+                            "Content-Type": "application/json"
                         },
+                        body: JSON.stringify({ id: quartierId }) // Envoyer l'ID dans le corps de la requête
                     })
+                    
                     .then(response => {
                         if (!response.ok) throw new Error("Erreur lors de la suppression.");
                         return response.json();
                     })
                     .then(data => {
-                        let quartierElement = document.querySelector(`[data-quartier-id="${quartierId}"]`).closest(".quartier-carte");
-                        quartierElement.style.transition = "opacity 0.3s ease-out";
-                        quartierElement.style.opacity = "0";
-                        setTimeout(() => quartierElement.remove(), 300);
-
+                        let quartierElement = document.querySelector(`[data-quartier-id="${quartierId}"]`);
+                        if (quartierElement) { // Vérifier si l'élément existe avant d'accéder à .closest()
+                            let quartierCarte = quartierElement.closest(".quartier-carte");
+                            if (quartierCarte) {
+                                quartierCarte.style.transition = "opacity 0.3s ease-out";
+                                quartierCarte.style.opacity = "0";
+                                setTimeout(() => quartierCarte.remove(), 300);
+                            }
+                        }
+                    
                         Toast.fire({
                             icon: "success",
-                            title:Lang.get('strings.succesSupprimer')
+                            title: Lang.get('strings.succesSupprimer')
                         });
                     })
+                    
                     .catch(error => {
                         Swal.fire(Lang.get('strings.erreur') + error.message, "error");
                     });
