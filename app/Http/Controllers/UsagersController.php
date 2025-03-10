@@ -52,9 +52,10 @@ class UsagersController extends Controller
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::all();
-
+        $favorisActivites = ActiviteFavori::where('usager_id', $usager->id)->pluck('activite_id')->toArray();
+        $favorisLieux = LieuFavori::where('usager_id', $usager->id)->pluck('lieu_id')->toArray();
        
-        return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
+        return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite', 'favorisActivites', 'favorisLieux'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)
@@ -112,39 +113,6 @@ class UsagersController extends Controller
         return redirect()->back(); 
 
     }
-
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
     
     public function ModificationUsager(UsagerRequest $request, Usager $usager){
         try{
@@ -200,25 +168,6 @@ class UsagersController extends Controller
         Log::error("Erreur lors de la suppression de l'utilisateur: " . $e->getMessage());
         return response()->json(['success' => false, 'message' => 'Une erreur est survenue lors de la désactivation.'], 500);
         }
-    }
-
-
-
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 
 }
