@@ -38,9 +38,9 @@ class LieuRequest extends FormRequest
             'photoLieu' => 'nullable|mimes:png,jpg|max:2048',
             'siteWeb' => 'nullable|url:https|max:64',
             'numeroTelephone' => 'required|regex:/^\d{3}-\d{3}-\d{4}$/',
-            'description' => 'nullable|max:500',
-            'selectQuartierLieu' => 'required',
-            'selectTypeLieu' => 'required',
+            'description' => 'nullable|string|max:500',
+            'selectQuartierLieu' => 'required|integer',
+            'selectTypeLieu' => 'required|integer',
         ];
 
         return $rules;
@@ -81,8 +81,11 @@ class LieuRequest extends FormRequest
 
             'description.max' => __('validations.descriptionMax'),
 
-            'selectQuartierLieu.required' => __('validations.quartierRequis'),
+            'selectQuartierLieu.integer' => __('validations.quartierRequis'),
+            'selectQuartierLieu.required' => __('validations.quartierInteger'),
+
             'selectTypeLieu.required' => __('validations.typeLieuRequis'),
+            'selectTypeLieu.integer' => __('validations.typeLieuInteger'),
 
             'actif.boolean' => __('validations.actifBoolean'),
         ];

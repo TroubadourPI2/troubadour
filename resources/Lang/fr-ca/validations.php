@@ -20,7 +20,9 @@ return [
     'telephoneFormat' => 'Le format du numéro de téléphone est invalide.',
     'descriptionMax' => 'La description ne doit pas dépasser 500 caractères.',
     'quartierRequis' => 'Veuillez sélectionner un quartier.',
+    'quartierInteger' => 'L\'id du quartier doit être un nombre.',
     'typeLieuRequis' => 'Veuillez sélectionner un type de lieu.',
+    'typeLieuInteger' => 'L\'id du type de lieu doit être un nombre.',
 
     'prenomRequis' => 'Le prénom est requis.',
     'prenomRegex' => 'Le prénom ne peut contenir que des lettres, des apostrophes, des traits d\'union et des espaces.',
