@@ -15,7 +15,7 @@ async function AfficherModalInscription() {
         html: `
             <div class="flex flex-col items-center space-y-6">
                 <div class="flex flex-col space-y-3 w-full mb-2">
-                    <h1 class="uppercase font-barlow text-c1 font-bold text-xl">${Lang.get('strings.role')}</h1>
+                    <h1 class="uppercase font-barlow text-c1 font-bold text-xl">${Lang.get('strings.role')} <span class="text-c5">*</span></h1>
                     <div class="text-left">
                         <select id="role_id" class="swal-input w-full p-3 border rounded-lg">
                             <option value="2" selected>${Lang.get('strings.utilisateur')}</option>
@@ -26,12 +26,12 @@ async function AfficherModalInscription() {
                 <div class="flex flex-col space-y-3 w-full mb-2">
                     <h1 class="uppercase font-barlow text-c1 font-bold text-xl">${Lang.get('strings.prenomNom')}</h1>
                     <div class="text-left">
-                        <label for="prenom" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.prenom')}</label>
+                        <label for="prenom" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.prenom')} <span class="text-c5">*</span></label>
                         <input type="text" id="prenom" class="swal-input w-full p-3 border rounded-lg">
                         <span id="erreurPrenom" class="text-c5 font-medium erreur-message hidden"></span>
                     </div>
                     <div class="text-left">
-                        <label for="nom" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.nomF')}</label>
+                        <label for="nom" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.nomF')} <span class="text-c5">*</span></label>
                         <input type="text" id="nom" class="swal-input w-full p-3 border rounded-lg">
                         <span id="erreurNom" class="text-c5 font-medium erreur-message hidden"></span>
                     </div>
@@ -39,16 +39,16 @@ async function AfficherModalInscription() {
                 <div class="flex flex-col space-y-3 w-full">
                     <h1 class="uppercase font-barlow text-c1 font-bold text-xl">Coordonnées</h1>
                     <div class="text-left">
-                        <label for="email" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.courriel')}</label>
+                        <label for="email" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.courriel')} <span class="text-c5">*</span></label>
                         <input type="email" id="courriel" class="swal-input w-full p-3 border rounded-lg">
                         <span id="erreurCourriel" class="text-c5 font-medium erreur-message hidden"></span>
                     </div>
                     <div class="text-left">
-                        <label for="password" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.motDePasse')}</label>
+                        <label for="password" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.motDePasse')} <span class="text-c5">*</span></label>
                         <input type="password" id="password" class="swal-input w-full p-3 border rounded-lg">
                     </div>
                     <div class="text-left">
-                        <label for="confirm-password" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.confirmationMotDePasse')}</label>
+                        <label for="confirm-password" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.confirmationMotDePasse')} <span class="text-c5">*</span></label>
                         <input type="password" id="confirmationPassword" name="password_confirmation" class="swal-input w-full p-3 border rounded-lg">
                     </div>
                     <span id="erreurPassword" class="text-c5 font-medium erreur-message hidden"></span>
