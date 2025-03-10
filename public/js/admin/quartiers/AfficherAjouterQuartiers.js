@@ -96,27 +96,10 @@ function CartesQuartier(quartiers) {
     quartiers.forEach((quartier) => {
        
         const card = document.createElement('div');
-        card.classList.add('quartier-carte');
-        card.classList.add('bg-white');
-        card.classList.add('shadow-md');
-        card.classList.add('rounded-lg');
-        card.classList.add('p-4');
-        card.classList.add('w-40');
-        card.classList.add('flex');
-        card.classList.add('items-center');
-        card.classList.add('my-2');
-        card.classList.add('justify-center');
-
+        card.classList.add('quartier-carte', 'bg-white', 'shadow-md', 'rounded-lg', 'p-4', 'w-40', 'flex', 'items-center', 'my-2', 'justify-center');
 
         const pill = document.createElement('span');
-        pill.classList.add('bg-blue-500');
-        pill.classList.add('text-c1');
-        pill.classList.add('text-sm');
-        pill.classList.add('truncate');
-        pill.classList.add('font-semibold');
-        pill.classList.add('px-3');
-        pill.classList.add('py-1');
-        pill.classList.add('rounded-full');
+        pill.classList.add('bg-blue-500', 'text-c1', 'text-sm', 'truncate', 'font-semibold', 'px-3', 'py-1', 'rounded-full');
 
         pill.textContent = quartier.nom;
 
