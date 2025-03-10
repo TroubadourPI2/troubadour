@@ -260,10 +260,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     })
                     .catch(error => {
                         console.error("Erreur Axios :", error);
+
+                        
+                        let message = Lang.get('strings.erreurGenerale'); 
+
+
+                         if (error.response && error.response.data && error.response.data.message) {
+                             message = error.response.data.message;
+                            }
                         Swal.fire({
                             icon: "error",
                             title: Lang.get('strings.erreur'),
-                            text: JSON.stringify(error.response.data.errors),
+                            text: message,
                         });
                     });
             }

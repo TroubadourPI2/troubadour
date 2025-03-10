@@ -157,6 +157,14 @@ class AdministrateursController extends Controller
     {
    
     $usager = Usager::findOrFail($id);
+    $utilisateur = auth()->user();
+    if ($utilisateur->id === $usager->id) {
+        return response()->json([
+            'success' => false, 
+            'message' => __('erreurModifierPropreCompte')
+        ], 403);
+    }
+
     $usager->update([
         'role_id' => $request->role_id,
         'statut_id' => $request->statut_id,
