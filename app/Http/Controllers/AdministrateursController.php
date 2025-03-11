@@ -11,14 +11,17 @@ use App\Http\Requests\UsagerRequest;
 use App\Models\Usager;
 use App\Models\RoleUsager;
 use App\Models\Statut;
+use App\Models\Recherche;
+
 class AdministrateursController extends Controller
 {
     public function Afficher()
     {
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
+        $termesRecherche = Recherche::all()->sortByDesc('nbOccurences');
 
-        return view('admin.Afficher', compact('villes', 'typesLieu'));
+        return view('admin.Afficher', compact('villes', 'typesLieu', 'termesRecherche'));
     }
 
     public function Recherche(Request $request)
@@ -170,17 +173,17 @@ class AdministrateursController extends Controller
         'statut_id' => $request->statut_id,
     ]);
 
-    return response()->json(['success' => true]);
+        return response()->json(['success' => true]);
     }
 
     public function ObtenirRolesEtStatuts()
     {
-    $roles = RoleUsager::all();
-    $statuts = Statut::all();
+        $roles = RoleUsager::all();
+        $statuts = Statut::all();
 
-    return response()->json([
-        'roles' => $roles,
-        'statuts' => $statuts,
-    ]);
+        return response()->json([
+            'roles' => $roles,
+            'statuts' => $statuts,
+        ]);
     }
 }
