@@ -31,7 +31,7 @@ return [
     'courrielRequis' => 'Le courriel est requis.',
     'courrielEmail' => 'L\'adresse courriel n\'est pas valide.', 
     'courrielMax' => "L'adresse courriel ne peut pas dépasser 32 caractères.",
-    'courrielUnique' => "L'adresse courriel doit être unique.",
+    'courrielUnique' => "Cette adresse courriel est déjà utilisée.",
     'passwordRequis' => 'Le mot de passe est requis.',
     'passwordRegex' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.',
     'passwordMin' => 'Le mot de passe doit contenir au moins 8 caractères.',

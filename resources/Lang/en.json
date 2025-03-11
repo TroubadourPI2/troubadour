@@ -82,7 +82,7 @@
   "droitsReserves" : "All rights reserved." ,
 
   "seConnecter":"Log in",
-  "sInscrire":"Sign in",
+  "sInscrire":"Sign up",
   "messageErreurConnexion": "Please fill in all the fields.",
   "erreurConnexion": "Email and/or password is invalid.",
   "connexionMessage": "Login successful!",
