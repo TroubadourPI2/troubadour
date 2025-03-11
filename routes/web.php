@@ -20,10 +20,10 @@ Route::middleware(Langue::class)
             return view('Accueil');
         })->name('login');
 
-        Route::post(
-            '/usagers/Connexion',
-            [UsagersController::class, 'Connexion']
-        )->name('usagers.Connexion');
+
+        Route::post('/usagers/Connexion',[UsagersController::class, 'Connexion'])->name('usagers.Connexion')->middleware(['guest', 'throttle:10,15']);
+
+        Route::post('/usagers', [UsagersController::class, 'CreationUsager'])->name('usagers.CreationUsager')->middleware(['guest', 'throttle:10,20']);
 
         Route::post(
             '/Deconnexion',
@@ -49,9 +49,9 @@ Route::middleware(Langue::class)
 
         //LIEUX (GESTIONNAIRE)
         Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
-        Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu')->middleware('VerifierRole:Admin,Gestionnaire')->middleware('throttle:10,30');
+        Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu')->middleware('VerifierRole:Admin,Gestionnaire');
         Route::get('/compte/obtenirLieu', [LieuxController::class, 'ObtenirUnLieu']);
-        Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu')->middleware('VerifierRole:Admin,Gestionnaire')->middleware('throttle:10,30');
+        Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu')->middleware('VerifierRole:Admin,Gestionnaire');
         Route::delete('/compte/supprimerLieu/{id}', [LieuxController::class, 'SupprimerUnLieu'])->middleware('VerifierRole:Admin,Gestionnaire');
         Route::patch('/compte/changerEtatLieu/{id}', [LieuxController::class, 'ChangerEtatLieu'])->name('usagerLieux.changerEtatLieu')->middleware('VerifierRole:Admin,Gestionnaire');
 
@@ -76,5 +76,10 @@ Route::middleware(Langue::class)
         Route::get('/admin/obtenirRoleStatut', [AdministrateursController::class, 'ObtenirRolesEtStatuts'])->middleware('VerifierRole:Admin');
 
         Route::get('/admin/recherche/lieux', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche')->middleware('VerifierRole:Admin');
+     
 
+        
+        Route::fallback(function () {
+            return response()->view('Redirection.404', [], 404);
+          });
     });
