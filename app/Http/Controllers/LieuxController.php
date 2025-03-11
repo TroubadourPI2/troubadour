@@ -7,6 +7,7 @@ use App\Models\LieuActivite;
 use App\Models\Activite;
 use App\Models\Lieu;
 use App\Models\Quartier;
+use App\Models\Recherche;
 use App\Models\LieuFavori;
 use Illuminate\Http\Request;
 use App\Models\Ville;
@@ -17,14 +18,14 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Str;
 
 class LieuxController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function Index()
     {
         try {
             $lieux = Lieu::where('actif', 1)->paginate(10);
@@ -40,49 +41,107 @@ class LieuxController extends Controller
         }
     }
 
-    public function recherche(Request $request)
+    public function Recherche(Request $request)
     {
-        try {
+        try
+        {
             $ville      = $request->ville;
+            $villes     = Ville::where('actif', 1)->get();
+            Log::Debug("Villes : " . $villes);
             $quartier   = $request->quartier;
             $recherche  = $request->txtRecherche;
             $lieux      = Lieu::paginate(10);
 
 
 
-            if (isset($request->quartier)) {
+            if(isset($request->quartier)){
                 $quartier   = $request->quartier;
                 $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(10);
             }
 
 
 
-            if (isset($request->quartier) && isset($request->txtRecherche)) {
+            if(isset($request->quartier) && isset($request->txtRecherche)){
                 $quartier   = $request->quartier;
                 $recherche  = $request->txtRecherche;
                 $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$recherche%")->where('actif', 1)->paginate(10);
             }
-
-            if (isset($request->ville)) {
+            
+            if(isset($request->ville)){
                 Log::debug("Ville : " . $request->ville);
                 $ville = $request->ville;
             }
 
-            $villes     = Ville::all();
+            if(isset($request->txtRecherche))
+            {
+                try{
+                    if (preg_match('/<[^>]*>/', $request->txtRecherche)) {
+                        Log::debug("MANUEL - Recherche contient un script ou une balise HTML");
+                        return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
+                    }
+                    $recherches = Recherche::where('termeRecherche', $request->txtRecherche)->first();
+
+                    if($recherches){
+                        $recherches->nbOccurences = $recherches->nbOccurences + 1;
+                        $recherches->save();
+                    }
+                    else{
+                        $nouvelleRecherche = new Recherche();
+                        $nouvelleRecherche->termeRecherche = $request->txtRecherche;
+                        $nouvelleRecherche->nbOccurences = 1;
+                        $nouvelleRecherche->save();
+                    }
+                }
+                catch(\Exception $e){
+                    if($e->getMessage() == "No query results for model [App\Models\Recherche]"){
+                        $nouvelleRecherche = new Recherche();
+                        $nouvelleRecherche->termeRecherche = $request->txtRecherche;
+                        $nouvelleRecherche->nbOccurences = 1;
+                        $nouvelleRecherche->save();
+                    }
+                    else{
+                        Log::debug("MANUEL - Erreur lors de l'ajout de la recherche à l'historique : " . $e->getMessage());
+                    }
+                }
+            }
+            
             $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
 
             return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
-        } catch (\Exception $e) {
-            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
+        }
+        catch(\Exception $e){
+            Log::debug("MANUEL - Erreur lors de la recherche : " . $e->getMessage());
             return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
         }
+
     }
 
-    public function quartiers(Request $request)
+    public function Historique()
+    {
+        $recherches = Recherche::all()->sortByDesc('nbOccurences');
+
+        return view('historiqueRecherche', compact('recherches'));
+    }
+
+    public function Quartiers(Request $request)
     {
         $villeId    = $request->villeId;
         $quartiers  = Quartier::where('ville_id', $villeId)->get();
         return compact('quartiers');
+    }
+
+    public function SupprimerRecherche($id)
+    {
+        try{
+            $recherche = Recherche::findOrFail($id);
+            $recherche->delete();
+            session()->flash('formulaireSupprimerRechercheValide', 'true');
+            return response()->json(['success' => true, 'message' => 'La recherche a été supprimée']);
+        }
+        catch(\Exception $e){
+            Log::error("Erreur lors de la suppression de la recherche : " . $e->getMessage());
+            return json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
     }
 
     public function AjouterUnLieu(LieuRequest $request)
