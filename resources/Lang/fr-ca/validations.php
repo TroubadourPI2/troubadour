@@ -15,7 +15,7 @@ return [
     'photoLieuFormat' => 'La photo doit être au format PNG ou JPG.',
     'photoLieuMax' => 'La taille de la photo ne doit pas dépasser 2 Mo.',
     'siteWebInvalide' => 'Le format du site web est invalide.',
-    'siteWebMax' => 'Le site web ne doit pas dépasser 64 caractères.',
+    'siteWebMax' => 'Le site web ne doit pas dépasser 150 caractères.',
     'telephoneRequis' => 'Le numéro de téléphone est requis.',
     'telephoneFormat' => 'Le format du numéro de téléphone est invalide.',
     'descriptionMax' => 'La description ne doit pas dépasser 500 caractères.',

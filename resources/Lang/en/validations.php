@@ -15,7 +15,7 @@ return [
     'photoLieuFormat' => 'The photo must be in PNG or JPG format.',
     'photoLieuMax' => 'The photo size must not exceed 2 MB.',
     'siteWebInvalide' => 'The website format is invalid.',
-    'siteWebMax' => 'The website must not exceed 64 characters.',
+    'siteWebMax' => 'The website must not exceed 150 characters.',
     'telephoneRequis' => 'The phone number is required.',
     'telephoneFormat' => 'The phone number format is invalid.',
     'descriptionMax' => 'The description must not exceed 500 characters.',

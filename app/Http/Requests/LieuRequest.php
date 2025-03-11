@@ -36,7 +36,7 @@ class LieuRequest extends FormRequest
             'codePostal' => 'required|regex:/^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/i|max:7',
             'nomEtablissement' => 'required',
             'photoLieu' => 'nullable|mimes:png,jpg|max:2048',
-            'siteWeb' => 'nullable|url:https|max:64',
+            'siteWeb' => 'nullable|url:https|max:150',
             'numeroTelephone' => 'required|regex:/^\d{3}-\d{3}-\d{4}$/',
             'description' => 'nullable|string|max:500',
             'selectQuartierLieu' => 'required|exists:Quartiers,id',
