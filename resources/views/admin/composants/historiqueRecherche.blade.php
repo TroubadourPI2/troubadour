@@ -1,6 +1,6 @@
 <div class="flex w-full h-full flex-col mb-4 font-barlow">
     <div class="w-full h-full flex flex-col justify-center items-center">
-        <div class="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-5 gap-3 h-5/6 xl:h-3/4 w-5/6 bg-c2 overflow-y-auto">
+        <div class="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-5 gap-3 h-full xl:h-full 2xl:h-5/6 w-5/6 bg-c2 overflow-y-auto">
             @if ($termesRecherche->isEmpty())
                 <div class="grid-cols-subgrid gap-4 col-span-4 hidden xl:grid">
                     <div class="col-start-3 flex w-full h-full justify-between items-center bg-c3 rounded-md p-1 px-3">
