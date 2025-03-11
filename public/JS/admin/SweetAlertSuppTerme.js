@@ -36,8 +36,6 @@ function supprimerTerme(id) {
             confirmButton: 'bg-c1 text-white font-semibold px-4 py-2 uppercase rounded-full transition',
             cancelButton: 'text-c1 uppercase bg-c2 font-semibold rounded-full px-4 py-2 hover:bg-white transition',
         },
-        buttons: true,
-        dangerMode: true,
     })
     .then((willDelete) => {
         if (willDelete.isConfirmed) {
@@ -52,7 +50,7 @@ function supprimerTerme(id) {
             });
 
             axios
-                .get(`/recherche/supprimer/${id}`)
+                .delete(`/recherche/supprimer/${id}`)
                 .then((response) => {
                     let reponse = response.data;
                     let success = reponse.success;
