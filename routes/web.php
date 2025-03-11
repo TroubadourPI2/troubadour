@@ -69,15 +69,14 @@ Route::middleware(Langue::class)
         // RECHERCHE ( + HISTORIQUE)
         Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
         Route::get('/recherche/supprimer/{id}/', [LieuxController::class, 'supprimerRecherche'])->name('recherche.supprimer')->middleware('VerifierRole:Admin, throttle:10,1');
-        Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2')->middleware(('throttle:10,1'));
-        Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
+        Route::post('/recherche', [LieuxController::class, 'Recherche'])->name('lieux.recherche2')->middleware(('throttle:10,1'));
+        Route::get('/quartiers', [LieuxController::class, 'Quartiers'])->name('lieux.quartiers');
 
         //ADMIN
         Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
         Route::get('/admin/rechercheUsagers', [AdministrateursController::class, 'usagersPagination'])->name('admin.rechercheUsagers')->middleware('VerifierRole:Admin');
         Route::post('/admin/usagers/modifier/{id}', [AdministrateursController::class, 'modifierUsagers'])->name('admin.ModifierUsagers')->middleware('VerifierRole:Admin');
         Route::get('/admin/obtenirRoleStatut', [AdministrateursController::class, 'ObtenirRolesEtStatuts'])->middleware('VerifierRole:Admin');
-        Route::get('/admin/supprimerTermeRecherche/{id}', [AdministrateursController::class, 'SupprimerTermeRecherche'])->name('admin.supprimerTermeRecherche')->middleware('VerifierRole:Admin');
 
         Route::get('/admin/recherche/lieux', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche')->middleware('VerifierRole:Admin');
      
