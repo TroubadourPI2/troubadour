@@ -87,7 +87,7 @@
   "erreurConnexion": "Email and/or password is invalid.",
   "connexionMessage": "Login successful!",
   "deconnexionMessage": "Logout successful!",
-  "inscriptionMessage": "Signed in successfully!",
+  "inscriptionMessage": "Signed up successfully!",
   "messageErreurInscription": "There has been an unforeseen error while creating the account.",
 
   "prenomNom" : "First Name & Last Name",

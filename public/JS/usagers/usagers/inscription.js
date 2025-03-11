@@ -37,7 +37,7 @@ async function AfficherModalInscription() {
                     </div>
                 </div>
                 <div class="flex flex-col space-y-3 w-full">
-                    <h1 class="uppercase font-barlow text-c1 font-bold text-xl">Coordonnées</h1>
+                    <h1 class="uppercase font-barlow text-c1 font-bold text-xl">${Lang.get('strings.coordonnees')}</h1>
                     <div class="text-left">
                         <label for="email" class="text-lg font-bold text-c1 uppercase font-barlow">${Lang.get('strings.courriel')} <span class="text-c5">*</span></label>
                         <input type="email" id="courriel" class="swal-input w-full p-3 border rounded-lg">
@@ -57,7 +57,7 @@ async function AfficherModalInscription() {
         `,
         focusConfirm: false,
         showCancelButton: false,
-        confirmButtonText: "S'inscrire",
+        confirmButtonText: Lang.get('strings.sInscrire'),
         heightAuto: false,
         customClass: {
             popup: 'bg-c2 rounded-l max-w-96 max-h-96 overflow-auto m-5',
