@@ -79,19 +79,15 @@ class LieuxController extends Controller
                         Log::debug("MANUEL - Recherche contient un script ou une balise HTML");
                         return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
                     }
-                    $recherches = Recherche::where('termeRecherche', $request->txtRecherche)->where('ville_id', $ville)->where('quartier_id', $quartier)->first();
+                    $recherches = Recherche::where('termeRecherche', $request->txtRecherche)->first();
 
                     if($recherches){
                         $recherches->nbOccurences = $recherches->nbOccurences + 1;
                         $recherches->save();
                     }
                     else{
-                        Log::debug("MANUEL - Aucune recherche trouvée");
-
                         $nouvelleRecherche = new Recherche();
                         $nouvelleRecherche->termeRecherche = $request->txtRecherche;
-                        $nouvelleRecherche->ville_id = $ville;
-                        $nouvelleRecherche->quartier_id = $quartier;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -100,8 +96,6 @@ class LieuxController extends Controller
                     if($e->getMessage() == "No query results for model [App\Models\Recherche]"){
                         $nouvelleRecherche = new Recherche();
                         $nouvelleRecherche->termeRecherche = $request->txtRecherche;
-                        $nouvelleRecherche->ville_id = $ville;
-                        $nouvelleRecherche->quartier_id = $quartier;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -125,38 +119,8 @@ class LieuxController extends Controller
     public function Historique()
     {
         $recherches = Recherche::all()->sortByDesc('nbOccurences');
-        $quartiers = Recherche::all()->unique('quartier_id');
 
-        $listeQuartiers = array();
-        foreach($quartiers as $quartier){
-            $listeQuartiers[] = Quartier::find($quartier->quartierId);
-        }
-
-        $villes = Recherche::all()->unique('ville_id');
-
-        $listeVilles = array();
-        foreach($villes as $ville){
-            $listeVilles[] = Ville::find($ville->villeId);
-        }
-
-        $resultatsVilles = DB::table('recherches')
-            ->join('villes', 'recherches.ville_id', '=', 'villes.id')
-            ->select('villes.id as ville_id', 'villes.nom as nomVille', DB::raw('count(*) as total'))
-            ->groupBy('villes.id', 'villes.nom')
-            ->groupBy('ville_id')
-            ->get();
-
-        $resultatsQuartiers = DB::table('recherches')
-            ->join('quartiers', 'recherches.ville_id', '=', 'quartiers.id')
-            ->select('quartiers.id as ville_id', 'quartiers.nom as nomQuartiers', DB::raw('count(*) as total'))
-            ->groupBy('quartiers.id', 'quartiers.nom')
-            ->groupBy('quartier_id')
-            ->get();
-
-
-        Log::debug("Resultats quartiers : " . $resultatsQuartiers);
-
-        return view('historiqueRecherche', compact('recherches', 'listeQuartiers', 'listeVilles', 'villes', 'resultatsVilles', 'resultatsQuartiers'));
+        return view('historiqueRecherche', compact('recherches'));
     }
 
     public function Quartiers(Request $request)
