@@ -6,7 +6,7 @@
 
     <div class="bg-c2 flex w-full h-full flex-col items-center">
         <!-- Titre de la section de recherche -->
-        <h2 class="w-full text-center text-c1 font-bold text-2xl font-barlow">{!! __('Recherche') !!}</h2>
+        <h2 class="w-full text-center text-c1 font-bold text-2xl font-barlow">{{ __('recherche') }}</h2>
 
         <div class="lg:flex w-5/6 bg-c3 rounded-full justify-evenly items-center mt-4 h-10 hidden lg:h-12">
             <form class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-full h-8 items-center"
@@ -17,7 +17,7 @@
                     id="selectVille" name="ville" required onchange="setQuartiersPC()">
                     <option value="default" disabled hidden <?php if ($ville == -1) {
                         echo 'selected';
-                    } ?>>{!! __('Choisir une ville') !!}</option>
+                    } ?>>{{ __('choisirVille') }}</option>
                     @if (isset($villes))
                         @if (count($villes))
                             @foreach ($villes as $villee)
@@ -28,10 +28,10 @@
                                 @endif
                             @endforeach
                         @else
-                            <option value="aucunResultat" disabled selected>{!! __('Aucune ville trouvé') !!}</option>
+                            <option value="aucunResultat" disabled selected>{{ __('aucuneVille') }}</option>
                         @endif
                     @else
-                        <option value="aucunResultat" disabled selected hidden>{!! __('Aucune ville trouvé') !!}</option>
+                        <option value="aucunResultat" disabled selected hidden>{{ __('aucuneVille') }}</option>
                     @endif
                 </select>
 
@@ -47,13 +47,13 @@
                             @endif
                         @endforeach
                     @else
-                        <option value="aucunResultat" disabled selected hidden>{!! __('Aucun quartier trouvé') !!}</option>
+                        <option value="aucunResultat" disabled selected hidden>{{ __('aucunQuartier') }}</option>
                     @endif
                 </select>
 
                 <input type="text"
                     class="lg:flex hidden w-4/5 h-8 bg-transparent text-c1 font-barlow text-md p-2 mx-1 text-center rounded-full focus:border focus:border-0.5 focus:border-c1 hover:bg-c2 hover:border hover:border-c1"
-                    placeholder="{!! __('Que recherchez-vous ?') !!}" id="barreRecherche" name="txtRecherche"
+                    placeholder="{{ __('placeholderRecherche') }}" id="barreRecherche" name="txtRecherche"
                     value="<?php if (isset($recherche)) {
                         echo $recherche;
                     } ?>">
@@ -75,7 +75,7 @@
                     id="selectVilleMobile" name="ville" onchange="setQuartiersMobile()">
                     <option value="default" disabled hidden <?php if ($ville == -1) {
                         echo 'selected';
-                    } ?>>{!! __('Choisir une ville') !!}</option>
+                    } ?>>{{ __('choisirVille') }}</option>
                     @if (isset($villes))
                         @if (count($villes))
                             @foreach ($villes as $villee)
@@ -86,7 +86,7 @@
                                 @endif
                             @endforeach
                         @else
-                            <option value="aucunResultat" disabled selected>{!! __('Aucune ville trouvé') !!}</option>
+                            <option value="aucunResultat" disabled selected>{{ __('aucuneVille') }}</option>
                         @endif
                     @endif
                 </select>
@@ -103,7 +103,8 @@
                             @endif
                         @endforeach
                     @else
-                        <option value="aucunResultat" disabled selected hidden id="optionDefaut">{!! __('Choisir un quartier') !!}
+                        <option value="aucunResultat" disabled selected hidden id="optionDefaut">
+                            {{ __('choisirQuartier') }}
                         </option>
                     @endif
                 </select>
@@ -111,7 +112,7 @@
             <div class="flex flex-row items-center bg-c3 rounded-full justify-evenly flex-column mt-4 h-10 p-1.5">
                 <input type="text"
                     class="w-4/5 h-full bg-transparent text-c1 font-barlow text-md p-2 mx-1 text-center rounded-full focus:border focus:border-0.5 focus:border-c1 hover:bg-c2 hover:border hover:border-c1"
-                    placeholder="{!! __('Que recherchez-vous ?') !!}" id="barreRecherche2" name="txtRecherche"
+                    placeholder="{{ __('placeholderRecherche') }}" id="barreRecherche2" name="txtRecherche"
                     value="<?php if (isset($recherche)) {
                         echo $recherche;
                     } ?>">
@@ -131,32 +132,13 @@
             <div class="flex rounded-full justify-center gap-x-3 flex-row w-full h-full items-center bg-c1 cursor-pointer hover:text-c1 hover:bg-c2 hover:border hover:border-c1"
                 id="mbBtnFiltres">
                 <span class="iconify size-6 p-1 text-c3" data-icon="mdi:filter" data-inline="false"></span>
-                <span class="text-c3 text-sm">{!! __('Filtrer les résultats') !!}</span>
+                <span class="text-c3 text-sm">{{ __('filtrer') }}</span>
             </div>
         </div>
 
         <!-- Séparateur -->
         <div class="w-full flex justify-center items-center h-8">
             <hr class="w-3/4 bg-c1 h-1">
-        </div>
-
-        <!-- Boutons de filtres -->
-        <div class="w-5/6 h-12 justify-center items-center space-x-5 my-4 flex-row hidden lg:flex">
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Prix') !!}</h3>
-            </div>
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Type') !!}</h3>
-            </div>
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Distance') !!}</h3>
-            </div>
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Organisme') !!}</h3>
-            </div>
-            <div class="w-40 rounded-full bg-c2 border-c1 border cursor-pointer hover:bg-c1">
-                <h3 class="text-c1 font-barlow text-lg text-center hover:text-c3">{!! __('Avis') !!}</h3>
-            </div>
         </div>
 
         <!-- ?  Section des cartes (avec scroll seulement ici) [RESPONSIVE]-->
@@ -168,7 +150,7 @@
                         @foreach ($lieux as $lieu)
                             <a href="/lieu/zoom/{{ $lieu->id }}"
                                 class="snap-start lg:w-3/4 w-2/3 bg-c3 h-full rounded-lg flex flex-col items-center p-3 border-2 border-c3 hover:border-2 hover:border-c1 cursor-pointer carteLieu ">
-                                <img src="{{ asset($lieu->photoLieu) }}" alt="{!! __('Image de l\'établissement') !!}"
+                                <img src="{{ asset($lieu->photoLieu) }}" alt="{{ __('imageEtablissement') }}"
                                     class="rounded-md h-52">
                                 <h3 class="text-c1 font-barlow text-md my-2 carteTitre">{{ $lieu->nomEtablissement }}</h3>
                                 <span class="text-blackfont-barlow text-sm text-center">{{ $lieu->description }}</span>
@@ -180,18 +162,18 @@
                     </div>
                 @else
                     <div class="w-full h-full place-content-center">
-                        <h3 class="text-center text-c1 text-bold font-barlow text-xl">{!! __('Aucun résultat trouvé') !!}</h3>
+                        <h3 class="text-center text-c1 text-bold font-barlow text-xl">{{ __('aucunResultat') }}</h3>
                     </div>
                 @endif
             @else
                 <div class="w-full h-full place-content-center">
-                    <h3 class="text-center text-c1 text-bold font-barlow text-xl">{!! __('Aucun résultat trouvé') !!}</h3>
+                    <h3 class="text-center text-c1 text-bold font-barlow text-xl">{{ __('aucunResultat') }}</h3>
                 </div>
             @endif
         </div>
     </div>
 
-    <script src="{{ asset('js/filtreRecherche.js') }}"></script>
-    <script src="{{ asset('js/modalFiltresMobile.js') }}"></script>
+    <script src="{{ asset('js/Recherche/FiltreRecherche.js') }}"></script>
+    <script src="{{ asset('js/Recherche/ModalFiltresMobile.js') }}"></script>
 
 @endsection
