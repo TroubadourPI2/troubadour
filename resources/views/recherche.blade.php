@@ -128,13 +128,13 @@
 
         </form>
 
-        <div class="flex lg:hidden w-full bg-c3 rounded-full justify-evenly items-center mt-2 p-2 h-10 lg:h-12">
+        <!-- <div class="flex lg:hidden w-full bg-c3 rounded-full justify-evenly items-center mt-2 p-2 h-10 lg:h-12">
             <div class="flex rounded-full justify-center gap-x-3 flex-row w-full h-full items-center bg-c1 cursor-pointer hover:text-c1 hover:bg-c2 hover:border hover:border-c1"
                 id="mbBtnFiltres">
                 <span class="iconify size-6 p-1 text-c3" data-icon="mdi:filter" data-inline="false"></span>
                 <span class="text-c3 text-sm">{{ __('filtrer') }}</span>
             </div>
-        </div>
+        </div> -->
 
         <!-- Séparateur -->
         <div class="w-full flex justify-center items-center h-8">
