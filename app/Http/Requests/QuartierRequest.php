@@ -29,6 +29,14 @@ class QuartierRequest extends FormRequest
             ];
         }
 
+        if ($this->route()->getName() === 'modifier.quartier') {
+            return [
+                'ville_id' => 'required|integer|exists:villes,id',
+                'actif' => 'required|integer',
+                'nom' => 'required|string',
+            ];
+        }
+
         if ($this->route()->getName() === 'supprimer.quartier') {
             return [
                 'id' => 'required|integer|exists:Quartiers,id',

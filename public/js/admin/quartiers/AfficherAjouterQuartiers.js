@@ -118,7 +118,8 @@ function CartesQuartier(quartiers) {
 
         const boutonModifier = document.createElement('button');
         boutonModifier.type = 'button';
-        boutonModifier.id = quartier.id;
+        boutonModifier.setAttribute('data-id', quartier.id);
+        boutonModifier.id = "boutonModifierQuartier";
         boutonModifier.nom = quartier.nom;
         boutonModifier.className =
             'boutonModifierQuartier bg-red-500 p-1 rounded';

@@ -12,12 +12,20 @@
 </div>  
 
 <div id="ajouterQuartier" class="hidden">@include('admin.composants.AjouterQuartier')</div>
+<div id="modifierQuartier" class="hidden">@include('admin.composants.ModifierQuartier')</div>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("boutonAjouterQuartier").addEventListener("click", function () {
                 let affichage = document.getElementById("afficherQuartiers"); // Replace with the actual ID
                 let ajout = document.getElementById("ajouterQuartier"); // Replace with the actual ID
+                affichage.classList.add("hidden"); // Hide first div
+                ajout.classList.remove("hidden"); // Show second div
+            });
+            document.getElementById("boutonModifierQuartier").addEventListener("click", function () {
+                let affichage = document.getElementById("afficherQuartiers"); // Replace with the actual ID
+                let ajout = document.getElementById("modifierQuartier"); // Replace with the actual ID
                 affichage.classList.add("hidden"); // Hide first div
                 ajout.classList.remove("hidden"); // Show second div
             });
