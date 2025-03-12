@@ -116,6 +116,38 @@ class UsagersController extends Controller
         return redirect()->back(); 
 
     }
+
+
+    public function CreationUsager(UsagerRequest $request){
+        try{
+            $usager = new Usager();
+            $usager->prenom = $request->prenom;
+            $usager->nom = $request->nom;
+            $usager->courriel = $request->courriel;
+            $usager->password = bcrypt($request->password);
+            $usager->role_id = $request->role_id ;
+
+            if ($usager->role_id == 2) {
+                $usager->statut_id = 1; // User role, set statut to 1
+            } else {
+                $usager->statut_id = 3;
+            }
+
+            $usager->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Usager created successfully!'
+            ]);
+        } catch (\Throwable $e) {
+            Log::debug($e);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while creating the user.'
+            ]);
+        }
+    }
     
     public function ModificationUsager(UsagerRequest $request, Usager $usager){
         try{
@@ -133,7 +165,7 @@ class UsagersController extends Controller
                 $usager->password = bcrypt($request->password);
             }
             
-    
+             
             $usager->save();
             session()->flash('formulaireModifierUValide', 'true');
             return redirect()->route('usagerLieux.afficher')

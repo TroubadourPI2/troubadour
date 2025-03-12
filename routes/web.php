@@ -24,10 +24,9 @@ Route::middleware(Langue::class)
             return view('test');
         });
 
-        Route::post(
-            '/usagers/Connexion',
-            [UsagersController::class, 'Connexion']
-        )->name('usagers.Connexion');
+        Route::post('/usagers/Connexion',[UsagersController::class, 'Connexion'])->name('usagers.Connexion')->middleware(['guest', 'throttle:10,15']);
+
+        Route::post('/usagers', [UsagersController::class, 'CreationUsager'])->name('usagers.CreationUsager')->middleware(['guest', 'throttle:10,20']);
 
         Route::post(
             '/Deconnexion',
@@ -67,11 +66,12 @@ Route::middleware(Langue::class)
         Route::get('/compte/obtenirActivite/{activiteId}', [ActivitesController::class, 'ObtenirActivite'])->name('compte.obtenirActivite')->middleware('VerifierRole:Admin,Gestionnaire');
         Route::patch('compte/activite/statut/{id}', [ActivitesController::class, 'ModifierStatutActivite'])->name('usagerActivites.modifierStatutActivite')->middleware('VerifierRole:Admin,Gestionnaire');
 
-        // RECHERCHE ( + HISTORIQUE)
         Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
-        Route::delete('/recherche/supprimer/{id}', [LieuxController::class, 'supprimerRecherche'])->name('recherche.supprimer')->middleware('VerifierRole:Admin, throttle:10,1');
-        Route::post('/recherche', [LieuxController::class, 'Recherche'])->name('lieux.recherche2')->middleware(('throttle:10,1'));
-        Route::get('/quartiers', [LieuxController::class, 'Quartiers'])->name('lieux.quartiers');
+
+        Route::post('/recherche', [LieuxController::class, 'recherche'])->name('lieux.recherche2');
+
+        Route::get('/quartiers', [LieuxController::class, 'quartiers'])->name('lieux.quartiers');
+
 
         //ADMIN
         Route::get('/admin', [AdministrateursController::class, 'Afficher'])->name('admin')->middleware('VerifierRole:Admin');
