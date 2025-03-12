@@ -41,9 +41,9 @@ Route::middleware(Langue::class)
         Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'ZoomActivite'])->name('Activite.zoom');
 
         Route::post('/admin/ajouterQuartier', [QuartiersController::class, 'AjouterUnQuartier'])->name('ajouter.quartier')->middleware('VerifierRole:Admin');
-        Route::post('/admin/modifierQuartier', [QuartiersController::class, 'ModifierQuartier'])->name('modifier.quartier')->middleware('VerifierRole:Admin');
+        Route::patch('/admin/modifierQuartier', [QuartiersController::class, 'ModifierQuartier'])->name('modifier.quartier')->middleware('VerifierRole:Admin');
         Route::delete('/admin/supprimerQuartier', [QuartiersController::class, 'SupprimerQuartier'])->name('supprimer.quartier')->middleware('VerifierRole:Admin');  
-        Route::get('/compte/obtenirActivite/{quartierId}', [QuartiersController::class, 'ObtenirQuartier'])->name('compte.obtenirQuartier')->middleware('VerifierRole:Admin,Gestionnaire');
+        Route::get('/compte/obtenirQuartier/{quartierId}', [QuartiersController::class, 'ObtenirQuartier'])->name('compte.obtenirQuartier')->middleware('VerifierRole:Admin,Gestionnaire');
 
         Route::post('/ajoutFavoriLieu', [UsagersController::class, 'AjouterFavorisLieu'])->name('ajouter.favoris.lieu');  
         Route::post('/ajoutFavoriActivite', [UsagersController::class, 'AjouterFavorisActivite'])->name('ajouter.favoris.activite');  
@@ -54,7 +54,7 @@ Route::middleware(Langue::class)
         Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'ObtenirVilleUtilisateur']);
 
         Route::get('/compte', [UsagersController::class, 'ObtenirDonneesCompte'])->name('usagerLieux.afficher')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
-        Route::patch('/compte/{usager}/modifier', [UsagersController::class, 'ModificationUsager'])->name('usagers.modifier')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
+        Route::put('/compte/{usager}/modifier', [UsagersController::class, 'ModificationUsager'])->name('usagers.modifier')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
         Route::patch('/compte/{usager}/suppression', [UsagersController::class, 'Suppression'])->name('usagers.suppression')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
 
         //LIEUX (GESTIONNAIRE)

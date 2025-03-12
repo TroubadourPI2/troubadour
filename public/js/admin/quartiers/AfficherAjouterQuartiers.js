@@ -42,7 +42,6 @@ async function ObtenirVille() {
 
         if (selectVilleModifier) MettreAJourSelectVillesModifier(villes)
 
-        console.log(villes);
         
 
     } catch (error) {
@@ -65,7 +64,6 @@ function MettreAJourSelectVilles(villes) {
         option.value = ville.id;
         option.textContent = ville.nom;
         selectVille.appendChild(option);
-        console.log(ville.id);
 
     });
 
@@ -80,7 +78,6 @@ function MettreAJourSelectVillesModifier(villes) {
         option.value = ville.id;
         option.textContent = ville.nom;
         selectVilleModifier.appendChild(option);
-        console.log(ville.id);
     });
 
     selectVilleModifier.removeAttribute('disabled');
@@ -106,7 +103,6 @@ async function ObtenirQuartier() {
 
         if (affichageQuartiers) CartesQuartier(quartiers);
 
-        console.log(quartiers);
 
     } catch (error) {
         console.error(error);

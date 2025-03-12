@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuartierRequest;
 use Illuminate\Http\Request;
 use App\Models\Quartier;
+use Illuminate\Support\Facades\Log;
+
 
 class QuartiersController extends Controller
 {
@@ -46,11 +48,11 @@ class QuartiersController extends Controller
     {
         try {
          
-            $activite = Quartier::with(['photos', 'lieux', 'typeActivite'])->findOrFail($quartierId);
+            $quartier = Quartier::findOrFail($quartierId);
     
             return response()->json([
                 'success' => true,
-                'data'    => $activite
+                'data'    => $quartier
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -63,9 +65,22 @@ class QuartiersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function ModifierQuartier(string $id)
+    public function ModifierQuartier(QuartierRequest $request)
     {
-        //
+        Log::info('Received request:', $request->all());
+        $quartier = Quartier::where('id', $request->id)->firstOrFail();
+        try{
+                $quartier->nom = $request->nom;
+                $quartier->actif = $request->actif;
+                $quartier->ville_id = $request->ville_id;
+
+                $quartier->save();
+                return redirect()->route('admin'); 
+            }
+            catch(\Throwable $e){
+                log::debug($e);
+            }
+            return redirect()->back(); 
     }
 
     /**

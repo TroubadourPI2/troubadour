@@ -9,17 +9,21 @@
 
     Page Modifier
 
-    <form action="{{ route('modifier.quartier')}}"  method="post">
+    <form action="{{route('modifier.quartier')}}" id="formulaireQuartierModif"  method="POST">
+        
         @csrf
+        @method('PATCH')
+        <input name="id" id="idQuartierModif"
+        class="hidden">
 
         <div class="flex flex-row gap-5">
-            <input name="nomQuartierModif" placeholder="nom du quartier"
+            <input name="nom" id="nomQuartierModif" placeholder="nom du quartier"
             class="block w-1/2 rounded-lg p-1 sm:p-2 font-medium">
 
-            <select name="actif"
+            <select name="actif" id="actifQuartierModif"
             class="block w-fit rounded-lg p-1 sm:p-2 font-medium">
-                <option value="1"> {{ __('actif') }}</option>
                 <option value="0"> {{ __('inactif') }}</option>
+                <option value="1"> {{ __('actif') }}</option>
             </select>
 
             <select name="ville_id" id="selectVilleModifierQuartier" 

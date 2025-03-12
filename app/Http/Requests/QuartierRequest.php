@@ -31,6 +31,7 @@ class QuartierRequest extends FormRequest
 
         if ($this->route()->getName() === 'modifier.quartier') {
             return [
+                'id' => 'required|integer|exists:Quartiers,id',
                 'ville_id' => 'required|integer|exists:villes,id',
                 'actif' => 'required|integer',
                 'nom' => 'required|string',
