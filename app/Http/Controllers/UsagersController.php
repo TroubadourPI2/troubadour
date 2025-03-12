@@ -44,7 +44,9 @@ class UsagersController extends Controller
     }
 
     public function ObtenirDonneesCompte(){
-        $usager = Auth::user(); 
+        $usager = Auth::user();
+        $favorisActivites = $usager->activiteFavoris()->get();
+        $favorisLieux = $usager->lieuFavoris()->get();
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)
         ->orderByDesc('actif') 
         ->get();
@@ -52,8 +54,7 @@ class UsagersController extends Controller
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::all();
-        $favorisActivites = ActiviteFavori::where('usager_id', $usager->id)->pluck('activite_id')->toArray();
-        $favorisLieux = LieuFavori::where('usager_id', $usager->id)->pluck('lieu_id')->toArray();
+        
        
         return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite', 'favorisActivites', 'favorisLieux'));
     }
