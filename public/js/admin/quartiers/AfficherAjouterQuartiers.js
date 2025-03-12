@@ -9,6 +9,18 @@ document.addEventListener('DOMContentLoaded', function () {
     ObtenirElementsAfficherQuartiers();
     ObtenirVille();
     ObtenirQuartier();
+
+
+    document.querySelector("#formulaireQuartierAjout").addEventListener("submit", function (e) {
+        e.preventDefault();
+        
+        Swal.fire({
+                icon: 'error',
+                title: Lang.get('strings.attention'),
+                text: "bop"
+        });
+    });
+
 });
 
 function ObtenirElementsAjouterQuartiers() {
@@ -57,6 +69,8 @@ function MettreAJourSelectVilles(villes) {
     const optionDefaut = document.createElement('option');
     optionDefaut.value = '';
     optionDefaut.textContent = Lang.get('strings.choisirVille');
+    optionDefaut.disabled = true;
+    optionDefaut.selected = true;
     selectVille.appendChild(optionDefaut);
 
     villes.forEach((ville) => {
@@ -77,6 +91,7 @@ function MettreAJourSelectVillesModifier(villes) {
         const option = document.createElement('option');
         option.value = ville.id;
         option.textContent = ville.nom;
+
         selectVilleModifier.appendChild(option);
     });
 
@@ -150,3 +165,4 @@ function CartesQuartier(quartiers) {
 
     });
 }
+

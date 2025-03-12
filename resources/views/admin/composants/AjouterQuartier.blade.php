@@ -7,7 +7,7 @@
     </button>
 
 
-    <form action="{{ route('ajouter.quartier')}}"  method="post">
+    <form action="{{ route('ajouter.quartier')}}"  id="formulaireQuartierAjout" method="post">
         @csrf
 
         <div class="flex flex-row gap-5">
