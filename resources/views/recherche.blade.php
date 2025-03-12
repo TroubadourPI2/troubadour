@@ -39,13 +39,17 @@
                     class="border enabled:border-c3 hidden lg:flex enabled:bg-c1 justify-center items-center h-full lg:h-8 w-1/3 lg:w-1/5 xl:w-1/3 2xl:1/3 rounded-r-full font-barlow text-c3 text-center enabled:hover:bg-c2 enabled:hover:text-c1 text-xs md:text-md lg:text-lg enabled:hover:border hover:border-c1 disabled:bg-c2 disabled:text-c1 disabled:border-c1"
                     id="selectQuartier" name="quartier" required>
                     @if (isset($quartiers))
-                        @foreach ($quartiers as $quartier2)
-                            @if (isset($quartier) && $quartier == $quartier2->id)
-                                <option value="{{ $quartier2->id }}" selected>{{ $quartier2->nom }}</option>
-                            @else
-                                <option value="{{ $quartier2->id }}">{{ $quartier2->nom }}</option>
-                            @endif
-                        @endforeach
+                        @if (count($quartiers))
+                            @foreach ($quartiers as $quartier1)
+                                @if (isset($quartier) && $quartier == $quartier1->id)
+                                    <option value="{{ $quartier1->id }}" selected>{{ $quartier1->nom }}</option>
+                                @else
+                                    <option value="{{ $quartier1->id }}">{{ $quartier1->nom }}</option>
+                                @endif
+                            @endforeach
+                        @else
+                            <option value="aucunResultat" disabled selected>{{ __('aucunQuartier') }}</option>
+                        @endif
                     @else
                         <option value="aucunResultat" disabled selected hidden>{{ __('aucunQuartier') }}</option>
                     @endif
@@ -66,7 +70,20 @@
                     <span class="lg:flex iconify size-6 text-c3" data-icon="mdi:search" data-inline="false"></span>
                 </button>
             </form>
+            <form class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-24 h-8 items-center"
+                action="{{ route('lieux.rechercheReset') }}" method="post">
+                @csrf
+                <button type="submit"
+                    class="lg:flex lg:mr-2 hidden w-full h-8 justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c2  disabled:border disabled:border-c1"
+                    id="btnRechercherPC" <?php if (!session()->has('idQuartier')) {
+                        echo 'disabled';
+                    } ?>>
+                    <span class="lg:flex iconify size-6 text-c3" data-icon="mdi:refresh" data-inline="false"></span>
+                </button>
+            </form>
         </div>
+
+
         <form action="{{ route('lieux.recherche2') }}" class="flex lg:hidden flex-col w-full justify-start" method="POST">
             @csrf
             <div class="flex flex-row items-center bg-c3 rounded-full justify-evenly mt-4 h-10 p-1.5">
@@ -175,5 +192,6 @@
 
     <script src="{{ asset('js/Recherche/FiltreRecherche.js') }}"></script>
     <script src="{{ asset('js/Recherche/ModalFiltresMobile.js') }}"></script>
+    <script src="{{ asset('js/Recherche/redirectionQuartier.js') }}"></script>
 
 @endsection
