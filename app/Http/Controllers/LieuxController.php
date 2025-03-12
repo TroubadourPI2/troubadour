@@ -63,8 +63,11 @@ class LieuxController extends Controller
 
             if(isset($request->quartier) && isset($request->txtRecherche)){
                 $quartier   = $request->quartier;
-                $recherche  = $request->txtRecherche;
-                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$recherche%")->where('actif', 1)->paginate(10);
+                $rechercheSecurisee = trim($request->txtRecherche);
+                $rechercheSecurisee = addslashes($rechercheSecurisee);
+                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
+
+                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$rechercheSecurisee%")->where('actif', 1)->paginate(10);
             }
             
             if(isset($request->ville)){
@@ -74,12 +77,17 @@ class LieuxController extends Controller
 
             if(isset($request->txtRecherche))
             {
+                $rechercheSecurisee = trim($request->txtRecherche);
+                $rechercheSecurisee = addslashes($rechercheSecurisee);
+                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
+
                 try{
-                    if (preg_match('/<[^>]*>/', $request->txtRecherche)) {
+                    if (preg_match('/<[^>]*>/', $rechercheSecurisee)) {
                         Log::debug("MANUEL - Recherche contient un script ou une balise HTML");
                         return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
                     }
-                    $recherches = Recherche::where('termeRecherche', $request->txtRecherche)->first();
+
+                    $recherches = Recherche::where('termeRecherche', $rechercheSecurisee)->first();
 
                     if($recherches){
                         $recherches->nbOccurences = $recherches->nbOccurences + 1;
@@ -87,7 +95,7 @@ class LieuxController extends Controller
                     }
                     else{
                         $nouvelleRecherche = new Recherche();
-                        $nouvelleRecherche->termeRecherche = $request->txtRecherche;
+                        $nouvelleRecherche->termeRecherche = $rechercheSecurisee;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -95,7 +103,7 @@ class LieuxController extends Controller
                 catch(\Exception $e){
                     if($e->getMessage() == "No query results for model [App\Models\Recherche]"){
                         $nouvelleRecherche = new Recherche();
-                        $nouvelleRecherche->termeRecherche = $request->txtRecherche;
+                        $nouvelleRecherche->termeRecherche = $rechercheSecurisee;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -356,4 +364,6 @@ class LieuxController extends Controller
             return response()->json(["success" => false, "message" =>  __('erreurSuppresion')], 500);
         }
     }
+
+
 }
