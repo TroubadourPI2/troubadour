@@ -5,9 +5,7 @@
         data-inline="false"></span>
         {{ __('ajouter') }}
     </button>
-    <div class="grid lg:grid-cols-4 md:grid-cols-2" id="affichageQuartiers">
-
-    </div>
+    <div class="grid lg:grid-cols-4 md:grid-cols-2" id="affichageQuartiers"></div>
 
 </div>  
 
@@ -18,17 +16,21 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("boutonAjouterQuartier").addEventListener("click", function () {
-                let affichage = document.getElementById("afficherQuartiers"); // Replace with the actual ID
-                let ajout = document.getElementById("ajouterQuartier"); // Replace with the actual ID
-                affichage.classList.add("hidden"); // Hide first div
-                ajout.classList.remove("hidden"); // Show second div
+                let affichage = document.getElementById("afficherQuartiers"); 
+                let ajout = document.getElementById("ajouterQuartier"); 
+                affichage.classList.add("hidden");
+                ajout.classList.remove("hidden");
             });
-            document.getElementById("boutonModifierQuartier").addEventListener("click", function () {
-                let affichage = document.getElementById("afficherQuartiers"); // Replace with the actual ID
-                let ajout = document.getElementById("modifierQuartier"); // Replace with the actual ID
-                affichage.classList.add("hidden"); // Hide first div
-                ajout.classList.remove("hidden"); // Show second div
+
+            document.getElementById("afficherQuartiers").addEventListener("click", function (event) {
+                if (event.target.closest(".boutonModifierQuartier")) {
+                    let affichage = document.getElementById("afficherQuartiers");
+                    let ajout = document.getElementById("modifierQuartier");
+                    affichage.classList.add("hidden");
+                    ajout.classList.remove("hidden");
+                }
             });
+
         });
     </script>
 

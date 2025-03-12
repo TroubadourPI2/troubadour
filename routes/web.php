@@ -43,6 +43,7 @@ Route::middleware(Langue::class)
         Route::post('/admin/ajouterQuartier', [QuartiersController::class, 'AjouterUnQuartier'])->name('ajouter.quartier')->middleware('VerifierRole:Admin');
         Route::post('/admin/modifierQuartier', [QuartiersController::class, 'ModifierQuartier'])->name('modifier.quartier')->middleware('VerifierRole:Admin');
         Route::delete('/admin/supprimerQuartier', [QuartiersController::class, 'SupprimerQuartier'])->name('supprimer.quartier')->middleware('VerifierRole:Admin');  
+        Route::get('/compte/obtenirActivite/{quartierId}', [QuartiersController::class, 'ObtenirQuartier'])->name('compte.obtenirQuartier')->middleware('VerifierRole:Admin,Gestionnaire');
 
         Route::post('/ajoutFavoriLieu', [UsagersController::class, 'AjouterFavorisLieu'])->name('ajouter.favoris.lieu');  
         Route::post('/ajoutFavoriActivite', [UsagersController::class, 'AjouterFavorisActivite'])->name('ajouter.favoris.activite');  

@@ -38,6 +38,7 @@
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/admin/quartiers/AfficherAjouterQuartiers.js') }}"></script>
+<script src="{{ asset('js/admin/quartiers/ModifierQuartier.js') }}"></script>
 <script src="{{ asset('js/admin/quartiers/SupprimerQuartier.js') }}" defer></script>
 <script src="{{ asset('js/admin/GestionDemandeAdmin.js') }}" defer></script>
 <script src="{{ asset('js/admin/RechercheLieux.js') }}" defer></script>

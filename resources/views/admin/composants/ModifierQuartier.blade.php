@@ -1,5 +1,5 @@
 <div class="flex w-full h-full flex-col" id="ajouterQuartier">
-    <button id="boutonRetourQuartier"
+    <button id="boutonModifierQuartier"
         class="rounded-full w-fit items-center uppercase text-lg flex leading-tight border-c1 border-2 my-4 text-c1 bg-c2 hover:bg-c3 pr-4">
             <span class="iconify text-c1 sm:size-8 size-4 sm:ml-2 font-semibold" data-icon="ion:arrow-back-outline"
             data-inline="false"></span>
@@ -7,28 +7,43 @@
     </button>
 
 
+    Page Modifier
+
     <form action="{{ route('modifier.quartier')}}"  method="post">
         @csrf
 
         <div class="flex flex-row gap-5">
-            <input name="nom" placeholder="nom du quartier"
+            <input name="nomQuartierModif" placeholder="nom du quartier"
             class="block w-1/2 rounded-lg p-1 sm:p-2 font-medium">
 
             <select name="actif"
             class="block w-fit rounded-lg p-1 sm:p-2 font-medium">
                 <option value="1"> {{ __('actif') }}</option>
-                <option value="1"> {{ __('inactif') }}</option>
+                <option value="0"> {{ __('inactif') }}</option>
             </select>
 
-            <select name="ville_id" id="selectVilleAjoutQuartier" 
+            <select name="ville_id" id="selectVilleModifierQuartier" 
             class="block w-fit rounded-lg p-1 sm:p-2 font-medium">
                 <option></option>
             </select>
         </div>
 
         <div class="my-4">
-        <button type="submit" class="rounded-full w-fit items-center uppercase text-lg flex leading-tight border-c1 border-2 text-c1 bg-c2 hover:bg-c3 px-4"> {{ __('ajouter') }} </button>
+        <button type="submit" class="rounded-full w-fit items-center uppercase text-lg flex leading-tight border-c1 border-2 text-c1 bg-c2 hover:bg-c3 px-4"> {{ __('modifier') }} </button>
         </div>
     </form> 
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("boutonModifierQuartier").addEventListener("click", function () {
+        let affichage = document.getElementById("afficherQuartiers");
+                    let ajout = document.getElementById("modifierQuartier");
+                    ajout.classList.add("hidden");
+                    affichage.classList.remove("hidden");
+    });
+});
+
+
+</script>
 

@@ -17,7 +17,7 @@
             <select name="actif"
             class="block w-fit rounded-lg p-1 sm:p-2 font-medium">
                 <option value="1"> {{ __('actif') }}</option>
-                <option value="1"> {{ __('inactif') }}</option>
+                <option value="0"> {{ __('inactif') }}</option>
             </select>
 
             <select name="ville_id" id="selectVilleAjoutQuartier" 
@@ -33,12 +33,12 @@
 </div>
 
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("boutonRetourQuartier").addEventListener("click", function () {
-                let affichage = document.getElementById("afficherQuartiers"); 
-                let ajout = document.getElementById("ajouterQuartier"); 
-                ajout.classList.add("hidden"); 
-                affichage.classList.remove("hidden"); 
-            });
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("boutonRetourQuartier").addEventListener("click", function () {
+            let affichage = document.getElementById("afficherQuartiers"); 
+            let ajout = document.getElementById("ajouterQuartier"); 
+            ajout.classList.add("hidden"); 
+            affichage.classList.remove("hidden"); 
         });
-    </script>
+    });
+</script>

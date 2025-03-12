@@ -1,5 +1,7 @@
 let selectVille;
+let selectVilleModifier;
 let affichageQuartiers;
+
 
 document.addEventListener('DOMContentLoaded', function () {
     Lang.setLocale(document.body.getAttribute('data-locale'));
@@ -11,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function ObtenirElementsAjouterQuartiers() {
     selectVille = document.getElementById('selectVilleAjoutQuartier');
+    selectVilleModifier = document.getElementById('selectVilleModifierQuartier');
 }
 
 function ObtenirElementsAfficherQuartiers() {
@@ -37,12 +40,17 @@ async function ObtenirVille() {
 
         if (selectVille) MettreAJourSelectVilles(villes);
 
+        if (selectVilleModifier) MettreAJourSelectVillesModifier(villes)
+
         console.log(villes);
+        
 
     } catch (error) {
         console.error(error);
     }
 }
+
+
 
 function MettreAJourSelectVilles(villes) {
     selectVille.innerHTML = '';
@@ -62,6 +70,20 @@ function MettreAJourSelectVilles(villes) {
     });
 
     selectVille.removeAttribute('disabled');
+}
+
+function MettreAJourSelectVillesModifier(villes) {
+    selectVilleModifier.innerHTML = '';
+
+    villes.forEach((ville) => {
+        const option = document.createElement('option');
+        option.value = ville.id;
+        option.textContent = ville.nom;
+        selectVilleModifier.appendChild(option);
+        console.log(ville.id);
+    });
+
+    selectVilleModifier.removeAttribute('disabled');
 }
 
 async function ObtenirQuartier() {
@@ -131,6 +153,4 @@ function CartesQuartier(quartiers) {
         affichageQuartiers.appendChild(card);
 
     });
-
-
 }

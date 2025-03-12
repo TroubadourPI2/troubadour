@@ -42,9 +42,22 @@ class QuartiersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function obtenirQuartier(string $quartierId)
     {
-        //
+        try {
+         
+            $activite = Quartier::with(['photos', 'lieux', 'typeActivite'])->findOrFail($quartierId);
+    
+            return response()->json([
+                'success' => true,
+                'data'    => $activite
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Erreur lors de la récupération de l'activité : " . $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
