@@ -68,7 +68,7 @@ Route::middleware(Langue::class)
 
         // RECHERCHE ( + HISTORIQUE)
         Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
-        Route::post('/recherche/reset', [LieuxController::class, 'Reset'])->name('lieux.rechercheReset');
+        Route::get('/recherche/reset', [LieuxController::class, 'Reset'])->name('lieux.rechercheReset');
         Route::get('/recherche/{idQuartier}', [LieuxController::class, 'IndexPrecis'])->name('lieux.recherchePrecis');
         Route::delete('/recherche/supprimer/{id}', [LieuxController::class, 'supprimerRecherche'])->name('recherche.supprimer')->middleware('VerifierRole:Admin, throttle:10,1');
         Route::post('/recherche', [LieuxController::class, 'Recherche'])->name('lieux.recherche2')->middleware(('throttle:10,1'));

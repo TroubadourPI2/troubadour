@@ -9,6 +9,18 @@
         <h2 class="w-full text-center text-c1 font-bold text-2xl font-barlow">{{ __('recherche') }}</h2>
 
         <div class="lg:flex w-5/6 bg-c3 rounded-full justify-evenly items-center mt-4 h-10 hidden lg:h-12">
+            <!-- <form class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-24 h-8 items-center"
+                action="{{ route('lieux.rechercheReset') }}" method="get">
+                @csrf
+                <button type="submit"
+                    class="lg:flex lg:mr-2 hidden w-full h-8 justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c2  disabled:border disabled:border-c1"
+                    id="btnRechercherPC" <?php if (!session()->has('idQuartier')) {
+                        echo 'disabled';
+                    } ?>>
+                    <span class="lg:flex iconify size-6 text-c3" data-icon="mdi:refresh" data-inline="false"></span>
+                </button>
+            </form> -->
+
             <form class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-full h-8 items-center"
                 action="{{ route('lieux.recherche2') }}" method="post">
                 @csrf
@@ -18,6 +30,7 @@
                     <option value="default" disabled hidden <?php if ($ville == -1) {
                         echo 'selected';
                     } ?>>{{ __('choisirVille') }}</option>
+                    <option value="voirTout" >{{ __('voirTout') }}</option>
                     @if (isset($villes))
                         @if (count($villes))
                             @foreach ($villes as $villee)
@@ -70,20 +83,9 @@
                     <span class="lg:flex iconify size-6 text-c3" data-icon="mdi:search" data-inline="false"></span>
                 </button>
             </form>
-            <form class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-24 h-8 items-center"
-                action="{{ route('lieux.rechercheReset') }}" method="post">
-                @csrf
-                <button type="submit"
-                    class="lg:flex lg:mr-2 hidden w-full h-8 justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c2  disabled:border disabled:border-c1"
-                    id="btnRechercherPC" <?php if (!session()->has('idQuartier')) {
-                        echo 'disabled';
-                    } ?>>
-                    <span class="lg:flex iconify size-6 text-c3" data-icon="mdi:refresh" data-inline="false"></span>
-                </button>
-            </form>
         </div>
 
-
+        <!-- Formulaire de recherche mobile -->
         <form action="{{ route('lieux.recherche2') }}" class="flex lg:hidden flex-col w-full justify-start" method="POST">
             @csrf
             <div class="flex flex-row items-center bg-c3 rounded-full justify-evenly mt-4 h-10 p-1.5">
@@ -93,6 +95,7 @@
                     <option value="default" disabled hidden <?php if ($ville == -1) {
                         echo 'selected';
                     } ?>>{{ __('choisirVille') }}</option>
+                    <option value="voirTout">{{ __('voirTout') }}</option>
                     @if (isset($villes))
                         @if (count($villes))
                             @foreach ($villes as $villee)
@@ -169,7 +172,7 @@
                                 class="snap-start lg:w-3/4 w-2/3 bg-c3 h-full rounded-lg flex flex-col items-center p-3 border-2 border-c3 hover:border-2 hover:border-c1 cursor-pointer carteLieu ">
                                 <img src="{{ asset($lieu->photoLieu) }}" alt="{{ __('imageEtablissement') }}"
                                     class="rounded-md h-52">
-                                <h3 class="text-c1 font-barlow text-md my-2 carteTitre">{{ $lieu->nomEtablissement }}</h3>
+                                <h3 class="text-c1 font-barlow text-md my-2 carteTitre text-center">{{ $lieu->nomEtablissement }}</h3>
                                 <span class="text-blackfont-barlow text-sm text-center">{{ $lieu->description }}</span>
                             </a>
                         @endforeach

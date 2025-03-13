@@ -28,34 +28,31 @@ class LieuxController extends Controller
     public function Index()
     {
         try {
-            $villes = Ville::where('actif', 1)->get();
-            $lieux = Lieu::where('actif', 1)->paginate(10);
-            $villes = Ville::where('actif', 1)->get();
-
-
-            $villesInactives = Ville::where('actif', 0)->get();
-            $quartiersInactifs = Quartier::where('actif', 0)->get();
-            $lieuxFinaux = [];
-
-            // $lieux = Lieu::where('actif', 1)->where('quartier_id', 'NO)->paginate(10);
-
-            // foreach ($lieux as $lieu){
-            //     if (Ville::where('id', Quartier::where('id', $lieu->quartier_id)->first()->ville_id)->where('actif', 1)->first() != null){
-            //         array_push($lieuxFinaux, $lieu);
-            //     }
-            // }
-
-            Log::debug("Lieux : " . json_encode($lieuxFinaux));
-
-            $ville = -1;
-            $quartier = -1;
-
-            if(session()->has('idQuartier'))
-            {
+            
+            if(session()->has('idQuartier')) {
                 return redirect()->route('lieux.recherchePrecis', session('idQuartier'));
+            } else {
+                $villes = Ville::where('actif', 1)->get();
+                $lieux = Lieu::where('actif', 1)->paginate(10);
+                $villes = Ville::where('actif', 1)->get();
+    
+    
+                $villesInactives = Ville::where('actif', 0)->get();
+                $quartiersInactifs = Quartier::where('actif', 0)->get();
+                $lieuxFinaux = [];
+    
+                $lieux = Lieu::where('actif', 1)->whereHas('quartier', function($query) {
+                    $query->where('actif', 1)  // Ensure the quartier is actif
+                        ->whereHas('ville', function($query) {
+                            $query->where('actif', 1);  // Ensure the ville is actif
+                        });
+                })->paginate(8);
+    
+                $ville = -1;
+                $quartier = -1;
+                return view('recherche', compact('lieux', 'villes', 'ville', 'quartier'));
             }
 
-            return view('recherche', compact('lieux', 'villes', 'ville', 'quartier'));
         } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
             return View('accueil');
@@ -86,7 +83,7 @@ class LieuxController extends Controller
 
         Log::debug("Recherche précise" . " quartier: " . $idQuartier);
         try {
-            $lieux      = Lieu::where('actif', 1)->where('quartier_id', $idQuartier)->paginate(10);
+            $lieux      = Lieu::where('actif', 1)->where('quartier_id', $idQuartier)->paginate(8);
             $villes     = Ville::where('actif', 1)->get();
             $quartier   = $idQuartier;
             $ville      = Ville::where('id', Quartier::where('id', $idQuartier)->first()->ville_id)->where('actif', 1)->first()->id;
@@ -123,14 +120,14 @@ class LieuxController extends Controller
             Log::Debug("Villes : " . $villes);
             $quartier   = $request->quartier;
             $recherche  = $request->txtRecherche;
-            $lieux      = Lieu::where('actif', 1)->paginate(10);
+            $lieux      = Lieu::where('actif', 1)->paginate(8);
 
 
 
 
             if(isset($request->quartier)){
                 $quartier   = $request->quartier;
-                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(10);
+                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(8);
             }
 
 
@@ -141,7 +138,7 @@ class LieuxController extends Controller
                 $rechercheSecurisee = addslashes($rechercheSecurisee);
                 $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
 
-                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$rechercheSecurisee%")->where('actif', 1)->paginate(10);
+                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$rechercheSecurisee%")->where('actif', 1)->paginate(8);
             }
             
             if(isset($request->ville)){

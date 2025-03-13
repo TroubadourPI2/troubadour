@@ -17,6 +17,7 @@ function ajusterEtatBoutonRecherche(page){
             selectVille.value === 'default' ||
             selectQuartier.value === 'aucunResultat' ||
             selectVille.value === 'aucunResultat' ||
+            selectVille.value === 'voirTout' ||
             selectQuartier.value === '');
  
         btnRechercherMobile.disabled = (
@@ -24,6 +25,7 @@ function ajusterEtatBoutonRecherche(page){
             selectVilleMobile.value === 'default' ||
             selectQuartierMobile.value === 'aucunResultat' ||
             selectVilleMobile.value === 'aucunResultat' ||
+            selectVilleMobile.value === 'voirTout' ||
             selectQuartierMobile.value === '');
            
     }
@@ -42,7 +44,7 @@ function setQuartiersPC() {
     ajusterEtatBoutonRecherche('PC');
     deleteAll('PC');
 
-    if (idVille !== 'default') {
+    if (idVille !== 'default' && idVille !== 'voirTout') {
         ajusterEtatBoutonRecherche('PC');
 
         axios
@@ -64,6 +66,10 @@ function setQuartiersPC() {
 
         
         ajusterEtatBoutonRecherche('PC');
+    }
+    else if (idVille === 'voirTout') {
+        var url = "/recherche/reset";
+        window.location = url;
     }
 
     ajusterEtatBoutonRecherche('PC');
