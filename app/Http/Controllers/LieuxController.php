@@ -83,11 +83,11 @@ class LieuxController extends Controller
 
         Log::debug("Recherche précise" . " quartier: " . $idQuartier);
         try {
-            $lieux      = Lieu::where('actif', 1)->where('quartier_id', $idQuartier)->paginate(8);
-            $villes     = Ville::where('actif', 1)->get();
+            $lieux      = Lieu::where('actif', 1)->where('quartier_id', $idQuartier)->sortByDesc('nomEtablissement')->paginate(8);
+            $villes     = Ville::where('actif', 1)->get()->sortByAsc('nom');
             $quartier   = $idQuartier;
             $ville      = Ville::where('id', Quartier::where('id', $idQuartier)->first()->ville_id)->where('actif', 1)->first()->id;
-            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
+            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get()->sortByDesc('nom');
 
             return view('recherche', compact('lieux', 'villes', 'ville', 'quartier', 'quartiers'));
         } catch (\Exception $e) {
@@ -250,7 +250,7 @@ class LieuxController extends Controller
     public function Quartiers(Request $request)
     {
         $villeId    = $request->villeId;
-        $quartiers  = Quartier::where('ville_id', $villeId)->get();
+        $quartiers  = Quartier::where('ville_id', $villeId)->get()->sortByDesc('nom');
         return compact('quartiers');
     }
 
