@@ -5,7 +5,8 @@ function ChargerCSSPersonnalise() {
     link.type = "text/css";
     document.head.appendChild(link);
 }
- 
+
+
 ChargerCSSPersonnalise();
 Lang.setLocale(document.body.getAttribute('data-locale'));
 function AfficherModalConnexion() {
@@ -30,7 +31,6 @@ function AfficherModalConnexion() {
         focusConfirm: false,
         showCancelButton: false,
         showDenyButton: true,
-        reverseButtons: true,
         confirmButtonText: Lang.get('strings.seConnecter'),
         denyButtonText: Lang.get('strings.sInscrire'),
         customClass: {
