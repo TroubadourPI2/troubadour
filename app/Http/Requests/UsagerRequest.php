@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -39,17 +38,13 @@ class UsagerRequest extends FormRequest
         $rules = [
             'prenom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
             'nom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
-            'password_confirmation' => 'required|same:password',
-            'role_id' => 'required|exists:RoleUsagers,id',
+            'courriel' => 'required|email|regex:/^[\w\.-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,6}$/|max:64',
         ];
     
         if ($nomRouteActuelle === 'usagers.modifier') {
-            $usagerId = $this->route('usager');
             $rules['password'] = 'sometimes|required_with:password_confirmation|nullable|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
-            $rules['courriel'] = 'required|email|max:64|unique:usagers,courriel,'. $usagerId .'';
         } else {
             $rules['password'] = 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
-            $rules['courriel'] = 'required|email|max:64|unique:usagers,courriel';
         }
     
         return $rules;
@@ -73,8 +68,7 @@ class UsagerRequest extends FormRequest
 
             'courriel.required' => __('validations.courrielRequis'),
             'courriel.email' => __('validations.courrielEmail'),
-            'courriel.unique' => __('validations.courrielUnique'),
-            'courriel.max' => __('validations.courrielMax'),
+            'courriel.regex' => __('validations.courrielRegex'),
 
             'password.required' => __('validations.passwordRequis'),
             'password.regex' => __('validations.passwordRegex'),
@@ -92,9 +86,6 @@ class UsagerRequest extends FormRequest
     }
     protected function failedValidation(Validator $validator)
     {
-        $errors = $validator->errors();
-        Log::debug('Validation errors: ', $errors->toArray());
-
         $nomRouteActuelle = $this->route()->getName();
     
         if ($nomRouteActuelle === 'admin.ModifierUsagers') {
@@ -113,16 +104,6 @@ class UsagerRequest extends FormRequest
             );
         }
     
-        if($nomRouteActuelle === 'usagers.CreationUsager'){
-            throw new HttpResponseException(response()->json([
-                'success' => false,
-                'message' => 'Erreur de validation',
-                'errors' => $validator->errors()
-            ], 422));
-        }
-        
-
-
         parent::failedValidation($validator);
     }
     

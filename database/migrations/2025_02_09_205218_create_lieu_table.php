@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('codePostal',10); 
             $table->string('nomEtablissement',64); 
             $table->string('photoLieu',64)->nullable(); 
-            $table->string('siteWeb',64)->nullable(); 
+            $table->string('siteWeb',150)->nullable(); 
             $table->string('numeroTelephone',15); 
             $table->boolean('actif')->default(true); 
             $table->text('description',500)->nullable(); 
