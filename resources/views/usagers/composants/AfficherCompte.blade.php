@@ -17,6 +17,7 @@
                                     {{ session('erreurModifierUsager')->first('prenom') }}
                                 </div>
                             @endif
+                       
                         </div>
                         <div class="w-full sm:w-1/2">
                             <label for=""
@@ -64,7 +65,7 @@
                             <label for=""
                                 class="text-lg font-bold text-c1 uppercase font-barlow">{{ __('confirmationMotDePasse') }}</label>
                             <input id="passwordV" type="password"
-                                class="w-full p-3 border rounded-lg bg-light-grey text-c1" name="passwordConfirmation"
+                                class="w-full p-3 border rounded-lg bg-light-grey text-c1" name="password_confirmation"
                                 disabled>
                         </div>
 
