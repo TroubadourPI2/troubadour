@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->boolean('actif')->default(true);
-            $table->foreignId('province_id')->nullable()->constrained('provinces')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('province_id')->nullable()->constrained('Provinces')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

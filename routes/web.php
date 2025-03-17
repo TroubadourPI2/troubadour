@@ -17,7 +17,7 @@ Route::get('lang/{locale}', LanguesController::class)->name('langue');
 Route::middleware(Langue::class)
     ->group(function () {
         Route::get('/', function () {
-            return view('Accueil');
+            return view('accueil');
         })->name('login');
 
 
