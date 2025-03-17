@@ -19,8 +19,8 @@
             @endrole
         </div>
         <div id="compte" class="sectionMenu">@include('usagers.composants.AfficherCompte')</div>
-        <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.AfficherLieux')</div>
-        <div id="activites" class="sectionMenu hidden">@include('usagers.composants.afficherActivites')</div>
+        <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.afficherLieux')</div>
+        <div id="activites" class="sectionMenu hidden">@include('usagers.composants.AfficherActivites')</div>
     </div>
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
