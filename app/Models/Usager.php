@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Usager extends Authenticatable
 {
     use HasFactory, Notifiable ;
-
+    protected $table = 'Usagers';
     protected $fillable = [
         'courriel',
         'password',

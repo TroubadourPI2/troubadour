@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 class Activite extends Model
 {
     use HasFactory;
+    
+    protected $table = 'Activites';
 
     protected $fillable = [
         'nom', 
