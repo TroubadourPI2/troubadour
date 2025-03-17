@@ -20,9 +20,6 @@ Route::middleware(Langue::class)
             return view('Accueil');
         })->name('login');
 
-        Route::get('/test', function () {
-            return view('test');
-        });
 
         Route::post('/usagers/Connexion',[UsagersController::class, 'Connexion'])->name('usagers.Connexion')->middleware(['guest', 'throttle:10,15']);
 

@@ -150,11 +150,10 @@ class LieuxController extends Controller
             $lieu = new Lieu();
             $utilisateur = auth()->user(); 
             $estAdmin = $utilisateur->role->nom === 'Admin';
-
-            $lieu->rue = $request->rue;
+            $lieu->rue =  $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = (strtoupper($request->codePostal));
-            $lieu->nomEtablissement = $request->nomEtablissement;
+            $lieu->nomEtablissement = htmlspecialchars($request->nomEtablissement);
 
             $photoCheminParDefaut = 'lieux/image_defaut.png';
             if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
@@ -172,7 +171,7 @@ class LieuxController extends Controller
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
             $lieu->actif = true;
-            $lieu->description = $request->description;
+            $lieu->description = htmlspecialchars($request->description);
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
             $lieu->proprietaire_id = Auth::id();
@@ -224,14 +223,15 @@ class LieuxController extends Controller
 
     public function ModifierUnLieu(LieuRequest $request, string $id)
     {
-        Log::debug($request);
+      
         $lieu = Lieu::findOrFail($id);
       
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+
         if (!$estProprietaire && !$estAdmin) {
-            return redirect()->route('usagerLieux.afficher');
+            return response()->view('errors.403', [], 403);
         }
 
         try {
@@ -239,14 +239,14 @@ class LieuxController extends Controller
             if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
                 Storage::disk('DevActivite')->put($photoCheminParDefaut, file_get_contents(public_path('Images/lieux/image_defaut.png')));
             }
-            //$lieu->actif = $request->actif;
+
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = $request->codePostal;
-            $lieu->nomEtablissement = $request->nomEtablissement;
+            $lieu->nomEtablissement =  htmlspecialchars($request->nomEtablissement);
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
-            $lieu->description = $request->description;
+            $lieu->description = htmlspecialchars($request->description);
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
 
@@ -279,7 +279,6 @@ class LieuxController extends Controller
                  return redirect()->route('admin');
             }
                
-
            return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
             Log::error(__('erreur') . $e->getMessage());
@@ -293,8 +292,9 @@ class LieuxController extends Controller
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+
         if (!$estProprietaire && !$estAdmin) {
-            return response()->json(['success' => false, 'message' => __('erreur')], 403);
+            return response()->view('errors.403', [], 403);
         }
     
         DB::beginTransaction();
@@ -341,8 +341,9 @@ class LieuxController extends Controller
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+        
         if (!$estProprietaire && !$estAdmin) {
-            return response()->json(['success' => false, 'message' =>  __('erreur')], 403);
+            return response()->view('errors.403', [], 403);
         }
         try {
 
