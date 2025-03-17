@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -51,6 +50,8 @@ class UsagerRequest extends FormRequest
             $rules['password'] = 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
             $rules['courriel'] = 'required|email|max:64|unique:usagers,courriel';
         }
+
+
     
         return $rules;
     }
@@ -92,9 +93,6 @@ class UsagerRequest extends FormRequest
     }
     protected function failedValidation(Validator $validator)
     {
-        $errors = $validator->errors();
-        Log::debug('Validation errors: ', $errors->toArray());
-
         $nomRouteActuelle = $this->route()->getName();
     
         if ($nomRouteActuelle === 'admin.ModifierUsagers') {
@@ -112,7 +110,7 @@ class UsagerRequest extends FormRequest
                 redirect()->back()->withInput()
             );
         }
-    
+
         if($nomRouteActuelle === 'usagers.CreationUsager'){
             throw new HttpResponseException(response()->json([
                 'success' => false,
@@ -120,9 +118,7 @@ class UsagerRequest extends FormRequest
                 'errors' => $validator->errors()
             ], 422));
         }
-        
-
-
+    
         parent::failedValidation($validator);
     }
     

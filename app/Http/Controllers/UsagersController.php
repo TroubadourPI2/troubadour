@@ -116,8 +116,6 @@ class UsagersController extends Controller
         return redirect()->back(); 
 
     }
-
-
     public function CreationUsager(UsagerRequest $request){
         try{
             $usager = new Usager();
@@ -165,7 +163,7 @@ class UsagersController extends Controller
                 $usager->password = bcrypt($request->password);
             }
             
-             
+    
             $usager->save();
             session()->flash('formulaireModifierUValide', 'true');
             return redirect()->route('usagerLieux.afficher')
