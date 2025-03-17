@@ -33,7 +33,7 @@
         </div>
 
         <div class="my-4">
-        <button type="submit" class="rounded-full w-fit items-center uppercase text-lg flex leading-tight border-c1 border-2 text-c1 bg-c2 hover:bg-c3 px-4"> {{ __('modifier') }} </button>
+        <button id="envoisQuartierModif" type="submit" class="rounded-full w-fit items-center uppercase text-lg flex leading-tight border-c1 border-2 text-c1 bg-c2 hover:bg-c3 px-4"> {{ __('modifier') }} </button>
         </div>
     </form> 
 </div>

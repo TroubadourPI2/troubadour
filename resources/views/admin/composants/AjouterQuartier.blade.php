@@ -11,10 +11,10 @@
         @csrf
 
         <div class="flex flex-row gap-5">
-            <input name="nom" placeholder="nom du quartier"
+            <input name="nom" placeholder="nom du quartier" id="nomQuartierAjout"
             class="block w-1/2 rounded-lg p-1 sm:p-2 font-medium">
 
-            <select name="actif"
+            <select name="actif" id="actifQuartierAjout"
             class="block w-fit rounded-lg p-1 sm:p-2 font-medium">
                 <option value="1"> {{ __('actif') }}</option>
                 <option value="0"> {{ __('inactif') }}</option>

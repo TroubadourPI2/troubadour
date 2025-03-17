@@ -10,16 +10,41 @@ document.addEventListener('DOMContentLoaded', function () {
     ObtenirVille();
     ObtenirQuartier();
 
-
     document.querySelector("#formulaireQuartierAjout").addEventListener("submit", function (e) {
         e.preventDefault();
-        
+    
         Swal.fire({
-                icon: 'error',
-                title: Lang.get('strings.attention'),
-                text: "bop"
-        });
+            text: 'bop',
+            title: Lang.get('strings.attention'),
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: Lang.get('strings.confirmer'),
+            cancelButtonText: Lang.get('strings.annuler'),
+            reverseButtons: false,
+            customClass: {
+                popup: 'font-barlow text-xl text-c1 bg-c2',
+                title: 'text-3xl uppercase underline',
+                confirmButton: 'bg-c1 text-white font-semibold px-4 py-2 uppercase rounded-full transition',
+                cancelButton: 'text-c1 uppercase bg-c2 font-semibold rounded-full px-4 py-2 hover:bg-white transition',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if(document.getElementById('nomQuartierAjout').value != '' && document.getElementById('nomQuartierAjout').value.length >= 3)
+                    {
+                    document.querySelector("#formulaireQuartierAjout").submit();
+                    
+                    }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: Lang.get('strings.attention'),
+                        text: "le nom entré est invalide, veuillez le corriger"
+                });
+                }
+            }
+        })
     });
+
 
 });
 
@@ -165,4 +190,6 @@ function CartesQuartier(quartiers) {
 
     });
 }
+
+
 
