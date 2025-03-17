@@ -52,7 +52,7 @@ class UsagersController extends Controller
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::all();
-        return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
+        return View('usagers.afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)
