@@ -91,7 +91,9 @@
   "messageErreurConnexion":"Veuillez remplir tous les champs.",
   "erreurConnexion":"Courriel et/ou le mot de passe est invalide.",
   "connexionMessage":"Connexion réussie!",
+  "inscriptionMessage": "Inscription réussie!",
   "deconnexionMessage":"Déconnexion réussie!",
+  "messageErreurInscription": "Il y a eu une erreur inattendue lors de la création du compte.",
 
   "prenomNom" : "Prénom et nom",
   "prenom": "Prénom",
