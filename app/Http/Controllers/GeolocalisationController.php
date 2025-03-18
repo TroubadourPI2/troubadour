@@ -9,15 +9,13 @@ use Illuminate\Support\Facades\Log;
 
 class GeolocalisationController extends Controller
 {
-    public function ObtenirVilleUtilisateur()
+    public function ObtenirVilleUtilisateur(Request $request)
     {
-        $ip = request()->header('X-Forwarded-For');
-        if ($ip) {
-            // L'en-tête peut contenir plusieurs IP, on prend la première
-            $ip = trim(explode(',', $ip)[0]);
-        } else {
-            $ip = request()->ip();
-        }
+        $validated = $request->validate([
+            'ip' => 'required|ip'
+        ]);
+    
+        $ip = $validated['ip'];
         Log::debug($ip);
         //TODO A RETIRER UNE FOIS EN PROD Tester en developpement local
         // if ($ip === "127.0.0.1") {
