@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             Swal.fire({
-                text: 'bop',
+                text: Lang.get('strings.confirmationModifierQuartier'),
                 title: Lang.get('strings.attention'),
                 icon: "warning",
                 showCancelButton: true,
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         Swal.fire({
                             icon: 'error',
                             title: Lang.get('strings.attention'),
-                            text: "le nom entré est invalide, veuillez le corriger"
+                            text: Lang.get('strings.nomInvalide')
                     });
                     }
                 }

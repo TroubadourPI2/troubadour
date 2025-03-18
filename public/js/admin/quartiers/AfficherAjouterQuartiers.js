@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
     
         Swal.fire({
-            text: 'bop',
+            text:`${Lang.get('strings.confirmationAjoutQuartier')}`, // a changer pour l'ajout sur prod
             title: Lang.get('strings.attention'),
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: Lang.get('strings.confirmer'),
             cancelButtonText: Lang.get('strings.annuler'),
-            reverseButtons: false,
+            reverseButtons: true,
             customClass: {
                 popup: 'font-barlow text-xl text-c1 bg-c2',
                 title: 'text-3xl uppercase underline',
@@ -29,17 +29,24 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                if(document.getElementById('nomQuartierAjout').value != '' && document.getElementById('nomQuartierAjout').value.length >= 3)
+                if(document.getElementById('nomQuartierAjout').value == '' || document.getElementById('nomQuartierAjout').value.length < 3)
                     {
-                    document.querySelector("#formulaireQuartierAjout").submit();
-                    
+                        Swal.fire({
+                            icon: 'error',
+                            title: Lang.get('strings.attention'),
+                            text: Lang.get('strings.nomInvalide')// a changer pour l'ajout sur prod
+                        })
                     }
-                else {
+                else if (document.getElementById('selectVilleAjoutQuartier').selectedIndex == 0)
+                    {
                     Swal.fire({
                         icon: 'error',
                         title: Lang.get('strings.attention'),
-                        text: "le nom entré est invalide, veuillez le corriger"
-                });
+                        text: Lang.get('strings.villeInvalide')// a changer pour l'ajout sur prod
+                    })
+                    }
+                else {
+                    document.querySelector("#formulaireQuartierAjout").submit();
                 }
             }
         })

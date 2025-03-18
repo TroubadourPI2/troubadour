@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             Swal.fire({
                 title:  Lang.get('strings.confirmation'),
-                text: `${Lang.get('strings.confirmationSuppressionQuartier')} ${nomQuartier} ?`,
+                text: Lang.get('strings.confirmationSuppressionQuartier'),
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: Lang.get('strings.supprimer'),
