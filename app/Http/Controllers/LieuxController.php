@@ -32,9 +32,9 @@ class LieuxController extends Controller
             if(session()->has('idQuartier')) {
                 return redirect()->route('lieux.recherchePrecis', session('idQuartier'));
             } else {
-                $villes = Ville::where('actif', 1)->get();
-                $lieux = Lieu::where('actif', 1)->paginate(10);
-                $villes = Ville::where('actif', 1)->get();
+                $villes = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
+                $lieux = Lieu::where('actif', 1)->orderBy('nomEtablissement', 'ASC')->paginate(10);
+                $villes = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
     
     
                 $villesInactives = Ville::where('actif', 0)->get();
@@ -83,20 +83,20 @@ class LieuxController extends Controller
 
         Log::debug("Recherche précise" . " quartier: " . $idQuartier);
         try {
-            $lieux      = Lieu::where('actif', 1)->where('quartier_id', $idQuartier)->sortByDesc('nomEtablissement')->paginate(8);
-            $villes     = Ville::where('actif', 1)->get()->sortByAsc('nom');
+            $lieux      = Lieu::where('actif', 1)->where('quartier_id', $idQuartier)->orderBy('nomEtablissement', 'ASC')->paginate(8);
+            $villes     = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
             $quartier   = $idQuartier;
             $ville      = Ville::where('id', Quartier::where('id', $idQuartier)->first()->ville_id)->where('actif', 1)->first()->id;
-            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get()->sortByDesc('nom');
+            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->orderBy('nom', 'ASC')->get();
 
             return view('recherche', compact('lieux', 'villes', 'ville', 'quartier', 'quartiers'));
         } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
-            return redirect()->route('lieux.recherche');
+            return redirect()->route('login');
 
         } catch (QueryException $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
-            return redirect()->route('lieux.recherche');
+            return redirect()->route('login');
         }
     }
 
