@@ -67,11 +67,11 @@ Route::middleware(Langue::class)
         Route::patch('compte/activite/statut/{id}', [ActivitesController::class, 'ModifierStatutActivite'])->name('usagerActivites.modifierStatutActivite')->middleware('VerifierRole:Admin,Gestionnaire');
 
         // RECHERCHE ( + HISTORIQUE)
-        Route::get('/recherche', [LieuxController::class, 'index'])->name('lieux.recherche');
+        Route::get('/recherche', [LieuxController::class, 'Index'])->name('lieux.recherche');
         Route::get('/recherche/reset', [LieuxController::class, 'Reset'])->name('lieux.rechercheReset');
-        Route::get('/recherche/{idQuartier}', [LieuxController::class, 'IndexPrecis'])->name('lieux.recherchePrecis');
+        Route::get('/recherche/{idQuartier}', [LieuxController::class, 'IndexPrecis'])->name('lieux.recherchePrecis')->middleware(('throttle:10,1'));
         Route::delete('/recherche/supprimer/{id}', [LieuxController::class, 'supprimerRecherche'])->name('recherche.supprimer')->middleware('VerifierRole:Admin, throttle:10,1');
-        Route::post('/recherche', [LieuxController::class, 'Recherche'])->name('lieux.recherche2')->middleware(('throttle:10,1'));
+        Route::post('/recherche', [LieuxController::class, 'Recherche'])->name('lieux.recherche2');
         Route::get('/quartiers', [LieuxController::class, 'Quartiers'])->name('lieux.quartiers');
 
         //ADMIN
