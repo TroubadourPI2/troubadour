@@ -30,7 +30,6 @@
                             <span class="iconify size-10 md:ml-0 lg:ml-0 mr-20 text-c1 sm:ml-0 sm:mr-0 md:mr-20"
                                 data-icon="f7:heart" data-inline="false"></span>
                         </button>
-
                     </form>
                 @elseif (!empty($favoris) && !empty($usager))
                     <form action="{{ route('delete.favoris.lieu', ['id' => $favoris->id]) }}" method="POST">

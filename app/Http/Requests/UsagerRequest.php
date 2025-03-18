@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class UsagerRequest extends FormRequest
 {
@@ -23,39 +24,50 @@ class UsagerRequest extends FormRequest
      */
     public function rules(): array
     {
-        // Récupérer le nom de la route actuelle
-        $nomRouteActuelle = $this->route()->getName();
-    
-        // Si c'est la route d'admin pour modifier un usager, on valide uniquement role_id et statut_id
-        if ($nomRouteActuelle === 'admin.ModifierUsagers') {
+        $routeName = $this->route()->getName();
+     
+        // Cas de la modification d'usager par l'admin :
+        // seules les données liées au rôle et au statut sont validées.
+        if ($routeName === 'admin.ModifierUsagers') {
             return [
-                'role_id' => 'required|exists:RoleUsagers,id',
+                'role_id'   => 'required|exists:RoleUsagers,id',
                 'statut_id' => 'required|exists:Statuts,id',
             ];
         }
-    
-        // Sinon, appliquer les règles standards
+     
+        // Règles communes (prenom, nom, courriel)
         $rules = [
-            'prenom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
-            'nom' => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
-            'password_confirmation' => 'required|same:password',
-            'role_id' => 'required|exists:RoleUsagers,id',
+            'prenom'   => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
+            'nom'      => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
+            'courriel' => 'required|email|max:64',
         ];
-    
-        if ($nomRouteActuelle === 'usagers.modifier') {
-            $usagerId = $this->route('usager');
-            $rules['password'] = 'sometimes|required_with:password_confirmation|nullable|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
-            $rules['courriel'] = 'required|email|max:64|unique:usagers,courriel,'. $usagerId .'';
-        } else {
+     
+        if ($routeName === 'usagers.modifier') {
+            // --- MODIFICATION PAR L'UTILISATEUR ---
+            // Exclure l’usager actuel dans la règle d’unicité du courriel
+            $usager = $this->route('usager');
+            $rules['courriel'] .= '|unique:Usagers,courriel,' . $usager->id;
+     
+            // Le changement de mot de passe est optionnel
+            $rules['password'] = 'sometimes|nullable|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
+            $rules['password_confirmation'] = 'sometimes|same:password';
+     
+            // On interdit à l’utilisateur de modifier son rôle
+            $rules['role_id'] = 'prohibited';
+     
+        } elseif ($routeName === 'usagers.CreationUsager') {
+            // --- CRÉATION D'UN NOUVEL USAGER ---
+            // On exige un rôle pour la création (par exemple, "Utilisateur" = 2)
+            $rules['courriel'] .= '|unique:Usagers,courriel';
+            $rules['role_id']   = 'required|exists:RoleUsagers,id';
+     
+            // Mot de passe requis pour la création
             $rules['password'] = 'required|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
-            $rules['courriel'] = 'required|email|max:64|unique:usagers,courriel';
+            $rules['password_confirmation'] = 'required|same:password';
         }
-
-
-    
+     
         return $rules;
-    }
-    
+    } 
     /**
      * Définit les messages d'erreur personnalisés.
      *

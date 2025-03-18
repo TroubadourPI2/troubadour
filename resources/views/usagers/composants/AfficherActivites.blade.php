@@ -178,8 +178,8 @@
 @endif
 
 <script src="{{ asset('js/usagers/Activites/SupprimerActivite.js') }}"></script>
-<script src="{{ asset('js/usagers/Activites/Recherche.js') }}" defer></script>
+<script src="{{ asset('js/usagers/Activites/recherche.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/GestionAffichageSectionsActivites.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/AjouterActivite.js') }}" defer></script>
 <script src="{{ asset('js/usagers/Activites/ModifierActivite.js') }}" defer></script>
-<script src="{{ asset('js/usagers/Activites/StatutActivite.js') }}" defer></script>
+<script src="{{ asset('js/usagers/Activites/statutActivite.js') }}" defer></script>

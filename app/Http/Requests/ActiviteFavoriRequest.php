@@ -30,8 +30,8 @@ class ActiviteFavoriRequest extends FormRequest
     
 
         $rules = [
-            'idActivite' => 'required|integer|exists:activites,id',
-            'idUsager' => 'required|integer|exists:usagers,id',
+            'idActivite' => 'required|integer|exists:Activites,id',
+            'idUsager' => 'required|integer|exists:Usagers,id',
         ];
 
         return $rules;
