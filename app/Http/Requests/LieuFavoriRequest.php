@@ -30,8 +30,8 @@ class LieuFavoriRequest extends FormRequest
     
 
         $rules = [
-            'idLieu' => 'required|integer|exists:lieux,id',
-            'idUsager' => 'required|integer|exists:usagers,id',
+            'idLieu' => 'required|integer|exists:Lieux,id',
+            'idUsager' => 'required|integer|exists:Usagers,id',
         ];
 
         return $rules;

@@ -12,14 +12,17 @@ use App\Http\Requests\UsagerRequest;
 use App\Models\Usager;
 use App\Models\RoleUsager;
 use App\Models\Statut;
+use App\Models\Recherche;
+
 class AdministrateursController extends Controller
 {
     public function Afficher()
     {
         $villes = Ville::all();
         $typesLieu = TypeLieu::all();
+        $termesRecherche = Recherche::all()->sortByDesc('nbOccurences');
 
-        return view('admin.Afficher', compact('villes', 'typesLieu'));
+        return view('admin.afficher', compact('villes', 'typesLieu', 'termesRecherche'));
     }
 
     public function ObtenirVille() {
@@ -35,8 +38,8 @@ class AdministrateursController extends Controller
     public function Recherche(Request $request)
     {
         $validationDonnees = $request->validate([
-            'villeId' => 'nullable|integer|exists:villes,id',
-            'quartierId' => 'nullable|integer|exists:quartiers,id',
+            'villeId' => 'nullable|integer|exists:Villes,id',
+            'quartierId' => 'nullable|integer|exists:Quartiers,id',
             'rechercheNom' => 'nullable|string|max:255',
             'actif' => 'nullable|boolean',
             'parPage' => 'nullable|integer|in:10,25,50,100',
@@ -69,7 +72,6 @@ class AdministrateursController extends Controller
             return response()->json(['message' => __('aucunLieuTrouve')]);
         }
 
-        Log::debug($lieux);
         $lieuxWithDetails = $lieux->map(function ($lieu) {
             return [
                 'id' => $lieu->id,
@@ -133,7 +135,7 @@ class AdministrateursController extends Controller
         $validationDonnee = $request->validate([
             'recherche'        => 'nullable|string|max:64',
             'rechercheRole'    => 'nullable|integer|exists:RoleUsagers,id',
-            'rechercheStatut'  => 'nullable|integer|exists:statuts,id',
+            'rechercheStatut'  => 'nullable|integer|exists:Statuts,id',
             'per_page'         => 'nullable|integer|in:10,25,50,100',
         ]);
     
@@ -167,23 +169,23 @@ class AdministrateursController extends Controller
     public function ModifierUsagers(UsagerRequest $request, $id)
     {
    
-    $usager = Usager::findOrFail($id);
-    $usager->update([
-        'role_id' => $request->role_id,
-        'statut_id' => $request->statut_id,
-    ]);
+        $usager = Usager::findOrFail($id);
+        $usager->update([
+            'role_id' => $request->role_id,
+            'statut_id' => $request->statut_id,
+        ]);
 
-    return response()->json(['success' => true]);
+        return response()->json(['success' => true]);
     }
 
     public function ObtenirRolesEtStatuts()
     {
-    $roles = RoleUsager::all();
-    $statuts = Statut::all();
+        $roles = RoleUsager::all();
+        $statuts = Statut::all();
 
-    return response()->json([
-        'roles' => $roles,
-        'statuts' => $statuts,
-    ]);
+        return response()->json([
+            'roles' => $roles,
+            'statuts' => $statuts,
+        ]);
     }
 }

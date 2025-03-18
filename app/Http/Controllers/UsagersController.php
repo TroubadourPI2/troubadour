@@ -52,7 +52,7 @@ class UsagersController extends Controller
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::all();
-        return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
+        return View('usagers.afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)
@@ -110,43 +110,39 @@ class UsagersController extends Controller
         return redirect()->back(); 
 
     }
+    public function CreationUsager(UsagerRequest $request){
+        try{
+            $usager = new Usager();
+            $usager->prenom = $request->prenom;
+            $usager->nom = $request->nom;
+            $usager->courriel = $request->courriel;
+            $usager->password = bcrypt($request->password);
+            $usager->role_id = $request->role_id ;
 
+            if ($usager->role_id == 2) {
+                $usager->statut_id = 1; // User role, set statut to 1
+            } else {
+                $usager->statut_id = 3;
+            }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+            $usager->save();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+            return response()->json([
+                'success' => true,
+                'message' => 'Usager created successfully!'
+            ]);
+        } catch (\Throwable $e) {
+            Log::debug($e);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while creating the user.'
+            ]);
+        }
     }
     
     public function ModificationUsager(UsagerRequest $request, Usager $usager){
         try{
-
             if (auth()->user()->id !== $usager->id && auth()->user()->role_id !== 1) {
                 return redirect()->route('usagerLieux.afficher')
                     ->withErrors(['Vous n\'êtes pas autorisé à modifier cet utilisateur.']);
@@ -154,6 +150,7 @@ class UsagersController extends Controller
 
             $usager->prenom = $request->prenom;
             $usager->nom = $request->nom;
+           
             $usager->courriel = $request->courriel;
 
             if ($request->filled('password')) {
