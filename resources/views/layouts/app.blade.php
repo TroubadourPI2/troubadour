@@ -179,10 +179,6 @@
                             {{ __('connexion') }}
                         </a>
                     @endauth
-                    @if (session()->has('deconnexionSucces'))
-                        <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
-                        @php session()->forget('deconnexionSucces'); @endphp
-                    @endif
 
                 </nav>
 
@@ -280,5 +276,10 @@
         document.body.classList.remove('overflow-hidden');
     });
 </script>
+@if (session()->has('deconnexionSucces'))
+    <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
+    @php session()->forget('deconnexionSucces'); @endphp
+@endif
 
 </html>
+
