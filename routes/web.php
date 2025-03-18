@@ -11,7 +11,7 @@ use App\Http\Middleware\Langue;
 use App\Http\Middleware\VerifierRole;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Http\Request;
 Route::get('lang/{locale}', LanguesController::class)->name('langue');
 
 Route::middleware(Langue::class)
@@ -76,9 +76,13 @@ Route::middleware(Langue::class)
 
         Route::get('/admin/recherche/lieux', [AdministrateursController::class, 'Recherche'])->name('adminLieux.recherche')->middleware('VerifierRole:Admin');
      
-
-        
-        Route::fallback(function () {
-            return response()->view('Redirection.404', [], 404);
-          });
+        Route::get('/debug-proxy', function () {
+            return response()->json(['remote_addr' => $_SERVER['REMOTE_ADDR']]);
+        });
+        Route::get('/debug-headers', function (Request $request) {
+            dd($request->headers->all());
+        });
+        // Route::fallback(function () {
+        //     return response()->view('Redirection.404', [], 404);
+        //   });
     });

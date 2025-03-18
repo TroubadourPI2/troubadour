@@ -52,7 +52,7 @@ class UsagersController extends Controller
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::all();
-        return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
+        return View('usagers.afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)
@@ -143,7 +143,6 @@ class UsagersController extends Controller
     
     public function ModificationUsager(UsagerRequest $request, Usager $usager){
         try{
-
             if (auth()->user()->id !== $usager->id && auth()->user()->role_id !== 1) {
                 return redirect()->route('usagerLieux.afficher')
                     ->withErrors(['Vous n\'êtes pas autorisé à modifier cet utilisateur.']);
@@ -151,6 +150,7 @@ class UsagersController extends Controller
 
             $usager->prenom = $request->prenom;
             $usager->nom = $request->nom;
+           
             $usager->courriel = $request->courriel;
 
             if ($request->filled('password')) {
