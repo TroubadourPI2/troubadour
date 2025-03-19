@@ -172,6 +172,7 @@
   "erreur429" : "Error 429 - Too many requests",
   "erreur429Texte" : "We’re sorry, but you have sent too many requests to us recently. Please try again later.",
   "erreurModifierPropreCompte" :"You cannot change your own account.",
-  "activiteIntrouvable" : "Activity not found or already deleted"
+  "activiteIntrouvable" : "Activity not found or already deleted",
+  "utilisateurIntrouvable": "User not found or already deleted"
 
 }

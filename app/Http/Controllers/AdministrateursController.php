@@ -13,6 +13,7 @@ use App\Models\Usager;
 use App\Models\RoleUsager;
 use App\Models\Statut;
 use App\Models\Recherche;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AdministrateursController extends Controller
 {
@@ -168,7 +169,7 @@ class AdministrateursController extends Controller
     
     public function ModifierUsagers(UsagerRequest $request, $id)
     {
-   
+        try {
     $usager = Usager::findOrFail($id);
     $utilisateur = auth()->user();
     if ($utilisateur->id === $usager->id) {
@@ -184,6 +185,17 @@ class AdministrateursController extends Controller
     ]);
 
         return response()->json(['success' => true]);
+    }  catch (ModelNotFoundException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => __('utilisateurIntrouvable')
+            ], 404);
+    
+        }   catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' =>  __('erreurGenerale')], 500);
+        }
+        
     }
 
     public function ObtenirRolesEtStatuts()
