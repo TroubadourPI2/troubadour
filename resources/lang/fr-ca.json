@@ -116,7 +116,7 @@
   "messageSup2":"Votre compte a été supprimé.",
   "boutonOuiSup":"Oui, supprime-le!",
 
-  "lieuIntrouvable":"Lieu introuvable",
+  "lieuIntrouvable":"Lieu introuvable ou déjà supprimé.",
   "tousLesLieux": "Tous les lieux",
   "tousLesTypesActivites" : "Tous les types d'activités",
   "rechercherNom": "Rechercher par nom",
