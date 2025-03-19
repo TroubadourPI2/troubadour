@@ -180,8 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById("modifierActivite").classList.remove("hidden");
                     
                 })
-                .catch(erreur => {
-                    console.error("Erreur lors de la récupération de l'activité :", erreur);
+                .catch(error => {
+                    Swal.fire(
+                        Lang.get('strings.erreur'), 
+                        error.response.data.message,         
+                        "error"
+                    );
                 });
         });
     });
