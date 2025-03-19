@@ -52,6 +52,9 @@ function AjouterModifierListeners() {
             villeId = bouton.getAttribute('data-villeId');
             typeLieuId = bouton.getAttribute('data-typeLieuId');
             ObtenirLieu(lieuId);
+            // Fonction dans AfficherAjouterLieux.js
+            ObtenirQuartiersParVille(villeId);
+            ChangerSection(modifierLieu, afficherLieux);
         });
     });
 
@@ -97,7 +100,7 @@ function ChangerPhotoChoisie() {
 
         reader.onload = function (e) {
             const divPhotoLieu = document.getElementById('divPhotoLieu');
-            divPhotoLieu.innerHTML = ''; 
+            divPhotoLieu.innerHTML = ''; // Vider le conteneur avant d'ajouter la nouvelle photo
 
             const divConteneurPhoto = document.createElement('div');
             divConteneurPhoto.className =
@@ -116,11 +119,12 @@ function ChangerPhotoChoisie() {
             // Création du texte (nom de la photo)
             const titreSpan = document.createElement('span');
             titreSpan.textContent = file.name;
-            titreSpan.className = 'inline-block max-w-sm sm:max-w-xs truncate'; 
-            titreSpan.style.whiteSpace = 'nowrap'; 
-            titreSpan.style.overflow = 'hidden'; 
-            titreSpan.style.textOverflow = 'ellipsis'; 
+            titreSpan.className = 'inline-block max-w-sm sm:max-w-xs truncate'; // Gère l'affichage du texte long
+            titreSpan.style.whiteSpace = 'nowrap'; // Empêche le texte de se déplier
+            titreSpan.style.overflow = 'hidden'; // Cache le texte qui dépasse
+            titreSpan.style.textOverflow = 'ellipsis'; // Affiche "..." pour les textes trop longs
 
+            // Ajouter l'image et le texte dans le conteneur de gauche
             conteneurGauche.appendChild(imageLieu);
             conteneurGauche.appendChild(titreSpan);
 
@@ -213,55 +217,31 @@ async function ObtenirLieu(lieuId) {
         });
 
         if (!response.ok) {
-            const errorResponse = await response.json();
-            throw new Error(errorResponse.message);
+            throw new Error(`Erreur HTTP: ${response.status}`);
         }
 
-        const result = await response.json();
-        const lieu = result.data;
-
+        lieu = await response.json();
         localStorage.setItem('lieu', JSON.stringify(lieu));
-
-        // Fonction dans AfficherAjouterLieux.js
-        ObtenirQuartiersParVille(villeId);
-        ChangerSection(modifierLieu, afficherLieux);
-
-        document.getElementById('nomEtablissementModifie').value = lieu.nomEtablissement;
+        document.getElementById('nomEtablissementModifie').value =
+            lieu.nomEtablissement;
         document.getElementById('rueModifie').value = lieu.rue;
         document.getElementById('noCivicModifie').value = lieu.noCivic;
         document.getElementById('codePostalModifie').value = lieu.codePostal;
         document.getElementById('descriptionModifie').value = lieu.description;
         document.getElementById('siteWebModifie').value = lieu.siteWeb;
-        document.getElementById('numeroTelephoneModifie').value = lieu.numeroTelephone;
+        document.getElementById('numeroTelephoneModifie').value =
+            lieu.numeroTelephone;
         document.getElementById('selectVilleLieuModifie').value = villeId;
         await ObtenirQuartiersParVille(villeId);
-        selectQuartierLieuModifie.value = lieu.quartier_id;
-        document.getElementById('selectTypeLieuModifie').value = lieu.typeLieu_id;
+        selectQuartierLieuModifie.value = lieu.quartier_id; 
+        document.getElementById('selectTypeLieuModifie').value =
+            lieu.typeLieu_id;
         inputPhotoModifie.value = '';
         const form = document.getElementById('formModifierLieu');
         form.action = `/compte/modifierLieu/${lieuId}`;
 
         AfficherPhotoLieu(lieu);
-
     } catch (error) {
-        Swal.fire({
-            icon: 'error',
-            title: Lang.get('strings.erreur'),
-            text: error.message ,
-            customClass: {
-                popup: 'font-barlow text-xl text-c1 bg-c2',
-                title: 'text-3xl uppercase underline',
-                confirmButton: 'bg-c1 text-white font-semibold px-4 py-2 uppercase rounded-full transition',
-            },
-            didOpen: () => {
-                const xMarkLeft = document.querySelector('.swal2-x-mark-line-left');
-                const xMarkRight = document.querySelector('.swal2-x-mark-line-right');
-        
-                if (xMarkLeft && xMarkRight) {
-                    xMarkLeft.style.backgroundColor = '#154C51'; 
-                    xMarkRight.style.backgroundColor = '#154C51'; 
-                }
-            }
-        });
+        console.error(error);
     }
 }

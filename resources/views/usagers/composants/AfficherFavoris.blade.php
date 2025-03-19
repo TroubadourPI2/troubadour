@@ -1,5 +1,5 @@
 <div class="w-full mb-5">
-
+  
     @if ($favorisLieux->isEmpty() && $favorisActivites->isEmpty())
         <h3 class="text-center text-c1 font-bold font-barlow text-xl">{!! __('aucunFavori') !!}</h3>
     @else
@@ -105,3 +105,4 @@
 
     @endif
 </div>
+
