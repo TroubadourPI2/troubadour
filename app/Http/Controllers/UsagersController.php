@@ -56,7 +56,7 @@ class UsagersController extends Controller
         $typesActivite = TypeActivite::all();
         
        
-        return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite', 'favorisActivites', 'favorisLieux'));
+        return View('usagers.afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite', 'favorisActivites', 'favorisLieux'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)
