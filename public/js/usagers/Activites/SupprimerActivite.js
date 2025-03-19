@@ -36,7 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                     })
                     .then(response => {
-                        if (!response.ok) throw new Error("Erreur lors de la suppression.");
+                        if (!response.ok) {
+                          
+                            return response.json().then(errorData => { throw errorData; });
+                        }
                         return response.json();
                     })
                     .then(data => {
@@ -51,7 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         });
                     })
                     .catch(error => {
-                        Swal.fire(Lang.get('strings.erreur') + error.message, "error");
+                        Swal.fire(
+                            Lang.get('strings.erreur'), 
+                            error.message,              
+                            "error"
+                        );
                     });
                 }
             });
