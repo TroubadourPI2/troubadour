@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class LieuxController extends Controller
 {
@@ -329,19 +329,42 @@ class LieuxController extends Controller
 
     public function ObtenirUnLieu(Request $request)
     {
-        $lieuId = $request->query('lieu_id');
-
-        if (!$lieuId) {
-            return response()->json([], 400);
+        try {
+            $lieuId = $request->query('lieu_id');
+            $utilisateur = auth()->user();
+            $estAdmin = $utilisateur->role->nom === 'Admin';
+        
+            if (!$lieuId) {
+                return response()->json([], 400); 
+            }
+        
+            $lieu = $lieu = Lieu::find($lieuId);    
+        
+            $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+            if (!$estProprietaire && !$estAdmin) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('erreur403Texte')
+                ], 403);
+            }
+        
+            return response()->json([
+                'success' => true,
+                'data' => $lieu
+            ], 200);
+        
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => __('lieuIntrouvable')
+            ], 404);
+        
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Erreur lors de la récupération du lieu : " . $e->getMessage()
+            ], 500);
         }
-
-        $lieu = Lieu::find($lieuId);
-
-        if (!$lieu) {
-            return response()->json(['error' => 'Lieu non trouvé'], 404);
-        }
-
-        return response()->json($lieu);
     }
 
     public function ModifierUnLieu(LieuRequest $request, string $id)

@@ -100,7 +100,7 @@ function ChangerPhotoChoisie() {
 
         reader.onload = function (e) {
             const divPhotoLieu = document.getElementById('divPhotoLieu');
-            divPhotoLieu.innerHTML = ''; // Vider le conteneur avant d'ajouter la nouvelle photo
+            divPhotoLieu.innerHTML = ''; 
 
             const divConteneurPhoto = document.createElement('div');
             divConteneurPhoto.className =
@@ -119,12 +119,11 @@ function ChangerPhotoChoisie() {
             // Création du texte (nom de la photo)
             const titreSpan = document.createElement('span');
             titreSpan.textContent = file.name;
-            titreSpan.className = 'inline-block max-w-sm sm:max-w-xs truncate'; // Gère l'affichage du texte long
-            titreSpan.style.whiteSpace = 'nowrap'; // Empêche le texte de se déplier
-            titreSpan.style.overflow = 'hidden'; // Cache le texte qui dépasse
-            titreSpan.style.textOverflow = 'ellipsis'; // Affiche "..." pour les textes trop longs
+            titreSpan.className = 'inline-block max-w-sm sm:max-w-xs truncate'; 
+            titreSpan.style.whiteSpace = 'nowrap'; 
+            titreSpan.style.overflow = 'hidden'; 
+            titreSpan.style.textOverflow = 'ellipsis'; 
 
-            // Ajouter l'image et le texte dans le conteneur de gauche
             conteneurGauche.appendChild(imageLieu);
             conteneurGauche.appendChild(titreSpan);
 
@@ -217,31 +216,36 @@ async function ObtenirLieu(lieuId) {
         });
 
         if (!response.ok) {
-            throw new Error(`Erreur HTTP: ${response.status}`);
+            const errorResponse = await response.json();
+            throw new Error(errorResponse.message || 'Une erreur inconnue est survenue');
         }
 
-        lieu = await response.json();
+        const result = await response.json();
+        const lieu = result.data;
+
         localStorage.setItem('lieu', JSON.stringify(lieu));
-        document.getElementById('nomEtablissementModifie').value =
-            lieu.nomEtablissement;
+        document.getElementById('nomEtablissementModifie').value = lieu.nomEtablissement;
         document.getElementById('rueModifie').value = lieu.rue;
         document.getElementById('noCivicModifie').value = lieu.noCivic;
         document.getElementById('codePostalModifie').value = lieu.codePostal;
         document.getElementById('descriptionModifie').value = lieu.description;
         document.getElementById('siteWebModifie').value = lieu.siteWeb;
-        document.getElementById('numeroTelephoneModifie').value =
-            lieu.numeroTelephone;
+        document.getElementById('numeroTelephoneModifie').value = lieu.numeroTelephone;
         document.getElementById('selectVilleLieuModifie').value = villeId;
         await ObtenirQuartiersParVille(villeId);
-        selectQuartierLieuModifie.value = lieu.quartier_id; 
-        document.getElementById('selectTypeLieuModifie').value =
-            lieu.typeLieu_id;
+        selectQuartierLieuModifie.value = lieu.quartier_id;
+        document.getElementById('selectTypeLieuModifie').value = lieu.typeLieu_id;
         inputPhotoModifie.value = '';
         const form = document.getElementById('formModifierLieu');
         form.action = `/compte/modifierLieu/${lieuId}`;
 
         AfficherPhotoLieu(lieu);
+
     } catch (error) {
-        console.error(error);
+        Swal.fire({
+            icon: 'error',
+            title: Lang.get('strings.erreur'),
+            text: error.message 
+        });
     }
 }
