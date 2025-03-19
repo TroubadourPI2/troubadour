@@ -41,6 +41,7 @@ Route::middleware(Langue::class)
         Route::post('/usagers/Connexion',[UsagersController::class, 'Connexion'])->name('usagers.Connexion')->middleware(['guest', 'throttle:10,15']);
         Route::post('/usagers', [UsagersController::class, 'CreationUsager'])->name('usagers.CreationUsager')->middleware(['guest', 'throttle:10,20']);      
 
+       
 
         //LIEUX (GESTIONNAIRE)
         Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
