@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\TypeActivite;
 use App\Http\Requests\ActiviteRequest;
 use App\Models\ActiviteFavori;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ActivitesController extends Controller
 {
@@ -95,6 +96,14 @@ class ActivitesController extends Controller
         $activite->delete();
 
         return response()->json(['success' => true,]);
+
+    } catch (ModelNotFoundException $e) {
+
+        return response()->json([
+            'success' => false,
+            'message' => __('activiteIntrouvable')
+        ], 404);
+
     } catch (\Exception $e) {
         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
     }

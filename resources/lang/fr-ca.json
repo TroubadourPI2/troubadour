@@ -166,5 +166,6 @@
   "erreur403": "Erreur 403 - Action non autorisée",
   "erreur429" : "Erreur 429 - Trop de requêtes",
   "erreur429Texte" : "Nous sommes désolés, mais vous avez envoyé trop de requêtes récemment. Veuillez réessayer plus tard.",
-  "erreurModifierPropreCompte" :"Vous ne pouvez pas modifier votre propre compte."
+  "erreurModifierPropreCompte" :"Vous ne pouvez pas modifier votre propre compte.",
+  "activiteIntrouvable" : "Activité introuvable ou déjà supprimée"
 }  
