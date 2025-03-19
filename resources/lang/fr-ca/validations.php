@@ -11,6 +11,7 @@ return [
     'codePostalFormat' => 'Le code postal doit être au format A1A 1A1.',
     'codePostalMax' => 'Le code postal ne doit pas dépasser 7 caractères.',
     'nomEtablissementRequis' => 'Le nom de l\'établissement est requis.',
+    'nomEtablissementMax' => 'Le nom de l\'établissement ne doit pas dépasser 64 caractères.',
     'photoLieuImage' => 'Le fichier doit être une image.',
     'photoLieuFormat' => 'La photo doit être au format PNG ou JPG.',
     'photoLieuMax' => 'La taille de la photo ne doit pas dépasser 2 Mo.',
