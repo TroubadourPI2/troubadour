@@ -19,7 +19,7 @@
                 <span class="iconify size-8 sm:hidden" data-icon="mingcute:location-3-line"></span>
                 <span class="hidden sm:inline">{{ __('lieux') }}</span>
             </button>
-
+            
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
             <button id="boutonQuartier" data-section="quartiers"
                 class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
@@ -110,7 +110,7 @@
             const boutonLieu = document.getElementById('boutonLieu');
             boutonLieu.classList.add("bg-c1", "text-c3");
             boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
-
+            
             const boutonQuartier = document.getElementById('boutonQuartier');
             boutonQuartier.classList.add("bg-c1", "text-c3");
             boutonQuartier.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");

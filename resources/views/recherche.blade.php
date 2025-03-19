@@ -10,16 +10,16 @@
 
         <div class="lg:flex w-5/6 bg-c3 rounded-full justify-evenly items-center mt-4 h-10 hidden lg:h-12">
             <!-- <form class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-24 h-8 items-center"
-                            action="{{ route('lieux.rechercheReset') }}" method="get">
-                            @csrf
-                            <button type="submit"
-                                class="lg:flex lg:mr-2 hidden w-full h-8 justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c2  disabled:border disabled:border-c1"
-                                id="btnRechercherPC" <?php if (!session()->has('idQuartier')) {
-                                    echo 'disabled';
-                                } ?>>
-                                <span class="lg:flex iconify size-6 text-c3" data-icon="mdi:refresh" data-inline="false"></span>
-                            </button>
-                        </form> -->
+                        action="{{ route('lieux.rechercheReset') }}" method="get">
+                        @csrf
+                        <button type="submit"
+                            class="lg:flex lg:mr-2 hidden w-full h-8 justify-center items-center enabled:hover:text-c1 enabled:hover:bg-c2 rounded-full bg-c1 hover:border enabled:hover:border-c1 disabled:hover:cursor-not-allowed enabled:cursor-pointer disabled:bg-c2  disabled:border disabled:border-c1"
+                            id="btnRechercherPC" <?php if (!session()->has('idQuartier')) {
+                                echo 'disabled';
+                            } ?>>
+                            <span class="lg:flex iconify size-6 text-c3" data-icon="mdi:refresh" data-inline="false"></span>
+                        </button>
+                    </form> -->
 
             <form class="lg:ml-1 lg:mr-0 mx-1 p-1 lg:pr-0 flex rounded-full justify-evenly flex-row w-full h-8 items-center"
                 action="{{ route('lieux.recherche2') }}" method="post">
@@ -149,12 +149,12 @@
         </form>
 
         <!-- <div class="flex lg:hidden w-full bg-c3 rounded-full justify-evenly items-center mt-2 p-2 h-10 lg:h-12">
-                        <div class="flex rounded-full justify-center gap-x-3 flex-row w-full h-full items-center bg-c1 cursor-pointer hover:text-c1 hover:bg-c2 hover:border hover:border-c1"
-                            id="mbBtnFiltres">
-                            <span class="iconify size-6 p-1 text-c3" data-icon="mdi:filter" data-inline="false"></span>
-                            <span class="text-c3 text-sm">{{ __('filtrer') }}</span>
-                        </div>
-                    </div> -->
+                    <div class="flex rounded-full justify-center gap-x-3 flex-row w-full h-full items-center bg-c1 cursor-pointer hover:text-c1 hover:bg-c2 hover:border hover:border-c1"
+                        id="mbBtnFiltres">
+                        <span class="iconify size-6 p-1 text-c3" data-icon="mdi:filter" data-inline="false"></span>
+                        <span class="text-c3 text-sm">{{ __('filtrer') }}</span>
+                    </div>
+                </div> -->
 
         <!-- Séparateur -->
         <div class="w-full flex justify-center items-center h-8">

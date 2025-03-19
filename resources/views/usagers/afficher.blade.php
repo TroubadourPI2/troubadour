@@ -29,7 +29,7 @@
         <div id="lieux" class="sectionMenu hidden">@include('usagers.composants.afficherLieux')</div>
         <div id="activites" class="sectionMenu hidden">@include('usagers.composants.AfficherActivites')</div>
     </div>
-
+   
 @endsection
 <script src="{{ asset('js/usagers/GestionAffichageMenu.js') }}"></script>
 <script src="{{ asset('js/usagers/Lieux/AfficherAjouterLieux.js') }}"></script>
@@ -339,3 +339,4 @@
         session()->forget('favoriSupprime');
     @endphp
 @endif
+
