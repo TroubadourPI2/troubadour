@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class LieuxController extends Controller
 {
@@ -28,31 +28,30 @@ class LieuxController extends Controller
     public function Index()
     {
         try {
-            
-            if(session()->has('idQuartier')) {
+
+            if (session()->has('idQuartier')) {
                 return redirect()->route('lieux.recherchePrecis', session('idQuartier'));
             } else {
                 $villes = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
                 $lieux = Lieu::where('actif', 1)->orderBy('nomEtablissement', 'ASC')->paginate(10);
                 $villes = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
-    
-    
+
+
                 $villesInactives = Ville::where('actif', 0)->get();
                 $quartiersInactifs = Quartier::where('actif', 0)->get();
                 $lieuxFinaux = [];
-    
-                $lieux = Lieu::where('actif', 1)->whereHas('quartier', function($query) {
+
+                $lieux = Lieu::where('actif', 1)->whereHas('quartier', function ($query) {
                     $query->where('actif', 1)  // Ensure the quartier is actif
-                        ->whereHas('ville', function($query) {
+                        ->whereHas('ville', function ($query) {
                             $query->where('actif', 1);  // Ensure the ville is actif
                         });
                 })->paginate(8);
-    
+
                 $ville = -1;
                 $quartier = -1;
                 return view('recherche', compact('lieux', 'villes', 'ville', 'quartier'));
             }
-
         } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
             return View('accueil');
@@ -62,7 +61,8 @@ class LieuxController extends Controller
         }
     }
 
-    public function Reset(){
+    public function Reset()
+    {
         session()->forget('lieux');
         session()->forget('recherche');
         session()->forget('ville');
@@ -71,7 +71,7 @@ class LieuxController extends Controller
         session()->forget('quartiers');
         session()->forget('idQuartier');
 
-        
+
         return redirect()->route('lieux.recherche');
     }
 
@@ -93,7 +93,6 @@ class LieuxController extends Controller
         } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
             return redirect()->route('login');
-
         } catch (QueryException $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
             return redirect()->route('login');
@@ -102,11 +101,9 @@ class LieuxController extends Controller
 
     public function Recherche(Request $request)
     {
-        try
-        {
+        try {
 
-            if($request->txtRecherche !== session('recherche'))
-            {
+            if ($request->txtRecherche !== session('recherche')) {
                 session()->forget('lieux');
                 session()->forget('recherche');
                 session()->forget('ville');
@@ -125,14 +122,14 @@ class LieuxController extends Controller
 
 
 
-            if(isset($request->quartier)){
+            if (isset($request->quartier)) {
                 $quartier   = $request->quartier;
                 $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(8);
             }
 
 
 
-            if(isset($request->quartier) && isset($request->txtRecherche)){
+            if (isset($request->quartier) && isset($request->txtRecherche)) {
                 $quartier   = $request->quartier;
                 $rechercheSecurisee = trim($request->txtRecherche);
                 $rechercheSecurisee = addslashes($rechercheSecurisee);
@@ -140,20 +137,19 @@ class LieuxController extends Controller
 
                 $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$rechercheSecurisee%")->where('actif', 1)->paginate(8);
             }
-            
-            if(isset($request->ville)){
+
+            if (isset($request->ville)) {
                 Log::debug("Ville : " . $request->ville);
                 $ville = $request->ville;
             }
 
-            if(isset($request->txtRecherche))
-            {
+            if (isset($request->txtRecherche)) {
                 $rechercheSecurisee = trim($request->txtRecherche);
                 $rechercheSecurisee = addslashes($rechercheSecurisee);
                 $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
                 session(['recherche' => $rechercheSecurisee]);
 
-                try{
+                try {
                     if (preg_match('/<[^>]*>/', $rechercheSecurisee)) {
                         Log::debug("MANUEL - Recherche contient un script ou une balise HTML");
                         return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
@@ -161,83 +157,72 @@ class LieuxController extends Controller
 
                     $recherches = Recherche::where('termeRecherche', $rechercheSecurisee)->first();
 
-                    if($recherches){
+                    if ($recherches) {
                         $recherches->nbOccurences = $recherches->nbOccurences + 1;
                         $recherches->save();
-                    }
-                    else{
+                    } else {
                         $nouvelleRecherche = new Recherche();
                         $nouvelleRecherche->termeRecherche = $rechercheSecurisee;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
-                }
-                catch(\Exception $e){
-                    if($e->getMessage() == "No query results for model [App\Models\Recherche]"){
+                } catch (\Exception $e) {
+                    if ($e->getMessage() == "No query results for model [App\Models\Recherche]") {
                         $nouvelleRecherche = new Recherche();
                         $nouvelleRecherche->termeRecherche = $rechercheSecurisee;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
-                    }
-                    else{
+                    } else {
                         Log::debug("MANUEL - Erreur lors de l'ajout de la recherche à l'historique : " . $e->getMessage());
                     }
                 }
             }
-            
+
             $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
 
-            if(session()->has('villes')){
+            if (session()->has('villes')) {
                 $villes = session()->get('villes');
-            }
-            else{
+            } else {
                 // $villes = Ville::where('actif', 1)->get();
                 session(['villes' => $villes]);
             }
 
-            if(session()->has('quartiers')){
+            if (session()->has('quartiers')) {
                 $quartiers = session()->get('quartiers');
-            }
-            else{
+            } else {
                 // $quartiers = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
                 session(['quartiers' => $quartiers]);
             }
 
-            if(session()->has('ville')){
+            if (session()->has('ville')) {
                 $ville = session()->get('ville');
-            }
-            else if($ville != -1){
+            } else if ($ville != -1) {
                 session(['ville' => $ville]);
             }
 
-            if(session()->has('quartier')){
+            if (session()->has('quartier')) {
                 $quartier = session()->get('quartier');
-            }
-            else{
+            } else {
                 session(['quartier' => $quartier]);
             }
 
-            if(session()->has('recherche')){
+            if (session()->has('recherche')) {
                 $recherche = session()->get('recherche');
-            }
-            else {
+            } else {
                 session(['recherche' => $recherche]);
             }
 
-            if(session()->has('lieux')){
+            if (session()->has('lieux')) {
                 $lieux = session()->get('lieux');
-            }
-            else{
+            } else {
                 session(['lieux' => $lieux]);
             }
 
             return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la recherche : " . $e->getMessage());
             return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
         }
-
     }
 
     public function Historique()
@@ -256,13 +241,12 @@ class LieuxController extends Controller
 
     public function SupprimerRecherche($id)
     {
-        try{
+        try {
             $recherche = Recherche::findOrFail($id);
             $recherche->delete();
             session()->flash('formulaireSupprimerRechercheValide', 'true');
             return response()->json(['success' => true, 'message' => 'La recherche a été supprimée']);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::error("Erreur lors de la suppression de la recherche : " . $e->getMessage());
             return json_encode(['success' => false, 'message' => $e->getMessage()]);
         }
@@ -272,7 +256,7 @@ class LieuxController extends Controller
     {
         try {
             $lieu = new Lieu();
-            $utilisateur = auth()->user(); 
+            $utilisateur = auth()->user();
             $estAdmin = $utilisateur->role->nom === 'Admin';
             $lieu->rue =  $request->rue;
             $lieu->noCivic = $request->noCivic;
@@ -302,7 +286,7 @@ class LieuxController extends Controller
             $lieu->save();
 
             session()->flash('formulaireAjouterLieuValide', 'true');
-            if($estAdmin)
+            if ($estAdmin)
                 return redirect()->route('admin');
             return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
@@ -317,44 +301,68 @@ class LieuxController extends Controller
      */
     public function ZoomLieu(string $id)
     {
-        $usager = Auth::user(); 
+        $usager = Auth::user();
         $lieuActuel = Lieu::findOrFail($id);
         $idActivites = LieuActivite::Where("lieu_id", $id)->pluck("activite_id");
         $activites = Activite::whereIn("id", $idActivites)->where('actif', 1)->get();
 
-        $favoris = LieuFavori::where("lieu_id",$id)->where("usager_id", Auth::id(),)->first();  
+        $favoris = LieuFavori::where("lieu_id", $id)->where("usager_id", Auth::id(),)->first();
 
         return view('zoomLieu', compact('usager', 'lieuActuel', 'activites', 'favoris'));
     }
 
     public function ObtenirUnLieu(Request $request)
     {
-        $lieuId = $request->query('lieu_id');
+        try {
+            $lieuId = $request->query('lieu_id');
+            $utilisateur = auth()->user();
+            $estAdmin = $utilisateur->role->nom === 'Admin';
 
-        if (!$lieuId) {
-            return response()->json([], 400);
+            if (!$lieuId) {
+                return response()->json([], 400);
+            }
+
+            $lieu = $lieu = Lieu::findOrFail($lieuId);
+
+            $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
+            if (!$estProprietaire && !$estAdmin) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('erreur403Texte')
+                ], 403);
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => $lieu
+            ], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => __('lieuIntrouvable')
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Erreur lors de la récupération du lieu : " . $e->getMessage()
+            ], 500);
         }
-
-        $lieu = Lieu::find($lieuId);
-
-        if (!$lieu) {
-            return response()->json(['error' => 'Lieu non trouvé'], 404);
-        }
-
-        return response()->json($lieu);
     }
 
     public function ModifierUnLieu(LieuRequest $request, string $id)
     {
-      
+
         $lieu = Lieu::findOrFail($id);
-      
+
         $utilisateur = auth()->user();
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
 
         if (!$estProprietaire && !$estAdmin) {
-            return response()->view('errors.403', [], 403);
+            return response()->json([
+                'success' => false,
+                'message' => __('erreur403Texte')
+            ], 403);;
         }
 
         try {
@@ -377,7 +385,7 @@ class LieuxController extends Controller
                 if ($lieu->photoLieu && $lieu->photoLieu !== $photoCheminParDefaut) {
                     Storage::disk('DevActivite')->delete($lieu->photoLieu);
                 }
-                $lieu->photoLieu = $photoCheminParDefaut; 
+                $lieu->photoLieu = $photoCheminParDefaut;
             }
 
             if ($request->hasFile('photoLieu')) {
@@ -398,11 +406,11 @@ class LieuxController extends Controller
 
             session()->flash('formulaireModifierLieuValide', 'true');
 
-            if($estAdmin){
-                 return redirect()->route('admin');
+            if ($estAdmin) {
+                return redirect()->route('admin');
             }
-               
-           return redirect()->route('usagerLieux.afficher');
+
+            return redirect()->route('usagerLieux.afficher');
         } catch (\Exception $e) {
             Log::error(__('erreur') . $e->getMessage());
             return redirect()->route('usagerLieux.afficher')->with('error',  __('erreurGenerale'));
@@ -417,34 +425,37 @@ class LieuxController extends Controller
         $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
 
         if (!$estProprietaire && !$estAdmin) {
-            return response()->view('errors.403', [], 403);
+            return response()->json([
+                'success' => false,
+                'message' => __('erreur403Texte')
+            ], 403);
         }
-    
+
         DB::beginTransaction();
-        
+
         try {
             $lieu->update([
                 'actif' => $request->boolean('actif'),
             ]);
-    
+
             if (!$request->boolean('actif')) {
                 $activites = Activite::whereHas('Lieux', function ($query) use ($id) {
                     $query->where('Lieux.id', $id);
                 })->get();
-    
+
                 $activitesToDeactivate = $activites->filter(function ($activite) use ($id) {
                     return $activite->lieux()->where('Lieux.actif', true)
-                                             ->where('Lieux.id', '!=', $id)
-                                             ->count() === 0;
+                        ->where('Lieux.id', '!=', $id)
+                        ->count() === 0;
                 });
                 foreach ($activitesToDeactivate as $activite) {
                     $activite->actif = false;
                     $activite->save();
                 }
             }
-    
+
             DB::commit();
-    
+
             session()->flash('formulaireModifierLieuStatutValide', 'true');
             return response()->json([
                 'success' => true,
@@ -456,30 +467,37 @@ class LieuxController extends Controller
             return response()->json(["success" => false, "message" =>  __('erreurGenerale')], 500);
         }
     }
-    
+
 
     public function SupprimerUnLieu($id)
     {
-        $lieu = Lieu::findOrFail($id);
-        $utilisateur = auth()->user();
-        $estAdmin = $utilisateur->role->nom === 'Admin';
-        $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
-        
-        if (!$estProprietaire && !$estAdmin) {
-            return response()->view('errors.403', [], 403);
-        }
         try {
+            $lieu = Lieu::findOrFail($id);
+            $utilisateur = auth()->user();
+            $estAdmin = $utilisateur->role->nom === 'Admin';
+            $estProprietaire = $lieu->proprietaire_id === $utilisateur->id;
 
+            if (!$estProprietaire && !$estAdmin) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('erreur403Texte')
+                ], 403);
+            }
             if ($lieu->photoLieu && $lieu->photoLieu !== 'Images/lieux/image_defaut.png') {
                 Storage::disk('DevActivite')->delete($lieu->photoLieu);
             }
             $lieu->delete();
             return response()->json(["success" => true, "message" => __('succesSupprimer')]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => __('lieuIntrouvable')
+            ], 404);
         } catch (\Exception $e) {
-            Log::error(__('erreurSuppresion') . $e->getMessage());
-            return response()->json(["success" => false, "message" =>  __('erreurSuppresion')], 500);
+            return response()->json([
+                'success' => false,
+                'message' => "Erreur lors de la récupération du lieu : " . $e->getMessage()
+            ], 500);
         }
     }
-
-
 }
