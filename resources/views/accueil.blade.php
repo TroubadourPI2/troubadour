@@ -33,10 +33,7 @@
                             class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
                             {{ __('lieux') }}
                         </a>
-                        <a
-                            class="p-1.5 px-4 text-c3 text-xl lg:text-2xl font-barlow cursor-pointer hover:bg-c3 px-4 hover:text-c1 rounded-full transition-transform duration-500 ease-out">
-                            {{ __('aPropos') }}
-                        </a>
+                  
                         @auth
 
                             <a href="{{ route('usagerLieux.afficher') }}"
@@ -122,8 +119,8 @@
                 <div class="flex items-center w-full">
                     <!-- Bouton pour fermer le menu mobile -->
                     <div class="flex justify-end w-full">
-                        <button id="boutonFermerMenu" class="text-c1 justify-end  ">
-                            <span class="iconify size-10 hover:bg-c1 hover:text-c3" data-icon="mdi:close"
+                        <button id="boutonFermerMenu" class="text-c1 justify-end  transition ">
+                            <span class="iconify size-10 hover:bg-c1 hover:text-c3 transition" data-icon="mdi:close"
                                 data-inline="false"></span>
                         </button>
                     </div>
@@ -135,10 +132,7 @@
                         class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
                             class="iconify size-10 " data-icon="mdi:home"
                             data-inline="false"></span>{{ __('lieux') }}</a>
-                    <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full "> <span
-                            class="iconify size-10 " data-icon="mdi:about"
-                            data-inline="false"></span>{{ __('aPropos') }}</a>
+  
                     @auth
                         <a href="{{ route('usagerLieux.afficher') }}"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
