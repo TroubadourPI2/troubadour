@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lieu;
 use App\Models\Ville;
+use App\Models\Quartier;
 use App\Models\TypeLieu;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\UsagerRequest;
@@ -22,6 +23,16 @@ class AdministrateursController extends Controller
         $termesRecherche = Recherche::all()->sortByDesc('nbOccurences');
 
         return view('admin.afficher', compact('villes', 'typesLieu', 'termesRecherche'));
+    }
+
+    public function ObtenirVille() {
+        $villes = Ville::all();
+        return response()->json($villes);
+    }
+
+    public function ObtenirQuartier() {
+        $quartiers = Quartier::all();
+        return response()->json($quartiers);
     }
 
     public function Recherche(Request $request)
