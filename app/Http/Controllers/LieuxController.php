@@ -28,10 +28,31 @@ class LieuxController extends Controller
     public function Index()
     {
         try {
-            $lieux = Lieu::where('actif', 1)->paginate(10);
-            $villes = Ville::where('actif', 1)->get();
-            $ville = -1;
-            return view('recherche', compact('lieux', 'villes', 'ville'));
+            
+            if(session()->has('idQuartier')) {
+                return redirect()->route('lieux.recherchePrecis', session('idQuartier'));
+            } else {
+                $villes = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
+                $lieux = Lieu::where('actif', 1)->orderBy('nomEtablissement', 'ASC')->paginate(10);
+                $villes = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
+    
+    
+                $villesInactives = Ville::where('actif', 0)->get();
+                $quartiersInactifs = Quartier::where('actif', 0)->get();
+                $lieuxFinaux = [];
+    
+                $lieux = Lieu::where('actif', 1)->whereHas('quartier', function($query) {
+                    $query->where('actif', 1)  // Ensure the quartier is actif
+                        ->whereHas('ville', function($query) {
+                            $query->where('actif', 1);  // Ensure the ville is actif
+                        });
+                })->paginate(8);
+    
+                $ville = -1;
+                $quartier = -1;
+                return view('recherche', compact('lieux', 'villes', 'ville', 'quartier'));
+            }
+
         } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
             return View('accueil');
@@ -41,30 +62,83 @@ class LieuxController extends Controller
         }
     }
 
+    public function Reset(){
+        session()->forget('lieux');
+        session()->forget('recherche');
+        session()->forget('ville');
+        session()->forget('quartier');
+        session()->forget('villes');
+        session()->forget('quartiers');
+        session()->forget('idQuartier');
+
+        
+        return redirect()->route('lieux.recherche');
+    }
+
+    public function IndexPrecis($idQuartier)
+    {
+        $idQuartier = intval($idQuartier);
+
+        session(['idQuartier' => $idQuartier]);
+
+        Log::debug("Recherche précise" . " quartier: " . $idQuartier);
+        try {
+            $lieux      = Lieu::where('actif', 1)->where('quartier_id', $idQuartier)->orderBy('nomEtablissement', 'ASC')->paginate(8);
+            $villes     = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
+            $quartier   = $idQuartier;
+            $ville      = Ville::where('id', Quartier::where('id', $idQuartier)->first()->ville_id)->where('actif', 1)->first()->id;
+            $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->orderBy('nom', 'ASC')->get();
+
+            return view('recherche', compact('lieux', 'villes', 'ville', 'quartier', 'quartiers'));
+        } catch (\Exception $e) {
+            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
+            return redirect()->route('login');
+
+        } catch (QueryException $e) {
+            Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
+            return redirect()->route('login');
+        }
+    }
+
     public function Recherche(Request $request)
     {
         try
         {
+
+            if($request->txtRecherche !== session('recherche'))
+            {
+                session()->forget('lieux');
+                session()->forget('recherche');
+                session()->forget('ville');
+                session()->forget('quartier');
+                session()->forget('villes');
+                session()->forget('quartiers');
+            }
+
             $ville      = $request->ville;
             $villes     = Ville::where('actif', 1)->get();
             Log::Debug("Villes : " . $villes);
             $quartier   = $request->quartier;
             $recherche  = $request->txtRecherche;
-            $lieux      = Lieu::paginate(10);
+            $lieux      = Lieu::where('actif', 1)->paginate(8);
+
 
 
 
             if(isset($request->quartier)){
                 $quartier   = $request->quartier;
-                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(10);
+                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('actif', 1)->paginate(8);
             }
 
 
 
             if(isset($request->quartier) && isset($request->txtRecherche)){
                 $quartier   = $request->quartier;
-                $recherche  = $request->txtRecherche;
-                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$recherche%")->where('actif', 1)->paginate(10);
+                $rechercheSecurisee = trim($request->txtRecherche);
+                $rechercheSecurisee = addslashes($rechercheSecurisee);
+                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
+
+                $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$rechercheSecurisee%")->where('actif', 1)->paginate(8);
             }
             
             if(isset($request->ville)){
@@ -74,12 +148,18 @@ class LieuxController extends Controller
 
             if(isset($request->txtRecherche))
             {
+                $rechercheSecurisee = trim($request->txtRecherche);
+                $rechercheSecurisee = addslashes($rechercheSecurisee);
+                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
+                session(['recherche' => $rechercheSecurisee]);
+
                 try{
-                    if (preg_match('/<[^>]*>/', $request->txtRecherche)) {
+                    if (preg_match('/<[^>]*>/', $rechercheSecurisee)) {
                         Log::debug("MANUEL - Recherche contient un script ou une balise HTML");
                         return view('recherche', compact('ville'))->with('error', 'Une erreur est survenue lors de la recherche');
                     }
-                    $recherches = Recherche::where('termeRecherche', $request->txtRecherche)->first();
+
+                    $recherches = Recherche::where('termeRecherche', $rechercheSecurisee)->first();
 
                     if($recherches){
                         $recherches->nbOccurences = $recherches->nbOccurences + 1;
@@ -87,7 +167,7 @@ class LieuxController extends Controller
                     }
                     else{
                         $nouvelleRecherche = new Recherche();
-                        $nouvelleRecherche->termeRecherche = $request->txtRecherche;
+                        $nouvelleRecherche->termeRecherche = $rechercheSecurisee;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -95,7 +175,7 @@ class LieuxController extends Controller
                 catch(\Exception $e){
                     if($e->getMessage() == "No query results for model [App\Models\Recherche]"){
                         $nouvelleRecherche = new Recherche();
-                        $nouvelleRecherche->termeRecherche = $request->txtRecherche;
+                        $nouvelleRecherche->termeRecherche = $rechercheSecurisee;
                         $nouvelleRecherche->nbOccurences = 1;
                         $nouvelleRecherche->save();
                     }
@@ -106,6 +186,50 @@ class LieuxController extends Controller
             }
             
             $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
+
+            if(session()->has('villes')){
+                $villes = session()->get('villes');
+            }
+            else{
+                // $villes = Ville::where('actif', 1)->get();
+                session(['villes' => $villes]);
+            }
+
+            if(session()->has('quartiers')){
+                $quartiers = session()->get('quartiers');
+            }
+            else{
+                // $quartiers = Quartier::where('ville_id', $ville)->where('actif', 1)->get();
+                session(['quartiers' => $quartiers]);
+            }
+
+            if(session()->has('ville')){
+                $ville = session()->get('ville');
+            }
+            else if($ville != -1){
+                session(['ville' => $ville]);
+            }
+
+            if(session()->has('quartier')){
+                $quartier = session()->get('quartier');
+            }
+            else{
+                session(['quartier' => $quartier]);
+            }
+
+            if(session()->has('recherche')){
+                $recherche = session()->get('recherche');
+            }
+            else {
+                session(['recherche' => $recherche]);
+            }
+
+            if(session()->has('lieux')){
+                $lieux = session()->get('lieux');
+            }
+            else{
+                session(['lieux' => $lieux]);
+            }
 
             return view('recherche', compact('lieux', 'ville', 'quartier', 'recherche', 'villes', 'quartiers'));
         }
@@ -126,7 +250,7 @@ class LieuxController extends Controller
     public function Quartiers(Request $request)
     {
         $villeId    = $request->villeId;
-        $quartiers  = Quartier::where('ville_id', $villeId)->get();
+        $quartiers  = Quartier::where('ville_id', $villeId)->get()->sortByDesc('nom');
         return compact('quartiers');
     }
 
@@ -356,4 +480,6 @@ class LieuxController extends Controller
             return response()->json(["success" => false, "message" =>  __('erreurSuppresion')], 500);
         }
     }
+
+
 }
