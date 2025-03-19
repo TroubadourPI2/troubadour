@@ -173,6 +173,7 @@
   "erreur429Texte" : "We’re sorry, but you have sent too many requests to us recently. Please try again later.",
   "erreurModifierPropreCompte" :"You cannot change your own account.",
   "activiteIntrouvable" : "Activity not found or already deleted",
-  "utilisateurIntrouvable": "User not found or already deleted"
+  "utilisateurIntrouvable": "User not found or already deleted",
+  "statutOuRoleInvalide": "The selected role or status is invalid."
 
 }
