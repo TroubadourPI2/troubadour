@@ -1,6 +1,6 @@
 var btnSuppTerme = document.getElementById('btnSuppTerme');
 
-// Lang.setLocale(document.body.getAttribute('data-locale'));
+//Lang.setLocale(document.body.getAttribute('data-locale'));
 
 // btnSuppTerme.addEventListener('click', function() {
 //     swal({

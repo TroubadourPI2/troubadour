@@ -14,7 +14,7 @@
   "alertConfirmationSuppression" : "Once deleted, you can't go back!",
   "nonAnnuler" : "No, cancel",
   "ouiAllezY" : "Yes, go ahead !",
-
+  
   "decouvrir"  : "Discover",
   "slogan" : "Explore without limits",
   "chargement" : "Loading...",
@@ -82,11 +82,13 @@
   "droitsReserves" : "All rights reserved." ,
 
   "seConnecter":"Log in",
-  "sInscrire":"Sign in",
+  "sInscrire":"Sign up",
   "messageErreurConnexion": "Please fill in all the fields.",
   "erreurConnexion": "Email and/or password is invalid.",
   "connexionMessage": "Login successful!",
   "deconnexionMessage": "Logout successful!",
+  "inscriptionMessage": "Signed up successfully!",
+  "messageErreurInscription": "There has been an unforeseen error while creating the account.",
 
   "prenomNom" : "First Name & Last Name",
   "prenom": "First name",

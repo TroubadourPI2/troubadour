@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     const statutDetail = statutsData.find(s => s.id == usager.statut_id) || { statut: Lang.get('strings.inconnu') };
                     const statutIcon = statutsIcons[usager.statut_id] ? statutsIcons[usager.statut_id].icon : "mdi-help-circle";
                     const statutColor = statutsIcons[usager.statut_id] ? statutsIcons[usager.statut_id].color : "";
-                    console.log(statutColor)
                     contenuHtml += `
                     <div class="bg-c3 border-2 shadow-md flex max-w-7xl w-full h-28 justify-center items-center p-2 lg:p-4">
                         <!-- Rôle -->

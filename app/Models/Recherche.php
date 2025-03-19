@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recherche extends Model
 {
     use HasFactory;
-
+    protected $table = 'Recherches';
     protected $fillable = [
         'termeRecherche',
         'nbOccurences',
