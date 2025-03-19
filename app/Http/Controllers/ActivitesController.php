@@ -183,11 +183,29 @@ class ActivitesController extends Controller
         try {
          
             $activite = Activite::with(['photos', 'lieux', 'typeActivite'])->findOrFail($activiteId);
-    
+
+            $utilisateur = auth()->user(); 
+            $estAdmin = $utilisateur->role->nom === 'Admin';
+            $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
+            if (!$estProprietaire && !$estAdmin) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('erreur403Texte') 
+                ], 403);
+            }
+            
             return response()->json([
                 'success' => true,
                 'data'    => $activite
             ], 200);
+        }
+        catch (ModelNotFoundException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => __('activiteIntrouvable')
+            ], 404);
+    
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
