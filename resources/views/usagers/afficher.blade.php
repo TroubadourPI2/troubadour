@@ -119,7 +119,8 @@
 @if (session('formulaireModifierUValide'))
     <script>
         const succesMessage = "{{ __('succesModifier') }}";
-console.log("to")
+        console.log("to")
+
         function ModifUsager() {
             window.onload = function() {
                 const Toast = Swal.mixin({
