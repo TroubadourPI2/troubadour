@@ -44,7 +44,9 @@ class UsagersController extends Controller
     }
 
     public function ObtenirDonneesCompte(){
-        $usager = Auth::user(); 
+        $usager = Auth::user();
+        $favorisActivites = $usager->activiteFavoris()->get();
+        $favorisLieux = $usager->lieuFavoris()->get();
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)
         ->orderByDesc('actif') 
         ->get();
@@ -52,7 +54,9 @@ class UsagersController extends Controller
         $typesLieu = TypeLieu::all();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::all();
-        return View('usagers.afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite'));
+        
+       
+        return View('usagers.Afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite', 'favorisActivites', 'favorisLieux'));
     }
 
    public function ObtenirQuartiersParVille(Request $request)
@@ -81,9 +85,10 @@ class UsagersController extends Controller
     public function SupprimerFavorisLieu(LieuFavoriRequest $request)
     {
         $favoris = LieuFavori::where("id",$request->id)->first();
-        $favoris->delete();
-
-
+        if ($favoris) {
+            $favoris->delete();
+            session()->flash('favoriSupprime', __('messageSuppLieuFavoris'));
+        }
         return redirect()->back(); 
 
     }
@@ -104,9 +109,10 @@ class UsagersController extends Controller
     public function SupprimerFavorisActivite(ActiviteFavoriRequest $request)
     {
         $favoris = ActiviteFavori::where("id",$request->id)->first();
-        $favoris->delete();
-
-
+        if ($favoris) {
+            $favoris->delete();
+            session()->flash('favoriSupprime', __('messageSuppActiviteFavoris'));
+        }
         return redirect()->back(); 
 
     }
@@ -195,25 +201,6 @@ class UsagersController extends Controller
         Log::error("Erreur lors de la suppression de l'utilisateur: " . $e->getMessage());
         return response()->json(['success' => false, 'message' => 'Une erreur est survenue lors de la désactivation.'], 500);
         }
-    }
-
-
-
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 
 }

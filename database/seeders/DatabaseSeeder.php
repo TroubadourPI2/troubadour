@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             ActiviteSeeder::class,
             LieuActiviteSeeder::class,
             PhotoSeeder::class,
+            ActiviteFavoriSeeder::class,
+            LieuFavoriSeeder::class,
         ]);
     }
 }
