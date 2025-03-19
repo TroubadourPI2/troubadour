@@ -110,7 +110,7 @@ class UsagerRequest extends FormRequest
         if ($nomRouteActuelle === 'admin.ModifierUsagers') {
             throw new HttpResponseException(response()->json([
                 'success' => false,
-                'message' => 'Erreur de validation',
+                'message' => __('statutOuRoleInvalide'),
                 'errors' => $validator->errors()
             ], 422));
         }
