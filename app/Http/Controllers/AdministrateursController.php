@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lieu;
 use App\Models\Ville;
+use App\Models\Quartier;
 use App\Models\TypeLieu;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\UsagerRequest;
@@ -21,14 +22,24 @@ class AdministrateursController extends Controller
         $typesLieu = TypeLieu::all();
         $termesRecherche = Recherche::all()->sortByDesc('nbOccurences');
 
-        return view('admin.Afficher', compact('villes', 'typesLieu', 'termesRecherche'));
+        return view('admin.afficher', compact('villes', 'typesLieu', 'termesRecherche'));
+    }
+
+    public function ObtenirVille() {
+        $villes = Ville::all();
+        return response()->json($villes);
+    }
+
+    public function ObtenirQuartier() {
+        $quartiers = Quartier::all();
+        return response()->json($quartiers);
     }
 
     public function Recherche(Request $request)
     {
         $validationDonnees = $request->validate([
-            'villeId' => 'nullable|integer|exists:villes,id',
-            'quartierId' => 'nullable|integer|exists:quartiers,id',
+            'villeId' => 'nullable|integer|exists:Villes,id',
+            'quartierId' => 'nullable|integer|exists:Quartiers,id',
             'rechercheNom' => 'nullable|string|max:255',
             'actif' => 'nullable|boolean',
             'parPage' => 'nullable|integer|in:10,25,50,100',
@@ -124,7 +135,7 @@ class AdministrateursController extends Controller
         $validationDonnee = $request->validate([
             'recherche'        => 'nullable|string|max:64',
             'rechercheRole'    => 'nullable|integer|exists:RoleUsagers,id',
-            'rechercheStatut'  => 'nullable|integer|exists:statuts,id',
+            'rechercheStatut'  => 'nullable|integer|exists:Statuts,id',
             'per_page'         => 'nullable|integer|in:10,25,50,100',
         ]);
     

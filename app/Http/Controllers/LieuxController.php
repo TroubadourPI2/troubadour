@@ -178,7 +178,6 @@ class LieuxController extends Controller
             $lieu->save();
 
             session()->flash('formulaireAjouterLieuValide', 'true');
-            Log::debug($estAdmin);
             if($estAdmin)
                 return redirect()->route('admin');
             return redirect()->route('usagerLieux.afficher');
@@ -305,13 +304,13 @@ class LieuxController extends Controller
             ]);
     
             if (!$request->boolean('actif')) {
-                $activites = Activite::whereHas('lieux', function ($query) use ($id) {
-                    $query->where('lieux.id', $id);
+                $activites = Activite::whereHas('Lieux', function ($query) use ($id) {
+                    $query->where('Lieux.id', $id);
                 })->get();
     
                 $activitesToDeactivate = $activites->filter(function ($activite) use ($id) {
-                    return $activite->lieux()->where('lieux.actif', true)
-                                             ->where('lieux.id', '!=', $id)
+                    return $activite->lieux()->where('Lieux.actif', true)
+                                             ->where('Lieux.id', '!=', $id)
                                              ->count() === 0;
                 });
                 foreach ($activitesToDeactivate as $activite) {

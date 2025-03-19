@@ -5,17 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ville;
 use App\Models\Lieu;
+use Illuminate\Support\Facades\Log;
 
 class GeolocalisationController extends Controller
 {
-    public function ObtenirVilleUtilisateur()
+    public function ObtenirVilleUtilisateur(Request $request)
     {
-        $ip = request()->ip();
-
+        $validated = $request->validate([
+            'ip' => 'required|ip'
+        ]);
+    
+        $ip = $validated['ip'];
+        Log::debug($ip);
         //TODO A RETIRER UNE FOIS EN PROD Tester en developpement local
-        if ($ip === "127.0.0.1") {
-            $ip = "205.151.69.245"; 
-        }
+        // if ($ip === "127.0.0.1") {
+        //     $ip = "205.151.69.245"; 
+        // }
         //205.151.69.245 TR
         //62.210.111.58  Paris
         //207.134.102.142 MTL

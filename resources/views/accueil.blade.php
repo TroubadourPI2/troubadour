@@ -9,7 +9,7 @@
         <div class="relative flex flex-col justify-start w-full h-full font-barlow overflow-hidden">
 
             <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
-                <source src="{{ asset('videos/activites.mp4') }}" type="video/mp4">
+                <source src="{{ asset('Videos/activites.mp4') }}" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
 

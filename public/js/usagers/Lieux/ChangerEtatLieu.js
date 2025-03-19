@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
         AjouterDesactiverListeners();
         MiseAJourStatutLieu();
     }, 2000); 
- 
 });
 
 function ObtenirElementsDesactiver() {
