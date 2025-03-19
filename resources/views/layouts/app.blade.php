@@ -82,9 +82,7 @@
                     </div>
                 </div>
 
-                <span
-                    class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1 text-c1 rounded-full transition "
-                    data-icon="mdi:search" data-inline="false"></span>
+
 
             </div>
         </div>
@@ -137,10 +135,6 @@
                                 class="iconify size-10 " data-icon="mdi:user"
                                 data-inline="false"></span>{{ __('administration') }}</a>
                     @endrole
-                    <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                        <span class="iconify size-10 " data-icon="mdi:search"
-                            data-inline="false"></span>{{ __('Recherche') }}</a>
                     <div x-data="{ open: false }" class="relative font-barlow">
                         <a @click="open = !open"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full cursor-pointer">
