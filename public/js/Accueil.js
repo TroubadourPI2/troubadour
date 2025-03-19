@@ -74,9 +74,8 @@ function CreerCarteDerniere(type) {
 }
 
 
-
 document.addEventListener("DOMContentLoaded", function() {
-    //configure la lang pour le fichier JS
+    // Configure la lang pour le fichier JS
     Lang.setLocale(document.body.getAttribute('data-locale'));
 
     const boutonVilles = document.getElementById("activerSection");
@@ -85,23 +84,43 @@ document.addEventListener("DOMContentLoaded", function() {
     const conteneurCarte = document.getElementById("conteneurCarte");
 
     boutonVilles.addEventListener("click", function() {
-        axios.get('/geolocalisation/ville')
-            .then(function(response) {
-                const donnee = response.data;
+        fetch("https://ipinfo.io/json?")
+        .then(response => response.json())
+        .then(geoInfo => {
+            console.log("Infos de géolocalisation :", geoInfo);
+          
+            const { ip} = geoInfo;
         
+        
+            
+          
+            return axios.get(`/geolocalisation/ville?ip=${ip}`);
+        })
+   /*      fetch("https://api.ipify.org?format=json")
+            .then(response => response.json())
+            .then(data => {
+             
+                const userIp = data.ip;
+                console.log(userIp)
+                return axios.get(`/geolocalisation/ville?ip=${userIp}`);
+            }) */
+            
+            .then(function(response) {
+             
+                const donnee = response.data;
+                
                 if (donnee.ville) {
                     localStorage.setItem("usagerVilleAccueil", donnee.ville);
                     villeSpan.textContent = donnee.ville;
                     villeSpan.classList.remove("animate-pulse");
-              
                 } else {
                     villeSpan.textContent = "Lieux à découvrir";
                     villeSpan.classList.remove("animate-pulse");
                 }
+
                 if (donnee.lieux && Array.isArray(donnee.lieux) && donnee.lieux.length > 0) {
-              
                     conteneurCarte.innerHTML = "";
-          
+
                     donnee.lieux.forEach(function(lieu, index) {
                         const carte = CreerCarte(lieu);
                         conteneurCarte.appendChild(carte);
@@ -109,14 +128,13 @@ document.addEventListener("DOMContentLoaded", function() {
                             carte.classList.remove("opacity-0");
                         }, index * 300);
                     });
-          
+
                     const carteVoirPlus = CreerCarteDerniere("voirPlus");
                     conteneurCarte.appendChild(carteVoirPlus);
                     setTimeout(function() {
                         carteVoirPlus.classList.remove("opacity-0");
                     }, donnee.lieux.length * 300);
                 } else {
-                 
                     villeSpan.textContent = Lang.get('strings.bientotVille');
                     conteneurCarte.innerHTML = "";
                     const carteVoirDautres = CreerCarteDerniere("voirDautresVilles");
@@ -125,20 +143,17 @@ document.addEventListener("DOMContentLoaded", function() {
                         carteVoirDautres.classList.remove("opacity-0");
                     }, 300);
                 }
+
                 if (conteneurCarte.children.length === 1) {
                     conteneurCarte.classList.remove("md:grid-cols-2", "xl:grid-cols-5");
                     const derniereCard = conteneurCarte.children[0];
                     derniereCard.classList.remove("w-full", "max-h-48");
                     derniereCard.classList.add("w-64", "h-64", "mx-auto");
                     const img = derniereCard.querySelector("img");
-              
-                      img.classList.remove("h-52");
-                      img.classList.add("h-32");
-                    
+                    img.classList.remove("h-52");
+                    img.classList.add("h-32");
                 }
-                
-                
-             
+
                 sectionCacher.classList.remove("hidden", "opacity-0");
                 setTimeout(function() {
                     sectionCacher.classList.add("opacity-100");
@@ -152,6 +167,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 });
+
 
 document.getElementById('boutonOuvrirMenu').addEventListener('click', function() {
     const menuMobile = document.getElementById('menuMobile');
