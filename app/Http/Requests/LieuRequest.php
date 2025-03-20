@@ -24,7 +24,7 @@ class LieuRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->route()->getName() === 'usagerLieux.changerEtatLieu') {
+        if ($this->route() && $this->route()->getName() === 'usagerLieux.changerEtatLieu') {
             return [
                 'actif' => 'required|boolean',
             ];
