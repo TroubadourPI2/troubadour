@@ -56,6 +56,7 @@ return [
     'lieuIdRequis'             => 'Le(s) lieu(x) est/sont obligatoire(s).',
     'lieuIdExiste'             => 'Le(s) lieu(x) sélectionné(s) est/sont invalide(s).',
     'photoMime'                => 'Chaque photo doit être au format PNG ou JPG.',
+    'photosMax'                => 'Vous ne pouvez pas ajouter plus de 5 photos.',
     'photoMax'                 => 'Chaque photo ne doit pas dépasser 2048 kilo-octets.',
     'photoPositionRequise'     => 'La position de chaque photo est obligatoire.',
     'photoPositionInteger'     => 'La position de chaque photo doit être un nombre entier.',
