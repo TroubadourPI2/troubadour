@@ -111,8 +111,9 @@ class ActivitesController extends Controller
 
     public function ModifierActivite(ActiviteRequest $request, string $id)
     {
+        $activite = Activite::findOrFail($id);
         try {
-            $activite = Activite::findOrFail($id);
+            
             $utilisateur = auth()->user(); 
             $estAdmin = $utilisateur->role->nom === 'Admin';
             $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
