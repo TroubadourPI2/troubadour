@@ -6,6 +6,33 @@ const champPhotos = document.getElementById('photos');
 const conteneurPositions = document.getElementById('positionInputs');
 
 champPhotos.addEventListener('change', function() {
+
+    if (champPhotos.files.length > 5) {
+        Swal.fire({
+            icon: 'error',
+            title: Lang.get('strings.attention'),
+            text: Lang.get('validations.photosMax')
+        });
+        champPhotos.value = ''; 
+        conteneurPositions.innerHTML = '';
+        return;
+    }
+
+    const tailleMax = 2 * 1024 * 1024; 
+    for (let i = 0; i < champPhotos.files.length; i++) {
+        if (champPhotos.files[i].size > tailleMax) {
+            Swal.fire({
+                icon: 'error',
+                title: Lang.get('strings.attention'),
+                text: Lang.get('validations.photoMax')
+            });
+            champPhotos.value = '';
+            conteneurPositions.innerHTML = '';
+            return;
+        }
+    }
+
+
     conteneurPositions.innerHTML = '';
     const fichiers = champPhotos.files;
 
