@@ -206,17 +206,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 document.getElementById('photosModif').addEventListener('change', function() {
 
-    if (photosModif.files.length > 5) {
+    const nbPhotosActuelles = parseInt(document.getElementById('nombrePhotosActuelles').value) || 0;
+
+    const nbNouvelles = this.files.length;
+        if (nbPhotosActuelles + nbNouvelles > 5) {
         Swal.fire({
             icon: 'error',
             title: Lang.get('strings.attention'),
             text: Lang.get('validations.photosMax')
         });
-        photosModif.value = ''; 
-        conteneurPositions.innerHTML = '';
+        this.value = ''; 
+        document.getElementById('positionInputsModif').innerHTML = '';
         return;
     }
-
     const tailleMax = 2 * 1024 * 1024; 
     for (let i = 0; i < photosModif.files.length; i++) {
         if (photosModif.files[i].size > tailleMax) {
