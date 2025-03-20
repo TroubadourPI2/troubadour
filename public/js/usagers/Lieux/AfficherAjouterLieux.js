@@ -17,9 +17,12 @@ function AjouterLieuxListeners() {
     if (selectVilleLieu)
         selectVilleLieu.addEventListener('change', ActiverSelectQuartier);
 
-    inputPhotoLieu.addEventListener('change', function(event) {
-        VerifierTailleEtTypePhoto(event);
-    });
+    if(inputPhotoLieu){
+        inputPhotoLieu.addEventListener('change', function(event) {
+            VerifierTailleEtTypePhoto(event);
+        });
+    }
+        
 }
 
 function ActiverSelectQuartier() {
@@ -79,7 +82,7 @@ function MettreAJourSelectQuartier(quartiers) {
 function VerifierTailleEtTypePhoto(event){
     const tailleMax = 2 * 1024 * 1024; 
     const photo = event.target.files[0];
-    if (!(photo.type=== 'image/jpeg' || photo.type === 'image/png')){
+    if (photo && !(photo.type=== 'image/jpeg' || photo.type === 'image/png')){
         Swal.fire({
             icon: 'error',
             title: Lang.get('strings.erreur'),
@@ -99,10 +102,15 @@ function VerifierTailleEtTypePhoto(event){
                 }
             }
         });
-        inputPhotoLieu.value = '';
-        inputPhotoLieu.innerHTML = '';
-        inputPhotoModifie.value = '';
-        inputPhotoModifie.innerHTML = '';
+        if(inputPhotoLieu){
+            inputPhotoLieu.value = '';
+            inputPhotoLieu.innerHTML = '';
+        }
+        if(inputPhotoModifie){
+            inputPhotoModifie.value = '';
+            inputPhotoModifie.innerHTML = '';
+        }
+      
         return false;
     }
     if (photo && photo.size > tailleMax) {
@@ -125,10 +133,14 @@ function VerifierTailleEtTypePhoto(event){
                 }
             }
         });
-        inputPhotoLieu.value = '';
-        inputPhotoLieu.innerHTML = '';
-        inputPhotoModifie.value = '';
-        inputPhotoModifie.innerHTML = '';
+        if(inputPhotoLieu){
+            inputPhotoLieu.value = '';
+            inputPhotoLieu.innerHTML = '';
+        }
+        if(inputPhotoModifie){
+            inputPhotoModifie.value = '';
+            inputPhotoModifie.innerHTML = '';
+        }
         return false;
     }
     return true;
