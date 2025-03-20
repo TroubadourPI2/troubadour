@@ -45,7 +45,7 @@ Route::middleware(Langue::class)
 
         //LIEUX (GESTIONNAIRE)
         Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
-        Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu')->middleware('VerifierRole:Admin,Gestionnaire')->middleware('throttle:10,30');;
+        Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu')->middleware('VerifierRole:Admin,Gestionnaire')->middleware('throttle:10,30');
         Route::get('/compte/obtenirLieu', [LieuxController::class, 'ObtenirUnLieu']);
         Route::get('/lieu/zoom/{id}', [LieuxController::class, 'ZoomLieu'])->name('Lieu.zoom');
         Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu')->middleware('VerifierRole:Admin,Gestionnaire')->middleware('throttle:10,30');

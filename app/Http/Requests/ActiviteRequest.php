@@ -43,7 +43,7 @@ class ActiviteRequest extends FormRequest
             'photos.*'            => 'nullable|mimes:png,jpg|max:2048',
             'photos.*.position'   => 'required|integer|distinct',
             'photos_a_supprimer'  => 'nullable|array',
-            'photos_a_supprimer.*'=> 'exists:photos,id',
+            'photos_a_supprimer.*'=> 'exists:Photos,id',
             'positionsActuelles'  => 'nullable|array',
             'positionsActuelles.*'=> 'required|integer|distinct',
         ];
