@@ -33,7 +33,7 @@ class LieuRequest extends FormRequest
         $rules = [
             'rue' => 'required|regex:/^[a-zA-Z0-9\'\,\-_À-ÿ ]+$/|max:64',
             'noCivic' => 'required|numeric|max:99999',
-            'codePostal' => 'required|regex:/^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/i|max:7',
+            'codePostal' => 'required|regex:/^[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]$/|max:7',
             'nomEtablissement' => 'required|max:64',
             'photoLieu' => 'nullable|mimes:png,jpg|max:2048',
             'siteWeb' => 'nullable|url:https|max:150',

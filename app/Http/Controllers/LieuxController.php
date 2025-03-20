@@ -379,14 +379,13 @@ class LieuxController extends Controller
 
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
-            $lieu->codePostal = $request->codePostal;
+            $lieu->codePostal = (strtoupper($request->codePostal));
             $lieu->nomEtablissement =  htmlspecialchars($request->nomEtablissement);
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
             $lieu->description = htmlspecialchars($request->description);
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
-
             if ($request->has('photoLieuSupprime') && $request->photoLieuSupprime == "1") {
                 if ($lieu->photoLieu && $lieu->photoLieu !== $photoCheminParDefaut) {
                     Storage::disk('DevActivite')->delete($lieu->photoLieu);
