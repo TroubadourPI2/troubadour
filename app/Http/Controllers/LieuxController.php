@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 
 class LieuxController extends Controller
 {
@@ -253,47 +254,52 @@ class LieuxController extends Controller
     }
 
     public function AjouterUnLieu(LieuRequest $request)
-    {
-        try {
-            $lieu = new Lieu();
-            $utilisateur = auth()->user();
-            $estAdmin = $utilisateur->role->nom === 'Admin';
-            $lieu->rue =  $request->rue;
-            $lieu->noCivic = $request->noCivic;
-            $lieu->codePostal = (strtoupper($request->codePostal));
-            $lieu->nomEtablissement = htmlspecialchars($request->nomEtablissement);
+{
+    try {
+        $lieu = new Lieu();
+        $utilisateur = auth()->user();
+        $estAdmin = $utilisateur->role->nom === 'Admin';
+        $lieu->rue =  $request->rue;
+        $lieu->noCivic = $request->noCivic;
+        $lieu->codePostal = (strtoupper($request->codePostal));
+        $lieu->nomEtablissement = htmlspecialchars($request->nomEtablissement);
 
-            $photoCheminParDefaut = 'lieux/image_defaut.png';
-            if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
-                Storage::disk('DevActivite')->put($photoCheminParDefaut, file_get_contents(public_path('Images/lieux/image_defaut.png')));
-            }
-
-            if ($request->hasFile('photoLieu')) {
-                $file = $request->file('photoLieu');
-                $chemin = $file->store('lieux', 'DevActivite');
-                $lieu->photoLieu = $chemin;
-            } else {
-                $lieu->photoLieu = $photoCheminParDefaut;
-            }
-
-            $lieu->siteWeb = $request->siteWeb;
-            $lieu->numeroTelephone = $request->numeroTelephone;
-            $lieu->actif = true;
-            $lieu->description = htmlspecialchars($request->description);
-            $lieu->quartier_id = $request->selectQuartierLieu;
-            $lieu->typeLieu_id = $request->selectTypeLieu;
-            $lieu->proprietaire_id = Auth::id();
-            $lieu->save();
-
-            session()->flash('formulaireAjouterLieuValide', 'true');
-            if ($estAdmin)
-                return redirect()->route('admin');
-            return redirect()->route('usagerLieux.afficher');
-        } catch (\Exception $e) {
-            Log::error("Erreur lors de l'ajout d'un lieu: " . $e->getMessage());
-            return redirect()->route('usagerLieux.afficher');
+        $photoCheminParDefaut = 'lieux/image_defaut.png';
+        if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
+            Storage::disk('DevActivite')->put($photoCheminParDefaut, file_get_contents(public_path('Images/lieux/image_defaut.png')));
         }
+
+        if ($request->hasFile('photoLieu')) {
+            $file = $request->file('photoLieu');
+            $chemin = $file->store('lieux', 'DevActivite');
+            $lieu->photoLieu = $chemin;
+        } else {
+            $lieu->photoLieu = $photoCheminParDefaut;
+        }
+
+        $lieu->siteWeb = $request->siteWeb;
+        $lieu->numeroTelephone = $request->numeroTelephone;
+        $lieu->actif = true;
+        $lieu->description = htmlspecialchars($request->description);
+        $lieu->quartier_id = $request->selectQuartierLieu;
+        $lieu->typeLieu_id = $request->selectTypeLieu;
+        $lieu->proprietaire_id = Auth::id();
+        $lieu->save();
+
+        session()->flash('formulaireAjouterLieuValide', 'true');
+        if ($estAdmin)
+            return redirect()->route('admin');
+        return redirect()->route('usagerLieux.afficher');
+    } catch (PostTooLargeException $e) {
+        // Intercepter l'erreur et rediriger avec un message personnalisé
+        return redirect()->back()
+                         ->withErrors(['photoLieu' => __('validation.photoLieuMax')])
+                         ->withInput();
+    } catch (\Exception $e) {
+        Log::error("Erreur lors de l'ajout d'un lieu: " . $e->getMessage());
+        return redirect()->route('usagerLieux.afficher');
     }
+}
 
 
     /**

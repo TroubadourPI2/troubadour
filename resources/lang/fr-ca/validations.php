@@ -79,7 +79,4 @@ return [
     'villeIdExiste' => 'La ville sélectionné n\'éxiste pas',
     'quartierIdRequis' => 'le quartier est requis',
     'quartierIdExiste' => 'le quartier sélectionné n\'éxiste pas',
-
-
-
 ];

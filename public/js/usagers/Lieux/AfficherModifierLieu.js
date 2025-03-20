@@ -60,7 +60,10 @@ function AjouterModifierListeners() {
         ActiverSelectQuartierModifie
     );
 
-    inputPhotoModifie.addEventListener('change', ChangerPhotoChoisie);
+    inputPhotoModifie.addEventListener('change', function(event) {
+        if(VerifierTailleEtTypePhoto(event))
+            ChangerPhotoChoisie(event);
+    });
 }
 
 
@@ -90,9 +93,9 @@ function MettreAJourSelectQuartierModifie(quartiers) {
     selectQuartierLieuModifie.value = quartierId;
 }
 
-function ChangerPhotoChoisie() {
-    const file = inputPhotoModifie.files[0];
-    if (file) {
+function ChangerPhotoChoisie(event) {
+    const photo = event.target.files[0]; 
+    if (photo) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
@@ -105,18 +108,16 @@ function ChangerPhotoChoisie() {
 
             const conteneurGauche = document.createElement('div');
             conteneurGauche.className =
-                'flex items-center gap-2 w-full justify-between';
+                'flex items-center gap-2 w-full';
 
-            // Création de l'image de la photo choisie
             const imageLieu = document.createElement('img');
             imageLieu.src = e.target.result;
-            imageLieu.alt = file.name;
+            imageLieu.alt = photo.name;
             imageLieu.className = 'w-16 h-16 object-cover rounded';
 
-            // Création du texte (nom de la photo)
             const titreSpan = document.createElement('span');
-            titreSpan.textContent = file.name;
-            titreSpan.className = 'inline-block max-w-sm sm:max-w-xs truncate'; 
+            titreSpan.textContent = photo.name;
+            titreSpan.className = 'inline-block w-48 truncate'; 
             titreSpan.style.whiteSpace = 'nowrap'; 
             titreSpan.style.overflow = 'hidden'; 
             titreSpan.style.textOverflow = 'ellipsis'; 
@@ -124,7 +125,6 @@ function ChangerPhotoChoisie() {
             conteneurGauche.appendChild(imageLieu);
             conteneurGauche.appendChild(titreSpan);
 
-            // Création du bouton de suppression
             const boutonSupprimerPhoto = document.createElement('button');
             boutonSupprimerPhoto.type = 'button';
             boutonSupprimerPhoto.className =
@@ -133,10 +133,9 @@ function ChangerPhotoChoisie() {
                 <span class="iconify text-c5 size-6" data-icon="ion:trash-outline" data-inline="true"></span>
             `;
 
-            // Événement au clic sur le bouton de suppression
             boutonSupprimerPhoto.addEventListener('click', function () {
-                divConteneurPhoto.remove(); // Supprimer la photo affichée
-                document.getElementById('photoLieuSupprime').value = '1'; // Marquer la photo comme supprimée
+                divConteneurPhoto.remove();
+                document.getElementById('photoLieuSupprime').value = '1'; 
             });
 
             // Conteneur pour le bouton de suppression
@@ -144,15 +143,13 @@ function ChangerPhotoChoisie() {
             conteneurDroite.className = 'flex items-center gap-2';
             conteneurDroite.appendChild(boutonSupprimerPhoto);
 
-            // Ajouter le conteneur de gauche et de droite dans le conteneur principal
             divConteneurPhoto.appendChild(conteneurGauche);
             divConteneurPhoto.appendChild(conteneurDroite);
 
-            // Ajouter le conteneur principal dans divPhotoLieu
             divPhotoLieu.appendChild(divConteneurPhoto);
         };
 
-        reader.readAsDataURL(file); // Lire le fichier comme URL de données
+        reader.readAsDataURL(photo); 
     }
 }
 
@@ -180,7 +177,7 @@ function AfficherPhotoLieu(lieu) {
 
         const titreSpan = document.createElement('span');
         titreSpan.textContent = lieu.photoLieu;
-        titreSpan.className = 'inline-block max-w-sm sm:max-w-xs truncate';
+        titreSpan.className = 'inline-block w-48 truncate';
 
         conteneurGauche.appendChild(imageLieu);
         conteneurGauche.appendChild(titreSpan);
