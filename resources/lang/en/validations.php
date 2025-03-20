@@ -52,6 +52,7 @@ return [
     'typeActiviteIdExiste'     => 'The selected activity type is invalid.',
     'lieuIdRequis'             => 'The location(s) is/are required.',
     'lieuIdExiste'             => 'The selected location(s) is/are invalid.',
+    'photosMax'                => 'You cannot add more than 5 photos.',
     'photoMime'                => 'Each photo must be in PNG or JPG format.',
     'photoMax'                 => 'Each photo must not exceed 2048 kilobytes.',
     'photoPositionRequise'     => 'The position of each photo is required.',
