@@ -37,7 +37,7 @@
 
         <div id="demandes" class="sectionMenu">@include('admin.composants.Demandes')</div>
         <div id="lieux" class="sectionMenu hidden">@include('admin.composants.GestionLieux')</div>
-        <div id="quartiers" class="sectionMenu hidden">@include('admin.composants.afficherQuartier')</div>
+        <div id="quartiers" class="sectionMenu hidden">@include('admin.composants.AfficherQuartier')</div>
         <div id="recherches" class="sectionMenu hidden">@include('admin.composants.historiqueRecherche')</div>
     </div>
 
