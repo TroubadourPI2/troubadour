@@ -161,7 +161,7 @@ function CartesQuartier(quartiers) {
     quartiers.forEach((quartier) => {
        
         const card = document.createElement('div');
-        card.classList.add('quartier-carte', 'bg-white', 'shadow-md', 'rounded-lg', 'p-4', 'w-60', 'flex', 'items-center', 'my-2', 'justify-center');
+        card.classList.add('quartier-carte', 'bg-white', 'shadow-md', 'rounded-lg', 'p-4', 'w-60', 'flex', 'items-center', 'my-2', 'justify-center', 'md:w-fit', 'sm:w-full',);
 
         const pill = document.createElement('span');
         pill.classList.add('bg-blue-500', 'text-c1', 'text-sm', 'truncate', 'font-semibold', 'px-3', 'py-1', 'rounded-full');
