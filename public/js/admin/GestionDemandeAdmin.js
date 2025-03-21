@@ -295,9 +295,15 @@ document.addEventListener('DOMContentLoaded', function() {
         usagersParPage = parseInt(this.value);
         RechercheUsagerAdmin(1);
     });
+    let delais; 
 
+    document.getElementById('rechercheTexte').addEventListener('input', () => {
+        clearTimeout(delais);
+        delais = setTimeout(() => {
+            RechercheUsagerAdmin();
+        }, 500); 
+    });
 
-    document.getElementById('rechercheTexte').addEventListener('input', () => RechercheUsagerAdmin());
     document.getElementById('rechercheRole').addEventListener('change', () => RechercheUsagerAdmin());
     document.getElementById('rechercheStatut').addEventListener('change', () => RechercheUsagerAdmin());
 
