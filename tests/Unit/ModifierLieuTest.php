@@ -84,18 +84,14 @@ class ModifierLieuTest extends TestCase
     /**
      * Teste si la photo supprimée est bien retirée du stockage et remplacée par la photo par défaut.
      */
-    public function test_suppression_photo_met_photo_par_defaut()
+    public function testSiSuppressionPhotoMetPhotoParDefaut()
     {
-        // Charger les données existantes
         $this->seed();
 
-        // Configuration du stockage fictif
         Storage::fake('DevActivite');
 
-        // Récupérer l'usager #5 existant
         $user = Usager::findOrFail(5);
 
-        // Créer un nouveau lieu spécifique pour le test
         $lieu = new Lieu();
         $lieu->proprietaire_id = $user->id;
         $lieu->nomEtablissement = 'Lieu Test Suppression Photo';
