@@ -295,9 +295,10 @@ document.addEventListener('DOMContentLoaded', function() {
         usagersParPage = parseInt(this.value);
         RechercheUsagerAdmin(1);
     });
-    let delais; 
+    
 
     document.getElementById('rechercheTexte').addEventListener('input', () => {
+        let delais; 
         clearTimeout(delais);
         delais = setTimeout(() => {
             RechercheUsagerAdmin();
