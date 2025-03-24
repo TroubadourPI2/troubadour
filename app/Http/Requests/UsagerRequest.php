@@ -39,14 +39,14 @@ class UsagerRequest extends FormRequest
         $rules = [
             'prenom'   => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
             'nom'      => 'required|regex:/^[A-Za-zÀ-ÿ\'\-]+(?: [A-Za-zÀ-ÿ\'\-]+)*$/|max:32',
-            'courriel' => 'required|email|max:64',
+            'courriel' => 'required|max:64',
         ];
      
         if ($routeName === 'usagers.modifier') {
             // --- MODIFICATION PAR L'UTILISATEUR ---
             // Exclure l’usager actuel dans la règle d’unicité du courriel
             $usager = $this->route('usager');
-            $rules['courriel'] .= '|unique:Usagers,courriel,' . $usager->id;
+            $rules['courriel'] .= '|email:rfc,dns|unique:Usagers,courriel,' . $usager->id;
      
             // Le changement de mot de passe est optionnel
             $rules['password'] = 'sometimes|nullable|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,}$/|min:8|confirmed';
@@ -58,7 +58,7 @@ class UsagerRequest extends FormRequest
         } elseif ($routeName === 'usagers.CreationUsager') {
             // --- CRÉATION D'UN NOUVEL USAGER ---
             // On exige un rôle pour la création (par exemple, "Utilisateur" = 2)
-            $rules['courriel'] .= '|unique:Usagers,courriel';
+            $rules['courriel'] .= '|email:rfc,dns|unique:Usagers,courriel,';
             $rules['role_id']   = 'required|exists:RoleUsagers,id';
      
             // Mot de passe requis pour la création
