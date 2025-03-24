@@ -6,15 +6,13 @@
         {{ __('retour') }}
     </button>
 
-    Page Modifier
-
     <form action="{{ route('modifier.quartier') }}" id="formulaireQuartierModif" method="POST">
 
         @csrf
         @method('PATCH')
         <input name="id" id="idQuartierModif" class="hidden">
 
-        <div class="flex flex-row gap-5">
+        <div class="flex flex-col gap-5 sm:flex-row">
             <input name="nom" id="nomQuartierModif" placeholder="nom du quartier"
                 class="block w-1/2 rounded-lg p-1 sm:p-2 font-medium">
 
