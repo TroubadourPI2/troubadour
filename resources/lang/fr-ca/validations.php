@@ -11,6 +11,7 @@ return [
     'codePostalFormat' => 'Le code postal doit être au format A1A 1A1.',
     'codePostalMax' => 'Le code postal ne doit pas dépasser 7 caractères.',
     'nomEtablissementRequis' => 'Le nom de l\'établissement est requis.',
+    'nomEtablissementMax' => 'Le nom de l\'établissement ne doit pas dépasser 64 caractères.',
     'photoLieuImage' => 'Le fichier doit être une image.',
     'photoLieuFormat' => 'La photo doit être au format PNG ou JPG.',
     'photoLieuMax' => 'La taille de la photo ne doit pas dépasser 2 Mo.',
@@ -55,6 +56,7 @@ return [
     'lieuIdRequis'             => 'Le(s) lieu(x) est/sont obligatoire(s).',
     'lieuIdExiste'             => 'Le(s) lieu(x) sélectionné(s) est/sont invalide(s).',
     'photoMime'                => 'Chaque photo doit être au format PNG ou JPG.',
+    'photosMax'                => 'Vous ne pouvez pas ajouter plus de 5 photos.',
     'photoMax'                 => 'Chaque photo ne doit pas dépasser 2048 kilo-octets.',
     'photoPositionRequise'     => 'La position de chaque photo est obligatoire.',
     'photoPositionInteger'     => 'La position de chaque photo doit être un nombre entier.',
@@ -78,7 +80,4 @@ return [
     'villeIdExiste' => 'La ville sélectionné n\'éxiste pas',
     'quartierIdRequis' => 'le quartier est requis',
     'quartierIdExiste' => 'le quartier sélectionné n\'éxiste pas',
-
-
-
 ];

@@ -24,7 +24,7 @@ class LieuRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->route()->getName() === 'usagerLieux.changerEtatLieu') {
+        if ($this->route() && $this->route()->getName() === 'usagerLieux.changerEtatLieu') {
             return [
                 'actif' => 'required|boolean',
             ];
@@ -33,8 +33,8 @@ class LieuRequest extends FormRequest
         $rules = [
             'rue' => 'required|regex:/^[a-zA-Z0-9\'\,\-_À-ÿ ]+$/|max:64',
             'noCivic' => 'required|numeric|max:99999',
-            'codePostal' => 'required|regex:/^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$/i|max:7',
-            'nomEtablissement' => 'required',
+            'codePostal' => 'required|regex:/^[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]$/|max:7',
+            'nomEtablissement' => 'required|max:64',
             'photoLieu' => 'nullable|mimes:png,jpg|max:2048',
             'siteWeb' => 'nullable|url:https|max:150',
             'numeroTelephone' => 'required|regex:/^\d{3}-\d{3}-\d{4}$/',
@@ -67,6 +67,7 @@ class LieuRequest extends FormRequest
             'codePostal.max' => __('validations.codePostalMax'),
 
             'nomEtablissement.required' => __('validations.nomEtablissementRequis'),
+            'nomEtablissement.max' => __('validations.nomEtablissementMax'),
 
             'photoLieu.required' => __('validations.photoLieuRequise'),
             'photoLieu.image' => __('validations.photoLieuImage'),
