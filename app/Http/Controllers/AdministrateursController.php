@@ -41,7 +41,7 @@ class AdministrateursController extends Controller
         $validationDonnees = $request->validate([
             'villeId' => 'nullable|integer|exists:Villes,id',
             'quartierId' => 'nullable|integer|exists:Quartiers,id',
-            'rechercheNom' => 'nullable|string|max:255',
+            'rechercheNom' => 'nullable|string|max:64',
             'actif' => 'nullable|boolean',
             'parPage' => 'nullable|integer|in:10,25,50,100',
         ]);

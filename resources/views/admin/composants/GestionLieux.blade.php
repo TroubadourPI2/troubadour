@@ -20,7 +20,7 @@
         <!-- Recherche et Toggle ensemble -->
         <div class="flex items-center gap-2 w-full justify-betwwen">
             <!-- Recherche par nom -->
-            <input type="text" name="rechercheNomLieu" id="rechercheNomLieu" placeholder="{{ __('rechercheLieu') }}"
+            <input type="text" name="rechercheNomLieu" id="rechercheNomLieu" placeholder="{{ __('rechercheLieu') }}" maxlength="64"
                 class="border-2 border-c1 p-1 sm:p-2 rounded-full w-3/4 md:w-4/5 text-sm sm:text-base">
 
             <!-- Toggle Actif -->
