@@ -11,7 +11,7 @@
 
                     @foreach ($favorisLieux as $favoriL)
                         <a href="/lieu/zoom/{{ $favoriL->lieu->id }}"
-                            class="w-[300px] h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col justify-end">
+                            class="w-80 h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col justify-end">
                             <img src="{{ asset($favoriL->lieu->photo_lieu_url) }}"
                                 alt="{{ $favoriL->lieu->nomEtablissement }}"
                                 class="w-full h-96 object-cover absolute inset-0 transition duration-300 ease-in-out">
@@ -19,7 +19,7 @@
                             <div class="w-full flex justify-center items-end">
                                 <div class="opacity-90 bg-c1 flex w-full h-16 items-center">
                                     <span class="text-2xl font-bold text-c3 font-barlow w-full truncate px-4">
-                                        {{ $favoriL->lieu->nomEtablissement }}
+                                        {{ $favoriL->lieu->nomEtablissement }}  
                                     </span>
                                     <div class="flex gap-x-2 px-4">
                                         <form action="{{ route('delete.favoris.lieu', ['id' => $favoriL->id]) }}"
@@ -48,7 +48,7 @@
 
                     @foreach ($favorisActivites as $favoriA)
                         <a href="/activite/zoom/{{ $favoriA->activite->id }}/{{ $favoriA->activite->lieux->first()->id ?? '' }}"
-                            class="activite-carte w-[300px] h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col lg:flex-row justify-end"
+                            class="activite-carte w-80 h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col lg:flex-row justify-end"
                             data-nom="{{ strtolower($favoriA->activite->nom) }}"
                             data-lieu-ids="{{ $favoriA->activite->lieu_ids }}"
                             data-type="{{ $favoriA->activite->typeActivite->id }}"
