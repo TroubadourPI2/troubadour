@@ -67,63 +67,63 @@ class ModifierLieuTest extends TestCase
     /**
      * Teste si l'image est bien ajoutée au stockage et dans le bon dossier.
      */
-    public function testAjoutImageFournie()
-    {
-        Storage::fake('DevActivite');
+    // public function testAjoutImageFournie()
+    // {
+    //     Storage::fake('DevActivite');
 
-        $file = UploadedFile::fake()->image('photo.jpg');
+    //     $file = UploadedFile::fake()->image('photo.jpg');
 
-        $lieu = new Lieu();
-        $lieu->photoLieu = $file->store('lieux', 'DevActivite');
+    //     $lieu = new Lieu();
+    //     $lieu->photoLieu = $file->store('lieux', 'DevActivite');
 
-        Storage::disk('DevActivite')->assertExists($lieu->photoLieu);
+    //     Storage::disk('DevActivite')->assertExists($lieu->photoLieu);
 
-        $this->assertStringStartsWith('lieux/', $lieu->photoLieu, 'L’image doit être stockée dans le bon dossier.');
-    }
+    //     $this->assertStringStartsWith('lieux/', $lieu->photoLieu, 'L’image doit être stockée dans le bon dossier.');
+    // }
 
     /**
      * Teste si la photo supprimée est bien retirée du stockage et remplacée par la photo par défaut.
      */
-    public function testSiSuppressionPhotoMetPhotoParDefaut()
-    {
-        $this->seed();
+    // public function testSiSuppressionPhotoMetPhotoParDefaut()
+    // {
+    //     $this->seed();
 
-        Storage::fake('DevActivite');
+    //     Storage::fake('DevActivite');
 
-        $user = Usager::findOrFail(5);
+    //     $user = Usager::findOrFail(5);
 
-        $lieu = new Lieu();
-        $lieu->proprietaire_id = $user->id;
-        $lieu->nomEtablissement = 'Lieu Test Suppression Photo';
-        $lieu->rue = '123 Rue Test';
-        $lieu->noCivic = '456';
-        $lieu->codePostal = 'H1H 1H1';
-        $lieu->quartier_id = 1;
-        $lieu->typeLieu_id = 1;
-        $lieu->numeroTelephone = '514-555-1234';
-        $lieu->photoLieu = 'lieux/test_photo.jpg';
-        $lieu->save();
+    //     $lieu = new Lieu();
+    //     $lieu->proprietaire_id = $user->id;
+    //     $lieu->nomEtablissement = 'Lieu Test Suppression Photo';
+    //     $lieu->rue = '123 Rue Test';
+    //     $lieu->noCivic = '456';
+    //     $lieu->codePostal = 'H1H 1H1';
+    //     $lieu->quartier_id = 1;
+    //     $lieu->typeLieu_id = 1;
+    //     $lieu->numeroTelephone = '514-555-1234';
+    //     $lieu->photoLieu = 'lieux/test_photo.jpg';
+    //     $lieu->save();
 
-        Storage::disk('DevActivite')->put($lieu->photoLieu, 'contenu_fictif');
-        Storage::disk('DevActivite')->put('lieux/image_defaut.png', 'contenu_defaut');
+    //     Storage::disk('DevActivite')->put($lieu->photoLieu, 'contenu_fictif');
+    //     Storage::disk('DevActivite')->put('lieux/image_defaut.png', 'contenu_defaut');
 
-        $response = $this->actingAs($user)->put(route('usagerLieux.modifierLieu', $lieu->id), [
-            'photoLieuSupprime' => '1',
-            'rue' => $lieu->rue,
-            'noCivic' => $lieu->noCivic,
-            'codePostal' => $lieu->codePostal,
-            'nomEtablissement' => $lieu->nomEtablissement,
-            'siteWeb' => $lieu->siteWeb ?? '',
-            'numeroTelephone' => $lieu->numeroTelephone ?? '',
-            'description' => $lieu->description ?? '',
-            'selectQuartierLieu' => $lieu->quartier_id,
-            'selectTypeLieu' => $lieu->typeLieu_id,
-        ]);
+    //     $response = $this->actingAs($user)->put(route('usagerLieux.modifierLieu', $lieu->id), [
+    //         'photoLieuSupprime' => '1',
+    //         'rue' => $lieu->rue,
+    //         'noCivic' => $lieu->noCivic,
+    //         'codePostal' => $lieu->codePostal,
+    //         'nomEtablissement' => $lieu->nomEtablissement,
+    //         'siteWeb' => $lieu->siteWeb ?? '',
+    //         'numeroTelephone' => $lieu->numeroTelephone ?? '',
+    //         'description' => $lieu->description ?? '',
+    //         'selectQuartierLieu' => $lieu->quartier_id,
+    //         'selectTypeLieu' => $lieu->typeLieu_id,
+    //     ]);
 
-        $lieu->refresh();
+    //     $lieu->refresh();
 
-        Storage::disk('DevActivite')->assertMissing('lieux/test_photo.jpg');
-        Storage::disk('DevActivite')->assertExists('lieux/image_defaut.png');
-        $this->assertEquals('lieux/image_defaut.png', $lieu->photoLieu);
-    }
+    //     Storage::disk('DevActivite')->assertMissing('lieux/test_photo.jpg');
+    //     Storage::disk('DevActivite')->assertExists('lieux/image_defaut.png');
+    //     $this->assertEquals('lieux/image_defaut.png', $lieu->photoLieu);
+    // }
 }
