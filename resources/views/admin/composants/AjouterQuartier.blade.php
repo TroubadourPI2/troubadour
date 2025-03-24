@@ -9,7 +9,7 @@
     <form action="{{ route('ajouter.quartier') }}" id="formulaireQuartierAjout" method="post">
         @csrf
 
-        <div class="flex flex-row gap-5">
+        <div class="flex flex-col gap-5 sm:flex-row">
             <input name="nom" placeholder="nom du quartier" id="nomQuartierAjout"
                 class="block w-1/2 rounded-lg p-1 sm:p-2 font-medium">
 
