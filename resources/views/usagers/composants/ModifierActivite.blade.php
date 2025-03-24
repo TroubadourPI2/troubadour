@@ -156,7 +156,8 @@
                     <!-- Date de début -->
                     <div class="sm:col-span-1">
                         <div class="flex flex-col w-full md:w-1/2">
-                            <label for="dateDebutModif">{{ __('dateDebut') }}</label>
+                            <label for="dateDebutModif">{{ __('dateDebut') }}<span
+                            class="text-c5 ml-2">*</span></label>
                             <input type="date" id="dateDebutModif" name="dateDebut"
                                 value="{{ old('dateDebut', $aujourdhui) }}" min="{{ $aujourdhui }}"
                                 max="{{ $dateLimite }}" class="p-2 font-medium rounded-lg bg-c3" />
