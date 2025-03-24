@@ -37,7 +37,7 @@ function AfficherModalConnexion() {
         customClass: {
             popup: 'bg-c2 rounded-lg max-w-96 min-h-96',
             title: 'text-xxl font-bold text-c1 uppercase font-barlow underline',
-            confirmButton: 'bg-c1 hover:bg-White text-c3 hover:text-c1 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl',
+            confirmButton: 'bg-c1 hover:bg-c3 text-c3 hover:text-c1 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl',
             denyButton: 'bg-c3 hover:bg-c1 text-c1 hover:text-c3 font-semibold py-2 px-4 rounded-full uppercase font-barlow text-xl',
         },
         preConfirm: () => {
