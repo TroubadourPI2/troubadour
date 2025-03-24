@@ -23,7 +23,7 @@ class QuartierRequest extends FormRequest
     {
         if ($this->route()->getName() === 'ajouter.quartier') {
             return [
-                'ville_id' => 'required|integer|exists:villes,id',
+                'ville_id' => 'required|integer|exists:Villes,id',
                 'actif' => 'required|integer',
                 'nom' => 'required|string',
             ];
@@ -32,7 +32,7 @@ class QuartierRequest extends FormRequest
         if ($this->route()->getName() === 'modifier.quartier') {
             return [
                 'id' => 'required|integer|exists:Quartiers,id',
-                'ville_id' => 'required|integer|exists:villes,id',
+                'ville_id' => 'required|integer|exists:Villes,id',
                 'actif' => 'required|integer',
                 'nom' => 'required|string',
             ];
