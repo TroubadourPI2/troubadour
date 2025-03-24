@@ -7,7 +7,7 @@
         <select id="rechercheStatut" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2">
             <option value="">{{ __('tousLesStatuts') }}</option>
         </select>
-        <input type="text" id="rechercheTexte" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2"
+        <input type="text"   maxlength="64" id="rechercheTexte" class="rounded-full border-2 w-full lg:w-1/2 border-c1 p-2"
             placeholder="{{ __('rechercheAdminDemande') }}">
     </div>
 

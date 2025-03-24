@@ -22,8 +22,8 @@
 
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
             <button id="boutonQuartier" data-section="quartiers"
-                class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
-                <span class="iconify size-8 sm:hidden" data-icon="mingcute:location-3-line"></span>
+                class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-40 uppercase transition">
+                <span class="iconify size-8 sm:hidden" data-icon="mingcute:building-5-line"></span>
                 <span class="hidden sm:inline">{{ __('quartier') }}</span>
             </button>
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
