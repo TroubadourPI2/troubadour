@@ -42,7 +42,14 @@ function RechercheLieuxListeners() {
     });
 
     filtreQuartier.addEventListener('change', FiltrerLieux);
-    rechercheNomLieu.addEventListener('input', FiltrerLieux);
+    
+    rechercheNomLieu.addEventListener('input',() => {
+        let delais;
+        clearTimeout(delais);
+        delais = setTimeout(() => {
+            FiltrerLieux();
+        }, 500);
+    });
     boutonFiltreActif.addEventListener('change', function () {
         actif = boutonFiltreActif.checked ? 1 : 0;
         MettreAjourTexteActif(actif);

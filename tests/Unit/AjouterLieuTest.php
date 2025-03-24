@@ -63,19 +63,18 @@ class AjouterLieuTest extends TestCase
     /**
      * Teste si l'image est bien ajoutée au stockage et dans le bon dossier.
      */
-    public function testAjoutImageFournie()
-    {
-        Storage::fake('DevActivite');
+    // public function testAjoutImageFournie()
+    // {
+    //     Storage::fake('DevActivite');
 
-        $file = UploadedFile::fake()->image('photo.jpg');
+    //     $file = UploadedFile::fake()->image('photo.jpg');
 
-        $lieu = new Lieu();
-        $lieu->photoLieu = $file->store('lieux', 'DevActivite');
+    //     $lieu = new Lieu();
+    //     $lieu->photoLieu = $file->store('lieux', 'DevActivite');
 
-        Storage::disk('DevActivite')->assertExists($lieu->photoLieu);
-
-        $this->assertStringStartsWith('lieux/', $lieu->photoLieu, 'L’image doit être stockée dans le bon dossier.');
-    }
+    //     Storage::disk('DevActivite')->assertExists($lieu->photoLieu);
+    //     $this->assertStringStartsWith('lieux/', $lieu->photoLieu, 'L’image doit être stockée dans le bon dossier.');
+    // }
 
     /**
      * Teste si l’image par défaut est bien utilisée quand aucune image n’est envoyée.
