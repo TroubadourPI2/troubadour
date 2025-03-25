@@ -31,7 +31,7 @@ return [
     'nomMax' => 'The last name may not exceed 32 characters.',
     'courrielRequis' => 'The email is required.',
     'courrielEmail' => 'The email is not valid.',
-    'courrielMax' => "The email cannot exceed 32 characters.",
+    'courrielMax' => "The email cannot exceed 64 characters.",
     'courrielUnique' => "This email is already in use.",
     'passwordRequis' => 'The password is required.',
     'passwordRegex' => 'The password must contain at least 8 characters, one uppercase letter, one number, and one special character.',
