@@ -170,7 +170,7 @@
                         @foreach ($lieux as $lieu)
                             <a href="/lieu/zoom/{{ $lieu->id }}"
                                 class="snap-start lg:w-3/4 w-2/3 bg-c3 h-full rounded-lg flex flex-col items-center p-3 border-2 border-c3 hover:border-2 hover:border-c1 cursor-pointer carteLieu ">
-                                <img src="{{ asset($lieu->photoLieu) }}" alt="{{ __('imageEtablissement') }}"
+                                <img src="{{ asset($lieu->photo_lieu_url) }}" alt="{{ __('imageEtablissement') }}"
                                     class="rounded-md h-52">
                                 <h3 class="text-c1 font-barlow text-md my-2 carteTitre text-center">
                                     {{ $lieu->nomEtablissement }}</h3>
