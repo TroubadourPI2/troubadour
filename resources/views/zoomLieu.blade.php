@@ -66,9 +66,9 @@
 
                     <div
                         class="lg:h-2/3 2xl:h-3/4 mt-10 2xl:mt-16 bg-white p-2 mb-8 pb-8 rounded-lg overflow-hidden shadow-lg md:mx-12 lg:mx-0 xl:mx-12 justify-items-center">
-                        @if ($lieuActuel->photoLieu)
+                        @if ($lieuActuel->photo_lieu_url)
                             <img class="w-96 h-52 md:w-100 md:h-[18rem] lg:w-[40rem] 2xl:h-[24rem] rounded"
-                                src="{{ $lieuActuel->photo_lieu_url }}" alt="{{ $lieuActuel->nomEtablissement }}">
+                                src="{{asset($lieuActuel->photo_lieu_url) }}" alt="{{ $lieuActuel->nomEtablissement }}">
                         @else
                             <img class="w-96 h-52 md:w-100 md:h-[18rem] lg:w-[40rem] 2xl:h-[24rem] rounded"
                                 src="{{ asset('/Images/Logos/logoC1.svg') }}" alt="Troubadour">
