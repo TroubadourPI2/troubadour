@@ -27,13 +27,18 @@ Route::middleware(Langue::class)
             [UsagersController::class, 'Deconnexion']
         )->name('usagers.Deconnexion')->middleware('auth');
 
+        Route::get(
+            '/Deconnexion',
+            [UsagersController::class, 'DeconnexionGet']
+        )->name('usagers.Deconnexion')->middleware('auth');
+
         Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'ObtenirVilleUtilisateur']);
 
 
         //USAGERS
         Route::get('/compte', [UsagersController::class, 'ObtenirDonneesCompte'])->name('usagerLieux.afficher')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
         Route::patch('/compte/{usager}/modifier', [UsagersController::class, 'ModificationUsager'])->name('usagers.modifier')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
-        Route::patch('/compte/{usager}/suppression', [UsagersController::class, 'Suppression'])->name('usagers.suppression')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
+        Route::patch('/compte/{usager}/suppression', [UsagersController::class, 'Suppression'])->name('usagers.suppression')->middleware('VerifierRole:Utilisateur,Gestionnaire');
         Route::post('/ajoutFavoriLieu', [UsagersController::class, 'AjouterFavorisLieu'])->name('ajouter.favoris.lieu');  
         Route::post('/ajoutFavoriActivite', [UsagersController::class, 'AjouterFavorisActivite'])->name('ajouter.favoris.activite');  
         Route::post('/deleteFavoriLieu/{id}', [UsagersController::class, 'SupprimerFavorisLieu'])->name('delete.favoris.lieu');        

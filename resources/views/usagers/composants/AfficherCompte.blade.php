@@ -91,10 +91,13 @@
 
                 <div
                     class="flex flex-col sm:flex-row justify-start items-end h-full sm:space-x-3 space-y-3 sm:space-y-0">
-                    <button type="button" onclick="supprimerUsager()"
-                        class="w-full text-xl lg:text-2xl rounded-full p-3 px-6 hover:bg-c3 cursor-pointer text-c5 border-2 border-c5 font-barlow">
-                        {{ __('supLeCompte') }}
-                    </button>
+
+                    @role(['Utilisateur', 'Gestionnaire'])
+                        <button type="button" onclick="supprimerUsager()"
+                            class="w-full text-xl lg:text-2xl rounded-full p-3 px-6 hover:bg-c3 cursor-pointer text-c5 border-2 border-c5 font-barlow">
+                            {{ __('supLeCompte') }}
+                        </button>
+                    @endrole
                     <button type="submit"
                         class="w-full text-xl lg:text-2xl rounded-full p-3 px-6 hover:bg-c1 hover:text-c3 cursor-pointer border-2 bg-white text-c1 font-barlow">
                         {{ __('enregistrer') }}
@@ -197,3 +200,4 @@
         });
     }
 </script>
+

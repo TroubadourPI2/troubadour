@@ -43,6 +43,18 @@ class UsagersController extends Controller
         return back();
     }
 
+    public function DeconnexionGet (){
+        try {
+            Auth::logout();
+            session()->flush();
+            session()->put('deconnexionSucces', 'Déconnexion réussie!');
+            return redirect()->route('login');
+        } catch (\Throwable $e) {
+            Log::debug($e);
+        }
+        return redirect()->route('login');
+    }
+
     public function ObtenirDonneesCompte(){
         $usager = Auth::user();
         $favorisActivites = $usager->activiteFavoris()->get();
