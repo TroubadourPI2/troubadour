@@ -142,7 +142,7 @@
                     @role(['Admin'])
                         <a href="{{ route('admin') }}"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                                class="iconify size-10 " data-icon="mdi:user"
+                                class="iconify size-10 " data-icon="mdi-account-tie"
                                 data-inline="false"></span>{{ __('administration') }}</a>
                     @endrole
                     <div x-data="{ open: false }" class="relative font-barlow">

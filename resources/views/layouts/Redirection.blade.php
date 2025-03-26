@@ -14,7 +14,7 @@
         rel="stylesheet">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" type="image/png" href="" />
+    <link rel="shortcut icon"  href="{{asset('Images/Logos/logo.svg')}}" />
 </head>
 
 <body data-locale="{{ session('locale', config('app.locale')) }}">

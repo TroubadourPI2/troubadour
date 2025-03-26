@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" type="image/png" href="" />
+    <link rel="shortcut icon"  href="{{asset('Images/Logos/logo.svg')}}" />
 </head>
 
 <body class="flex flex-col min-h-screen" data-locale="{{ session('locale', config('app.locale')) }}">
@@ -132,7 +132,7 @@
                     @role(['Admin'])
                         <a href="{{ route('admin') }}"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                                class="iconify size-10 " data-icon="mdi:user"
+                                class="iconify size-10 " data-icon="mdi-account-tie"
                                 data-inline="false"></span>{{ __('administration') }}</a>
                     @endrole
                     <div x-data="{ open: false }" class="relative font-barlow">

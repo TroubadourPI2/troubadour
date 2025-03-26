@@ -134,7 +134,7 @@ class LieuxController extends Controller
                 $quartier   = $request->quartier;
                 $rechercheSecurisee = trim($request->txtRecherche);
                 $rechercheSecurisee = addslashes($rechercheSecurisee);
-                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
+                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee, ENT_NOQUOTES, 'UTF-8');
 
                 $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$rechercheSecurisee%")->where('actif', 1)->paginate(8);
             }
@@ -147,7 +147,7 @@ class LieuxController extends Controller
             if (isset($request->txtRecherche)) {
                 $rechercheSecurisee = trim($request->txtRecherche);
                 $rechercheSecurisee = addslashes($rechercheSecurisee);
-                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
+                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee, ENT_NOQUOTES, 'UTF-8');
                 session(['recherche' => $rechercheSecurisee]);
 
                 try {
@@ -262,7 +262,8 @@ class LieuxController extends Controller
             $lieu->rue =  $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = (strtoupper($request->codePostal));
-            $lieu->nomEtablissement = htmlspecialchars($request->nomEtablissement);
+            $lieu->nomEtablissement = htmlspecialchars($request->nomEtablissement, ENT_NOQUOTES, 'UTF-8');
+
 
             $photoCheminParDefaut = 'lieux/image_defaut.png';
             if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
@@ -280,7 +281,7 @@ class LieuxController extends Controller
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
             $lieu->actif = true;
-            $lieu->description = htmlspecialchars($request->description);
+            $lieu->description = htmlspecialchars($request->description, ENT_NOQUOTES, 'UTF-8');
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
             $lieu->proprietaire_id = Auth::id();
@@ -380,10 +381,10 @@ class LieuxController extends Controller
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = (strtoupper($request->codePostal));
-            $lieu->nomEtablissement =  htmlspecialchars($request->nomEtablissement);
+            $lieu->nomEtablissement =  htmlspecialchars($request->nomEtablissement, ENT_NOQUOTES, 'UTF-8');
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
-            $lieu->description = htmlspecialchars($request->description);
+            $lieu->description = htmlspecialchars($request->description, ENT_NOQUOTES, 'UTF-8');
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
             if ($request->has('photoLieuSupprime') && $request->photoLieuSupprime == "1") {

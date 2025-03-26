@@ -62,12 +62,11 @@ class UsagersController extends Controller
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)
         ->orderByDesc('actif') 
         ->get();
-        $villes = Ville::all();
-        $typesLieu = TypeLieu::all();
+        $villes = Ville::where('actif', 1)->get();
+        $typesLieu = TypeLieu::orderBy('nom', 'asc')->get();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
-        $typesActivite = TypeActivite::all();
+        $typesActivite = TypeActivite::orderBy('nom', 'asc')->get();
         
-       
         return View('usagers.afficher', compact('usager', 'lieuxUsager', 'villes', 'typesLieu','activites','typesActivite', 'favorisActivites', 'favorisLieux'));
     }
 
@@ -77,7 +76,9 @@ class UsagersController extends Controller
         if (!$villeId) 
             return response()->json([], 400); 
 
-        $quartiers = Quartier::where('ville_id', $villeId)->get();
+        $quartiers = Quartier::where('ville_id', $villeId)
+                    ->orderBy('nom','asc')
+                    ->get();
         return response()->json($quartiers);
     }
 
