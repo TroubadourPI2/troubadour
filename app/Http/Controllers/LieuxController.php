@@ -79,7 +79,6 @@ class LieuxController extends Controller
     {
         $idQuartier = intval($idQuartier);
 
-        session(['idQuartier' => $idQuartier]);
 
         Log::debug("Recherche précise" . " quartier: " . $idQuartier);
         try {
@@ -89,14 +88,16 @@ class LieuxController extends Controller
             $ville      = Ville::where('id', Quartier::where('id', $idQuartier)->first()->ville_id)->where('actif', 1)->first()->id;
             $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->orderBy('nom', 'ASC')->get();
 
+            session(['idQuartier' => $idQuartier]);
+
+
             return view('recherche', compact('lieux', 'villes', 'ville', 'quartier', 'quartiers'));
         } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
-            return redirect()->route('login');
-
+            return redirect()->route('lieux.rechercheReset');
         } catch (QueryException $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
-            return redirect()->route('login');
+            return redirect()->route('lieux.rechercheReset');
         }
     }
 
@@ -250,7 +251,8 @@ class LieuxController extends Controller
     public function Quartiers(Request $request)
     {
         $villeId    = $request->villeId;
-        $quartiers  = Quartier::where('ville_id', $villeId)->get()->sortByDesc('nom');
+        $quartiers  = Quartier::where('ville_id', $villeId)->orderBy('nom', 'ASC')->get();
+
         return compact('quartiers');
     }
 

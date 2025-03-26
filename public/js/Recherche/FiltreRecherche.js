@@ -53,7 +53,14 @@ function setQuartiersPC() {
                 let quartiers = response.data;
                 let listeQuartiers = quartiers.quartiers;
 
-                listeQuartiers.forEach((quartier) => {
+                var quartiersTableau = [];
+
+                for(let i = 0; i < listeQuartiers.length; i++) {
+                    let quartier = listeQuartiers[i];
+                    quartiersTableau.push(quartier);
+                }
+
+                quartiersTableau.forEach((quartier) => {
                     let option = document.createElement('option');
                     option.text = quartier.nom;
                     option.value = quartier.id;
