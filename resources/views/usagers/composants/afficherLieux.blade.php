@@ -11,9 +11,9 @@
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
             @foreach ($lieuxUsager as $lieu)
                 <!-- Carte lieu pour mobile -->
-                <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg ">
+                <div class="sm:hidden flex flex-row flex-wrap gap-4 items-center text-c1 rounded-lg h-full">
                     <div
-                        class="carteLieuxMobile relative w-full min-h-[50vh] mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl ">
+                        class="carteLieuxMobile relative w-full h-96 mb-4 rounded-lg shadow-xl transition-transform duration-500 [transform-style:preserve-3d] hover:shadow-2xl ">
                         <div
                             class="absolute bg-c3 inset-0 rounded-lg shadow-lg flex flex-col items-center p-4 [backface-visibility:hidden] {{ !$lieu->actif ? 'bg-[#B0B7B7]' : '' }}">
                             <img class="object-cover w-full h-72 rounded-t-lg" src="{{ $lieu->photo_lieu_url }}"
@@ -28,7 +28,7 @@
                             <div class="flex flex-col justify-between h-full">
 
                                 <div class="mb-2">
-                                    <div class="flex justify-end gap-2">
+                                    <div class="flex justify-end gap-2 items-center">
                                         <span class="text-lg font-semibold text-c1 uppercase texteActif"
                                             data-lieuId="{{ $lieu->id }}" data-actif="{{ $lieu->actif }}">
                                             {{ $lieu->actif === 1 ? __('actif') : __('inactif') }}
@@ -99,7 +99,7 @@
                             alt="{{ $lieu->nomEtablissement }}">
                     </div>
                     <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-4 relative">
-                        <div class="flex justify-end gap-2">
+                        <div class="flex justify-end gap-2 items-center">
                             <span class="text-lg font-semibold text-c1 uppercase texteActif"
                                 data-lieuId="{{ $lieu->id }}" data-actif="{{ $lieu->actif }}">
                                 {{ $lieu->actif === 1 ? __('actif') : __('inactif') }}
