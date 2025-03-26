@@ -116,6 +116,7 @@
   "messageSup2":"Votre compte a été supprimé.",
   "boutonOuiSup":"Oui, supprime-le!",
 
+  "lieuIntrouvable":"Lieu introuvable ou déjà supprimé.",
   "tousLesLieux": "Tous les lieux",
   "tousLesTypesActivites" : "Tous les types d'activités",
   "rechercherNom": "Rechercher par nom",
@@ -169,9 +170,22 @@
   "modifier":"Modifier",
   "pasResultatFiltreUsagers":"Aucun utilisateur n'a été trouvé avec ces filtres.",
   "inconnu":"Inconnu",
+
+  "favoris":"Favoris",
+  "lieuxFavoris":"Lieux Favoris",
+  "aucunFavori": "Aucun lieu ou activité dans les favoris",
+  "aucunLieuEnFavoris": "Aucun lieu en favoris",
+  "activitesFavorites":"Activités favorites",
+  "aucuneActiviteEnFavoris": "Aucune activité en favoris",
+  "messageSuppLieuFavoris":"Le lieu en favori a été supprimé avec succès!",
+  "messageSuppActiviteFavoris":"L'activité en favori a été supprimé avec succès!",
   
   "erreur403Texte":" Vous n'êtes pas autorisé à faire cette action" ,
   "erreur403": "Erreur 403 - Action non autorisée",
   "erreur429" : "Erreur 429 - Trop de requêtes",
-  "erreur429Texte" : "Nous sommes désolés, mais vous avez envoyé trop de requêtes récemment. Veuillez réessayer plus tard."
+  "erreur429Texte" : "Nous sommes désolés, mais vous avez envoyé trop de requêtes récemment. Veuillez réessayer plus tard.",
+  "erreurModifierPropreCompte" :"Vous ne pouvez pas modifier votre propre compte.",
+  "activiteIntrouvable" : "Activité introuvable ou déjà supprimée",
+  "utilisateurIntrouvable": "Utilisateur introuvable ou déjà supprimée",
+  "statutOuRoleInvalide":"Le rôle sélectionné ou le statut est invalide."
 }  

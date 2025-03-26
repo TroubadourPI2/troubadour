@@ -113,6 +113,7 @@
   "messageSup2": "Your account has been deleted.",
   "boutonOuiSup": "Yes, delete it!",
 
+  "lieuIntrouvable":"Location not found or already deleted.",
   "tousLesLieux": " All locations",
   "tousLesTypesActivites" : "All types of activities",
   "rechercherNom": "Search by name",
@@ -165,5 +166,24 @@
   "action":"Action",
   "modifier":"Edit",
   "pasResultatFiltreUsagers":"No users were found with these filters.",
-    "inconnu":"Unknown"
+  "inconnu":"Unknown",
+  
+  "favoris":"Favorites",
+  "lieuxFavoris":"Favorite locations ",
+  "aucunFavori": "No locations or activities in favorites",
+  "aucunLieuEnFavoris": "No locations in favorites",
+  "activitesFavorites":"Favorite activities ",
+  "aucuneActiviteEnFavoris": "No activities in favorites", 
+  "messageSuppLieuFavoris": "The location has been successfully removed from favorites!",
+  "messageSuppActiviteFavoris": "The activity has been successfully removed from the favorites!",
+
+  
+  "erreur403Texte": "You are not authorized to perform this action",
+  "erreur403": "Erreur 403 - Action not authorized",
+  "erreur429" : "Error 429 - Too many requests",
+  "erreur429Texte" : "We’re sorry, but you have sent too many requests to us recently. Please try again later.",
+  "erreurModifierPropreCompte" :"You cannot change your own account.",
+  "activiteIntrouvable" : "Activity not found or already deleted",
+  "utilisateurIntrouvable": "User not found or already deleted",
+  "statutOuRoleInvalide": "The selected role or status is invalid."
 }

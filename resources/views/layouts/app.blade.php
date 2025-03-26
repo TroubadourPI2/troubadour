@@ -24,18 +24,18 @@
 
         <div class="w-full p-8 items-center hidden lg:flex ">
             {{-- Menu Desktop --}}
-            <div class="flex w-auto items-center gap-x-4 flex-grow-0">
+            <div class="flex w-full items-center gap-x-4  ">
+                <a href="/" class="items-center flex w-fit cursor-pointer  gap-x-4 ">
                 <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class="w-20 xl:w-24" alt="Logo Troubadour">
                 <span class="text-c1 uppercase text-4xl 2xl:text-5xl font-barlow font-semibold">troubadour</span>
+                </a>
             </div>
             <div class="flex w-full justify-end items-center gap-x-2">
                 {{-- TODO remplacer par les liens quand les pages seronts faites --}}
                 <a class="text-c1 uppercase text-lg xl:text-2xl font-barlow text-semibold cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition  "
                     href="{{ route('lieux.recherche') }}">{{ __('lieux') }}</a>
                 <div class="border-r-2 h-10 border-c1 rounded "></div>
-                <a
-                    class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer text-semibold hover:bg-c3 px-2 py-1 rounded-full transition   ">{{ __('aPropos') }}</a>
-                <div class="border-r-2 h-10 border-c1 rounded "></div>
+        
                 @auth
                     <a class="text-c1 uppercase text-lg xl:text-2xl font-barlow cursor-pointer hover:bg-c3 px-2 py-1 rounded-full transition"
                         href="{{ route('usagerLieux.afficher') }}">{{ __('compte') }}</a>
@@ -82,9 +82,7 @@
                     </div>
                 </div>
 
-                <span
-                    class="iconify size-9 2xl:size-10 cursor-pointer hover:bg-c3 px-2 py-1 text-c1 rounded-full transition "
-                    data-icon="mdi:search" data-inline="false"></span>
+
 
             </div>
         </div>
@@ -92,7 +90,9 @@
 
         <div class="lg:hidden  flex justify-end w-full p-8  items-center text-c1 gap-2">
             <div class="flex w-full items-center gap-x-4">
+                <a href="/">
                 <img src="{{ asset('/Images/Logos/logoC1.svg') }}" class=" w-20 xl:w-24" alt="Logo Troubadour">
+                </a>
             </div>
             <div class="flex w-full items-center justify-end">
                 <button id="boutonOuvrirMenu">
@@ -110,7 +110,7 @@
                     <!-- Bouton pour fermer le menu mobile -->
                     <div class="flex justify-end w-full">
                         <button id="boutonFermerMenu" class="text-c1 justify-end transition  ">
-                            <span class="iconify size-10 hover:bg-c1 hover:text-c3" data-icon="mdi:close"
+                            <span class="iconify size-10 hover:bg-c1 hover:text-c3 transition" data-icon="mdi:close"
                                 data-inline="false"></span>
                         </button>
                     </div>
@@ -121,10 +121,7 @@
                         class=" hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"><span
                             class="iconify size-10 " data-icon="mdi-camera"
                             data-inline="false"></span>{{ __('lieux') }}</a>
-                    <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full"> <span
-                            class="iconify size-10 " data-icon="mdi:about"
-                            data-inline="false"></span>{{ __('aPropos') }}</a>
+                
 
                     @auth
                         <a href="{{ route('usagerLieux.afficher') }}"
@@ -138,10 +135,6 @@
                                 class="iconify size-10 " data-icon="mdi:user"
                                 data-inline="false"></span>{{ __('administration') }}</a>
                     @endrole
-                    <a href=""
-                        class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full">
-                        <span class="iconify size-10 " data-icon="mdi:search"
-                            data-inline="false"></span>{{ __('Recherche') }}</a>
                     <div x-data="{ open: false }" class="relative font-barlow">
                         <a @click="open = !open"
                             class="hover:opacity-80 hover:bg-c2 p-2 transition duration-300 flex items-center w-full cursor-pointer">
@@ -179,10 +172,6 @@
                             {{ __('connexion') }}
                         </a>
                     @endauth
-                    @if (session()->has('deconnexionSucces'))
-                        <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
-                        @php session()->forget('deconnexionSucces'); @endphp
-                    @endif
 
                 </nav>
 
@@ -280,5 +269,9 @@
         document.body.classList.remove('overflow-hidden');
     });
 </script>
+@if (session()->has('deconnexionSucces'))
+    <script src="{{ asset('js/usagers/usagers/Deconnexion.js') }}" defer></script>
+    @php session()->forget('deconnexionSucces'); @endphp
+@endif
 
 </html>

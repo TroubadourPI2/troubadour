@@ -27,13 +27,18 @@ Route::middleware(Langue::class)
             [UsagersController::class, 'Deconnexion']
         )->name('usagers.Deconnexion')->middleware('auth');
 
+        Route::get(
+            '/Deconnexion',
+            [UsagersController::class, 'DeconnexionGet']
+        )->name('usagers.Deconnexion')->middleware('auth');
+
         Route::get('/geolocalisation/ville', [GeolocalisationController::class, 'ObtenirVilleUtilisateur']);
 
 
         //USAGERS
         Route::get('/compte', [UsagersController::class, 'ObtenirDonneesCompte'])->name('usagerLieux.afficher')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
-        Route::put('/compte/{usager}/modifier', [UsagersController::class, 'ModificationUsager'])->name('usagers.modifier')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
-        Route::patch('/compte/{usager}/suppression', [UsagersController::class, 'Suppression'])->name('usagers.suppression')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
+        Route::patch('/compte/{usager}/modifier', [UsagersController::class, 'ModificationUsager'])->name('usagers.modifier')->middleware('VerifierRole:Admin,Utilisateur,Gestionnaire');
+        Route::patch('/compte/{usager}/suppression', [UsagersController::class, 'Suppression'])->name('usagers.suppression')->middleware('VerifierRole:Utilisateur,Gestionnaire');
         Route::post('/ajoutFavoriLieu', [UsagersController::class, 'AjouterFavorisLieu'])->name('ajouter.favoris.lieu');  
         Route::post('/ajoutFavoriActivite', [UsagersController::class, 'AjouterFavorisActivite'])->name('ajouter.favoris.activite');  
         Route::post('/deleteFavoriLieu/{id}', [UsagersController::class, 'SupprimerFavorisLieu'])->name('delete.favoris.lieu');        
@@ -41,20 +46,21 @@ Route::middleware(Langue::class)
         Route::post('/usagers/Connexion',[UsagersController::class, 'Connexion'])->name('usagers.Connexion')->middleware(['guest', 'throttle:10,15']);
         Route::post('/usagers', [UsagersController::class, 'CreationUsager'])->name('usagers.CreationUsager')->middleware(['guest', 'throttle:10,20']);      
 
+       
 
         //LIEUX (GESTIONNAIRE)
         Route::get('/compte/obtenirQuartiers', [UsagersController::class, 'ObtenirQuartiersParVille']);
-        Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu')->middleware('VerifierRole:Admin,Gestionnaire');
+        Route::post('/compte/ajouterLieu', [LieuxController::class, 'AjouterUnLieu'])->name('usagerLieux.ajouterLieu')->middleware('VerifierRole:Admin,Gestionnaire')->middleware('throttle:10,30');
         Route::get('/compte/obtenirLieu', [LieuxController::class, 'ObtenirUnLieu']);
         Route::get('/lieu/zoom/{id}', [LieuxController::class, 'ZoomLieu'])->name('Lieu.zoom');
-        Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu')->middleware('VerifierRole:Admin,Gestionnaire');
-        Route::delete('/compte/supprimerLieu/{id}', [LieuxController::class, 'SupprimerUnLieu'])->middleware('VerifierRole:Admin,Gestionnaire');
+        Route::put('/compte/modifierLieu/{id}', [LieuxController::class, 'ModifierUnLieu'])->name('usagerLieux.modifierLieu')->middleware('VerifierRole:Admin,Gestionnaire')->middleware('throttle:10,30');
+        Route::delete('/compte/supprimerLieu/{id}', [LieuxController::class, 'SupprimerUnLieu'])->name('usagerLieux.supprimerLieu')->middleware('VerifierRole:Admin,Gestionnaire');
         Route::patch('/compte/changerEtatLieu/{id}', [LieuxController::class, 'ChangerEtatLieu'])->name('usagerLieux.changerEtatLieu')->middleware('VerifierRole:Admin,Gestionnaire');
 
         //ACTIVITES
-        Route::post('/compte/ajouterActivite', [ActivitesController::class, 'AjouterUneActivite'])->name('usagerActivites.ajouterActivite')->middleware('VerifierRole:Admin,Gestionnaire');
+        Route::post('/compte/ajouterActivite', [ActivitesController::class, 'AjouterUneActivite'])->name('usagerActivites.ajouterActivite')->middleware('VerifierRole:Admin,Gestionnaire')->middleware('throttle:10,30');
         Route::delete('/compte/supprimerActivites/{id}', [ActivitesController::class, 'SupprimerActivite'])->name('usagerActivites.supprimerActivite')->middleware('VerifierRole:Admin,Gestionnaire');
-        Route::put('/compte/modifierActivites/{id}', [ActivitesController::class, 'ModifierActivite'])->name('usagerActivites.modifierActivite')->middleware('VerifierRole:Admin,Gestionnaire');
+        Route::put('/compte/modifierActivites/{id}', [ActivitesController::class, 'ModifierActivite'])->name('usagerActivites.modifierActivite')->middleware('VerifierRole:Admin,Gestionnaire')->middleware('throttle:10,30');;
         Route::get('/compte/obtenirActivite/{activiteId}', [ActivitesController::class, 'ObtenirActivite'])->name('compte.obtenirActivite')->middleware('VerifierRole:Admin,Gestionnaire');
         Route::patch('compte/activite/statut/{id}', [ActivitesController::class, 'ModifierStatutActivite'])->name('usagerActivites.modifierStatutActivite')->middleware('VerifierRole:Admin,Gestionnaire');
         Route::get('/activite/zoom/{id}/{idLieu}', [ActivitesController::class, 'ZoomActivite'])->name('Activite.zoom');

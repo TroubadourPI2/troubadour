@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\TypeActivite;
 use App\Http\Requests\ActiviteRequest;
 use App\Models\ActiviteFavori;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ActivitesController extends Controller
 {
@@ -79,8 +80,13 @@ class ActivitesController extends Controller
         $estAdmin = $utilisateur->role->nom === 'Admin';
         $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
         if (!$estProprietaire && !$estAdmin) {
-            return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
+            return response()->json([
+                'success' => false,
+                'message' => __('erreur403Texte') 
+            ], 403);
         }
+        
+        
         // TODO CHANGER POUR PROD ACTIVITE
         foreach ($activite->photos as $photo) {
             \Storage::disk('DevActivite')->delete($photo->chemin);
@@ -90,6 +96,14 @@ class ActivitesController extends Controller
         $activite->delete();
 
         return response()->json(['success' => true,]);
+
+    } catch (ModelNotFoundException $e) {
+
+        return response()->json([
+            'success' => false,
+            'message' => __('activiteIntrouvable')
+        ], 404);
+
     } catch (\Exception $e) {
         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
     }
@@ -97,13 +111,14 @@ class ActivitesController extends Controller
 
     public function ModifierActivite(ActiviteRequest $request, string $id)
     {
+        $activite = Activite::findOrFail($id);
         try {
-            $activite = Activite::findOrFail($id);
+            
             $utilisateur = auth()->user(); 
             $estAdmin = $utilisateur->role->nom === 'Admin';
             $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
             if (!$estProprietaire && !$estAdmin) {
-                return response()->json(['success' => false, 'message' => 'Accès refusé.'], 403);
+                return response()->view('errors.403', [], 403);
             }
             $activite->update([
                 'nom'             => $request->nomActivite,
@@ -169,11 +184,29 @@ class ActivitesController extends Controller
         try {
          
             $activite = Activite::with(['photos', 'lieux', 'typeActivite'])->findOrFail($activiteId);
-    
+
+            $utilisateur = auth()->user(); 
+            $estAdmin = $utilisateur->role->nom === 'Admin';
+            $estProprietaire = $activite->lieux()->where('proprietaire_id', $utilisateur->id)->exists();
+            if (!$estProprietaire && !$estAdmin) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('erreur403Texte') 
+                ], 403);
+            }
+            
             return response()->json([
                 'success' => true,
                 'data'    => $activite
             ], 200);
+        }
+        catch (ModelNotFoundException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => __('activiteIntrouvable')
+            ], 404);
+    
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

@@ -13,6 +13,7 @@ use App\Models\Usager;
 use App\Models\RoleUsager;
 use App\Models\Statut;
 use App\Models\Recherche;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AdministrateursController extends Controller
 {
@@ -40,7 +41,7 @@ class AdministrateursController extends Controller
         $validationDonnees = $request->validate([
             'villeId' => 'nullable|integer|exists:Villes,id',
             'quartierId' => 'nullable|integer|exists:Quartiers,id',
-            'rechercheNom' => 'nullable|string|max:255',
+            'rechercheNom' => 'nullable|string|max:64',
             'actif' => 'nullable|boolean',
             'parPage' => 'nullable|integer|in:10,25,50,100',
         ]);
@@ -168,14 +169,33 @@ class AdministrateursController extends Controller
     
     public function ModifierUsagers(UsagerRequest $request, $id)
     {
-   
-        $usager = Usager::findOrFail($id);
-        $usager->update([
-            'role_id' => $request->role_id,
-            'statut_id' => $request->statut_id,
-        ]);
+        try {
+    $usager = Usager::findOrFail($id);
+    $utilisateur = auth()->user();
+    if ($utilisateur->id === $usager->id) {
+        return response()->json([
+            'success' => false, 
+            'message' => __('erreurModifierPropreCompte')
+        ], 403);
+    }
+
+    $usager->update([
+        'role_id' => $request->role_id,
+        'statut_id' => $request->statut_id,
+    ]);
 
         return response()->json(['success' => true]);
+    }  catch (ModelNotFoundException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => __('utilisateurIntrouvable')
+            ], 404);
+    
+        }   catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' =>  __('erreurGenerale')], 500);
+        }
+        
     }
 
     public function ObtenirRolesEtStatuts()

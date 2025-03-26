@@ -19,11 +19,11 @@
                 <span class="iconify size-8 sm:hidden" data-icon="mingcute:location-3-line"></span>
                 <span class="hidden sm:inline">{{ __('lieux') }}</span>
             </button>
-            
+
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
             <button id="boutonQuartier" data-section="quartiers"
-                class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-32 uppercase transition">
-                <span class="iconify size-8 sm:hidden" data-icon="mingcute:location-3-line"></span>
+                class="boutonMenu text-base px-2 py-2 sm:px-4 sm:py-0 sm:text-xl font-semibold sm:hover:bg-c1 sm:hover:text-c3 rounded-full sm:w-40 uppercase transition">
+                <span class="iconify size-8 sm:hidden" data-icon="mingcute:building-5-line"></span>
                 <span class="hidden sm:inline">{{ __('quartier') }}</span>
             </button>
             <div class="sm:h-6 h-4 sm:border-l-[3px] border-l-2 border-c1 hidden sm:inline"></div>
@@ -37,7 +37,7 @@
 
         <div id="demandes" class="sectionMenu">@include('admin.composants.Demandes')</div>
         <div id="lieux" class="sectionMenu hidden">@include('admin.composants.GestionLieux')</div>
-        <div id="quartiers" class="sectionMenu hidden">@include('admin.composants.afficherQuartier')</div>
+        <div id="quartiers" class="sectionMenu hidden">@include('admin.composants.AfficherQuartier')</div>
         <div id="recherches" class="sectionMenu hidden">@include('admin.composants.historiqueRecherche')</div>
     </div>
 
@@ -110,7 +110,7 @@
             const boutonLieu = document.getElementById('boutonLieu');
             boutonLieu.classList.add("bg-c1", "text-c3");
             boutonLieu.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
-            
+
             const boutonQuartier = document.getElementById('boutonQuartier');
             boutonQuartier.classList.add("bg-c1", "text-c3");
             boutonQuartier.classList.remove("sm:hover:bg-c1", "sm:hover:text-c3");
