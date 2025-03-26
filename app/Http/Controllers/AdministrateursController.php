@@ -19,7 +19,7 @@ class AdministrateursController extends Controller
 {
     public function Afficher()
     {
-        $villes = Ville::all();
+        $villes = Ville::where('actif', 1)->get();
         $typesLieu = TypeLieu::all();
         $termesRecherche = Recherche::all()->sortByDesc('nbOccurences');
 

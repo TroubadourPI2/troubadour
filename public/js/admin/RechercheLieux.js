@@ -141,7 +141,7 @@ function AfficherLieux(lieux, majStatut) {
                     <div class="carteLieuxMobileDerriere absolute inset-0 bg-c3 rounded-lg shadow-lg p-4 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                         <div class="flex flex-col justify-between h-full">
                            <div class="mb-2">
-                                <div class="flex justify-end gap-2">
+                                <div class="flex justify-end gap-2 items-center">
                                     <span class="text-lg font-semibold text-c1 uppercase texteActif"
                          data-lieuId="${lieu.id}" data-actif="${lieu.actif}">
                         ${lieu.actif === 1 ? Lang.get('strings.actif') : Lang.get('strings.inactif')}
@@ -206,7 +206,7 @@ function AfficherLieux(lieux, majStatut) {
                     <img class="object-cover w-full h-full rounded" src="${lieu.photoLieu}" alt="${lieu.nomEtablissement}">
                 </div>
                 <div class="w-full sm:w-1/2 p-4 flex flex-col h-full gap-y-4 relative">
-                    <div class="flex justify-end gap-2">
+                    <div class="flex justify-end gap-2 items-center">
                         <span class="text-lg font-semibold text-c1 uppercase texteActif"
                          data-lieuId="${lieu.id}" data-actif="${lieu.actif}">
                         ${lieu.actif === 1 ? Lang.get('strings.actif') : Lang.get('strings.inactif')}
