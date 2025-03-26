@@ -48,30 +48,33 @@ function setQuartiersPC() {
         ajusterEtatBoutonRecherche('PC');
 
         axios
-            .get(`/quartiers?villeId=${idVille}`)
-            .then((response) => {
-                let quartiers = response.data;
-                let listeQuartiers = quartiers.quartiers;
 
-                var quartiersTableau = [];
+        .get(`/quartiers?villeId=${idVille}`)
 
-                for(let i = 0; i < listeQuartiers.length; i++) {
-                    let quartier = listeQuartiers[i];
-                    quartiersTableau.push(quartier);
-                }
+        .then((response) => {
+            let quartiersObject = response.data.quartiers; // This is an object
 
-                quartiersTableau.forEach((quartier) => {
-                    let option = document.createElement('option');
-                    option.text = quartier.nom;
-                    option.value = quartier.id;
-                    selectQuartier.add(option);
-                });
-            })
-            .catch((error) =>
-                console.error('Error fetching quartiers:', error)
-            );
+            if (!quartiersObject) {
+                console.error("No quartiers found in response.");
+                return;
+            }
+    
+            // Convert the object to an array
+            let quartiers = Object.values(quartiersObject);
+    
+            // console.log("Extracted quartiers array:", quartiers);
+    
+            quartiers.forEach((quartier) => {
+                let option = document.createElement("option");
+                option.text = quartier.nom;
+                option.value = quartier.id;
+                selectQuartier.add(option);
+            });
 
-        
+        })
+
+        .catch((error) => console.error("Error fetching quartiers:", error));
+    
         ajusterEtatBoutonRecherche('PC');
     }
     else if (idVille === 'voirTout') {
