@@ -7,8 +7,7 @@
             <h1 class="text-2xl font-bold text-c1 uppercase font-barlow underline my-5">{!! __('lieuxFavoris') !!}</h1>
 
             <div dir="ltr">
-                <div class="overflow-x-auto">
-
+                <div class="grid grid-flow-col auto-cols-max gap-x-4 overflow-x-auto snap-x whitespace-nowrap">
                     @foreach ($favorisLieux as $favoriL)
                         <a href="/lieu/zoom/{{ $favoriL->lieu->id }}"
                             class="w-80 h-96 bg-c3 transition shadow-lg rounded-md cursor-pointer relative overflow-hidden border border-transparent hover:border-c1 my-2 flex flex-col justify-end">
