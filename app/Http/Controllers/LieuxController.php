@@ -29,30 +29,31 @@ class LieuxController extends Controller
     public function Index()
     {
         try {
-
-            if (session()->has('idQuartier')) {
+            
+            if(session()->has('idQuartier')) {
                 return redirect()->route('lieux.recherchePrecis', session('idQuartier'));
             } else {
                 $villes = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
                 $lieux = Lieu::where('actif', 1)->orderBy('nomEtablissement', 'ASC')->paginate(10);
                 $villes = Ville::where('actif', 1)->orderBy('nom', 'ASC')->get();
-
-
+    
+    
                 $villesInactives = Ville::where('actif', 0)->get();
                 $quartiersInactifs = Quartier::where('actif', 0)->get();
                 $lieuxFinaux = [];
-
-                $lieux = Lieu::where('actif', 1)->whereHas('quartier', function ($query) {
+    
+                $lieux = Lieu::where('actif', 1)->whereHas('quartier', function($query) {
                     $query->where('actif', 1)  // Ensure the quartier is actif
-                        ->whereHas('ville', function ($query) {
+                        ->whereHas('ville', function($query) {
                             $query->where('actif', 1);  // Ensure the ville is actif
                         });
                 })->paginate(8);
-
+    
                 $ville = -1;
                 $quartier = -1;
                 return view('recherche', compact('lieux', 'villes', 'ville', 'quartier'));
             }
+
         } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
             return View('accueil');
@@ -62,8 +63,7 @@ class LieuxController extends Controller
         }
     }
 
-    public function Reset()
-    {
+    public function Reset(){
         session()->forget('lieux');
         session()->forget('recherche');
         session()->forget('ville');
@@ -72,7 +72,7 @@ class LieuxController extends Controller
         session()->forget('quartiers');
         session()->forget('idQuartier');
 
-
+        
         return redirect()->route('lieux.recherche');
     }
 
@@ -80,7 +80,6 @@ class LieuxController extends Controller
     {
         $idQuartier = intval($idQuartier);
 
-        session(['idQuartier' => $idQuartier]);
 
         Log::debug("Recherche précise" . " quartier: " . $idQuartier);
         try {
@@ -90,21 +89,26 @@ class LieuxController extends Controller
             $ville      = Ville::where('id', Quartier::where('id', $idQuartier)->first()->ville_id)->where('actif', 1)->first()->id;
             $quartiers  = Quartier::where('ville_id', $ville)->where('actif', 1)->orderBy('nom', 'ASC')->get();
 
+            session(['idQuartier' => $idQuartier]);
+
+
             return view('recherche', compact('lieux', 'villes', 'ville', 'quartier', 'quartiers'));
         } catch (\Exception $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
-            return redirect()->route('login');
+            return redirect()->route('lieux.rechercheReset');
         } catch (QueryException $e) {
             Log::debug("MANUEL - Erreur lors de la récupération des lieux : " . $e->getMessage());
-            return redirect()->route('login');
+            return redirect()->route('lieux.rechercheReset');
         }
     }
 
     public function Recherche(Request $request)
     {
-        try {
+        try
+        {
 
-            if ($request->txtRecherche !== session('recherche')) {
+            if($request->txtRecherche !== session('recherche'))
+            {
                 session()->forget('lieux');
                 session()->forget('recherche');
                 session()->forget('ville');
@@ -134,7 +138,7 @@ class LieuxController extends Controller
                 $quartier   = $request->quartier;
                 $rechercheSecurisee = trim($request->txtRecherche);
                 $rechercheSecurisee = addslashes($rechercheSecurisee);
-                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
+                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee, ENT_NOQUOTES, 'UTF-8');
 
                 $lieux      = Lieu::where('quartier_id', $request->quartier)->where('nomEtablissement', 'like', "%$rechercheSecurisee%")->where('actif', 1)->paginate(8);
             }
@@ -147,7 +151,7 @@ class LieuxController extends Controller
             if (isset($request->txtRecherche)) {
                 $rechercheSecurisee = trim($request->txtRecherche);
                 $rechercheSecurisee = addslashes($rechercheSecurisee);
-                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee);
+                $rechercheSecurisee = htmlspecialchars($rechercheSecurisee, ENT_NOQUOTES, 'UTF-8');
                 session(['recherche' => $rechercheSecurisee]);
 
                 try {
@@ -262,7 +266,8 @@ class LieuxController extends Controller
             $lieu->rue =  $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = (strtoupper($request->codePostal));
-            $lieu->nomEtablissement = htmlspecialchars($request->nomEtablissement);
+            $lieu->nomEtablissement = htmlspecialchars($request->nomEtablissement, ENT_NOQUOTES, 'UTF-8');
+
 
             $photoCheminParDefaut = 'lieux/image_defaut.png';
             if (!Storage::disk('DevActivite')->exists($photoCheminParDefaut)) {
@@ -280,7 +285,7 @@ class LieuxController extends Controller
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
             $lieu->actif = true;
-            $lieu->description = htmlspecialchars($request->description);
+            $lieu->description = htmlspecialchars($request->description, ENT_NOQUOTES, 'UTF-8');
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
             $lieu->proprietaire_id = Auth::id();
@@ -380,10 +385,10 @@ class LieuxController extends Controller
             $lieu->rue = $request->rue;
             $lieu->noCivic = $request->noCivic;
             $lieu->codePostal = (strtoupper($request->codePostal));
-            $lieu->nomEtablissement =  htmlspecialchars($request->nomEtablissement);
+            $lieu->nomEtablissement =  htmlspecialchars($request->nomEtablissement, ENT_NOQUOTES, 'UTF-8');
             $lieu->siteWeb = $request->siteWeb;
             $lieu->numeroTelephone = $request->numeroTelephone;
-            $lieu->description = htmlspecialchars($request->description);
+            $lieu->description = htmlspecialchars($request->description, ENT_NOQUOTES, 'UTF-8');
             $lieu->quartier_id = $request->selectQuartierLieu;
             $lieu->typeLieu_id = $request->selectTypeLieu;
             if ($request->has('photoLieuSupprime') && $request->photoLieuSupprime == "1") {
@@ -505,4 +510,6 @@ class LieuxController extends Controller
             ], 500);
         }
     }
+
+
 }

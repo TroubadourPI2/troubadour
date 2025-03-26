@@ -26,7 +26,7 @@
             <!-- Toggle Actif -->
             <div class="flex items-center gap-2 w-1/4 md:w-1/5">
                 <span id="texteActifRechercheAdmin"
-                    class="text-lg font-semibold text-c1 uppercase">{{ __('Actif') }}</span>
+                    class="text-lg font-semibold text-c1 uppercase">{{ __('actif') }}</span>
                 <label class="relative inline-flex items-center cursor-pointer">
                     <input id="boutonFiltreActif" type="checkbox" name="actif" class="sr-only peer" checked>
                     <div

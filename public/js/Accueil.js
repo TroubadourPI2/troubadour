@@ -56,7 +56,7 @@ function CreerCarteDerniere(type) {
     carte.className = "transition-all duration-700 w-full  max-h-48  bg-c3 rounded-lg flex flex-col justify-between items-center hover:border hover:border-c1 hover:scale-110 cursor-pointer carteLieu opacity-0 p-4";
 
     const image = document.createElement("img");
-    image.src = "images/Logos/logoC1.svg";
+    image.src = "Images/Logos/logoC1.svg";
     image.alt = (type === "voirPlus") ? Lang.get('strings.voirPlus') : Lang.get('strings.autreVille');
     image.className = "w-full h-52 object-cover";
     carte.appendChild(image);
