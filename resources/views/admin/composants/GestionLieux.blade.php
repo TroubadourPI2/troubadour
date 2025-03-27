@@ -15,6 +15,7 @@
         <select name="quartier" id="filtreQuartier"
             class="border-2 border-c1 p-1 sm:p-2 mb-2 md:mb-0 rounded-full w-full md:w-1/4 text-sm sm:text-base uppercase">
             <!-- Les quartiers seront remplis par JS ou passés en variable -->
+            <option value="">{{ __('choisirQuartier') }}</option>
         </select>
 
         <!-- Recherche et Toggle ensemble -->

@@ -33,11 +33,17 @@ function ObtenirElementsRechercheLieux() {
 
 function RechercheLieuxListeners() {
     filtreVille.addEventListener('change', function () {
-        FiltrerLieux();
         if (filtreVille.value != '') {
             ObtenirQuartiersParVille(filtreVille.value);
+            FiltrerLieux();
         } else {
             filtreQuartier.innerHTML = '';
+            filtreQuartier.value = '';
+            const optionDefaut = document.createElement('option');
+            optionDefaut.value = '';
+            optionDefaut.textContent = Lang.get('strings.choisirQuartier');
+            filtreQuartier.appendChild(optionDefaut);
+            FiltrerLieux();
         }
     });
 
@@ -60,7 +66,7 @@ function RechercheLieuxListeners() {
     selectParPage.addEventListener("change", function () {
         lieuxParPages = parseInt(this.value);
         FiltrerLieux(1)
-    })
+    });
 }
 
 function MettreAJourRechercheQuartier(quartiers) {
@@ -103,11 +109,10 @@ function FiltrerLieux(page = 1, majStatut = true) {
         .get('/admin/recherche/lieux', { params })
         .then((response) => {
             if (response.data.lieux) {
+                console.log(response.data.lieux)
                 AfficherLieux(response.data.lieux, majStatut);
                 document.getElementById('pagination').innerHTML = PaginationLieux(response.data.pagination, "FiltrerLieux");
-            } else {
-                AfficherMessage(response.data.message);
-            }
+            } 
         })
         .catch((error) => {
             console.error('Erreur lors du filtrage des lieux', error);
@@ -125,7 +130,7 @@ function AfficherLieux(lieux, majStatut) {
 
     if (lieux.length === 0) {
         containerLieux.innerHTML =
-            '<p>Aucun lieu trouvé pour les critères de recherche.</p>';
+            `<p>${Lang.get('strings.aucunLieuTrouve')}</p>`;
         return;
     }
 
@@ -291,6 +296,7 @@ function AfficherLieux(lieux, majStatut) {
 }
 
 function PaginationLieux(donnees, fonction) {
+    console.log(donnees)
     return `
     <div class="flex gap-2 mt-4">
         <!-- Bouton Première Page -->

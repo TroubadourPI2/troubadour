@@ -174,9 +174,7 @@
                                         {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
                                     </a>
                                 @else
-                                    <a href="{{ $lieuActuel->siteWeb ?? '' }}">
-                                        {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
-                                    </a>
+                                    {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
                                 @endif
                             </div>
                         </div>

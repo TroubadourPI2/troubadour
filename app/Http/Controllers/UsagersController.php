@@ -62,7 +62,7 @@ class UsagersController extends Controller
         $lieuxUsager = Lieu::where('proprietaire_id', $usager->id)
         ->orderByDesc('actif') 
         ->get();
-        $villes = Ville::where('actif', 1)->get();
+        $villes = Ville::where('actif', 1)->orderBy('nom', 'asc')->get();
         $typesLieu = TypeLieu::orderBy('nom', 'asc')->get();
         $activites = $usager->lieu->pluck('activites')->flatten()->unique('id');
         $typesActivite = TypeActivite::orderBy('nom', 'asc')->get();

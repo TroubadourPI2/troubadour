@@ -45,12 +45,12 @@ class AdministrateursController extends Controller
             'actif' => 'nullable|boolean',
             'parPage' => 'nullable|integer|in:10,25,50,100',
         ]);
+        
         $villeId  = $validationDonnees['villeId'] ?? null;
         $quartierId = $validationDonnees['quartierId'] ?? null;
         $rechercheNom = $validationDonnees['rechercheNom'] ?? null;
         $actif = $validationDonnees['actif'] ?? null;
         $parPage = $validationDonnees['parPage'] ?? 10;
-    
         $lieux = Lieu::when($villeId, function ($query) use ($villeId) {
             $query->whereHas('quartier', function ($q) use ($villeId) {
                 $q->where('ville_id', $villeId);
@@ -67,11 +67,6 @@ class AdministrateursController extends Controller
             })
             ->with(['quartier.ville.region.province', 'quartier.ville.pays', 'typeLieu'])
             ->paginate($parPage);
-
-
-        if ($lieux->isEmpty()) {
-            return response()->json(['message' => __('aucunLieuTrouve')]);
-        }
 
         $lieuxWithDetails = $lieux->map(function ($lieu) {
             return [

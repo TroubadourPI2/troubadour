@@ -182,9 +182,10 @@
                         <div class="text">
                             @if ($lieu->siteWeb)
                                 <a href="{{ $lieu->siteWeb ?? '' }}">
-                                    {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
-                                @else
-                                    {{ $lieuActuel->siteWeb ?? __('aucunSiteWeb') }}
+                                    {{ $lieu->siteWeb }}
+                                </a>  
+                            @else
+                                    {{ $lieu->siteWeb ?? __('aucunSiteWeb') }}
                             @endif
                         </div>
                     </div>

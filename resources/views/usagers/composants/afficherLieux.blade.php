@@ -71,7 +71,7 @@
                                             <p><strong>{{ __('region') }} :</strong> {{ $lieu->region()->nom }}</p>
                                         @endif
                                         @if ($lieu->siteWeb)
-                                            <p><strong>{{ __('siteWeb') }} :</strong> <a href="{{ $lieu->siteWeb }}"
+                                            <p><strong>{{ __('siteWeb') }} :</strong> <a href="{{ $lieu->siteWeb }}" target="_blank"
                                                     class="text-blue-500 underline">{{ $lieu->siteWeb }}</a></p>
                                         @endif
                                         <p><strong>{{ __('telephone') }} :</strong> {{ $lieu->numeroTelephone }}</p>
@@ -142,7 +142,7 @@
                                 @endif
                                 @if ($lieu->siteWeb)
                                     <p class="truncate"><strong>{{ __('siteWeb') }} :</strong> <a
-                                            href="{{ $lieu->siteWeb }}"
+                                            href="{{ $lieu->siteWeb }}" target="_blank"
                                             class="text-blue-500 underline">{{ $lieu->siteWeb }}</a></p>
                                 @endif
                                 <p><strong>{{ __('telephone') }} :</strong> {{ $lieu->numeroTelephone }}</p>
