@@ -8,12 +8,12 @@
 
         <div class="relative flex flex-col justify-start w-full h-full font-barlow overflow-hidden">
 
-            <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+            <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full  h-full object-cover z-0">
                 <source src="{{ asset('Videos/video_accueil.mp4') }}" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
 
-            <div class="absolute top-0 left-0 w-full h-full bg-black opacity-70 z-5"></div>
+            <div class="absolute top-0 left-0 w-full h-full bg-black opacity-60 z-5"></div>
 
             <div class="relative z-10 w-full h-full flex flex-col">
 
